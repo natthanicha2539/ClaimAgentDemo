@@ -25438,11 +25438,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="claim-ipd-stay-input-grid">
             <label>
               <div id="${hospitalId('IpdDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน IPD ${stayRequiredMark} ${stayOptionalNote}</div>
-              <input id="${hospitalId('IpdDays')}" type="number" min="0" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
+              <input id="${hospitalId('IpdDays')}" type="number" min="0" step="1" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
             </label>
             <label>
-              <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU ${stayRequiredMark} ${stayOptionalNote}</div>
-              <input id="${hospitalId('IcuDays')}" type="number" min="0" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
+              <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU <span class="claim-ipd-stay-optional">ไม่บังคับ</span></div>
+              <input id="${hospitalId('IcuDays')}" type="number" min="0" step="1" value="0" data-stay-required="false" class="claim-ipd-stay-input">
             </label>
             <label>
               <div class="claim-ipd-stay-input-label">จำนวนวันนอน</div>
@@ -26383,18 +26383,22 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(section) section.classList.toggle('hidden', !show);
     const ipdInput = document.getElementById(`${prefix}IpdDays`);
     const icuInput = document.getElementById(`${prefix}IcuDays`);
-    [ipdInput, icuInput].forEach(input => {
-      if(!input) return;
-      input.dataset.stayRequired = isIpd ? 'true' : 'false';
-      input.required = isIpd;
-      if(!isIpd) input.setCustomValidity('');
-    });
+    if(ipdInput){
+      ipdInput.dataset.stayRequired = isIpd ? 'true' : 'false';
+      ipdInput.required = isIpd;
+      if(!isIpd) ipdInput.setCustomValidity('');
+    }
+    if(icuInput){
+      icuInput.dataset.stayRequired = 'false';
+      icuInput.required = false;
+      icuInput.setCustomValidity('');
+    }
     const req = isIpd ? '<span class="req-star">*</span>' : '';
     const optional = isDayCase ? '<span class="claim-ipd-stay-optional">ไม่บังคับ</span>' : '';
     const ipdLabel = document.getElementById(`${prefix}IpdDaysLabel`);
     const icuLabel = document.getElementById(`${prefix}IcuDaysLabel`);
     if(ipdLabel) ipdLabel.innerHTML = `จำนวนวัน IPD ${req} ${optional}`;
-    if(icuLabel) icuLabel.innerHTML = `จำนวนวัน ICU ${req} ${optional}`;
+    if(icuLabel) icuLabel.innerHTML = 'จำนวนวัน ICU <span class="claim-ipd-stay-optional">ไม่บังคับ</span>';
   };
 
   window.validateConsiderStayDays = function(prefix){
@@ -26406,7 +26410,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const icuInput = document.getElementById(`${prefix}IcuDays`);
     if(!ipdInput) return true;
     const ipdDays = Number(ipdInput.value);
-    const icuDays = Number(icuInput?.value);
+    const icuRaw = String(icuInput?.value ?? '').trim();
+    const icuDays = icuRaw === '' ? 0 : Number(icuRaw);
     ipdInput.setCustomValidity('');
     if(icuInput) icuInput.setCustomValidity('');
     if(!Number.isFinite(ipdDays) || ipdDays <= 0){
@@ -26416,8 +26421,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ipdInput.focus({preventScroll:true});
       return false;
     }
-    if(icuInput && (!Number.isFinite(icuDays) || icuDays < 0)){
-      icuInput.setCustomValidity('กรุณาระบุจำนวนวัน ICU ให้ถูกต้อง');
+    if(icuInput && icuRaw !== '' && (!Number.isFinite(icuDays) || icuDays < 0)){
+      icuInput.setCustomValidity('จำนวนวัน ICU ต้องเป็นจำนวนเต็มตั้งแต่ 0 ขึ้นไป');
       icuInput.reportValidity();
       icuInput.scrollIntoView({behavior:'smooth', block:'center'});
       icuInput.focus({preventScroll:true});
