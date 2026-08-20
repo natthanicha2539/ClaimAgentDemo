@@ -407,8 +407,8 @@
     #continuousPanel .claim-history-view-all {
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      gap:6px;
+      justify-content:flex-start;
+      gap:4px;
       height:36px;
       border-radius:10px;
       border:1px solid #9bd3f7;
@@ -492,7 +492,7 @@
     }
     #claimEntryPage .benefit-summary-shell {
       border:1px solid #dbeafe;
-      border-radius:14px;
+      border-radius:12px;
       background:#fff;
       padding:14px;
       box-shadow:0 8px 22px rgba(15, 23, 42, .08);
@@ -509,7 +509,7 @@
       display:flex;
       align-items:center;
       gap:10px;
-      font-size:18px;
+      font-size:16px;
       font-weight:800;
       color:#334155;
     }
@@ -556,7 +556,7 @@
       line-height:1.15;
       font-weight:800;
       color:#334155;
-      margin-bottom:4px;
+      margin-bottom:2px;
     }
     #claimEntryPage .benefit-item-desc {
       margin-top:0;
@@ -3276,7 +3276,7 @@
       white-space:nowrap!important;
     }
     #considerDeathPage .dd-status-filter-label .material-icons-round{
-      font-size:22px!important;
+      font-size:20px!important;
       color:#0b74bd!important;
     }
     #considerDeathPage .dd-status-filter-buttons{
@@ -3746,7 +3746,7 @@
     /* v33: Highlight selected insured during claim entry */
     #claimEntryPage .insured-focus-card{
       border:1px solid #93c5fd;
-      border-radius:14px;
+      border-radius:12px;
       background:linear-gradient(135deg,#eff8ff 0%,#ffffff 72%);
       padding:14px 16px;
       box-shadow:0 8px 20px rgba(7,136,214,.12);
@@ -3756,7 +3756,7 @@
       display:flex;align-items:center;gap:7px;color:#64748b;font-size:13px;font-weight:800;
     }
     #claimEntryPage .insured-focus-name{
-      margin-top:4px;color:#075f99;font-size:24px;font-weight:900;line-height:1.2;word-break:break-word;
+      margin-top:2px;color:#075f99;font-size:24px;font-weight:900;line-height:1.2;word-break:break-word;
     }
     #claimEntryPage .insured-focus-meta{
       display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;
@@ -6463,7 +6463,7 @@ body > .min-h-screen > main,
     gap:10px!important;
     padding:16px 18px 10px!important;
     color:#0f3b66!important;
-    font-size:22px!important;
+    font-size:20px!important;
     font-weight:800!important;
   }
   :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-table-wrap{
@@ -7028,7 +7028,7 @@ body > .min-h-screen > main,
   }
   .cc-transfer-inline-alert-head .material-icons-round{
     color:#d97706!important;
-    font-size:22px!important;
+    font-size:20px!important;
     line-height:1!important;
     margin-top:2px!important;
   }
@@ -7075,6 +7075,521 @@ body > .min-h-screen > main,
   .cc-transfer-summary-value{font-size:24px!important;line-height:1!important}
   .cc-transfer-summary-unit{font-size:13px!important;margin-left:8px!important}
   @media(max-width:900px){.cc-transfer-summary-grid{grid-template-columns:1fr!important}}
+</style>
+
+<style id="claimagent-customer-ipd-stay-summary-v34">
+  #ccStepPane2 .customer-ipd-stay-summary{border:1px solid #d8e4f0;border-radius:16px;background:#fff;padding:14px 16px;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+  #ccStepPane2 .customer-ipd-stay-summary-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  #ccStepPane2 .customer-ipd-stay-summary-head strong{display:block;color:#075f99;font-size:16px;font-weight:900}
+  #ccStepPane2 .customer-ipd-stay-summary-head span{display:block;margin-top:2px;color:#64748b;font-size:12px;font-weight:700}
+  #ccStepPane2 .customer-ipd-stay-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #ccStepPane2 .customer-ipd-stay-card{min-height:76px;border:1px solid #c9ddf3;border-radius:13px;background:#f7fbff;padding:12px 14px;display:flex;align-items:center;gap:12px}
+  #ccStepPane2 .customer-ipd-stay-card.icu{border-color:#fed7aa;background:#fffaf4}
+  #ccStepPane2 .customer-ipd-stay-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:#dbeafe;color:#1d4ed8;flex:none}
+  #ccStepPane2 .customer-ipd-stay-card.icu .customer-ipd-stay-icon{background:#ffedd5;color:#c2410c}
+  #ccStepPane2 .customer-ipd-stay-icon .material-icons-round{font-size:22px!important}
+  #ccStepPane2 .customer-ipd-stay-card span:not(.customer-ipd-stay-icon){display:block;color:#64748b;font-size:12px;font-weight:800}
+  #ccStepPane2 .customer-ipd-stay-card strong{display:inline-block;margin-top:2px;color:#075f99;font-size:25px;font-weight:900;line-height:1}
+  #ccStepPane2 .customer-ipd-stay-card.icu strong{color:#c2410c}
+  #ccStepPane2 .customer-ipd-stay-card small{margin-left:6px;color:#475569;font-size:12px;font-weight:800}
+  @media(max-width:640px){#ccStepPane2 .customer-ipd-stay-summary-grid{grid-template-columns:1fr}}
+</style>
+
+<style id="claimagent-step1-ipd-stay-v35">
+  .claim-ipd-stay-summary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+    margin-top:10px;
+  }
+  .claim-ipd-stay-card{
+    position:relative;
+    min-height:128px;
+    border:1px solid #dbe7f3;
+    border-radius:20px;
+    background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:10px 14px 12px;
+    box-shadow:0 14px 30px rgba(15,23,42,.06);
+    overflow:hidden;
+  }
+  .claim-ipd-stay-card:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:5px;
+    background:#cbd5e1;
+  }
+  .claim-ipd-stay-card.ipd{
+    border-color:#b9e6fb;
+    background:linear-gradient(180deg,#f4fbff 0%,#ffffff 100%);
+  }
+  .claim-ipd-stay-card.icu{
+    border-color:#ffd5b3;
+    background:linear-gradient(180deg,#fff8f3 0%,#ffffff 100%);
+  }
+  .claim-ipd-stay-card.total{
+    border-color:#e2e8f0;
+    background:linear-gradient(180deg,#f8fafc 0%,#ffffff 100%);
+  }
+  .claim-ipd-stay-card.ipd:before{background:linear-gradient(90deg,#38bdf8 0%,#0ea5e9 100%)}
+  .claim-ipd-stay-card.icu:before{background:linear-gradient(90deg,#fb923c 0%,#f97316 100%)}
+  .claim-ipd-stay-card.total:before{background:linear-gradient(90deg,#cbd5e1 0%,#94a3b8 100%)}
+  .claim-ipd-stay-card-top{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:4px;
+  }
+  .claim-ipd-stay-icon{
+    display:grid;
+    place-items:center;
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:#e0f2fe;
+    color:#0284c7;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.6);
+  }
+  .claim-ipd-stay-card.icu .claim-ipd-stay-icon{
+    background:#ffedd5;
+    color:#ea580c;
+  }
+  .claim-ipd-stay-card.total .claim-ipd-stay-icon{
+    background:#e2e8f0;
+    color:#64748b;
+  }
+  .claim-ipd-stay-icon .material-icons-round{
+    font-size:20px!important;
+    line-height:1!important;
+  }
+  .claim-ipd-stay-chip{
+    display:inline-flex;
+    align-items:center;
+    min-height:24px;
+    padding:3px 8px;
+    border-radius:999px;
+    background:#e0f2fe;
+    color:#0284c7;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.04em;
+  }
+  .claim-ipd-stay-card.icu .claim-ipd-stay-chip{
+    background:#ffedd5;
+    color:#c2410c;
+  }
+  .claim-ipd-stay-card.total .claim-ipd-stay-chip{
+    background:#e2e8f0;
+    color:#64748b;
+  }
+  .claim-ipd-stay-number{
+    margin-top:0;
+    font-size:44px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-.02em;
+  }
+  .claim-ipd-stay-card.ipd .claim-ipd-stay-number{color:#0284c7}
+  .claim-ipd-stay-card.icu .claim-ipd-stay-number{color:#c2410c}
+  .claim-ipd-stay-card.total .claim-ipd-stay-number{color:#94a3b8}
+  .claim-ipd-stay-label{
+    font-size:15px;
+    font-weight:800;
+    color:#334155;
+  }
+  .claim-ipd-stay-hint{
+    font-size:11px;
+    line-height:1.5;
+    font-weight:700;
+    color:#64748b;
+    text-align:center;
+    max-width:200px;
+  }
+  .claim-ipd-stay-card.icu .claim-ipd-stay-hint{
+    font-size:10px;
+    line-height:1.35;
+    white-space:nowrap;
+    max-width:none;
+  }
+  .claim-ipd-stay-input-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+    margin-top:12px;
+  }
+  .claim-ipd-stay-input-label{
+    margin:0 0 -8px 14px;
+    position:relative;
+    z-index:2;
+    width:max-content;
+    max-width:calc(100% - 20px);
+    padding:0 6px;
+    background:#fff;
+    font-size:14px;
+    font-weight:700;
+    color:#64748b;
+  }
+  .claim-ipd-stay-input{
+    width:100%;
+    height:44px;
+    border:1.5px solid #cbd5e1;
+    border-radius:12px;
+    background:#fff;
+    padding:0 14px;
+    font-size:16px;
+    font-weight:700;
+    color:#0f172a;
+    outline:none;
+    box-shadow:0 4px 12px rgba(15,23,42,.04);
+  }
+  .claim-ipd-stay-input:focus{
+    border-color:#0ea5e9;
+    box-shadow:0 0 0 4px rgba(14,165,233,.14);
+  }
+  .claim-ipd-stay-input.readonly{
+    background:#f8fafc;
+    color:#94a3b8;
+  }
+  @media(max-width:980px){
+    .claim-ipd-stay-summary-grid,
+    .claim-ipd-stay-input-grid{grid-template-columns:1fr}
+    .claim-ipd-stay-card{min-height:118px}
+  }
+</style>
+
+<style id="claimagent-daycase-stay-v36">
+  .claim-ipd-stay-optional{
+    display:inline-flex;align-items:center;margin-left:6px;padding:1px 7px;border-radius:999px;
+    background:#f1f5f9;color:#64748b;font-size:11px;font-weight:800;vertical-align:middle;
+  }
+  .claim-ipd-stay-input-label .req-star{color:#ef4444;margin-left:2px}
+</style>
+
+<style id="claimagent-step3-stay-v37">
+  .claim-step3-stay-summary{margin-top:20px;padding-top:16px;border-top:1px solid #e2e8f0}
+  .claim-step3-stay-title{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:#075f99}
+  .claim-step3-stay-title>.material-icons-round{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:#e0f2fe;font-size:20px!important}
+  .claim-step3-stay-title strong{display:block;font-size:16px;font-weight:900}
+  .claim-step3-stay-title span:not(.material-icons-round){display:block;margin-top:1px;font-size:12px;font-weight:700;color:#64748b}
+  .claim-step3-stay-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .claim-step3-stay-item{display:flex;align-items:baseline;gap:7px;min-height:72px;padding:14px;border:1px solid #dbeafe;border-radius:14px;background:#f8fbff}
+  .claim-step3-stay-item>span{margin-right:auto;font-size:14px;font-weight:800;color:#475569}
+  .claim-step3-stay-item>strong{font-size:24px;font-weight:900;color:#075f99}
+  .claim-step3-stay-item>small{font-size:12px;font-weight:800;color:#64748b}
+  .claim-step3-stay-item.icu{border-color:#fed7aa;background:#fffaf5}.claim-step3-stay-item.icu>strong{color:#c2410c}
+  .claim-step3-stay-item.total{border-color:#cbd5e1;background:#f8fafc}.claim-step3-stay-item.total>strong{color:#334155}
+  @media(max-width:760px){.claim-step3-stay-grid{grid-template-columns:1fr}}
+</style>
+
+<style id="claim-detail-summary-font-v41">
+  /* พิจารณาเคลม > เคลมลูกค้า > รายละเอียดเคลม / Step 3 */
+  .claim-detail-summary-card > .grid{
+    font-size:16px!important;
+    line-height:1.55!important;
+  }
+  .claim-detail-summary-card > .grid > div > div:first-child{
+    font-size:14px!important;
+    line-height:1.45!important;
+    font-weight:400!important;
+    color:#64748b!important;
+  }
+  .claim-detail-summary-card > .grid > div > div:nth-child(2){
+    margin-top:3px!important;
+    font-size:16px!important;
+    line-height:1.55!important;
+    font-weight:400!important;
+    color:#334155!important;
+  }
+  .claim-detail-summary-card > .grid :is(.font-bold,.font-extrabold,.font-semibold,.font-medium){
+    font-weight:400!important;
+  }
+  .claim-detail-summary-card > .grid .text-brand-700{
+    color:#334155!important;
+  }
+  .claim-detail-summary-card .claim-detail-summary-title{
+    font-size:18px!important;
+    font-weight:700!important;
+    color:#075f99!important;
+  }
+</style>
+
+<style id="claimagent-standard-field-font-v43">
+  .claim-standard-field{
+    font-size:17px !important;
+    font-weight:500 !important;
+    line-height:1.45 !important;
+    color:#374151 !important;
+    letter-spacing:0 !important;
+  }
+  .claim-standard-field::placeholder{
+    color:#94a3b8 !important;
+    font-weight:400 !important;
+  }
+  .claim-standard-field:is(select,input,textarea){
+    -webkit-text-size-adjust:100%;
+  }
+  #claimEntryPage #claimHospitalSelect,
+  .treatment-detail-actual .claim-standard-field{
+    font-family: var(--ui-font) !important;
+  }
+</style>
+
+<style id="claimagent-choice-font-v44">
+  .claim-choice-btn{
+    font-size:16px !important;
+    font-weight:600 !important;
+    line-height:1.35 !important;
+    letter-spacing:0 !important;
+  }
+  .claim-choice-btn.selected{
+    font-weight:600 !important;
+  }
+  .claim-treatment-btn{
+    font-size:16px !important;
+    font-weight:500 !important;
+    line-height:1.3 !important;
+    letter-spacing:0 !important;
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+  .claim-treatment-btn.selected{
+    font-weight:500 !important;
+  }
+  .claim-choice-text{
+    font-size:16px !important;
+    font-weight:600 !important;
+    line-height:1.35 !important;
+  }
+  .claim-choice-icon{
+    width:34px !important;
+    height:34px !important;
+    border-radius:10px !important;
+  }
+  .claim-choice-icon .material-icons-round{
+    font-size:18px !important;
+  }
+  .claim-choice-btn .customer-choice-check{
+    font-size:28px !important;
+  }
+  @media (max-width: 768px){
+    .claim-choice-btn,
+    .claim-choice-text{font-size:15px !important;}
+    .claim-treatment-btn{
+      font-size:15px !important;
+      padding-left:16px !important;
+      padding-right:16px !important;
+    }
+  }
+</style>
+
+<style id="claimagent-consider-font-v48">
+  /* Consider page: field fonts */
+  #considerPage .consider-monitor-field,
+  #considerPage .consider-monitor-field option,
+  #considerPage .consider-monitor-product,
+  #considerPage .consider-page-select{
+    font-size:15px !important;
+    line-height:1.4 !important;
+    font-weight:500 !important;
+    color:#334155 !important;
+  }
+  #considerPage .consider-monitor-field::placeholder{
+    font-weight:400 !important;
+    color:#94a3b8 !important;
+  }
+  #considerPage .consider-search-card > .grid > div > span,
+  #considerPage .consider-search-card label span,
+  #considerPage .consider-search-card .consider-field-label,
+  #considerPage #considerStatusButtonFilterWrap > div:first-child,
+  #considerPage #considerStatusButtonFilterWrap > div:first-child span{
+    font-size:14px !important;
+    font-weight:700 !important;
+  }
+
+  /* Consider page: table fonts */
+  #considerPage .consider-result-table thead th{
+    font-size:15px !important;
+    font-weight:700 !important;
+    line-height:1.35 !important;
+    letter-spacing:0 !important;
+  }
+  #considerPage .consider-result-table tbody td{
+    font-size:15px !important;
+    font-weight:400 !important;
+    line-height:1.45 !important;
+    color:#334155 !important;
+  }
+  #considerPage .consider-result-table tbody td strong,
+  #considerPage .consider-result-table tbody td b{
+    font-weight:600 !important;
+  }
+  #considerPage .consider-result-table .consider-amount,
+  #considerPage .consider-result-table td:nth-child(6),
+  #considerPage .consider-result-table td:nth-child(7){
+    font-weight:500 !important;
+  }
+  #considerPage .consider-pagination,
+  #considerPage .consider-pagination span,
+  #considerPage .consider-page-select,
+  #considerPage .consider-page-btn{
+    font-size:14px !important;
+    font-weight:500 !important;
+  }
+  #considerPage .consider-status-chip,
+  #considerPage .consider-row-action,
+  #considerPage .consider-status-filter-btn{
+    font-size:14px !important;
+  }
+  #considerPage .consider-status-filter-btn{
+    font-weight:600 !important;
+  }
+</style>
+
+<style id="claimagent-consider-table-font-v49">
+  #considerPage .consider-result-table thead th{
+    font-size:14px !important;
+    font-weight:700 !important;
+    line-height:1.3 !important;
+  }
+  #considerPage .consider-result-table tbody td{
+    font-size:14px !important;
+    font-weight:400 !important;
+    line-height:1.4 !important;
+  }
+  #considerPage .consider-result-table tbody td strong,
+  #considerPage .consider-result-table tbody td b{
+    font-size:14px !important;
+    font-weight:500 !important;
+  }
+  #considerPage .consider-result-table .consider-status-chip,
+  #considerPage .consider-result-table [class*="status"]{
+    font-size:13px !important;
+  }
+</style>
+
+<style id="claimagent-button-font-v50">
+  /* Customer claim page buttons */
+  .customer-decision-row .dd-decision-btn,
+  #customerDecisionSection .dd-decision-btn{
+    font-size:15px !important;
+    font-weight:700 !important;
+    line-height:1.25 !important;
+  }
+  .customer-decision-row .dd-decision-btn .material-icons-round,
+  #customerDecisionSection .dd-decision-btn .material-icons-round{
+    font-size:20px !important;
+  }
+
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-outline-btn,
+  .cc-ref-outline-btn{
+    font-size:15px !important;
+    font-weight:700 !important;
+    line-height:1.25 !important;
+  }
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-outline-btn :is(.material-icons-round,.material-symbols-outlined),
+  .cc-ref-outline-btn :is(.material-icons-round,.material-symbols-outlined){
+    font-size:18px !important;
+  }
+
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) :is(.cc-ref-back-btn,.cc-ref-draft-btn,.cc-ref-next-btn,.cc-ref-save-btn),
+  .cc-ref-back-btn,.cc-ref-draft-btn,.cc-ref-next-btn,.cc-ref-save-btn{
+    font-size:15px !important;
+    font-weight:700 !important;
+    line-height:1.25 !important;
+  }
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) :is(.cc-ref-back-btn,.cc-ref-draft-btn,.cc-ref-next-btn,.cc-ref-save-btn) .material-icons-round,
+  .cc-ref-back-btn .material-icons-round,
+  .cc-ref-draft-btn .material-icons-round,
+  .cc-ref-next-btn .material-icons-round,
+  .cc-ref-save-btn .material-icons-round{
+    font-size:20px !important;
+  }
+</style>
+
+<style id="claimagent-all-step-action-font-v51">
+  /* พิจารณาเคลม: ปุ่มดำเนินการด้านล่างทุก Step */
+  #considerCustomerDetailPage .claim-step-action-btn,
+  #considerHospitalOpdFullPage .claim-step-action-btn,
+  #considerHospitalOpdHalfPage .claim-step-action-btn,
+  #ccStepPane1 .claim-step-action-btn,
+  #ccStepPane2 .claim-step-action-btn,
+  #ccStepPane3 .claim-step-action-btn,
+  #hfStepPane1 .claim-step-action-btn,
+  #hfStepPane2 .claim-step-action-btn,
+  #hfStepPane3 .claim-step-action-btn,
+  #hhStepPane1 .claim-step-action-btn,
+  #hhStepPane2 .claim-step-action-btn,
+  #hhStepPane3 .claim-step-action-btn{
+    font-size:14px !important;
+    font-weight:500 !important;
+    line-height:1.25 !important;
+    letter-spacing:0 !important;
+  }
+  #considerCustomerDetailPage .claim-step-action-btn .material-icons-round,
+  #considerHospitalOpdFullPage .claim-step-action-btn .material-icons-round,
+  #considerHospitalOpdHalfPage .claim-step-action-btn .material-icons-round,
+  :is(#ccStepPane1,#ccStepPane2,#ccStepPane3,#hfStepPane1,#hfStepPane2,#hfStepPane3,#hhStepPane1,#hhStepPane2,#hhStepPane3) .claim-step-action-btn .material-icons-round{
+    font-size:18px !important;
+  }
+</style>
+
+<style id="claimagent-upload-add-button-font-v52">
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-upload-btn,
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-outline-btn,
+  .cc-ref-upload-btn,
+  .cc-ref-outline-btn{
+    font-size:14px !important;
+    font-weight:500 !important;
+    line-height:1.25 !important;
+    letter-spacing:0 !important;
+  }
+
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-upload-btn{
+    padding-left:14px !important;
+    padding-right:14px !important;
+    gap:6px !important;
+  }
+
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-outline-btn{
+    padding-left:12px !important;
+    padding-right:12px !important;
+    gap:5px !important;
+  }
+
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-upload-btn :is(.material-icons-round,.material-symbols-outlined),
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2,#billingHospitalReviewPage) .cc-ref-outline-btn :is(.material-icons-round,.material-symbols-outlined),
+  .cc-ref-upload-btn :is(.material-icons-round,.material-symbols-outlined),
+  .cc-ref-outline-btn :is(.material-icons-round,.material-symbols-outlined){
+    font-size:16px !important;
+  }
+</style>
+
+<style id="claimagent-scan-document-font-v53">
+  .customer-panel-title{
+    font-size:15px !important;
+    font-weight:600 !important;
+    line-height:1.3 !important;
+  }
+  .customer-panel-title .material-icons-round{
+    font-size:20px !important;
+  }
+  .customer-scan-btn{
+    min-width:150px !important;
+    height:40px !important;
+    padding:0 16px !important;
+    font-size:14px !important;
+    font-weight:500 !important;
+    line-height:1.25 !important;
+    border-radius:8px !important;
+  }
 </style>
 </head>
 
@@ -8577,7 +9092,7 @@ body > .min-h-screen > main,
       box-shadow:inset -1px 0 rgba(255,255,255,.12)
     }
     .brand{
-      width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.12);
+      width:38px;height:44px;border-radius:14px;background:rgba(255,255,255,.12);
       display:grid;place-items:center;font-weight:700;letter-spacing:.3px
     }
     .side-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#d7ecff;cursor:pointer}
@@ -11958,7 +12473,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           border-radius:10px!important;
           background:#0788d6!important;
           color:#fff!important;
-          font-size:22px!important;
+          font-size:20px!important;
         }
         .claim-default-from-entry-note strong{
           display:block!important;
@@ -13543,7 +14058,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <span class="hidden md:block"></span>
         </div>
       </div>
-      <div class="treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
+      <div class="claim-detail-summary-card treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
                       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                         <div><div class="mb-1 text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">เจ็บป่วย</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">อุบัติเหตุ</button></div></div>
                         <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษา</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">สรุปค่าชดเชย</button></div></div>
@@ -13620,7 +14135,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <div id="hfStepPane3" class="mt-4 hidden space-y-4">
                 <div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div>
                   <div class="space-y-4 p-4">
-                    <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เริ่มอาการ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">09:30</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">10:00</div></div><div><div class="text-sm font-bold text-slate-500">วันที่ออก รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่ออก รพ. :</div><div class="font-extrabold text-brand-700">11:30</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
+                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">09:30</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">10:00</div></div><div><div class="text-sm font-bold text-slate-500">วันที่ออก รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่ออก รพ. :</div><div class="font-extrabold text-brand-700">11:30</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">fact_check</span>ตรวจสอบเอกสาร</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2">รหัสเอกสาร</th><th class="px-3 py-2">ประเภทเอกสาร</th><th class="px-3 py-2 text-center">สแกนเอกสาร</th><th class="px-3 py-2 text-center">จำนวนเอกสาร</th><th class="px-3 py-2 text-center">รายละเอียด</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-3">DOC690600229</td><td class="px-3 py-3">เอกสารประกอบการพิจารณาเคลม</td><td class="px-3 py-3 text-center"><button class="rounded-lg bg-brand-600 px-6 py-2 font-bold text-white">สแกนเอกสาร</button></td><td class="px-3 py-3 text-center">1</td><td class="px-3 py-3 text-center"><button class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button></td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-2">ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยปกติ</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="border-b border-slate-200 text-brand-700"><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div>
@@ -13705,7 +14220,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <span class="hidden md:block"></span>
         </div>
       </div>
-      <div class="treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
+      <div class="claim-detail-summary-card treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
                       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                         <div><div class="mb-1 text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">เจ็บป่วย</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">อุบัติเหตุ</button></div></div>
                         <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษา</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">สรุปค่าชดเชย</button></div></div>
@@ -13773,7 +14288,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <div id="hhStepPane3" class="mt-4 hidden space-y-4">
                 <div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div>
                   <div class="space-y-4 p-4">
-                    <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เริ่มอาการ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
+                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">fact_check</span>ตรวจสอบเอกสาร</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2">รหัสเอกสาร</th><th class="px-3 py-2">ประเภทเอกสาร</th><th class="px-3 py-2 text-center">สแกนเอกสาร</th><th class="px-3 py-2 text-center">จำนวนเอกสาร</th><th class="px-3 py-2 text-center">รายละเอียด</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-3">DOC690600229</td><td class="px-3 py-3">เอกสารประกอบการพิจารณาเคลม</td><td class="px-3 py-3 text-center"><button class="rounded-lg bg-brand-600 px-6 py-2 font-bold text-white">สแกนเอกสาร</button></td><td class="px-3 py-3 text-center">1</td><td class="px-3 py-3 text-center"><button class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button></td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-2">ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยปกติ</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="border-b border-slate-200 text-brand-700"><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div>
@@ -14626,7 +15141,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const value = claimState.claimDates?.[key] || todayISODate();
       return `<label class="block">
         <span class="text-lg font-bold text-slate-500">${label}<span class="text-danger">*</span></span>
-        <input id="${id}" type="date" value="${value}" required onchange="updateClaimDate('${key}', this.value)" oninput="updateClaimDate('${key}', this.value)" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
+        <input id="${id}" type="date" value="${value}" required onchange="updateClaimDate('${key}', this.value)" oninput="updateClaimDate('${key}', this.value)" class="claim-standard-field mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-[17px] font-medium text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
         <span id="${id}Error" class="mt-1 hidden text-base font-extrabold text-danger"></span>
       </label>`;
     }
@@ -14995,10 +15510,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const showHospital = ["เสียชีวิต", "ทุพพลภาพ/สูญเสียอวัยวะ"].includes(coverage);
       const hospitalRequired = coverage === "ทุพพลภาพ/สูญเสียอวัยวะ";
       const incidentLocationHtml = coverage === "เสียชีวิต"
-        ? `<label class="md:col-span-3"><span class="text-lg font-bold text-slate-500">สถานที่เกิดเหตุ</span><input id="claimIncidentLocation" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100" placeholder="ระบุสถานที่เกิดเหตุ เช่น บ้าน / โรงพยาบาล / สถานที่เกิดเหตุ"></label>`
+        ? `<label class="md:col-span-3"><span class="text-lg font-bold text-slate-500">สถานที่เกิดเหตุ</span><input id="claimIncidentLocation" class="claim-standard-field mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-[17px] font-medium text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-100" placeholder="ระบุสถานที่เกิดเหตุ เช่น บ้าน / โรงพยาบาล / สถานที่เกิดเหตุ"></label>`
         : "";
       document.getElementById("hospitalFields").innerHTML = showHospital
-        ? `${hospitalRequired ? `` : `<div class="md:col-span-3 flex flex-wrap gap-4"><label class="text-xl"><input type="radio" name="hospitalMode"> ไม่ระบุสถานพยาบาล</label><label class="text-xl"><input type="radio" name="hospitalMode"> ระบุสถานพยาบาล</label></div>`}<label class="md:col-span-3"><span class="text-lg font-bold text-slate-500">สถานพยาบาล${hospitalRequired ? `<span class="text-danger">*</span>` : ``}</span><select id="claimHospitalSelect" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100" onchange="validateRequiredHospital(false)"><option value="">--- เลือกโรงพยาบาล ---</option><option>โรงพยาบาลมะการักษ์</option><option>โรงพยาบาลวิภารามพัฒนาการ</option><option>โรงพยาบาลสมิติเวช สุขุมวิท</option><option>โรงพยาบาลพระรามเก้า</option><option>โรงพยาบาลตัวอย่าง</option></select><span id="claimHospitalError" class="mt-1 hidden text-base font-extrabold text-danger"></span></label>${incidentLocationHtml}`
+        ? `${hospitalRequired ? `` : `<div class="md:col-span-3 flex flex-wrap gap-4"><label class="text-xl"><input type="radio" name="hospitalMode"> ไม่ระบุสถานพยาบาล</label><label class="text-xl"><input type="radio" name="hospitalMode"> ระบุสถานพยาบาล</label></div>`}<label class="md:col-span-3"><span class="text-lg font-bold text-slate-500">สถานพยาบาล${hospitalRequired ? `<span class="text-danger">*</span>` : ``}</span><select id="claimHospitalSelect" class="claim-standard-field mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-[17px] font-medium text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-100" onchange="validateRequiredHospital(false)"><option value="">--- เลือกโรงพยาบาล ---</option><option>โรงพยาบาลมะการักษ์</option><option>โรงพยาบาลวิภารามพัฒนาการ</option><option>โรงพยาบาลสมิติเวช สุขุมวิท</option><option>โรงพยาบาลพระรามเก้า</option><option>โรงพยาบาลตัวอย่าง</option></select><span id="claimHospitalError" class="mt-1 hidden text-base font-extrabold text-danger"></span></label>${incidentLocationHtml}`
         : "";
       document.getElementById("diagnosisFields").classList.toggle("hidden", !showHospital);
       document.getElementById("diagnosisFields").innerHTML = showHospital ? `<label><span class="text-lg font-bold text-slate-500">อาการสำคัญ<span class="text-danger">*</span></span><input class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl" placeholder="ระบุอาการสำคัญ"></label><div id="diagnosisList" class="space-y-2"><label><span class="text-lg font-bold text-slate-500">การวินิจฉัย 1</span><select class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="">--- เลือก ---</option><option>S06.0 Concussion</option></select></label></div><button type="button" onclick="addDiagnosis()" class="h-10 rounded-lg border border-brand-600 px-4 text-lg font-bold text-brand-700">+ เพิ่มการวินิจฉัย</button><input class="h-12 w-full rounded-lg border border-slate-300 px-3 text-xl" placeholder="หมายเหตุ">` : "";
@@ -19547,14 +20062,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   #claimEntryPage .loss-sheet-calc-box{
     margin-top:14px;
     border:1px solid #bfdbfe;
-    border-radius:14px;
+    border-radius:12px;
     background:#eef8ff;
     padding:16px 18px;
     color:#075f99;
     box-shadow:none;
   }
   #claimEntryPage .loss-sheet-line{
-    font-size:16px;
+    font-size:15px;
     font-weight:900;
     line-height:1.35;
     color:#075f99;
@@ -19570,7 +20085,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     align-items:start;
     margin-top:10px;
     border:1px solid #bfdbfe;
-    border-radius:14px;
+    border-radius:12px;
     background:#eef8ff;
     padding:12px 14px;
     color:#075f99;
@@ -23086,7 +23601,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     };
     return `
       ${renderClaimPaymentDetail(prefix)}
-      <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
+      <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
       <div class="claim-compact-sections">
         <div class="claim-compact-row">
           <div class="claim-compact-title">เหตุของการเคลม :</div>
@@ -23349,7 +23864,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function renderStep3(data){
     const d = data.claimDetail, t = data.step3;
-    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">${esc(d.claimCause)}</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">${esc(d.coverageType)}</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">${esc(d.treatmentType)}</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เริ่มอาการ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">${esc(d.hospital)}</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">${esc(d.cc)}</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>${renderScanDocs()}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${t.treatmentRows.map(r => `<tr class="${r[0].includes('เหมาจ่าย') ? 'border-b border-slate-200 text-brand-700' : 'border-b border-slate-200'}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${t.treatmentTotal[0]}</td><td class="px-3 py-2 text-right">${t.treatmentTotal[1]}</td><td class="px-3 py-2 text-right">${t.treatmentTotal[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div>
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">${esc(d.claimCause)}</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">${esc(d.coverageType)}</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">${esc(d.treatmentType)}</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">${esc(d.hospital)}</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">${esc(d.cc)}</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>${renderScanDocs()}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${t.treatmentRows.map(r => `<tr class="${r[0].includes('เหมาจ่าย') ? 'border-b border-slate-200 text-brand-700' : 'border-b border-slate-200'}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${t.treatmentTotal[0]}</td><td class="px-3 py-2 text-right">${t.treatmentTotal[1]}</td><td class="px-3 py-2 text-right">${t.treatmentTotal[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div>
                       <div class="summary-section-title" style="margin-top:0;border-left:6px solid #4da3ff;background:#ecf3fc;padding:14px 16px;font-size:22px;font-weight:800;color:#374151;border-radius:0">สรุปค่าชดเชย</div>
                       <div class="rounded-xl border border-slate-200 bg-white p-5">
                         <label class="flex items-center gap-3 border-b border-slate-200 pb-4 text-lg font-bold text-slate-700"><input type="checkbox" class="h-6 w-6"> โอนค่าชดเชยรวมกับค่ารักษา</label>
@@ -23505,8 +24020,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function customerIconBox(icon){ return `<div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">${icon}</span></div>`; }
   function customerWhiteIconBox(icon){ return `<div class="grid h-12 w-12 place-items-center rounded-xl bg-white text-brand-700 shadow-sm"><span class="material-icons-round">${icon}</span></div>`; }
   function field(label, value){ return `<div><div class="text-sm font-bold text-slate-500">${label}</div><div class="font-extrabold text-brand-700">${value}</div></div>`; }
-  function inputField(label, value, cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><input value="${cEsc(value)}" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>`; }
-  function selectField(label, value, cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><select class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"><option>${cEsc(value)}</option></select></label>`; }
+  function inputField(label, value, cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><input value="${cEsc(value)}" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>`; }
+  function selectField(label, value, cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><select class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"><option>${cEsc(value)}</option></select></label>`; }
   function smallChoice(label, selected=false, icon=''){ return `<button type="button" class="inline-flex h-11 items-center gap-2 rounded-lg border ${selected ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-slate-300 bg-white text-slate-500'} px-4 text-lg font-bold">${icon ? `<span class="material-icons-round !text-[18px] ${selected ? 'text-brand-700' : 'text-slate-500'}">${icon}</span>` : ''}${label}${selected ? '<span class="material-icons-round ml-1 !text-[18px]">check_circle</span>' : ''}</button>`; }
   function treatmentButton(label, selected=false){ return `<button type="button" class="h-11 rounded-lg border ${selected ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-slate-300 bg-white text-slate-500'} px-6 text-lg font-semibold">${label}</button>`; }
 
@@ -23668,11 +24183,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             ${inputField('วันที่เริ่มอาการ*', d.symptomDate)}
             ${inputField('วันที่เกิดเหตุ*', d.incidentDate)}
-            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ*</div><input type="time" value="${cEsc(d.incidentTime || '09:30')}" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
+            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ*</div><input type="time" value="${cEsc(d.incidentTime || '09:30')}" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
             ${inputField('วันที่เข้ารักษา*', d.admitDate)}
-            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เข้า รพ.*</div><input type="time" value="${cEsc(d.admitTime || '10:00')}" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
+            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เข้า รพ.*</div><input type="time" value="${cEsc(d.admitTime || '10:00')}" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
             ${inputField('วันที่ออก รพ.*', d.dischargeDate)}
-            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่ออก รพ.*</div><input type="time" value="${cEsc(d.dischargeTime || '11:30')}" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
+            <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่ออก รพ.*</div><input type="time" value="${cEsc(d.dischargeTime || '11:30')}" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
             ${selectField('สถานพยาบาล*', d.hospital, 'md:col-span-2 xl:col-span-4')}
             ${selectField('อาการสำคัญ(ChiefComplaint)*', d.cc, 'md:col-span-2 xl:col-span-4')}
             ${selectField('การวินิจฉัย1(Diagnosis1)*', d.diag1, 'md:col-span-2 xl:col-span-4')}
@@ -24249,11 +24764,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment })}
       <div class="cc-ref-decision-wrap">${renderDecisionButtons()}</div>
       <div class="cc-ref-actionbar">
-        <button type="button" onclick="setCustomerStep(1)" class="cc-ref-back-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
+        <button type="button" onclick="setCustomerStep(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
         <div class="cc-ref-action-right">
-          <button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button>
-          <button type="button" onclick="setCustomerStep(3)" class="cc-ref-next-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
-          <button type="button" class="cc-ref-save-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button>
+          <button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn claim-step-action-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button>
+          <button type="button" onclick="setCustomerStep(3)" class="cc-ref-next-btn claim-step-action-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
+          <button type="button" class="cc-ref-save-btn claim-step-action-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button>
         </div>
       </div>
     </div>`;
@@ -24485,7 +25000,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function renderCustomerStep3(data){
     const d = data.step3.detail, hs = data.step3.hosSummary, cs = data.step3.compSummary;
-    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${field('เหตุของการเคลม :', d.cause)}${field('ประเภทความคุ้มครอง :', d.coverage)}${field('ประเภทการรักษา :', d.treatment)}${field('วันที่เริ่มอาการ :', d.symptomDate)}${field('วันที่เกิดเหตุ :', d.incidentDate)}${field('เวลาที่เกิดเหตุ :', d.incidentTime || '09:30')}${field('วันที่เข้า รพ. :', d.admitDate || '-')}${field('เวลาที่เข้า รพ. :', d.admitTime || '10:00')}${field('วันที่ออก รพ. :', d.dischargeDate || '-')}${field('เวลาที่ออก รพ. :', d.dischargeTime || '11:30')}<div class="md:col-span-3 xl:col-span-3">${field('สถานพยาบาล :', d.hospital)}</div><div class="md:col-span-2 xl:col-span-5">${field('อาการสำคัญ :', d.cc)}</div><div class="md:col-span-2 xl:col-span-5">${field('คำวินิจฉัย 1 :', d.diag1)}</div>${field('คำวินิจฉัย 2 :', d.diag2)}${field('คำวินิจฉัย 3 :', d.diag3)}<div class="md:col-span-3 xl:col-span-3">${field('หมายเหตุ :', d.note)}</div></div></div>${renderCustomerDocs(data.step3.docs)}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${data.step3.treatments.map(r => `<tr class="border-b border-slate-200 ${r[0].includes('เหมาจ่าย') ? 'text-brand-700' : ''}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${data.step3.total[0]}</td><td class="px-3 py-2 text-right">${data.step3.total[1]}</td><td class="px-3 py-2 text-right">${data.step3.total[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าชดเชย</div><div class="space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>${cs.total}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${cs.covered}</strong></div><div class="flex justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${cs.remain}</strong></div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${hs.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${hs.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${hs.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${hs.remain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${hs.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setCustomerStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${field('เหตุของการเคลม :', d.cause)}${field('ประเภทความคุ้มครอง :', d.coverage)}${field('ประเภทการรักษา :', d.treatment)}${field('วันที่แจ้งเคลม :', d.symptomDate)}${field('วันที่เกิดเหตุ :', d.incidentDate)}${field('เวลาที่เกิดเหตุ :', d.incidentTime || '09:30')}${field('วันที่เข้า รพ. :', d.admitDate || '-')}${field('เวลาที่เข้า รพ. :', d.admitTime || '10:00')}${field('วันที่ออก รพ. :', d.dischargeDate || '-')}${field('เวลาที่ออก รพ. :', d.dischargeTime || '11:30')}<div class="md:col-span-3 xl:col-span-3">${field('สถานพยาบาล :', d.hospital)}</div><div class="md:col-span-2 xl:col-span-5">${field('อาการสำคัญ :', d.cc)}</div><div class="md:col-span-2 xl:col-span-5">${field('คำวินิจฉัย 1 :', d.diag1)}</div>${field('คำวินิจฉัย 2 :', d.diag2)}${field('คำวินิจฉัย 3 :', d.diag3)}<div class="md:col-span-3 xl:col-span-3">${field('หมายเหตุ :', d.note)}</div></div></div>${renderCustomerDocs(data.step3.docs)}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${data.step3.treatments.map(r => `<tr class="border-b border-slate-200 ${r[0].includes('เหมาจ่าย') ? 'text-brand-700' : ''}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${data.step3.total[0]}</td><td class="px-3 py-2 text-right">${data.step3.total[1]}</td><td class="px-3 py-2 text-right">${data.step3.total[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าชดเชย</div><div class="space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>${cs.total}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${cs.covered}</strong></div><div class="flex justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${cs.remain}</strong></div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${hs.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${hs.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${hs.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${hs.remain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${hs.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setCustomerStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
   }
 
   function renderInsuredTopHero(data){
@@ -24594,7 +25109,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(approveOnly){
       return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
     }
-    return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" ${String(nextFn).includes('setCustomerStep') ? 'onclick="saveCustomerDraft()"' : ''} class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${nextFn}" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
+    return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" ${String(nextFn).includes('setCustomerStep') ? 'onclick="saveCustomerDraft()"' : ''} class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${nextFn}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
   }
   function customerTopItem(icon,label,value,isStatus){
     const reopenClass = String(value) === 'Re-Open' ? ' is-reopen' : '';
@@ -24761,7 +25276,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           { label:'เสียชีวิต', icon:'local_florist' }
         ];
     const treatmentOptions = selected.coverage === 'สรุปค่าชดเชย' ? ['OPD', 'IPD'] : ['OPD', 'IPD', 'Day Case Surgery'];
-    const treatmentHtml = treatmentOptions.map(item => `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="treatment" data-claim-value="${item}" class="h-11 rounded-lg border ${selected.treatment === item ? 'border-brand-500 bg-brand-50 text-brand-700 font-bold' : 'border-slate-300 bg-white text-slate-500 font-semibold'} px-6 text-lg">${item}</button>`).join('');
+    const treatmentHtml = treatmentOptions.map(item => `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="treatment" data-claim-value="${item}" class="claim-treatment-btn rounded-lg border ${selected.treatment === item ? 'border-brand-500 bg-brand-50 text-brand-700 selected' : 'border-slate-300 bg-white text-slate-500'}" style="height:40px!important;padding:0 15px!important;font-size:15px!important;font-weight:400!important;line-height:1.25!important;">${item}</button>`).join('');
     const prefix = kind === 'customer' ? 'cc' : (kind === 'full' ? 'hf' : 'hh');
     const claimNo = String(row?.claimNo || row?.claimCode || '').trim();
     const autoContinuous = kind === 'customer' && claimNo === 'CL6905000076';
@@ -24787,7 +25302,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
   function choice(icon,label,selected,group){
-    return `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="${group || ''}" data-claim-value="${label}" class="inline-flex h-12 min-w-[150px] items-center justify-between gap-3 rounded-lg border ${selected?'border-brand-600 bg-brand-50 text-brand-700':'border-slate-300 bg-white text-slate-500'} px-4 text-lg font-bold"><span class="inline-flex items-center gap-2"><span class="grid h-8 w-8 place-items-center rounded bg-brand-100 text-brand-700"><span class="material-icons-round !text-[18px]">${icon}</span></span>${label}</span><span class="customer-choice-check material-icons-round ${selected?'':'hidden'}">check_circle</span></button>`;
+    return `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="${group || ''}" data-claim-value="${label}" class="claim-choice-btn inline-flex h-12 min-w-[150px] items-center justify-between gap-3 rounded-lg border ${selected?'border-brand-600 bg-brand-50 text-brand-700 selected':'border-slate-300 bg-white text-slate-500'} px-4"><span class="inline-flex items-center gap-2"><span class="claim-choice-icon grid h-8 w-8 place-items-center rounded bg-brand-100 text-brand-700"><span class="material-icons-round !text-[18px]">${icon}</span></span><span class="claim-choice-text">${label}</span></span><span class="customer-choice-check material-icons-round ${selected?'':'hidden'}">check_circle</span></button>`;
   }
   window.toggleCustomerClaimChoice = function(btn){
     try {
@@ -24822,6 +25337,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       if(pane2 && typeof expenses === 'function'){
         pane2.innerHTML = expenses('customer', window.currentConsiderCustomerRow || {});
       }
+      if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
     } catch(err) { console.error('toggleCustomerClaimChoice failed', err); }
   };
 
@@ -24840,11 +25356,60 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const hospitalId = (suffix) => `${prefix}${suffix}`;
     const selected = getConsiderClaimSelection(row);
     const isHospitalIpd = !isCustomer && /IPD/i.test(selected.treatment || row?.claimType || '');
-    const ipdStayFields = isHospitalIpd ? `
-        <label><div class="mb-1 text-sm font-bold text-slate-500">จำนวนวันนอน IPD</div><input id="${hospitalId('IpdDays')}" type="number" min="0" value="0" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
-        <label><div class="mb-1 text-sm font-bold text-slate-500">จำนวนวันนอน ICU</div><input id="${hospitalId('IcuDays')}" type="number" min="0" value="0" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
-        <div class="flex items-end"><div id="${hospitalId('TotalStayNights')}" class="grid h-11 w-full place-items-center rounded-lg bg-slate-100 text-lg font-extrabold text-slate-600">จำนวนวันนอนรวม : 0 คืน</div></div>
-        <div id="${hospitalId('StayHourText')}" class="hidden"></div>` : '';
+    const treatmentText = String(selected.treatment || row?.claimType || '');
+    const isIpdTreatment = /IPD/i.test(treatmentText);
+    const isDayCaseTreatment = /Day\s*Case/i.test(treatmentText);
+    const showStayFields = isIpdTreatment || isDayCaseTreatment;
+    const stayRequiredMark = isIpdTreatment ? '<span class="req-star">*</span>' : '';
+    const stayOptionalNote = isDayCaseTreatment ? '<span class="claim-ipd-stay-optional">ไม่บังคับ</span>' : '';
+    const ipdStayFields = (isCustomer || showStayFields) ? `
+        <div id="${hospitalId('StaySection')}" class="md:col-span-2 xl:col-span-4 ${showStayFields ? '' : 'hidden'}" data-stay-section="true">
+          <div class="claim-ipd-stay-summary-grid">
+            <div class="claim-ipd-stay-card ipd">
+              <div class="claim-ipd-stay-card-top">
+                <span class="claim-ipd-stay-icon"><span class="material-icons-round">hotel</span></span>
+                <span class="claim-ipd-stay-chip">IPD</span>
+              </div>
+              <div id="${hospitalId('IpdDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div class="claim-ipd-stay-label">วัน IPD</div>
+              <div class="claim-ipd-stay-hint">จำนวนวันนอนรักษาในโรงพยาบาล</div>
+            </div>
+            <div class="claim-ipd-stay-card icu">
+              <div class="claim-ipd-stay-card-top">
+                <span class="claim-ipd-stay-icon"><span class="material-icons-round">medical_services</span></span>
+                <span class="claim-ipd-stay-chip">ICU</span>
+              </div>
+              <div id="${hospitalId('IcuDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div class="claim-ipd-stay-label">วัน ICU</div>
+              <div class="claim-ipd-stay-hint">จำนวนวันที่พักรักษาในหอผู้ป่วยวิกฤต</div>
+            </div>
+            <div class="claim-ipd-stay-card total">
+              <div class="claim-ipd-stay-card-top">
+                <span class="claim-ipd-stay-icon"><span class="material-icons-round">bedtime</span></span>
+                <span class="claim-ipd-stay-chip">รวม</span>
+              </div>
+              <div id="${hospitalId('TotalStayDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div class="claim-ipd-stay-label">วันที่นอน</div>
+              <div class="claim-ipd-stay-hint">จำนวนวันที่ใช้ประกอบการพิจารณา</div>
+            </div>
+          </div>
+          <div class="claim-ipd-stay-input-grid">
+            <label>
+              <div id="${hospitalId('IpdDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน IPD ${stayRequiredMark} ${stayOptionalNote}</div>
+              <input id="${hospitalId('IpdDays')}" type="number" min="0" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
+            </label>
+            <label>
+              <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU ${stayRequiredMark} ${stayOptionalNote}</div>
+              <input id="${hospitalId('IcuDays')}" type="number" min="0" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
+            </label>
+            <label>
+              <div class="claim-ipd-stay-input-label">จำนวนวันนอน</div>
+              <input id="${hospitalId('TotalStayDays')}" type="number" value="0" readonly class="claim-ipd-stay-input readonly">
+            </label>
+          </div>
+          <div id="${hospitalId('TotalStayNights')}" class="hidden">จำนวนวันนอนรวม : 0 คืน</div>
+          <div id="${hospitalId('StayHourText')}" class="hidden"></div>
+        </div>` : '';
     const doctor = includeDoctor ? `<div class="rounded-xl border border-slate-200 p-4" data-collapsible-section><div class="mb-3 flex items-center justify-between"><div class="text-lg font-extrabold text-brand-700">แพทย์เจ้าของไข้</div><button type="button" onclick="toggleClaimSubSection(this)" class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button></div><div data-collapsible-body class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"><label><div class="mb-1 text-sm font-bold text-slate-500">เลขใบประกอบวิชาชีพเวชกรรม <span class="text-red-500">*</span></div><input value="12345" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label><label><div class="mb-1 text-sm font-bold text-slate-500">แพทย์(ชื่อ-สกุล) <span class="text-red-500">*</span></div><input value="นพ.สมชาย ใจดี" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label></div></div>` : '';
     const continuousIds = {
       checkbox: isCustomer ? 'ccContinuousClaimCheckbox' : `${prefix}ContinuousClaimCheckbox`,
@@ -24878,10 +25443,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ${input('วันที่เอกสารครบ*','2026-06-19','date')}
         ${input('วันที่เกิดเหตุ*','2026-03-26','date')}
         ${input('เวลาที่เกิดเหตุ*','09:30','time')}
-        <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitDate')}" type="date" value="2026-03-26" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
-        <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitTime')}" type="time" value="10:00" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
-        <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeDate')}" type="date" value="2026-03-26" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
-        <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeTime')}" type="time" value="11:30" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>
+        <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitDate')}" type="date" value="2026-03-26" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
+        <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitTime')}" type="time" value="10:00" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
+        <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeDate')}" type="date" value="2026-03-26" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
+        <label><div class="mb-1 text-sm font-bold text-slate-500">เวลาที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeTime')}" type="time" value="11:30" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>
         ${ipdStayFields}
         <div class="hidden xl:block"></div>
         ${select('สถานพยาบาล*','โรงพยาบาลมะการักษ์','md:col-span-2 xl:col-span-4')}
@@ -24904,8 +25469,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ${input('โรคประจำตัว (U/D)','ไม่มี','text','md:col-span-2')}
         ${isHospitalIpd ? input('ข้อบ่งชี้การ Admit*','มีข้อบ่งชี้ต้องนอนรักษาในโรงพยาบาล','text','md:col-span-2') : ''}
         ${input(isCustomer ? 'วินิจฉัยการเจ็บป่วย*' : 'วิธีการรักษาพยาบาล*', isCustomer ? 'ไข้หวัดทั่วไปและอ่อนเพลียจากอาการ' : 'ให้สารน้ำและยาตามแผนการรักษา','text','md:col-span-2')}
-        <label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">ผลการตรวจ LAB, EKG, X-ray และอื่นๆ</div><textarea class="min-h-[96px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-lg">ไม่มี</textarea></label>
-        <label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="min-h-[96px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-lg"></textarea></label>
+        <label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">ผลการตรวจ LAB, EKG, X-ray และอื่นๆ</div><textarea class="claim-standard-field min-h-[96px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[17px] font-medium text-slate-700">ไม่มี</textarea></label>
+        <label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="claim-standard-field min-h-[96px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[17px] font-medium text-slate-700"></textarea></label>
         <div class="md:col-span-2">
           <div class="mb-1 text-sm font-bold text-slate-500">มีการทำหัตถการหรือไม่<span class="text-red-500">*</span></div>
           <div class="inline-flex overflow-hidden rounded-lg border border-slate-300 bg-white">
@@ -24916,7 +25481,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       </div>
     </div>` : ''}${doctor}`;
   }
-  function input(label,value,type='text',cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><input type="${type}" value="${value}" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg"></label>`; }
+  function input(label,value,type='text',cls=''){ return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><input type="${type}" value="${value}" class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700"></label>`; }
   function select(label,value,cls=''){
     const optionMap = {
       'สถานพยาบาล*': ['โรงพยาบาลมะการักษ์','โรงพยาบาลกรุงเทพ','โรงพยาบาลพระรามเก้า','โรงพยาบาลกระบี่','โรงพยาบาลรวมใจรักษ์','---โปรดระบุ---'],
@@ -24927,7 +25492,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     };
     const options = optionMap[label] || [value];
     const html = options.map(item => `<option ${item === value ? 'selected' : ''}>${item}</option>`).join('');
-    return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><select class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg">${html}</select></label>`;
+    return `<label class="${cls}"><div class="mb-1 text-sm font-bold text-slate-500">${label}</div><select class="claim-standard-field h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-[17px] font-medium text-slate-700">${html}</select></label>`;
   }
   function parseCustomerDateTime(dateId, timeId){
     const dateValue = document.getElementById(dateId)?.value || '';
@@ -24949,6 +25514,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const hourText = document.getElementById(`${prefix}StayHourText`);
     if(!admit || !discharge){
       if(totalEl) totalEl.textContent = 'จำนวนวันนอนรวม : 0 คืน';
+      const totalDaysInput = document.getElementById(`${prefix}TotalStayDays`);
+      const ipdDisplay = document.getElementById(`${prefix}IpdDaysDisplay`);
+      const icuDisplay = document.getElementById(`${prefix}IcuDaysDisplay`);
+      const totalDisplay = document.getElementById(`${prefix}TotalStayDaysDisplay`);
+      if(totalDaysInput) totalDaysInput.value = '0';
+      if(ipdDisplay) ipdDisplay.textContent = String(document.getElementById(`${prefix}IpdDays`)?.value || 0);
+      if(icuDisplay) icuDisplay.textContent = String(document.getElementById(`${prefix}IcuDays`)?.value || 0);
+      if(totalDisplay) totalDisplay.textContent = '0';
       if(hourText){
         hourText.textContent = '';
         hourText.classList.add('hidden');
@@ -24958,8 +25531,20 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const diffHours = (discharge.getTime() - admit.getTime()) / 3600000;
     const nights = calculateHospitalNightsFromHours(diffHours);
     const ipdInput = document.getElementById(`${prefix}IpdDays`);
-    if(ipdInput) ipdInput.value = String(nights);
-    if(totalEl) totalEl.textContent = `จำนวนวันนอนรวม : ${nights} คืน`;
+    const icuInput = document.getElementById(`${prefix}IcuDays`);
+    const totalDaysInput = document.getElementById(`${prefix}TotalStayDays`);
+    const ipdDisplay = document.getElementById(`${prefix}IpdDaysDisplay`);
+    const icuDisplay = document.getElementById(`${prefix}IcuDaysDisplay`);
+    const totalDisplay = document.getElementById(`${prefix}TotalStayDaysDisplay`);
+    if(ipdInput && document.activeElement !== ipdInput) ipdInput.value = String(nights);
+    const ipdDays = Math.max(0, Number(ipdInput?.value || nights) || 0);
+    const icuDays = Math.max(0, Number(icuInput?.value || 0) || 0);
+    const totalStayDays = Math.max(ipdDays, icuDays);
+    if(totalDaysInput) totalDaysInput.value = String(totalStayDays);
+    if(ipdDisplay) ipdDisplay.textContent = String(ipdDays);
+    if(icuDisplay) icuDisplay.textContent = String(icuDays);
+    if(totalDisplay) totalDisplay.textContent = String(totalStayDays);
+    if(totalEl) totalEl.textContent = `จำนวนวันนอนรวม : ${totalStayDays} คืน`;
     if(hourText){
       if(diffHours < 0){
         hourText.textContent = 'วันที่ออก รพ. ต้องไม่น้อยกว่าวันที่เข้า รพ.';
@@ -24975,6 +25560,25 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function updateCustomerHospitalStayNights(){
     updateClaimHospitalStayNights('cc');
   }
+
+  document.addEventListener('input', function(event){
+    const target = event.target;
+    if(!target || !target.id) return;
+    const match = target.id.match(/^(cc|hf|hh)(IpdDays|IcuDays)$/);
+    if(!match) return;
+    const prefix = match[1];
+    const ipd = Math.max(0, Number(document.getElementById(`${prefix}IpdDays`)?.value || 0) || 0);
+    const icu = Math.max(0, Number(document.getElementById(`${prefix}IcuDays`)?.value || 0) || 0);
+    const total = Math.max(ipd, icu);
+    const ipdDisplay = document.getElementById(`${prefix}IpdDaysDisplay`);
+    const icuDisplay = document.getElementById(`${prefix}IcuDaysDisplay`);
+    const totalDisplay = document.getElementById(`${prefix}TotalStayDaysDisplay`);
+    const totalInput = document.getElementById(`${prefix}TotalStayDays`);
+    if(ipdDisplay) ipdDisplay.textContent = String(ipd);
+    if(icuDisplay) icuDisplay.textContent = String(icu);
+    if(totalDisplay) totalDisplay.textContent = String(total);
+    if(totalInput) totalInput.value = String(total);
+  });
 
   const OPD_FULL_CHECK_DOCS = [
     'แบบฟอร์ม A',
@@ -25496,6 +26100,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ? getConsiderClaimSelection(row)
       : { coverage: 'ค่ารักษา', treatment: kind === 'ipd' ? 'IPD' : 'OPD' };
 
+    // จำนวนวันนอนย้ายไปแสดงใน Step 1 และ Step 3 เท่านั้น
+
     return `<div class="cc-ref-step2-shell">
       ${kind === 'customer' ? renderActiveCustomerOcrPanel() : `<div class="cc-ref-upload-row"><button type="button" class="cc-ref-upload-btn"><span class="material-icons-round">note_add</span>อัปโหลดใบแจ้งค่ารักษา</button></div>`}
       ${kind === 'customer' ? `
@@ -25507,17 +26113,35 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${kind === 'full' ? renderHospitalInsuranceExcessBox(prefix) : ''}
       <div class="cc-ref-decision-wrap">${decision()}</div>
       <div class="cc-ref-actionbar">
-        <button type="button" onclick="set${stepName}Step(1)" class="cc-ref-back-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
+        <button type="button" onclick="set${stepName}Step(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
         <div class="cc-ref-action-right">
-          <button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button>
-          <button type="button" onclick="set${stepName}Step(3)" class="cc-ref-next-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
-          <button type="button" class="cc-ref-save-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button>
+          <button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn claim-step-action-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button>
+          <button type="button" onclick="set${stepName}Step(3)" class="cc-ref-next-btn claim-step-action-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
+          <button type="button" class="cc-ref-save-btn claim-step-action-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button>
         </div>
       </div>
     </div>`;
   }
-  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่เริ่มอาการ :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div></div>${docs(kind === 'full' ? 'full' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
-  function fieldSum(label,value){ return `<div><div class="text-sm font-bold text-slate-500">${label}</div><div class="font-extrabold text-brand-700">${value}</div></div>`; }
+  function renderStaySummaryStep3(kind, selected){
+    if(kind !== 'customer') return '';
+    const treatmentText = String(selected?.treatment || window.currentConsiderCustomerRow?.claimType || '');
+    if(!/IPD/i.test(treatmentText) && !/Day\s*Case/i.test(treatmentText)) return '';
+    const ipdDays = Math.max(0, Number(document.getElementById('ccIpdDays')?.value || 0) || 0);
+    const icuDays = Math.max(0, Number(document.getElementById('ccIcuDays')?.value || 0) || 0);
+    const totalDays = Math.max(0, Number(document.getElementById('ccTotalStayDays')?.value || Math.max(ipdDays, icuDays)) || 0);
+    const treatmentLabel = /IPD/i.test(treatmentText) ? 'IPD' : 'Day Case Surgery';
+    return `<div class="claim-step3-stay-summary">
+      <div class="claim-step3-stay-title"><span class="material-icons-round">bed</span><div><strong>สรุปจำนวนวันนอน</strong><span>${treatmentLabel}</span></div></div>
+      <div class="claim-step3-stay-grid">
+        <div class="claim-step3-stay-item ipd"><span>จำนวนวัน IPD</span><strong>${ipdDays}</strong><small>วัน</small></div>
+        <div class="claim-step3-stay-item icu"><span>จำนวนวัน ICU</span><strong>${icuDays}</strong><small>วัน</small></div>
+        <div class="claim-step3-stay-item total"><span>จำนวนวันนอน</span><strong>${totalDays}</strong><small>วัน</small></div>
+      </div>
+    </div>`;
+  }
+
+  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${docs(kind === 'full' ? 'full' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
+  function fieldSum(label,value){ return `<div><div class="text-sm font-medium text-slate-500">${label}</div><div class="mt-1 text-base font-normal text-slate-700 leading-6">${value}</div></div>`; }
   const customerContinuousClaimOptions = [
     {
       claimNo: 'CL6904000058',
@@ -25706,11 +26330,71 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     return `<div class="space-y-4">${baseTop(kind==='customer'?'customer':'hospital', row)}<div id="${prefix}StepPane1" class="space-y-4"><div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">บันทึกข้อมูลเคลม</div><div class="space-y-4 p-4">${detailForm(includeDoctor, row, kind)}${docs(kind)}${decision()}</div></div>${actionBar(kind==='customer'?`showConsiderationPage('customer')`:`showConsiderationPage('hospital')`,`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`)}</div><div id="${prefix}StepPane2" class="hidden space-y-4">${expenses(kind, row)}</div><div id="${prefix}StepPane3" class="hidden space-y-4">${summary(kind, row)}</div>${kind==='customer' ? renderCustomerContinuousClaimModal() : ''}</div>`;
   }
+  window.refreshCustomerStaySection = function(){
+    const prefix = 'cc';
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    const treatmentText = String(selected?.treatment || window.currentConsiderCustomerRow?.claimType || '');
+    const isIpd = /IPD/i.test(treatmentText);
+    const isDayCase = /Day\s*Case/i.test(treatmentText);
+    const show = isIpd || isDayCase;
+    const section = document.getElementById(`${prefix}StaySection`);
+    if(section) section.classList.toggle('hidden', !show);
+    const ipdInput = document.getElementById(`${prefix}IpdDays`);
+    const icuInput = document.getElementById(`${prefix}IcuDays`);
+    [ipdInput, icuInput].forEach(input => {
+      if(!input) return;
+      input.dataset.stayRequired = isIpd ? 'true' : 'false';
+      input.required = isIpd;
+      if(!isIpd) input.setCustomValidity('');
+    });
+    const req = isIpd ? '<span class="req-star">*</span>' : '';
+    const optional = isDayCase ? '<span class="claim-ipd-stay-optional">ไม่บังคับ</span>' : '';
+    const ipdLabel = document.getElementById(`${prefix}IpdDaysLabel`);
+    const icuLabel = document.getElementById(`${prefix}IcuDaysLabel`);
+    if(ipdLabel) ipdLabel.innerHTML = `จำนวนวัน IPD ${req} ${optional}`;
+    if(icuLabel) icuLabel.innerHTML = `จำนวนวัน ICU ${req} ${optional}`;
+  };
+
+  window.validateConsiderStayDays = function(prefix){
+    if(prefix !== 'cc') return true;
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    const treatmentText = String(selected?.treatment || window.currentConsiderCustomerRow?.claimType || '');
+    if(!/IPD/i.test(treatmentText)) return true;
+    const ipdInput = document.getElementById(`${prefix}IpdDays`);
+    const icuInput = document.getElementById(`${prefix}IcuDays`);
+    if(!ipdInput) return true;
+    const ipdDays = Number(ipdInput.value);
+    const icuDays = Number(icuInput?.value);
+    ipdInput.setCustomValidity('');
+    if(icuInput) icuInput.setCustomValidity('');
+    if(!Number.isFinite(ipdDays) || ipdDays <= 0){
+      ipdInput.setCustomValidity('กรุณาระบุจำนวนวัน IPD มากกว่า 0 วัน');
+      ipdInput.reportValidity();
+      ipdInput.scrollIntoView({behavior:'smooth', block:'center'});
+      ipdInput.focus({preventScroll:true});
+      return false;
+    }
+    if(icuInput && (!Number.isFinite(icuDays) || icuDays < 0)){
+      icuInput.setCustomValidity('กรุณาระบุจำนวนวัน ICU ให้ถูกต้อง');
+      icuInput.reportValidity();
+      icuInput.scrollIntoView({behavior:'smooth', block:'center'});
+      icuInput.focus({preventScroll:true});
+      return false;
+    }
+    return true;
+  };
+
   function update(prefix, step){
+    const currentStep = prefix === 'cc' ? Number(window.currentCustomerStep || 1) : 1;
+    if(prefix === 'cc' && currentStep === 1 && Number(step) === 2 && typeof window.validateConsiderStayDays === 'function' && !window.validateConsiderStayDays(prefix)) return;
     if(prefix === 'cc') window.currentCustomerStep = step;
     if(prefix === 'cc' && step === 2 && typeof expenses === 'function'){
       const pane2 = document.getElementById('ccStepPane2');
       if(pane2) pane2.innerHTML = expenses('customer', window.currentConsiderCustomerRow || {});
+    }
+    if(prefix === 'cc' && step === 3 && typeof summary === 'function'){
+      const pane3 = document.getElementById('ccStepPane3');
+      if(pane3) pane3.innerHTML = summary('customer', window.currentConsiderCustomerRow || {});
     }
     [1,2,3].forEach(n=>{
       const pane=document.getElementById(`${prefix}StepPane${n}`); const btn=document.getElementById(`${prefix}StepBtn${n}`);
@@ -25735,7 +26419,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     };
     const page = ensurePage('considerCustomerDetailPage');
     document.getElementById('claimMonitorPage')?.classList.add('hidden'); document.getElementById('detailPage')?.classList.add('hidden'); safeHideClaimPages();
-    page.innerHTML = build('customer', row); page.classList.remove('hidden'); setHeader('บันทึกข้อมูลเคลม - เคลมลูกค้า','บันทึกข้อมูลเคลม - เคลมลูกค้า','customer'); update('cc',1); updateCustomerHospitalStayNights();
+    page.innerHTML = build('customer', row); page.classList.remove('hidden'); setHeader('บันทึกข้อมูลเคลม - เคลมลูกค้า','บันทึกข้อมูลเคลม - เคลมลูกค้า','customer'); update('cc',1); updateCustomerHospitalStayNights(); if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
     if(row.claimCode === 'CL6905000076'){
       selectedCustomerContinuousClaimNo = 'CL6904000058';
       const continuousCheckbox = document.getElementById('ccContinuousClaimCheckbox');
@@ -26905,7 +27589,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
     .death-ref-name,
     .customer-review-name{
-      font-size:22px!important;
+      font-size:20px!important;
     }
     .death-ref-meta,
     .customer-review-metagrid{
@@ -28153,7 +28837,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   #considerCustomerDetailPage .claim-history-title-sub{
     margin-top:1px;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
     color:#64748b;
     line-height:1.2;
@@ -28167,7 +28851,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     color:#075f99;
     border:1px solid #cfe8ff;
     padding:0 12px;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     white-space:nowrap;
   }
@@ -28306,8 +28990,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   #considerCustomerDetailPage .claim-history-footer{
     border:1px solid #e2e8f0;
-    border-radius:14px;
-    font-size:12px;
+    border-radius:12px;
+    font-size:11px;
     background:#fff;
     padding:10px 12px;
   }
@@ -28956,7 +29640,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     line-height:1.28!important;
   }
   #considerCustomerDetailPage .claim-history-stat-value{
-    font-size:22px!important;
+    font-size:20px!important;
     line-height:1.2!important;
   }
   #considerCustomerDetailPage .claim-history-search input,
@@ -29039,7 +29723,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     line-height:1.25!important;
   }
   #considerCustomerDetailPage .payment-summary-value{
-    font-size:22px!important;
+    font-size:20px!important;
     line-height:1.15!important;
   }
   #considerCustomerDetailPage .payment-summary-value small{
@@ -30046,9 +30730,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-bottom-color:#fed7aa;
   }
   #claimEntryPage .pa-death-benefit-icon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
+    width:38px;
+    height:38px;
+    border-radius:12px;
     display:grid;
     place-items:center;
     flex:0 0 44px;
@@ -30472,9 +31156,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     margin-bottom:14px;
   }
   #claimEntryPage .ph-death-head-icon{
-    width:44px;
-    height:44px;
-    border-radius:14px;
+    width:38px;
+    height:38px;
+    border-radius:12px;
     display:grid;
     place-items:center;
     background:#e0f0ff;
@@ -30501,7 +31185,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     min-height:66px;
     padding:14px 16px;
     border:1px solid #a7e7c1;
-    border-radius:14px;
+    border-radius:12px;
     background:#effaf3;
     color:#188b47;
     font-size:17px;
@@ -30526,7 +31210,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:block;
     margin-bottom:8px;
     color:#475569;
-    font-size:16px;
+    font-size:15px;
     line-height:1.3;
     font-weight:800;
   }
@@ -30534,7 +31218,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     width:100%;
     height:40px;
     border:1px solid #cbd5e1;
-    border-radius:14px;
+    border-radius:12px;
     background:#fff;
     padding:0 16px;
     color:#0b74bd;
@@ -33991,12 +34675,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
         <label id="deathHospitalWrap" class="conditional-detail-field hidden md:col-span-3">
           <span class="text-lg font-bold text-slate-500">สถานพยาบาล<span class="text-danger">*</span></span>
-          <select id="claimHospitalSelect" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100" onchange="validateRequiredHospital(false)">${hospitalOptions}</select>
+          <select id="claimHospitalSelect" class="claim-standard-field mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-[17px] font-medium text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-100" onchange="validateRequiredHospital(false)">${hospitalOptions}</select>
           <span id="claimHospitalError" class="mt-1 hidden text-base font-extrabold text-danger"></span>
         </label>
         <label id="deathOtherPlaceWrap" class="conditional-detail-field hidden md:col-span-3">
           <span class="text-lg font-bold text-slate-500">โปรดระบุ<span class="text-danger">*</span></span>
-          <input id="claimDeathPlaceOther" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100" placeholder="ระบุสถานที่เสียชีวิต">
+          <input id="claimDeathPlaceOther" class="claim-standard-field mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-[17px] font-medium text-slate-700 focus:border-brand-500 focus:ring-4 focus:ring-brand-100" placeholder="ระบุสถานที่เสียชีวิต">
         </label>`;
     }
   };
@@ -34603,7 +35287,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-bottom:1px solid #b9d9f3!important;
     background:linear-gradient(90deg,#dff2ff 0%,#eef8ff 58%,#ffffff 100%)!important;
     color:#075f99!important;
-    font-size:22px!important;
+    font-size:20px!important;
     line-height:1.2!important;
     font-weight:900!important;
     letter-spacing:.1px!important;
@@ -34852,7 +35536,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   #benefitSummary .ipd-head-card{
     border:1px solid #dbeafe;
-    border-radius:24px;
+    border-radius:20px;
     background:#fff;
     box-shadow:0 8px 24px rgba(15,23,42,.06);
     padding:18px 24px;
@@ -34883,7 +35567,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:999px;
     background:#dbeafe;
     color:#0f69a8;
-    font-size:16px;
+    font-size:15px;
     font-weight:900;
     white-space:nowrap;
   }
@@ -34942,7 +35626,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:8px;
     background:#fff;
     padding:0 8px;
-    font-size:16px;
+    font-size:15px;
     font-weight:900;
     color:#075f99;
     white-space:nowrap;
@@ -35238,7 +35922,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
-    gap:16px;
+    gap:14px;
     flex-wrap:wrap;
   }
   #claimMonitorPage .claim-limit-card{
@@ -35251,7 +35935,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     min-height:66px;
     overflow:hidden;
     border:1px solid #d7e5f5;
-    border-radius:14px;
+    border-radius:12px;
     background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%);
     box-shadow:0 8px 20px rgba(15,23,42,.07);
   }
@@ -35288,7 +35972,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   #claimMonitorPage .claim-limit-label{
     color:#7b8794;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     line-height:1.15;
     white-space:nowrap;
@@ -35696,11 +36380,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   #transferTrackingPage.tt-redesign .tt-expand-transfer-ref{
     display:inline-flex;
     align-items:center;
-    padding:4px 10px;
+    padding:3px 8px;
     border-radius:999px;
     background:#eef6ff;
     color:#075f99;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     white-space:nowrap;
   }
@@ -35807,8 +36491,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:grid;
     place-items:center;
     width:48px;
-    height:48px;
-    border-radius:14px;
+    height:44px;
+    border-radius:12px;
     background:#eef5fb;
     color:#075f99;
   }
@@ -36341,7 +37025,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     margin-top:14px;
     padding:15px 18px;
     border:1px solid #f5cf77;
-    border-radius:14px;
+    border-radius:12px;
     background:linear-gradient(90deg,#fffaf0 0%,#fffdf8 100%);
     box-shadow:0 5px 14px rgba(146,84,0,.07);
   }
@@ -36350,8 +37034,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     place-items:center;
     flex:0 0 48px;
     width:48px;
-    height:48px;
-    border-radius:14px;
+    height:44px;
+    border-radius:12px;
     background:#f59e0b;
     color:#fff;
   }
@@ -36372,9 +37056,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   .consider-exgratia-copy small{
     display:block;
-    margin-top:4px;
+    margin-top:2px;
     color:#8b6b36;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
   }
 </style>
@@ -36385,7 +37069,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:16px;
+    gap:14px;
     padding:14px 16px;
     border:1px solid #f3cc72;
     border-radius:12px;
@@ -36418,7 +37102,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:block;
     margin-top:2px;
     color:#8b6b36;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
   }
   .claim-detail-exgratia-amount{
@@ -36427,7 +37111,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:999px;
     background:#f59e0b;
     color:#fff;
-    font-size:18px;
+    font-size:16px;
     font-weight:900;
     white-space:nowrap;
   }
@@ -36574,7 +37258,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
-    gap:18px;
+    gap:14px;
     padding:22px 24px 18px;
     border-bottom:1px solid #e7eef6;
     background:linear-gradient(135deg,#f5fbff 0%,#eef7ff 100%);
@@ -36599,7 +37283,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .billing-confirm-eyebrow{
     margin:0 0 3px;
     color:#0788d6;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     letter-spacing:.04em;
   }
@@ -36721,7 +37405,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:999px;
     background:#eaf5ff;
     color:#075f99;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
   }
   .billing-confirm-table-wrap{max-height:240px;overflow:auto}
@@ -36730,7 +37414,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     padding:10px 14px;
     background:#f8fafc;
     color:#64748b;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     text-align:left;
     white-space:nowrap;
@@ -36750,14 +37434,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:999px;
     background:#eaf5ff;
     color:#075f99;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
   }
   .billing-confirm-note{
     display:flex;
     align-items:flex-start;
     gap:10px;
-    margin-top:16px;
+    margin-top:12px;
     padding:12px 14px;
     border:1px solid #f7df9a;
     border-radius:13px;
@@ -36809,7 +37493,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     min-width:290px;
     padding:14px 16px;
     border:1px solid #b9e8c8;
-    border-radius:14px;
+    border-radius:12px;
     background:#ecfdf3;
     color:#166534;
     box-shadow:0 18px 40px rgba(15,23,42,.18);
@@ -36927,7 +37611,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-doc-card,
   .opd-half-expense-card{
     border:1px solid #dbe7f3;
-    border-radius:14px;
+    border-radius:12px;
     background:#fff;
     overflow:hidden;
     box-shadow:0 4px 12px rgba(15,23,42,.04);
@@ -36955,13 +37639,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-section-title h3{
     margin:0;
     color:#075f99;
-    font-size:18px;
+    font-size:16px;
     font-weight:900;
   }
   .opd-half-section-title p{
     margin:3px 0 0;
     color:#64748b;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
   }
   .opd-half-doc-table-wrap{overflow:auto;padding:0 16px 16px}
@@ -36990,7 +37674,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:9px;
     background:#087fbd;
     color:#fff;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
   }
   .opd-half-search-doc-btn .material-icons-round{font-size:17px!important}
@@ -37021,14 +37705,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-expense-card{
     display:grid;
     grid-template-columns:minmax(0,1fr) 260px;
-    gap:16px;
+    gap:14px;
     padding:16px;
     background:#fff;
   }
   .opd-half-expense-title{
     margin-bottom:10px;
     color:#075f99;
-    font-size:16px;
+    font-size:15px;
     font-weight:900;
   }
   .opd-half-expense-panel{
@@ -37054,7 +37738,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:block;
     margin-bottom:6px;
     color:#475569;
-    font-size:12px;
+    font-size:11px;
     font-weight:800;
   }
   .opd-half-money-input{
@@ -37076,7 +37760,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-money-input b,
   .opd-half-net-box b{
     color:#64748b;
-    font-size:12px;
+    font-size:11px;
   }
   .opd-half-net-box{
     padding:10px 14px;
@@ -37086,7 +37770,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   .opd-half-net-box strong{
     color:#075f99;
-    font-size:18px;
+    font-size:16px;
     font-weight:900;
   }
   .opd-half-expense-note{
@@ -37098,13 +37782,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-expense-note strong{
     display:block;
     color:#075f99;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
   }
   .opd-half-expense-note p{
     margin:4px 0 0;
     color:#475569;
-    font-size:12px;
+    font-size:11px;
     font-weight:700;
   }
   .opd-half-summary-card{
@@ -37133,7 +37817,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     padding:10px 0;
     border-bottom:1px dashed #dbe7f3;
     color:#475569;
-    font-size:12px;
+    font-size:11px;
     font-weight:800;
   }
   .opd-half-summary-line strong{color:#0f172a}
@@ -37160,7 +37844,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-summary-net > div > span{
     display:block;
     color:#075f99;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
   }
   .opd-half-summary-net strong{
@@ -37219,8 +37903,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-color:#dbe7f3;
   }
   .opd-half-view-doc-btn{
-    width:44px;
-    height:44px;
+    width:38px;
+    height:38px;
     border-radius:12px;
     border:1px solid #5db4f3;
     background:#fff;
@@ -37263,7 +37947,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .opd-half-doc-note-input{
     width:100%;
     min-width:180px;
-    height:44px;
+    height:38px;
     border:1px solid #dbe2ea;
     border-radius:12px;
     padding:0 14px;
@@ -37311,7 +37995,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     display:block;
     margin-top:3px;
     color:#075f99;
-    font-size:18px;
+    font-size:16px;
     font-weight:900;
   }
 </style>
@@ -42572,7 +43256,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     #billingHospitalReviewPage
   ) .cc-ref-outline-btn :is(.material-icons-round,.material-symbols-outlined){
     flex:none!important;
-    font-size:22px!important;
+    font-size:20px!important;
   }
   #considerHospitalOpdHalfPage .opd-half-expense-card{
     min-width:0!important;
@@ -44255,7 +44939,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
           const previousExpenses=window.expenses;
           window.expenses=function(kind,row){
             if(window.__hospitalConsiderMode!=='IPD' || kind!=='full') return previousExpenses(kind,row);
-            return '<div class="cc-ref-step2-shell"><div id="hospitalIpdExpenseHostV123">'+window.renderHospitalIpdExpenseV123()+'</div>' + (typeof decision==='function'?'<div class="cc-ref-decision-wrap">'+decision()+'</div>':'') + '<div class="cc-ref-actionbar"><button type="button" onclick="setHospitalFullStep(1)" class="cc-ref-back-btn"><span class="material-icons-round">arrow_back</span>กลับ</button><div class="cc-ref-action-right"><button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(3)" class="cc-ref-next-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button><button type="button" class="cc-ref-save-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div></div>';
+            return '<div class="cc-ref-step2-shell"><div id="hospitalIpdExpenseHostV123">'+window.renderHospitalIpdExpenseV123()+'</div>' + (typeof decision==='function'?'<div class="cc-ref-decision-wrap">'+decision()+'</div>':'') + '<div class="cc-ref-actionbar"><button type="button" onclick="setHospitalFullStep(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button><div class="cc-ref-action-right"><button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn claim-step-action-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(3)" class="cc-ref-next-btn claim-step-action-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button><button type="button" class="cc-ref-save-btn claim-step-action-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div></div>';
           };
 
           const previousOpen=window.openConsiderHospitalRow;
@@ -44609,5 +45293,24 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
 })();
 </script>
 
+
+<style id="claimagent-treatment-final-override-v46">
+  #considerCustomerDetailPage .claim-treatment-btn,
+  #considerHospitalOpdHalfPage .claim-treatment-btn,
+  #considerHospitalOpdFullPage .claim-treatment-btn{
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 15px!important;
+    font-size:15px!important;
+    font-weight:400!important;
+    line-height:1.25!important;
+    letter-spacing:0!important;
+  }
+  #considerCustomerDetailPage .claim-treatment-btn.selected,
+  #considerHospitalOpdHalfPage .claim-treatment-btn.selected,
+  #considerHospitalOpdFullPage .claim-treatment-btn.selected{
+    font-weight:400!important;
+  }
+</style>
 </body>
 </html>
