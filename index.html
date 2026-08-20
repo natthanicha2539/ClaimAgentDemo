@@ -25466,7 +25466,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <input id="${hospitalId('IpdDays')}" type="number" min="0" step="1" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
             </label>
             <label>
-              <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU <span class="claim-ipd-stay-optional">ไม่บังคับ</span></div>
+              <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU</div>
               <input id="${hospitalId('IcuDays')}" type="number" min="0" step="1" value="0" data-stay-required="false" class="claim-ipd-stay-input">
             </label>
             <label>
@@ -26423,7 +26423,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const ipdLabel = document.getElementById(`${prefix}IpdDaysLabel`);
     const icuLabel = document.getElementById(`${prefix}IcuDaysLabel`);
     if(ipdLabel) ipdLabel.innerHTML = `จำนวนวัน IPD ${req} ${optional}`;
-    if(icuLabel) icuLabel.innerHTML = 'จำนวนวัน ICU <span class="claim-ipd-stay-optional">ไม่บังคับ</span>';
+    if(icuLabel) icuLabel.innerHTML = 'จำนวนวัน ICU';
   };
 
   window.validateConsiderStayDays = function(prefix){
