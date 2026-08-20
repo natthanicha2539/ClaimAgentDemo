@@ -3772,7 +3772,7 @@
     #claimEntryPage .insured-name-highlight{
       display:inline-flex;
       align-items:center;
-      gap:6px;
+      gap:3px;
       max-width:100%;
       padding:4px 12px;
       border-radius:999px;
@@ -6311,7 +6311,7 @@ body > .min-h-screen > main,
 
   #continuousPanel .claim-history-view-all{
     flex:1;
-    justify-content:center;
+    justify-content:flex-start;
   }
 }
 </style>
@@ -7104,7 +7104,7 @@ body > .min-h-screen > main,
   }
   .claim-ipd-stay-card{
     position:relative;
-    min-height:128px;
+    min-height:112px;
     border:1px solid #dbe7f3;
     border-radius:20px;
     background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);
@@ -7113,7 +7113,7 @@ body > .min-h-screen > main,
     align-items:center;
     justify-content:center;
     gap:6px;
-    padding:10px 14px 12px;
+    padding:8px 14px 10px;
     box-shadow:0 14px 30px rgba(15,23,42,.06);
     overflow:hidden;
   }
@@ -7146,7 +7146,7 @@ body > .min-h-screen > main,
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:4px;
+    margin-bottom:0;
   }
   .claim-ipd-stay-icon{
     display:grid;
@@ -7191,8 +7191,8 @@ body > .min-h-screen > main,
     color:#64748b;
   }
   .claim-ipd-stay-number{
-    margin-top:0;
-    font-size:44px;
+    margin-top:2px;
+    font-size:54px;
     line-height:1;
     font-weight:900;
     letter-spacing:-.02em;
@@ -7201,13 +7201,13 @@ body > .min-h-screen > main,
   .claim-ipd-stay-card.icu .claim-ipd-stay-number{color:#c2410c}
   .claim-ipd-stay-card.total .claim-ipd-stay-number{color:#94a3b8}
   .claim-ipd-stay-label{
-    font-size:15px;
-    font-weight:800;
+    font-size:14px;
+    font-weight:700;
     color:#334155;
   }
   .claim-ipd-stay-hint{
-    font-size:11px;
-    line-height:1.5;
+    font-size:10px;
+    line-height:1.35;
     font-weight:700;
     color:#64748b;
     text-align:center;
@@ -7261,7 +7261,7 @@ body > .min-h-screen > main,
   @media(max-width:980px){
     .claim-ipd-stay-summary-grid,
     .claim-ipd-stay-input-grid{grid-template-columns:1fr}
-    .claim-ipd-stay-card{min-height:118px}
+    .claim-ipd-stay-card{min-height:104px}
   }
 </style>
 
@@ -7589,6 +7589,48 @@ body > .min-h-screen > main,
     font-weight:500 !important;
     line-height:1.25 !important;
     border-radius:8px !important;
+  }
+</style>
+
+<style id="claimagent-ipd-card-override-v55">
+  .claim-ipd-stay-summary-grid{
+    gap:12px !important;
+  }
+  .claim-ipd-stay-card{
+    min-height:96px !important;
+    justify-content:flex-start !important;
+    padding:6px 14px 8px !important;
+    gap:2px !important;
+  }
+  .claim-ipd-stay-card-top{
+    margin-bottom:0 !important;
+  }
+  .claim-ipd-stay-number{
+    margin-top:-2px !important;
+    font-size:60px !important;
+    line-height:.9 !important;
+  }
+  .claim-ipd-stay-label{
+    font-size:13px !important;
+    line-height:1.15 !important;
+    margin-top:-2px !important;
+  }
+  .claim-ipd-stay-hint{
+    font-size:10px !important;
+    line-height:1.2 !important;
+    margin-top:2px !important;
+  }
+  .claim-ipd-stay-card.icu .claim-ipd-stay-hint{
+    font-size:9px !important;
+    line-height:1.15 !important;
+  }
+  @media(max-width:980px){
+    .claim-ipd-stay-card{
+      min-height:92px !important;
+    }
+    .claim-ipd-stay-number{
+      font-size:54px !important;
+    }
   }
 </style>
 </head>
