@@ -3811,6 +3811,8 @@
     .cc-save-npl-btn:hover{background:#eef8ff}
     .cc-save-npl-btn.saved{border-color:#16a34a;background:#ecfdf3;color:#15803d}
     @media(max-width:900px){.cc-transfer-summary-grid{grid-template-columns:1fr}.cc-transfer-summary-head{align-items:flex-start;flex-direction:column}.cc-transfer-summary-value-row{flex-wrap:wrap}}
+
+
 </style>
 
 <style id="cc-ref-step2-layout-fix">
@@ -7656,6 +7658,82 @@ body > .min-h-screen > main,
   #hhInsuranceExcessCompany option{
     font-size:15px !important;
     font-weight:500 !important;
+  }
+</style>
+
+<style id="school-info-section-v64">
+#considerCustomerDetailPage .school-info-card{
+  order:-110!important;width:100%;padding:10px 18px 11px;border:1px solid #c9e2f5;border-radius:15px;
+  background:#fff;box-shadow:0 3px 12px rgba(21,90,140,.045);color:#23415e;
+}
+#considerCustomerDetailPage .school-info-top{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid #d9e9f5}
+#considerCustomerDetailPage .school-info-icon{display:grid;width:34px;height:34px;flex:0 0 34px;place-items:center;border-radius:10px;background:#e7f4fd;color:#0478bd}
+#considerCustomerDetailPage .school-info-icon .material-icons-round{font-size:21px!important}
+#considerCustomerDetailPage .school-info-heading{min-width:0;flex:1}
+#considerCustomerDetailPage .school-info-kicker{font-size:9px;font-weight:700;color:#697f91;line-height:1.1;margin-bottom:1px}
+#considerCustomerDetailPage .school-info-title{font-size:15px;font-weight:800;color:#056cad;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#considerCustomerDetailPage .school-info-appwrap{display:flex;align-items:center;gap:7px;flex:0 0 auto;font-size:13px;color:#353535}
+#considerCustomerDetailPage .school-info-app-label{font-size:13px;font-weight:500;color:#373737}
+#considerCustomerDetailPage .school-info-app{min-width:110px;text-align:center;padding:5px 15px;border-radius:11px;background:#e8f5fd;color:#0769a7;font-size:14px;font-weight:700}
+#considerCustomerDetailPage .school-compact-body{display:grid;grid-template-columns:1.15fr 1.25fr;gap:3px 26px;padding:8px 2px 0}
+#considerCustomerDetailPage .school-line{display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px;align-items:baseline;min-width:0;line-height:1.4}
+#considerCustomerDetailPage .school-line.school-address{grid-column:1/-1}
+#considerCustomerDetailPage .school-info-label{font-size:10px;font-weight:600;color:#62788b;white-space:nowrap}
+#considerCustomerDetailPage .school-info-value{font-size:10px;font-weight:600;color:#145c8e;min-width:0;overflow-wrap:anywhere}
+#considerCustomerDetailPage .school-account-value{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+#considerCustomerDetailPage .school-account-sep{color:#9bb0c0;font-weight:400}
+@media(max-width:980px){
+  #considerCustomerDetailPage .school-compact-body{grid-template-columns:1fr;gap:4px}
+  #considerCustomerDetailPage .school-line.school-address{grid-column:auto}
+}
+@media(max-width:680px){
+  #considerCustomerDetailPage .school-info-card{padding:10px 12px}
+  #considerCustomerDetailPage .school-info-top{align-items:flex-start;flex-wrap:wrap}
+  #considerCustomerDetailPage .school-info-title{white-space:normal}
+  #considerCustomerDetailPage .school-info-appwrap{width:100%;justify-content:flex-end}
+  #considerCustomerDetailPage .school-line{grid-template-columns:92px minmax(0,1fr)}
+}
+</style>
+
+<style id="claimagent-customer-scan-font-fix-v81">
+  /* พิจารณาเคลม > เคลมลูกค้า: ปุ่มสแกนเอกสาร Step 1 / Step 3
+     ใช้ font เดียวกับปุ่ม กลับ / บันทึกแบบร่าง / อนุมัติ */
+  :is(#hfStepPane1,#hfStepPane3,#hhStepPane1,#hhStepPane3,#ccStepPane1,#ccStepPane3) .customer-scan-btn {
+    min-width:110px !important;
+    height:30px !important;
+    min-height:30px !important;
+    padding:0 10px !important;
+    font-size:14px !important;
+    font-weight:500 !important;
+    line-height:1.25 !important;
+    letter-spacing:0 !important;
+  }
+  :is(#hfStepPane1,#hfStepPane3,#hhStepPane1,#hhStepPane3,#ccStepPane1,#ccStepPane3) .customer-scan-btn .material-icons-round {
+    font-size:18px !important;
+    font-weight:normal !important;
+  }
+</style>
+
+<style id="claimagent-customer-scan-match-action-v82">
+  /* Customer Claim Step 1 / Step 3: make Scan Document typography exactly match bottom action buttons. */
+  #considerCustomerDetailPage button.customer-scan-btn,
+  #ccStepPane1 button.customer-scan-btn,
+  #ccStepPane3 button.customer-scan-btn {
+    font-family: var(--ui-font, "TH Sarabun New", "TH SarabunPSK", "Sarabun", Arial, sans-serif) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0 !important;
+    min-width: 110px !important;
+    width: auto !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 0 10px !important;
+  }
+  #considerCustomerDetailPage button.customer-scan-btn .material-icons-round,
+  #ccStepPane1 button.customer-scan-btn .material-icons-round,
+  #ccStepPane3 button.customer-scan-btn .material-icons-round {
+    font-size: 18px !important;
   }
 </style>
 </head>
@@ -14128,7 +14206,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <div class="claim-detail-summary-card treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
                       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                         <div><div class="mb-1 text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">เจ็บป่วย</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">อุบัติเหตุ</button></div></div>
-                        <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษา</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">สรุปค่าชดเชย</button></div></div>
+                        <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษาพยาบาล</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">ค่าชดเชย</button></div></div>
                         <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">OPD</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">IPD</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">Day Case Surgery</button></div></div>
                         <div></div>
                         <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่เริ่มอาการ <span class="text-red-500">*</span></div><input value="26/03/2026" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
@@ -14159,7 +14237,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     <section class="dd-section" id="customerDecisionSection"><div class="dd-doc-title"><span class="material-icons-round">fact_check</span>ผลการพิจารณา</div><div class="dd-action-panel"><div class="dd-decision-row" role="group" aria-label="เลือกผลการพิจารณา"><button type="button" class="dd-decision-btn edit" data-decision="edit" onclick="selectCustomerDecision('edit')"><span class="material-icons-round">edit_note</span>รอแก้ไข</button><button type="button" class="dd-decision-btn wait" data-decision="waitdocs" onclick="selectCustomerDecision('waitdocs')"><span class="material-icons-round">hourglass_top</span>รอเอกสาร</button><button type="button" class="dd-decision-btn reject" data-decision="reject" onclick="selectCustomerDecision('reject')"><span class="material-icons-round">block</span>ปฏิเสธ</button><button type="button" class="dd-decision-btn cancel" data-decision="cancel" onclick="selectCustomerDecision('cancel')"><span class="material-icons-round">cancel</span>ยกเลิก</button></div><div id="customerDecisionDynamicFields" class="dd-decision-dynamic hidden"></div></div></section>
                   </div>
                 </div>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
               </div>
 
               <div id="hfStepPane2" class="mt-4 hidden space-y-4">
@@ -14196,13 +14274,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     </select>
                   </div>
                 </section>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalFullStep(1)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(3)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalFullStep(1)" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalFullStep(3)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
               </div>
 
               <div id="hfStepPane3" class="mt-4 hidden space-y-4">
                 <div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div>
                   <div class="space-y-4 p-4">
-                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">09:30</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">10:00</div></div><div><div class="text-sm font-bold text-slate-500">วันที่ออก รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่ออก รพ. :</div><div class="font-extrabold text-brand-700">11:30</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
+                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษาพยาบาล</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">09:30</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่เข้า รพ. :</div><div class="font-extrabold text-brand-700">10:00</div></div><div><div class="text-sm font-bold text-slate-500">วันที่ออก รพ. :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">เวลาที่ออก รพ. :</div><div class="font-extrabold text-brand-700">11:30</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">fact_check</span>ตรวจสอบเอกสาร</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2">รหัสเอกสาร</th><th class="px-3 py-2">ประเภทเอกสาร</th><th class="px-3 py-2 text-center">สแกนเอกสาร</th><th class="px-3 py-2 text-center">จำนวนเอกสาร</th><th class="px-3 py-2 text-center">รายละเอียด</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-3">DOC690600229</td><td class="px-3 py-3">เอกสารประกอบการพิจารณาเคลม</td><td class="px-3 py-3 text-center"><button class="rounded-lg bg-brand-600 px-6 py-2 font-bold text-white">สแกนเอกสาร</button></td><td class="px-3 py-3 text-center">1</td><td class="px-3 py-3 text-center"><button class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button></td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-2">ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยปกติ</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="border-b border-slate-200 text-brand-700"><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div>
@@ -14217,7 +14295,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     </div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>550.00</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>550.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div>
                   </div>
                 </div>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalFullStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalFullStep(2)" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>
               </div>
             </div>
           </section>
@@ -14290,7 +14368,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <div class="claim-detail-summary-card treatment-detail-compact rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div>
                       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                         <div><div class="mb-1 text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">เจ็บป่วย</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">อุบัติเหตุ</button></div></div>
-                        <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษา</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">สรุปค่าชดเชย</button></div></div>
+                        <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ค่ารักษาพยาบาล</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">ค่าชดเชย</button></div></div>
                         <div><div class="mb-1 text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="flex gap-2"><button class="h-10 rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">OPD</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">IPD</button><button class="h-10 rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-500">Day Case Surgery</button></div></div>
                         <div></div>
                         <label><div class="mb-1 text-sm font-bold text-slate-500">วันที่เริ่มอาการ <span class="text-red-500">*</span></div><input value="26/03/2026" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
@@ -14312,7 +14390,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     <section class="dd-section" id="customerDecisionSection"><div class="dd-doc-title"><span class="material-icons-round">fact_check</span>ผลการพิจารณา</div><div class="dd-action-panel"><div class="dd-decision-row" role="group" aria-label="เลือกผลการพิจารณา"><button type="button" class="dd-decision-btn edit" data-decision="edit" onclick="selectCustomerDecision('edit')"><span class="material-icons-round">edit_note</span>รอแก้ไข</button><button type="button" class="dd-decision-btn wait" data-decision="waitdocs" onclick="selectCustomerDecision('waitdocs')"><span class="material-icons-round">hourglass_top</span>รอเอกสาร</button><button type="button" class="dd-decision-btn reject" data-decision="reject" onclick="selectCustomerDecision('reject')"><span class="material-icons-round">block</span>ปฏิเสธ</button><button type="button" class="dd-decision-btn cancel" data-decision="cancel" onclick="selectCustomerDecision('cancel')"><span class="material-icons-round">cancel</span>ยกเลิก</button></div><div id="customerDecisionDynamicFields" class="dd-decision-dynamic hidden"></div></div></section>
                   </div>
                 </div>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalHalfStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalHalfStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
               </div>
 
               <div id="hhStepPane2" class="mt-4 hidden space-y-4">
@@ -14349,13 +14427,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     </select>
                   </div>
                 </section>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalHalfStep(1)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalHalfStep(3)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalHalfStep(1)" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="setHospitalHalfStep(3)" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>
               </div>
 
               <div id="hhStepPane3" class="mt-4 hidden space-y-4">
                 <div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div>
                   <div class="space-y-4 p-4">
-                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษา</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
+                    <div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg"><div><div class="text-sm font-bold text-slate-500">เหตุของการเคลม :</div><div class="font-extrabold text-brand-700">เจ็บป่วย</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทความคุ้มครอง :</div><div class="font-extrabold text-brand-700">ค่ารักษาพยาบาล</div></div><div><div class="text-sm font-bold text-slate-500">ประเภทการรักษา :</div><div class="font-extrabold text-brand-700">OPD</div></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้งเคลม :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div><div class="text-sm font-bold text-slate-500">วันที่เกิดเหตุ :</div><div class="font-extrabold text-brand-700">19/06/2569</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">สถานพยาบาล :</div><div class="font-extrabold text-brand-700">โรงพยาบาลมะการักษ์</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">อาการสำคัญ :</div><div class="font-extrabold text-brand-700">0024:ไข้ + ปวดท้อง</div></div><div class="md:col-span-2 xl:col-span-5"><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 1 :</div><div class="font-extrabold text-brand-700">A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 2 :</div><div class="font-extrabold text-brand-700">-</div></div><div><div class="text-sm font-bold text-slate-500">คำวินิจฉัย 3 :</div><div class="font-extrabold text-brand-700">-</div></div><div class="md:col-span-3 xl:col-span-3"><div class="text-sm font-bold text-slate-500">หมายเหตุ :</div><div class="font-extrabold text-brand-700">-</div></div></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">fact_check</span>ตรวจสอบเอกสาร</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2">รหัสเอกสาร</th><th class="px-3 py-2">ประเภทเอกสาร</th><th class="px-3 py-2 text-center">สแกนเอกสาร</th><th class="px-3 py-2 text-center">จำนวนเอกสาร</th><th class="px-3 py-2 text-center">รายละเอียด</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-3">DOC690600229</td><td class="px-3 py-3">เอกสารประกอบการพิจารณาเคลม</td><td class="px-3 py-3 text-center"><button class="rounded-lg bg-brand-600 px-6 py-2 font-bold text-white">สแกนเอกสาร</button></td><td class="px-3 py-3 text-center">1</td><td class="px-3 py-3 text-center"><button class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button></td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr class="border-b border-slate-200"><td class="px-3 py-2">ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยปกติ</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="border-b border-slate-200 text-brand-700"><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div>
@@ -14370,7 +14448,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     </div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>550.00</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>550.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div>
                   </div>
                 </div>
-                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalHalfStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>
+                <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setHospitalHalfStep(2)" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>
               </div>
             </div>
           </section>
@@ -14983,11 +15061,49 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ];
 
     const coverageOptions = [
-      { value: "ค่ารักษา", icon: "medical_services", desc: "OPD / IPD / Day Case Surgery" },
-      { value: "ค่าชดเชย", label: "ค่าชดเชย", icon: "payments", desc: "OPD / IPD / Day Case Surgery" },
-      { value: "ทุพพลภาพ/สูญเสียอวัยวะ", icon: "accessible", desc: "อุบัติเหตุทั่วไป / ขับขี่หรือโดยสารจักรยานยนต์" },
-      { value: "เสียชีวิต", icon: "local_florist", desc: "สาเหตุการเสียชีวิตตามเงื่อนไข" }
+      { value: "ค่ารักษา", label: "ค่ารักษา", icon: "medical_services", desc: "OPD / IPD / Daycase Surgery" },
+      { value: "ค่าชดเชย", label: "ค่าชดเชย(ใหญ่)", icon: "payments", desc: "ประเภทการรักษาตามเหตุของการเคลม" },
+      { value: "ทุพพลภาพ/สูญเสียอวัยวะ", label: "ทุพพลภาพ/สูญเสียอวัยวะ", icon: "accessible", desc: "สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ" },
+      { value: "เสียชีวิต", label: "เสียชีวิต", icon: "local_florist", desc: "สาเหตุการเสียชีวิต" }
     ];
+
+    // Mapping การแสดงตัวเลือกข้อมูลเคลมสำหรับหน้า พิจารณาเคลมลูกค้า
+    // ใช้ value ภายในเดิมเพื่อไม่กระทบ Benefit / Calculation แต่กำหนด label ตาม Requirement
+    const CUSTOMER_CLAIM_OPTION_MATRIX = {
+      "เจ็บป่วย": {
+        "ค่ารักษา": [
+          { value: "OPD", label: "OPD" },
+          { value: "IPD", label: "IPD" },
+          { value: "Day Case Surgery", label: "Daycase Surgery" }
+        ],
+        "ค่าชดเชย": [
+          { value: "IPD", label: "IPD", defaultLocked: true }
+        ],
+        "เสียชีวิต": [
+          { value: "โรคทั่วไป", label: "โรคทั่วไป", defaultLocked: true }
+        ]
+      },
+      "อุบัติเหตุ": {
+        "ค่ารักษา": [
+          { value: "OPD", label: "OPD" },
+          { value: "IPD", label: "IPD" }
+        ],
+        "ค่าชดเชย": [
+          { value: "OPD", label: "OPD" },
+          { value: "IPD", label: "IPD" }
+        ],
+        "ทุพพลภาพ/สูญเสียอวัยวะ": [
+          { value: "อุบัติเหตุทั่วไป", label: "อุบัติเหตุทั่วไป" },
+          { value: "ขับขี่/โดยสารจักรยานยนต์", label: "ขับขี่/โดยสารจักรยานยนต์" },
+          { value: "ฆาตกรรม", label: "ฆาตกรรม" }
+        ],
+        "เสียชีวิต": [
+          { value: "อุบัติเหตุทั่วไป", label: "อุบัติเหตุทั่วไป" },
+          { value: "ขับขี่/โดยสารจักรยานยนต์", label: "ขับขี่/โดยสารจักรยานยนต์" },
+          { value: "ฆาตกรรม", label: "ฆาตกรรม" }
+        ]
+      }
+    };
 
     // เงื่อนไขการแสดงผลตามไฟล์ Casetype_condition.xlsx
     // ปรับให้ระบบแสดงตัวเลือกและรายละเอียดความคุ้มครองตาม Product / เหตุของการเคลม / ประเภทความคุ้มครอง / ประเภทการรักษา
@@ -15058,8 +15174,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return ["ภัยสาธารณะ", "ความรับผิดสถานศึกษา"];
     }
 
+    function displayCoverageTypeLabel(value) {
+      const item = coverageOptions.find(x => x.value === value);
+      return item?.label || value || "";
+    }
+
+    function displaySubTypeLabel(incident, coverage, value) {
+      const item = (CUSTOMER_CLAIM_OPTION_MATRIX?.[incident]?.[coverage] || []).map(normalizeSubOption).find(x => x.value === value);
+      return item?.label || value || "";
+    }
+
     function formatSelectedClaimInfo(incidentCause, coverageType, treatmentType) {
-      const values = [incidentCause, coverageType, treatmentType]
+      const values = [incidentCause, displayCoverageTypeLabel(coverageType), displaySubTypeLabel(incidentCause, coverageType, treatmentType)]
         .map(value => String(value || "").trim())
         .filter(value => value && value !== "-");
       return values.length ? values.join(" / ") : "-";
@@ -15097,7 +15223,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="flex items-center gap-2.5">
           <span class="choice-icon"><span class="material-icons-round">${item.icon}</span></span>
           <div class="min-w-0">
-            <div class="choice-title-sm font-extrabold ${active ? "text-brand-700" : "text-slate-700"}">${item.value}</div>
+            <div class="choice-title-sm font-extrabold ${active ? "text-brand-700" : "text-slate-700"}">${item.label || item.value}</div>
             <div class="choice-desc-sm font-semibold text-slate-500">${item.desc}</div>
           </div>
         </div>
@@ -15146,6 +15272,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       }
       document.getElementById("incidentCauseRadios").innerHTML = availableIncidentCauseOptions.map(item => renderChoiceCard(item, claimState.incidentCause === item.value, "incidentCause", "incident-cause-input")).join("");
       document.querySelectorAll(".incident-cause-input").forEach(r => r.addEventListener("change", e => {
+        clearClaimSelectionValidation();
         claimState.incidentCause = e.target.value;
         claimState.scanned = { idcard: false, receipt: false, medcert: false, other: false };
         renderClaimEntry();
@@ -15154,6 +15281,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
       document.getElementById("coverageTypeRadios").innerHTML = coverageOptions.map(item => renderChoiceCard(item, claimState.coverageType === item.value, "coverageType", "coverage-type-input")).join("");
       document.querySelectorAll(".coverage-type-input").forEach(r => r.addEventListener("change", e => {
+        clearClaimSelectionValidation();
         claimState.coverageType = e.target.value;
         claimState.deathExtras = [];
         resetSubTypeForCoverage();
@@ -15307,7 +15435,55 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return !invalid;
     }
 
+    function clearClaimSelectionValidation() {
+      ["incidentCauseRadios", "coverageTypeRadios", "claimSubRadios"].forEach(id => {
+        const el = document.getElementById(id);
+        const section = el?.closest("section");
+        section?.classList.remove("border-red-400", "ring-2", "ring-red-100");
+        document.getElementById(`${id}RequiredError`)?.remove();
+      });
+    }
+
+    function showClaimSelectionRequiredError(containerId, message) {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      const section = el.closest("section");
+      section?.classList.add("border-red-400", "ring-2", "ring-red-100");
+      let error = document.getElementById(`${containerId}RequiredError`);
+      if (!error) {
+        error = document.createElement("div");
+        error.id = `${containerId}RequiredError`;
+        error.className = "mt-2 text-base font-extrabold text-danger";
+        el.insertAdjacentElement("afterend", error);
+      }
+      error.textContent = message;
+    }
+
+    function validateClaimSelectionRequired(shouldFocus = false) {
+      clearClaimSelectionValidation();
+      let first = null;
+      if (!claimState.incidentCause) {
+        showClaimSelectionRequiredError("incidentCauseRadios", "กรุณาเลือกเหตุของการเคลม");
+        first ||= document.getElementById("incidentCauseRadios");
+      } else if (!claimState.coverageType) {
+        showClaimSelectionRequiredError("coverageTypeRadios", "กรุณาเลือกประเภทความคุ้มครอง");
+        first ||= document.getElementById("coverageTypeRadios");
+      } else if (!claimState.subType) {
+        const labels = {
+          "ค่ารักษา": "กรุณาเลือกประเภทการรักษา",
+          "ค่าชดเชย": "กรุณาเลือกประเภทการรักษา",
+          "เสียชีวิต": "กรุณาเลือกสาเหตุการเสียชีวิต",
+          "ทุพพลภาพ/สูญเสียอวัยวะ": "กรุณาเลือกสาเหตุการทุพพลภาพ/สูญเสียอวัยวะ"
+        };
+        showClaimSelectionRequiredError("claimSubRadios", labels[claimState.coverageType] || "กรุณาเลือกข้อมูล");
+        first ||= document.getElementById("claimSubRadios");
+      }
+      if (first && shouldFocus) first.scrollIntoView({ behavior: "smooth", block: "center" });
+      return !first;
+    }
+
     function validateClaimEntryBeforeNext() {
+      if (!validateClaimSelectionRequired(true)) return;
       if (!validateClaimDateFields(true)) return;
       if (!validateRequiredHospital(true)) return;
       if (!validateTransferAmountByCoverage()) return;
@@ -15360,12 +15536,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return CASETYPE_CONDITIONS[currentProductType()]?.[claimState.incidentCause] || {};
     }
 
+    function currentClaimOptionRule() {
+      const base = CUSTOMER_CLAIM_OPTION_MATRIX[claimState.incidentCause] || {};
+      // กรณี PA ที่ไม่มีสิทธิ์เจ็บป่วย ยังคงใช้เงื่อนไข Product เดิมในการซ่อนเหตุเจ็บป่วย
+      return base;
+    }
+
     function getAvailableCoverageValues() {
-      return Object.keys(currentCaseCondition());
+      return Object.keys(currentClaimOptionRule());
     }
 
     function getSubOptionObjects() {
-      const raw = currentCaseCondition()?.[claimState.coverageType] || [];
+      const raw = currentClaimOptionRule()?.[claimState.coverageType] || [];
       return raw.map(normalizeSubOption);
     }
 
@@ -15452,9 +15634,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function coverageOptionDesc(item) {
       if (!claimState.incidentCause) return "เลือกเหตุของการเคลมก่อน";
-      const subOptions = currentCaseCondition()?.[item.value] || [];
+      const subOptions = currentClaimOptionRule()?.[item.value] || [];
       if (!subOptions.length) return item.desc;
-      return subOptions.map(normalizeSubOption).map(s => s.value).join(" / ");
+      return subOptions.map(normalizeSubOption).map(s => s.label || s.value).join(" / ");
     }
 
     function renderChoiceCard(item, active, inputName, inputClass) {
@@ -15483,6 +15665,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       }
       document.getElementById("incidentCauseRadios").innerHTML = availableIncidentCauseOptions.map(item => renderChoiceCard(item, claimState.incidentCause === item.value, "incidentCause", "incident-cause-input")).join("");
       document.querySelectorAll(".incident-cause-input").forEach(r => r.addEventListener("change", e => {
+        clearClaimSelectionValidation();
         claimState.incidentCause = e.target.value;
         claimState.coverageType = "";
         claimState.subType = "";
@@ -15497,8 +15680,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
       document.getElementById("coverageTypeRadios").innerHTML = availableCoverageOptions.length
         ? availableCoverageOptions.map(item => renderChoiceCard(item, claimState.coverageType === item.value, "coverageType", "coverage-type-input")).join("")
-        : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-xl font-bold text-slate-400">กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงประเภทความคุ้มครองตามผลิตภัณฑ์ ${currentProductType()}</div>`;
+        : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-xl font-bold text-slate-400">กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงประเภทความคุ้มครองตามผลิตภัณฑ์ PH</div>`;
       document.querySelectorAll(".coverage-type-input").forEach(r => r.addEventListener("change", e => {
+        clearClaimSelectionValidation();
         claimState.coverageType = e.target.value;
         claimState.deathExtras = [];
         resetSubTypeForCoverage();
@@ -15527,7 +15711,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const active = sub === item.value;
         return `<label class="cursor-pointer rounded-xl border px-5 py-3 text-xl font-extrabold shadow-sm transition ${locked ? "opacity-70 cursor-not-allowed" : ""} ${active ? "border-brand-600 bg-brand-600 text-white" : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:bg-brand-50"}">
           <input class="sr-only claim-sub-input" type="radio" name="claimSub" value="${item.value}" ${active ? "checked" : ""} ${locked ? "disabled" : ""}>
-          ${item.value}${locked ? `<span class="ml-2 rounded-full bg-white/80 px-2 py-0.5 text-sm font-bold text-brand-700">Default</span>` : ""}
+          ${item.label || item.value}${locked ? `<span class="ml-2 rounded-full bg-white/80 px-2 py-0.5 text-sm font-bold text-brand-700">Default</span>` : ""}
         </label>`;
       }).join("");
 
@@ -15542,6 +15726,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ? subOptionHtml + deathExtraHtml
         : (coverage ? `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">ไม่มีตัวเลือกเพิ่มเติมตามเงื่อนไข</div>` : `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">กรุณาเลือกประเภทความคุ้มครองก่อน</div>`);
       document.querySelectorAll(".claim-sub-input:not(:disabled)").forEach(r => r.addEventListener("change", e => {
+        clearClaimSelectionValidation();
         claimState.subType = e.target.value;
         syncDerivedClaimType();
         claimState.scanned = { idcard: false, receipt: false, medcert: false, other: false };
@@ -17280,7 +17465,16 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function showSuccessModal(title, desc) {
-      showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-xl font-extrabold">${title}</h3><button onclick="closeModal()" class="grid h-8 w-8 place-items-center rounded-full bg-red-700 text-white"><span class="material-icons-round !text-xl">close</span></button></header><div class="px-6 py-5 text-center"><div class="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-5xl">check</span></div><h3 class="mt-3 text-2xl font-extrabold text-success">${title}</h3><p class="mx-auto mt-1 max-w-md text-base text-slate-600">${desc}</p><div class="mx-auto mt-4 max-w-md rounded-lg bg-slate-50 p-3 text-left ring-1 ring-slate-200"><p class="border-b border-slate-200 pb-2 text-base font-bold text-success"><span class="material-icons-round !text-lg align-middle">description</span> เลขที่เคลม : <b>CL6905000111</b> <span class="material-icons-round !text-lg align-middle text-brand-600">content_copy</span></p><p class="pt-2 text-base font-bold text-brand-700"><span class="material-icons-round !text-lg align-middle">receipt_long</span> เลขที่การโอนเงิน : <b>CPG0001920</b></p></div><button onclick="closeModal();showClaimMonitor()" class="mt-4 h-10 rounded-lg bg-brand-600 px-10 text-base font-bold text-white hover:bg-brand-700">ปิด</button></div>`, "max-w-lg");
+      const isApproveSuccess = String(title || '').trim() === 'อนุมัติรายการสำเร็จ';
+      const currentRow = window.currentConsiderCustomerRow || {};
+      const visibleClaim = document.getElementById('customerApproveClaimNo')?.textContent?.trim();
+      const visibleCase = document.getElementById('customerApproveCaseNo')?.textContent?.trim();
+      const claimRef = visibleClaim && visibleClaim !== '-' ? visibleClaim : (currentRow.claimCode || currentRow.claimNo || 'CL6905000111');
+      const caseRef = visibleCase && visibleCase !== '-' ? visibleCase : (currentRow.caseNo || currentRow.caseCode || currentRow.claimCaseNo || 'CC6905000082');
+      const secondLabel = isApproveSuccess ? 'เลขที่ Case' : 'เลขที่การโอนเงิน';
+      const secondValue = isApproveSuccess ? caseRef : 'CPG0001920';
+      const secondIcon = isApproveSuccess ? 'badge' : 'receipt_long';
+      showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-xl font-extrabold">${title}</h3><button onclick="closeModal()" class="grid h-8 w-8 place-items-center rounded-full bg-red-700 text-white"><span class="material-icons-round !text-xl">close</span></button></header><div class="px-6 py-5 text-center"><div class="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-5xl">check</span></div><h3 class="mt-3 text-2xl font-extrabold text-success">${title}</h3><p class="mx-auto mt-1 max-w-md text-base text-slate-600">${desc}</p><div class="mx-auto mt-4 max-w-md rounded-lg bg-slate-50 p-3 text-left ring-1 ring-slate-200"><p class="border-b border-slate-200 pb-2 text-base font-bold text-success"><span class="material-icons-round !text-lg align-middle">description</span> เลขที่เคลม : <b>${claimRef}</b> <span class="material-icons-round !text-lg align-middle text-brand-600">content_copy</span></p><p class="pt-2 text-base font-bold text-brand-700"><span class="material-icons-round !text-lg align-middle">${secondIcon}</span> ${secondLabel} : <b>${secondValue}</b></p></div><button onclick="closeModal();showClaimMonitor()" class="mt-4 h-10 rounded-lg bg-brand-600 px-10 text-base font-bold text-white hover:bg-brand-700">ปิด</button></div>`, "max-w-lg");
     }
 
     function getPAClaimTransferRefs() {
@@ -23165,7 +23359,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .customer-doc-table th{background:#3c7dbd;color:#fff;font-size:15px!important;font-weight:900;padding:14px 12px;text-align:center;white-space:nowrap}
   .customer-doc-table td{border-bottom:1px solid #dfe5ed;padding:12px;font-size:15px!important;color:#444;text-align:center;vertical-align:middle}
   .customer-doc-table td.doc-type{text-align:left}
-  .customer-scan-btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;height:48px;padding:0 18px;border:0;border-radius:4px;background:#3c7dbd;color:#fff;font-size:16px;font-weight:900;box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+  .customer-scan-btn{display:inline-flex;align-items:center;justify-content:center;min-width:140px;height:36px;padding:0 14px;border:0;border-radius:4px;background:#3c7dbd;color:#fff;font-size:14px;font-weight:500;box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
   .customer-icon-btn{display:inline-grid;place-items:center;width:50px;height:50px;border-radius:999px;background:#d9e6f2;color:#3c7dbd;margin:0 auto}
   .customer-icon-btn .material-icons-round{font-size:30px!important}
   .customer-decision-card{border:1px solid #d9e1ea;border-radius:6px;background:#fff;padding:38px 24px}
@@ -23789,7 +23983,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <tr data-scan-doc-row="${doc.key}" class="${index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'} border-b border-slate-200 last:border-b-0">
                 <td class="px-4 py-5 align-middle text-lg font-bold text-slate-700">${doc.name}</td>
                 <td class="px-4 py-5 align-middle text-center">
-                  <button type="button" class="inline-flex min-w-[150px] items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 text-lg font-extrabold text-white shadow-sm transition hover:bg-brand-700">
+                  <button type="button" class="customer-scan-btn inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 text-white shadow-sm transition hover:bg-brand-700">
                     <span class="material-icons-round !text-[22px]">scanner</span>สแกนเอกสาร
                   </button>
                 </td>
@@ -23920,13 +24114,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function renderStep1(data){
     const docsPart = data.step1SectionType === 'checkdocs' ? renderCheckDocs(data.checkDocs) : renderScanDocs();
     const prevFn = data.mode === 'full' ? 'setHospitalFullStep(2)' : 'setHospitalHalfStep(2)';
-    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">บันทึกข้อมูลเคลม</div><div class="space-y-4 p-4">${renderClaimDetailFields(data.claimDetail, data.mode === 'full' ? 'hf' : 'hh')}${renderMedicalInfo(data.medical)}${docsPart}${renderDecisionButtons()}</div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${prevFn}" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">บันทึกข้อมูลเคลม</div><div class="space-y-4 p-4">${renderClaimDetailFields(data.claimDetail, data.mode === 'full' ? 'hf' : 'hh')}${renderMedicalInfo(data.medical)}${docsPart}${renderDecisionButtons()}</div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><div></div><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="showConsiderationPage('hospital')" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${prevFn}" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
   }
 
   function renderStep2(data){
     const expense = buildHospitalExpenseMockup(data);
     const fmt = (n) => moneyFormat(toNumberAmount(n));
-    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">รายการค่าใช้จ่าย</div><div class="space-y-4 p-4"><div class="rounded-xl border border-blue-100 bg-blue-50/60 px-4 py-3"><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">health_and_safety</span>ประเภทความคุ้มครอง : ${esc(expense.coverage)}</span><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">receipt_long</span>ประเภทรายการเคลม : ${esc(data.claimType)}</span><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">local_hospital</span>ประเภทการรักษา : ${esc(expense.treatment)}</span></div><div class="mt-2 text-sm font-bold text-slate-500">${expense.noteText}</div></div><div class="grid gap-4 xl:grid-cols-[1fr_320px]"><div class="space-y-4">${expense.treatment === 'IPD' ? `<div class="grid gap-4 md:grid-cols-3"><div class="rounded-xl border border-blue-200 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">IPD</div><span class="material-icons-round text-slate-500">bed</span></div><div class="mt-2 text-center text-4xl font-extrabold text-brand-700">${expense.ipdDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนคืนปกติ</div></div><div class="rounded-xl border border-orange-200 bg-orange-50/40 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">ICU</div><span class="material-icons-round text-slate-500">monitor_heart</span></div><div class="mt-2 text-center text-4xl font-extrabold text-orange-600">${expense.icuDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนคืน ICU</div></div><div class="rounded-xl border border-slate-300 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">วันนอนรวม</div><span class="material-icons-round text-slate-500">hotel</span></div><div class="mt-2 text-center text-4xl font-extrabold text-slate-700">${expense.totalDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">รวมทุกคืน</div></div></div>` : `<div class="grid gap-4 md:grid-cols-3"><div class="rounded-xl border border-blue-200 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">${esc(expense.coverage)}</div><span class="material-icons-round text-brand-600">payments</span></div><div class="mt-2 text-center text-2xl font-extrabold text-brand-700">${esc(expense.treatment)}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">ประเภทการรักษา</div></div><div class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">รายการ</div><span class="material-icons-round text-emerald-600">format_list_bulleted</span></div><div class="mt-2 text-center text-4xl font-extrabold text-emerald-700">${expense.rowCount}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนรายการค่าใช้จ่าย</div></div><div class="rounded-xl border border-indigo-200 bg-indigo-50/50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">ยอดเบื้องต้น</div><span class="material-icons-round text-indigo-600">request_quote</span></div><div class="mt-2 text-center text-3xl font-extrabold text-indigo-700">${fmt(expense.totalClaim)}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">ยอดรวมตามรายการ</div></div></div>`}<div class="rounded-xl border border-slate-200 p-3"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt_long</span>${expense.sectionTitle}</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-slate-100 text-slate-600"><tr><th class="px-3 py-2 text-left">รายการค่าใช้จ่าย</th><th class="px-3 py-2 text-center">ยอดเบิก</th><th class="px-3 py-2 text-center">ส่วนลด</th><th class="px-3 py-2 text-center">ยอดไม่คุ้มครอง</th><th class="px-3 py-2 text-center">สาเหตุไม่คุ้มครอง</th><th class="px-3 py-2 text-center">หมายเหตุ</th><th class="px-3 py-2 text-center">ลบ</th></tr></thead><tbody>${expense.rows.map(r => `<tr class="border-b border-slate-200"><td class="px-3 py-3 font-semibold text-slate-700">${esc(r.item)}</td><td class="px-3 py-2"><input value="${fmt(r.claim)}" class="h-10 w-28 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><input value="${fmt(r.discount)}" class="h-10 w-24 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><input value="${fmt(r.uncovered)}" class="h-10 w-28 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><select class="h-10 rounded border border-slate-300 px-2 font-semibold"><option>${esc(r.reason || '-')}</option></select></td><td class="px-3 py-2"><input value="${esc(r.note)}" class="h-10 min-w-[220px] rounded border border-slate-300 px-2 text-slate-700"></td><td class="px-3 py-2 text-center"><button class="grid h-9 w-9 place-items-center rounded bg-red-50 text-red-500"><span class="material-icons-round">delete</span></button></td></tr>`).join('')}<tr class="bg-slate-50 font-extrabold text-slate-700"><td class="px-3 py-3 text-right">รวม</td><td class="px-3 py-3 text-center">${fmt(expense.totalClaim)}</td><td class="px-3 py-3 text-center">${fmt(expense.totalDiscount)}</td><td class="px-3 py-3 text-center">${fmt(expense.totalUncovered)}</td><td class="px-3 py-3 text-center" colspan="3">ยอดสุทธิ ${fmt(expense.net)}</td></tr></tbody></table></div><div class="mt-3 flex justify-between"><button class="inline-flex h-10 items-center gap-2 rounded-lg border border-brand-200 bg-white px-4 font-bold text-brand-700"><span class="material-icons-round !text-lg">add</span>เพิ่มรายการค่ารักษา</button><div class="text-sm font-bold text-slate-400">Mockup ข้อมูลสำหรับการตรวจสอบวางบิลโรงพยาบาล</div></div></div></div><div class="space-y-3"><div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><div class="text-base font-extrabold text-slate-700">สรุปยอดค่าใช้จ่าย</div><div class="mt-4 space-y-3"><div class="rounded-xl border border-blue-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ยอดเบิกทั้งหมด</div><div class="mt-1 text-3xl font-extrabold text-brand-700">${fmt(expense.totalClaim)}</div></div><div class="rounded-xl border border-orange-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ส่วนลด</div><div class="mt-1 text-3xl font-extrabold text-orange-600">${fmt(expense.totalDiscount)}</div></div><div class="rounded-xl border border-red-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ยอดไม่คุ้มครอง</div><div class="mt-1 text-3xl font-extrabold text-red-600">${fmt(expense.totalUncovered)}</div></div><div class="rounded-xl border border-green-200 bg-green-50 p-4"><div class="text-sm font-bold text-green-700">ยอดเงินสุทธิ</div><div class="mt-1 text-4xl font-extrabold text-green-700">${fmt(expense.net)}</div></div><div class="rounded-xl border border-indigo-200 bg-indigo-50 p-4"><div class="text-sm font-bold text-indigo-700">ผู้เอาประกันรับผิดชอบ</div><div class="mt-1 text-3xl font-extrabold text-indigo-700">${fmt(expense.insured)}</div></div></div></div></div></div></div>${renderHospitalInsuranceExcessBox(data.mode === 'full' ? 'hf' : 'hh')}<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(1)' : 'setHospitalHalfStep(1)'}" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(3)' : 'setHospitalHalfStep(3)'}" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">รายการค่าใช้จ่าย</div><div class="space-y-4 p-4"><div class="rounded-xl border border-blue-100 bg-blue-50/60 px-4 py-3"><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">health_and_safety</span>ประเภทความคุ้มครอง : ${esc(expense.coverage)}</span><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">receipt_long</span>ประเภทรายการเคลม : ${esc(data.claimType)}</span><span class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-extrabold text-brand-700 shadow-sm"><span class="material-icons-round !text-base">local_hospital</span>ประเภทการรักษา : ${esc(expense.treatment)}</span></div><div class="mt-2 text-sm font-bold text-slate-500">${expense.noteText}</div></div><div class="grid gap-4 xl:grid-cols-[1fr_320px]"><div class="space-y-4">${expense.treatment === 'IPD' ? `<div class="grid gap-4 md:grid-cols-3"><div class="rounded-xl border border-blue-200 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">IPD</div><span class="material-icons-round text-slate-500">bed</span></div><div class="mt-2 text-center text-4xl font-extrabold text-brand-700">${expense.ipdDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนคืนปกติ</div></div><div class="rounded-xl border border-orange-200 bg-orange-50/40 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">ICU</div><span class="material-icons-round text-slate-500">monitor_heart</span></div><div class="mt-2 text-center text-4xl font-extrabold text-orange-600">${expense.icuDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนคืน ICU</div></div><div class="rounded-xl border border-slate-300 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">วันนอนรวม</div><span class="material-icons-round text-slate-500">hotel</span></div><div class="mt-2 text-center text-4xl font-extrabold text-slate-700">${expense.totalDays}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">รวมทุกคืน</div></div></div>` : `<div class="grid gap-4 md:grid-cols-3"><div class="rounded-xl border border-blue-200 bg-slate-50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">${esc(expense.coverage)}</div><span class="material-icons-round text-brand-600">payments</span></div><div class="mt-2 text-center text-2xl font-extrabold text-brand-700">${esc(expense.treatment)}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">ประเภทการรักษา</div></div><div class="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">รายการ</div><span class="material-icons-round text-emerald-600">format_list_bulleted</span></div><div class="mt-2 text-center text-4xl font-extrabold text-emerald-700">${expense.rowCount}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">จำนวนรายการค่าใช้จ่าย</div></div><div class="rounded-xl border border-indigo-200 bg-indigo-50/50 p-4"><div class="flex items-start justify-between"><div class="text-xl font-extrabold text-slate-700">ยอดเบื้องต้น</div><span class="material-icons-round text-indigo-600">request_quote</span></div><div class="mt-2 text-center text-3xl font-extrabold text-indigo-700">${fmt(expense.totalClaim)}</div><div class="mt-1 text-center text-sm font-bold text-slate-400">ยอดรวมตามรายการ</div></div></div>`}<div class="rounded-xl border border-slate-200 p-3"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt_long</span>${expense.sectionTitle}</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-slate-100 text-slate-600"><tr><th class="px-3 py-2 text-left">รายการค่าใช้จ่าย</th><th class="px-3 py-2 text-center">ยอดเบิก</th><th class="px-3 py-2 text-center">ส่วนลด</th><th class="px-3 py-2 text-center">ยอดไม่คุ้มครอง</th><th class="px-3 py-2 text-center">สาเหตุไม่คุ้มครอง</th><th class="px-3 py-2 text-center">หมายเหตุ</th><th class="px-3 py-2 text-center">ลบ</th></tr></thead><tbody>${expense.rows.map(r => `<tr class="border-b border-slate-200"><td class="px-3 py-3 font-semibold text-slate-700">${esc(r.item)}</td><td class="px-3 py-2"><input value="${fmt(r.claim)}" class="h-10 w-28 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><input value="${fmt(r.discount)}" class="h-10 w-24 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><input value="${fmt(r.uncovered)}" class="h-10 w-28 rounded border border-slate-300 px-2 text-right font-bold text-slate-700"></td><td class="px-3 py-2"><select class="h-10 rounded border border-slate-300 px-2 font-semibold"><option>${esc(r.reason || '-')}</option></select></td><td class="px-3 py-2"><input value="${esc(r.note)}" class="h-10 min-w-[220px] rounded border border-slate-300 px-2 text-slate-700"></td><td class="px-3 py-2 text-center"><button class="grid h-9 w-9 place-items-center rounded bg-red-50 text-red-500"><span class="material-icons-round">delete</span></button></td></tr>`).join('')}<tr class="bg-slate-50 font-extrabold text-slate-700"><td class="px-3 py-3 text-right">รวม</td><td class="px-3 py-3 text-center">${fmt(expense.totalClaim)}</td><td class="px-3 py-3 text-center">${fmt(expense.totalDiscount)}</td><td class="px-3 py-3 text-center">${fmt(expense.totalUncovered)}</td><td class="px-3 py-3 text-center" colspan="3">ยอดสุทธิ ${fmt(expense.net)}</td></tr></tbody></table></div><div class="mt-3 flex justify-between"><button class="inline-flex h-10 items-center gap-2 rounded-lg border border-brand-200 bg-white px-4 font-bold text-brand-700"><span class="material-icons-round !text-lg">add</span>เพิ่มรายการค่ารักษา</button><div class="text-sm font-bold text-slate-400">Mockup ข้อมูลสำหรับการตรวจสอบวางบิลโรงพยาบาล</div></div></div></div><div class="space-y-3"><div class="rounded-2xl border border-slate-200 bg-slate-50 p-4"><div class="text-base font-extrabold text-slate-700">สรุปยอดค่าใช้จ่าย</div><div class="mt-4 space-y-3"><div class="rounded-xl border border-blue-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ยอดเบิกทั้งหมด</div><div class="mt-1 text-3xl font-extrabold text-brand-700">${fmt(expense.totalClaim)}</div></div><div class="rounded-xl border border-orange-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ส่วนลด</div><div class="mt-1 text-3xl font-extrabold text-orange-600">${fmt(expense.totalDiscount)}</div></div><div class="rounded-xl border border-red-100 bg-white p-4"><div class="text-sm font-bold text-slate-500">ยอดไม่คุ้มครอง</div><div class="mt-1 text-3xl font-extrabold text-red-600">${fmt(expense.totalUncovered)}</div></div><div class="rounded-xl border border-green-200 bg-green-50 p-4"><div class="text-sm font-bold text-green-700">ยอดเงินสุทธิ</div><div class="mt-1 text-4xl font-extrabold text-green-700">${fmt(expense.net)}</div></div><div class="rounded-xl border border-indigo-200 bg-indigo-50 p-4"><div class="text-sm font-bold text-indigo-700">ผู้เอาประกันรับผิดชอบ</div><div class="mt-1 text-3xl font-extrabold text-indigo-700">${fmt(expense.insured)}</div></div></div></div></div></div></div>${renderHospitalInsuranceExcessBox(data.mode === 'full' ? 'hf' : 'hh')}<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(1)' : 'setHospitalHalfStep(1)'}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(3)' : 'setHospitalHalfStep(3)'}" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
   }
 
   function renderStep3(data){
@@ -23939,7 +24133,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                         <div class="flex justify-between border-b border-slate-200 py-4 text-lg font-bold text-slate-700"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div>
                         <div class="mt-4 flex items-center justify-between rounded-xl border border-green-400 bg-green-50 px-5 py-4 text-lg font-extrabold text-green-700"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>0.00</strong></div>
                       </div>
-                    </div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${t.hospitalSummary.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${t.hospitalSummary.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${t.hospitalSummary.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${t.hospitalSummary.hospitalRemain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${t.hospitalSummary.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(2)' : 'setHospitalHalfStep(2)'}" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
+                    </div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${t.hospitalSummary.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${t.hospitalSummary.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${t.hospitalSummary.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${t.hospitalSummary.hospitalRemain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${t.hospitalSummary.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${data.mode==='full' ? 'setHospitalFullStep(2)' : 'setHospitalHalfStep(2)'}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
   }
 
   function renderHospitalOpdPage(data){
@@ -24106,6 +24300,24 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       data.top.caseNo = row.caseNo || data.top.caseNo;
       data.top.status = row.claimStatus || (row.itemStatus === 'Re-Open' ? 'Re-Open' : data.top.status);
       data.step2.summary.customer = row.amount || data.step2.summary.customer;
+      const currentClaimCode = String(row.claimCode || '').trim();
+      if (currentClaimCode.startsWith('CLPA')) {
+        const schoolMockups = {
+          'CLPA6905000104': { appId:'0001404', address:'88/8 แขวงบางนา เขตบางนา กรุงเทพมหานคร 10260', contact:'นางสาวพิมพ์ชนก สุขใจ', position:'ครูฝ่ายกิจการนักเรียน', citizenId:'1-1001-23456-78-9', phone:'081-245-1404', bank:'ธนาคารกรุงไทย', accountNo:'123-4-50104-8', accountName:'นางสาวพิมพ์ชนก สุขใจ' },
+          'CLPA6905000108': { appId:'0001408', address:'29 ถนนสุขสวัสดิ์ แขวงบางปะกอก เขตราษฎร์บูรณะ กรุงเทพมหานคร 10140', contact:'นางสาวกมลชนก ใจดี', position:'ครูผู้ประสานงาน', citizenId:'1-1020-34567-89-1', phone:'081-233-4444', bank:'ธนาคารกรุงไทย', accountNo:'124-0-51008-2', accountName:'นางสาวกมลชนก ใจดี' },
+          'CLPA6905000110': { appId:'0001410', address:'45 ถนนอิสรภาพ แขวงบ้านช่างหล่อ เขตบางกอกน้อย กรุงเทพมหานคร 10700', contact:'นายธนกฤต วัฒนชัย', position:'ครูฝ่ายสวัสดิการนักเรียน', citizenId:'1-1035-45678-90-2', phone:'089-110-1410', bank:'ธนาคารกรุงไทย', accountNo:'126-0-51110-5', accountName:'นายธนกฤต วัฒนชัย' },
+          'CLPA6905000111': { appId:'0001411', address:'51 หมู่ 4 ตำบลบึงยี่โถ อำเภอธัญบุรี จังหวัดปทุมธานี 12130', contact:'นางสาวศิริพร แสงทอง', position:'ครูผู้ประสานงาน', citizenId:'1-1302-56789-01-3', phone:'086-141-1111', bank:'ธนาคารกรุงไทย', accountNo:'127-0-51111-6', accountName:'นางสาวศิริพร แสงทอง' },
+          'CLPA6905000112': { appId:'0001412', address:'99 หมู่ 2 ตำบลในเมือง อำเภอเมือง จังหวัดกำแพงเพชร 62000', contact:'นายปริญญา ศรีสุข', position:'ครูฝ่ายปกครอง', citizenId:'1-6201-67890-12-4', phone:'082-141-1212', bank:'ธนาคารกรุงไทย', accountNo:'128-0-51112-7', accountName:'นายปริญญา ศรีสุข' },
+          'CLPA6905000113': { appId:'0001412', address:'99 หมู่ 2 ตำบลในเมือง อำเภอเมือง จังหวัดกำแพงเพชร 62000', contact:'นายปริญญา ศรีสุข', position:'ครูฝ่ายปกครอง', citizenId:'1-6201-67890-12-4', phone:'082-141-1212', bank:'ธนาคารกรุงไทย', accountNo:'128-0-51112-7', accountName:'นายปริญญา ศรีสุข' },
+          'CLPA6905000116': { appId:'0001416', address:'12 ถนนประชาราษฎร์ ตำบลสวนใหญ่ อำเภอเมือง จังหวัดนนทบุรี 11000', contact:'นางสาวอรุณี มีสุข', position:'ครูผู้ประสานงาน', citizenId:'1-1201-78901-23-5', phone:'083-141-1616', bank:'ธนาคารกรุงไทย', accountNo:'132-0-51116-1', accountName:'นางสาวอรุณี มีสุข' },
+          'CLPA6905000117': { appId:'0001417', address:'30 ถนนนครราชสีมา แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300', contact:'นายวิทยา พรหมดี', position:'ครูฝ่ายกิจการนักเรียน', citizenId:'1-1002-89012-34-6', phone:'084-141-1717', bank:'ธนาคารกรุงไทย', accountNo:'133-0-51117-2', accountName:'นายวิทยา พรหมดี' },
+          'CLPA6905000120': { appId:'0001420', address:'22 ถนนประชาอุทิศ แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพมหานคร 10310', contact:'นางสาวชลธิชา แก้วดี', position:'ครูผู้ประสานงาน', citizenId:'1-1014-90123-45-7', phone:'085-141-2020', bank:'ธนาคารกรุงไทย', accountNo:'136-0-51120-5', accountName:'นางสาวชลธิชา แก้วดี' }
+        };
+        const mock = schoolMockups[currentClaimCode] || { appId: row.schoolAppId || '0001409', address:'99/9 หมู่ 5 ตำบลในเมือง อำเภอเมือง จังหวัดกรุงเทพมหานคร 10000', contact:'นางสาวกมลชนก ใจดี', position:'ครูผู้ประสานงาน', citizenId:'1-2345-67890-12-3', phone:'081-234-5678', bank:'ธนาคารกรุงไทย', accountNo:'123-4-56789-0', accountName:'นางสาวกมลชนก ใจดี' };
+        data.schoolInfo = { schoolName: row.school || '-', ...mock };
+      } else {
+        data.schoolInfo = null;
+      }
       if(row.claimCode === 'CL6905000076'){
         data.top.owner = '06590 - ณัฏฐณิชา โตรักษา';
         data.top.branch = 'กรุงเทพมหานคร';
@@ -24141,6 +24353,37 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return data;
   }
 
+  function renderSchoolInfoSection(data){
+    const s = data && data.schoolInfo;
+    const claimCode = String(data?.top?.claimNo || '').trim();
+    if (!s || !claimCode.startsWith('CLPA')) return '';
+    const val = (v) => cEsc(v || '-');
+    return `
+      <section class="school-info-card" aria-label="ข้อมูลสถานศึกษา" data-school-info-section="1">
+        <div class="school-info-top">
+          <div class="school-info-icon"><span class="material-icons-round">school</span></div>
+          <div class="school-info-heading">
+            <div class="school-info-kicker">ข้อมูลสถานศึกษา</div>
+            <div class="school-info-title" title="${val(s.schoolName)}">${val(s.schoolName)}</div>
+          </div>
+          <div class="school-info-appwrap"><span class="school-info-app-label">AppID :</span><span class="school-info-app">${val(s.appId)}</span></div>
+        </div>
+
+        <div class="school-compact-body">
+          <div class="school-line school-address"><span class="school-info-label">ที่อยู่ :</span><span class="school-info-value">${val(s.address)}</span></div>
+          <div class="school-line"><span class="school-info-label">ผู้ติดต่อประสาน :</span><span class="school-info-value">${val(s.contact)}</span></div>
+          <div class="school-line"><span class="school-info-label">ตำแหน่ง :</span><span class="school-info-value">${val(s.position)}</span></div>
+          <div class="school-line"><span class="school-info-label">รหัสบัตร ปชช. :</span><span class="school-info-value">${val(s.citizenId)}</span></div>
+          <div class="school-line"><span class="school-info-label">เบอร์โทรศัพท์ :</span><span class="school-info-value">${val(s.phone)}</span></div>
+          <div class="school-line school-address"><span class="school-info-label">ข้อมูลบัญชี :</span><span class="school-info-value school-account-value"><span>${val(s.bank)}</span><span class="school-account-sep">|</span><span>${val(s.accountNo)}</span><span class="school-account-sep">|</span><span>${val(s.accountName)}</span></span></div>
+        </div>
+      </section>`;
+  }
+
+  // Export school helpers because the consideration page renderer lives in a later script scope.
+  window.getCustomerCase = getCustomerCase;
+  window.renderSchoolInfoSection = renderSchoolInfoSection;
+
   function renderCustomerHeader(data){
     const topItem = (icon, label, value, isStatus = false) => `
       <div class="customer-review-item">
@@ -24173,6 +24416,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       </section>` : '';
 
     return `
+      ${renderSchoolInfoSection(data)}
       <section class="customer-review-banner customer-review-banner-primary">
         <div class="customer-review-id">
           <div class="customer-review-avatar"><span class="material-icons-round">account_circle</span></div>
@@ -25067,7 +25311,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function renderCustomerStep3(data){
     const d = data.step3.detail, hs = data.step3.hosSummary, cs = data.step3.compSummary;
-    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${field('เหตุของการเคลม :', d.cause)}${field('ประเภทความคุ้มครอง :', d.coverage)}${field('ประเภทการรักษา :', d.treatment)}${field('วันที่แจ้งเคลม :', d.symptomDate)}${field('วันที่เกิดเหตุ :', d.incidentDate)}${field('เวลาที่เกิดเหตุ :', d.incidentTime || '09:30')}${field('วันที่เข้า รพ. :', d.admitDate || '-')}${field('เวลาที่เข้า รพ. :', d.admitTime || '10:00')}${field('วันที่ออก รพ. :', d.dischargeDate || '-')}${field('เวลาที่ออก รพ. :', d.dischargeTime || '11:30')}<div class="md:col-span-3 xl:col-span-3">${field('สถานพยาบาล :', d.hospital)}</div><div class="md:col-span-2 xl:col-span-5">${field('อาการสำคัญ :', d.cc)}</div><div class="md:col-span-2 xl:col-span-5">${field('คำวินิจฉัย 1 :', d.diag1)}</div>${field('คำวินิจฉัย 2 :', d.diag2)}${field('คำวินิจฉัย 3 :', d.diag3)}<div class="md:col-span-3 xl:col-span-3">${field('หมายเหตุ :', d.note)}</div></div></div>${renderCustomerDocs(data.step3.docs)}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${data.step3.treatments.map(r => `<tr class="border-b border-slate-200 ${r[0].includes('เหมาจ่าย') ? 'text-brand-700' : ''}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${data.step3.total[0]}</td><td class="px-3 py-2 text-right">${data.step3.total[1]}</td><td class="px-3 py-2 text-right">${data.step3.total[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าชดเชย</div><div class="space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>${cs.total}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${cs.covered}</strong></div><div class="flex justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${cs.remain}</strong></div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${hs.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${hs.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${hs.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${hs.remain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${hs.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setCustomerStep(2)" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${field('เหตุของการเคลม :', d.cause)}${field('ประเภทความคุ้มครอง :', d.coverage)}${field('ประเภทการรักษา :', d.treatment)}${field('วันที่แจ้งเคลม :', d.symptomDate)}${field('วันที่เกิดเหตุ :', d.incidentDate)}${field('เวลาที่เกิดเหตุ :', d.incidentTime || '09:30')}${field('วันที่เข้า รพ. :', d.admitDate || '-')}${field('เวลาที่เข้า รพ. :', d.admitTime || '10:00')}${field('วันที่ออก รพ. :', d.dischargeDate || '-')}${field('เวลาที่ออก รพ. :', d.dischargeTime || '11:30')}<div class="md:col-span-3 xl:col-span-3">${field('สถานพยาบาล :', d.hospital)}</div><div class="md:col-span-2 xl:col-span-5">${field('อาการสำคัญ :', d.cc)}</div><div class="md:col-span-2 xl:col-span-5">${field('คำวินิจฉัย 1 :', d.diag1)}</div>${field('คำวินิจฉัย 2 :', d.diag2)}${field('คำวินิจฉัย 3 :', d.diag3)}<div class="md:col-span-3 xl:col-span-3">${field('หมายเหตุ :', d.note)}</div></div></div>${renderCustomerDocs(data.step3.docs)}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">receipt</span>รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${data.step3.treatments.map(r => `<tr class="border-b border-slate-200 ${r[0].includes('เหมาจ่าย') ? 'text-brand-700' : ''}"><td class="px-3 py-2">${r[0]}</td><td class="px-3 py-2 text-right">${r[1]}</td><td class="px-3 py-2 text-right">${r[2]}</td><td class="px-3 py-2 text-right">${r[3]}</td></tr>`).join('')}<tr class="bg-brand-600 font-extrabold text-white"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${data.step3.total[0]}</td><td class="px-3 py-2 text-right">${data.step3.total[1]}</td><td class="px-3 py-2 text-right">${data.step3.total[2]}</td></tr></tbody></table></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">account_balance_wallet</span>สรุปค่าชดเชย</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">สิทธิเบิก</th></tr></thead><tbody><tr><td class="px-3 py-3 text-slate-400" colspan="2">ไม่พบข้อมูล</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าชดเชย</div><div class="space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>${cs.total}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${cs.covered}</strong></div><div class="flex justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${cs.remain}</strong></div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="space-y-3 text-lg"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><strong>${hs.total}</strong></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><strong>${hs.coverage}</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${hs.comp}</strong></div><div class="flex justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-2 font-extrabold text-brand-700"><span>สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท</span><strong>${hs.remain}</strong></div><div class="flex justify-between rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-extrabold text-red-600"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${hs.customerRemain}</strong></div></div></div></div></div></div><div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="setCustomerStep(2)" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
   }
 
   function renderInsuredTopHero(data){
@@ -25174,7 +25418,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   function actionBar(backFn, nextFn, approveOnly){
     if(approveOnly){
-      return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
+      return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" ${String(backFn).includes('setCustomerStep') ? 'onclick="openCustomerApproveConfirmModal()"' : ''} class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">check_circle</span>อนุมัติ</button></div></div>`;
     }
     return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="${backFn}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" ${String(nextFn).includes('setCustomerStep') ? 'onclick="saveCustomerDraft()"' : ''} class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button><button type="button" onclick="${nextFn}" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button><button type="button" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">save</span>ยืนยันบันทึกผลพิจารณา</button></div></div>`;
   }
@@ -25227,7 +25471,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="cc-previous-money-sub">ยอดจ่ายสะสม 12,580.00 บาท</div>
           </div>
         </section>` : '';
+      const activeSchoolInfo = (typeof window.renderSchoolInfoSection === 'function' && typeof window.getCustomerCase === 'function')
+        ? window.renderSchoolInfoSection(window.getCustomerCase(row))
+        : '';
       return `
+      ${activeSchoolInfo}
       <section class="customer-review-banner customer-review-banner-primary actual-insured-top" aria-label="ข้อมูลผู้เอาประกัน">
         <div class="customer-review-id">
           <div class="customer-review-avatar"><span class="material-icons-round">account_circle</span></div>
@@ -25319,34 +25567,105 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return `<button id="${prefix}StepBtn${n}" type="button" onclick="${fn}(${n})" class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-left text-lg font-bold text-slate-400"><span class="step-dot inline-grid h-8 w-8 place-items-center rounded-full bg-slate-200 text-sm font-extrabold text-slate-500">${n}</span><span>${labels[n]}</span></button>`;
   }
 
+  // v70: Dependency สำหรับ พิจารณาเคลม > เคลมลูกค้า (PH)
+  // ค่า coverage ภายในยังคงใช้ "ค่าชดเชย" เพื่อไม่กระทบ Benefit / Calculation เดิม
+  const CUSTOMER_REVIEW_CLAIM_MATRIX = {
+    'เจ็บป่วย': {
+      'ค่ารักษา': [
+        { value:'OPD', label:'OPD' },
+        { value:'IPD', label:'IPD' },
+        { value:'Day Case Surgery', label:'Daycase Surgery' }
+      ],
+      'ค่าชดเชย': [
+        { value:'IPD', label:'IPD', defaultLocked:true }
+      ],
+      'เสียชีวิต': [
+        { value:'โรคทั่วไป', label:'โรคทั่วไป', defaultLocked:true }
+      ]
+    },
+    'อุบัติเหตุ': {
+      'ค่ารักษา': [
+        { value:'OPD', label:'OPD' },
+        { value:'IPD', label:'IPD' }
+      ],
+      'ค่าชดเชย': [
+        { value:'OPD', label:'OPD' },
+        { value:'IPD', label:'IPD' }
+      ],
+      'ทุพพลภาพ/สูญเสียอวัยวะ': [
+        { value:'อุบัติเหตุทั่วไป', label:'อุบัติเหตุทั่วไป' },
+        { value:'ขับขี่/โดยสารจักรยานยนต์', label:'ขับขี่/โดยสารจักรยานยนต์' },
+        { value:'ฆาตกรรม', label:'ฆาตกรรม' }
+      ],
+      'เสียชีวิต': [
+        { value:'อุบัติเหตุทั่วไป', label:'อุบัติเหตุทั่วไป' },
+        { value:'ขับขี่/โดยสารจักรยานยนต์', label:'ขับขี่/โดยสารจักรยานยนต์' },
+        { value:'ฆาตกรรม', label:'ฆาตกรรม' }
+      ]
+    }
+  };
+  const CUSTOMER_REVIEW_COVERAGE_META = [
+    { value:'ค่ารักษา', label:'ค่ารักษา', icon:'medication' },
+    { value:'ค่าชดเชย', label:'ค่าชดเชย(ใหญ่)', icon:'payments' }
+  ];
+
   function getConsiderClaimSelection(row = {}){
     const product = String(row.product || '').toUpperCase() || 'PH';
-    const claimType = String(row.claimType || 'OPD');
-    const isPA = product === 'PA';
     const state = window.customerClaimSelectionState || {};
-    const cause = state.cause || (isPA ? 'อุบัติเหตุ' : (row.claimCause || 'เจ็บป่วย'));
-    const coverage = state.coverage || row.coverageType || 'ค่ารักษา';
-    const treatment = state.treatment || (/Day\s*Case/i.test(claimType) ? 'Day Case Surgery' : (/IPD/i.test(claimType) ? 'IPD' : 'OPD'));
-    return { product, cause, coverage, treatment };
+    return {
+      product,
+      cause: String(state.cause || '').trim(),
+      coverage: String(state.coverage || '').trim(),
+      treatment: String(state.treatment || '').trim()
+    };
+  }
+
+  function getCustomerReviewCoverageOptions(selected, kind='customer'){
+    if(kind !== 'customer') return [{ value:'ค่ารักษา', label:'ค่ารักษา', icon:'medication' }];
+    if(!selected.cause) return [];
+    const allowed = Object.keys(CUSTOMER_REVIEW_CLAIM_MATRIX[selected.cause] || {});
+    return CUSTOMER_REVIEW_COVERAGE_META.filter(item => allowed.includes(item.value));
+  }
+
+  function getCustomerReviewSubOptions(selected){
+    if(!selected.cause || !selected.coverage) return [];
+    return CUSTOMER_REVIEW_CLAIM_MATRIX[selected.cause]?.[selected.coverage] || [];
+  }
+
+  function customerReviewSubTitle(coverage){
+    if(coverage === 'เสียชีวิต') return 'สาเหตุการเสียชีวิต';
+    if(coverage === 'ทุพพลภาพ/สูญเสียอวัยวะ') return 'สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ';
+    return 'ประเภทการรักษา';
+  }
+
+  function applyCustomerReviewLockedDefault(){
+    const state = window.customerClaimSelectionState ||= { cause:'', coverage:'', treatment:'' };
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    const options = getCustomerReviewSubOptions(selected);
+    const locked = options.find(item => item.defaultLocked);
+    if(locked) state.treatment = locked.value;
+  }
+
+  function customerReviewRequiredMessage(group){
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    if(group === 'cause') return 'กรุณาเลือกเหตุของการเคลม';
+    if(group === 'coverage') return 'กรุณาเลือกประเภทความคุ้มครอง';
+    if(selected.coverage === 'เสียชีวิต') return 'กรุณาเลือกสาเหตุการเสียชีวิต';
+    if(selected.coverage === 'ทุพพลภาพ/สูญเสียอวัยวะ') return 'กรุณาเลือกสาเหตุการทุพพลภาพ/สูญเสียอวัยวะ';
+    return 'กรุณาเลือกประเภทการรักษา';
   }
 
   function optionCards(row = {}, kind = 'customer'){
     const selected = getConsiderClaimSelection(row);
     const isHospital = kind !== 'customer';
-    const causeOptions = selected.product === 'PA' ? ['อุบัติเหตุ'] : ['เจ็บป่วย', 'อุบัติเหตุ'];
-    const coverageOptions = isHospital
-      ? [{ label:'ค่ารักษา', icon:'medication' }]
-      : [
-          { label:'ค่ารักษา', icon:'medication' },
-          { label:'สรุปค่าชดเชย', icon:'payments' },
-          { label:'ทุพพลภาพ/สูญเสียอวัยวะ', icon:'accessible' },
-          { label:'เสียชีวิต', icon:'local_florist' }
-        ];
-    const treatmentOptions = selected.coverage === 'สรุปค่าชดเชย' ? ['OPD', 'IPD'] : ['OPD', 'IPD', 'Day Case Surgery'];
-    const treatmentHtml = treatmentOptions.map(item => `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="treatment" data-claim-value="${item}" class="claim-treatment-btn rounded-lg border ${selected.treatment === item ? 'border-brand-500 bg-brand-50 text-brand-700 selected' : 'border-slate-300 bg-white text-slate-500'}" style="height:40px!important;padding:0 15px!important;font-size:15px!important;font-weight:400!important;line-height:1.25!important;">${item}</button>`).join('');
+    const causeOptions = ['เจ็บป่วย', 'อุบัติเหตุ'];
+    const coverageOptions = getCustomerReviewCoverageOptions(selected, kind);
+    const treatmentOptions = getCustomerReviewSubOptions(selected);
     const prefix = kind === 'customer' ? 'cc' : (kind === 'full' ? 'hf' : 'hh');
     const claimNo = String(row?.claimNo || row?.claimCode || '').trim();
     const autoContinuous = kind === 'customer' && claimNo === 'CL6905000076';
+    const validation = window.customerClaimSelectionValidation || {};
+
     const customerClaimOptions = kind === 'customer' ? `
       <div class="claim-detail-inline-options rounded-xl border border-brand-100 bg-brand-25 p-4">
         <div class="grid gap-3 md:grid-cols-[220px_1fr] md:items-start">
@@ -25361,49 +25680,81 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </div>
         </div>
       </div>` : '';
-    return `<div class="space-y-5">
+
+    const treatmentHtml = treatmentOptions.map(item => {
+      const locked = Boolean(item.defaultLocked);
+      const active = selected.treatment === item.value;
+      return `<button type="button" ${locked ? 'disabled aria-disabled="true"' : 'onclick="toggleCustomerClaimChoice(this)"'} data-claim-choice="treatment" data-claim-value="${item.value}" class="claim-treatment-btn rounded-lg border ${active ? 'border-brand-500 bg-brand-50 text-brand-700 selected' : 'border-slate-300 bg-white text-slate-500'} ${locked ? 'cursor-not-allowed opacity-70' : ''}" style="height:40px!important;padding:0 15px!important;font-size:15px!important;font-weight:400!important;line-height:1.25!important;">${item.label}${locked ? '<span class="ml-2 rounded-full bg-brand-100 px-2 py-0.5 text-xs text-brand-700">Default</span>' : ''}</button>`;
+    }).join('');
+
+    const coverageHtml = coverageOptions.length
+      ? coverageOptions.map(item => choice(item.icon, item.label, selected.coverage === item.value, 'coverage', item.value)).join('')
+      : `<div class="w-full rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-500">กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงประเภทความคุ้มครองตามผลิตภัณฑ์ PH</div>`;
+
+    const subHtml = selected.coverage
+      ? (treatmentHtml || `<div class="w-full rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-500">ไม่มีตัวเลือกตามเงื่อนไข</div>`)
+      : `<div class="w-full rounded-lg border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-500">กรุณาเลือกประเภทความคุ้มครองก่อน</div>`;
+
+    return `<div id="customerClaimSelectionBlock" class="space-y-5">
       ${customerClaimOptions}
-      <div><div class="mb-2 text-sm font-bold text-slate-600">เหตุของการเคลม :</div><div class="flex flex-wrap gap-3">${causeOptions.map(item => choice(item === 'เจ็บป่วย' ? 'favorite' : 'snowboarding', item, selected.cause === item, 'cause')).join('')}</div></div>
-      <div><div class="mb-2 text-sm font-bold text-slate-600">ประเภทความคุ้มครอง :</div><div class="flex flex-wrap gap-3">${coverageOptions.map(item => choice(item.icon, item.label, selected.coverage === item.label, 'coverage')).join('')}</div></div>
-      <div><div class="mb-2 text-sm font-bold text-slate-600">ประเภทการรักษา :</div><div class="flex flex-wrap gap-3">${treatmentHtml}</div></div>
+      <div data-required-group="cause" class="rounded-xl ${validation.cause ? 'border border-red-400 bg-red-50/40 p-3' : ''}"><div class="mb-2 text-sm font-bold text-slate-600">เหตุของการเคลม<span class="text-red-500">*</span> :</div><div class="flex flex-wrap gap-3">${causeOptions.map(item => choice(item === 'เจ็บป่วย' ? 'favorite' : 'snowboarding', item, selected.cause === item, 'cause', item)).join('')}</div>${validation.cause ? `<div class="mt-2 text-sm font-bold text-red-600">${customerReviewRequiredMessage('cause')}</div>` : ''}</div>
+      <div data-required-group="coverage" class="rounded-xl ${validation.coverage ? 'border border-red-400 bg-red-50/40 p-3' : ''}"><div class="mb-2 text-sm font-bold text-slate-600">ประเภทความคุ้มครอง<span class="text-red-500">*</span> :</div><div class="flex flex-wrap gap-3">${coverageHtml}</div>${validation.coverage ? `<div class="mt-2 text-sm font-bold text-red-600">${customerReviewRequiredMessage('coverage')}</div>` : ''}</div>
+      <div data-required-group="treatment" class="rounded-xl ${validation.treatment ? 'border border-red-400 bg-red-50/40 p-3' : ''}"><div class="mb-2 text-sm font-bold text-slate-600">${customerReviewSubTitle(selected.coverage)}<span class="text-red-500">*</span> :</div><div class="flex flex-wrap gap-3">${subHtml}</div>${validation.treatment ? `<div class="mt-2 text-sm font-bold text-red-600">${customerReviewRequiredMessage('treatment')}</div>` : ''}</div>
     </div>`;
   }
-  function choice(icon,label,selected,group){
-    return `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="${group || ''}" data-claim-value="${label}" class="claim-choice-btn inline-flex h-12 min-w-[150px] items-center justify-between gap-3 rounded-lg border ${selected?'border-brand-600 bg-brand-50 text-brand-700 selected':'border-slate-300 bg-white text-slate-500'} px-4"><span class="inline-flex items-center gap-2"><span class="claim-choice-icon grid h-8 w-8 place-items-center rounded bg-brand-100 text-brand-700"><span class="material-icons-round !text-[18px]">${icon}</span></span><span class="claim-choice-text">${label}</span></span><span class="customer-choice-check material-icons-round ${selected?'':'hidden'}">check_circle</span></button>`;
+
+  function choice(icon,label,selected,group,value){
+    const internalValue = value || label;
+    return `<button type="button" onclick="toggleCustomerClaimChoice(this)" data-claim-choice="${group || ''}" data-claim-value="${internalValue}" class="claim-choice-btn inline-flex h-12 min-w-[150px] items-center justify-between gap-3 rounded-lg border ${selected?'border-brand-600 bg-brand-50 text-brand-700 selected':'border-slate-300 bg-white text-slate-500'} px-4"><span class="inline-flex items-center gap-2"><span class="claim-choice-icon grid h-8 w-8 place-items-center rounded bg-brand-100 text-brand-700"><span class="material-icons-round !text-[18px]">${icon}</span></span><span class="claim-choice-text">${label}</span></span><span class="customer-choice-check material-icons-round ${selected?'':'hidden'}">check_circle</span></button>`;
   }
+
+  function rerenderCustomerClaimSelectionBlock(){
+    const block = document.getElementById('customerClaimSelectionBlock');
+    if(!block) return;
+    const holder = document.createElement('div');
+    holder.innerHTML = optionCards(window.currentConsiderCustomerRow || {}, 'customer');
+    const fresh = holder.firstElementChild;
+    if(fresh) block.replaceWith(fresh);
+  }
+
+  window.validateCustomerClaimSelectionRequired = function(shouldFocus=true){
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    window.customerClaimSelectionValidation = {
+      cause: !selected.cause,
+      coverage: Boolean(selected.cause) && !selected.coverage,
+      treatment: Boolean(selected.cause && selected.coverage) && !selected.treatment
+    };
+    const invalidGroup = window.customerClaimSelectionValidation.cause ? 'cause' : (window.customerClaimSelectionValidation.coverage ? 'coverage' : (window.customerClaimSelectionValidation.treatment ? 'treatment' : ''));
+    rerenderCustomerClaimSelectionBlock();
+    if(invalidGroup && shouldFocus){
+      document.querySelector(`#customerClaimSelectionBlock [data-required-group="${invalidGroup}"]`)?.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+    return !invalidGroup;
+  };
+
   window.toggleCustomerClaimChoice = function(btn){
     try {
       const group = btn?.dataset?.claimChoice;
-      if(!group) return;
-      const value = btn?.dataset?.claimValue || btn?.innerText?.trim() || '';
-      window.customerClaimSelectionState ||= {};
-      if(group === 'coverage'){
-        window.customerClaimSelectionState.coverage = value;
-        if(value === 'สรุปค่าชดเชย' && window.customerClaimSelectionState.treatment === 'Day Case Surgery'){
-          window.customerClaimSelectionState.treatment = 'OPD';
-        }
-      }else if(group === 'treatment'){
-        window.customerClaimSelectionState.treatment = value;
-      }else if(group === 'cause'){
-        window.customerClaimSelectionState.cause = value;
+      if(!group || btn.disabled) return;
+      const value = String(btn?.dataset?.claimValue || '').trim();
+      const state = window.customerClaimSelectionState ||= { cause:'', coverage:'', treatment:'' };
+      window.customerClaimSelectionValidation = {};
+
+      if(group === 'cause'){
+        state.cause = value;
+        state.coverage = '';
+        state.treatment = '';
+      } else if(group === 'coverage'){
+        state.coverage = value;
+        state.treatment = '';
+        applyCustomerReviewLockedDefault();
+      } else if(group === 'treatment'){
+        state.treatment = value;
       }
-      document.querySelectorAll(`[data-claim-choice="${group}"]`).forEach(item => {
-        const active = item === btn;
-        item.classList.toggle('border-brand-600', active);
-        item.classList.toggle('bg-brand-50', active);
-        item.classList.toggle('text-brand-700', active);
-        item.classList.toggle('border-slate-300', !active);
-        item.classList.toggle('bg-white', !active);
-        item.classList.toggle('text-slate-500', !active);
-        item.classList.toggle('font-bold', active);
-        item.classList.toggle('font-semibold', !active && group === 'treatment');
-        const icon = item.querySelector('.customer-choice-check');
-        if(icon) icon.classList.toggle('hidden', !active);
-      });
+
+      rerenderCustomerClaimSelectionBlock();
       const pane2 = document.getElementById('ccStepPane2');
-      if(pane2 && typeof expenses === 'function'){
-        pane2.innerHTML = expenses('customer', window.currentConsiderCustomerRow || {});
-      }
+      if(pane2 && typeof expenses === 'function') pane2.innerHTML = expenses('customer', window.currentConsiderCustomerRow || {});
       if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
     } catch(err) { console.error('toggleCustomerClaimChoice failed', err); }
   };
@@ -26458,6 +26809,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function update(prefix, step){
     const currentStep = prefix === 'cc' ? Number(window.currentCustomerStep || 1) : 1;
+    if(prefix === 'cc' && currentStep === 1 && Number(step) === 2 && typeof window.validateCustomerClaimSelectionRequired === 'function' && !window.validateCustomerClaimSelectionRequired(true)) return;
     if(prefix === 'cc' && currentStep === 1 && Number(step) === 2 && typeof window.validateConsiderStayDays === 'function' && !window.validateConsiderStayDays(prefix)) return;
     if(prefix === 'cc') window.currentCustomerStep = step;
     if(prefix === 'cc' && step === 2 && typeof expenses === 'function'){
@@ -26484,11 +26836,24 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     window.currentConsiderCustomerRow = row;
     window.currentConsiderCustomerRowIndex = index;
     const baseClaimType = String(row.claimType || 'OPD');
+    // v72: open the mockup with the existing claim selection already complete,
+    // while keeping Cause / Coverage / Treatment editable. When an upstream
+    // value changes, toggleCustomerClaimChoice clears only the dependent values.
+    const initialCause = String(row.claimCause || (String(row.claimCode || '').startsWith('CLPA') ? 'อุบัติเหตุ' : 'เจ็บป่วย')).trim();
+    const requestedCoverage = String(row.coverageType || 'ค่ารักษา').trim();
+    const allowedCoverageValues = CUSTOMER_REVIEW_COVERAGE_META.map(item => item.value);
+    const initialCoverage = allowedCoverageValues.includes(requestedCoverage) ? requestedCoverage : 'ค่ารักษา';
+    const initialSubOptions = CUSTOMER_REVIEW_CLAIM_MATRIX[initialCause]?.[initialCoverage] || [];
+    const requestedTreatment = String(row.claimType || row.treatmentType || '').trim();
+    const matchedTreatment = initialSubOptions.find(item => item.value === requestedTreatment || item.label === requestedTreatment);
+    const lockedTreatment = initialSubOptions.find(item => item.defaultLocked);
+    const initialTreatment = matchedTreatment?.value || lockedTreatment?.value || initialSubOptions[0]?.value || '';
     window.customerClaimSelectionState = {
-      coverage: row.coverageType || 'ค่ารักษา',
-      treatment: /Day\s*Case/i.test(baseClaimType) ? 'Day Case Surgery' : (/IPD/i.test(baseClaimType) ? 'IPD' : 'OPD'),
-      cause: row.claimCause || (String(row.product || '').toUpperCase() === 'PA' ? 'อุบัติเหตุ' : 'เจ็บป่วย')
+      coverage: initialCoverage,
+      treatment: initialTreatment,
+      cause: initialCause
     };
+    window.customerClaimSelectionValidation = {};
     const page = ensurePage('considerCustomerDetailPage');
     document.getElementById('claimMonitorPage')?.classList.add('hidden'); document.getElementById('detailPage')?.classList.add('hidden'); safeHideClaimPages();
     page.innerHTML = build('customer', row); page.classList.remove('hidden'); setHeader('บันทึกข้อมูลเคลม - เคลมลูกค้า','บันทึกข้อมูลเคลม - เคลมลูกค้า','customer'); update('cc',1); updateCustomerHospitalStayNights(); if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
@@ -31968,7 +32333,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function summaryField(label,value){ return `<div><div class="text-sm font-bold text-slate-500">${label}</div><div class="font-extrabold text-brand-700">${esc(value)}</div></div>`; }
 
   function footerBtns(final=false){
-    return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="backToHospitalBillingList()" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="saveBillingReviewDraft()" class="inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-lg font-extrabold text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button>${currentReviewStep>1?`<button type="button" onclick="setBillingReviewStep(${currentReviewStep-1})" class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-5 text-lg font-extrabold text-slate-700">ย้อนกลับ</button>`:''}${currentReviewStep<3?`<button type="button" onclick="setBillingReviewStep(${currentReviewStep+1})" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button>`:`<button type="button" onclick="submitBillingReview()" class="inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-6 text-lg font-extrabold text-white"><span class="material-icons-round mr-1">task_alt</span>ยืนยันผลตรวจสอบ</button>`}</div></div>`;
+    return `<div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"><button type="button" onclick="backToHospitalBillingList()" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">arrow_back</span>กลับ</button><div class="flex flex-wrap justify-end gap-3"><button type="button" onclick="saveBillingReviewDraft()" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg border border-brand-600 bg-white px-5 text-brand-700"><span class="material-icons-round mr-1">save_as</span>บันทึกแบบร่าง</button>${currentReviewStep>1?`<button type="button" onclick="setBillingReviewStep(${currentReviewStep-1})" class="inline-flex h-11 items-center justify-center rounded-lg border border-slate-300 bg-white px-5 text-lg font-extrabold text-slate-700">ย้อนกลับ</button>`:''}${currentReviewStep<3?`<button type="button" onclick="setBillingReviewStep(${currentReviewStep+1})" class="inline-flex h-11 items-center justify-center rounded-lg bg-brand-700 px-5 text-lg font-extrabold text-white">ถัดไป<span class="material-icons-round ml-1">arrow_forward</span></button>`:`<button type="button" onclick="submitBillingReview()" class="claim-step-action-btn inline-flex h-11 items-center justify-center rounded-lg bg-green-600 px-5 text-white"><span class="material-icons-round mr-1">task_alt</span>ยืนยันผลตรวจสอบ</button>`}</div></div>`;
   }
 
   function renderPage(){
@@ -35187,7 +35552,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         : ((window.claimState && window.claimState.row && window.claimState.row.product) || 'PH');
       coverageOptions.forEach(function(item){
         if (item && item.value === 'ค่าชดเชย') {
-          item.label = product === 'PH' ? 'ค่าชดเชย(ใหญ่)' : 'ค่าชดเชย';
+          item.label = 'ค่าชดเชย(ใหญ่)';
         }
       });
     }catch(e){ console.warn('applyCoverageWording skipped', e); }
@@ -45384,5 +45749,168 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     font-weight:400!important;
   }
 </style>
+
+
+<style id="customerApproveConfirmModalStyles">
+  .cc-approve-modal{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(15,23,42,.56);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+  .cc-approve-modal.hidden{display:none!important}
+  .cc-approve-dialog{position:relative;width:min(600px,96vw);overflow:hidden;border:1px solid rgba(219,231,243,.95);border-radius:24px;background:#fff;box-shadow:0 32px 90px rgba(15,23,42,.34),0 8px 24px rgba(15,23,42,.12);animation:ccApproveModalIn .22s cubic-bezier(.2,.8,.2,1)}
+  .cc-approve-dialog:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,#16a34a 0%,#22c55e 55%,#86efac 100%)}
+  @keyframes ccApproveModalIn{from{opacity:0;transform:translateY(14px) scale(.975)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .cc-approve-head{position:relative;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:26px 26px 18px;background:linear-gradient(180deg,#f8fffb 0%,#ffffff 100%)}
+  .cc-approve-title-wrap{display:flex;align-items:center;gap:15px;min-width:0}
+  .cc-approve-title-icon{width:52px;height:52px;flex:none;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#dcfce7,#f0fdf4);color:#15803d;border:1px solid #bbf7d0;box-shadow:0 8px 20px rgba(22,163,74,.13)}
+  .cc-approve-title-icon .material-icons-round{font-size:28px!important}
+  .cc-approve-title{margin:0;color:#172033;font-size:22px!important;font-weight:800!important;line-height:1.2!important;letter-spacing:0!important}
+  .cc-approve-subtitle{margin-top:5px;color:#7b8796;font-size:14px!important;font-weight:500!important;line-height:1.35!important}
+  .cc-approve-close{width:38px;height:38px;flex:none;display:grid;place-items:center;border:1px solid #fee2e2;border-radius:12px;background:#fff7f7;color:#dc2626;cursor:pointer;transition:.16s ease;box-shadow:0 2px 8px rgba(15,23,42,.04)}
+  .cc-approve-close:hover{transform:translateY(-1px);background:#fef2f2;border-color:#fecaca}
+  .cc-approve-close .material-icons-round{font-size:20px!important}
+  .cc-approve-body{padding:8px 26px 24px}
+  .cc-approve-reference{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cc-approve-ref-card{position:relative;overflow:hidden;border:1px solid #e2e8f0;border-radius:16px;background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);padding:14px 15px;min-width:0}
+  .cc-approve-ref-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#5ba6d8}
+  .cc-approve-ref-label{display:flex;align-items:center;gap:7px;color:#7c8a9b;font-size:12px!important;font-weight:600!important;line-height:1.2!important}
+  .cc-approve-ref-label .material-icons-round{font-size:16px!important;color:#4f91bf}
+  .cc-approve-ref-value{margin-top:7px;color:#1f3347;font-size:16px!important;font-weight:800!important;line-height:1.2!important;overflow-wrap:anywhere}
+  .cc-approve-amount-card{position:relative;margin-top:12px;overflow:hidden;border:1px solid #bbf7d0;border-radius:18px;background:linear-gradient(135deg,#f0fdf4 0%,#ffffff 58%,#f7fff9 100%);padding:18px 20px}
+  .cc-approve-amount-card:after{content:"payments";position:absolute;right:-8px;bottom:-18px;font-family:'Material Icons Round'!important;font-size:92px;color:rgba(22,163,74,.065);line-height:1}
+  .cc-approve-amount-label{display:flex;align-items:center;gap:8px;color:#47715a;font-size:13px!important;font-weight:700!important;position:relative;z-index:1}
+  .cc-approve-amount-label .material-icons-round{font-size:18px!important;color:#16a34a}
+  .cc-approve-amount{position:relative;z-index:1;margin-top:8px;color:#15803d;font-size:32px!important;font-weight:800!important;line-height:1.05!important;letter-spacing:-.02em!important}
+  .cc-approve-amount small{margin-left:6px;color:#5d7668;font-size:14px!important;font-weight:600!important;letter-spacing:0!important}
+  .cc-approve-note{position:relative;display:flex;align-items:center;justify-content:center;margin-top:14px;padding:12px 44px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff;color:#53677c;font-size:13px!important;font-weight:500!important;line-height:1.45!important;text-align:center}
+  .cc-approve-note > span:last-child{display:block;width:100%;text-align:center}
+  .cc-approve-note b{color:#15803d;font-weight:700!important}
+  .cc-approve-note .material-icons-round{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:18px!important;color:#3b82f6;flex:none;margin-top:0}
+  .cc-approve-actions{display:flex;justify-content:flex-end;gap:10px;padding:16px 26px 22px;border-top:1px solid #edf2f7;background:#fbfcfe}
+  .cc-approve-btn{height:42px;min-width:126px;border-radius:11px;padding:0 19px;font-size:14px!important;font-weight:600!important;line-height:1!important;display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;transition:.16s ease}
+  .cc-approve-btn.cancel{border:1px solid #cbd5e1;background:#fff;color:#475569}
+  .cc-approve-btn.cancel:hover{background:#f8fafc;border-color:#b8c4d1}
+  .cc-approve-btn.confirm{min-width:154px;border:1px solid #159447;background:linear-gradient(180deg,#1baa55 0%,#159447 100%);color:#fff;box-shadow:0 7px 16px rgba(21,148,71,.22)}
+  .cc-approve-btn.confirm:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(21,148,71,.26);background:linear-gradient(180deg,#169d4d 0%,#117b3b 100%)}
+  .cc-approve-btn .material-icons-round{font-size:18px!important}
+  @media(max-width:640px){.cc-approve-modal{padding:10px;align-items:flex-start;overflow:auto}.cc-approve-dialog{margin-top:20px;border-radius:18px}.cc-approve-head{padding:22px 18px 15px}.cc-approve-title-icon{width:46px;height:46px;border-radius:14px}.cc-approve-title{font-size:20px!important}.cc-approve-body{padding:7px 18px 20px}.cc-approve-reference{grid-template-columns:1fr}.cc-approve-amount{font-size:28px!important}.cc-approve-actions{padding:14px 18px 18px}.cc-approve-btn{flex:1;min-width:0}.cc-approve-btn.confirm{min-width:0}}
+</style>
+
+<div id="customerApproveConfirmModal" class="cc-approve-modal hidden" role="dialog" aria-modal="true" aria-labelledby="customerApproveConfirmTitle" onclick="if(event.target===this) closeCustomerApproveConfirmModal()">
+  <div class="cc-approve-dialog">
+    <div class="cc-approve-head">
+      <div class="cc-approve-title-wrap">
+        <span class="cc-approve-title-icon"><span class="material-icons-round">verified</span></span>
+        <div>
+          <h3 id="customerApproveConfirmTitle" class="cc-approve-title">ยืนยันอนุมัติรายการ</h3>
+          <div class="cc-approve-subtitle">ตรวจสอบรายละเอียดก่อนยืนยันผลการพิจารณา</div>
+        </div>
+      </div>
+      <button type="button" class="cc-approve-close" onclick="closeCustomerApproveConfirmModal()" aria-label="ปิด"><span class="material-icons-round">close</span></button>
+    </div>
+    <div class="cc-approve-body">
+      <div class="cc-approve-reference">
+        <div class="cc-approve-ref-card">
+          <div class="cc-approve-ref-label"><span class="material-icons-round">description</span>เลขที่ Claim</div>
+          <div id="customerApproveClaimNo" class="cc-approve-ref-value">-</div>
+        </div>
+        <div class="cc-approve-ref-card">
+          <div class="cc-approve-ref-label"><span class="material-icons-round">folder_open</span>เลขที่ Case</div>
+          <div id="customerApproveCaseNo" class="cc-approve-ref-value">-</div>
+        </div>
+      </div>
+      <div class="cc-approve-amount-card">
+        <div class="cc-approve-amount-label"><span class="material-icons-round">payments</span>จำนวนเงินที่อนุมัติ</div>
+        <div id="customerApproveAmount" class="cc-approve-amount">0.00 <small>บาท</small></div>
+      </div>
+      <div class="cc-approve-note"><span class="material-icons-round">info</span><span>เมื่อยืนยันแล้ว ระบบจะบันทึกผลการพิจารณาเป็น <b>อนุมัติ</b><br>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนดำเนินการ</span></div>
+    </div>
+    <div class="cc-approve-actions">
+      <button type="button" class="cc-approve-btn cancel" onclick="closeCustomerApproveConfirmModal()">ยกเลิก</button>
+      <button type="button" class="cc-approve-btn confirm" onclick="confirmCustomerApprove()"><span class="material-icons-round">check_circle</span>ยืนยันอนุมัติ</button>
+    </div>
+  </div>
+</div>
+
+<script id="customerApproveConfirmModalScript">
+(function(){
+  function esc(value){
+    return String(value ?? '').replace(/[&<>"]/g, function(ch){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[ch]; });
+  }
+  function money(value){
+    var n = Number(String(value ?? 0).replace(/,/g,'').trim());
+    if(!Number.isFinite(n)) n = 0;
+    return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function getVisibleCustomerHeaderValue(labelText){
+    var cards = Array.from(document.querySelectorAll('.customer-review-topcard'));
+    var card = cards.find(function(el){ return el.offsetParent !== null && !el.classList.contains('hidden'); }) || cards[0];
+    if(!card) return '';
+    var wanted = String(labelText || '').replace(/[:：]/g,'').trim();
+    var items = Array.from(card.querySelectorAll('.customer-review-codegrid .customer-review-item'));
+    var item = items.find(function(el){
+      var label = el.querySelector('.customer-review-label');
+      return label && String(label.textContent || '').replace(/[:：]/g,'').trim() === wanted;
+    });
+    var value = item && item.querySelector('.customer-review-value');
+    return value ? String(value.textContent || '').trim() : '';
+  }
+  window.openCustomerApproveConfirmModal = function(){
+    var row = window.currentConsiderCustomerRow || {};
+    var transferData = (typeof window.getCustomerTransferSummaryData === 'function') ? window.getCustomerTransferSummaryData() : null;
+    // ใช้เลข Claim / Case จากส่วนหัวของรายการที่กำลังพิจารณาบนหน้าจอเป็น Source of Truth
+    var claimNo = getVisibleCustomerHeaderValue('เลขที่เคลม') || String(row.claimCode || row.claimNo || '-').trim() || '-';
+    var caseNo = getVisibleCustomerHeaderValue('เลขที่ Case') || String(row.caseNo || row.caseCode || row.claimCaseNo || '-').trim() || '-';
+    var approvedAmount = transferData && Number.isFinite(Number(transferData.transfer)) ? Number(transferData.transfer) : Number(String(row.amount || 0).replace(/,/g,''));
+    if(!Number.isFinite(approvedAmount)) approvedAmount = 0;
+    var modal = document.getElementById('customerApproveConfirmModal');
+    if(!modal) return;
+    var claimEl = document.getElementById('customerApproveClaimNo');
+    var caseEl = document.getElementById('customerApproveCaseNo');
+    var amountEl = document.getElementById('customerApproveAmount');
+    if(claimEl) claimEl.innerHTML = esc(claimNo);
+    if(caseEl) caseEl.innerHTML = esc(caseNo);
+    if(amountEl) amountEl.innerHTML = money(approvedAmount) + ' <small>บาท</small>';
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeCustomerApproveConfirmModal = function(){
+    var modal = document.getElementById('customerApproveConfirmModal');
+    if(modal) modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+  window.showCustomerApproveSuccessToast = function(){
+    var row = window.currentConsiderCustomerRow || {};
+    var claimNo = getVisibleCustomerHeaderValue('เลขที่เคลม') || String(row.claimCode || row.claimNo || '-').trim() || '-';
+    var caseNo = getVisibleCustomerHeaderValue('เลขที่ Case') || String(row.caseNo || row.caseCode || row.claimCaseNo || '-').trim() || '-';
+    var existing = document.getElementById('customerApproveSuccessToast');
+    if(existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'customerApproveSuccessToast';
+    toast.setAttribute('role','status');
+    toast.setAttribute('aria-live','polite');
+    toast.style.cssText = 'position:fixed;top:22px;right:22px;z-index:100001;display:flex;align-items:flex-start;gap:12px;min-width:330px;max-width:440px;padding:14px 16px;border:1px solid #86efac;border-radius:14px;background:rgba(240,253,244,.98);color:#166534;box-shadow:0 16px 36px rgba(15,23,42,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:translateY(-10px);transition:opacity .2s ease,transform .2s ease;font-family:var(--ui-font);';
+    toast.innerHTML = '<span class="material-icons-round" style="font-size:28px!important;color:#16a34a;flex:none;margin-top:1px">check_circle</span>'+
+      '<div style="min-width:0;flex:1"><div style="font-size:15px;font-weight:700;line-height:1.25;color:#15803d">อนุมัติรายการสำเร็จ</div>'+
+      '<div style="margin-top:4px;font-size:13px;font-weight:500;line-height:1.4;color:#4b6354">เลขที่ Claim : <b style="color:#166534">'+esc(claimNo)+'</b><br>เลขที่ Case : <b style="color:#166534">'+esc(caseNo)+'</b></div></div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function(){ toast.style.opacity='1'; toast.style.transform='translateY(0)'; });
+    setTimeout(function(){
+      toast.style.opacity='0';
+      toast.style.transform='translateY(-8px)';
+      setTimeout(function(){ toast.remove(); },220);
+    },3000);
+  };
+  window.confirmCustomerApprove = function(){
+    window.closeCustomerApproveConfirmModal();
+    window.showCustomerApproveSuccessToast();
+  };
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var modal = document.getElementById('customerApproveConfirmModal');
+      if(modal && !modal.classList.contains('hidden')) window.closeCustomerApproveConfirmModal();
+    }
+  });
+})();
+</script>
 </body>
 </html>
+
+
