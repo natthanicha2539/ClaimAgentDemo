@@ -24424,7 +24424,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="customer-review-eyebrow"><span class="material-icons-round">verified_user</span>ข้อมูลผู้เอาประกัน</div>
             <div class="customer-review-name">${cEsc(data.insured.name)}</div>
             <div class="customer-review-subline"><span class="label">เลขบัตรประชาชน :</span><span class="value">${cEsc(data.insured.idCard)}</span></div>
-            <div class="customer-review-subline link"><span class="label">Application ID :</span><span class="value">${cEsc(data.insured.appId)}</span></div>
+            ${String(data.top?.claimNo || '').toUpperCase().startsWith('CLPA') ? '' : `<div class="customer-review-subline link"><span class="label">Application ID :</span><span class="value">${cEsc(data.insured.appId)}</span></div>`}
           </div>
         </div>
         <div class="customer-review-metagrid">
@@ -25483,7 +25483,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="customer-review-eyebrow"><span class="material-icons-round">verified_user</span>ข้อมูลผู้เอาประกัน</div>
             <div class="customer-review-name">${name}</div>
             <div class="customer-review-subline"><span class="label">เลขบัตรประชาชน :</span><span class="value">${insuredId}</span></div>
-            <div class="customer-review-subline link"><span class="label">Application ID :</span><span class="value">${appId}</span></div>
+            ${String(claimNo || '').toUpperCase().startsWith('CLPA') ? '' : `<div class="customer-review-subline link"><span class="label">Application ID :</span><span class="value">${appId}</span></div>`}
           </div>
         </div>
         <div class="customer-review-metagrid">
