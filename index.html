@@ -8800,7 +8800,7 @@ body > .min-h-screen > main,
               <div class="insured-reference-box box-start"><span>วันที่เริ่มคุ้มครอง</span><strong>01/01/2559</strong></div>
               <div class="insured-reference-box box-end"><span>วันที่สิ้นสุดความคุ้มครอง</span><strong>-</strong></div>
             </div>
-            <div class="insured-reference-plan"><span class="material-icons-round">health_and_safety</span><span id="ddPlanPill">แผน : 662</span></div>
+            <div class="insured-reference-plan"><span class="material-icons-round">health_and_safety</span><span id="ddPlanPill">แผน : -</span></div>
           </section>
 
           <section class="dd-info-card">
@@ -12321,8 +12321,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       { date: "17/06/2569 09:38:02", claimCode: "CL6906000104", branch: "สำนักงานใหญ่", name: "นายวีระศักดิ์ วรวุฒิอนันตกุล", product: "PH", status: "รอพิจารณา", statusClass: "wait", amount: "1,250.00" },
       { date: "17/06/2569 13:15:38", claimCode: "CL6906000082", branch: "กระบี่", name: "นายวีรัตน์ แสนวงศ์", product: "PH", status: "อยู่ระหว่างทำรายการ", statusClass: "progress", amount: "300.00" },
       { date: "17/06/2569 14:29:43", claimCode: "CL6906000095", branch: "ระนอง", name: "นางวิมลพร พงษ์พัฒน์เปรียน", product: "PH", status: "รอแก้ไข", statusClass: "edit", amount: "700.00" },
-      { date: "17/06/2569 14:42:24", claimCode: "CLPA6906000112", branch: "สุพรรณบุรี", name: "เด็กชายธนภัทร สถานนท์", product: "PA", status: "ปฏิเสธ", statusClass: "reject", amount: "2,310.50" },
-      { date: "17/06/2569 15:47:27", claimCode: "CLPA6906000113", branch: "สำนักงานใหญ่", name: "นางสาววิญา ศรีโกศล", product: "PA", status: "อนุมัติ", statusClass: "approve", amount: "2,140.90" }
+      { date: "17/06/2569 14:42:24", claimCode: "CLPA6906000112", branch: "สุพรรณบุรี", name: "เด็กชายธนภัทร สถานนท์", product: "PA", plan: "ชดเชย+สุขภาพ", status: "ปฏิเสธ", statusClass: "reject", amount: "2,310.50" },
+      { date: "17/06/2569 15:47:27", claimCode: "CLPA6906000113", branch: "สำนักงานใหญ่", name: "นางสาววิญา ศรีโกศล", product: "PA", plan: "เลือกสิทธิ์+สุขภาพ", status: "อนุมัติ", statusClass: "approve", amount: "2,140.90" }
     ];
 
     let currentConsiderationTab = "customer";
@@ -13897,7 +13897,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       CLPA6906000113: {
         meta: { updateDate: '17/06/2569 15:47:27', branch: 'กรุงเทพมหานคร' },
         claim: { claimCode: 'CLPA6906000113', caseCode: 'CCPA6906000113' },
-        insured: { name: 'นางสาววิญา ศรีโกศล', idCard: '1103701123456', appId: 'PA001113', phone: '086-445-7721', status: 'มีผลคุ้มครอง', plan: 'แผน : PA Gold' },
+        insured: { name: 'นางสาววิญา ศรีโกศล', idCard: '1103701123456', appId: 'PA001113', phone: '086-445-7721', status: 'มีผลคุ้มครอง', plan: 'แผน : เลือกสิทธิ์+สุขภาพ' },
         detailHtml: `<div><div class="dd-field-label">ประเภทการเคลม :</div><div class="dd-field-value">เคลมลูกค้า</div></div>
               <div><div class="dd-field-label">เหตุของการเคลม :</div><div class="dd-field-value">อุบัติเหตุ</div></div>
               <div><div class="dd-field-label">ประเภทความคุ้มครอง :</div><div id="ddCoverageTypeValue" class="dd-field-value">ทุพพลภาพ/สูญเสียอวัยวะ</div></div>
@@ -13932,7 +13932,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       setText('ddInsuredAppId', data.insured.appId);
       setText('ddInsuredPhone', data.insured.phone);
       setText('ddInsuredStatus', data.insured.status);
-      setText('ddPlanPill', data.insured.plan);
+      const isPADeathDetail = String(row?.product || '').trim().toUpperCase() === 'PA' || String(claimCode || '').trim().toUpperCase().startsWith('CLPA');
+      const paDeathPlan = isPADeathDetail
+        ? (window.resolvePAProductCate ? window.resolvePAProductCate(row?.plan || data.insured.plan, data.insured.appId, claimCode) : (row?.plan || 'เลือกสิทธิ์+สุขภาพ'))
+        : String(data.insured.plan || '').replace(/^แผน\s*:\s*/,'');
+      setText('ddPlanPill', `แผน : ${paDeathPlan}`);
       const detailGrid = document.getElementById('ddClaimDetailGrid');
       if (detailGrid) detailGrid.innerHTML = data.detailHtml;
       const expenseGrid = document.getElementById('ddExpenseGrid');
@@ -25644,7 +25648,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const insuredId = isContinuous ? (row?.idCard || '618374901225X') : (row?.idCard || '8220465383177');
       const appId = isContinuous ? (row?.appId || '0019284') : (row?.appId || '0001409');
       const phone = isContinuous ? (row?.phone || '089-374-9012') : (row?.phone || '081-233-4444');
-      const plan = isContinuous ? (row?.plan || '631') : (row?.plan || '662');
+      const rawPlan = isContinuous ? (row?.plan || '631') : (row?.plan || '662');
+      const plan = isCustomerPA
+        ? (window.resolvePAProductCate ? window.resolvePAProductCate(rawPlan, row?.appId, claimNo) : (row?.plan || 'เลือกสิทธิ์+สุขภาพ'))
+        : rawPlan;
       const continuousBanner = isContinuous ? `
         <section class="cc-previous-banner">
           <div class="cc-previous-main">
@@ -25725,7 +25732,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="insured-reference-box box-start"><span>วันที่เริ่มคุ้มครอง</span><strong>01/01/2559</strong></div>
         <div class="insured-reference-box box-end"><span>วันที่สิ้นสุดความคุ้มครอง</span><strong>-</strong></div>
       </div>
-      <div class="insured-reference-plan"><span class="material-icons-round">health_and_safety</span><span>แผน : 662</span></div>
+      <div class="insured-reference-plan"><span class="material-icons-round">health_and_safety</span><span>แผน : ${hospitalProduct === 'PA'
+        ? (window.resolvePAProductCate ? window.resolvePAProductCate(row?.plan, row?.appId, hospitalClaimNo) : (row?.plan || 'เลือกสิทธิ์+สุขภาพ'))
+        : (row?.plan || '662')}</span></div>
     </section>
     <section class="hospital-review-tabcard">
       <div class="hospital-review-tabs">
@@ -48356,6 +48365,156 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   document.addEventListener('click',()=>setTimeout(enforce,0),true);
   document.addEventListener('DOMContentLoaded',enforce);
   setTimeout(enforce,0);
+})();
+</script>
+
+
+<script id="v130-pa-casetype-map">
+(function(){
+  const PA_CASETYPE_ROWS = [{"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8804", "productCate": "ควบคู่", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8802", "productCate": "ชดเชย", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4002", "claimType": "ค่ารักษาโรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8809", "productCate": "ชดเชย+รักษาสุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4004", "claimType": "ชดเชย โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8806", "productCate": "ชดเชย+สุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8803", "productCate": "รักษา", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4002", "claimType": "ค่ารักษาโรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8811", "productCate": "รักษา+รักษาสุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4004", "claimType": "ชดเชย โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8808", "productCate": "รักษา+สุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8805", "productCate": "เลือกสิทธิ์", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4002", "claimType": "ค่ารักษาโรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8810", "productCate": "เลือกสิทธิ์+รักษาสุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4001", "claimType": "ค่ารักษาอุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4003", "claimType": "ชดเชย อุบัติเหตุ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4004", "claimType": "ชดเชย โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8807", "productCate": "เลือกสิทธิ์+สุขภาพ", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4005", "claimType": "ชดเชย สูญเสียอวัยวะ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4006", "claimType": "เสียชีวิต อุบัติเหตุทั่วไป", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4006_2", "claimType": "เสียชีวิต อุบัติเหตุ ฆาตกรรม - MC", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4007", "claimType": "เสียชีวิต โรคทั่วไป", "incidentType": "เจ็บป่วย"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4008", "claimType": "ทุพพลภาพ", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4009", "claimType": "ความรับผิดสถานศึกษา", "incidentType": "อุบัติเหตุ"}, {"productCategoryId": "8801", "productCate": "Dead Only", "claimTypeId": "4010", "claimType": "ภัยสาธารณะ", "incidentType": "อุบัติเหตุ"}];
+  window.PA_CASETYPE_ROWS = PA_CASETYPE_ROWS;
+
+  const PA_PRODUCT_CATES = Array.from(new Set(PA_CASETYPE_ROWS.map(r => String(r.productCate || '').trim()).filter(Boolean)));
+  const PA_PLAN_BY_APP = {
+    '69102612':'ชดเชย+สุขภาพ',
+    '69102613':'รักษา',
+    '69102614':'เลือกสิทธิ์+สุขภาพ',
+    'PA001113':'เลือกสิทธิ์+สุขภาพ'
+  };
+  const PA_PLAN_BY_CLAIM = {
+    'CLPA6906000112':'ชดเชย+สุขภาพ',
+    'CLPA6906000113':'เลือกสิทธิ์+สุขภาพ'
+  };
+  window.resolvePAProductCate = function(rawPlan, appId, claimNo){
+    const clean = String(rawPlan || '').replace(/^แผน\s*:\s*/,'').trim();
+    if(PA_PRODUCT_CATES.includes(clean)) return clean;
+    const byApp = PA_PLAN_BY_APP[String(appId || '').trim()];
+    if(byApp) return byApp;
+    const byClaim = PA_PLAN_BY_CLAIM[String(claimNo || '').trim().toUpperCase()];
+    if(byClaim) return byClaim;
+    return 'เลือกสิทธิ์+สุขภาพ';
+  };
+
+  function paPlanName(){
+    const row = window.claimState && window.claimState.row;
+    if(!row) return '';
+    return window.resolvePAProductCate
+      ? window.resolvePAProductCate(row.plan, row.appId, row.claimCode || row.claimNo)
+      : String(row.plan || '').trim();
+  }
+  function paRowsForPlan(){
+    const plan = paPlanName();
+    return PA_CASETYPE_ROWS.filter(r => r.productCate === plan);
+  }
+  function uniqueBy(arr,keyFn){
+    const seen=new Set();
+    return arr.filter(x=>{const k=keyFn(x);if(seen.has(k))return false;seen.add(k);return true;});
+  }
+  function incidentIcon(value){ return value === 'เจ็บป่วย' ? 'healing' : 'directions_run'; }
+  function claimTypeIcon(name){
+    if(name.includes('ค่ารักษา')) return 'medical_services';
+    if(name.includes('ชดเชย') && !name.includes('สูญเสีย')) return 'payments';
+    if(name.includes('สูญเสีย') || name.includes('ทุพพลภาพ')) return 'accessible';
+    if(name.includes('เสียชีวิต')) return 'local_florist';
+    if(name.includes('สถานศึกษา')) return 'school';
+    if(name.includes('ภัยสาธารณะ')) return 'warning';
+    return 'verified_user';
+  }
+  function internalSelectionForClaimType(row){
+    const id=String(row.claimTypeId||'');
+    if(id==='4001' || id==='4002') return {coverageType:'ค่ารักษา',subType:''};
+    if(id==='4003' || id==='4004') return {coverageType:'ค่าชดเชย',subType:''};
+    if(id==='4005' || id==='4008') return {coverageType:'ทุพพลภาพ/สูญเสียอวัยวะ',subType:''};
+    if(id==='4006') return {coverageType:'เสียชีวิต',subType:'อุบัติเหตุทั่วไป'};
+    if(id==='4006_2') return {coverageType:'เสียชีวิต',subType:'ฆาตกรรม'};
+    if(id==='4007') return {coverageType:'เสียชีวิต',subType:'โรคทั่วไป'};
+    if(id==='4009') return {coverageType:'เสียชีวิต',subType:'อุบัติเหตุทั่วไป',deathExtra:'ความรับผิดสถานศึกษา'};
+    if(id==='4010') return {coverageType:'เสียชีวิต',subType:'อุบัติเหตุทั่วไป',deathExtra:'ภัยสาธารณะ'};
+    return {coverageType:'',subType:''};
+  }
+
+  const originalIncidentOptions = window.getAvailableIncidentCauseOptions || (typeof getAvailableIncidentCauseOptions==='function' ? getAvailableIncidentCauseOptions : null);
+  const originalDisplayClaimLabel = window.displayClaimLabel || (typeof displayClaimLabel==='function' ? displayClaimLabel : null);
+  const originalRenderClaimSelectionControls = window.renderClaimSelectionControls || (typeof renderClaimSelectionControls==='function' ? renderClaimSelectionControls : null);
+
+  window.getAvailableIncidentCauseOptions = function(){
+    if(window.claimState?.row?.product !== 'PA') return originalIncidentOptions ? originalIncidentOptions() : [];
+    const rows=paRowsForPlan();
+    const incidents=uniqueBy(rows.filter(r=>r.incidentType),r=>r.incidentType).map(r=>r.incidentType);
+    return incidents.map(value=>({value,icon:incidentIcon(value),desc:`อ้างอิง incidenttype • แผน ${paPlanName()}`}));
+  };
+  try{ getAvailableIncidentCauseOptions = window.getAvailableIncidentCauseOptions; }catch(e){}
+
+  window.displayClaimLabel = function(){
+    if(window.claimState?.row?.product === 'PA' && window.claimState?.paClaimTypeName){
+      return [window.claimState.incidentCause, window.claimState.paClaimTypeName, window.claimState.subType]
+        .map(v=>String(v||'').trim()).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(' / ');
+    }
+    return originalDisplayClaimLabel ? originalDisplayClaimLabel() : '-';
+  };
+  try{ displayClaimLabel = window.displayClaimLabel; }catch(e){}
+
+  function renderPASelectionControls(){
+    const state=window.claimState;
+    const incidentBox=document.getElementById('incidentCauseRadios');
+    const coverageBox=document.getElementById('coverageTypeRadios');
+    if(!state || !incidentBox || !coverageBox) return;
+
+    const planRows=paRowsForPlan();
+    const incidentOptions=window.getAvailableIncidentCauseOptions();
+    if(state.incidentCause && !incidentOptions.some(x=>x.value===state.incidentCause)){
+      state.incidentCause=''; state.coverageType=''; state.subType=''; state.paClaimTypeId=''; state.paClaimTypeName='';
+    }
+
+    incidentBox.innerHTML=incidentOptions.length
+      ? incidentOptions.map(item=>renderChoiceCard(item,state.incidentCause===item.value,'incidentCause','incident-cause-input')).join('')
+      : `<div class="sm:col-span-2 rounded-xl border border-dashed border-amber-300 bg-amber-50 px-5 py-4 text-base font-semibold text-amber-800">ไม่พบ ProductCate “${paPlanName()||'-'}” ในไฟล์ CaseTypePA</div>`;
+
+    document.querySelectorAll('.incident-cause-input').forEach(r=>r.addEventListener('change',e=>{
+      if(typeof clearClaimSelectionValidation==='function') clearClaimSelectionValidation();
+      state.incidentCause=e.target.value;
+      state.coverageType=''; state.subType=''; state.paClaimTypeId=''; state.paClaimTypeName=''; state.deathExtras=[];
+      state.scanned={idcard:false,receipt:false,medcert:false,other:false};
+      renderClaimEntry();
+    }));
+
+    const claimRows=uniqueBy(planRows.filter(r=>r.incidentType===state.incidentCause),r=>r.claimTypeId+'|'+r.claimType);
+    coverageBox.innerHTML=state.incidentCause
+      ? (claimRows.length ? claimRows.map(r=>renderChoiceCard({value:r.claimTypeId,label:r.claimType,icon:claimTypeIcon(r.claimType),desc:`ClaimType ${r.claimTypeId}`},state.paClaimTypeId===r.claimTypeId,'paClaimType','pa-claimtype-input')).join('')
+          : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-base font-semibold text-slate-400">ไม่พบ ClaimType สำหรับแผนและเหตุการเคลมที่เลือก</div>`)
+      : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-base font-semibold text-slate-400">กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงรายละเอียดความคุ้มครองจาก ClaimType ตามแผน</div>`;
+
+    document.querySelectorAll('.pa-claimtype-input').forEach(r=>r.addEventListener('change',e=>{
+      if(typeof clearClaimSelectionValidation==='function') clearClaimSelectionValidation();
+      const selected=claimRows.find(x=>x.claimTypeId===e.target.value);
+      if(!selected) return;
+      const mapped=internalSelectionForClaimType(selected);
+      state.paClaimTypeId=selected.claimTypeId;
+      state.paClaimTypeName=selected.claimType;
+      state.coverageType=mapped.coverageType;
+      state.subType=mapped.subType || '';
+      state.deathExtras=mapped.deathExtra ? [mapped.deathExtra] : [];
+      if(typeof syncDerivedClaimType==='function') syncDerivedClaimType();
+      state.scanned={idcard:false,receipt:false,medcert:false,other:false};
+      renderClaimEntry();
+    }));
+  }
+
+  window.renderClaimSelectionControls = function(){
+    if(window.claimState?.row?.product === 'PA') return renderPASelectionControls();
+    return originalRenderClaimSelectionControls ? originalRenderClaimSelectionControls() : undefined;
+  };
+  try{ renderClaimSelectionControls = window.renderClaimSelectionControls; }catch(e){}
+
+  // ถ้าเปลี่ยนผู้เอาประกัน/แผน ให้ล้างค่า ClaimType PA เก่าที่ไม่ตรงกับแผนใหม่
+  document.addEventListener('click',function(){
+    setTimeout(function(){
+      const state=window.claimState;
+      if(!state || state.row?.product!=='PA') return;
+      const valid=paRowsForPlan().some(r=>r.claimTypeId===state.paClaimTypeId && r.incidentType===state.incidentCause);
+      if(state.paClaimTypeId && !valid){ state.paClaimTypeId=''; state.paClaimTypeName=''; }
+    },0);
+  },true);
 })();
 </script>
 
