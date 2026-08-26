@@ -8619,6 +8619,64 @@ body > .min-h-screen > main,
 }
 </style>
 
+
+<style id="dev-master-v195-sticky-header-fix">
+/* v195 — Fix Master header overlap while scrolling */
+#devMasterPage .master-table-scroll{
+  position:relative!important;
+  overflow:auto!important;
+}
+#devMasterPage .master-table{
+  border-collapse:separate!important;
+  border-spacing:0 0!important; /* remove transparent gap between header and first row */
+}
+#devMasterPage .master-table thead{
+  position:sticky!important;
+  top:0!important;
+  z-index:30!important;
+}
+#devMasterPage .master-table thead tr{
+  position:relative!important;
+  z-index:30!important;
+}
+#devMasterPage .master-table thead th{
+  position:sticky!important;
+  top:0!important;
+  z-index:31!important;
+  background:#f7fbff!important;
+  background-clip:padding-box!important;
+  box-shadow:
+    0 1px 0 #d8e7f3,
+    0 8px 0 #f7fbff,
+    0 10px 14px rgba(15,74,116,.08)!important;
+  vertical-align:bottom!important;
+}
+#devMasterPage .master-table thead th span{
+  min-height:36px!important;
+  display:flex!important;
+  align-items:flex-end!important;
+}
+#devMasterPage .master-table tbody tr + tr td{
+  border-top:8px solid transparent!important; /* keep row spacing below the first row */
+  background-clip:padding-box!important;
+}
+#devMasterPage .master-table tbody td{
+  position:relative!important;
+  z-index:1!important;
+}
+#devMasterPage .master-table tbody tr:hover td{
+  z-index:2!important;
+}
+@media(max-width:720px){
+  #devMasterPage .master-table thead th span{
+    min-height:34px!important;
+  }
+  #devMasterPage .master-table tbody tr + tr td{
+    border-top:6px solid transparent!important;
+  }
+}
+</style>
+
 </head>
 
 <body class="min-h-screen bg-slate-100 text-ink">
@@ -52163,17 +52221,27 @@ label > b:only-child,
     const visibleColumnIndexes=headers.map((_,i)=>i).filter(i=>String(headers[i]??'').trim()!=='' && rows.some(r=>String(r[i]??'').trim()!==''));
     return analyzeSheet({name,gid,headers,rows,visibleColumnIndexes,loadError:false,source:'apps-script'});
   }
-  const MASTER_CACHE_KEY='claimagent-master-apps-script-v174';
-  const MASTER_CACHE_TTL=5*60*1000;
+  const MASTER_CACHE_KEY='claimagent-master-apps-script-v197';
+  function getStorage(kind){
+    try{return kind==='local'?window.localStorage:window.sessionStorage}catch(e){return null}
+  }
   function readMasterCache(){
-    try{
-      const raw=sessionStorage.getItem(MASTER_CACHE_KEY);if(!raw)return null;
-      const item=JSON.parse(raw);if(!item||!item.data||!Array.isArray(item.data.sheets))return null;
-      return item;
-    }catch(e){return null}
+    const stores=[getStorage('local'),getStorage('session')].filter(Boolean);
+    for(const store of stores){
+      try{
+        const raw=store.getItem(MASTER_CACHE_KEY);
+        if(!raw)continue;
+        const item=JSON.parse(raw);
+        if(item&&item.data&&Array.isArray(item.data.sheets))return item;
+      }catch(e){}
+    }
+    return null;
   }
   function writeMasterCache(data){
-    try{sessionStorage.setItem(MASTER_CACHE_KEY,JSON.stringify({savedAt:Date.now(),data}))}catch(e){}
+    const payload=JSON.stringify({savedAt:Date.now(),data});
+    for(const store of [getStorage('local'),getStorage('session')].filter(Boolean)){
+      try{store.setItem(MASTER_CACHE_KEY,payload)}catch(e){}
+    }
   }
   async function fetchMasterApi(forceFresh=false){
     const url=MASTER_API_URL+(forceFresh?(MASTER_API_URL.includes('?')?'&':'?')+'_='+Date.now():'');
@@ -52221,47 +52289,117 @@ label > b:only-child,
     const hadData=state.loaded;
     state.loading=true;
     const btn=$('masterRefreshBtn');
-    if(btn){btn.disabled=true;const i=btn.querySelector('.material-icons-round');if(i)i.style.animation='masterSpin .8s linear infinite'}
+    if(btn){
+      btn.disabled=true;
+      const i=btn.querySelector('.material-icons-round');
+      if(i)i.style.animation='masterSpin .8s linear infinite';
+    }
+
+    /* Keep current Master rows visible while Apps Script is refreshing. */
     if(!hadData){
       $('masterLoadingState')?.classList.remove('hidden');
       $('masterErrorState')?.classList.add('hidden');
       $('masterEmptyState')?.classList.add('hidden');
-      $('masterContent')?.classList.add('hidden');
+    }else{
+      $('masterLoadingState')?.classList.add('hidden');
+      $('masterErrorState')?.classList.add('hidden');
+      $('masterContent')?.classList.remove('hidden');
     }
-    setConnection('loading','กำลังอ่านข้อมูลจาก Apps Script API');
+
+    setConnection('loading',hadData?'กำลังอัปเดตข้อมูล...':'กำลังเชื่อมต่อ Apps Script');
+
     try{
       const apiData=await fetchMasterApi(forceFresh);
       applyApiData(apiData,new Date(),showToastOnSuccess);
     }catch(e){
       console.error('[Master Apps Script API]',e);
       state.loading=false;
-      if(btn){btn.disabled=false;const i=btn.querySelector('.material-icons-round');if(i)i.style.animation=''}
+      if(btn){
+        btn.disabled=false;
+        const i=btn.querySelector('.material-icons-round');
+        if(i)i.style.animation='';
+      }
       $('masterLoadingState')?.classList.add('hidden');
+
       if(hadData){
+        /* Never replace a good table with an error panel. */
+        $('masterContent')?.classList.remove('hidden');
+        $('masterErrorState')?.classList.add('hidden');
         setConnection('success','แสดงข้อมูลล่าสุดที่โหลดไว้');
-        showToast('Apps Script ตอบกลับช้า ระบบยังแสดงข้อมูลล่าสุดที่โหลดไว้',true);
+        showToast('ยังอัปเดตข้อมูลใหม่ไม่ได้ ระบบแสดงข้อมูลล่าสุดไว้ก่อน',true);
       }else{
         showFriendlyError(e);
       }
     }
   }
+  function clearMasterCache(){
+    for(const store of [getStorage('local'),getStorage('session')].filter(Boolean)){
+      try{store.removeItem(MASTER_CACHE_KEY)}catch(e){}
+    }
+  }
+
+  function restoreMasterFromCache(){
+    if(state.loaded||state.loading)return state.loaded;
+    const cached=readMasterCache();
+    if(!cached)return false;
+    try{
+      applyApiData(cached.data,new Date(cached.savedAt||Date.now()),false);
+      setConnection('success','เชื่อมต่อแล้ว · '+state.sheets.length+' Sheet');
+      return true;
+    }catch(e){
+      clearMasterCache();
+      return false;
+    }
+  }
+
   async function loadMasterData(options={}){
     const force=options===true||options?.force===true;
     if(state.loading)return;
+
     if(!force){
-      const cached=readMasterCache();
-      if(cached){
-        try{
-          applyApiData(cached.data,new Date(cached.savedAt||Date.now()),false);
-          if(Date.now()-(cached.savedAt||0)>MASTER_CACHE_TTL)setTimeout(()=>refreshMasterFromAppsScript(false,false),50);
-          return;
-        }catch(e){try{sessionStorage.removeItem(MASTER_CACHE_KEY)}catch(_){} }
-      }
+      restoreMasterFromCache();
+      return;
     }
-    await refreshMasterFromAppsScript(force,force);
+
+    /* Fresh Apps Script request happens only when the user presses Update. */
+    await refreshMasterFromAppsScript(true,true);
   }
-  function init(){const page=root();if(!page||page.dataset.masterV165Initialized==='1')return;page.dataset.masterV165Initialized='1';page.dataset.masterV158Initialized='1';page.dataset.masterV157Initialized='1';page.dataset.masterV156Initialized='1';if($('masterOpenSheetBtn'))$('masterOpenSheetBtn').href=SOURCE_SHEET_URL;$('masterRefreshBtn')?.addEventListener('click',()=>loadMasterData({force:true}));$('masterSearchInput')?.addEventListener('input',applySearchAndFilters);$('masterClearFilterBtn')?.addEventListener('click',clearFilters);$('menuDevMaster')?.addEventListener('click',()=>{if(!state.loaded&&!state.loading)setTimeout(()=>loadMasterData(),0)});if(!page.classList.contains('hidden'))loadMasterData()}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();window.claimAgentReloadMasterData=loadMasterData;
+
+  function init(){
+    const page=root();
+    if(!page||page.dataset.masterV165Initialized==='1')return;
+    page.dataset.masterV165Initialized='1';
+    page.dataset.masterV158Initialized='1';
+    page.dataset.masterV157Initialized='1';
+    page.dataset.masterV156Initialized='1';
+
+    if($('masterOpenSheetBtn'))$('masterOpenSheetBtn').href=SOURCE_SHEET_URL;
+
+    $('masterRefreshBtn')?.addEventListener('click',()=>loadMasterData({force:true}));
+    $('masterSearchInput')?.addEventListener('input',applySearchAndFilters);
+    $('masterClearFilterBtn')?.addEventListener('click',clearFilters);
+
+    /* Instant display: restore the last successful Apps Script response first. */
+    const restored=restoreMasterFromCache();
+
+    $('menuDevMaster')?.addEventListener('click',()=>{
+      if(!state.loaded)restoreMasterFromCache();
+    });
+
+    if(!restored){
+      setLoading(false);
+      setConnection('success','พร้อมใช้งาน · กดอัปเดตข้อมูลเพื่อเชื่อมต่อ Apps Script');
+      $('masterLoadingState')?.classList.add('hidden');
+      $('masterErrorState')?.classList.add('hidden');
+      $('masterContent')?.classList.add('hidden');
+      $('masterEmptyState')?.classList.remove('hidden');
+    }
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
+  else init();
+
+  window.claimAgentReloadMasterData=()=>loadMasterData({force:true});
 })();
 
 </script>
@@ -52594,8 +52732,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "193",
-  updatedAt: "26/08/2026 14:48:40"
+  version: "197",
+  updatedAt: "26/08/2026 15:01:33"
 });
 
 (function renderClaimAgentBuildInfo(){
