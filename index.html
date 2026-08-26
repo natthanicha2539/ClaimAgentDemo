@@ -27959,7 +27959,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function renderHospitalHalfExpenseInline(){
     return `<section class="opd-half-expense-card">
       <div class="opd-half-expense-main">
-        <div class="opd-half-expense-title">รายการค่ารักษา (เบื้องต้น)</div>
+        <div class="opd-half-expense-title">รายการค่ารักษา(จากโรงพยาบาล)</div>
 
         <div class="opd-half-expense-panel">
           <div class="opd-half-expense-panel-title">รายการค่ารักษา (OPD)</div>
@@ -28041,16 +28041,32 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const selected = window.hospitalClaimSelectionState || {};
     const rawTreatment = String(selected.treatment || row.treatmentType || row.claimType || 'OPD');
     const treatment = /IPD/i.test(rawTreatment) ? 'IPD' : (/Day\s*Case/i.test(rawTreatment) ? 'Day Case Surgery' : 'OPD');
-    const preliminaryExpense = renderHospitalHalfExpenseInline().replace(/<section id="hhInsuranceExcessStep2Box[\s\S]*?<\/section>/,'');
+
+    // รายการค่ารักษาจากโรงพยาบาล: ใช้ block OPD Half เดิม แต่เอาส่วนเกินบริษัทประกันออก
+    // เพื่อย้ายไปแสดงหลัง "รายการค่ารักษาเพิ่มเติม" ตามลำดับ Requirement
+    const hospitalExpense = renderHospitalHalfExpenseInline().replace(/<section id="hhInsuranceExcessStep2Box[\s\S]*?<\/section>/,'');
     const ocr = typeof renderActiveCustomerOcrPanel === 'function' ? renderActiveCustomerOcrPanel() : '';
-    const expenseContent = typeof window.renderCustomerMedicalExpenseSections === 'function'
+
+    // ใช้รายการค่ารักษาเบื้องต้น + รายการค่ารักษาเพิ่มเติมชุดเดียวกับเคลมลูกค้า
+    // แต่ตัด insurance excess ของ customer ออก เพื่อไม่ให้ซ้ำกับ hospital excess ด้านล่าง
+    let expenseContent = typeof window.renderCustomerMedicalExpenseSections === 'function'
       ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment:treatment})
       : '';
+    if(expenseContent){
+      const holder = document.createElement('div');
+      holder.innerHTML = expenseContent;
+      const customerInsuranceCheckbox = holder.querySelector('#ccInsuranceExcessCheckbox');
+      if(customerInsuranceCheckbox){
+        const insuranceWrap = customerInsuranceCheckbox.closest('.mt-4.rounded-xl');
+        if(insuranceWrap) insuranceWrap.remove();
+      }
+      expenseContent = holder.innerHTML;
+    }
+
     return `<div class="cc-ref-step2-shell hospital-opd-half-customer-style-step2" data-hospital-step2-treatment="${treatment}">
-      <section class="cc-ref-title-strip hospital-opd-half-step2-title"><span class="material-icons-round">receipt_long</span>รายละเอียดค่าใช้จ่าย</section>
-      ${preliminaryExpense}
       ${ocr}
-      <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>เพิ่มรายการค่ารักษา</section>
+      ${hospitalExpense}
+      <section class="cc-ref-title-strip hospital-opd-half-step2-title"><span class="material-icons-round">receipt_long</span>รายละเอียดค่าใช้จ่าย</section>
       ${expenseContent}
       ${renderHospitalInsuranceExcessBox('hh')}
       <div class="cc-ref-decision-wrap">${decision()}</div>
@@ -52812,7 +52828,7 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "212",
+  version: "213",
   updatedAt: "26/08/2026 16:40:00"
 });
 
