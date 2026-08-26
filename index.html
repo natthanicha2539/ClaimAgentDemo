@@ -3816,7 +3816,7 @@
 </style>
 
 <style id="cc-ref-step2-layout-fix">
-  #ccStepPane2 .cc-ref-step2-shell{background:#f3f4f6;padding:0 0 8px;display:flex;flex-direction:column;gap:14px}
+  #ccStepPane2 .cc-ref-step2-shell{background:#f3f4f6;padding:0 0 6px;display:flex;flex-direction:column;gap:6px}
   #ccStepPane2 .cc-ref-upload-row{display:flex;justify-content:flex-end;margin-bottom:-4px}
   #ccStepPane2 .cc-ref-upload-btn{height:34px;border:1px solid #0067ad;background:#fff;color:#005ea8;border-radius:2px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font-weight:900;box-shadow:0 2px 5px rgba(0,0,0,.16)}
   #ccStepPane2 .cc-ref-upload-btn .material-icons-round{font-size:18px!important}
@@ -8183,7 +8183,7 @@ body > .min-h-screen > main,
               </header>
 
               <div class="p-5">
-                <div class="flex items-center gap-4 rounded-xl border border-yellow-100 bg-yellow-50 p-4">
+                <div class="flex items-center gap-3 rounded-xl border border-yellow-100 bg-yellow-50 p-4">
                   <span class="grid h-14 w-14 place-items-center rounded-xl bg-yellow-100 text-warning">
                     <span class="material-icons-round !text-2xl">shield</span>
                   </span>
@@ -8568,36 +8568,70 @@ body > .min-h-screen > main,
 
       <!-- Screen 3.5: พิจารณาเคลม -->
       <section id="considerPage" class="page hidden px-1 py-2 lg:px-1 lg:py-3 xl:px-1 xl:py-4">
-        <section class="consider-dashboard-grid grid gap-4 xl:grid-cols-2">
-          <article class="consider-dashboard-card rounded-xl border-l-4 border-green-700 bg-white p-5 shadow-card ring-1 ring-slate-200">
-            <div class="grid gap-4 xl:grid-cols-[1fr_280px] xl:items-center">
-              <div class="flex items-center gap-4">
-                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-green-50 text-green-700 ring-1 ring-green-200"><span class="material-icons-round !text-6xl">person</span></div>
-                <div>
-                  <p class="text-2xl font-extrabold text-green-800">เคลมลูกค้าทั้งหมด</p>
-                  <div class="flex items-end gap-3"><span class="text-6xl font-extrabold leading-none text-green-700">12</span><span class="pb-1 text-2xl font-semibold text-slate-500">รายการ</span></div>
+        <section class="consider-dashboard-grid consider-dashboard-grid-modern">
+          <article class="consider-dashboard-card consider-dashboard-card-modern customer-card rounded-xl border-l-4 border-green-700 bg-white shadow-card ring-1 ring-slate-200">
+            <div class="consider-dashboard-inner">
+              <div class="consider-dashboard-overview">
+                <div class="consider-dashboard-icon customer-icon">
+                  <span class="material-icons-round">person</span>
+                </div>
+                <div class="consider-dashboard-copy">
+                  <p class="consider-dashboard-title customer-text">เคลมลูกค้าทั้งหมด</p>
+                  <div class="consider-dashboard-total-row">
+                    <span class="consider-dashboard-total customer-text">12</span>
+                    <span class="consider-dashboard-unit">รายการ</span>
+                  </div>
                 </div>
               </div>
-              <div class="grid grid-cols-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                <div class="px-3 py-4 text-center"><span class="material-icons-round text-green-700">edit_note</span><p class="mt-1 text-sm font-semibold text-slate-500">รอบันทึกข้อมูล</p><p class="mt-2 text-5xl font-extrabold text-green-700">5</p></div>
-                <div class="border-x border-slate-200 px-3 py-4 text-center"><span class="material-icons-round text-green-700">fact_check</span><p class="mt-1 text-sm font-semibold text-slate-500">รอจ่ายเงิน</p><p class="mt-2 text-5xl font-extrabold text-green-700">6</p></div>
-                <div class="px-3 py-4 text-center"><span class="material-icons-round text-green-700">cancel</span><p class="mt-1 text-sm font-semibold text-slate-500">ยกเลิก</p><p class="mt-2 text-5xl font-extrabold text-green-700">1</p></div>
+              <div class="consider-dashboard-statuses">
+                <div class="consider-dashboard-status-item">
+                  <span class="material-icons-round customer-text">edit_note</span>
+                  <p class="consider-dashboard-status-label">รอบันทึกข้อมูล</p>
+                  <p class="consider-dashboard-status-value customer-text">5</p>
+                </div>
+                <div class="consider-dashboard-status-item is-middle">
+                  <span class="material-icons-round customer-text">fact_check</span>
+                  <p class="consider-dashboard-status-label">รอวางบิล</p>
+                  <p class="consider-dashboard-status-value customer-text">6</p>
+                </div>
+                <div class="consider-dashboard-status-item">
+                  <span class="material-icons-round customer-text">cancel</span>
+                  <p class="consider-dashboard-status-label">ยกเลิก/ปฏิเสธ</p>
+                  <p class="consider-dashboard-status-value customer-text">1</p>
+                </div>
               </div>
             </div>
           </article>
-          <article class="consider-dashboard-card rounded-xl border-l-4 border-brand-700 bg-white p-5 shadow-card ring-1 ring-slate-200">
-            <div class="grid gap-4 xl:grid-cols-[1fr_280px] xl:items-center">
-              <div class="flex items-center gap-4">
-                <div class="grid h-20 w-20 place-items-center rounded-2xl bg-brand-50 text-brand-700 ring-1 ring-brand-100"><span class="material-icons-round !text-6xl">local_hospital</span></div>
-                <div>
-                  <p class="text-2xl font-extrabold text-brand-700">เคลมโรงพยาบาลทั้งหมด</p>
-                  <div class="flex items-end gap-3"><span class="text-6xl font-extrabold leading-none text-brand-700">12</span><span class="pb-1 text-2xl font-semibold text-slate-500">รายการ</span></div>
+          <article class="consider-dashboard-card consider-dashboard-card-modern hospital-card rounded-xl border-l-4 border-brand-700 bg-white shadow-card ring-1 ring-slate-200">
+            <div class="consider-dashboard-inner">
+              <div class="consider-dashboard-overview">
+                <div class="consider-dashboard-icon hospital-icon">
+                  <span class="material-icons-round">local_hospital</span>
+                </div>
+                <div class="consider-dashboard-copy">
+                  <p class="consider-dashboard-title hospital-text">เคลมโรงพยาบาลทั้งหมด</p>
+                  <div class="consider-dashboard-total-row">
+                    <span class="consider-dashboard-total hospital-text">12</span>
+                    <span class="consider-dashboard-unit">รายการ</span>
+                  </div>
                 </div>
               </div>
-              <div class="grid grid-cols-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                <div class="px-3 py-4 text-center"><span class="material-icons-round text-brand-700">rule</span><p class="mt-1 text-sm font-semibold text-slate-500">ตรวจสอบสิทธิ์</p><p class="mt-2 text-5xl font-extrabold text-brand-700">5</p></div>
-                <div class="border-x border-slate-200 px-3 py-4 text-center"><span class="material-icons-round text-brand-700">receipt_long</span><p class="mt-1 text-sm font-semibold text-slate-500">รอพิจารณา</p><p class="mt-2 text-5xl font-extrabold text-brand-700">6</p></div>
-                <div class="px-3 py-4 text-center"><span class="material-icons-round text-brand-700">account_balance</span><p class="mt-1 text-sm font-semibold text-slate-500">รอวางบิล</p><p class="mt-2 text-5xl font-extrabold text-brand-700">1</p></div>
+              <div class="consider-dashboard-statuses">
+                <div class="consider-dashboard-status-item">
+                  <span class="material-icons-round hospital-text">rule</span>
+                  <p class="consider-dashboard-status-label">ตรวจสอบสิทธิ์</p>
+                  <p class="consider-dashboard-status-value hospital-text">5</p>
+                </div>
+                <div class="consider-dashboard-status-item is-middle">
+                  <span class="material-icons-round hospital-text">receipt_long</span>
+                  <p class="consider-dashboard-status-label">รอพิจารณา</p>
+                  <p class="consider-dashboard-status-value hospital-text">6</p>
+                </div>
+                <div class="consider-dashboard-status-item">
+                  <span class="material-icons-round hospital-text">account_balance</span>
+                  <p class="consider-dashboard-status-label">รอวางบิล</p>
+                  <p class="consider-dashboard-status-value hospital-text">1</p>
+                </div>
               </div>
             </div>
           </article>
@@ -8619,13 +8653,11 @@ body > .min-h-screen > main,
                 </label>
                 <label class="consider-date-wrap">
                   <span class="mb-1 block text-lg font-bold text-slate-500">จากวันที่ <span class="text-danger">*</span></span>
-                  <input type="date" value="2026-03-26" class="consider-monitor-field w-full rounded-lg border border-slate-300 bg-white font-semibold" />
-                  <span class="material-icons-round date-icon">calendar_month</span>
+                  <input id="considerDateFrom" type="date" value="2026-08-25" required data-no-future="1" class="consider-monitor-field w-full rounded-lg border border-slate-300 bg-white font-semibold" />
                 </label>
                 <label class="consider-date-wrap">
                   <span class="mb-1 block text-lg font-bold text-slate-500">ถึงวันที่ <span class="text-danger">*</span></span>
-                  <input type="date" value="2026-03-26" class="consider-monitor-field w-full rounded-lg border border-slate-300 bg-white font-semibold" />
-                  <span class="material-icons-round date-icon">calendar_month</span>
+                  <input id="considerDateTo" type="date" value="2026-08-25" required data-no-future="1" class="consider-monitor-field w-full rounded-lg border border-slate-300 bg-white font-semibold" />
                 </label>
                 <div>
                   <span class="mb-1 block text-lg font-bold text-slate-500">ผลิตภัณฑ์</span>
@@ -8645,7 +8677,7 @@ body > .min-h-screen > main,
                     <option value="ยกเลิก">ยกเลิก</option>
                   </select>
                 </label>
-                <button type="button" onclick="applyConsiderItemStatusFilter()" class="consider-monitor-btn mt-auto inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 font-bold text-white"><span class="material-icons-round">search</span>ค้นหา</button>
+                <button type="button" onclick="if(validateConsiderDateFilters()){applyConsiderItemStatusFilter()}" class="consider-monitor-btn mt-auto inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 font-bold text-white"><span class="material-icons-round">search</span>ค้นหา</button>
                 <button type="button" onclick="resetConsiderFilters()" class="consider-monitor-btn mt-auto inline-flex items-center justify-center rounded-lg border border-red-300 bg-white font-bold text-red-700">ล้างค่า</button>
               </div>
               <div class="consider-filter-search-grid grid gap-3 xl:grid-cols-[260px_1fr]">
@@ -8805,8 +8837,8 @@ body > .min-h-screen > main,
 
           <section class="dd-info-card">
             <div class="dd-meta-grid">
-              <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">calendar_month</span><div><div class="dd-meta-label">วันที่แจ้ง</div><div class="dd-meta-value">17/05/2569 09:38:00</div></div></div>
-              <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">calendar_month</span><div><div class="dd-meta-label">วันที่โอนเงิน</div><div id="ddMetaUpdateDate" class="dd-meta-value">17/05/2569 09:38:02</div></div></div>
+              <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">calendar_month</span><div><div class="dd-meta-label">วันที่แจ้ง</div><div class="dd-meta-value">25/08/2569 09:38:00</div></div></div>
+              <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">calendar_month</span><div><div class="dd-meta-label">วันที่โอนเงิน</div><div id="ddMetaUpdateDate" class="dd-meta-value">25/08/2569 09:42:18</div></div></div>
               <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">business_center</span><div><div class="dd-meta-label">ผู้แจ้งเคลม</div><div class="dd-meta-value">06590 - ณัฏฐณิชา โตรักษา</div></div></div>
               <div class="dd-meta-item"><span class="dd-meta-icon material-icons-round">location_on</span><div><div class="dd-meta-label">สาขา</div><div id="ddMetaBranch" class="dd-meta-value">กรุงเทพมหานคร</div></div></div>
             </div>
@@ -10524,14 +10556,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <label class="tt-monitor-control">
               <span class="tt-monitor-label">จากวันที่ <b>*</b></span>
               <span class="tt-monitor-date-wrap">
-                <input id="transferDateFrom" class="tt-monitor-input" value="26/03/2026" />
+                <input id="transferDateFrom" class="tt-monitor-input" value="25/08/2026" />
                 <span class="material-icons-round tt-monitor-date-icon">calendar_month</span>
               </span>
             </label>
             <label class="tt-monitor-control">
               <span class="tt-monitor-label">ถึงวันที่ <b>*</b></span>
               <span class="tt-monitor-date-wrap">
-                <input id="transferDateTo" class="tt-monitor-input" value="26/03/2026" />
+                <input id="transferDateTo" class="tt-monitor-input" value="25/08/2026" />
                 <span class="material-icons-round tt-monitor-date-icon">calendar_month</span>
               </span>
             </label>
@@ -12282,7 +12314,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     let claimMonitorFilteredRows = claimMonitorRows;
 
     const considerationCustomerRows = [
-      { date: "17/05/2569 09:38:02", claimCode: "CLPA6905000104", school: "โรงเรียนบ้านหนองโบประชานุเคราะห์", name: "นางสาวนวพร ก้องเกียรติสกุล", idCard: "902596216345X", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา" },
+      { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", school: "โรงเรียนบ้านหนองโบประชานุเคราะห์", name: "นางสาวนวพร ก้องเกียรติสกุล", idCard: "902596216345X", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา" },
       { date: "17/05/2569 10:12:19", claimCode: "CLPA6905000108", school: "โรงเรียนสตรีวิทยา ๒", name: "ด.ญ.กมลพร จันทร์สิงห์", idCard: "135160611673X", amount: "850.00", itemStatus: "รอพิจารณา" },
       { date: "17/05/2569 11:44:05", claimCode: "CL6905000076", caseNo: "CC6905000076-02", school: "-", name: "นางสาวภัทรวดี ใจดี", idCard: "618374901225X", appId: "0019284", phone: "089-374-9012", plan: "631", amount: "1,780.00", exgratiaAmount: "300.00", itemStatus: "รอพิจารณา", claimStatus: "Re-Open", claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", claimType: "OPD", isContinuous: true, previousClaimNo: "CL6904000058", previousCaseNo: "CC6904000058-01", previousServiceDate: "28/04/2569", hospital: "โรงพยาบาลพญาไท 2", chiefComplaint: "ปวดศีรษะ เวียนศีรษะ และคลื่นไส้ต่อเนื่อง", diagnosis: "G43.0 ไมเกรนชนิดไม่มีออรา", continuousNote: "แพทย์นัดติดตามอาการภายใน 30 วันจากการรักษาครั้งก่อน" },
       { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", school: "-", name: "ด.ช.ตริณภพ รัตนเศรษฐวิ", idCard: "485562621138X", amount: "300.00", itemStatus: "รอเอกสาร" },
@@ -12303,7 +12335,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ];
 
     const considerationHospitalRows = [
-      { date: "17/05/2569 09:38:02", claimCode: "CLPA6905000104", hospital: "โรงพยาบาลรวมใจรักษ์", province: "กรุงเทพมหานคร", name: "นางสาวนวพร ก้องเกียรติสกุล", claimType: "OPD Full", product: "PA", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา"},
+      { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", hospital: "โรงพยาบาลรวมใจรักษ์", province: "กรุงเทพมหานคร", name: "นางสาวนวพร ก้องเกียรติสกุล", claimType: "OPD Full", product: "PA", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา"},
       { date: "17/05/2569 10:08:20", claimCode: "CL6905000072", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายณัฐวัฒน์ เกตุวิชิต", claimType: "IPD", product: "PH", amount: "8,450.00" , itemStatus: "รอเอกสาร"},
       { date: "17/05/2569 11:22:45", claimCode: "CLPA6905000107", hospital: "โรงพยาบาลเด็ก", province: "กรุงเทพมหานคร", name: "ด.ญ.ปาริฉัตร แก้วมณี", claimType: "OPD Half", product: "PA", amount: "620.00" , itemStatus: "รอแก้ไข"},
       { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", hospital: "โรงพยาบาลมะการักษ์", province: "กาญจนบุรี", name: "นายชาญวิทย์ อินแสง", claimType: "OPD Half", product: "PH", amount: "550.00", exgratiaAmount: "250.00", itemStatus: "รอพิจารณา"},
@@ -12319,10 +12351,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const considerationDeathRows = [
       { date: "17/06/2569 09:38:02", claimCode: "CL6906000104", branch: "สำนักงานใหญ่", name: "นายวีระศักดิ์ วรวุฒิอนันตกุล", product: "PH", status: "รอพิจารณา", statusClass: "wait", amount: "1,250.00" },
-      { date: "17/06/2569 13:15:38", claimCode: "CL6906000082", branch: "กระบี่", name: "นายวีรัตน์ แสนวงศ์", product: "PH", status: "อยู่ระหว่างทำรายการ", statusClass: "progress", amount: "300.00" },
+      { date: "24/08/2569 13:15:38", claimCode: "CL6906000082", branch: "กระบี่", name: "นายวีรัตน์ แสนวงศ์", product: "PH", status: "อยู่ระหว่างทำรายการ", statusClass: "progress", amount: "300.00" },
       { date: "17/06/2569 14:29:43", claimCode: "CL6906000095", branch: "ระนอง", name: "นางวิมลพร พงษ์พัฒน์เปรียน", product: "PH", status: "รอแก้ไข", statusClass: "edit", amount: "700.00" },
       { date: "17/06/2569 14:42:24", claimCode: "CLPA6906000112", branch: "สุพรรณบุรี", name: "เด็กชายธนภัทร สถานนท์", product: "PA", plan: "ชดเชย+สุขภาพ", status: "ปฏิเสธ", statusClass: "reject", amount: "2,310.50" },
-      { date: "17/06/2569 15:47:27", claimCode: "CLPA6906000113", branch: "สำนักงานใหญ่", name: "นางสาววิญา ศรีโกศล", product: "PA", plan: "เลือกสิทธิ์+สุขภาพ", status: "อนุมัติ", statusClass: "approve", amount: "2,140.90" }
+      { date: "24/08/2569 15:47:27", claimCode: "CLPA6906000113", branch: "สำนักงานใหญ่", name: "นางสาววิญา ศรีโกศล", product: "PA", plan: "เลือกสิทธิ์+สุขภาพ", status: "อนุมัติ", statusClass: "approve", amount: "2,140.90" }
     ];
 
     let currentConsiderationTab = "customer";
@@ -13290,7 +13322,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const complaints = row.product === 'PA' ? paComplaints : phComplaints;
       const base = [];
       const seed = row.appId.replace(/\D/g,'').slice(-3) || '101';
-      const seqs = ['17/06/2569 13:15:38','10/03/2569 14:29:43','01/02/2569 14:42:24','20/12/2568 15:47:27','08/11/2568 10:12:16'];
+      const seqs = ['24/08/2569 13:15:38','10/03/2569 14:29:43','01/02/2569 14:42:24','20/12/2568 15:47:27','08/11/2568 10:12:16'];
       const incidents = ['17/06/2569','10/03/2569','01/02/2569','20/12/2568','08/11/2568'];
       const amounts = ['300.00','700.00','2,310.50','2,140.90','1,250.00'];
       for (let idx = 0; idx < 5; idx++) {
@@ -13848,7 +13880,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const considerDeathDetailMockups = {
       default: {
-        meta: { updateDate: '17/05/2569 09:38:02', branch: 'กรุงเทพมหานคร' },
+        meta: { updateDate: '25/08/2569 09:42:18', branch: 'กรุงเทพมหานคร' },
         claim: { claimCode: 'CL6905000082', caseCode: 'CC6905000082' },
         insured: { name: 'นายวีระศักดิ์ วรวุฒิอนันตกุล', idCard: '1179900196586', appId: '0011066', phone: '081-233-4444', status: 'ปกติ', plan: 'แผน : 662' },
         detailHtml: `<div><div class="dd-field-label">ประเภทการเคลม :</div><div class="dd-field-value">เคลมลูกค้า</div></div>
@@ -13872,7 +13904,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         payTotal: 'จำนวนเงินโอนรวม : 120,000.00 บาท'
       },
       CL6906000082: {
-        meta: { updateDate: '17/06/2569 13:15:38', branch: 'กระบี่' },
+        meta: { updateDate: '24/08/2569 13:15:38', branch: 'กระบี่' },
         claim: { claimCode: 'CL6906000082', caseCode: 'CC6906000082' },
         insured: { name: 'นายวีรัตน์ แสนวงศ์', idCard: '3101702456781', appId: '0012482', phone: '089-552-1788', status: 'มีผลคุ้มครอง', plan: 'แผน : 662' },
         detailHtml: `<div><div class="dd-field-label">ประเภทการเคลม :</div><div class="dd-field-value">เคลมลูกค้า</div></div>
@@ -13895,7 +13927,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         payTotal: 'จำนวนเงินโอนรวม : 70,000.00 บาท'
       },
       CLPA6906000113: {
-        meta: { updateDate: '17/06/2569 15:47:27', branch: 'กรุงเทพมหานคร' },
+        meta: { updateDate: '24/08/2569 15:47:27', branch: 'กรุงเทพมหานคร' },
         claim: { claimCode: 'CLPA6906000113', caseCode: 'CCPA6906000113' },
         insured: { name: 'นางสาววิญา ศรีโกศล', idCard: '1103701123456', appId: 'PA001113', phone: '086-445-7721', status: 'มีผลคุ้มครอง', plan: 'แผน : เลือกสิทธิ์+สุขภาพ' },
         detailHtml: `<div><div class="dd-field-label">ประเภทการเคลม :</div><div class="dd-field-value">เคลมลูกค้า</div></div>
@@ -14140,7 +14172,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <td class="px-4 py-4 font-semibold">${row.amount}</td>
             <td class="px-4 py-4">${row.exgratiaAmount ? `<span class="consider-exgratia-pill">${row.exgratiaAmount}</span>` : `<span class="text-slate-400">-</span>`}</td>
             <td class="px-4 py-4 text-center">${getConsiderItemStatusBadge(row.itemStatus)}</td>
-            <td class="px-4 py-4"><div class="flex justify-center gap-3"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div></td>
+            <td class="px-4 py-4"><div class="consider-hospital-action-group"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div></td>
           </tr>`;
         }).join("");
       }
@@ -14298,7 +14330,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
           <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
             <div class="grid gap-0 md:grid-cols-4 border-b border-slate-200">
-              <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">calendar_month</span></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้ง</div><div class="text-xl font-extrabold text-brand-700">17/05/2569 09:38:00</div></div></div>
+              <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">calendar_month</span></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้ง</div><div class="text-xl font-extrabold text-brand-700">25/08/2569 09:38:00</div></div></div>
               <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">local_hospital</span></div><div><div class="text-sm font-bold text-slate-500">สถานพยาบาล</div><div class="text-xl font-extrabold text-brand-700">${row.hospital || "โรงพยาบาลมะการักษ์"}</div></div></div>
               <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">location_on</span></div><div><div class="text-sm font-bold text-slate-500">จังหวัด</div><div class="text-xl font-extrabold text-brand-700">${row.province || "กาญจนบุรี"}</div></div></div>
               <div class="flex items-center gap-3 p-4"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">sync</span></div><div><div class="text-sm font-bold text-slate-500">สถานะเคลม</div><div class="inline-flex rounded-full bg-lime-100 px-4 py-1 text-lg font-extrabold text-lime-700">Open</div></div></div>
@@ -14473,7 +14505,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
           <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
             <div class="grid gap-0 md:grid-cols-4 border-b border-slate-200">
-              <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">calendar_month</span></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้ง</div><div class="text-xl font-extrabold text-brand-700">17/05/2569 09:38:00</div></div></div>
+              <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">calendar_month</span></div><div><div class="text-sm font-bold text-slate-500">วันที่แจ้ง</div><div class="text-xl font-extrabold text-brand-700">25/08/2569 09:38:00</div></div></div>
               <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">local_hospital</span></div><div><div class="text-sm font-bold text-slate-500">สถานพยาบาล</div><div class="text-xl font-extrabold text-brand-700">${row.hospital || "โรงพยาบาลมะการักษ์"}</div></div></div>
               <div class="flex items-center gap-3 p-4 md:border-r border-slate-200"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">location_on</span></div><div><div class="text-sm font-bold text-slate-500">จังหวัด</div><div class="text-xl font-extrabold text-brand-700">${row.province || "กาญจนบุรี"}</div></div></div>
               <div class="flex items-center gap-3 p-4"><div class="grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700"><span class="material-icons-round">sync</span></div><div><div class="text-sm font-bold text-slate-500">สถานะเคลม</div><div class="inline-flex rounded-full bg-lime-100 px-4 py-1 text-lg font-extrabold text-lime-700">Open</div></div></div>
@@ -17829,19 +17861,19 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const transferTrackingData = {
       nonDeath: [
-        { transferNo:"CPG690600073", created:"23/06/2569 14:18:39", insured:"นายวิชาญ ศรีพงศ์สกุล", product:"PH", amount:600.00, status:"อยู่ระหว่างการโอนเงิน", statusKey:"wait" },
-        { transferNo:"CPG690600072", created:"23/06/2569 13:36:37", insured:"นางมิติยร์ โชคาวณิช", product:"PH", amount:1525.44, status:"โอนสำเร็จ", statusKey:"success" },
-        { transferNo:"CPG690600071", created:"23/06/2569 13:35:33", insured:"โรงเรียนบ้านขุนกลาง", product:"PA", amount:300.00, status:"โอนสำเร็จ", statusKey:"success" },
-        { transferNo:"CPG690600071", created:"23/06/2569 13:35:33", insured:"โรงเรียนวัดโคกสูง", product:"PA", amount:100.00, status:"โอนไม่สำเร็จ", statusKey:"fail", editable:true }
+        { transferNo:"CPG690800118", created:"25/08/2569 15:02:14", insured:"นางสาวกัญญาวีร์ ศรีสวัสดิ์", product:"PH", amount:850.00, status:"อยู่ระหว่างการโอนเงิน", statusKey:"wait" },
+        { transferNo:"CPG690800117", created:"25/08/2569 14:41:03", insured:"นายภูริทัต ใจแสน", product:"PH", amount:1250.00, status:"โอนสำเร็จ", statusKey:"success" },
+        { transferNo:"CPG690800116", created:"25/08/2569 14:12:55", insured:"โรงเรียนบ้านขุนกลาง", product:"PA", amount:640.00, status:"โอนสำเร็จ", statusKey:"success" },
+        { transferNo:"CPG690800114", created:"25/08/2569 13:22:18", insured:"โรงเรียนวัดโคกสูง", product:"PA", amount:300.00, status:"โอนไม่สำเร็จ", statusKey:"fail", editable:true }
       ],
       death: [
-        { claimNo:"CL690600068", created:"23/06/2569 10:54:02", insured:"นางภาวดี พัฒน์ธนโกศล", product:"PH", amount:10000.00, status:"รอแก้ไข", statusKey:"wait", editable:true, beneficiaries:[] },
-        { claimNo:"CL690600067", created:"23/06/2569 10:53:06", insured:"นายธนเสฏฐ์ สันติวงษ์", product:"PH", amount:30000.00, status:"อนุมัติ", statusKey:"approve", payReady:true, beneficiaries:[
+        { claimNo:"CL690800121", created:"25/08/2569 11:58:02", insured:"นางภาวดี พัฒน์ธนโกศล", product:"PH", amount:10000.00, status:"รอแก้ไข", statusKey:"wait", editable:true, beneficiaries:[] },
+        { claimNo:"CL690800120", created:"25/08/2569 11:46:12", insured:"นายธนเสฏฐ์ สันติวงษ์", product:"PH", amount:30000.00, status:"อนุมัติ", statusKey:"approve", payReady:true, beneficiaries:[
           { code:"BFC690300002", relation:"มารดา", name:"นางวรรณพร สันติวงษ์", bank:"กรุงไทย 1821000135 วรรณพร สันติวงษ์", amount:15000.00, transferStatus:"รอโอน" },
           { code:"BFC690300004", relation:"บิดา", name:"นายภูวนัย สันติวงษ์", bank:"กรุงเทพ 1931112345 ภูวนัย สันติวงษ์", amount:15000.00, transferStatus:"รอโอน" }
         ] },
-        { claimNo:"CLPA690600063", created:"23/06/2569 10:50:33", insured:"เด็กหญิงศศิธร แสนสุวรรณวงศ์", product:"PA", amount:100000.00, status:"ปฏิเสธ", statusKey:"reject", beneficiaries:[] },
-        { claimNo:"CLPA690600059", created:"23/06/2569 10:37:25", insured:"นางสาวธนิษา รักษาทรัพย์", product:"PA", amount:60000.00, status:"ยกเลิก", statusKey:"cancel", beneficiaries:[] }
+        { claimNo:"CLPA690800119", created:"24/08/2569 16:18:33", insured:"เด็กหญิงศศิธร แสนสุวรรณวงศ์", product:"PA", amount:100000.00, status:"ปฏิเสธ", statusKey:"reject", beneficiaries:[] },
+        { claimNo:"CLPA690800104", created:"22/08/2569 10:37:25", insured:"นางสาวธนิษา รักษาทรัพย์", product:"PA", amount:60000.00, status:"ยกเลิก", statusKey:"cancel", beneficiaries:[] }
       ]
     };
 
@@ -17855,22 +17887,22 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const transferTrackingRows = [
       {
-        refNo: "CPG690600075",
-        claimNo: "CL690600075",
-        created: "23/06/2569 14:18:39",
-        notifyDate: "23/06/2569 14:25:10",
+        refNo: "CPG690800118",
+        claimNo: "CL690800118",
+        created: "25/08/2569 15:02:14",
+        notifyDate: "25/08/2569 15:18:42",
         transferDate: "-",
-        insured: "นายวิชาญ ศรีพงศ์สกุล",
+        insured: "นางสาวกัญญาวีร์ ศรีสวัสดิ์",
         school: "",
         product: "PH",
         claimType: "ค่ารักษา OPD",
-        amount: 600.00,
+        amount: 850.00,
         status: "อยู่ระหว่างการโอน",
         statusKey: "wait",
         statusFilter: "processing",
-        bank: "กรุงไทย",
-        account: "182-1-774521",
-        payee: "นายวิชาญ ศรีพงศ์สกุล",
+        bank: "กสิกรไทย",
+        account: "014-2-554981",
+        payee: "นางสาวกัญญาวีร์ ศรีสวัสดิ์",
         payeeRelation: "ผู้เอาประกัน",
         branch: "สำนักงานใหญ่",
         canEdit: false,
@@ -17879,40 +17911,40 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690600074",
-        claimNo: "CL690600074",
-        created: "23/06/2569 13:36:37",
-        notifyDate: "23/06/2569 13:45:12",
-        transferDate: "23/06/2569 14:02:26",
-        insured: "นางมิติยร์ โชตวานิช",
+        refNo: "CPG690800117",
+        claimNo: "CL690800117",
+        created: "25/08/2569 14:41:03",
+        notifyDate: "25/08/2569 14:55:19",
+        transferDate: "25/08/2569 15:07:46",
+        insured: "นายภูริทัต ใจแสน",
         school: "",
         product: "PH",
         claimType: "ค่ารักษา OPD",
-        amount: 1525.44,
+        amount: 1250.00,
         status: "โอนสำเร็จ",
         statusKey: "success",
         statusFilter: "success",
-        bank: "กสิกรไทย",
-        account: "045-2-889104",
-        payee: "นางมิติยร์ โชตวานิช",
+        bank: "กรุงไทย",
+        account: "182-0-449875",
+        payee: "นายภูริทัต ใจแสน",
         payeeRelation: "ผู้เอาประกัน",
-        branch: "รังสิต",
+        branch: "เชียงใหม่",
         canEdit: false,
         canPay: false,
         transferKind: "ทั่วไป",
         beneficiaries: []
       },
       {
-        refNo: "CPG690600073",
-        claimNo: "CL690600073",
-        created: "23/06/2569 13:35:33",
-        notifyDate: "23/06/2569 13:38:51",
-        transferDate: "23/06/2569 13:49:24",
-        insured: "โรงเรียนบ้านขุนกลาง",
-        school: "",
+        refNo: "CPG690800116",
+        claimNo: "CLPA690800116",
+        created: "25/08/2569 14:12:55",
+        notifyDate: "25/08/2569 14:20:31",
+        transferDate: "25/08/2569 14:34:08",
+        insured: "เด็กหญิงปวันรัตน์ ธรรมใจ",
+        school: "โรงเรียนบ้านขุนกลาง",
         product: "PA",
         claimType: "ค่ารักษาอุบัติเหตุ",
-        amount: 300.00,
+        amount: 640.00,
         status: "โอนสำเร็จ",
         statusKey: "success",
         statusFilter: "success",
@@ -17927,16 +17959,40 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690600072",
-        claimNo: "CL690600072",
-        created: "23/06/2569 13:35:33",
-        notifyDate: "23/06/2569 13:42:19",
-        transferDate: "23/06/2569 13:58:03",
-        insured: "โรงเรียนวัดโคกสูง",
+        refNo: "CPG690800115",
+        claimNo: "CL690800115",
+        created: "25/08/2569 13:58:27",
+        notifyDate: "25/08/2569 14:10:05",
+        transferDate: "-",
+        insured: "นายวิชาญ ศรีพงศ์สกุล",
         school: "",
+        product: "PH",
+        claimType: "IPD ค่ารักษา",
+        amount: 6400.50,
+        status: "รอโอนเงิน",
+        statusKey: "wait",
+        statusFilter: "pending",
+        bank: "ไทยพาณิชย์",
+        account: "408-2-118432",
+        payee: "นายวิชาญ ศรีพงศ์สกุล",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "กรุงเทพมหานคร",
+        canEdit: false,
+        canPay: true,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800114",
+        claimNo: "CLPA690800114",
+        created: "25/08/2569 13:22:18",
+        notifyDate: "25/08/2569 13:33:42",
+        transferDate: "25/08/2569 13:49:51",
+        insured: "เด็กชายภาคิน พรมดี",
+        school: "โรงเรียนวัดโคกสูง",
         product: "PA",
         claimType: "ค่ารักษาอุบัติเหตุ",
-        amount: 100.00,
+        amount: 300.00,
         status: "โอนไม่สำเร็จ",
         statusKey: "fail",
         statusFilter: "fail",
@@ -17951,10 +18007,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690600071",
-        claimNo: "CL690600067",
-        created: "23/06/2569 10:54:02",
-        notifyDate: "23/06/2569 11:10:44",
+        refNo: "CPG690800113",
+        claimNo: "CL690800067",
+        created: "25/08/2569 11:46:12",
+        notifyDate: "25/08/2569 12:08:45",
         transferDate: "-",
         insured: "นายธนเสฏฐ์ สันติวงษ์",
         school: "",
@@ -17977,11 +18033,83 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ]
       },
       {
-        refNo: "CPG690600070",
-        claimNo: "CL690600066",
-        created: "23/06/2569 10:54:02",
-        notifyDate: "23/06/2569 11:06:22",
-        transferDate: "23/06/2569 11:40:18",
+        refNo: "CPG690800112",
+        claimNo: "CL690800112",
+        created: "24/08/2569 16:28:09",
+        notifyDate: "24/08/2569 16:39:12",
+        transferDate: "24/08/2569 16:55:37",
+        insured: "นางมิติยร์ โชตวานิช",
+        school: "",
+        product: "PH",
+        claimType: "ค่ารักษา OPD",
+        amount: 1525.44,
+        status: "โอนสำเร็จ",
+        statusKey: "success",
+        statusFilter: "success",
+        bank: "กสิกรไทย",
+        account: "045-2-889104",
+        payee: "นางมิติยร์ โชตวานิช",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "รังสิต",
+        canEdit: false,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800111",
+        claimNo: "CLPA690800111",
+        created: "24/08/2569 15:50:24",
+        notifyDate: "24/08/2569 16:02:01",
+        transferDate: "24/08/2569 16:17:29",
+        insured: "เด็กหญิงพิมพ์ชนก สุขเกษม",
+        school: "โรงเรียนบ้านดอนแก้ว",
+        product: "PA",
+        claimType: "ชดเชยอุบัติเหตุ",
+        amount: 1000.00,
+        status: "โอนสำเร็จ",
+        statusKey: "success",
+        statusFilter: "success",
+        bank: "กรุงไทย",
+        account: "985-0-119201",
+        payee: "เด็กหญิงพิมพ์ชนก สุขเกษม",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "ลำพูน",
+        canEdit: false,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800110",
+        claimNo: "CL690800110",
+        created: "24/08/2569 14:22:11",
+        notifyDate: "24/08/2569 14:39:08",
+        transferDate: "-",
+        insured: "นางสาวพรนภา จิตอารี",
+        school: "",
+        product: "PH",
+        claimType: "Day Case Surgery",
+        amount: 2850.00,
+        status: "อยู่ระหว่างการโอน",
+        statusKey: "wait",
+        statusFilter: "processing",
+        bank: "กรุงศรีอยุธยา",
+        account: "453-1-662901",
+        payee: "นางสาวพรนภา จิตอารี",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "พิษณุโลก",
+        canEdit: false,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800109",
+        claimNo: "CL690800109",
+        created: "24/08/2569 11:12:43",
+        notifyDate: "24/08/2569 11:26:18",
+        transferDate: "24/08/2569 11:41:52",
         insured: "นายธนเสฏฐ์ สันติวงษ์",
         school: "",
         product: "PH",
@@ -17999,6 +18127,102 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         canPay: false,
         transferKind: "Death&Disability",
         beneficiaries: []
+      },
+      {
+        refNo: "CPG690800108",
+        claimNo: "CLPA690800108",
+        created: "23/08/2569 16:18:30",
+        notifyDate: "23/08/2569 16:29:54",
+        transferDate: "23/08/2569 16:45:11",
+        insured: "เด็กชายธนกฤต รัตนชัย",
+        school: "โรงเรียนศรีพัฒนา",
+        product: "PA",
+        claimType: "ค่ารักษาอุบัติเหตุ",
+        amount: 420.00,
+        status: "โอนไม่สำเร็จ",
+        statusKey: "fail",
+        statusFilter: "fail",
+        bank: "ธ.ก.ส.",
+        account: "021-2-884710",
+        payee: "โรงเรียนศรีพัฒนา",
+        payeeRelation: "สถานศึกษา",
+        branch: "อุบลราชธานี",
+        canEdit: true,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800107",
+        claimNo: "CL690800107",
+        created: "23/08/2569 14:40:18",
+        notifyDate: "23/08/2569 14:55:32",
+        transferDate: "23/08/2569 15:09:26",
+        insured: "นายปฐมพงศ์ อินทรา",
+        school: "",
+        product: "PH",
+        claimType: "IPD ค่ารักษา",
+        amount: 12500.00,
+        status: "โอนสำเร็จ",
+        statusKey: "success",
+        statusFilter: "success",
+        bank: "ทีเอ็มบีธนชาต",
+        account: "211-0-884310",
+        payee: "นายปฐมพงศ์ อินทรา",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "ขอนแก่น",
+        canEdit: false,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800106",
+        claimNo: "CL690800106",
+        created: "23/08/2569 13:08:51",
+        notifyDate: "23/08/2569 13:20:04",
+        transferDate: "-",
+        insured: "นางสาวเบญญาภา เจริญผล",
+        school: "",
+        product: "PH",
+        claimType: "ค่ารักษา OPD",
+        amount: 980.00,
+        status: "รอโอนเงิน",
+        statusKey: "wait",
+        statusFilter: "pending",
+        bank: "ออมสิน",
+        account: "021-9-550221",
+        payee: "นางสาวเบญญาภา เจริญผล",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "สุราษฎร์ธานี",
+        canEdit: false,
+        canPay: true,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
+      },
+      {
+        refNo: "CPG690800105",
+        claimNo: "CLPA690800105",
+        created: "22/08/2569 10:36:42",
+        notifyDate: "22/08/2569 10:49:17",
+        transferDate: "22/08/2569 11:03:58",
+        insured: "เด็กหญิงสุชาดา ทองอินทร์",
+        school: "โรงเรียนบ้านหนองโบประชานุเคราะห์",
+        product: "PA",
+        claimType: "ชดเชยอุบัติเหตุ",
+        amount: 2000.00,
+        status: "โอนสำเร็จ",
+        statusKey: "success",
+        statusFilter: "success",
+        bank: "กรุงไทย",
+        account: "446-0-552310",
+        payee: "เด็กหญิงสุชาดา ทองอินทร์",
+        payeeRelation: "ผู้เอาประกัน",
+        branch: "บุรีรัมย์",
+        canEdit: false,
+        canPay: false,
+        transferKind: "ทั่วไป",
+        beneficiaries: []
       }
     ];
 
@@ -18006,7 +18230,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       view: 'table',
       openRows: new Set(),
       rows: [...transferTrackingRows],
-      selectedStatuses: new Set(['pending', 'processing', 'fail'])
+      selectedStatuses: new Set(['success', 'pending', 'processing', 'fail'])
     };
 
     function getTransferTrackingRows() {
@@ -18100,9 +18324,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function getTransferDateByType(row, type) {
-      if (type === 'วันที่แจ้งโอนเงิน') return row.notifyDate || row.created;
-      if (type === 'วันที่โอนเงิน') return row.transferDate && row.transferDate !== '-' ? row.transferDate : row.created;
-      return row.created;
+      if (type === 'วันที่แจ้งโอนเงิน') return row.notifyDate || null;
+      if (type === 'วันที่โอนเงิน') return row.transferDate && row.transferDate !== '-' ? row.transferDate : null;
+      return row.created || null;
     }
 
     function getTransferFilters() {
@@ -18121,7 +18345,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function applyTransferTrackingFilters() {
       const filters = getTransferFilters();
-      const useDateFilter = !((document.getElementById('transferDateFrom')?.value || '') === '26/03/2026' && (document.getElementById('transferDateTo')?.value || '') === '26/03/2026');
+      const useDateFilter = true;
       const selectedStatuses = transferTrackingState.selectedStatuses;
       transferTrackingState.rows = transferTrackingRows.filter(row => {
         const keywordSource = [row.refNo, row.claimNo, row.insured, row.school, row.payee, row.bank, row.account, row.claimType, row.branch].join(' ').toLowerCase();
@@ -18130,14 +18354,27 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const branchMatch = filters.branch === 'ทั้งหมด' || row.branch === filters.branch;
         const statusMatch = selectedStatuses.has(getRowTransferStatusKey(row));
         const rowDate = parseThaiDateInput(getTransferDateByType(row, filters.dateType));
-        const fromMatch = !useDateFilter || !filters.fromDate || !rowDate || rowDate >= filters.fromDate;
-        const toMatch = !useDateFilter || !filters.toDate || !rowDate || rowDate <= filters.toDate;
-        return productMatch && keywordMatch && branchMatch && statusMatch && fromMatch && toMatch;
+        const dateMatch = !useDateFilter || (rowDate && (!filters.fromDate || rowDate >= filters.fromDate) && (!filters.toDate || rowDate <= filters.toDate));
+        return productMatch && keywordMatch && branchMatch && statusMatch && dateMatch;
       });
       transferTrackingState.openRows.clear();
       renderTransferStatusFilters();
       renderTransferTrackingTable();
       renderTransferTrackingCards();
+    }
+
+    function getTodayDisplayDate(){
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2,'0');
+      const mm = String(now.getMonth()+1).padStart(2,'0');
+      const yyyy = now.getFullYear();
+      return `${dd}/${mm}/${yyyy}`;
+    }
+
+    function isTransferDefaultDateRange(){
+      const today = getTodayDisplayDate();
+      return (document.getElementById('transferDateFrom')?.value || '') === today
+        && (document.getElementById('transferDateTo')?.value || '') === today;
     }
 
     function resetTransferTrackingFilters() {
@@ -18149,13 +18386,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const ph = document.getElementById('ttProductPH');
       const pa = document.getElementById('ttProductPA');
       if (dateType) dateType.value = 'วันที่สร้างรายการ';
-      if (fromDate) fromDate.value = '26/03/2026';
-      if (toDate) toDate.value = '26/03/2026';
+      if (fromDate) fromDate.value = getTodayDisplayDate();
+      if (toDate) toDate.value = getTodayDisplayDate();
       if (keyword) keyword.value = '';
       if (branch) branch.value = 'ทั้งหมด';
       if (ph) ph.checked = true;
       if (pa) pa.checked = true;
-      transferTrackingState.selectedStatuses = new Set(['pending', 'processing', 'fail']);
+      transferTrackingState.selectedStatuses = new Set(['success', 'pending', 'processing', 'fail']);
       renderTransferStatusFilters();
       applyTransferTrackingFilters();
     }
@@ -18178,6 +18415,105 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       applyTransferTrackingFilters();
       setTransferTrackingView(transferTrackingState.view || 'table');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderTransferTrackingTable() {
+      const head = document.getElementById('transferTrackingTableHead');
+      const body = document.getElementById('transferTrackingTableBody');
+      const pager = document.getElementById('ttPagerText');
+      if (!head || !body) return;
+      const rows = getTransferTrackingRows();
+      const selectedDateType = document.getElementById('ttDateType')?.value || 'วันที่สร้างรายการ';
+      head.innerHTML = `
+        <tr>
+          <th class="w-10"></th>
+          <th>เลขที่เคลม/เลขที่การโอนเงิน</th>
+          <th>${selectedDateType}</th>
+          <th>ผู้เอาประกัน/สถานศึกษา</th>
+          <th>ผลิตภัณฑ์</th>
+          <th>สาขา</th>
+          <th class="text-right">จำนวนเงินโอน</th>
+          <th>สถานะการโอน</th>
+          <th class="text-center">ดำเนินการ</th>
+        </tr>`;
+      if (!rows.length) {
+        body.innerHTML = `<tr><td colspan="9" class="py-6 text-center text-slate-400 font-bold">ไม่พบรายการตามเงื่อนไขที่เลือก</td></tr>`;
+        if (pager) pager.textContent = '0 จาก 0';
+        return;
+      }
+      body.innerHTML = rows.map((row, index) => {
+        const isOpen = transferTrackingState.openRows.has(row.refNo);
+        const canExpand = row.claimType === 'Death&Disability' && !!(row.beneficiaries && row.beneficiaries.length);
+        const claimTypeBadge = row.claimType === 'Death&Disability' ? `<div class="tt-sub-badge tt-corner-badge">Death&Disability</div>` : '';
+        const statusClass = getTransferStatusClass(row);
+        const dateDisplay = getTransferDateByType(row, selectedDateType) || '-';
+        const insuredDisplay = row.school ? `${row.insured}<div class="mt-0.5 text-[12px] font-medium text-slate-500">${row.school}</div>` : row.insured;
+        const actions = `
+          <div class="tt-row-actions">
+            <button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${index})" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button>
+            ${getRowTransferStatusKey(row) === 'fail' ? `<button type="button" class="tt-row-icon-btn edit-bank" onclick="openTransferTrackingEdit(${index})" title="แก้ไขบัญชี" aria-label="แก้ไขบัญชี"><span class="material-icons-round">edit</span></button>` : ''}
+            ${row.canPay ? `<button type="button" class="tt-row-icon-btn pay" onclick="showTransferPaymentModal(${index})" title="แจ้งโอนเงิน" aria-label="แจ้งโอนเงิน"><span class="material-icons-round">account_balance_wallet</span></button>` : ''}
+          </div>`;
+        return `
+          <tr>
+            <td class="text-center">${canExpand ? `<button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${row.refNo}')"><span class="material-icons-round">${isOpen ? 'expand_more' : 'chevron_right'}</span></button>` : `<span class="text-slate-300">•</span>`}</td>
+            <td><button type="button" class="tt-link" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button><div class="mt-1 text-[12px] text-slate-500">${row.claimNo}</div></td>
+            <td>${dateDisplay}</td>
+            <td>${insuredDisplay}</td>
+            <td><div class="tt-product-cell ${row.claimType === 'Death&Disability' ? 'has-badge' : ''}"><span>${row.product}</span>${claimTypeBadge}</div></td>
+            <td>${row.branch || '-'}</td>
+            <td class="text-right">${formatBaht(row.amount)}</td>
+            <td><span class="tt-status ${statusClass}">${row.status}</span></td>
+            <td class="text-center">${actions}</td>
+          </tr>
+          ${canExpand && isOpen ? `<tr class="tt-detail-row"><td colspan="9">${buildTransferDetailTable(row)}</td></tr>` : ''}`;
+      }).join('');
+      if (pager) pager.textContent = rows.length ? `1-${rows.length} จาก ${rows.length}` : '0 จาก 0';
+    }
+
+    function renderTransferTrackingCards() {
+      const wrap = document.getElementById('ttCardList');
+      if (!wrap) return;
+      const rows = getTransferTrackingRows();
+      const selectedDateType = document.getElementById('ttDateType')?.value || 'วันที่สร้างรายการ';
+      if (!rows.length) {
+        wrap.innerHTML = `<article class="tt-mobile-card"><p class="text-center font-bold text-slate-400">ไม่พบรายการตามเงื่อนไขที่เลือก</p></article>`;
+        return;
+      }
+      wrap.innerHTML = rows.map((row, index) => {
+        const statusClass = getTransferStatusClass(row);
+        const claimTypeBadge = row.claimType === 'Death&Disability' ? `<div class="tt-sub-badge mt-1 inline-flex">Death&Disability</div>` : '';
+        const dateDisplay = getTransferDateByType(row, selectedDateType) || '-';
+        return `
+          <article class="tt-mobile-card">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <button type="button" class="tt-link text-xl" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button>
+                <p class="mt-1 text-slate-500">${selectedDateType} : ${dateDisplay}</p>
+              </div>
+              <span class="tt-status ${statusClass}">${row.status}</span>
+            </div>
+            <p class="mt-3 font-bold text-slate-700">${row.insured}</p>
+            ${row.school ? `<p class="mt-1 text-sm text-slate-500">สถานศึกษา : ${row.school}</p>` : ''}
+            <p class="mt-1 text-sm text-slate-500">สาขา : ${row.branch || '-'}</p>
+            ${claimTypeBadge}
+            <div class="mt-3 flex items-center justify-between">
+              <div>
+                <p class="text-sm text-slate-500">ผลิตภัณฑ์</p>
+                <p class="font-extrabold text-slate-700">${row.product}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-slate-500">จำนวนเงินโอน</p>
+                <p class="font-extrabold text-brand-700">${formatBaht(row.amount)}</p>
+              </div>
+            </div>
+            <div class="mt-4 flex gap-2">
+              <button type="button" class="tt-mobile-action" onclick="openTransferTrackingDetail(${index})"><span class="material-icons-round">visibility</span>ดูรายละเอียด</button>
+              ${getRowTransferStatusKey(row) === 'fail' ? `<button type="button" class="tt-mobile-action secondary" onclick="openTransferTrackingEdit(${index})"><span class="material-icons-round">edit</span>แก้ไขบัญชี</button>` : ''}
+              ${row.canPay ? `<button type="button" class="tt-mobile-action success" onclick="showTransferPaymentModal(${index})"><span class="material-icons-round">account_balance_wallet</span>แจ้งโอนเงิน</button>` : ''}
+            </div>
+          </article>`;
+      }).join('');
     }
 
     function buildTransferDetailTable(row) {
@@ -18223,11 +18559,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const pager = document.getElementById('ttPagerText');
       if (!head || !body) return;
       const rows = getTransferTrackingRows();
+      const selectedDateType = document.getElementById('ttDateType')?.value || 'วันที่สร้างรายการ';
       head.innerHTML = `
         <tr>
           <th class="w-10"></th>
           <th>เลขที่เคลม/เลขที่การโอนเงิน</th>
-          <th>วันที่สร้างรายการ</th>
+          <th>${selectedDateType}</th>
           <th>ผู้เอาประกัน/สถานศึกษา</th>
           <th>ผลิตภัณฑ์</th>
           <th>สาขา</th>
@@ -18245,6 +18582,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const canExpand = row.claimType === 'Death&Disability' && !!(row.beneficiaries && row.beneficiaries.length);
         const claimTypeBadge = row.claimType === 'Death&Disability' ? `<div class="tt-sub-badge tt-corner-badge">Death&Disability</div>` : '';
         const statusClass = getTransferStatusClass(row);
+        const dateDisplay = getTransferDateByType(row, selectedDateType) || '-';
+        const insuredDisplay = row.school ? `${row.insured}<div class="mt-0.5 text-[12px] font-medium text-slate-500">${row.school}</div>` : row.insured;
         const actions = `
           <div class="tt-row-actions">
             <button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${index})" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button>
@@ -18254,9 +18593,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         return `
           <tr>
             <td class="text-center">${canExpand ? `<button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${row.refNo}')"><span class="material-icons-round">${isOpen ? 'expand_more' : 'chevron_right'}</span></button>` : `<span class="text-slate-300">•</span>`}</td>
-            <td><button type="button" class="tt-link" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button></td>
-            <td>${row.created}</td>
-            <td>${row.insured}</td>
+            <td><button type="button" class="tt-link" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button><div class="mt-1 text-[12px] text-slate-500">${row.claimNo}</div></td>
+            <td>${dateDisplay}</td>
+            <td>${insuredDisplay}</td>
             <td><div class="tt-product-cell ${row.claimType === 'Death&Disability' ? 'has-badge' : ''}"><span>${row.product}</span>${claimTypeBadge}</div></td>
             <td>${row.branch || '-'}</td>
             <td class="text-right">${formatBaht(row.amount)}</td>
@@ -18272,6 +18611,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const wrap = document.getElementById('ttCardList');
       if (!wrap) return;
       const rows = getTransferTrackingRows();
+      const selectedDateType = document.getElementById('ttDateType')?.value || 'วันที่สร้างรายการ';
       if (!rows.length) {
         wrap.innerHTML = `<article class="tt-mobile-card"><p class="text-center font-bold text-slate-400">ไม่พบรายการตามเงื่อนไขที่เลือก</p></article>`;
         return;
@@ -18279,71 +18619,37 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       wrap.innerHTML = rows.map((row, index) => {
         const statusClass = getTransferStatusClass(row);
         const claimTypeBadge = row.claimType === 'Death&Disability' ? `<div class="tt-sub-badge mt-1 inline-flex">Death&Disability</div>` : '';
+        const dateDisplay = getTransferDateByType(row, selectedDateType) || '-';
         return `
           <article class="tt-mobile-card">
             <div class="flex items-start justify-between gap-3">
               <div>
                 <button type="button" class="tt-link text-xl" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button>
-                <p class="mt-1 text-slate-500">${row.created}</p>
+                <p class="mt-1 text-slate-500">${selectedDateType} : ${dateDisplay}</p>
               </div>
               <span class="tt-status ${statusClass}">${row.status}</span>
             </div>
             <p class="mt-3 font-bold text-slate-700">${row.insured}</p>
+            ${row.school ? `<p class="mt-1 text-sm text-slate-500">สถานศึกษา : ${row.school}</p>` : ''}
             <p class="mt-1 text-sm text-slate-500">สาขา : ${row.branch || '-'}</p>
             ${claimTypeBadge}
             <div class="mt-3 flex items-center justify-between">
-              <span class="rounded-full bg-brand-50 px-3 py-1 font-bold text-brand-700">${row.product}</span>
-              <b class="text-xl text-brand-700">${formatBaht(row.amount)} บาท</b>
+              <div>
+                <p class="text-sm text-slate-500">ผลิตภัณฑ์</p>
+                <p class="font-extrabold text-slate-700">${row.product}</p>
+              </div>
+              <div class="text-right">
+                <p class="text-sm text-slate-500">จำนวนเงินโอน</p>
+                <p class="font-extrabold text-brand-700">${formatBaht(row.amount)}</p>
+              </div>
             </div>
-            <div class="tt-row-actions mt-4">
-              <button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${index})" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button>
-              ${getRowTransferStatusKey(row) === 'fail' ? `<button type="button" class="tt-row-icon-btn edit-bank" onclick="openTransferTrackingEdit(${index})" title="แก้ไขบัญชี" aria-label="แก้ไขบัญชี"><span class="material-icons-round">edit</span></button>` : ''}
-              ${row.canPay ? `<button type="button" class="tt-row-icon-btn pay" onclick="showTransferPaymentModal(${index})" title="แจ้งโอนเงิน" aria-label="แจ้งโอนเงิน"><span class="material-icons-round">account_balance_wallet</span></button>` : ''}
+            <div class="mt-4 flex gap-2">
+              <button type="button" class="tt-mobile-action" onclick="openTransferTrackingDetail(${index})"><span class="material-icons-round">visibility</span>ดูรายละเอียด</button>
+              ${getRowTransferStatusKey(row) === 'fail' ? `<button type="button" class="tt-mobile-action secondary" onclick="openTransferTrackingEdit(${index})"><span class="material-icons-round">edit</span>แก้ไขบัญชี</button>` : ''}
+              ${row.canPay ? `<button type="button" class="tt-mobile-action success" onclick="showTransferPaymentModal(${index})"><span class="material-icons-round">account_balance_wallet</span>แจ้งโอนเงิน</button>` : ''}
             </div>
           </article>`;
       }).join('');
-    }
-
-    function createTdrInfoItem(label, value, icon = '') {
-      return `<div class="tdr-info-item">
-        ${icon ? `<span class="tdr-info-icon"><span class="material-icons-round">${icon}</span></span>` : ''}
-        <div><span>${label}</span><strong>${value || '-'}</strong></div>
-      </div>`;
-    }
-
-    function buildTransferClaimMockup(row) {
-      const isPA = row.product === 'PA';
-      const isDeath = row.claimType === 'Death&Disability';
-      const insuredName = row.insured || '-';
-      const appId = isPA ? 'PA690' + String(row.refNo || '').slice(-4) : '990' + String(row.refNo || '').slice(-4);
-      const caseNo = 'CC69' + String(row.refNo || '').slice(-5);
-      const incidentDate = row.created?.split(' ')[0] || '-';
-      const admitDate = isDeath ? '-' : (row.claimType?.includes('IPD') ? '04/07/2569' : incidentDate);
-      const dischargeDate = isDeath ? '-' : (row.claimType?.includes('IPD') ? '09/07/2569' : incidentDate);
-      const claimDescription = isDeath
-        ? 'เสียชีวิต / Death&Disability'
-        : row.claimType?.includes('IPD')
-          ? 'เจ็บป่วย / ค่ารักษา / IPD'
-          : row.product === 'PA'
-            ? 'อุบัติเหตุ / ค่ารักษา / OPD'
-            : 'เจ็บป่วย / ค่ารักษา / OPD';
-      const relation = row.beneficiaries?.[0]?.relation || 'ผู้เอาประกัน';
-      const contactPhone = row.product === 'PA' ? '089-562-1147' : '091-233-4455';
-      const policyHolder = isPA ? (row.school || row.insured) : row.insured;
-      const statusText = row.status === 'อยู่ระหว่างการโอนเงิน' ? 'อยู่ระหว่างการโอนเงิน' : row.status;
-      return {
-        appId,
-        caseNo,
-        incidentDate,
-        admitDate,
-        dischargeDate,
-        claimDescription,
-        relation,
-        contactPhone,
-        policyHolder,
-        statusText,
-        transferOfficer: row.product === 'PA' ? '06590 - ณัฏฐณิชา โตรักษา' : '06590 - ณัฏฐณิชา โตรักษา'
-      };
     }
 
     function openTransferTrackingDetail(index) {
@@ -18371,7 +18677,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           createTdrInfoItem('ผู้แจ้งเคลม', mock.transferOfficer, 'badge'),
           createTdrInfoItem('สาขา', row.branch || 'กรุงเทพมหานคร', 'location_on'),
           `<div class="tdr-info-item"><span class="tdr-info-icon"><span class="material-icons-round">sync</span></span><div><span>สถานะการโอน</span><strong><span class="tdr-status ${statusClass}">${mock.statusText}</span></strong></div></div>`,
-          createTdrInfoItem('วันที่โอนเงิน', row.notifyDate || row.created, 'calendar_month'),
+          createTdrInfoItem('วันที่แจ้งโอนเงิน', row.notifyDate || '-', 'calendar_month'),
+          createTdrInfoItem('วันที่โอนเงิน', row.transferDate && row.transferDate !== '-' ? row.transferDate : '-', 'calendar_month'),
           createTdrInfoItem('จำนวนเงินโอนรวม', formatBaht(row.amount), 'payments')
         ].join('');
       }
@@ -18560,7 +18867,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       row.statusKey = 'success';
       row.statusFilter = 'success';
       row.canPay = false;
-      row.transferDate = '23/06/2569 12:10:00';
+      row.transferDate = '24/08/2569 12:10:00';
       const baseRow = transferTrackingRows.find(item => item.refNo === row.refNo);
       if (baseRow) {
         baseRow.status = row.status;
@@ -23745,7 +24052,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       mode: 'half',
       claimType: 'OPD Half',
       top: {
-        claimDate: '17/05/2569 09:38:00',
+        claimDate: '25/08/2569 09:38:00',
         hospital: 'โรงพยาบาลมะการักษ์',
         province: 'กาญจนบุรี',
         claimNo: 'CL6905000082',
@@ -23783,7 +24090,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       mode: 'full',
       claimType: 'OPD Full',
       top: {
-        claimDate: '17/05/2569 09:38:00',
+        claimDate: '25/08/2569 09:38:00',
         hospital: 'โรงพยาบาลมะการักษ์',
         province: 'กาญจนบุรี',
         claimNo: 'CL6905000082',
@@ -24398,8 +24705,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 (function(){
   const CUSTOMER_CASE = {
     top: {
-      createDate: '17/05/2569 09:38:00',
-      updateDate: '17/05/2569 09:38:02',
+      createDate: '25/08/2569 09:38:00',
+      updateDate: '25/08/2569 09:42:18',
       owner: '06590 - ณัฏฐณิชา โตรักษา',
       branch: 'กรุงเทพมหานคร',
       claimNo: 'CL6905000082',
@@ -24464,7 +24771,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function getCustomerCase(row){
     const data = JSON.parse(JSON.stringify(CUSTOMER_CASE));
     if(row){
-      data.top.createDate = row.date || '17/05/2569 09:38:00';
+      data.top.createDate = row.date || '25/08/2569 09:38:00';
       data.top.updateDate = row.date || data.top.updateDate;
       data.insured.name = row.name || data.insured.name;
       data.insured.idCard = row.idCard || data.insured.idCard;
@@ -25699,8 +26006,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${continuousBanner}
       <section class="customer-review-topcard">
         <div class="customer-review-topgrid">
-          ${customerTopItem('calendar_month','วันที่แจ้ง','17/05/2569 09:38:00')}
-          ${customerTopItem('calendar_month','วันที่โอนเงิน','17/05/2569 09:38:02')}
+          ${customerTopItem('calendar_month','วันที่แจ้ง','25/08/2569 09:38:00')}
+          ${customerTopItem('calendar_month','วันที่โอนเงิน','25/08/2569 09:42:18')}
           ${customerTopItem('work','ผู้แจ้งเคลม','06590 - ณัฏฐณิชา โตรักษา')}
           ${customerTopItem('location_on','สาขา','กรุงเทพมหานคร')}
         </div>
@@ -26957,7 +27264,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const claimStatus = row?.claimStatus || 'Open';
     return `<section class="customer-review-topcard hospital-claimmeta-customer-look" aria-label="ข้อมูลอ้างอิงการเคลม">
       <div class="customer-review-topgrid">
-        ${customerTopItem('calendar_month','วันที่แจ้ง','17/05/2569 09:38:00')}
+        ${customerTopItem('calendar_month','วันที่แจ้ง','25/08/2569 09:38:00')}
         ${customerTopItem('local_hospital','สถานพยาบาล', row?.hospital || 'โรงพยาบาลมะการักษ์')}
         ${customerTopItem('location_on','จังหวัด', row?.province || 'กาญจนบุรี')}
         ${customerTopItem('sync','สถานะเคลม :', claimStatus, true)}
@@ -30986,8 +31293,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td class="px-4 py-4 font-semibold">${row.amount || '-'}</td>
           <td class="px-4 py-4 text-center">${window.getConsiderItemStatusBadge(row.itemStatus)}${reviewNote}</td>
           <td class="px-4 py-4">${row.itemStatus === 'อยู่ระหว่างดำเนินการ'
-            ? `<div class="flex justify-center"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
-            : `<div class="flex justify-center gap-3"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`}</td>
+            ? `<div class="consider-hospital-action-group is-single"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
+            : `<div class="consider-hospital-action-group"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`}</td>
         </tr>`;
       }).join('');
       if(pager){
@@ -31294,8 +31601,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td class="px-4 py-4 font-semibold">${escapeHtml(row.amount || '-')}</td>
           <td class="px-4 py-4 text-center">${window.getConsiderItemStatusBadge(row.itemStatus, row)}</td>
           <td class="px-4 py-4">${row.itemStatus === STATUS_IN_PROGRESS
-            ? `<div class="flex justify-center"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
-            : `<div class="flex justify-center gap-3"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`}</td>
+            ? `<div class="consider-hospital-action-group is-single"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
+            : `<div class="consider-hospital-action-group"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`}</td>
         </tr>`;
       }).join('');
       if(pager){
@@ -40334,23 +40641,27 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .global-be-date-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:30px;height:30px;border-radius:8px;color:#475569;background:#f8fafc;pointer-events:auto;cursor:pointer;border:1px solid #dbe3ef}
   .global-be-date-icon .material-icons-round{font-size:20px!important}
   .global-be-date-native{position:absolute!important;inset:auto 0 0 auto!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;padding:0!important;border:0!important}
-  .global-be-picker{position:fixed;z-index:999999;display:none;width:min(360px,calc(100vw - 24px));overflow:hidden;border:1px solid #dbe7f3;border-radius:18px;background:#fff;box-shadow:0 24px 60px rgba(15,23,42,.22);font-family:"TH Sarabun New","Sarabun",sans-serif}
+  .global-be-picker{position:fixed;z-index:999999;display:none;width:min(304px,calc(100vw - 24px));overflow:hidden;border:1px solid #dbe7f3;border-radius:14px;background:#fff;box-shadow:0 18px 44px rgba(15,23,42,.20);font-family:"TH Sarabun New","Sarabun",sans-serif}
   .global-be-picker.open{display:block}
-  .global-be-picker-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;background:linear-gradient(90deg,#eaf5ff,#f8fbff);border-bottom:1px solid #dbe7f3}
-  .global-be-picker-title{font-size:18px;font-weight:900;color:#075f99;text-align:center;flex:1}
-  .global-be-picker-nav{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid #cfe0f4;background:#fff;color:#075f99}
-  .global-be-picker-week{display:grid;grid-template-columns:repeat(7,1fr);padding:10px 12px 4px;color:#64748b;font-size:13px;font-weight:900;text-align:center}
-  .global-be-picker-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:6px 12px 12px}
-  .global-be-picker-day{height:38px;border-radius:10px;background:#fff;color:#334155;font-size:15px;font-weight:800}
+  .global-be-picker-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:linear-gradient(90deg,#eaf5ff,#f8fbff);border-bottom:1px solid #dbe7f3}
+  .global-be-picker-title{font-size:15px;font-weight:800;color:#075f99;text-align:center;flex:1}
+  .global-be-picker-nav{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;border:1px solid #cfe0f4;background:#fff;color:#075f99}
+.global-be-picker-close{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;border:1px solid #fecaca;background:#fff;color:#b91c1c;flex:none}
+.global-be-picker-close .material-icons-round{font-size:17px!important}
+  .global-be-picker-week{display:grid;grid-template-columns:repeat(7,1fr);padding:8px 10px 3px;color:#64748b;font-size:11px;font-weight:800;text-align:center}
+  .global-be-picker-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:4px 10px 9px}
+  .global-be-picker-day{height:31px;border-radius:8px;background:#fff;color:#334155;font-size:13px;font-weight:700}
   .global-be-picker-day:hover{background:#eaf5ff;color:#075f99}
   .global-be-picker-day.outside{color:#cbd5e1}
   .global-be-picker-day.today{box-shadow:inset 0 0 0 1px #60a5fa}
   .global-be-picker-day.selected{background:#0788d6;color:#fff;box-shadow:none}
-  .global-be-picker-time{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px 12px}
-  .global-be-picker-time label{font-size:13px;font-weight:800;color:#64748b}
-  .global-be-picker-time select{width:100%;height:40px;margin-top:4px;border:1px solid #d5e0ec;border-radius:10px;background:#fff;padding:0 10px;font-size:15px;font-weight:700}
-  .global-be-picker-actions{display:flex;justify-content:space-between;gap:10px;padding:12px;border-top:1px solid #e5edf5;background:#fbfdff}
-  .global-be-picker-btn{height:38px;border-radius:10px;padding:0 14px;font-size:15px;font-weight:900}
+.global-be-picker-day:disabled,.global-be-picker-day.future{color:#cbd5e1!important;background:#f8fafc!important;cursor:not-allowed!important;box-shadow:none!important}
+.global-be-picker-nav:disabled{opacity:.38;cursor:not-allowed;background:#f8fafc}
+  .global-be-picker-time{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px 9px}
+  .global-be-picker-time label{font-size:11px;font-weight:700;color:#64748b}
+  .global-be-picker-time select{width:100%;height:34px;margin-top:3px;border:1px solid #d5e0ec;border-radius:8px;background:#fff;padding:0 8px;font-size:13px;font-weight:700}
+  .global-be-picker-actions{display:flex;justify-content:space-between;gap:8px;padding:9px 10px;border-top:1px solid #e5edf5;background:#fbfdff}
+  .global-be-picker-btn{height:32px;border-radius:8px;padding:0 11px;font-size:12px;font-weight:800}
   .global-be-picker-btn.clear{border:1px solid #fecaca;background:#fff;color:#b91c1c}
   .global-be-picker-btn.today{border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8}
   @media(max-width:640px){.global-be-picker{left:12px!important;right:12px!important;bottom:12px!important;top:auto!important;width:auto!important}}
@@ -40390,6 +40701,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     picker=document.createElement('div');picker.className='global-be-picker';picker.setAttribute('role','dialog');picker.setAttribute('aria-label','เลือกวันที่ พ.ศ.');
     document.body.appendChild(picker);
     document.addEventListener('mousedown',e=>{if(picker.classList.contains('open')&&!picker.contains(e.target)&&e.target!==state.display)closePicker()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&picker?.classList.contains('open'))closePicker()});
     window.addEventListener('resize',positionPicker);
     window.addEventListener('scroll',positionPicker,true);
     return picker;
@@ -40398,8 +40710,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(!picker?.classList.contains('open')||!state.display)return;
     if(window.innerWidth<=640)return;
     const r=state.display.getBoundingClientRect();
-    const width=360;let left=Math.min(Math.max(12,r.left),window.innerWidth-width-12);let top=r.bottom+8;
-    if(top+470>window.innerHeight)top=Math.max(12,r.top-470);
+    const width=304;let left=Math.min(Math.max(12,r.left),window.innerWidth-width-12);let top=r.bottom+8;
+    if(top+390>window.innerHeight)top=Math.max(12,r.top-390);
     picker.style.left=left+'px';picker.style.top=top+'px';picker.style.right='auto';picker.style.bottom='auto';
   }
   function openPicker(native,display){
@@ -40411,6 +40723,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function closePicker(){picker?.classList.remove('open')}
   function setNativeValue(date){
     if(!state.input)return;
+    if(state.input.dataset.noFuture==='1'){
+      const dOnly=new Date(date.getFullYear(),date.getMonth(),date.getDate());
+      const now=new Date();const todayOnly=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+      if(dOnly>todayOnly)return;
+    }
     state.input.value=toISO(date,state.type);
     syncDisplay(state.input,state.display);
     state.input.dispatchEvent(new Event('input',{bubbles:true}));
@@ -40427,12 +40744,22 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const outside=d.getMonth()!==m;
       const selected=state.selected&&d.toDateString()===state.selected.toDateString();
       const isToday=d.toDateString()===today.toDateString();
-      days+=`<button type="button" class="global-be-picker-day ${outside?'outside':''} ${selected?'selected':''} ${isToday?'today':''}" data-y="${d.getFullYear()}" data-m="${d.getMonth()}" data-d="${d.getDate()}">${d.getDate()}</button>`;
+      const dayOnly=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+      const todayOnly=new Date(today.getFullYear(),today.getMonth(),today.getDate());
+      const future=state.input?.dataset?.noFuture==='1' && dayOnly>todayOnly;
+      days+=`<button type="button" class="global-be-picker-day ${outside?'outside':''} ${selected?'selected':''} ${isToday?'today':''} ${future?'future':''}" ${future?'disabled aria-disabled="true"':''} data-y="${d.getFullYear()}" data-m="${d.getMonth()}" data-d="${d.getDate()}">${d.getDate()}</button>`;
     }
     const time=state.selected||new Date();
     const timeHtml=state.type==='datetime-local'?`<div class="global-be-picker-time"><label>ชั่วโมง<select id="globalBeHour">${Array.from({length:24},(_,i)=>`<option value="${i}" ${i===time.getHours()?'selected':''}>${pad(i)}</option>`).join('')}</select></label><label>นาที<select id="globalBeMinute">${Array.from({length:60},(_,i)=>`<option value="${i}" ${i===time.getMinutes()?'selected':''}>${pad(i)}</option>`).join('')}</select></label></div>`:'';
-    picker.innerHTML=`<div class="global-be-picker-head"><button type="button" class="global-be-picker-nav" data-nav="-1"><span class="material-icons-round">chevron_left</span></button><div class="global-be-picker-title">${TH_MONTHS[m]} ${y+543}</div><button type="button" class="global-be-picker-nav" data-nav="1"><span class="material-icons-round">chevron_right</span></button></div><div class="global-be-picker-week">${TH_DAYS.map(x=>`<div>${x}</div>`).join('')}</div><div class="global-be-picker-days">${days}</div>${timeHtml}<div class="global-be-picker-actions"><button type="button" class="global-be-picker-btn clear" data-action="clear">ล้างค่า</button><button type="button" class="global-be-picker-btn today" data-action="today">วันนี้</button></div>`;
-    picker.querySelectorAll('[data-nav]').forEach(btn=>btn.onclick=()=>{state.view=new Date(y,m+Number(btn.dataset.nav),1);renderPicker()});
+    picker.innerHTML=`<div class="global-be-picker-head"><button type="button" class="global-be-picker-nav" data-nav="-1"><span class="material-icons-round">chevron_left</span></button><div class="global-be-picker-title">${TH_MONTHS[m]} ${y+543}</div><div style="display:flex;align-items:center;gap:8px"><button type="button" class="global-be-picker-nav" data-nav="1"><span class="material-icons-round">chevron_right</span></button><button type="button" class="global-be-picker-close" data-action="close" aria-label="ปิดปฏิทิน"><span class="material-icons-round">close</span></button></div></div><div class="global-be-picker-week">${TH_DAYS.map(x=>`<div>${x}</div>`).join('')}</div><div class="global-be-picker-days">${days}</div>${timeHtml}<div class="global-be-picker-actions"><button type="button" class="global-be-picker-btn clear" data-action="clear">ล้างค่า</button><button type="button" class="global-be-picker-btn today" data-action="today">วันนี้</button></div>`;
+    picker.querySelectorAll('[data-nav]').forEach(btn=>{
+      const dir=Number(btn.dataset.nav);
+      if(state.input?.dataset?.noFuture==='1' && dir>0){
+        const now=new Date();
+        if(y>now.getFullYear() || (y===now.getFullYear() && m>=now.getMonth())) btn.disabled=true;
+      }
+      btn.onclick=()=>{if(btn.disabled)return;state.view=new Date(y,m+dir,1);renderPicker()};
+    });
     picker.querySelectorAll('.global-be-picker-day').forEach(btn=>btn.onclick=()=>{
       const base=new Date(Number(btn.dataset.y),Number(btn.dataset.m),Number(btn.dataset.d));
       if(state.type==='datetime-local'){
@@ -40442,11 +40769,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     });
     picker.querySelector('[data-action="clear"]').onclick=()=>{state.input.value='';syncDisplay(state.input,state.display);state.input.dispatchEvent(new Event('input',{bubbles:true}));state.input.dispatchEvent(new Event('change',{bubbles:true}));closePicker()};
     picker.querySelector('[data-action="today"]').onclick=()=>{const d=new Date();if(state.type==='date')d.setHours(0,0,0,0);state.selected=d;setNativeValue(d);closePicker()};
+    picker.querySelector('[data-action="close"]').onclick=()=>closePicker();
   }
   function enhance(native){
     if(!native||native.dataset.globalBeEnhanced==='1'||native.classList.contains('be-date-native'))return;
     const type=native.getAttribute('type');if(type!=='date'&&type!=='datetime-local')return;
     native.dataset.globalBeEnhanced='1';native.dataset.beOriginalType=type;
+    if(native.dataset.noFuture==='1'){
+      const now=new Date();native.max=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+    }
     const wrap=document.createElement('span');wrap.className='global-be-date-wrap';
     const display=document.createElement('input');display.type='text';display.readOnly=false;display.inputMode='numeric';display.maxLength=(type==='datetime-local'?16:10);display.className=(native.className||'')+' global-be-date-display';
     display.setAttribute('aria-label',(native.getAttribute('aria-label')||native.name||native.id||'วันที่')+' รูปแบบปี พ.ศ.');
@@ -40475,6 +40806,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         if(showError)display.reportValidity();
         return false;
       }
+      if(native.dataset.noFuture==='1'){
+        const selectedOnly=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+        const now=new Date();const todayOnly=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+        if(selectedOnly>todayOnly){
+          display.setCustomValidity('ไม่สามารถเลือกวันที่มากกว่าวันปัจจุบันได้');
+          if(showError)display.reportValidity();
+          return false;
+        }
+      }
       display.setCustomValidity('');native.value=toISO(d,type);display.value=toBEText(d,type);
       native.dispatchEvent(new Event('input',{bubbles:true}));native.dispatchEvent(new Event('change',{bubbles:true}));return true;
     }
@@ -40494,6 +40834,52 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(native._beDisplay && document.activeElement!==native._beDisplay) syncDisplay(native,native._beDisplay);
   }),500);
   window.refreshBuddhistDatepickers=()=>scan();
+})();
+</script>
+
+<script id="v138-consider-date-validation">
+(function(){
+  function todayOnly(){const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate())}
+  function parseNativeValue(el){
+    if(!el?.value)return null;
+    const m=el.value.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return null;
+    return new Date(Number(m[1]),Number(m[2])-1,Number(m[3]));
+  }
+  function showError(input,message){
+    const display=input?._beDisplay;
+    const target=display||input;
+    if(target){target.setCustomValidity(message);target.reportValidity();target.focus();}
+  }
+  window.validateConsiderDateFilters=function(){
+    const from=document.getElementById('considerDateFrom');
+    const to=document.getElementById('considerDateTo');
+    if(!from||!to)return true;
+    const f=parseNativeValue(from),t=parseNativeValue(to),today=todayOnly();
+    [from,to].forEach(x=>x?._beDisplay?.setCustomValidity(''));
+    if(!f){showError(from,'กรุณาเลือกจากวันที่');return false;}
+    if(!t){showError(to,'กรุณาเลือกถึงวันที่');return false;}
+    if(f>today){showError(from,'ไม่สามารถเลือกวันที่มากกว่าวันปัจจุบันได้');return false;}
+    if(t>today){showError(to,'ไม่สามารถเลือกวันที่มากกว่าวันปัจจุบันได้');return false;}
+    if(f>t){showError(from,'จากวันที่ต้องน้อยกว่าหรือเท่ากับถึงวันที่');return false;}
+    return true;
+  };
+  document.addEventListener('DOMContentLoaded',()=>{
+    const bind=()=>{
+      const from=document.getElementById('considerDateFrom'),to=document.getElementById('considerDateTo');
+      [from,to].forEach(el=>{
+        if(!el||el.dataset.considerValidationBound==='1')return;
+        el.dataset.considerValidationBound='1';
+        el.addEventListener('change',()=>{
+          const f=parseNativeValue(from),t=parseNativeValue(to),today=todayOnly();
+          if(el._beDisplay)el._beDisplay.setCustomValidity('');
+          const cur=parseNativeValue(el);
+          if(cur&&cur>today)showError(el,'ไม่สามารถเลือกวันที่มากกว่าวันปัจจุบันได้');
+          else if(f&&t&&f>t)showError(from,'จากวันที่ต้องน้อยกว่าหรือเท่ากับถึงวันที่');
+        });
+      });
+    };
+    bind();setTimeout(bind,350);
+  });
 })();
 </script>
 
@@ -45771,7 +46157,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
       </script>
 
 <style id="customerOcrUnmatchedStylesV22">
-  .cc-ocr-unmatched{margin-top:12px;border:1px solid #f1d28f;border-radius:14px;background:#fffdf8;overflow:hidden;box-shadow:0 5px 14px rgba(120,83,15,.05)}
+  .cc-ocr-unmatched{margin-top:0;border:1px solid #f1d28f;border-radius:14px;background:#fffdf8;overflow:hidden;box-shadow:0 4px 12px rgba(120,83,15,.05)}
   .cc-ocr-unmatched.hidden{display:none!important}
   .cc-ocr-unmatched-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;border-bottom:1px solid #f5e2ba;background:#fff9ec}
   .cc-ocr-unmatched-title{display:flex;align-items:center;gap:7px;color:#946200;font-size:15px;font-weight:900}.cc-ocr-unmatched-title .material-icons-round{font-size:18px!important}
@@ -45790,7 +46176,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   @media(max-width:640px){.cc-ocr-unmatched-head{align-items:flex-start;flex-direction:column}.cc-ocr-unmatched-item{grid-template-columns:1fr}.cc-ocr-unmatched-name,.cc-ocr-unmatched-master{grid-column:auto}.cc-ocr-unmatched-master{grid-template-columns:1fr}.cc-ocr-unmatched-map-btn{width:auto;justify-self:start}}
 </style>
 <style id="customerOcrExpenseStyles">
-  .cc-ocr-panel{border:1px solid #bfdbfe;border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(15,23,42,.06);overflow:hidden;margin-bottom:14px}
+  .cc-ocr-panel{border:1px solid #bfdbfe;border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(15,23,42,.06);overflow:hidden;margin-bottom:6px}
   .cc-ocr-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;background:linear-gradient(90deg,#eff8ff,#fff);border-bottom:1px solid #dbeafe}
   .cc-ocr-title{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:900;color:#075f99}.cc-ocr-title .material-icons-round{color:#0788d6}
   .cc-ocr-subtitle{margin-top:3px;font-size:13px;font-weight:600;color:#64748b}
@@ -45867,7 +46253,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
       const datalistId='customerOcrMasterList'+i;
       const options=opts.map(o=>'<option value="'+esc(o.label)+'">'+esc(o.desc||o.label)+'</option>').join('');
       const mapped=item.mappedLabel ? '<div class="cc-ocr-unmatched-mapped"><span>จับคู่แล้ว: '+esc(item.mappedLabel)+'</span></div>' : '<div class="cc-ocr-unmatched-master"><div><input id="customerOcrMasterSelect'+i+'" class="cc-ocr-master-search" list="'+datalistId+'" autocomplete="off" placeholder="ค้นหารายการค่ารักษา" oninput="customerOcrMasterSelectionChanged('+i+',this)"><datalist id="'+datalistId+'">'+options+'</datalist></div><button id="customerOcrMapBtn'+i+'" type="button" class="cc-ocr-unmatched-map-btn" onclick="mapCustomerOcrUnmatchedItem('+i+')" disabled>เลือกรายการ</button></div>';
-      return '<article class="cc-ocr-unmatched-item"><div class="cc-ocr-unmatched-name"><strong>'+esc(item.name)+'</strong><span>รายการจาก OCR</span></div><div class="cc-ocr-unmatched-money"><span>ยอดใบเสร็จ</span><strong>'+moneyText(item.receipt)+' บาท</strong></div><div class="cc-ocr-unmatched-money"><span>ส่วนลด</span><strong>'+moneyText(item.discount)+' บาท</strong></div>'+mapped+'</article>';
+      return '<article class="cc-ocr-unmatched-item"><div class="cc-ocr-unmatched-name"><strong class="cc-ocr-item-title">'+esc(item.name)+'</strong><span>รายการจาก OCR</span></div><div class="cc-ocr-unmatched-money"><span>ยอดใบเสร็จ</span><strong>'+moneyText(item.receipt)+' บาท</strong></div><div class="cc-ocr-unmatched-money"><span>ส่วนลด</span><strong>'+moneyText(item.discount)+' บาท</strong></div>'+mapped+'</article>';
     }).join('');
   }
   function clearUnmatchedItems(){ S.unmatchedItems=[]; renderUnmatchedItems(); }
@@ -48517,6 +48903,1113 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   },true);
 })();
 </script>
+
+
+<style id="v134-consider-dashboard-refresh">
+#considerPage .consider-dashboard-grid-modern{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important;}
+#considerPage .consider-dashboard-card-modern{padding:14px 16px !important;border-radius:18px !important;}
+#considerPage .consider-dashboard-card-modern .consider-dashboard-inner{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:14px;align-items:center;}
+#considerPage .consider-dashboard-overview{display:flex;align-items:center;gap:14px;min-width:0;}
+#considerPage .consider-dashboard-icon{width:64px;height:64px;flex:none;border-radius:16px;display:grid;place-items:center;border:1px solid;}
+#considerPage .consider-dashboard-icon .material-icons-round{font-size:32px !important;}
+#considerPage .customer-icon{background:#edf9f0;border-color:#b7e4c0;color:#15803d;}
+#considerPage .hospital-icon{background:#eff7ff;border-color:#c9dff6;color:#0b67b2;}
+#considerPage .consider-dashboard-copy{min-width:0;}
+#considerPage .consider-dashboard-title{margin:0;font-size:22px !important;line-height:1.2 !important;font-weight:800 !important;}
+#considerPage .customer-text{color:#167a3e !important;}
+#considerPage .hospital-text{color:#0b67b2 !important;}
+#considerPage .consider-dashboard-total-row{display:flex;align-items:flex-end;gap:10px;margin-top:8px;}
+#considerPage .consider-dashboard-total{font-size:46px !important;line-height:1 !important;font-weight:800 !important;}
+#considerPage .consider-dashboard-unit{font-size:18px !important;line-height:1.2 !important;font-weight:600 !important;color:#64748b !important;padding-bottom:4px;}
+#considerPage .consider-dashboard-statuses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden;border:1px solid #dbe1ea;border-radius:16px;background:#f8fafc;}
+#considerPage .consider-dashboard-status-item{min-height:122px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+#considerPage .consider-dashboard-status-item.is-middle{border-left:1px solid #dbe1ea;border-right:1px solid #dbe1ea;}
+#considerPage .consider-dashboard-status-item .material-icons-round{font-size:24px !important;}
+#considerPage .consider-dashboard-status-label{margin-top:6px;font-size:16px !important;line-height:1.25 !important;font-weight:700 !important;color:#475569 !important;}
+#considerPage .consider-dashboard-status-value{margin-top:10px;font-size:38px !important;line-height:1 !important;font-weight:800 !important;}
+@media (max-width:1360px){#considerPage .consider-dashboard-grid-modern{grid-template-columns:1fr !important;}}
+@media (max-width:860px){#considerPage .consider-dashboard-card-modern .consider-dashboard-inner{grid-template-columns:1fr;}}
+@media (max-width:640px){#considerPage .consider-dashboard-card-modern{padding:12px !important;}#considerPage .consider-dashboard-overview{align-items:flex-start;}#considerPage .consider-dashboard-icon{width:54px;height:54px;border-radius:14px;}#considerPage .consider-dashboard-icon .material-icons-round{font-size:28px !important;}#considerPage .consider-dashboard-title{font-size:18px !important;}#considerPage .consider-dashboard-total{font-size:36px !important;}#considerPage .consider-dashboard-unit{font-size:15px !important;padding-bottom:2px;}#considerPage .consider-dashboard-statuses{grid-template-columns:1fr;}#considerPage .consider-dashboard-status-item{min-height:auto;padding:12px 14px;}#considerPage .consider-dashboard-status-item.is-middle{border-left:0;border-right:0;border-top:1px solid #dbe1ea;border-bottom:1px solid #dbe1ea;}#considerPage .consider-dashboard-status-label{font-size:15px !important;}#considerPage .consider-dashboard-status-value{font-size:30px !important;}}
+</style>
+
+
+<style id="v139-datepicker-size-tune">
+.global-be-picker{width:min(320px,calc(100vw - 24px))!important;border-radius:16px!important;}
+.global-be-picker-head{padding:10px 12px!important;}
+.global-be-picker-title{font-size:16px!important;font-weight:800!important;}
+.global-be-picker-nav,.global-be-picker-close{width:32px!important;height:32px!important;border-radius:9px!important;}
+.global-be-picker-nav .material-icons-round,.global-be-picker-close .material-icons-round{font-size:18px!important;}
+.global-be-picker-week{padding:8px 10px 2px!important;font-size:11px!important;font-weight:700!important;}
+.global-be-picker-days{gap:3px!important;padding:4px 10px 10px!important;}
+.global-be-picker-day{height:34px!important;font-size:12px!important;font-weight:700!important;border-radius:9px!important;}
+.global-be-picker-time{gap:8px!important;padding:0 10px 10px!important;}
+.global-be-picker-time label{font-size:12px!important;font-weight:700!important;}
+.global-be-picker-time select{height:36px!important;font-size:13px!important;font-weight:600!important;}
+.global-be-picker-actions{padding:10px!important;}
+.global-be-picker-btn{height:34px!important;padding:0 12px!important;font-size:13px!important;font-weight:700!important;}
+</style>
+
+<script id="v139-default-current-date-sync">
+(function(){
+  function pad(n){return String(n).padStart(2,'0');}
+  function todayIso(){const d=new Date();return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;}
+  function todayDisplay(){const d=new Date();return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()}`;}
+  function syncNativeDisplay(input){
+    if(!input) return;
+    if(input._beDisplay && typeof window.refreshBuddhistDatepickers === 'function'){
+      window.refreshBuddhistDatepickers();
+    }
+  }
+  function apply(){
+    const iso=todayIso();
+    const display=todayDisplay();
+    ['considerDateFrom','considerDateTo'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.value=iso;
+      syncNativeDisplay(el);
+    });
+    ['transferDateFrom','transferDateTo'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      el.value=display;
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{
+    apply();
+    setTimeout(apply,300);
+  });
+})();
+</script>
+
+
+<script id="v142-transfer-monitor-final-authoritative">
+(function(){
+  const finalRows = [
+    {refNo:'CPG690800142',claimNo:'CL690800142',created:'25/08/2569 13:02:14',notifyDate:'25/08/2569 13:08:42',transferDate:'-',insured:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:850,status:'อยู่ระหว่างการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'014-2-554981',payee:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',payeeRelation:'ผู้เอาประกัน',branch:'สำนักงานใหญ่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800141',claimNo:'CL690800141',created:'25/08/2569 12:41:03',notifyDate:'25/08/2569 12:48:19',transferDate:'25/08/2569 13:01:46',insured:'นายภูริทัต ใจแสน',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'182-0-449875',payee:'นายภูริทัต ใจแสน',payeeRelation:'ผู้เอาประกัน',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800140',claimNo:'CLPA690800140',created:'25/08/2569 12:12:55',notifyDate:'25/08/2569 12:20:31',transferDate:'25/08/2569 12:34:08',insured:'เด็กหญิงปวันรัตน์ ธรรมใจ',school:'โรงเรียนบ้านขุนกลาง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:640,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'152-0-336781',payee:'โรงเรียนบ้านขุนกลาง',payeeRelation:'สถานศึกษา',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800139',claimNo:'CL690800139',created:'25/08/2569 11:58:27',notifyDate:'25/08/2569 12:10:05',transferDate:'-',insured:'นายวิชาญ ศรีพงศ์สกุล',school:'',product:'PH',claimType:'IPD ค่ารักษา',amount:6400.50,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'ไทยพาณิชย์',account:'408-2-118432',payee:'นายวิชาญ ศรีพงศ์สกุล',payeeRelation:'ผู้เอาประกัน',branch:'กรุงเทพมหานคร',canEdit:false,canPay:true,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800138',claimNo:'CLPA690800138',created:'25/08/2569 11:22:18',notifyDate:'25/08/2569 11:33:42',transferDate:'25/08/2569 11:49:51',insured:'เด็กชายภาคิน พรมดี',school:'โรงเรียนวัดโคกสูง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:300,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ออมสิน',account:'020-8-116522',payee:'โรงเรียนวัดโคกสูง',payeeRelation:'สถานศึกษา',branch:'นครราชสีมา',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800137',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:08:45',transferDate:'-',insured:'นายธนเสฏฐ์ สันติวงษ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'กรุงไทย',account:'1821000135',payee:'นางวรรณพร สันติวงษ์',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:true,transferKind:'Death&Disability',beneficiaries:[{relation:'มารดา',name:'นางวรรณพร สันติวงษ์',bank:'กรุงไทย 1821000135 วรรณพร สันติวงษ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 1'}]},
+    {refNo:'CPG690800136',claimNo:'CLPA690800136',created:'25/08/2569 10:05:44',notifyDate:'25/08/2569 10:14:09',transferDate:'25/08/2569 10:26:32',insured:'เด็กหญิงณิชารีย์ จันทร์เพ็ญ',school:'โรงเรียนราชวินิต',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1200,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'621-0-441205',payee:'นางสาวอรทัย จันทร์เพ็ญ',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800135',claimNo:'CL690800135',created:'25/08/2569 09:32:17',notifyDate:'25/08/2569 09:41:28',transferDate:'25/08/2569 09:55:41',insured:'นางสาวธัญชนก วัฒนชัย',school:'',product:'PH',claimType:'Day Case Surgery',amount:3250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงศรีอยุธยา',account:'453-1-778412',payee:'นางสาวธัญชนก วัฒนชัย',payeeRelation:'ผู้เอาประกัน',branch:'นนทบุรี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800134',claimNo:'CLPA690800134',created:'25/08/2569 09:06:53',notifyDate:'25/08/2569 09:18:11',transferDate:'-',insured:'เด็กชายปุณณวิช พงษ์พัฒนา',school:'โรงเรียนสตรีวิทยา ๒',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:750,status:'อยู่ระหว่างการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'028-3-995120',payee:'โรงเรียนสตรีวิทยา ๒',payeeRelation:'สถานศึกษา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800133',claimNo:'CL690800133',created:'25/08/2569 08:25:20',notifyDate:'25/08/2569 08:37:46',transferDate:'25/08/2569 08:49:13',insured:'นายกฤตภาส จันทร์เพ็ญ',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:760,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'198-4-550012',payee:'นายกฤตภาส จันทร์เพ็ญ',payeeRelation:'ผู้เอาประกัน',branch:'ปทุมธานี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800132',claimNo:'CL690800132',created:'24/08/2569 16:28:09',notifyDate:'24/08/2569 16:39:12',transferDate:'24/08/2569 16:55:37',insured:'นางมิติยร์ โชตวานิช',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1525.44,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กสิกรไทย',account:'045-2-889104',payee:'นางมิติยร์ โชตวานิช',payeeRelation:'ผู้เอาประกัน',branch:'รังสิต',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800131',claimNo:'CLPA690800131',created:'24/08/2569 15:50:24',notifyDate:'24/08/2569 16:02:01',transferDate:'24/08/2569 16:17:29',insured:'เด็กหญิงพิมพ์ชนก สุขเกษม',school:'โรงเรียนบ้านดอนแก้ว',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1000,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'985-0-119201',payee:'เด็กหญิงพิมพ์ชนก สุขเกษม',payeeRelation:'ผู้เอาประกัน',branch:'ลำพูน',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800130',claimNo:'CL690800130',created:'24/08/2569 14:22:11',notifyDate:'24/08/2569 14:39:08',transferDate:'-',insured:'นางสาวพรนภา จิตอารี',school:'',product:'PH',claimType:'Day Case Surgery',amount:2850,status:'อยู่ระหว่างการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงศรีอยุธยา',account:'453-1-662901',payee:'นางสาวพรนภา จิตอารี',payeeRelation:'ผู้เอาประกัน',branch:'พิษณุโลก',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'CPG690800129',claimNo:'CLPA690800129',created:'23/08/2569 16:18:30',notifyDate:'23/08/2569 16:29:54',transferDate:'23/08/2569 16:45:11',insured:'เด็กชายธนกฤต รัตนชัย',school:'โรงเรียนศรีพัฒนา',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:420,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ธ.ก.ส.',account:'021-2-884710',payee:'โรงเรียนศรีพัฒนา',payeeRelation:'สถานศึกษา',branch:'อุบลราชธานี',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]}
+  ];
+
+  if (typeof transferTrackingRows !== 'undefined') {
+    transferTrackingRows.splice(0, transferTrackingRows.length, ...finalRows);
+  }
+  if (typeof transferTrackingState !== 'undefined') {
+    transferTrackingState.rows = [...finalRows];
+    transferTrackingState.selectedStatuses = new Set(['success','pending','processing','fail']);
+  }
+
+  function parseDate(v){
+    if(!v || v==='-') return null;
+    const s=String(v).trim().split(' ')[0];
+    if(/^\d{4}-\d{2}-\d{2}$/.test(s)){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);}
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(s)){let [d,m,y]=s.split('/').map(Number);if(y>2400)y-=543;return new Date(y,m-1,d);}
+    return null;
+  }
+  function rowDate(row,type){
+    if(type==='วันที่แจ้งโอนเงิน') return row.notifyDate || null;
+    if(type==='วันที่โอนเงิน') return row.transferDate && row.transferDate!=='-' ? row.transferDate : null;
+    return row.created || null;
+  }
+  function fmtBaht(v){return Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function statusKey(row){return row.statusFilter || (row.statusKey==='success'?'success':row.statusKey==='fail'?'fail':String(row.status||'').includes('ระหว่าง')?'processing':'pending');}
+  function statusClass(row){const k=statusKey(row);return k==='success'?'success':k==='fail'?'fail':k==='processing'?'processing':'pending';}
+
+  window.getTransferTrackingRows=function(){return transferTrackingState.rows;};
+  window.getTransferDateByType=rowDate;
+
+  window.applyTransferTrackingFilters=function(){
+    const keyword=String(document.getElementById('ttKeyword')?.value||'').trim().toLowerCase();
+    const type=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    const from=parseDate(document.getElementById('transferDateFrom')?.value);
+    const to=parseDate(document.getElementById('transferDateTo')?.value);
+    const branch=document.getElementById('ttBranch')?.value||'ทั้งหมด';
+    const ph=!!document.getElementById('ttProductPH')?.checked, pa=!!document.getElementById('ttProductPA')?.checked;
+    const selected=transferTrackingState.selectedStatuses;
+    transferTrackingState.rows=transferTrackingRows.filter(row=>{
+      const source=[row.refNo,row.claimNo,row.insured,row.school,row.payee,row.bank,row.account,row.claimType,row.branch].join(' ').toLowerCase();
+      const prod=(!ph&&!pa)|| (row.product==='PH'&&ph)||(row.product==='PA'&&pa);
+      const kw=!keyword||source.includes(keyword);
+      const br=branch==='ทั้งหมด'||row.branch===branch;
+      const st=selected.has(statusKey(row));
+      const rd=parseDate(rowDate(row,type));
+      const dt=!!rd && (!from||rd>=from) && (!to||rd<=to);
+      return prod&&kw&&br&&st&&dt;
+    });
+    transferTrackingState.openRows.clear();
+    if(typeof renderTransferStatusFilters==='function') renderTransferStatusFilters();
+    window.renderTransferTrackingTable();
+    window.renderTransferTrackingCards();
+  };
+
+  window.renderTransferTrackingTable=function(){
+    const head=document.getElementById('transferTrackingTableHead'), body=document.getElementById('transferTrackingTableBody'), pager=document.getElementById('ttPagerText');
+    if(!head||!body)return;
+    const rows=transferTrackingState.rows;
+    const type=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    head.innerHTML=`<tr><th class="w-10"></th><th>เลขที่เคลม/เลขที่การโอนเงิน</th><th>${type}</th><th>ผู้เอาประกัน/สถานศึกษา</th><th>ผลิตภัณฑ์</th><th>สาขา</th><th class="text-right">จำนวนเงินโอน</th><th>สถานะการโอน</th><th class="text-center">ดำเนินการ</th></tr>`;
+    if(!rows.length){body.innerHTML='<tr><td colspan="9" class="py-6 text-center text-slate-400 font-bold">ไม่พบรายการตามเงื่อนไขที่เลือก</td></tr>';if(pager)pager.textContent='0 จาก 0';return;}
+    body.innerHTML=rows.map((row,index)=>{
+      const canExpand=row.claimType==='Death&Disability'&&row.beneficiaries?.length;
+      const isOpen=transferTrackingState.openRows.has(row.refNo);
+      const school=row.school?`<div class="mt-0.5 text-[12px] font-medium text-slate-500">${row.school}</div>`:'';
+      const actions=`<div class="tt-row-actions"><button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${index})" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button>${statusKey(row)==='fail'?`<button type="button" class="tt-row-icon-btn edit-bank" onclick="openTransferTrackingEdit(${index})" title="แก้ไขบัญชี"><span class="material-icons-round">edit</span></button>`:''}${row.canPay?`<button type="button" class="tt-row-icon-btn pay" onclick="showTransferPaymentModal(${index})" title="แจ้งโอนเงิน"><span class="material-icons-round">account_balance_wallet</span></button>`:''}</div>`;
+      return `<tr><td class="text-center">${canExpand?`<button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${row.refNo}')"><span class="material-icons-round">${isOpen?'expand_more':'chevron_right'}</span></button>`:'<span class="text-slate-300">•</span>'}</td><td><button type="button" class="tt-link" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button><div class="mt-1 text-[12px] text-slate-500">${row.claimNo}</div></td><td>${rowDate(row,type)||'-'}</td><td>${row.insured}${school}</td><td>${row.product}</td><td>${row.branch||'-'}</td><td class="text-right">${fmtBaht(row.amount)}</td><td><span class="tt-status ${statusClass(row)}">${row.status}</span></td><td class="text-center">${actions}</td></tr>${canExpand&&isOpen&&typeof buildTransferDetailTable==='function'?`<tr class="tt-detail-row"><td colspan="9">${buildTransferDetailTable(row)}</td></tr>`:''}`;
+    }).join('');
+    if(pager)pager.textContent=`1-${rows.length} จาก ${rows.length}`;
+  };
+
+  window.renderTransferTrackingCards=function(){
+    const wrap=document.getElementById('ttCardList');if(!wrap)return;
+    const rows=transferTrackingState.rows,type=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    if(!rows.length){wrap.innerHTML='<article class="tt-mobile-card"><p class="text-center font-bold text-slate-400">ไม่พบรายการตามเงื่อนไขที่เลือก</p></article>';return;}
+    wrap.innerHTML=rows.map((row,index)=>`<article class="tt-mobile-card"><div class="flex items-start justify-between gap-3"><div><button type="button" class="tt-link text-xl" onclick="openTransferTrackingDetail(${index})">${row.refNo}</button><p class="mt-1 text-slate-500">${type} : ${rowDate(row,type)||'-'}</p></div><span class="tt-status ${statusClass(row)}">${row.status}</span></div><p class="mt-3 font-bold text-slate-700">${row.insured}</p>${row.school?`<p class="mt-1 text-sm text-slate-500">สถานศึกษา : ${row.school}</p>`:''}<p class="mt-1 text-sm text-slate-500">สาขา : ${row.branch||'-'}</p><div class="mt-3 flex items-center justify-between"><span class="rounded-full bg-brand-50 px-3 py-1 font-bold text-brand-700">${row.product}</span><b class="text-xl text-brand-700">${fmtBaht(row.amount)} บาท</b></div></article>`).join('');
+  };
+
+  window.resetTransferTrackingFilters=function(){
+    const now=new Date(),p=n=>String(n).padStart(2,'0'),today=`${p(now.getDate())}/${p(now.getMonth()+1)}/${now.getFullYear()}`;
+    const dt=document.getElementById('ttDateType'),f=document.getElementById('transferDateFrom'),t=document.getElementById('transferDateTo'),kw=document.getElementById('ttKeyword'),br=document.getElementById('ttBranch'),ph=document.getElementById('ttProductPH'),pa=document.getElementById('ttProductPA');
+    if(dt)dt.value='วันที่สร้างรายการ';if(f)f.value=today;if(t)t.value=today;if(kw)kw.value='';if(br)br.value='ทั้งหมด';if(ph)ph.checked=true;if(pa)pa.checked=true;
+    transferTrackingState.selectedStatuses=new Set(['success','pending','processing','fail']);window.applyTransferTrackingFilters();
+  };
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    setTimeout(()=>{
+      if(document.getElementById('transferTrackingPage')) window.applyTransferTrackingFilters();
+    },500);
+  });
+})();
+</script>
+
+
+<script id="v143-customer-remove-review-status-filter">
+(function(){
+  const STATUS_REVIEW = 'รอตรวจสอบการแก้ไข';
+
+  function syncCustomerReviewFilterButton(){
+    const wrap = document.querySelector('#considerStatusButtonFilterWrap .consider-status-filter-buttons');
+    if(!wrap) return;
+    const btn = wrap.querySelector(`[data-status="${STATUS_REVIEW}"]`);
+    if(!btn) return;
+    const isCustomer = (typeof currentConsiderationTab !== 'undefined' ? currentConsiderationTab : 'customer') === 'customer';
+    btn.style.display = isCustomer ? 'none' : '';
+    btn.setAttribute('aria-hidden', isCustomer ? 'true' : 'false');
+    if(isCustomer && btn.classList.contains('active')){
+      try { if(typeof setConsiderStatusButtonFilter === 'function') setConsiderStatusButtonFilter('all'); } catch(e) {}
+    }
+  }
+
+  const oldShow = window.showConsiderationPage;
+  if(typeof oldShow === 'function' && !oldShow.__v143ReviewFilterPatched){
+    const wrapped = function(tab){
+      const result = oldShow.apply(this, arguments);
+      setTimeout(syncCustomerReviewFilterButton, 0);
+      setTimeout(syncCustomerReviewFilterButton, 80);
+      return result;
+    };
+    wrapped.__v143ReviewFilterPatched = true;
+    window.showConsiderationPage = wrapped;
+    try { showConsiderationPage = wrapped; } catch(e) {}
+  }
+
+  const oldRender = window.renderConsiderationTable;
+  if(typeof oldRender === 'function' && !oldRender.__v143ReviewFilterPatched){
+    const wrappedRender = function(){
+      const result = oldRender.apply(this, arguments);
+      setTimeout(syncCustomerReviewFilterButton, 0);
+      return result;
+    };
+    wrappedRender.__v143ReviewFilterPatched = true;
+    window.renderConsiderationTable = wrappedRender;
+    try { renderConsiderationTable = wrappedRender; } catch(e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(syncCustomerReviewFilterButton, 120);
+    setTimeout(syncCustomerReviewFilterButton, 500);
+  });
+
+  const observer = new MutationObserver(function(){ syncCustomerReviewFilterButton(); });
+  document.addEventListener('DOMContentLoaded', function(){
+    const target = document.getElementById('considerStatusButtonFilterWrap');
+    if(target) observer.observe(target, {childList:true, subtree:true});
+  });
+})();
+</script>
+
+
+
+<style id="v144-required-asterisk-red-all-pages">
+/* Required marker: make only the asterisk red on every screen/modal */
+.req-star,
+.req,
+.eligibility-required,
+.text-danger,
+.text-red-500,
+.required-asterisk,
+.field-required-mark,
+label > b:only-child,
+.tt-monitor-label > b,
+.tt-fieldset > label > .req,
+.rf-label > .req,
+.ar-label > .req,
+.et-label > .req,
+.at-label > .req {
+  color:#ef4444 !important;
+}
+.required-asterisk,
+.field-required-mark{
+  font-weight:700 !important;
+  margin-left:2px;
+}
+</style>
+
+<script id="v144-required-asterisk-red-all-pages-script">
+(function(){
+  const FIELD_LABEL_SELECTORS = [
+    'label',
+    '.tt-monitor-label',
+    '.step-title',
+    '.claim-ipd-stay-input-label',
+    '.hospital-doctor-label',
+    '.dd-field-label',
+    '.rf-label',
+    '.ar-label',
+    '.et-label',
+    '.at-label',
+    '.el-field > label',
+    '.dd-fieldset-modern > label',
+    '[class*="field-label"]',
+    '[class*="input-label"]'
+  ].join(',');
+
+  function isAlreadyRequiredMark(node){
+    const p=node.parentElement;
+    return !!p && (
+      p.classList.contains('req-star') ||
+      p.classList.contains('req') ||
+      p.classList.contains('eligibility-required') ||
+      p.classList.contains('text-danger') ||
+      p.classList.contains('text-red-500') ||
+      p.classList.contains('required-asterisk') ||
+      p.classList.contains('field-required-mark')
+    );
+  }
+
+  function wrapAsteriskTextNodes(el){
+    if(!el || el.dataset.requiredStarChecked==='1') return;
+    const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);
+    const targets=[];
+    let node;
+    while((node=walker.nextNode())){
+      if(!node.nodeValue || !node.nodeValue.includes('*')) continue;
+      if(isAlreadyRequiredMark(node)) continue;
+      const parent=node.parentElement;
+      if(parent && ['SCRIPT','STYLE','OPTION'].includes(parent.tagName)) continue;
+      targets.push(node);
+    }
+    targets.forEach(textNode=>{
+      const parts=textNode.nodeValue.split('*');
+      if(parts.length<2) return;
+      const frag=document.createDocumentFragment();
+      parts.forEach((part,index)=>{
+        if(part) frag.appendChild(document.createTextNode(part));
+        if(index<parts.length-1){
+          const mark=document.createElement('span');
+          mark.className='required-asterisk';
+          mark.textContent='*';
+          frag.appendChild(mark);
+        }
+      });
+      textNode.parentNode?.replaceChild(frag,textNode);
+    });
+    el.dataset.requiredStarChecked='1';
+  }
+
+  function colorExistingMarkers(root=document){
+    root.querySelectorAll?.('.req-star,.req,.eligibility-required,.text-danger,.text-red-500,.required-asterisk,.field-required-mark').forEach(el=>{
+      if((el.textContent||'').includes('*')) el.style.setProperty('color','#ef4444','important');
+    });
+    root.querySelectorAll?.(FIELD_LABEL_SELECTORS).forEach(wrapAsteriskTextNodes);
+    root.querySelectorAll?.('.tt-monitor-label > b').forEach(el=>{
+      if((el.textContent||'').trim()==='*') el.style.setProperty('color','#ef4444','important');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    colorExistingMarkers();
+    setTimeout(()=>colorExistingMarkers(),250);
+    setTimeout(()=>colorExistingMarkers(),900);
+  });
+
+  const observer=new MutationObserver(records=>{
+    records.forEach(record=>record.addedNodes.forEach(node=>{
+      if(node.nodeType!==1) return;
+      if(node.matches?.(FIELD_LABEL_SELECTORS)) wrapAsteriskTextNodes(node);
+      colorExistingMarkers(node);
+    }));
+  });
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+
+  window.refreshRequiredAsteriskColors=()=>colorExistingMarkers();
+})();
+</script>
+
+
+<style id="v145-consider-hospital-action-layout">
+#considerPage .consider-result-table td:last-child{
+  min-width:132px !important;
+}
+#considerPage .consider-hospital-action-group{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  flex-wrap:nowrap !important;
+  min-width:92px;
+}
+#considerPage .consider-hospital-action-group.is-single{
+  min-width:auto;
+}
+#considerPage .consider-hospital-action-group .consider-row-action{
+  width:42px !important;
+  height:42px !important;
+  flex:0 0 42px !important;
+  border-radius:999px !important;
+  box-shadow:0 3px 10px rgba(15,23,42,.08) !important;
+}
+#considerPage .consider-hospital-action-group .consider-row-action .material-icons-round{
+  font-size:20px !important;
+}
+#considerPage .consider-result-table tbody td:last-child{
+  text-align:center !important;
+  vertical-align:middle !important;
+}
+@media (max-width: 768px){
+  #considerPage .consider-result-table td:last-child{min-width:120px !important;}
+  #considerPage .consider-hospital-action-group{gap:8px !important;}
+  #considerPage .consider-hospital-action-group .consider-row-action{width:38px !important;height:38px !important;flex-basis:38px !important;}
+}
+</style>
+
+
+<style id="v146-customer-ocr-unmatched-design-tuned">
+  /* ปรับดีไซน์ section รายการรอตรวจสอบ - เคลมลูกค้า */
+  #claimEntryPage .cc-ocr-unmatched,
+  #claimEntryPage #customerOcrUnmatchedSection{
+    margin-top:14px !important;
+    border:1px solid #ecd8aa !important;
+    border-radius:18px !important;
+    background:#fffdf8 !important;
+    box-shadow:0 6px 18px rgba(120,83,15,.05) !important;
+    overflow:hidden !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-head,
+  #claimEntryPage #customerOcrUnmatchedSection .cc-ocr-unmatched-head{
+    padding:16px 20px !important;
+    border-bottom:1px solid #f2e4bf !important;
+    background:#fffaf0 !important;
+    align-items:flex-start !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-title{
+    gap:8px !important;
+    color:#9a6700 !important;
+    font-size:16px !important;
+    font-weight:800 !important;
+    line-height:1.35 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-title .material-icons-round{
+    font-size:18px !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-subtitle{
+    margin-top:8px !important;
+    color:#64748b !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1.5 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-count{
+    min-height:40px !important;
+    padding:0 18px !important;
+    border-radius:999px !important;
+    background:#fef3c7 !important;
+    color:#92400e !important;
+    font-size:15px !important;
+    font-weight:700 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-list{
+    display:grid !important;
+    gap:12px !important;
+    padding:14px !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-item{
+    grid-template-columns:minmax(220px,1.2fr) 140px 132px minmax(320px,1.55fr) !important;
+    gap:12px !important;
+    align-items:center !important;
+    padding:12px 14px !important;
+    border:1px solid #eadfc8 !important;
+    border-radius:16px !important;
+    background:#fff !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-name strong{
+    color:#334155 !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    line-height:1.45 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-name span{
+    margin-top:6px !important;
+    color:#94a3b8 !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-money{
+    padding:10px 12px !important;
+    border-radius:12px !important;
+    background:#f8fafc !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-money span{
+    color:#94a3b8 !important;
+    font-size:11px !important;
+    font-weight:600 !important;
+    line-height:1.35 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-money strong{
+    margin-top:4px !important;
+    color:#334155 !important;
+    font-size:15px !important;
+    font-weight:700 !important;
+    white-space:nowrap !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-master{
+    grid-template-columns:minmax(0,1fr) auto !important;
+    gap:10px !important;
+    align-items:center !important;
+  }
+  #claimEntryPage .cc-ocr-master-search{
+    width:100% !important;
+    height:44px !important;
+    border:1px solid #cbd5e1 !important;
+    border-radius:14px !important;
+    background:#fff !important;
+    padding:0 16px !important;
+    color:#334155 !important;
+    font-size:15px !important;
+    font-weight:500 !important;
+    outline:none !important;
+    box-sizing:border-box !important;
+  }
+  #claimEntryPage .cc-ocr-master-search::placeholder{
+    color:#94a3b8 !important;
+    font-weight:500 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-map-btn{
+    height:44px !important;
+    min-width:156px !important;
+    padding:0 18px !important;
+    border-radius:14px !important;
+    background:#9bc7eb !important;
+    color:#fff !important;
+    font-size:15px !important;
+    font-weight:700 !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-map-btn:disabled{
+    opacity:.55 !important;
+    cursor:not-allowed !important;
+  }
+  #claimEntryPage .cc-ocr-unmatched-mapped{
+    gap:8px !important;
+    padding:11px 14px !important;
+    border-radius:12px !important;
+    background:#ecfdf5 !important;
+    color:#166534 !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+    line-height:1.45 !important;
+  }
+  @media (max-width: 1180px){
+    #claimEntryPage .cc-ocr-unmatched-item{
+      grid-template-columns:minmax(0,1fr) 140px 132px !important;
+    }
+    #claimEntryPage .cc-ocr-unmatched-master,
+    #claimEntryPage .cc-ocr-unmatched-mapped{
+      grid-column:1 / -1 !important;
+    }
+  }
+  @media (max-width: 760px){
+    #claimEntryPage .cc-ocr-unmatched-head{
+      padding:14px !important;
+      flex-direction:column !important;
+      gap:10px !important;
+    }
+    #claimEntryPage .cc-ocr-unmatched-title{font-size:15px !important;}
+    #claimEntryPage .cc-ocr-unmatched-subtitle{font-size:12px !important;}
+    #claimEntryPage .cc-ocr-unmatched-count{min-height:34px !important;padding:0 14px !important;font-size:14px !important;}
+    #claimEntryPage .cc-ocr-unmatched-item{
+      grid-template-columns:1fr !important;
+      gap:10px !important;
+      padding:12px !important;
+    }
+    #claimEntryPage .cc-ocr-unmatched-name strong{font-size:15px !important;}
+    #claimEntryPage .cc-ocr-unmatched-money strong{font-size:14px !important;}
+    #claimEntryPage .cc-ocr-unmatched-master{grid-template-columns:1fr !important;}
+    #claimEntryPage .cc-ocr-unmatched-map-btn{width:100% !important;min-width:0 !important;}
+    #claimEntryPage .cc-ocr-master-search{height:42px !important;font-size:14px !important;}
+  }
+</style>
+
+
+<style id="v147-customer-ocr-unmatched-actual-fix">
+/* Final actual selector: บันทึกข้อมูลเคลม > เคลมลูกค้า > รายการรอตรวจสอบ */
+#customerOcrUnmatchedSection{
+  margin-top:10px !important;
+  border:1px solid #ead7aa !important;
+  border-radius:14px !important;
+  background:#fffdf8 !important;
+  box-shadow:none !important;
+  overflow:hidden !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-head{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  padding:11px 14px !important;
+  border-bottom:1px solid #f1e2bf !important;
+  background:#fffaf0 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-title{
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  color:#986500 !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  line-height:1.35 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-title .material-icons-round{
+  font-size:17px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-subtitle{
+  margin-top:5px !important;
+  color:#64748b !important;
+  font-size:11px !important;
+  font-weight:400 !important;
+  line-height:1.45 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-count{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:30px !important;
+  padding:0 11px !important;
+  border-radius:999px !important;
+  background:#fef3c7 !important;
+  color:#92400e !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  white-space:nowrap !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-list{
+  display:grid !important;
+  gap:8px !important;
+  padding:9px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+  display:grid !important;
+  grid-template-columns:minmax(210px,1.2fr) 112px 104px minmax(280px,1.45fr) !important;
+  gap:8px !important;
+  align-items:center !important;
+  padding:9px 10px !important;
+  border:1px solid #e7decc !important;
+  border-radius:11px !important;
+  background:#fff !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+  display:block !important;
+  color:#334155 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  line-height:1.35 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name span{
+  display:block !important;
+  margin-top:3px !important;
+  color:#94a3b8 !important;
+  font-size:10px !important;
+  font-weight:400 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money{
+  padding:7px 8px !important;
+  border-radius:8px !important;
+  background:#f8fafc !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money span{
+  display:block !important;
+  color:#94a3b8 !important;
+  font-size:10px !important;
+  font-weight:500 !important;
+  line-height:1.3 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money strong{
+  display:block !important;
+  margin-top:2px !important;
+  color:#334155 !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  white-space:nowrap !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-master{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) auto !important;
+  gap:7px !important;
+  align-items:center !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search{
+  width:100% !important;
+  height:36px !important;
+  border:1px solid #cbd5e1 !important;
+  border-radius:9px !important;
+  background:#fff !important;
+  padding:0 11px !important;
+  color:#334155 !important;
+  font-size:12px !important;
+  font-weight:400 !important;
+  outline:none !important;
+  box-sizing:border-box !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search::placeholder{
+  color:#94a3b8 !important;
+  font-size:12px !important;
+  font-weight:400 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search:focus{
+  border-color:#60a5fa !important;
+  box-shadow:0 0 0 3px rgba(96,165,250,.12) !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{
+  height:34px !important;
+  min-width:108px !important;
+  padding:0 12px !important;
+  border-radius:8px !important;
+  background:#8fc2e8 !important;
+  color:#fff !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+  box-shadow:none !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn:not(:disabled):hover{
+  background:#5ca8dc !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn:disabled{
+  opacity:.55 !important;
+  cursor:not-allowed !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-mapped{
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:7px 9px !important;
+  border-radius:9px !important;
+  background:#ecfdf5 !important;
+  color:#166534 !important;
+  font-size:11px !important;
+  font-weight:500 !important;
+}
+@media(max-width:1100px){
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+    grid-template-columns:minmax(0,1fr) 112px 104px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-master,
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-mapped{
+    grid-column:1/-1 !important;
+  }
+}
+@media(max-width:680px){
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-head{
+    flex-direction:column !important;
+    padding:10px 11px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+    grid-template-columns:1fr !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-master{
+    grid-template-columns:1fr !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{
+    width:100% !important;
+  }
+}
+</style>
+
+
+<style id="v148-customer-ocr-unmatched-font-emphasis">
+/* Final override: เพิ่มความชัดเจนของตัวอักษรและรายการจาก OCR */
+#customerOcrUnmatchedSection .cc-ocr-unmatched-title{
+  font-size:15px !important;
+  font-weight:700 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-title .material-icons-round{
+  font-size:19px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-subtitle{
+  font-size:12px !important;
+  font-weight:400 !important;
+  line-height:1.5 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-count{
+  min-height:32px !important;
+  padding:0 13px !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+  padding:11px 12px !important;
+  gap:10px !important;
+  border-color:#dfd3bb !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+  font-size:14px !important;
+  font-weight:650 !important;
+  line-height:1.4 !important;
+  color:#1f2937 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name span{
+  display:inline-flex !important;
+  align-items:center !important;
+  width:max-content !important;
+  margin-top:6px !important;
+  padding:3px 8px !important;
+  border:1px solid #bfdbfe !important;
+  border-radius:999px !important;
+  background:#eff6ff !important;
+  color:#1d4ed8 !important;
+  font-size:11px !important;
+  font-weight:600 !important;
+  line-height:1.2 !important;
+  letter-spacing:.01em !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money{
+  padding:8px 10px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money span{
+  font-size:11px !important;
+  font-weight:500 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money strong{
+  margin-top:3px !important;
+  font-size:13px !important;
+  font-weight:650 !important;
+  color:#1f2937 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search{
+  height:38px !important;
+  font-size:13px !important;
+  font-weight:400 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search::placeholder{
+  font-size:13px !important;
+  font-weight:400 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{
+  height:38px !important;
+  min-width:118px !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-mapped{
+  font-size:12px !important;
+  font-weight:600 !important;
+}
+@media(max-width:680px){
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-title{font-size:14px !important;}
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{font-size:13px !important;}
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-money strong{font-size:12px !important;}
+}
+</style>
+
+
+<style id="v149-customer-ocr-item-name-emphasis">
+  /* เน้นชื่อรายการค่ารักษาเป็นจุดหลัก */
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+    display:block !important;
+    color:#1e3a5f !important;
+    font-size:17px !important;
+    font-weight:800 !important;
+    line-height:1.45 !important;
+    letter-spacing:0 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name{
+    padding:2px 0 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name span{
+    display:block !important;
+    margin-top:5px !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    color:#94a3b8 !important;
+    font-size:12px !important;
+    font-weight:500 !important;
+    line-height:1.35 !important;
+    box-shadow:none !important;
+  }
+</style>
+
+
+<style id="v150-customer-ocr-compact-emphasis">
+  /* ทำให้ section ชิดกันขึ้น + เน้นชื่อรายการค่ารักษา */
+  #customerOcrPanel{
+    margin-bottom:8px !important;
+  }
+  #customerOcrPanel .cc-ocr-body{
+    padding:12px 14px !important;
+  }
+  #customerOcrPanel .cc-ocr-file-list{
+    margin-top:8px !important;
+  }
+  #customerOcrPanel .cc-ocr-message{
+    margin-top:8px !important;
+    padding:9px 12px !important;
+  }
+
+  #customerOcrUnmatchedSection{
+    margin-top:6px !important;
+    border-radius:16px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-head{
+    padding:12px 16px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-title{
+    font-size:15px !important;
+    font-weight:700 !important;
+    line-height:1.35 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-subtitle{
+    margin-top:5px !important;
+    font-size:12px !important;
+    line-height:1.45 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-count{
+    min-height:34px !important;
+    padding:0 13px !important;
+    font-size:13px !important;
+    font-weight:700 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-list{
+    padding:10px 12px 12px !important;
+    gap:8px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+    grid-template-columns:minmax(250px,1.25fr) 112px 104px minmax(300px,1.5fr) !important;
+    gap:10px !important;
+    padding:10px 12px !important;
+    border-radius:14px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    gap:5px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+    font-size:18px !important;
+    font-weight:800 !important;
+    line-height:1.35 !important;
+    color:#1e3a5f !important;
+    letter-spacing:-0.01em !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name span{
+    font-size:11px !important;
+    font-weight:500 !important;
+    color:#94a3b8 !important;
+    margin-top:0 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-money{
+    padding:8px 10px !important;
+    border-radius:10px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-money span{
+    font-size:10px !important;
+    font-weight:600 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-money strong{
+    margin-top:2px !important;
+    font-size:14px !important;
+    font-weight:700 !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-master{
+    gap:8px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-master-search{
+    height:40px !important;
+    padding:0 14px !important;
+    font-size:14px !important;
+    font-weight:500 !important;
+    border-radius:12px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{
+    height:40px !important;
+    min-width:136px !important;
+    padding:0 14px !important;
+    font-size:14px !important;
+    font-weight:700 !important;
+    border-radius:12px !important;
+  }
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-mapped{
+    padding:9px 12px !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    border-radius:10px !important;
+  }
+  @media (max-width: 1180px){
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+      grid-template-columns:minmax(0,1fr) 112px 104px !important;
+    }
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-master,
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-mapped{
+      grid-column:1 / -1 !important;
+    }
+  }
+  @media (max-width: 760px){
+    #customerOcrPanel{margin-bottom:6px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-head{padding:10px 12px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-list{padding:8px 10px 10px !important;gap:8px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-item{grid-template-columns:1fr !important;padding:10px !important;gap:8px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{font-size:16px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-master-search,
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{height:38px !important;}
+    #customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{width:100% !important;min-width:0 !important;}
+  }
+</style>
+
+
+<style id="v151-customer-step2-real-compact-fix">
+/* ลดช่องว่างของ Step 2 จริง */
+#ccStepPane2 > .cc-ref-step2-shell,
+#ccStepPane2 .cc-ref-step2-shell{
+  gap:6px !important;
+  padding-bottom:6px !important;
+}
+#ccStepPane2 #customerOcrPanel{
+  margin-bottom:0 !important;
+}
+#ccStepPane2 #customerOcrUnmatchedSection{
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+
+/* ลดความสูงส่วน OCR ด้านบนเล็กน้อย */
+#ccStepPane2 #customerOcrPanel .cc-ocr-body{
+  padding:10px 14px !important;
+}
+#ccStepPane2 #customerOcrPanel .cc-ocr-upload-zone{
+  padding:10px 12px !important;
+}
+#ccStepPane2 #customerOcrPanel .cc-ocr-file-list{
+  margin-top:6px !important;
+}
+#ccStepPane2 #customerOcrPanel .cc-ocr-message{
+  margin-top:6px !important;
+  padding:8px 11px !important;
+}
+
+/* รายการรอตรวจสอบให้กระชับ */
+#customerOcrUnmatchedSection .cc-ocr-unmatched-head{
+  padding:10px 14px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-subtitle{
+  margin-top:3px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-list{
+  padding:8px 10px 10px !important;
+  gap:6px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-item{
+  min-height:74px !important;
+  padding:8px 10px !important;
+  gap:8px !important;
+}
+
+/* ชื่อรายการค่ารักษา = จุดเด่นหลัก */
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:3px !important;
+  padding:9px 12px !important;
+  border-left:4px solid #0788d6 !important;
+  border-radius:10px !important;
+  background:#f4faff !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name .cc-ocr-item-title,
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+  display:block !important;
+  color:#0b4f7c !important;
+  font-size:18px !important;
+  line-height:1.3 !important;
+  font-weight:800 !important;
+  letter-spacing:0 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-name span{
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  color:#94a3b8 !important;
+  font-size:10.5px !important;
+  line-height:1.25 !important;
+  font-weight:400 !important;
+}
+
+/* ยอดและ action กระชับขึ้น */
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money{
+  padding:7px 9px !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money span{
+  font-size:10px !important;
+  font-weight:500 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-money strong{
+  font-size:13.5px !important;
+  font-weight:700 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-master-search{
+  height:38px !important;
+  font-size:13px !important;
+  font-weight:400 !important;
+}
+#customerOcrUnmatchedSection .cc-ocr-unmatched-map-btn{
+  height:38px !important;
+  min-width:126px !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+}
+
+@media(max-width:760px){
+  #ccStepPane2 .cc-ref-step2-shell{gap:5px !important;}
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name .cc-ocr-item-title,
+  #customerOcrUnmatchedSection .cc-ocr-unmatched-name strong{
+    font-size:16px !important;
+  }
+}
+</style>
 
 </body>
 </html>
