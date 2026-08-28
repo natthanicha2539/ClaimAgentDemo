@@ -28205,14 +28205,16 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(kind === 'ipd') return renderOpdFullDocumentCheckSection('IPD');
 
     if(kind === 'half'){
+      // v276: OPD Half / สถานะรอพิจารณา
+      // ค่าเริ่มต้นผลการตรวจสอบเอกสารและหมายเหตุต้องเป็นค่าว่างทั้งหมด
       const rows = [
-        {name:'แบบฟอร์ม A', count:1, status:'pending', note:''},
-        {name:'ใบแจ้งหนี้', count:1, status:'pending', note:''},
-        {name:'รายละเอียดใบแจ้งหนี้', count:2, status:'pending', note:'รายละเอียดตรงกับยอดค่ารักษา'},
-        {name:'ผลการตรวจ LAB / X-ray', count:1, status:'pending', note:''},
-        {name:'เอกสารอื่นๆ', count:0, status:'pending', note:''},
-        {name:'บัตรประชาชน', count:0, status:'pending', note:''},
-        {name:'ชุดรวมเอกสาร', count:0, status:'pending', note:''}
+        {name:'แบบฟอร์ม A', count:1, status:'', note:''},
+        {name:'ใบแจ้งหนี้', count:1, status:'', note:''},
+        {name:'รายละเอียดใบแจ้งหนี้', count:2, status:'', note:''},
+        {name:'ผลการตรวจ LAB / X-ray', count:1, status:'', note:''},
+        {name:'เอกสารอื่นๆ', count:0, status:'', note:''},
+        {name:'บัตรประชาชน', count:0, status:'', note:''},
+        {name:'ชุดรวมเอกสาร', count:0, status:'', note:''}
       ];
       const statusButtons = status => `
         <div class="opd-half-doc-result-group">
@@ -28518,7 +28520,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
 
-  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${docs(kind === 'full' ? 'full' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
+  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${docs(kind === 'full' ? 'full' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
   function fieldSum(label,value){ return `<div><div class="text-sm font-medium text-slate-500">${label}</div><div class="mt-1 text-base font-normal text-slate-700 leading-6">${value}</div></div>`; }
   const customerContinuousClaimOptions = [
     {
@@ -56369,5 +56371,518 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
   window.applyClaimAgentGlobalTypography = schedule;
   const mo = new MutationObserver(schedule);
   mo.observe(document.documentElement, { childList:true, subtree:true, attributes:false });
+})();
+</script>
+
+<!-- v277: Hospital OPD Half document result/note default blank -->
+
+
+<style id="v277-remove-white-bg-behind-label-style">
+  /* Remove white patch behind floating labels in decision form */
+  .dd-fieldset-modern label{
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+</style>
+
+
+<style id="v278-decision-field-label-standard-style">
+  /* Decision form: reason/detail labels as normal field labels above controls */
+  .dd-fieldset-modern{
+    position: relative !important;
+    margin-bottom: 16px !important;
+  }
+
+  .dd-fieldset-modern > label{
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: #475569 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 20px !important;
+    box-shadow: none !important;
+  }
+
+  .dd-fieldset-modern > label .req{
+    color: #ef4444 !important;
+    margin-left: 2px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  .dd-fieldset-modern .dd-select-modern,
+  .dd-fieldset-modern .dd-textarea-modern{
+    width: 100% !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+    color: #334155 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 20px !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .dd-fieldset-modern .dd-select-modern{
+    height: 42px !important;
+    padding: 0 40px 0 12px !important;
+    background-position: calc(100% - 22px) 18px, calc(100% - 15px) 18px !important;
+    background-size: 7px 7px, 7px 7px !important;
+  }
+
+  .dd-fieldset-modern .dd-textarea-modern{
+    min-height: 92px !important;
+    padding: 10px 12px !important;
+    resize: vertical !important;
+  }
+
+  .dd-fieldset-modern .dd-select-modern:focus,
+  .dd-fieldset-modern .dd-textarea-modern:focus{
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.10) !important;
+  }
+
+  .dd-fieldset-modern .dd-select-modern::placeholder,
+  .dd-fieldset-modern .dd-textarea-modern::placeholder{
+    color: #94a3b8 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+</style>
+<script id="v280-decision-toggle-deselect-script">
+(function(){
+  function syncDecisionPressedState(type){
+    document.querySelectorAll('.customer-decision-section .dd-decision-btn[data-decision], #customerDecisionSection .dd-decision-btn[data-decision]').forEach(btn => {
+      const active = !!type && btn.dataset.decision === type;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  window.selectCustomerDecision = function(type){
+    const current = String(window.customerDecisionState?.type || '').trim();
+    const next = current === String(type || '').trim() ? '' : String(type || '').trim();
+
+    window.customerDecisionState = { ...(window.customerDecisionState || {}), type: next };
+
+    if(typeof window.syncCustomerDecisionUI === 'function'){
+      window.syncCustomerDecisionUI();
+    }else{
+      syncDecisionPressedState(next);
+      if(typeof window.renderCustomerDecision === 'function') window.renderCustomerDecision(next);
+    }
+
+    syncDecisionPressedState(next);
+
+    if(!next){
+      document.querySelectorAll('.customerDecisionDynamicFields, #customerDecisionDynamicFields').forEach(target => {
+        if(!target) return;
+        target.classList.add('hidden');
+        target.innerHTML = '';
+      });
+    }
+
+    try{
+      if(typeof window.enableHospitalDecisionSaveButtons === 'function'){
+        window.enableHospitalDecisionSaveButtons();
+      }
+    }catch(e){}
+  };
+})();
+</script>
+
+
+<style id="v281-decision-save-enable-when-selected-style">
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+button[data-hospital-decision-save-v281="true"]{
+  transition: background-color .15s ease, border-color .15s ease, opacity .15s ease !important;
+}
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+button[data-hospital-decision-save-v281="true"]:not(:disabled){
+  cursor:pointer !important;
+  opacity:1 !important;
+  background:#16a34a !important;
+  border-color:#16a34a !important;
+  color:#fff !important;
+}
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+button[data-hospital-decision-save-v281="true"]:disabled{
+  cursor:not-allowed !important;
+  opacity:.55 !important;
+  background:#cbd5e1 !important;
+  border-color:#cbd5e1 !important;
+  color:#64748b !important;
+  box-shadow:none !important;
+}
+</style>
+
+<script id="v281-decision-save-enable-when-selected-script">
+(function(){
+  const PAGE_SELECTOR='#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage';
+
+  function textOf(el){
+    return String(el?.textContent || '').replace(/\s+/g,' ').trim();
+  }
+
+  function isDecisionSaveButton(btn){
+    if(!btn || btn.tagName!=='BUTTON') return false;
+    const label=textOf(btn).replace(/save/g,'').trim();
+    return label==='ยืนยันบันทึกผลพิจารณา' || label==='บันทึกผลพิจารณา';
+  }
+
+  function selectedDecision(page){
+    const state=String(window.customerDecisionState?.type || '').trim();
+    if(state) return state;
+    const active=page?.querySelector('.dd-decision-btn[data-decision].active, .dd-decision-btn[data-decision][aria-pressed="true"]');
+    return String(active?.dataset?.decision || '').trim();
+  }
+
+  function syncButtons(){
+    document.querySelectorAll(PAGE_SELECTOR).forEach(page=>{
+      const hasDecision=!!selectedDecision(page);
+      page.querySelectorAll('button').forEach(btn=>{
+        if(!isDecisionSaveButton(btn)) return;
+        btn.dataset.hospitalDecisionSaveV281='true';
+        btn.disabled=!hasDecision;
+        btn.setAttribute('aria-disabled',hasDecision?'false':'true');
+        btn.title=hasDecision
+          ? 'ยืนยันบันทึกผลพิจารณา'
+          : 'กรุณาเลือกผลการพิจารณาก่อน';
+      });
+    });
+  }
+
+  let raf=null;
+  function schedule(){
+    if(raf) return;
+    raf=requestAnimationFrame(()=>{ raf=null; syncButtons(); });
+  }
+
+  // Keep compatibility with the v280 toggle wrapper.
+  window.enableHospitalDecisionSaveButtons=syncButtons;
+  window.syncHospitalDecisionSaveButtons=syncButtons;
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',schedule,{once:true});
+  else schedule();
+
+  document.addEventListener('click',function(e){
+    if(e.target?.closest?.('.dd-decision-btn[data-decision]')) setTimeout(syncButtons,0);
+  },false);
+
+  const observer=new MutationObserver(schedule);
+  function startObserver(){
+    if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.body) startObserver();
+  else document.addEventListener('DOMContentLoaded',startObserver,{once:true});
+})();
+</script>
+
+
+
+<style id="v282-hospital-decision-business-rule-style">
+  .hospital-decision-field-error-v282{
+    margin-top:6px;
+    font-size:12px !important;
+    font-weight:500 !important;
+    line-height:18px !important;
+    color:#dc2626;
+  }
+  .hospital-decision-invalid-v282{
+    border-color:#ef4444 !important;
+    box-shadow:0 0 0 3px rgba(239,68,68,.08) !important;
+  }
+</style>
+
+<script id="v282-hospital-decision-business-rule-script">
+(function(){
+  const PAGE_SELECTOR='#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage';
+  const CONFIG={
+    edit:{
+      label:'รอแก้ไข',
+      reasonIds:['ccEditReason','ddEditReason'],
+      detailIds:['ccEditDetail','ddEditDetail'],
+      requiredLabel:'สาเหตุรอแก้ไข',
+      close:false,
+      statusClass:'edit'
+    },
+    reject:{
+      label:'ปฏิเสธ',
+      reasonIds:['ccRejectReason','ddRejectReason'],
+      detailIds:['ccRejectDetail','ddRejectDetail'],
+      requiredLabel:'สาเหตุการปฏิเสธ',
+      close:true,
+      statusClass:'reject'
+    },
+    cancel:{
+      label:'ยกเลิก',
+      reasonIds:['ccCancelReason','ddCancelReason'],
+      detailIds:['ccCancelDetail','ddCancelDetail'],
+      requiredLabel:'สาเหตุการยกเลิก',
+      close:true,
+      statusClass:'cancel'
+    },
+    waitdocs:{
+      label:'รอเอกสาร',
+      reasonIds:['ccWaitDocReason','ddWaitDocReason'],
+      detailIds:['ccWaitDocDetail','ddWaitDocDetail','ddWaitRemark'],
+      requiredLabel:'สาเหตุรอเอกสาร',
+      close:false,
+      statusClass:'wait'
+    }
+  };
+
+  function textOf(el){
+    return String(el?.textContent||'').replace(/\s+/g,' ').trim();
+  }
+  function isDecisionSaveButton(btn){
+    if(!btn || btn.tagName!=='BUTTON') return false;
+    const text=textOf(btn).replace(/save/g,'').trim();
+    return text==='ยืนยันบันทึกผลพิจารณา' || text==='บันทึกผลพิจารณา';
+  }
+  function currentDecision(page){
+    const state=String(window.customerDecisionState?.type||'').trim();
+    if(state) return state;
+    const active=page?.querySelector('.dd-decision-btn[data-decision].active,.dd-decision-btn[data-decision][aria-pressed="true"]');
+    return String(active?.dataset?.decision||'').trim();
+  }
+  function firstExisting(ids,page){
+    for(const id of ids||[]){
+      const el=(page&&page.querySelector('#'+id)) || document.getElementById(id);
+      if(el) return el;
+    }
+    return null;
+  }
+  function clearError(field){
+    if(!field) return;
+    field.classList.remove('hospital-decision-invalid-v282');
+    const box=field.closest('.dd-fieldset-modern');
+    box?.querySelector('.hospital-decision-field-error-v282')?.remove();
+  }
+  function showError(field,message){
+    if(!field) return;
+    clearError(field);
+    field.classList.add('hospital-decision-invalid-v282');
+    const box=field.closest('.dd-fieldset-modern') || field.parentElement;
+    if(box){
+      const msg=document.createElement('div');
+      msg.className='hospital-decision-field-error-v282';
+      msg.textContent=message;
+      box.appendChild(msg);
+    }
+    try{field.focus({preventScroll:true});}catch(e){try{field.focus();}catch(_){}}
+    try{field.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
+  }
+  function validate(page,type){
+    const cfg=CONFIG[type];
+    if(!cfg) return {ok:false,message:'กรุณาเลือกผลการพิจารณา'};
+    const reasonEl=firstExisting(cfg.reasonIds,page);
+    const detailEl=firstExisting(cfg.detailIds,page);
+    clearError(reasonEl);
+    clearError(detailEl);
+    const reason=String(reasonEl?.value||'').trim();
+    const detail=String(detailEl?.value||'').trim();
+    if(!reason){
+      showError(reasonEl,'กรุณาระบุ '+cfg.requiredLabel);
+      return {ok:false,message:'กรุณาระบุ '+cfg.requiredLabel};
+    }
+    return {ok:true,cfg,reason,detail,reasonEl,detailEl};
+  }
+  function esc(value){
+    return String(value??'').replace(/[&<>\"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[ch]||ch));
+  }
+  function notify(type,title,detail){
+    try{
+      if(typeof window.hospitalNotify==='function'){
+        window.hospitalNotify({type,title,detail});
+        return;
+      }
+    }catch(e){}
+    document.getElementById('hospitalDecisionToastV282')?.remove();
+    const toast=document.createElement('div');
+    toast.id='hospitalDecisionToastV282';
+    toast.setAttribute('role','status');
+    toast.style.cssText='position:fixed;top:22px;right:22px;z-index:100005;max-width:430px;padding:14px 16px;border-radius:12px;border:1px solid '+(type==='success'?'#86efac':'#fecaca')+';background:'+(type==='success'?'#f0fdf4':'#fef2f2')+';color:'+(type==='success'?'#166534':'#b91c1c')+';box-shadow:0 14px 30px rgba(15,23,42,.16);font-family:var(--ui-font);';
+    toast.innerHTML='<div style="font-size:14px;font-weight:600;line-height:20px">'+esc(title)+'</div><div style="margin-top:3px;font-size:13px;font-weight:400;line-height:20px">'+esc(detail)+'</div>';
+    document.body.appendChild(toast);
+    setTimeout(()=>toast.remove(),3200);
+  }
+  function nowText(){
+    try{return new Intl.DateTimeFormat('th-TH',{dateStyle:'short',timeStyle:'medium',hour12:false}).format(new Date());}
+    catch(e){return new Date().toLocaleString();}
+  }
+  function syncSmileConnect(payload){
+    window.smileConnectDecisionUpdates=window.smileConnectDecisionUpdates||[];
+    window.smileConnectDecisionUpdates.unshift({...payload,syncStatus:'success'});
+    window.dispatchEvent(new CustomEvent('smileconnect:claim-decision-updated',{detail:payload}));
+    return true;
+  }
+  function saveHistory(payload){
+    window.hospitalDecisionHistory=window.hospitalDecisionHistory||[];
+    window.hospitalDecisionHistory.unshift({
+      dateTime:payload.dateTime,
+      claimNo:payload.claimNo,
+      caseNo:payload.caseNo,
+      action:'บันทึกผลพิจารณา',
+      decision:payload.decisionLabel,
+      reason:payload.reason,
+      detail:payload.detail,
+      oldStatus:payload.oldStatus,
+      newStatus:payload.newStatus,
+      source:'ClaimAgent',
+      destination:'SmileConnect'
+    });
+  }
+  function refreshMonitor(){
+    try{
+      if(typeof window.renderConsiderationTable==='function') window.renderConsiderationTable();
+      else if(typeof renderConsiderationTable==='function') renderConsiderationTable();
+    }catch(e){console.error('[v282] refresh hospital monitor',e);}
+  }
+  function completeSave(btn,page,result,type){
+    const cfg=result.cfg;
+    const row=window.currentConsiderHospitalRow||{};
+    const oldStatus=String(row.itemStatus||row.status||'รอพิจารณา');
+    const claimNo=String(row.claimCode||row.claimNo||'-');
+    const caseNo=String(row.caseNo||row.caseCode||row.claimCaseNo||'-');
+    const payload={
+      claimNo,
+      caseNo,
+      decision:type,
+      decisionLabel:cfg.label,
+      reason:result.reason,
+      detail:result.detail,
+      oldStatus,
+      newStatus:cfg.label,
+      closeItem:!!cfg.close,
+      dateTime:nowText()
+    };
+
+    row.decision=cfg.label;
+    row.decisionCode=type;
+    row.decisionReason=result.reason;
+    row.decisionDetail=result.detail;
+    row.itemStatus=cfg.label;
+    row.status=cfg.label;
+    row.statusClass=cfg.statusClass;
+    row.claimClosed=!!cfg.close;
+    row.lastDecisionUpdatedAt=payload.dateTime;
+
+    syncSmileConnect(payload);
+    saveHistory(payload);
+    refreshMonitor();
+
+    btn.disabled=true;
+    btn.setAttribute('aria-disabled','true');
+    btn.dataset.hospitalDecisionSavedV282='true';
+    btn.innerHTML='<span class="material-icons-round mr-1">check_circle</span>บันทึกผลพิจารณาแล้ว';
+
+    notify('success','บันทึกผลพิจารณาสำเร็จ','อัปเดตสถานะรายการเป็น “'+cfg.label+'” และส่งข้อมูลไป SmileConnect แล้ว');
+
+    setTimeout(function(){
+      window.customerDecisionState={type:''};
+      try{
+        if(typeof window.showConsiderationPage==='function') window.showConsiderationPage('hospital');
+        else if(typeof showConsiderationPage==='function') showConsiderationPage('hospital');
+      }catch(e){console.error('[v282] return hospital monitor',e);}
+    },850);
+  }
+
+  document.addEventListener('change',function(e){
+    if(e.target?.matches?.('.dd-select-modern,.dd-textarea-modern')) clearError(e.target);
+  },true);
+  document.addEventListener('input',function(e){
+    if(e.target?.matches?.('.dd-select-modern,.dd-textarea-modern')) clearError(e.target);
+  },true);
+
+  document.addEventListener('click',function(e){
+    const btn=e.target?.closest?.('button');
+    if(!isDecisionSaveButton(btn)) return;
+    const page=btn.closest(PAGE_SELECTOR);
+    if(!page) return;
+    if(btn.disabled) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const type=currentDecision(page);
+    if(!type){
+      notify('warning','ยังไม่สามารถบันทึกผลพิจารณาได้','กรุณาเลือกผลการพิจารณาก่อน');
+      if(typeof window.syncHospitalDecisionSaveButtons==='function') window.syncHospitalDecisionSaveButtons();
+      return;
+    }
+
+    const result=validate(page,type);
+    if(!result.ok){
+      notify('warning','ข้อมูลไม่ครบถ้วน',result.message||'กรุณาตรวจสอบข้อมูลที่จำเป็น');
+      return;
+    }
+
+    completeSave(btn,page,result,type);
+  },true);
+})();
+</script>
+
+
+<script id="v283-hospital-step3-sync-step1-default-script">
+(function(){
+  function esc(s){ return String(s == null ? '' : s).trim(); }
+
+  function hospitalState(){
+    const row = window.currentConsiderHospitalRow || {};
+    const state = window.hospitalClaimSelectionState || {};
+    const claimType = esc(row.claimType || '');
+    return {
+      cause: esc(state.cause || row.claimCause || (/^CLPA/i.test(esc(row.claimCode)) || esc(row.product).toUpperCase()==='PA' ? 'อุบัติเหตุ' : 'เจ็บป่วย')),
+      coverage: esc(state.coverage || 'ค่ารักษา'),
+      treatment: esc(state.treatment || (/IPD/i.test(claimType) ? 'IPD' : 'OPD'))
+    };
+  }
+
+  function syncSummary(prefix){
+    const pane = document.getElementById(prefix+'StepPane3');
+    if(!pane) return;
+    const card = pane.querySelector('.claim-detail-summary-card');
+    if(!card) return;
+    const state = hospitalState();
+    const map = {
+      'เหตุของการเคลม': state.cause,
+      'ประเภทความคุ้มครอง': state.coverage,
+      'ประเภทการรักษา': state.treatment
+    };
+    Array.from(card.querySelectorAll('.grid > div')).forEach(item=>{
+      const parts = Array.from(item.querySelectorAll(':scope > div'));
+      if(parts.length < 2) return;
+      const label = esc(parts[0].textContent).replace(/\s*:\s*$/,'');
+      if(Object.prototype.hasOwnProperty.call(map,label)){
+        parts[1].textContent = map[label] || '-';
+      }
+    });
+  }
+
+  const prevHalf = window.setHospitalHalfStep;
+  window.setHospitalHalfStep = function(step){
+    const result = typeof prevHalf==='function' ? prevHalf.apply(this,arguments) : undefined;
+    if(Number(step)===3) setTimeout(()=>syncSummary('hh'),0);
+    return result;
+  };
+
+  const prevFull = window.setHospitalFullStep;
+  window.setHospitalFullStep = function(step){
+    const result = typeof prevFull==='function' ? prevFull.apply(this,arguments) : undefined;
+    if(Number(step)===3) setTimeout(()=>syncSummary('hf'),0);
+    return result;
+  };
+
+  window.syncHospitalStep3FromStep1Default = function(){
+    syncSummary('hh');
+    syncSummary('hf');
+  };
 })();
 </script>
