@@ -46,6 +46,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- ClaimAgentV5_No_White_Screen -->
 <!-- V29: restored original insurance excess checkbox; removed only duplicate below summary -->
+<!-- v269: PA Field Font Lighter -->
 <title>ClaimAgent | แจ้งเคลม</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -8677,6 +8678,315 @@ body > .min-h-screen > main,
 }
 </style>
 
+
+
+<style id="step3-typography-balanced-v233">
+  /* v233 — Typography & layout ชุดเดียว เฉพาะ Step 3 */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3){
+    --s3-title:18px;
+    --s3-section:16px;
+    --s3-label:13px;
+    --s3-value:16px;
+    --s3-body:14px;
+    --s3-table-head:13px;
+    --s3-table-body:14px;
+    --s3-button:13px;
+    --s3-border:#dbe5ef;
+    --s3-muted:#64748b;
+    --s3-text:#334155;
+    font-size:var(--s3-body) !important;
+    line-height:1.45 !important;
+    color:var(--s3-text) !important;
+  }
+
+  /* Main card */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) > .rounded-xl.border.border-slate-200.bg-white{
+    border-color:var(--s3-border) !important;
+    border-radius:14px !important;
+    box-shadow:0 2px 10px rgba(15,23,42,.035) !important;
+    overflow:hidden !important;
+  }
+
+  /* Main title bar */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) > .rounded-xl.border.border-slate-200.bg-white > .border-l-4{
+    min-height:46px !important;
+    padding:10px 15px !important;
+    font-size:var(--s3-title) !important;
+    font-weight:700 !important;
+    line-height:1.3 !important;
+    background:#eef6fd !important;
+  }
+
+  /* Content spacing */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) > .rounded-xl.border.border-slate-200.bg-white > .space-y-4{
+    padding:14px !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .space-y-4 > :not([hidden]) ~ :not([hidden]){
+    margin-top:12px !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .gap-6{gap:14px !important;}
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .gap-4{gap:12px !important;}
+
+  /* Section headers */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) :is(.claim-detail-summary-title,h2,h3,h4,.mb-3.text-lg){
+    font-size:var(--s3-section) !important;
+    font-weight:700 !important;
+    line-height:1.35 !important;
+    color:#1e293b !important;
+  }
+
+  /* Detail cards */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .rounded-xl.border.border-slate-200.p-4{
+    padding:14px !important;
+    border-color:var(--s3-border) !important;
+    border-radius:12px !important;
+    background:#fff !important;
+  }
+
+  /* Labels */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card .text-sm,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card .grid > div > .text-sm:first-child{
+    font-size:var(--s3-label) !important;
+    font-weight:500 !important;
+    line-height:1.35 !important;
+    color:var(--s3-muted) !important;
+  }
+
+  /* Values */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card .text-base,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card .text-lg,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-detail-summary-card .grid > div > div:last-child:not(.text-sm){
+    font-size:var(--s3-value) !important;
+    font-weight:600 !important;
+    line-height:1.45 !important;
+    color:#1e293b !important;
+  }
+
+  /* Generic typography inside Step 3 — keep hierarchy consistent */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .text-sm{font-size:var(--s3-label) !important;}
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .text-base{font-size:var(--s3-body) !important;}
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .text-lg{font-size:var(--s3-section) !important;}
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .text-xl{font-size:17px !important;}
+
+  /* Expense table */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) table{
+    width:100% !important;
+    font-size:var(--s3-table-body) !important;
+    line-height:1.4 !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) table thead th{
+    padding:9px 10px !important;
+    font-size:var(--s3-table-head) !important;
+    font-weight:600 !important;
+    line-height:1.35 !important;
+    white-space:nowrap !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) table tbody td{
+    padding:9px 10px !important;
+    font-size:var(--s3-table-body) !important;
+    font-weight:400 !important;
+    line-height:1.4 !important;
+    vertical-align:middle !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) table tbody tr.bg-brand-600 td{
+    font-size:14px !important;
+    font-weight:600 !important;
+  }
+
+  /* Money summary */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .xl\\:grid-cols-2 > .rounded-xl{
+    padding:14px !important;
+    border-color:var(--s3-border) !important;
+    border-radius:12px !important;
+    background:#fff !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .xl\\:grid-cols-2 .flex.justify-between{
+    min-height:30px !important;
+    padding:4px 0 !important;
+    gap:18px !important;
+    align-items:center !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .xl\\:grid-cols-2 .flex.justify-between > span{
+    font-size:14px !important;
+    font-weight:400 !important;
+    color:#475569 !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .xl\\:grid-cols-2 .flex.justify-between > :is(strong,b){
+    font-size:16px !important;
+    font-weight:600 !important;
+    white-space:nowrap !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .xl\\:grid-cols-2 .rounded-lg{
+    padding:9px 11px !important;
+    border-radius:10px !important;
+    font-size:14px !important;
+    font-weight:600 !important;
+    line-height:1.4 !important;
+  }
+
+  /* Documents */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .customer-scan-btn{
+    min-height:36px !important;
+    height:36px !important;
+    font-size:var(--s3-button) !important;
+    font-weight:500 !important;
+  }
+
+  /* Action bar */
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) > .flex.flex-col.gap-3.pt-2{
+    margin-top:12px !important;
+    padding-top:12px !important;
+    border-top:1px solid #e2e8f0 !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .claim-step-action-btn,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .cc-ref-back-btn,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .cc-ref-draft-btn,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .cc-ref-next-btn,
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) .cc-ref-save-btn{
+    min-height:38px !important;
+    height:38px !important;
+    padding:0 15px !important;
+    border-radius:9px !important;
+    font-size:var(--s3-button) !important;
+    font-weight:500 !important;
+    line-height:1.2 !important;
+  }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) button .material-icons-round{
+    font-size:16px !important;
+  }
+</style>
+
+
+<style id="master-table-font-readable-v238">
+  /* v238 — เพิ่มความอ่านง่ายเฉพาะตารางในเมนู Master */
+  #devMasterPage .master-table{
+    font-size:15px !important;
+    line-height:1.45 !important;
+  }
+
+  #devMasterPage .master-table thead th{
+    padding:11px 13px !important;
+    font-size:14px !important;
+    font-weight:700 !important;
+    line-height:1.35 !important;
+    white-space:nowrap !important;
+  }
+
+  #devMasterPage .master-table tbody td{
+    padding:11px 13px !important;
+    font-size:15px !important;
+    font-weight:400 !important;
+    line-height:1.45 !important;
+    vertical-align:middle !important;
+  }
+
+  #devMasterPage .master-cell-code{
+    font-size:14.5px !important;
+    font-weight:600 !important;
+  }
+
+  #devMasterPage .master-cell-date{
+    font-size:14px !important;
+  }
+
+  #devMasterPage .master-badge{
+    min-height:25px !important;
+    padding:3px 9px !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+  }
+
+  #devMasterPage .master-table tbody tr{
+    min-height:44px !important;
+  }
+</style>
+
+
+<style id="master-table-font-larger-v239">
+  /* v239 — เพิ่มขนาดฟอนต์ตาราง Master ให้เห็นชัดขึ้น */
+  #devMasterPage .master-table{
+    font-size:17px !important;
+    line-height:1.5 !important;
+  }
+
+  #devMasterPage .master-table thead th{
+    padding:12px 14px !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    line-height:1.4 !important;
+  }
+
+  #devMasterPage .master-table tbody td{
+    padding:12px 14px !important;
+    font-size:17px !important;
+    font-weight:400 !important;
+    line-height:1.5 !important;
+    vertical-align:middle !important;
+  }
+
+  #devMasterPage .master-cell-code{
+    font-size:16px !important;
+    font-weight:600 !important;
+  }
+
+  #devMasterPage .master-cell-date{
+    font-size:16px !important;
+  }
+
+  #devMasterPage .master-badge{
+    min-height:28px !important;
+    padding:4px 10px !important;
+    font-size:15px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+  }
+</style>
+
+
+<style id="v245-hospital-insurance-excess-spacing-adjust">
+/* v245 — ปรับระยะห่าง block เป็นส่วนเกินจากบริษัทประกัน ให้ชิดสรุปยอดเงินมากขึ้น */
+#considerHospitalOpdHalfPage #hhStepPane2 > .hospital-insurance-excess-box,
+#considerHospitalOpdFullPage #hfStepPane2 > .hospital-insurance-excess-box{
+  margin-top:8px !important;
+  margin-bottom:0 !important;
+  padding:10px 16px !important;
+  gap:14px !important;
+  border-radius:12px !important;
+}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-left,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-left{
+  gap:10px !important;
+  min-height:46px !important;
+}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-check,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-check{
+  width:20px !important;
+  height:20px !important;
+  min-width:20px !important;
+}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-title,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-title{
+  line-height:1.25 !important;
+}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-select,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-select{
+  height:48px !important;
+  padding:0 14px !important;
+  border-radius:10px !important;
+}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .cc-ref-summary-box + .hospital-insurance-excess-box,
+#considerHospitalOpdFullPage #hfStepPane2 .cc-ref-summary-box + .hospital-insurance-excess-box{
+  margin-top:8px !important;
+}
+</style>
+
 </head>
 
 <body class="min-h-screen bg-slate-100 text-ink">
@@ -13334,7 +13644,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", hospital: "โรงพยาบาลรวมใจรักษ์", province: "กรุงเทพมหานคร", name: "นางสาวนวพร ก้องเกียรติสกุล", claimType: "OPD Full", product: "PA", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา"},
       { date: "17/05/2569 10:08:20", claimCode: "CL6905000072", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายณัฐวัฒน์ เกตุวิชิต", claimType: "IPD", product: "PH", amount: "8,450.00" , itemStatus: "รอเอกสาร"},
       { date: "17/05/2569 11:22:45", claimCode: "CLPA6905000107", hospital: "โรงพยาบาลเด็ก", province: "กรุงเทพมหานคร", name: "ด.ญ.ปาริฉัตร แก้วมณี", claimType: "OPD Half", product: "PA", amount: "620.00" , itemStatus: "รอแก้ไข"},
-      { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", hospital: "โรงพยาบาลมะการักษ์", province: "กาญจนบุรี", name: "นายชาญวิทย์ อินแสง", claimType: "OPD Half", product: "PH", amount: "550.00", exgratiaAmount: "250.00", itemStatus: "รอพิจารณา", isContinuous:true, previousClaimNo:"CL6904000193", previousCaseNo:"CC6904000193-01", caseNo:"CC6905000082-02", previousServiceDate:"25/03/2569", diagnosis:"A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษ", remainingBalance:"3,200.00", cumulativePaid:"1,800.00"},
+      { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", hospital: "โรงพยาบาลมะการักษ์", province: "กาญจนบุรี", name: "นายชาญวิทย์ อินแสง", claimType: "OPD Half", product: "PH", amount: "550.00", hospitalOpdAmount: "650.00", hospitalOpdDiscount: "50.00", exgratiaAmount: "250.00", itemStatus: "รอพิจารณา", isContinuous:true, previousClaimNo:"CL6904000193", previousCaseNo:"CC6904000193-01", caseNo:"CC6905000082-02", previousServiceDate:"25/03/2569", diagnosis:"A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษ", remainingBalance:"3,200.00", cumulativePaid:"1,800.00"},
       { date: "17/05/2569 14:29:43", claimCode: "CL6905000095", hospital: "โรงพยาบาลวิภารามพัฒนาการ", province: "กรุงเทพมหานคร", name: "นายภูบดินทร์ เจริญทิพย์", claimType: "OPD Full", product: "PH", amount: "700.00" , itemStatus: "รอเอกสาร", isContinuous:true, previousClaimNo:"CL6904000095", previousCaseNo:"CC6904000095-01", caseNo:"CC6905000095-02", previousServiceDate:"12/04/2569", diagnosis:"J06.9 : Acute upper respiratory infection, unspecified | การติดเชื้อทางเดินหายใจส่วนบน", remainingBalance:"4,300.00", cumulativePaid:"5,700.00"},
       { date: "18/05/2569 10:42:24", claimCode: "CLPA6905000112", hospital: "โรงพยาบาลสมิติเวช สุขุมวิท", province: "กรุงเทพมหานคร", name: "นายเยี่ยมพงษ์ รัชนีทิพย์", claimType: "OPD Full", product: "PA", amount: "2,310.50" , itemStatus: "ปฏิเสธ"},
       { date: "18/05/2569 10:47:27", claimCode: "CLPA6905000113", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางณัฐฐิกานต์ ทรัพย์ปรีชา", claimType: "IPD", product: "PA", amount: "2,140.90" , itemStatus: "ยกเลิก"},
@@ -14224,7 +14534,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         history: sortedRows.map(row => ({
           time: row.date,
           title: `สร้างรายการ ${row.cl}`,
-          desc: `บันทึกรายการเลขที่ ${row.caseNo} และเตรียมโอนเงิน ${row.amount} บาท`
+          desc: `บันทึกรายการเลขที่ ${row.caseNo} และเตรียมโอนเงิน ${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount} บาท`
         })),
         transfers: [
           ['เลข CPG', leadRow.cpg],
@@ -14260,7 +14570,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="crd-table-wrap">
           <table class="crd-table">
             <thead><tr><th>เลขที่ CL</th><th>เลขที่ Case</th><th>ชื่อ-สกุลผู้เอาประกัน</th><th>วันที่เกิดเหตุ</th><th>วันที่เข้า รพ.</th><th>วันที่ออก รพ.</th><th>ข้อมูลเคลม</th><th>จำนวนเงิน</th><th></th></tr></thead>
-            <tbody>${payload.claimTable.map(row => `<tr><td><span class="font-extrabold text-brand-700 underline">${row.cl}</span></td><td>${row.caseNo}</td><td>${row.name}</td><td>${row.accidentDate}</td><td>${row.admitDate}</td><td>${row.dischargeDate}</td><td>${row.claimInfo}</td><td class="crd-money">${row.amount}</td><td class="text-center"><span class="crd-action-btn"><span class="material-icons-round">description</span></span></td></tr>`).join('')}</tbody>
+            <tbody>${payload.claimTable.map(row => `<tr><td><span class="font-extrabold text-brand-700 underline">${row.cl}</span></td><td>${row.caseNo}</td><td>${row.name}</td><td>${row.accidentDate}</td><td>${row.admitDate}</td><td>${row.dischargeDate}</td><td>${row.claimInfo}</td><td class="crd-money">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount}</td><td class="text-center"><span class="crd-action-btn"><span class="material-icons-round">description</span></span></td></tr>`).join('')}</tbody>
           </table>
         </div>`;
       document.getElementById('crdTabHistory').innerHTML = `<div class="crd-mini-card"><div class="crd-mini-title"><span class="material-icons-round">history</span>ประวัติการทำรายการ</div><div class="crd-timeline">${payload.history.map(item => `<div class="crd-timeline-item"><div class="crd-timeline-time">${item.time}</div><div class="crd-timeline-title">${item.title}</div><div class="crd-timeline-desc">${item.desc}</div></div>`).join('')}</div></div>`;
@@ -14833,7 +15143,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td class="px-4 py-4 font-bold text-brand-700">${row.transfer}</td>
           <td class="px-4 py-4">${row.name}</td>
           <td class="px-4 py-4">${row.bank}</td>
-          <td class="px-4 py-4 text-right font-extrabold text-brand-700">${row.amount}</td>
+          <td class="px-4 py-4 text-right font-extrabold text-brand-700">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount}</td>
           <td class="px-4 py-4"><span class="inline-flex rounded-full px-3 py-1 text-lg font-bold ${row.style}">${row.status}</span></td>
           <td class="px-4 py-4"><div class="flex justify-center gap-2"><button class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button><button class="grid h-10 w-10 place-items-center rounded-full bg-slate-100 text-slate-600"><span class="material-icons-round">receipt_long</span></button></div></td>
         </tr>`).join("");
@@ -15023,7 +15333,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td>${row.name}</td>
           <td><span class="dd-chip-product">${row.product}</span></td>
           <td><span class="tt-status ${row.statusClass}">${row.status}</span></td>
-          <td class="font-semibold">${row.amount}</td>
+          <td class="font-semibold">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount}</td>
           <td><div class="flex items-center justify-center gap-2"><button type="button" class="dd-consider-btn" title="พิจารณาเคลม" data-tooltip="พิจารณาเคลม" onclick="showConsiderDeathDetail('${row.claimCode}')"><span class="material-icons-round">fact_check</span></button><button type="button" class="tt-action view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div></td>
         </tr>`).join("") : `<tr><td colspan="8" class="py-8 text-center font-bold text-slate-400">ไม่พบข้อมูลตามสถานะที่เลือก</td></tr>`;
       if (pager) pager.textContent = rows.length ? `1-${rows.length} จาก ${rows.length}` : `0 จาก 0`;
@@ -15149,7 +15459,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <td class="px-4 py-4">${row.school}</td>
             <td class="px-4 py-4">${row.name}</td>
             <td class="px-4 py-4">${row.idCard}</td>
-            <td class="px-4 py-4 font-semibold">${row.amount}</td>
+            <td class="px-4 py-4 font-semibold">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount}</td>
             <td class="px-4 py-4 text-center">${getConsiderItemStatusBadge(row.itemStatus)}</td>
             <td class="px-4 py-4"><div class="flex justify-center gap-3"><button type="button" onclick="openConsiderCustomerRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-yellow-100 text-yellow-700" title="พิจารณาเคลม"><span class="material-icons-round">fact_check</span></button><button type="button" onclick="openConsiderCustomerRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div></td>
           </tr>`;
@@ -15165,7 +15475,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <td class="px-4 py-4">${row.name}</td>
             <td class="px-4 py-4"><span class="inline-flex min-w-[92px] justify-center rounded-full border px-4 py-1 font-bold ${String(row.claimType).includes('Half') ? 'border-amber-400 bg-amber-50 text-amber-700' : String(row.claimType).includes('Full') ? 'border-emerald-400 bg-emerald-50 text-emerald-700' : 'border-brand-500 bg-brand-50 text-brand-700'}">${row.claimType}</span></td>
             <td class="px-4 py-4"><span class="inline-flex min-w-[56px] justify-center rounded-full bg-brand-600 px-4 py-1 font-bold text-white">${row.product}</span></td>
-            <td class="px-4 py-4 font-semibold">${row.amount}</td>
+            <td class="px-4 py-4 font-semibold">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount}</td>
             <td class="px-4 py-4">${row.exgratiaAmount ? `<span class="consider-exgratia-pill">${row.exgratiaAmount}</span>` : `<span class="text-slate-400">-</span>`}</td>
             <td class="px-4 py-4 text-center">${getConsiderItemStatusBadge(row.itemStatus)}</td>
             <td class="px-4 py-4">${renderHospitalMonitorActionButtons(row, realIndex)}</td>
@@ -16436,8 +16746,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function getAvailableIncidentCauseOptions() {
-      if (claimState.row?.product === "PA" && !paPlanHasIllnessCoverage()) {
-        return incidentCauseOptions.filter(item => item.value !== "เจ็บป่วย");
+      // PA Claim Requirement: เหตุของการเคลมมีเฉพาะ “อุบัติเหตุ” และต้องให้ผู้ใช้เป็นผู้เลือกเอง
+      if (claimState.row?.product === "PA") {
+        return incidentCauseOptions.filter(item => item.value === "อุบัติเหตุ");
       }
       return incidentCauseOptions;
     }
@@ -16650,11 +16961,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         showClaimSelectionRequiredError("coverageTypeRadios", "กรุณาเลือกประเภทความคุ้มครอง");
         first ||= document.getElementById("coverageTypeRadios");
       } else if (!claimState.subType) {
+        const isPA = claimState.row?.product === "PA";
         const labels = {
           "ค่ารักษา": "กรุณาเลือกประเภทการรักษา",
           "ค่าชดเชย": "กรุณาเลือกประเภทการรักษา",
-          "เสียชีวิต": "กรุณาเลือกสาเหตุการเสียชีวิต",
-          "ทุพพลภาพ/สูญเสียอวัยวะ": "กรุณาเลือกสาเหตุการทุพพลภาพ/สูญเสียอวัยวะ"
+          "เสียชีวิต": isPA ? "กรุณาเลือกสาเหตุของการเกิดเหตุ" : "กรุณาเลือกสาเหตุการเสียชีวิต",
+          "ทุพพลภาพ/สูญเสียอวัยวะ": isPA ? "กรุณาเลือกสาเหตุของการเกิดเหตุ" : "กรุณาเลือกสาเหตุการทุพพลภาพ/สูญเสียอวัยวะ"
         };
         showClaimSelectionRequiredError("claimSubRadios", labels[claimState.coverageType] || "กรุณาเลือกข้อมูล");
         first ||= document.getElementById("claimSubRadios");
@@ -16859,9 +17171,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ? coverageOptions.filter(item => availableValues.includes(item.value)).map(item => ({ ...item, descOverride: coverageOptionDesc(item) }))
         : [];
 
+      const coverageEmptyMessage = claimState.row?.product === "PA"
+        ? "ยังไม่ได้เลือกเหตุของการเคลม เลือกเหตุของการเคลมด้านบนเพื่อระบุประเภทความคุ้มครอง"
+        : "กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงประเภทความคุ้มครองตามผลิตภัณฑ์ PH";
       document.getElementById("coverageTypeRadios").innerHTML = availableCoverageOptions.length
         ? availableCoverageOptions.map(item => renderChoiceCard(item, claimState.coverageType === item.value, "coverageType", "coverage-type-input")).join("")
-        : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-xl font-bold text-slate-400">กรุณาเลือกเหตุของการเคลมก่อน ระบบจะแสดงประเภทความคุ้มครองตามผลิตภัณฑ์ PH</div>`;
+        : `<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-xl font-bold text-slate-400">${coverageEmptyMessage}</div>`;
       document.querySelectorAll(".coverage-type-input").forEach(r => r.addEventListener("change", e => {
         clearClaimSelectionValidation();
         claimState.coverageType = e.target.value;
@@ -16879,11 +17194,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const coverage = claimState.coverageType;
       const sub = claimState.subType;
       const subOptions = coverage ? getSubOptionObjects() : [];
+      const isPA = claimState.row?.product === "PA";
       const subTitleMap = {
         "ค่ารักษา": "ประเภทการรักษา",
         "ค่าชดเชย": "ประเภทการรักษา",
-        "ทุพพลภาพ/สูญเสียอวัยวะ": "สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ",
-        "เสียชีวิต": "สาเหตุการเสียชีวิต"
+        "ทุพพลภาพ/สูญเสียอวัยวะ": isPA ? "สาเหตุของการเกิดเหตุ" : "สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ",
+        "เสียชีวิต": isPA ? "สาเหตุของการเกิดเหตุ" : "สาเหตุการเสียชีวิต"
       };
       document.getElementById("claimSubTitle").innerHTML = `${subTitleMap[coverage] || "ตัวเลือกเพิ่มเติม"}<span class="text-danger">*</span>`;
 
@@ -16903,9 +17219,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </div>`
         : "";
 
+      const subEmptyMessage = isPA
+        ? "ยังไม่ได้เลือกประเภทความคุ้มครอง เลือกประเภทความคุ้มครองด้านบนเพื่อระบุประเภทความคุ้มครอง"
+        : "กรุณาเลือกประเภทความคุ้มครองก่อน";
       document.getElementById("claimSubRadios").innerHTML = subOptions.length
         ? subOptionHtml + deathExtraHtml
-        : (coverage ? `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">ไม่มีตัวเลือกเพิ่มเติมตามเงื่อนไข</div>` : `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">กรุณาเลือกประเภทความคุ้มครองก่อน</div>`);
+        : (coverage ? `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">ไม่มีตัวเลือกเพิ่มเติมตามเงื่อนไข</div>` : `<div class="rounded-xl border border-dashed border-slate-300 bg-white px-5 py-3 text-xl font-bold text-slate-400">${subEmptyMessage}</div>`);
       document.querySelectorAll(".claim-sub-input:not(:disabled)").forEach(r => r.addEventListener("change", e => {
         clearClaimSelectionValidation();
         claimState.subType = e.target.value;
@@ -17077,15 +17396,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </button>
         </header>
         <div class="space-y-3 bg-slate-50 px-4 py-4">
-          <section class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-white p-3.5">
-            <div class="flex items-start gap-3">
-              <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-100 text-amber-700">
-                <span class="material-icons-round !text-2xl">priority_high</span>
+          <section class="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-amber-50/70 p-4 shadow-soft">
+            <div class="flex items-center justify-center gap-4 sm:justify-start">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-amber-100 text-amber-700 ring-8 ring-amber-50">
+                <span class="material-icons-round !text-3xl">priority_high</span>
               </span>
-              <div>
-                <h4 class="text-xl font-extrabold text-amber-700">จ่ายเกินสิทธิ์</h4>
-                <p class="mt-1 text-xs font-semibold leading-5 text-slate-500">สามารถปรับยอดที่เบิกได้และยอดจ่ายเกินสิทธิ์ได้ โดยยอดที่เบิกได้ต้องไม่เกินสิทธิ์เบิก</p>
-              </div>
+              <h4 class="text-2xl font-black tracking-tight text-amber-700">จ่ายเกินสิทธิ์</h4>
             </div>
           </section>
 
@@ -17100,12 +17416,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="grid gap-2 md:grid-cols-2">
             <label class="rounded-xl border border-slate-200 bg-white p-3 shadow-soft">
               <span class="mb-1 block text-xs font-extrabold text-slate-500">ยอดที่เบิกได้<span class="text-danger">*</span></span>
-              <input id="overCoverageEligibleInput" value="${formatMoney(eligibleAmount)}" inputmode="decimal" autocomplete="off" class="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-xl font-extrabold text-brand-700 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
+              <input id="overCoverageEligibleInput" value="${formatMoney(eligibleAmount)}" inputmode="decimal" autocomplete="off" disabled aria-disabled="true" class="h-10 w-full cursor-not-allowed rounded-lg border border-slate-200 bg-slate-100 px-3 text-xl font-extrabold text-brand-700 opacity-100 outline-none">
               <p id="overCoverageEligibleError" class="mt-1 hidden text-xs font-bold text-red-600">ยอดที่เบิกได้ต้องไม่เกินสิทธิ์เบิก</p>
             </label>
             <label class="rounded-xl border border-red-100 bg-white p-3 shadow-soft">
               <span class="mb-1 block text-xs font-extrabold text-slate-500">จ่ายเงินเกินสิทธิ์ (NPL)<span class="text-danger">*</span></span>
-              <input id="overCoverageNplInput" value="${formatMoney(overAmount)}" inputmode="decimal" autocomplete="off" class="h-10 w-full rounded-lg border border-red-200 bg-red-50 px-3 text-xl font-extrabold text-red-600 outline-none transition focus:border-red-400 focus:ring-4 focus:ring-red-100">
+              <input id="overCoverageNplInput" value="${formatMoney(overAmount)}" inputmode="decimal" autocomplete="off" disabled aria-disabled="true" class="h-10 w-full cursor-not-allowed rounded-lg border border-red-100 bg-red-50 px-3 text-xl font-extrabold text-red-600 opacity-100 outline-none">
               <p id="overCoverageNplError" class="mt-1 hidden text-xs font-bold text-red-600">กรุณาระบุยอดจ่ายเกินสิทธิ์ให้ถูกต้อง</p>
             </label>
           </div>
@@ -17186,14 +17502,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const eligibleInput = document.getElementById("overCoverageEligibleInput");
         const nplInput = document.getElementById("overCoverageNplInput");
         const checkbox = document.getElementById("confirmOverCoverageCheck");
-        [eligibleInput, nplInput].forEach(input => {
-          input?.addEventListener("input", validateOverCoverageModal);
-          input?.addEventListener("blur", () => {
-            formatOverCoverageInput(input);
-            validateOverCoverageModal();
-          });
-          input?.addEventListener("focus", () => input.select());
-        });
+        // v257: Amount fields are review-only in this popup.
         checkbox?.addEventListener("change", validateOverCoverageModal);
         validateOverCoverageModal();
       });
@@ -25301,8 +25610,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           ${customerTopItem('sync','สถานะเคลม :', esc(data.top.status), true)}
         </div>
         <div class="customer-review-codegrid bg-slate-50/70">
-          ${customerTopItem('description','เลขที่เคลม :', esc(data.top.claimNo))}
-          ${customerTopItem('badge','เลขที่ Case :', esc(data.top.caseNo))}
+          <div data-hospital-header-cl="${esc(data.top.claimNo)}">${customerTopItem('description','เลขที่เคลม :', esc(data.top.claimNo))}</div>
+          <div data-hospital-header-case="${esc(data.top.caseNo)}">${customerTopItem('badge','เลขที่ Case :', esc(data.top.caseNo))}</div>
           ${customerTopItem('flag','ประเภทการเคลม :', esc(data.top.claimCategory))}
           ${customerTopItem('receipt_long','ประเภทรายการเคลม :', esc(data.claimType))}
         </div>
@@ -26264,6 +26573,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             </div>
           </div>
         </div>
+        ${context?.source === 'hospital' ? (context?.insuranceExcessHtml || '') : `
         <div class="mt-4 rounded-xl border border-brand-200 bg-brand-25 p-4">
           <div class="insurance-excess-inline-layout grid gap-3 md:items-center">
             <label class="insurance-excess-inline-label flex min-h-[44px] items-center gap-3 text-lg font-semibold text-brand-700">
@@ -26282,7 +26592,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <option>รออนุมัติ</option>
             </select>
           </div>
-        </div>
+        </div>`}
       </section>
       <section class="cc-ref-card cc-ref-additional-card">
         <div class="cc-ref-additional-head">
@@ -27898,7 +28208,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const rows = [
         {name:'แบบฟอร์ม A', count:1, status:'pending', note:''},
         {name:'ใบแจ้งหนี้', count:1, status:'pending', note:''},
-        {name:'รายละเอียดใบแจ้งหนี้', count:2, status:'pass', note:'รายละเอียดตรงกับยอดค่ารักษา'},
+        {name:'รายละเอียดใบแจ้งหนี้', count:2, status:'pending', note:'รายละเอียดตรงกับยอดค่ารักษา'},
         {name:'ผลการตรวจ LAB / X-ray', count:1, status:'pending', note:''},
         {name:'เอกสารอื่นๆ', count:0, status:'pending', note:''},
         {name:'บัตรประชาชน', count:0, status:'pending', note:''},
@@ -28014,6 +28324,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
 
   function renderHospitalHalfExpenseInline(){
+    const row = window.currentConsiderHospitalRow || {};
+    const hospitalTotal = Number(String(row.hospitalOpdAmount ?? row.amount ?? 0).replace(/,/g,'')) || 0;
+    const hospitalDiscount = Number(String(row.hospitalOpdDiscount ?? 0).replace(/,/g,'')) || 0;
+    const hospitalNet = Math.max(hospitalTotal - hospitalDiscount, 0);
+    const hospitalMoney = value => Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     return `<section class="opd-half-expense-card">
       <div class="opd-half-expense-main">
         <div class="opd-half-expense-title">รายการค่ารักษา(จากโรงพยาบาล)</div>
@@ -28025,7 +28340,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <label>
               <span>ยอดเบิกทั้งหมด</span>
               <div class="opd-half-money-input">
-                <input id="hhTotalClaimInput" type="number" min="0" value="650.00" oninput="updateHospitalHalfExpenseSummary()">
+                <input id="hhTotalClaimInput" type="number" min="0" value="${hospitalMoney(hospitalTotal)}" oninput="updateHospitalHalfExpenseSummary()">
                 <b>บาท</b>
               </div>
             </label>
@@ -28033,14 +28348,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <label>
               <span>ส่วนลดทั้งหมด</span>
               <div class="opd-half-money-input">
-                <input id="hhTotalDiscountInput" type="number" min="0" value="50.00" oninput="updateHospitalHalfExpenseSummary()">
+                <input id="hhTotalDiscountInput" type="number" min="0" value="${hospitalMoney(hospitalDiscount)}" oninput="updateHospitalHalfExpenseSummary()">
                 <b>บาท</b>
               </div>
             </label>
 
             <div class="opd-half-net-box">
               <span>ยอดเบิกสุทธิ</span>
-              <strong id="hhNetAmountText">600.00</strong>
+              <strong id="hhNetAmountText">${hospitalMoney(hospitalNet)}</strong>
               <b>บาท</b>
             </div>
           </div>
@@ -28081,7 +28396,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     // ใช้รายการค่ารักษาเบื้องต้น + รายการค่ารักษาเพิ่มเติมชุดเดียวกับเคลมลูกค้า
     // แต่ตัด insurance excess ของ customer ออก เพื่อไม่ให้ซ้ำกับ hospital excess ด้านล่าง
     let expenseContent = typeof window.renderCustomerMedicalExpenseSections === 'function'
-      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment:treatment, source:'hospital'})
+      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment:treatment, source:'hospital', prefix:'hh', insuranceExcessHtml:renderHospitalInsuranceExcessBox('hh')})
       : '';
     if(expenseContent){
       const holder = document.createElement('div');
@@ -28099,13 +28414,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${hospitalExpense}
       <section class="cc-ref-title-strip hospital-opd-half-step2-title"><span class="material-icons-round">receipt_long</span>รายละเอียดค่าใช้จ่าย</section>
       ${expenseContent}
-      ${renderHospitalInsuranceExcessBox('hh')}
       <div class="cc-ref-decision-wrap">${decision()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="setHospitalHalfStep(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
         <div class="cc-ref-action-right">
           <button type="button" onclick="saveCustomerDraft()" class="cc-ref-draft-btn claim-step-action-btn"><span class="material-icons-round">save_as</span>บันทึกแบบร่าง</button>
-          <button type="button" onclick="setHospitalHalfStep(3)" class="cc-ref-next-btn claim-step-action-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
+          <button type="button" onclick="validateHospitalHalfTotalBeforeNext()" class="cc-ref-next-btn claim-step-action-btn">ถัดไป<span class="material-icons-round">arrow_forward</span></button>
           <button type="button" class="cc-ref-save-btn claim-step-action-btn"><span class="material-icons-round">save</span>ยืนยันบันทึกผลพิจารณา</button>
         </div>
       </div>
@@ -28174,8 +28488,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${renderCustomerTransferScenarioAlert()}
       ` : ''}
       <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</section>
-      ${window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital') })}
-      ${kind === 'full' ? renderHospitalInsuranceExcessBox(prefix) : ''}
+      ${window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital'), prefix:prefix, insuranceExcessHtml:(kind === 'customer' ? '' : renderHospitalInsuranceExcessBox(prefix)) })}
       <div class="cc-ref-decision-wrap">${decision()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="set${stepName}Step(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
@@ -32396,7 +32709,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td class="px-4 py-4">${row.name || '-'}</td>
           <td class="px-4 py-4"><span class="inline-flex min-w-[92px] justify-center rounded-full border px-4 py-1 font-bold ${typeClass}">${row.claimType || '-'}</span></td>
           <td class="px-4 py-4"><span class="inline-flex min-w-[56px] justify-center rounded-full bg-brand-600 px-4 py-1 font-bold text-white">${row.product || '-'}</span></td>
-          <td class="px-4 py-4 font-semibold">${row.amount || '-'}</td>
+          <td class="px-4 py-4 font-semibold">${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : (row.amount || '-')}</td>
           <td class="px-4 py-4 text-center">${window.getConsiderItemStatusBadge(row.itemStatus)}${reviewNote}</td>
           <td class="px-4 py-4">${row.itemStatus === 'อยู่ระหว่างดำเนินการ'
             ? `<div class="consider-hospital-action-group is-single"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
@@ -32704,7 +33017,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <td class="px-4 py-4">${escapeHtml(row.name || '-')}</td>
           <td class="px-4 py-4"><span class="inline-flex min-w-[92px] justify-center rounded-full border px-4 py-1 font-bold ${typeClass}">${escapeHtml(row.claimType || '-')}</span></td>
           <td class="px-4 py-4"><span class="inline-flex min-w-[56px] justify-center rounded-full bg-brand-600 px-4 py-1 font-bold text-white">${escapeHtml(row.product || '-')}</span></td>
-          <td class="px-4 py-4 font-semibold">${escapeHtml(row.amount || '-')}</td>
+          <td class="px-4 py-4 font-semibold">${escapeHtml((String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : (row.amount || '-'))}</td>
           <td class="px-4 py-4 text-center">${window.getConsiderItemStatusBadge(row.itemStatus, row)}</td>
           <td class="px-4 py-4">${row.itemStatus === STATUS_IN_PROGRESS
             ? `<div class="consider-hospital-action-group is-single"><button type="button" onclick="openConsiderHospitalRow(${realIndex})" class="consider-row-action grid place-items-center rounded-full bg-brand-100 text-brand-700" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></div>`
@@ -52859,8 +53172,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "221",
-  updatedAt: "27/08/2026 10:30:00"
+  version: "249",
+  updatedAt: "27/08/2026 17:12:00"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -53256,6 +53569,1255 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
   }
 </script>
 
+
+<script id="opd-half-total-validation-v222">
+(function(){
+  function parseMoney(value){
+    const n = Number(String(value ?? '').replace(/,/g,'').trim());
+    return Number.isFinite(n) ? n : 0;
+  }
+  function money(value){
+    return Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+
+  window.getHospitalHalfAmountValidation = function(){
+    // OPD Half เท่านั้น: ยอดสุทธิจากโรงพยาบาล = ยอดเบิกทั้งหมด - ส่วนลดทั้งหมด
+    const hospitalClaim = parseMoney(document.getElementById('hhTotalClaimInput')?.value);
+    const hospitalDiscount = parseMoney(document.getElementById('hhTotalDiscountInput')?.value);
+    const hospitalNet = Math.max(hospitalClaim - hospitalDiscount, 0);
+
+    // ผลรวมรายการค่ารักษาที่ผู้พิจารณากรอก อิง Summary ของตารางรายการค่ารักษา(เบื้องต้น)
+    if(typeof window.recalculateCustomerExpenseSummary === 'function'){
+      window.recalculateCustomerExpenseSummary();
+    }
+    const reviewerTotal = parseMoney(document.getElementById('customerSummaryReceiptTotal')?.textContent);
+    const diff = reviewerTotal - hospitalNet;
+    const epsilon = 0.005;
+    const status = Math.abs(diff) < epsilon ? 'equal' : (diff < 0 ? 'less' : 'greater');
+    return { hospitalNet, reviewerTotal, diff, status };
+  };
+
+  window.confirmHospitalHalfAmountWarning = function(type, data){
+    const warningType = type === 'greater' ? 'greater' : 'less';
+    const highlightText = warningType === 'greater' ? 'มากกว่า' : 'น้อยกว่า';
+    const highlightTextClass = warningType === 'greater' ? 'text-amber-700' : 'text-sky-700';
+    const valueCardClass = warningType === 'greater'
+      ? 'border-amber-200 bg-amber-50/60'
+      : 'border-sky-200 bg-sky-50/60';
+    const valueTextClass = warningType === 'greater' ? 'text-amber-700' : 'text-sky-700';
+    const helperText = warningType === 'greater'
+      ? 'ยอดรายการค่ารักษาที่กรอกสูงกว่ายอดสุทธิจากโรงพยาบาล'
+      : 'ยอดรายการค่ารักษาที่กรอกต่ำกว่ายอดสุทธิจากโรงพยาบาล';
+    const fallbackMessage = [
+      warningType === 'greater'
+        ? 'ตรวจสอบพบว่ายอดรายการค่ารักษามากกว่ายอดสุทธิจากโรงพยาบาล'
+        : 'ตรวจสอบพบว่ายอดรายการค่ารักษาน้อยกว่ายอดสุทธิจากโรงพยาบาล',
+      'ยืนยันการทำรายการ?'
+    ].join(String.fromCharCode(10));
+    if(typeof showModal === 'function'){
+      showModal(`
+        <header class="flex items-center justify-between border-b px-6 py-4">
+          <h3 class="flex items-center gap-3 text-2xl font-extrabold text-slate-800">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-amber-50 text-amber-700">
+              <span class="material-icons-round !text-2xl">warning_amber</span>
+            </span>
+            ตรวจสอบยอดเงิน
+          </h3>
+          <button type="button" onclick="closeModal()" class="modal-close"><span class="material-icons-round !text-2xl">close</span></button>
+        </header>
+        <div class="space-y-5 p-6">
+          <div class="rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-center">
+            <div class="text-[18px] font-semibold leading-8 text-slate-700">
+              ตรวจสอบพบว่ายอดรายการค่ารักษา
+              <span class="mx-1 font-extrabold ${highlightTextClass}">${highlightText}</span>
+              ยอดสุทธิจากโรงพยาบาล
+            </div>
+            <div class="mt-2 text-sm font-medium text-slate-500">${helperText}</div>
+            <div class="mt-3 text-[22px] font-bold leading-tight text-slate-800">ยืนยันการทำรายการ?</div>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+              <div class="text-sm font-semibold text-slate-500">ยอดสุทธิจากโรงพยาบาล</div>
+              <div class="mt-2 text-[26px] font-bold text-brand-700 leading-none">${money(data.hospitalNet)} <span class="text-[17px] font-semibold">บาท</span></div>
+            </div>
+            <div class="rounded-xl border p-4 shadow-sm ${valueCardClass}">
+              <div class="text-sm font-semibold text-slate-500">ยอดรายการค่ารักษารวม</div>
+              <div class="mt-2 text-[26px] font-bold ${valueTextClass} leading-none">${money(data.reviewerTotal)} <span class="text-[17px] font-semibold">บาท</span></div>
+            </div>
+          </div>
+          <p class="warning-strip !my-0">กรุณาตรวจสอบยอดเงินให้ถูกต้องก่อนยืนยันการทำรายการ</p>
+          <div class="flex justify-center gap-3 pt-1">
+            <button type="button" onclick="closeModal()" class="h-9 min-w-[108px] rounded-lg border border-slate-300 bg-white px-4 text-[13px] font-normal text-slate-600 transition hover:bg-slate-50">ยกเลิก</button>
+            <button type="button" onclick="closeModal();setHospitalHalfStep(3)" class="h-9 min-w-[172px] rounded-lg bg-brand-700 px-5 text-[13px] font-normal text-white shadow-sm transition hover:bg-brand-800">ยืนยันการทำรายการ</button>
+          </div>
+        </div>`, 'max-w-2xl');
+      return;
+    }
+    if(window.confirm(fallbackMessage)) setHospitalHalfStep(3);
+  };
+
+  window.validateHospitalHalfTotalBeforeNext = function(){
+    const page = document.getElementById('considerHospitalOpdHalfPage');
+    if(!page || page.classList.contains('hidden')){
+      // Safety: Validation นี้ใช้เฉพาะ OPD Half เท่านั้น
+      setHospitalHalfStep(3);
+      return;
+    }
+    const data = window.getHospitalHalfAmountValidation();
+
+    // 1) ยอดตรงกัน -> ผ่าน Validation / ไม่แจ้งเตือน / ไป Step 3 ได้ทันที
+    if(data.status === 'equal'){
+      setHospitalHalfStep(3);
+      return;
+    }
+
+    // 2) ยอดน้อยกว่า -> แจ้งเตือน แต่ผู้ใช้กดยืนยันเพื่อไปต่อได้
+    if(data.status === 'less'){
+      window.confirmHospitalHalfAmountWarning('less', data);
+      return;
+    }
+
+    // 3) ยอดมากกว่า -> แจ้งเตือน แต่ผู้ใช้กดยืนยันเพื่อไปต่อได้
+    window.confirmHospitalHalfAmountWarning('greater', data);
+  };
+})();
+</script>
+
+
+<script id="opd-half-single-amount-source-v227">
+(function(){
+  function normalizeOpdHalfRows(){
+    if(typeof considerationHospitalRows === 'undefined' || !Array.isArray(considerationHospitalRows)) return;
+    considerationHospitalRows.forEach(row => {
+      if(String(row?.claimType || '').trim().toLowerCase() === 'opd half'){
+        if(row.hospitalOpdAmount == null || row.hospitalOpdAmount === '') row.hospitalOpdAmount = row.amount || '0.00';
+        if(row.hospitalOpdDiscount == null || row.hospitalOpdDiscount === '') row.hospitalOpdDiscount = '0.00';
+      }
+    });
+  }
+  normalizeOpdHalfRows();
+  document.addEventListener('DOMContentLoaded', normalizeOpdHalfRows);
+})();
+</script>
+
+
+
+<script id="hospital-step3-net-from-step2-v237">
+(function(){
+  function parseMoney(value){
+    const n = Number(String(value == null ? '' : value).replace(/[^0-9.-]/g,''));
+    return Number.isFinite(n) ? n : 0;
+  }
+  function money(value){
+    return Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function getStep2Net(prefix){
+    const pane2 = document.getElementById(prefix + 'StepPane2');
+    if(!pane2) return 0;
+
+    const direct = pane2.querySelector('#customerSummaryNet');
+    if(direct) return parseMoney(direct.textContent);
+
+    const ipdNet = pane2.querySelector('.hospital-ipd-summary .eligible strong');
+    if(ipdNet) return parseMoney(ipdNet.textContent);
+
+    const transferNet = pane2.querySelector('.cc-ref-transfer-card.green strong');
+    if(transferNet) return parseMoney(transferNet.textContent);
+
+    const labels = Array.from(pane2.querySelectorAll('div,span,strong,b'));
+    const label = labels.find(el => /^ยอดเงินสุทธิ\s*:?$/.test(String(el.textContent || '').trim()));
+    if(label){
+      const box = label.parentElement;
+      if(box){
+        const values = Array.from(box.querySelectorAll('strong,b,div,span'))
+          .filter(el => el !== label)
+          .map(el => String(el.textContent || '').trim())
+          .filter(v => /\d/.test(v));
+        if(values.length) return parseMoney(values[values.length-1]);
+      }
+    }
+
+    if(prefix === 'hh'){
+      const hospitalNet = pane2.querySelector('#hhNetAmountText');
+      if(hospitalNet) return parseMoney(hospitalNet.textContent);
+    }
+    return 0;
+  }
+
+  function getTreatmentTable(pane3){
+    if(!pane3) return null;
+    const headings = Array.from(pane3.querySelectorAll('div,h2,h3,h4'));
+    const heading = headings.find(el => String(el.textContent || '').trim() === 'รายการค่ารักษา');
+    if(!heading) return null;
+    let section = heading.parentElement;
+    while(section && section !== pane3 && !section.querySelector('table')) section = section.parentElement;
+    return section?.querySelector('table') || null;
+  }
+
+  function syncStep3(prefix){
+    const net = getStep2Net(prefix);
+    const pane3 = document.getElementById(prefix + 'StepPane3');
+    const table = getTreatmentTable(pane3);
+    if(!pane3 || !table) return;
+
+    pane3.dataset.step2NetAmount = String(net);
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    if(!rows.length) return;
+    const totalRow = rows[rows.length-1];
+    const totalCells = totalRow.querySelectorAll('td');
+    if(totalCells[1]) totalCells[1].textContent = money(net);
+
+    const currentRow = window.currentConsiderHospitalRow || {};
+    const rawType = String(currentRow.claimType || currentRow.treatmentType || '');
+    const isIpd = /IPD/i.test(rawType);
+    if(!isIpd){
+      const dataRows = rows.slice(0,-1);
+      let target = dataRows.find(row => /เหมาจ่าย|OPD/i.test(String(row.cells?.[0]?.textContent || '')));
+      if(!target){
+        target = dataRows.find(row => parseMoney(row.cells?.[1]?.textContent) > 0) || dataRows[dataRows.length-1];
+      }
+      if(target?.cells?.[1]) target.cells[1].textContent = money(net);
+    }
+  }
+
+  const previousHalf = window.setHospitalHalfStep;
+  window.setHospitalHalfStep = function(step){
+    const result = typeof previousHalf === 'function' ? previousHalf.apply(this, arguments) : undefined;
+    if(Number(step) === 3) setTimeout(() => syncStep3('hh'), 0);
+    return result;
+  };
+
+  const previousFull = window.setHospitalFullStep;
+  window.setHospitalFullStep = function(step){
+    const result = typeof previousFull === 'function' ? previousFull.apply(this, arguments) : undefined;
+    if(Number(step) === 3) setTimeout(() => syncStep3('hf'), 0);
+    return result;
+  };
+
+  window.syncHospitalStep3NetFromStep2 = function(){
+    syncStep3('hh');
+    syncStep3('hf');
+  };
+})();
+</script>
+
+
+<style id="master-table-font-force-larger-v240">
+  /* v240 — Force override ท้ายไฟล์ เฉพาะตาราง Master */
+  #devMasterPage .master-table{
+    font-size:18px !important;
+    line-height:1.5 !important;
+  }
+  #devMasterPage .master-table thead th,
+  #devMasterPage .master-table thead th span{
+    font-size:17px !important;
+    font-weight:700 !important;
+    line-height:1.4 !important;
+  }
+  #devMasterPage .master-table thead th{
+    padding:10px 14px 12px !important;
+  }
+  #devMasterPage .master-table tbody td,
+  #devMasterPage .master-table .master-cell-text{
+    font-size:18px !important;
+    font-weight:400 !important;
+    line-height:1.5 !important;
+  }
+  #devMasterPage .master-table tbody td{
+    padding:14px 16px !important;
+  }
+  #devMasterPage .master-cell-code{
+    font-size:17px !important;
+    font-weight:600 !important;
+    min-height:30px !important;
+    padding:4px 10px !important;
+  }
+  #devMasterPage .master-cell-date{
+    font-size:17px !important;
+  }
+  #devMasterPage .master-badge{
+    min-height:32px !important;
+    padding:5px 11px !important;
+    font-size:16px !important;
+    font-weight:600 !important;
+    line-height:1.2 !important;
+  }
+</style>
+
+
+<script id="hospital-step2-auto-sum-fix-v241">
+(function(){
+  function num(v){
+    const n=Number(String(v??'').replace(/,/g,'').replace(/[^0-9.-]/g,''));
+    return Number.isFinite(n)?n:0;
+  }
+  function money(v){
+    return Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function visiblePane(){
+    const panes=['hhStepPane2','hfStepPane2'].map(id=>document.getElementById(id)).filter(Boolean);
+    return panes.find(p=>!p.classList.contains('hidden') && p.offsetParent!==null) || panes.find(p=>!p.classList.contains('hidden')) || null;
+  }
+  function findExpenseTable(pane){
+    if(!pane) return null;
+    return Array.from(pane.querySelectorAll('table')).find(table=>{
+      const heads=Array.from(table.querySelectorAll('thead th')).map(th=>String(th.textContent||'').trim());
+      return heads.some(h=>h.includes('ยอดเงินตามใบเสร็จ')) && heads.some(h=>h.includes('ส่วนลด')) && heads.some(h=>h.includes('ยอดไม่คุ้มครอง'));
+    }) || null;
+  }
+  function headerIndex(table, keyword){
+    return Array.from(table.querySelectorAll('thead th')).findIndex(th=>String(th.textContent||'').replace(/\s+/g,' ').trim().includes(keyword));
+  }
+  function valueFromCell(row,index){
+    if(index<0) return 0;
+    const cell=row.cells?.[index];
+    if(!cell) return 0;
+    const input=cell.querySelector('input');
+    return input ? num(input.value) : num(cell.textContent);
+  }
+  function findSummaryValue(pane,labelText){
+    const labels=Array.from(pane.querySelectorAll('.cc-ref-money-label, .cc-ref-transfer-card span, div, span'));
+    const label=labels.find(el=>String(el.textContent||'').replace(/\s+/g,' ').trim().startsWith(labelText));
+    if(!label) return null;
+    const card=label.closest('.cc-ref-money-card, .cc-ref-transfer-card') || label.parentElement;
+    if(!card) return null;
+    return card.querySelector('.cc-ref-money-value, strong');
+  }
+  function recalc(pane){
+    pane=pane||visiblePane();
+    if(!pane) return;
+    const table=findExpenseTable(pane);
+    if(!table) return;
+    const receiptIdx=headerIndex(table,'ยอดเงินตามใบเสร็จ');
+    const discountIdx=headerIndex(table,'ส่วนลด');
+    const uncoveredIdx=headerIndex(table,'ยอดไม่คุ้มครอง');
+    if(receiptIdx<0) return;
+    let receipt=0, discount=0, uncovered=0;
+    Array.from(table.querySelectorAll('tbody tr')).forEach(row=>{
+      if(!row.querySelector('input')) return;
+      receipt += valueFromCell(row,receiptIdx);
+      discount += valueFromCell(row,discountIdx);
+      uncovered += valueFromCell(row,uncoveredIdx);
+    });
+    const net=Math.max(0,receipt-discount-uncovered);
+
+    const receiptEl=pane.querySelector('#customerSummaryReceiptTotal') || findSummaryValue(pane,'ยอดเงินตามใบเสร็จรวม');
+    const discountEl=pane.querySelector('#customerSummaryDiscountTotal') || findSummaryValue(pane,'ส่วนลดรวม');
+    const uncoveredEl=pane.querySelector('#customerSummaryUncoveredTotal') || findSummaryValue(pane,'ยอดไม่คุ้มครองรวม');
+    const netEl=pane.querySelector('#customerSummaryNet') || findSummaryValue(pane,'ยอดเงินสุทธิ');
+    if(receiptEl) receiptEl.textContent=money(receipt);
+    if(discountEl) discountEl.textContent=money(discount);
+    if(uncoveredEl) uncoveredEl.textContent=money(uncovered);
+    if(netEl) netEl.textContent=money(net);
+    pane.dataset.autoSumReceipt=String(receipt);
+    pane.dataset.autoSumDiscount=String(discount);
+    pane.dataset.autoSumUncovered=String(uncovered);
+    pane.dataset.autoSumNet=String(net);
+  }
+
+  function schedule(pane){
+    clearTimeout(window.__hospitalStep2AutoSumTimer);
+    window.__hospitalStep2AutoSumTimer=setTimeout(()=>recalc(pane||visiblePane()),0);
+  }
+
+  document.addEventListener('input',e=>{
+    const pane=e.target?.closest?.('#hhStepPane2,#hfStepPane2');
+    if(pane && e.target.matches('input')) schedule(pane);
+  },true);
+  document.addEventListener('change',e=>{
+    const pane=e.target?.closest?.('#hhStepPane2,#hfStepPane2');
+    if(pane) schedule(pane);
+  },true);
+  document.addEventListener('click',e=>{
+    const pane=e.target?.closest?.('#hhStepPane2,#hfStepPane2');
+    if(pane && e.target.closest('button')) setTimeout(()=>recalc(pane),0);
+  },true);
+
+  const observer=new MutationObserver(muts=>{
+    const pane=visiblePane();
+    if(!pane) return;
+    if(muts.some(m=>pane.contains(m.target) || Array.from(m.addedNodes||[]).some(n=>n.nodeType===1 && (n===pane || pane.contains(n))))) schedule(pane);
+  });
+  if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+  else document.addEventListener('DOMContentLoaded',()=>observer.observe(document.body,{childList:true,subtree:true}));
+
+  const prevHalf=window.setHospitalHalfStep;
+  window.setHospitalHalfStep=function(step){
+    const result=typeof prevHalf==='function'?prevHalf.apply(this,arguments):undefined;
+    if(Number(step)===2) setTimeout(()=>recalc(document.getElementById('hhStepPane2')),0);
+    return result;
+  };
+  const prevFull=window.setHospitalFullStep;
+  window.setHospitalFullStep=function(step){
+    const result=typeof prevFull==='function'?prevFull.apply(this,arguments):undefined;
+    if(Number(step)===2) setTimeout(()=>recalc(document.getElementById('hfStepPane2')),0);
+    return result;
+  };
+
+  window.recalculateHospitalStep2ExpenseSummary=function(){ recalc(visiblePane()); };
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>recalc(visiblePane()),50));
+})();
+</script>
+
+
+
+<!-- v247: Hospital Step 1 fully read-only incl. claim choices + document validation + remove wait-document decision -->
+<!-- v254: Hospital Step 1 remains read-only except 'เป็นเคลมต่อเนื่อง', which stays editable and opens the existing continuous-claim selector -->
+<style id="v247-hospital-step1-doc-validation-style">
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) input:disabled,
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) select:disabled,
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) textarea:disabled{
+    background:#f1f5f9!important;
+    color:#64748b!important;
+    border-color:#d8e1ea!important;
+    cursor:not-allowed!important;
+    opacity:1!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) [data-hospital-claim-choice]:disabled,
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) button[data-claim-choice]:disabled,
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) .eligibility-choice-card:disabled,
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) .eligibility-treatment-chip:disabled{
+    pointer-events:none!important;
+    cursor:not-allowed!important;
+    opacity:.72!important;
+    filter:saturate(.72)!important;
+  }
+
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) input[data-hospital-continuous-editable="true"]{
+    cursor:pointer!important;
+    opacity:1!important;
+    accent-color:#0788d6!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane1,#hfStepPane1) label:has(input[data-hospital-continuous-editable="true"]){
+    cursor:pointer!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) button[data-decision="waitdocs"]{display:none!important;}
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-doc-result-btn{
+    min-width:64px;
+    transition:.15s ease;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-doc-result-btn.is-selected[data-doc-result="ผ่าน"]{
+    border-color:#16a34a!important;background:#dcfce7!important;color:#166534!important;box-shadow:0 0 0 2px rgba(22,163,74,.10)!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-doc-result-btn.is-selected[data-doc-result="ไม่ผ่าน"]{
+    border-color:#dc2626!important;background:#fee2e2!important;color:#991b1b!important;box-shadow:0 0 0 2px rgba(220,38,38,.08)!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-doc-result-btn.is-selected[data-doc-result="รอเอกสารเพิ่มเติม"]{
+    border-color:#d97706!important;background:#fef3c7!important;color:#92400e!important;box-shadow:0 0 0 2px rgba(217,119,6,.08)!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) :is(#hhStepPane3,#hfStepPane3) button[data-hospital-approve-guard="true"]:disabled{
+    background:#cbd5e1!important;color:#64748b!important;cursor:not-allowed!important;box-shadow:none!important;opacity:1!important;
+  }
+</style>
+<script id="v247-hospital-step1-doc-validation-script">
+(function(){
+  const PAGE_SELECTOR = '#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage';
+  const STEP1_SELECTOR = '#hhStepPane1,#hfStepPane1';
+  const STEP3_SELECTOR = '#hhStepPane3,#hfStepPane3';
+  const RESULT_VALUES = ['ผ่าน','ไม่ผ่าน','รอเอกสารเพิ่มเติม'];
+
+  function exactText(el){
+    return String(el?.textContent || '').replace(/\s+/g,' ').trim();
+  }
+
+  function hospitalPages(){
+    return Array.from(document.querySelectorAll(PAGE_SELECTOR));
+  }
+
+  function isResultTable(table){
+    if(!table) return false;
+    return Array.from(table.querySelectorAll('th')).some(th => exactText(th).includes('ผลการตรวจ'));
+  }
+
+  function resultRows(page){
+    const step1 = page?.querySelector(STEP1_SELECTOR);
+    if(!step1) return [];
+    const rows=[];
+    step1.querySelectorAll('table').forEach(table => {
+      if(!isResultTable(table)) return;
+      table.querySelectorAll('tbody tr').forEach(row => {
+        const btns = Array.from(row.querySelectorAll('button')).filter(btn => RESULT_VALUES.includes(exactText(btn)));
+        if(btns.length){
+          btns.forEach(btn => {
+            const value=exactText(btn);
+            btn.classList.add('hospital-doc-result-btn');
+            btn.dataset.docResult=value;
+            btn.type='button';
+          });
+          rows.push(row);
+        }
+      });
+    });
+    return rows;
+  }
+
+  function lockStep1Fields(page){
+    const step1=page?.querySelector(STEP1_SELECTOR);
+    if(!step1) return;
+    step1.querySelectorAll('input,select,textarea').forEach(field => {
+      const isContinuousClaimControl =
+        field.matches('.continuous-claim-modal-trigger,[data-continuous-claim-modal="true"]') ||
+        /ContinuousClaimCheckbox$/i.test(field.id || '');
+      if(isContinuousClaimControl){
+        field.disabled=false;
+        field.removeAttribute('aria-disabled');
+        field.dataset.hospitalContinuousEditable='true';
+        return;
+      }
+      field.disabled=true;
+      field.setAttribute('aria-disabled','true');
+    });
+    step1.querySelectorAll('[data-hospital-claim-choice], button[data-claim-choice], .eligibility-choice-card, .eligibility-treatment-chip').forEach(btn => {
+      btn.disabled=true;
+      btn.setAttribute('aria-disabled','true');
+      btn.removeAttribute('onclick');
+    });
+  }
+
+  function removeWaitDocumentButtons(page){
+    page?.querySelectorAll('button[data-decision="waitdocs"]').forEach(btn => btn.remove());
+  }
+
+  function getDocumentCount(row){
+    if(!row) return 0;
+    const direct=row.querySelector('[data-doc-count], .opd-half-doc-count');
+    if(direct){
+      const n=parseInt(String(direct.textContent||'0').replace(/[^0-9]/g,''),10);
+      return Number.isFinite(n)?n:0;
+    }
+    const table=row.closest('table');
+    if(table){
+      const headers=Array.from(table.querySelectorAll('thead th'));
+      const idx=headers.findIndex(th=>exactText(th).includes('จำนวนเอกสาร'));
+      if(idx>=0){
+        const cell=row.children[idx];
+        const n=parseInt(String(cell?.textContent||'0').replace(/[^0-9]/g,''),10);
+        return Number.isFinite(n)?n:0;
+      }
+    }
+    return 0;
+  }
+
+  function allDocumentsPassed(page){
+    const requiredRows=resultRows(page).filter(row => getDocumentCount(row) > 0);
+    return requiredRows.every(row => row.dataset.hospitalDocResult === 'ผ่าน');
+  }
+
+  function findApproveButtons(page){
+    const step3=page?.querySelector(STEP3_SELECTOR);
+    if(!step3) return [];
+    return Array.from(step3.querySelectorAll('button')).filter(btn => exactText(btn) === 'อนุมัติ');
+  }
+
+  function updateApproveState(page){
+    const passed=allDocumentsPassed(page);
+    findApproveButtons(page).forEach(btn => {
+      btn.dataset.hospitalApproveGuard='true';
+      btn.disabled=!passed;
+      btn.setAttribute('aria-disabled', passed ? 'false' : 'true');
+      btn.title = passed ? 'อนุมัติรายการ' : 'รายการที่มีเอกสารต้องมีผลการตรวจเป็น “ผ่าน” ทั้งหมดก่อนอนุมัติ';
+    });
+  }
+
+  function apply(page){
+    if(!page) return;
+    lockStep1Fields(page);
+    removeWaitDocumentButtons(page);
+    resultRows(page);
+    updateApproveState(page);
+  }
+
+  function applyAll(){ hospitalPages().forEach(apply); }
+
+  document.addEventListener('click', function(e){
+    const btn=e.target?.closest?.('.hospital-doc-result-btn');
+    if(btn){
+      const page=btn.closest('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+      const row=btn.closest('tr');
+      if(!page || !row) return;
+      const value=btn.dataset.docResult || exactText(btn);
+      row.dataset.hospitalDocResult=value;
+      row.querySelectorAll('.hospital-doc-result-btn').forEach(other => {
+        other.classList.toggle('is-selected', other === btn);
+        other.setAttribute('aria-pressed', other === btn ? 'true' : 'false');
+      });
+      updateApproveState(page);
+      return;
+    }
+
+    const approve=e.target?.closest?.('button[data-hospital-approve-guard="true"]');
+    if(approve){
+      const page=approve.closest('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+      if(page && !allDocumentsPassed(page)){
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const msg='กรุณาเลือกผลการตรวจเป็น “ผ่าน” ให้ครบทุกรายการที่มีเอกสารก่อนอนุมัติ';
+        if(typeof showToast === 'function') showToast(msg,'warning');
+        else if(typeof window.showToast === 'function') window.showToast(msg,'warning');
+        else alert(msg);
+      }
+    }
+  }, true);
+
+  const observer=new MutationObserver(() => applyAll());
+  function start(){
+    applyAll();
+    if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+
+  const prevHalf=window.setHospitalHalfStep;
+  if(typeof prevHalf==='function'){
+    window.setHospitalHalfStep=function(){
+      const result=prevHalf.apply(this,arguments);
+      setTimeout(applyAll,0);
+      return result;
+    };
+    try{ setHospitalHalfStep=window.setHospitalHalfStep; }catch(e){}
+  }
+  const prevFull=window.setHospitalFullStep;
+  if(typeof prevFull==='function'){
+    window.setHospitalFullStep=function(){
+      const result=prevFull.apply(this,arguments);
+      setTimeout(applyAll,0);
+      return result;
+    };
+    try{ setHospitalFullStep=window.setHospitalFullStep; }catch(e){}
+  }
+})();
+</script>
+
+
+<!-- v248: Hospital approve action fix -->
+<script id="v248-hospital-approve-action-fix">
+(function(){
+  function esc(value){
+    return String(value ?? '').replace(/[&<>\"]/g, function(ch){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'})[ch] || ch;
+    });
+  }
+
+  function showHospitalApproveToast(row){
+    const claimNo = String(row?.claimCode || row?.claimNo || '-').trim() || '-';
+    const caseNo = String(row?.caseNo || row?.caseCode || row?.claimCaseNo || '-').trim() || '-';
+    document.getElementById('hospitalApproveSuccessToastV248')?.remove();
+    const toast=document.createElement('div');
+    toast.id='hospitalApproveSuccessToastV248';
+    toast.setAttribute('role','status');
+    toast.setAttribute('aria-live','polite');
+    toast.style.cssText='position:fixed;top:22px;right:22px;z-index:100001;display:flex;align-items:flex-start;gap:12px;min-width:330px;max-width:440px;padding:14px 16px;border:1px solid #86efac;border-radius:14px;background:rgba(240,253,244,.98);color:#166534;box-shadow:0 16px 36px rgba(15,23,42,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:translateY(-10px);transition:opacity .2s ease,transform .2s ease;font-family:var(--ui-font);';
+    toast.innerHTML='<span class="material-icons-round" style="font-size:28px!important;color:#16a34a;flex:none;margin-top:1px">check_circle</span>'+
+      '<div style="min-width:0;flex:1"><div style="font-size:15px;font-weight:700;line-height:1.25;color:#15803d">อนุมัติรายการสำเร็จ</div>'+
+      '<div style="margin-top:4px;font-size:13px;font-weight:500;line-height:1.4;color:#4b6354">เลขที่ Claim : <b style="color:#166534">'+esc(claimNo)+'</b><br>เลขที่ Case : <b style="color:#166534">'+esc(caseNo)+'</b></div></div>';
+    document.body.appendChild(toast);
+    requestAnimationFrame(function(){toast.style.opacity='1';toast.style.transform='translateY(0)';});
+    setTimeout(function(){
+      toast.style.opacity='0';
+      toast.style.transform='translateY(-8px)';
+      setTimeout(function(){toast.remove();},220);
+    },3000);
+  }
+
+  function refreshHospitalMonitor(){
+    try{
+      if(typeof window.renderConsiderationTable === 'function') window.renderConsiderationTable();
+      else if(typeof renderConsiderationTable === 'function') renderConsiderationTable();
+    }catch(err){ console.error('v248 render hospital monitor failed',err); }
+  }
+
+  function finishHospitalApprove(btn,page){
+    if(btn.dataset.hospitalApproveCompleted==='true') return;
+    btn.dataset.hospitalApproveCompleted='true';
+    btn.disabled=true;
+    btn.setAttribute('aria-disabled','true');
+    btn.innerHTML='<span class="material-icons-round mr-1">check_circle</span>อนุมัติแล้ว';
+    btn.classList.remove('bg-green-600');
+    btn.classList.add('bg-green-700');
+
+    const row=window.currentConsiderHospitalRow || {};
+    row.itemStatus='อนุมัติ';
+    row.status='อนุมัติ';
+    row.statusClass='approve';
+    showHospitalApproveToast(row);
+    refreshHospitalMonitor();
+
+    setTimeout(function(){
+      try{
+        if(typeof window.showConsiderationPage === 'function') window.showConsiderationPage('hospital');
+        else if(typeof showConsiderationPage === 'function') showConsiderationPage('hospital');
+      }catch(err){ console.error('v248 return hospital monitor failed',err); }
+    },650);
+  }
+
+  document.addEventListener('click',function(e){
+    const btn=e.target?.closest?.('button[data-hospital-approve-guard="true"]');
+    if(!btn || btn.disabled) return;
+    const page=btn.closest('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+    if(!page) return;
+    e.preventDefault();
+    e.stopPropagation();
+    finishHospitalApprove(btn,page);
+  },false);
+})();
+</script>
+
+
+<!-- v249: robust Hospital Step 3 approve action; do not depend on data-hospital-approve-guard -->
+<!-- v255: approval notification reads CL/Case from the visible hospital header; Case follows the displayed 'เลขที่ Case' value -->
+<!-- v256: fix Hospital header CL/Case lookup + decision-save enabled only when a decision is selected -->
+<!-- v257: Claim over-coverage confirmation popup hides editable guidance and makes Eligible/NPL amounts read-only -->
+<!-- v258: Refined over-coverage alert layout to a more compact, modern summary card -->
+<!-- v259: Over-coverage alert shows only icon and title with a cleaner layout -->
+<script id="v249-hospital-approve-action-robust-fix">
+(function(){
+  const PAGE_SELECTOR = '#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage';
+  const STEP1_SELECTOR = '#hhStepPane1,#hfStepPane1';
+  const STEP3_SELECTOR = '#hhStepPane3,#hfStepPane3';
+  const RESULT_VALUES = ['ผ่าน','ไม่ผ่าน','รอเอกสารเพิ่มเติม'];
+
+  function txt(el){ return String(el?.textContent || '').replace(/\s+/g,' ').trim(); }
+  function esc(value){
+    return String(value ?? '').replace(/[&<>\"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[ch] || ch));
+  }
+  function pageOf(el){ return el?.closest?.(PAGE_SELECTOR) || null; }
+
+  function resultRows(page){
+    const step1=page?.querySelector(STEP1_SELECTOR);
+    if(!step1) return [];
+    const rows=[];
+    step1.querySelectorAll('table tbody tr').forEach(row=>{
+      const resultBtns=Array.from(row.querySelectorAll('button')).filter(b=>RESULT_VALUES.includes(txt(b)) || RESULT_VALUES.includes(b.dataset?.docResult));
+      if(resultBtns.length) rows.push(row);
+    });
+    return rows;
+  }
+
+  function getDocumentCount(row){
+    if(!row) return 0;
+    const direct=row.querySelector('[data-doc-count], .opd-half-doc-count');
+    if(direct){
+      const n=parseInt(String(direct.textContent||'0').replace(/[^0-9]/g,''),10);
+      return Number.isFinite(n)?n:0;
+    }
+    const table=row.closest('table');
+    if(table){
+      const headers=Array.from(table.querySelectorAll('thead th'));
+      const idx=headers.findIndex(th=>txt(th).includes('จำนวนเอกสาร'));
+      if(idx>=0){
+        const cell=row.children[idx];
+        const n=parseInt(String(cell?.textContent||'0').replace(/[^0-9]/g,''),10);
+        return Number.isFinite(n)?n:0;
+      }
+    }
+    return 0;
+  }
+
+  function allDocumentsPassed(page){
+    const rows=resultRows(page).filter(row => getDocumentCount(row) > 0);
+    return rows.every(row=>{
+      if(row.dataset.hospitalDocResult === 'ผ่าน') return true;
+      const selected=row.querySelector('.hospital-doc-result-btn.is-selected,[aria-pressed="true"]');
+      return !!selected && (selected.dataset.docResult === 'ผ่าน' || txt(selected) === 'ผ่าน');
+    });
+  }
+
+  function isHospitalApproveButton(btn){
+    if(!btn || btn.tagName !== 'BUTTON') return false;
+    if(!btn.closest(STEP3_SELECTOR)) return false;
+    const label=txt(btn).replace(/check_circle/g,'').trim();
+    return label === 'อนุมัติ' || label === 'อนุมัติรายการ';
+  }
+
+  function hospitalNotify(options){
+    const opt=options || {};
+    const type=opt.type === 'warning' ? 'warning' : 'success';
+    const id='hospitalActionNotificationV250';
+    document.getElementById(id)?.remove();
+
+    const cfg=type === 'warning'
+      ? {icon:'warning_amber', iconBg:'#fff7ed', iconColor:'#ea580c', border:'#fed7aa', accent:'#f97316', title:'#9a3412', bg:'#ffffff'}
+      : {icon:'check_circle', iconBg:'#ecfdf3', iconColor:'#16a34a', border:'#bbf7d0', accent:'#22c55e', title:'#166534', bg:'#ffffff'};
+
+    const el=document.createElement('div');
+    el.id=id;
+    el.setAttribute('role', type === 'warning' ? 'alert' : 'status');
+    el.setAttribute('aria-live', type === 'warning' ? 'assertive' : 'polite');
+    el.style.cssText='position:fixed;top:22px;right:22px;z-index:2147483647;width:min(430px,calc(100vw - 32px));overflow:hidden;border:1px solid '+cfg.border+';border-radius:16px;background:'+cfg.bg+';box-shadow:0 18px 48px rgba(15,23,42,.18);font-family:var(--ui-font, sans-serif);opacity:0;transform:translateY(-12px) scale(.985);transition:opacity .22s ease,transform .22s ease;';
+
+    const detail=opt.detail ? '<div style="margin-top:5px;font-size:13px;line-height:1.5;color:#64748b;font-weight:600">'+opt.detail+'</div>' : '';
+    const meta=opt.meta ? '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">'+opt.meta+'</div>' : '';
+    el.innerHTML='<div style="display:flex;gap:12px;align-items:flex-start;padding:15px 16px 14px 16px">'+
+      '<div style="width:40px;height:40px;border-radius:12px;background:'+cfg.iconBg+';display:grid;place-items:center;flex:none"><span class="material-icons-round" style="font-size:23px!important;color:'+cfg.iconColor+'">'+cfg.icon+'</span></div>'+
+      '<div style="min-width:0;flex:1;padding-top:1px"><div style="font-size:15px;font-weight:800;line-height:1.35;color:'+cfg.title+'">'+(opt.title||'')+'</div>'+detail+meta+'</div>'+
+      '<button type="button" aria-label="ปิดการแจ้งเตือน" style="width:30px;height:30px;border:0;border-radius:8px;background:#f8fafc;color:#64748b;display:grid;place-items:center;flex:none;cursor:pointer"><span class="material-icons-round" style="font-size:18px!important">close</span></button></div>'+
+      '<div style="height:3px;background:#f1f5f9;overflow:hidden"><div class="hospital-notify-progress-v250" style="height:100%;width:100%;background:'+cfg.accent+';transform-origin:left center"></div></div>';
+
+    document.body.appendChild(el);
+    el.querySelector('button')?.addEventListener('click',()=>el.remove());
+    requestAnimationFrame(()=>{ el.style.opacity='1'; el.style.transform='translateY(0) scale(1)'; });
+
+    const bar=el.querySelector('.hospital-notify-progress-v250');
+    if(bar){
+      bar.animate([{transform:'scaleX(1)'},{transform:'scaleX(0)'}],{duration:4200,easing:'linear',fill:'forwards'});
+    }
+    setTimeout(()=>{
+      if(!el.isConnected) return;
+      el.style.opacity='0';
+      el.style.transform='translateY(-8px) scale(.99)';
+      setTimeout(()=>el.remove(),220);
+    },4200);
+  }
+
+  function readHeaderReference(page,label){
+    if(!page) return '';
+    const normalize = value => txt({textContent:value}).replace(/\s*:\s*$/,'').trim();
+    const expected = normalize(label);
+
+    const labels=Array.from(page.querySelectorAll(
+      '.customer-review-label,.text-sm.font-bold.text-slate-500,.dd-code-label'
+    ));
+    const labelEl=labels.find(el=>normalize(el.textContent) === expected);
+    if(!labelEl) return '';
+
+    const wrap=labelEl.parentElement;
+    if(!wrap) return '';
+
+    const valueEl =
+      wrap.querySelector('.customer-review-value,.dd-code-value,.text-xl') ||
+      Array.from(wrap.children).find(el=>el !== labelEl);
+
+    return txt(valueEl);
+  }
+
+  function toast(row,page){
+    const explicitClaim=page?.querySelector('[data-hospital-header-cl]')?.getAttribute('data-hospital-header-cl') || '';
+    const explicitCase=page?.querySelector('[data-hospital-header-case]')?.getAttribute('data-hospital-header-case') || '';
+    const headerClaim=explicitClaim || readHeaderReference(page,'เลขที่เคลม') || readHeaderReference(page,'เลขที่ CL');
+    const headerCase=explicitCase || readHeaderReference(page,'เลขที่ Case');
+    const claimNo=String(headerClaim || row?.claimCode || row?.claimNo || '-').trim() || '-';
+    const caseNo=String(headerCase || row?.caseNo || row?.caseCode || row?.claimCaseNo || '-').trim() || '-';
+    hospitalNotify({
+      type:'success',
+      title:'อนุมัติรายการสำเร็จ',
+      detail:'ระบบบันทึกผลการพิจารณาเรียบร้อยแล้ว',
+      meta:'<span style="display:inline-flex;align-items:center;gap:5px;min-height:29px;padding:4px 10px;border-radius:8px;background:#f0fdf4;color:#166534;font-size:12px;font-weight:800"><span class="material-icons-round" style="font-size:15px!important">description</span>เลขที่ CL&nbsp; '+esc(claimNo)+'</span><span style="display:inline-flex;align-items:center;gap:5px;min-height:29px;padding:4px 10px;border-radius:8px;background:#f8fafc;color:#475569;font-size:12px;font-weight:800;border:1px solid #e2e8f0"><span class="material-icons-round" style="font-size:15px!important">badge</span>เลขที่ Case&nbsp; '+esc(caseNo)+'</span>'
+    });
+  }
+
+  function warn(message){
+    hospitalNotify({
+      type:'warning',
+      title:'ยังไม่สามารถอนุมัติรายการได้',
+      detail:esc(message || 'กรุณาตรวจสอบข้อมูลให้ครบถ้วนก่อนดำเนินการ')
+    });
+  }
+
+  function complete(btn,page){
+    if(btn.dataset.hospitalApproveCompletedV249 === 'true') return;
+    btn.dataset.hospitalApproveCompletedV249='true';
+    btn.disabled=true;
+    btn.setAttribute('aria-disabled','true');
+    btn.innerHTML='<span class="material-icons-round mr-1">check_circle</span>อนุมัติแล้ว';
+
+    const row=window.currentConsiderHospitalRow || {};
+    row.itemStatus='อนุมัติ';
+    row.status='อนุมัติ';
+    row.statusClass='approve';
+
+    toast(row,page);
+    try{
+      if(typeof window.renderConsiderationTable === 'function') window.renderConsiderationTable();
+      else if(typeof renderConsiderationTable === 'function') renderConsiderationTable();
+    }catch(err){ console.error('[v249] render consideration table',err); }
+
+    setTimeout(()=>{
+      try{
+        if(typeof window.showConsiderationPage === 'function') window.showConsiderationPage('hospital');
+        else if(typeof showConsiderationPage === 'function') showConsiderationPage('hospital');
+      }catch(err){ console.error('[v249] return hospital list',err); }
+    },1000);
+  }
+
+  document.addEventListener('click',function(e){
+    const btn=e.target?.closest?.('button');
+    if(!isHospitalApproveButton(btn)) return;
+    const page=pageOf(btn);
+    if(!page) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    if(!allDocumentsPassed(page)){
+      warn('กรุณาเลือกผลการตรวจเป็น “ผ่าน” ให้ครบทุกรายการที่มีเอกสารก่อนอนุมัติ');
+      return;
+    }
+    complete(btn,page);
+  },true);
+
+  function syncApproveButtons(){
+    document.querySelectorAll(PAGE_SELECTOR).forEach(page=>{
+      const passed=allDocumentsPassed(page);
+      page.querySelectorAll(STEP3_SELECTOR+' button').forEach(btn=>{
+        if(!isHospitalApproveButton(btn)) return;
+        btn.disabled=!passed;
+        btn.setAttribute('aria-disabled',passed?'false':'true');
+        btn.title=passed?'อนุมัติรายการ':'รายการที่มีเอกสารต้องมีผลการตรวจเป็น “ผ่าน” ทั้งหมดก่อนอนุมัติ';
+      });
+    });
+  }
+
+  document.addEventListener('click',function(e){
+    if(e.target?.closest?.('.hospital-doc-result-btn')) setTimeout(syncApproveButtons,0);
+  },false);
+  const observer=new MutationObserver(()=>syncApproveButtons());
+  function start(){ syncApproveButtons(); if(document.body) observer.observe(document.body,{childList:true,subtree:true}); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+})();
+</script>
+
+<!-- v251: Hospital OPD Half document results start unselected; user must choose each result manually -->
+<script id="v251-opdhalf-no-default-doc-result">
+(function(){
+  // Intentional no-op guard: OPD Half source rows are rendered with status=pending.
+  // Validation from v247/v249 still requires every row to be explicitly selected as “ผ่าน” before approval.
+})();
+</script>
+
+<!-- v252: document result is single-select per row; approval validates only rows with document count > 0 -->
+<!-- v253: Hospital approve success notification shows เลขที่ CL and เลขที่ Case -->
+
+<!-- v256: Hospital decision-save button enabled only after a decision is selected -->
+<style id="v256-hospital-decision-save-style">
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) button[data-hospital-decision-save-v256="true"]:disabled{
+  cursor:not-allowed!important;
+  opacity:.48!important;
+  background:#cbd5e1!important;
+  border-color:#cbd5e1!important;
+  color:#64748b!important;
+  box-shadow:none!important;
+}
+</style>
+<script id="v256-hospital-decision-save-enable">
+(function(){
+  const PAGE_SELECTOR='#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage';
+
+  function textOf(el){
+    return String(el?.textContent||'').replace(/\s+/g,' ').trim();
+  }
+
+  function selectedDecision(page){
+    if(!page) return '';
+    const active=page.querySelector(
+      '.customer-decision-section .dd-decision-btn.active[data-decision],'+
+      '#customerDecisionSection .dd-decision-btn.active[data-decision],'+
+      '.customer-decision-section .dd-decision-btn[aria-pressed="true"][data-decision]'
+    );
+    if(active) return String(active.dataset.decision||'').trim();
+
+    const state=window.customerDecisionState?.type || '';
+    return String(state).trim();
+  }
+
+  function isDecisionSaveButton(btn){
+    if(!btn || btn.tagName!=='BUTTON') return false;
+    const label=textOf(btn).replace(/save/g,'').trim();
+    return label === 'ยืนยันบันทึกผลพิจารณา' || label === 'บันทึกผลพิจารณา';
+  }
+
+  function syncPage(page){
+    if(!page) return;
+    const hasDecision=!!selectedDecision(page);
+
+    page.querySelectorAll('button').forEach(btn=>{
+      if(!isDecisionSaveButton(btn)) return;
+      btn.dataset.hospitalDecisionSaveV256='true';
+      btn.disabled=!hasDecision;
+      btn.setAttribute('aria-disabled',hasDecision?'false':'true');
+      btn.title=hasDecision?'บันทึกผลพิจารณา':'กรุณาเลือกผลพิจารณาก่อนบันทึก';
+    });
+  }
+
+  function syncAll(){
+    document.querySelectorAll(PAGE_SELECTOR).forEach(syncPage);
+  }
+
+  document.addEventListener('click',function(e){
+    const decision=e.target?.closest?.(
+      PAGE_SELECTOR+' .dd-decision-btn[data-decision]'
+    );
+    if(decision){
+      const page=decision.closest(PAGE_SELECTOR);
+      setTimeout(()=>syncPage(page),0);
+    }
+  },false);
+
+  const originalSelect=window.selectCustomerDecision;
+  if(typeof originalSelect==='function' && !originalSelect.__hospitalV256Wrapped){
+    const wrapped=function(type){
+      const result=originalSelect.apply(this,arguments);
+      setTimeout(syncAll,0);
+      return result;
+    };
+    wrapped.__hospitalV256Wrapped=true;
+    window.selectCustomerDecision=wrapped;
+  }
+
+  const observer=new MutationObserver(()=>syncAll());
+  observer.observe(document.documentElement,{subtree:true,childList:true});
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',syncAll,{once:true});
+  }else{
+    syncAll();
+  }
+})();
+</script>
+
+
+<!-- v260: PA death claim display follows reviewed layout -->
+<style id="v260-pa-death-layout-style">
+  #claimEntryPage.pa-v260-pa-accident #coverageTypeRadios{grid-template-columns:repeat(3,minmax(0,1fr)) !important;}
+  #claimEntryPage.pa-v260-pa-accident #coverageTypeRadios .choice-card{width:100% !important;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios{gap:12px !important; align-items:flex-start;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios > label{
+    border-radius:999px !important;
+    padding:10px 26px !important;
+    min-height:48px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:1.05rem !important;
+    box-shadow:none !important;
+  }
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios > label:not(.bg-brand-600){background:#fff !important; border-color:#d1d5db !important; color:#334155 !important;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios > label.bg-brand-600{background:#0b67ad !important; border-color:#0b67ad !important; color:#fff !important;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full{
+    flex-basis:100% !important;
+    margin-top:16px !important;
+    border:1px solid #bfdbfe !important;
+    background:#eff6ff !important;
+    border-radius:18px !important;
+    padding:22px 28px !important;
+  }
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full > div:first-child{
+    display:flex !important;
+    align-items:center !important;
+    gap:12px !important;
+    margin-bottom:18px !important;
+    font-size:1.55rem !important;
+    font-weight:900 !important;
+    color:#1e3a8a !important;
+  }
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full > div:first-child .material-icons-round{font-size:30px !important;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full > div:last-child{display:flex !important; flex-wrap:wrap !important; gap:24px !important;}
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full label{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:14px !important;
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    border-radius:0 !important;
+    font-size:1rem !important;
+    font-weight:800 !important;
+    color:#334155 !important;
+    cursor:pointer !important;
+  }
+  #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full input[type="checkbox"]{width:30px !important; height:30px !important; border-radius:8px !important; accent-color:#0b67ad !important; flex:none !important;}
+  @media (max-width: 1024px){
+    #claimEntryPage.pa-v260-pa-accident #coverageTypeRadios{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  }
+  @media (max-width: 768px){
+    #claimEntryPage.pa-v260-pa-accident #coverageTypeRadios{grid-template-columns:1fr !important;}
+    #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full{padding:18px !important;}
+    #claimEntryPage.pa-v260-death-layout #claimSubRadios .basis-full > div:last-child{flex-direction:column !important; align-items:flex-start !important; gap:14px !important;}
+  }
+</style>
+<script id="v260-pa-death-layout-script">
+(function(){
+  const PA_DEATH_COVERAGE_VALUES = ["ค่าชดเชย", "ทุพพลภาพ/สูญเสียอวัยวะ", "เสียชีวิต"];
+  const PA_DEATH_SUB_OPTIONS = [
+    { value: "อุบัติเหตุทั่วไป", label: "อุบัติเหตุทั่วไป", defaultLocked: false },
+    { value: "ขับขี่/โดยสารจักรยานยนต์", label: "ขับขี่/โดยสารจักรยานยนต์", defaultLocked: false },
+    { value: "ฆาตกรรม", label: "ฆาตกรรม", defaultLocked: false }
+  ];
+
+  function isPA(){
+    try { return typeof window.currentProductType === 'function' && window.currentProductType() === 'PA'; } catch(e){ return false; }
+  }
+  function isPAAccident(){
+    return isPA() && (window.claimState?.incidentCause === 'อุบัติเหตุ');
+  }
+  function isPADeath(){
+    return isPAAccident() && (window.claimState?.coverageType === 'เสียชีวิต');
+  }
+  function syncClasses(){
+    const page = document.getElementById('claimEntryPage');
+    if(!page) return;
+    page.classList.toggle('pa-v260-pa-accident', isPAAccident());
+    page.classList.toggle('pa-v260-death-layout', isPADeath());
+  }
+  function enhanceDeathExtraPanel(){
+    const box = document.querySelector('#claimEntryPage #claimSubRadios .basis-full');
+    if(!box) return;
+    const title = box.querySelector('div');
+    if(title && !box.dataset.v260TitlePatched){
+      title.innerHTML = '<span class="material-icons-round">verified</span><span>ความคุ้มครองเพิ่มเติม</span>';
+      box.dataset.v260TitlePatched = 'true';
+    }
+  }
+
+  const originalGetAvailableCoverageValues = window.getAvailableCoverageValues;
+  if (typeof originalGetAvailableCoverageValues === 'function' && !originalGetAvailableCoverageValues.__v260Wrapped) {
+    const wrapped = function(){
+      const values = originalGetAvailableCoverageValues.apply(this, arguments);
+      if (isPAAccident()) return PA_DEATH_COVERAGE_VALUES.slice();
+      return values;
+    };
+    wrapped.__v260Wrapped = true;
+    window.getAvailableCoverageValues = wrapped;
+  }
+
+  const originalGetSubOptionObjects = window.getSubOptionObjects;
+  if (typeof originalGetSubOptionObjects === 'function' && !originalGetSubOptionObjects.__v260Wrapped) {
+    const wrapped = function(){
+      if (isPA() && window.claimState?.coverageType === 'เสียชีวิต') return PA_DEATH_SUB_OPTIONS.map(item => ({...item}));
+      return originalGetSubOptionObjects.apply(this, arguments);
+    };
+    wrapped.__v260Wrapped = true;
+    window.getSubOptionObjects = wrapped;
+  }
+
+  const originalRenderClaimDynamicFields = window.renderClaimDynamicFields;
+  if (typeof originalRenderClaimDynamicFields === 'function' && !originalRenderClaimDynamicFields.__v260Wrapped) {
+    const wrapped = function(){
+      const result = originalRenderClaimDynamicFields.apply(this, arguments);
+      syncClasses();
+      enhanceDeathExtraPanel();
+      return result;
+    };
+    wrapped.__v260Wrapped = true;
+    window.renderClaimDynamicFields = wrapped;
+  }
+
+  const originalRenderClaimSelectionControls = window.renderClaimSelectionControls;
+  if (typeof originalRenderClaimSelectionControls === 'function' && !originalRenderClaimSelectionControls.__v260Wrapped) {
+    const wrapped = function(){
+      const result = originalRenderClaimSelectionControls.apply(this, arguments);
+      syncClasses();
+      return result;
+    };
+    wrapped.__v260Wrapped = true;
+    window.renderClaimSelectionControls = wrapped;
+  }
+
+  document.addEventListener('change', function(ev){
+    if(ev.target.closest('#claimEntryPage')){
+      setTimeout(function(){ syncClasses(); enhanceDeathExtraPanel(); }, 0);
+    }
+  }, true);
+
+  const observer = new MutationObserver(function(){
+    syncClasses();
+    enhanceDeathExtraPanel();
+  });
+  observer.observe(document.documentElement, { subtree:true, childList:true });
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ syncClasses(); enhanceDeathExtraPanel(); }, { once:true });
+  } else {
+    syncClasses();
+    enhanceDeathExtraPanel();
+  }
+})();
+</script>
+
+
+<script>(function(){try{if(typeof renderClaimSelectionControls==='function' && typeof window.__renderClaimSelectionControlsOriginal__!=='function'){window.__renderClaimSelectionControlsOriginal__=renderClaimSelectionControls;}}catch(e){}})();</script>
+
+<!-- v261: แจ้งเคลม PA - Sync Cause / Coverage / Additional options with บันทึกข้อมูลเคลม > เคลมลูกค้า -->
+<script id="v261-pa-claim-selection-sync-customer-script">
+(function(){
+  function isPAClaimEntry(){
+    try { return typeof window.currentProductType === 'function' && window.currentProductType() === 'PA'; }
+    catch(e){ return false; }
+  }
+
+  function customerCoverageValuesForCurrentCause(){
+    const cause = String(window.claimState?.incidentCause || '').trim();
+    if(!cause) return [];
+    const matrix = (typeof CUSTOMER_REVIEW_CLAIM_MATRIX !== 'undefined' && CUSTOMER_REVIEW_CLAIM_MATRIX)
+      || (typeof CUSTOMER_CLAIM_OPTION_MATRIX !== 'undefined' && CUSTOMER_CLAIM_OPTION_MATRIX)
+      || {};
+    const meta = (typeof CUSTOMER_REVIEW_COVERAGE_META !== 'undefined' && CUSTOMER_REVIEW_COVERAGE_META)
+      || [
+        { value:'ค่ารักษา', label:'ค่ารักษา', icon:'medication' },
+        { value:'ค่าชดเชย', label:'ค่าชดเชย(ใหญ่)', icon:'payments' }
+      ];
+    const allowed = Object.keys(matrix[cause] || {});
+    return meta.map(item => item.value).filter(value => allowed.includes(value));
+  }
+
+  // เหตุของการเคลม: ใช้ชุดเดียวกับหน้า บันทึกข้อมูลเคลม > เคลมลูกค้า
+  const previousIncidentOptions = window.getAvailableIncidentCauseOptions;
+  if(typeof previousIncidentOptions === 'function' && !previousIncidentOptions.__v261CustomerSync){
+    const wrapped = function(){
+      if(isPAClaimEntry() && typeof incidentCauseOptions !== 'undefined') return incidentCauseOptions.slice();
+      return previousIncidentOptions.apply(this, arguments);
+    };
+    wrapped.__v261CustomerSync = true;
+    window.getAvailableIncidentCauseOptions = wrapped;
+  }
+
+  // ประเภทความคุ้มครอง: ให้ PA ใช้ Dependency เดียวกับหน้าเคลมลูกค้า
+  const previousCoverageValues = window.getAvailableCoverageValues;
+  if(typeof previousCoverageValues === 'function' && !previousCoverageValues.__v261CustomerSync){
+    const wrapped = function(){
+      if(isPAClaimEntry()) return customerCoverageValuesForCurrentCause();
+      return previousCoverageValues.apply(this, arguments);
+    };
+    wrapped.__v261CustomerSync = true;
+    window.getAvailableCoverageValues = wrapped;
+  }
+
+  // ตัวเลือกเพิ่มเติม: ใช้ Matrix เดียวกับหน้าเคลมลูกค้าโดยตรง
+  const previousSubOptions = window.getSubOptionObjects;
+  if(typeof previousSubOptions === 'function' && !previousSubOptions.__v261CustomerSync){
+    const wrapped = function(){
+      if(isPAClaimEntry()){
+        const cause = String(window.claimState?.incidentCause || '').trim();
+        const coverage = String(window.claimState?.coverageType || '').trim();
+        const matrix = (typeof CUSTOMER_REVIEW_CLAIM_MATRIX !== 'undefined' && CUSTOMER_REVIEW_CLAIM_MATRIX)
+          || (typeof CUSTOMER_CLAIM_OPTION_MATRIX !== 'undefined' && CUSTOMER_CLAIM_OPTION_MATRIX)
+          || {};
+        const raw = matrix?.[cause]?.[coverage] || [];
+        return raw.map(item => typeof item === 'string' ? { value:item, label:item, defaultLocked:false } : { ...item });
+      }
+      return previousSubOptions.apply(this, arguments);
+    };
+    wrapped.__v261CustomerSync = true;
+    window.getSubOptionObjects = wrapped;
+  }
+
+  function refreshPASelection(){
+    if(!isPAClaimEntry()) return;
+    try {
+      if(typeof window.autoResolveClaimSelections === 'function') window.autoResolveClaimSelections();
+      if(typeof window.renderClaimSelectionControls === 'function') window.renderClaimSelectionControls();
+      if(typeof window.renderClaimDynamicFields === 'function') window.renderClaimDynamicFields();
+    } catch(e) {
+      if(typeof window.__showSafeError === 'function') window.__showSafeError(e, 'v261-pa-claim-selection-sync');
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(refreshPASelection, 0); }, { once:true });
+  } else {
+    setTimeout(refreshPASelection, 0);
+  }
+})();
+</script>
 </body>
 </html>
 
@@ -53270,3 +54832,1542 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     min-width:0!important;
   }
 </style>
+
+
+
+
+<!-- v264: final fix after recheck - override PA claim entry logic strictly by spec -->
+<script id="v264-pa-claim-screen-logic-recheck-script">
+(function(){
+  const prevIncidentFn = (typeof getAvailableIncidentCauseOptions === 'function') ? getAvailableIncidentCauseOptions : null;
+  const prevCoverageFn = (typeof getAvailableCoverageValues === 'function') ? getAvailableCoverageValues : null;
+  const prevSubFn = (typeof getSubOptionObjects === 'function') ? getSubOptionObjects : null;
+  const prevDeathExtraFn = (typeof getDeathExtraCauseOptions === 'function') ? getDeathExtraCauseOptions : null;
+  const prevShowDeathExtraFn = (typeof shouldShowDeathExtraOptions === 'function') ? shouldShowDeathExtraOptions : null;
+  const prevAutoResolveFn = (typeof autoResolveClaimSelections === 'function') ? autoResolveClaimSelections : null;
+
+  const PA_INCIDENT_OPTIONS = [
+    { value:'อุบัติเหตุ', label:'อุบัติเหตุ', icon:'directions_run', desc:'เหตุการณ์อุบัติเหตุ' }
+  ];
+  const PA_COVERAGE_META = [
+    { value:'ค่ารักษา', label:'ค่ารักษา', icon:'medical_services', desc:'OPD / IPD' },
+    { value:'ค่าชดเชย', label:'ค่าชดเชย', icon:'payments', desc:'OPD / IPD' },
+    { value:'ทุพพลภาพ/สูญเสียอวัยวะ', label:'ทุพพลภาพ/สูญเสียอวัยวะ', icon:'accessible', desc:'อุบัติเหตุทั่วไป / ขับขี่/โดยสารจักรยานยนต์ / ฆาตกรรม' },
+    { value:'เสียชีวิต', label:'เสียชีวิต', icon:'local_florist', desc:'อุบัติเหตุทั่วไป / ขับขี่/โดยสารจักรยานยนต์ / ฆาตกรรม' }
+  ];
+  const PA_MATRIX = {
+    'อุบัติเหตุ': {
+      'ค่ารักษา': [
+        { value:'OPD', label:'OPD' },
+        { value:'IPD', label:'IPD' }
+      ],
+      'ค่าชดเชย': [
+        { value:'OPD', label:'OPD' },
+        { value:'IPD', label:'IPD' }
+      ],
+      'ทุพพลภาพ/สูญเสียอวัยวะ': [
+        { value:'อุบัติเหตุทั่วไป', label:'อุบัติเหตุทั่วไป' },
+        { value:'ขับขี่/โดยสารจักรยานยนต์', label:'ขับขี่/โดยสารจักรยานยนต์' },
+        { value:'ฆาตกรรม', label:'ฆาตกรรม' }
+      ],
+      'เสียชีวิต': [
+        { value:'อุบัติเหตุทั่วไป', label:'อุบัติเหตุทั่วไป' },
+        { value:'ขับขี่/โดยสารจักรยานยนต์', label:'ขับขี่/โดยสารจักรยานยนต์' },
+        { value:'ฆาตกรรม', label:'ฆาตกรรม' }
+      ]
+    }
+  };
+
+  function isPAClaimEntry(){
+    try {
+      return typeof currentProductType === 'function' && currentProductType() === 'PA';
+    } catch(e){ return false; }
+  }
+
+  function cloneOptions(list){
+    return (list || []).map(function(item){
+      if(typeof item === 'string') return { value:item, label:item, defaultLocked:false };
+      return { ...item, label:item.label || item.value, defaultLocked:Boolean(item.defaultLocked) };
+    });
+  }
+
+  function normalizePAClaimState(){
+    if(!isPAClaimEntry() || !window.claimState) return;
+    if(claimState.incidentCause && claimState.incidentCause !== 'อุบัติเหตุ'){
+      claimState.incidentCause = '';
+      claimState.coverageType = '';
+      claimState.subType = '';
+    }
+    const coverageValues = claimState.incidentCause ? Object.keys(PA_MATRIX[claimState.incidentCause] || {}) : [];
+    if(claimState.coverageType && !coverageValues.includes(claimState.coverageType)){
+      claimState.coverageType = '';
+      claimState.subType = '';
+    }
+    const subValues = cloneOptions((PA_MATRIX[claimState.incidentCause] || {})[claimState.coverageType] || []).map(function(item){ return item.value; });
+    if(claimState.subType && !subValues.includes(claimState.subType)){
+      claimState.subType = '';
+    }
+    if(claimState.coverageType !== 'เสียชีวิต'){
+      claimState.deathExtras = [];
+    } else {
+      const extras = Array.isArray(claimState.deathExtras) ? claimState.deathExtras : [];
+      claimState.deathExtras = extras.filter(function(x){ return ['ภัยสาธารณะ','ความรับผิดสถานศึกษา'].includes(x); });
+    }
+    claimState.paClaimTypeId = '';
+    claimState.paClaimTypeName = '';
+    if(typeof syncDerivedClaimType === 'function') syncDerivedClaimType();
+  }
+
+  function paCoverageDesc(value){
+    const raw = ((PA_MATRIX[claimState.incidentCause] || {})[value] || []).map(function(item){ return (typeof item === 'string' ? item : (item.label || item.value)); });
+    return raw.join(' / ');
+  }
+
+  function override(name, fn){
+    window[name] = fn;
+    try { eval(name + ' = window[name]'); } catch(e) {}
+  }
+
+  override('getAvailableIncidentCauseOptions', function(){
+    if(isPAClaimEntry()) return PA_INCIDENT_OPTIONS.slice();
+    return prevIncidentFn ? prevIncidentFn.apply(this, arguments) : [];
+  });
+
+  override('getAvailableCoverageValues', function(){
+    if(isPAClaimEntry()){
+      return claimState.incidentCause ? Object.keys(PA_MATRIX[claimState.incidentCause] || {}) : [];
+    }
+    return prevCoverageFn ? prevCoverageFn.apply(this, arguments) : [];
+  });
+
+  override('getSubOptionObjects', function(){
+    if(isPAClaimEntry()){
+      return cloneOptions(((PA_MATRIX[claimState.incidentCause] || {})[claimState.coverageType] || []));
+    }
+    return prevSubFn ? prevSubFn.apply(this, arguments) : [];
+  });
+
+  override('getDeathExtraCauseOptions', function(){
+    if(isPAClaimEntry()){
+      return (claimState.incidentCause === 'อุบัติเหตุ' && claimState.coverageType === 'เสียชีวิต' && claimState.subType)
+        ? ['ภัยสาธารณะ', 'ความรับผิดสถานศึกษา']
+        : [];
+    }
+    return prevDeathExtraFn ? prevDeathExtraFn.apply(this, arguments) : [];
+  });
+
+  override('shouldShowDeathExtraOptions', function(){
+    if(isPAClaimEntry()){
+      return claimState.incidentCause === 'อุบัติเหตุ' && claimState.coverageType === 'เสียชีวิต' && !!claimState.subType;
+    }
+    return prevShowDeathExtraFn ? prevShowDeathExtraFn.apply(this, arguments) : false;
+  });
+
+  override('autoResolveClaimSelections', function(){
+    if(isPAClaimEntry()){
+      normalizePAClaimState();
+      return;
+    }
+    return prevAutoResolveFn ? prevAutoResolveFn.apply(this, arguments) : undefined;
+  });
+
+  override('displayClaimLabel', function(){
+    if(isPAClaimEntry()){
+      return [claimState.incidentCause, claimState.coverageType, claimState.subType]
+        .map(function(v){ return String(v || '').trim(); })
+        .filter(Boolean)
+        .join(' / ') || '-';
+    }
+    if(typeof formatSelectedClaimInfo === 'function') return formatSelectedClaimInfo(claimState.incidentCause, claimState.coverageType, claimState.subType);
+    return '-';
+  });
+
+  override('renderClaimSelectionControls', function(){
+    if(!isPAClaimEntry()){
+      const original = (typeof window.__renderClaimSelectionControlsOriginal__ === 'function') ? window.__renderClaimSelectionControlsOriginal__ : null;
+      return original ? original.apply(this, arguments) : undefined;
+    }
+
+    normalizePAClaimState();
+
+    const incidentEl = document.getElementById('incidentCauseRadios');
+    const coverageEl = document.getElementById('coverageTypeRadios');
+    if(!incidentEl || !coverageEl) return;
+
+    const incidentOptions = PA_INCIDENT_OPTIONS.slice();
+    incidentEl.innerHTML = incidentOptions.map(function(item){
+      return renderChoiceCard(item, claimState.incidentCause === item.value, 'incidentCause', 'incident-cause-input');
+    }).join('');
+
+    document.querySelectorAll('.incident-cause-input').forEach(function(r){
+      r.addEventListener('change', function(e){
+        if(typeof clearClaimSelectionValidation === 'function') clearClaimSelectionValidation();
+        claimState.incidentCause = e.target.value;
+        claimState.coverageType = '';
+        claimState.subType = '';
+        claimState.deathExtras = [];
+        claimState.paClaimTypeId = '';
+        claimState.paClaimTypeName = '';
+        claimState.scanned = { idcard:false, receipt:false, medcert:false, other:false };
+        if(typeof syncDerivedClaimType === 'function') syncDerivedClaimType();
+        renderClaimEntry();
+      });
+    });
+
+    if(!claimState.incidentCause){
+      coverageEl.innerHTML = '<div class="md:col-span-2 xl:col-span-4 rounded-xl border border-dashed border-slate-300 bg-white px-5 py-4 text-xl font-bold text-slate-400">ยังไม่ได้เลือกเหตุของการเคลม เลือกเหตุของการเคลมด้านบนเพื่อระบุประเภทความคุ้มครอง</div>';
+      return;
+    }
+
+    const allowedValues = Object.keys(PA_MATRIX[claimState.incidentCause] || {});
+    const coverageCards = PA_COVERAGE_META.filter(function(item){ return allowedValues.includes(item.value); }).map(function(item){
+      return { ...item, descOverride: paCoverageDesc(item.value) || item.desc };
+    });
+    coverageEl.innerHTML = coverageCards.map(function(item){
+      return renderChoiceCard(item, claimState.coverageType === item.value, 'coverageType', 'coverage-type-input');
+    }).join('');
+
+    document.querySelectorAll('.coverage-type-input').forEach(function(r){
+      r.addEventListener('change', function(e){
+        if(typeof clearClaimSelectionValidation === 'function') clearClaimSelectionValidation();
+        claimState.coverageType = e.target.value;
+        claimState.subType = '';
+        claimState.deathExtras = [];
+        claimState.paClaimTypeId = '';
+        claimState.paClaimTypeName = '';
+        claimState.scanned = { idcard:false, receipt:false, medcert:false, other:false };
+        if(typeof syncDerivedClaimType === 'function') syncDerivedClaimType();
+        renderClaimEntry();
+      });
+    });
+  });
+
+  // preserve non-PA original if later needed
+  if(typeof window.__renderClaimSelectionControlsOriginal__ !== 'function'){
+    window.__renderClaimSelectionControlsOriginal__ = prevIncidentFn && prevCoverageFn ? null : null;
+  }
+
+  function refresh(){
+    if(!isPAClaimEntry()) return;
+    try {
+      normalizePAClaimState();
+      renderClaimSelectionControls();
+      if(typeof renderClaimDynamicFields === 'function') renderClaimDynamicFields();
+    } catch(e){
+      if(typeof __showSafeError === 'function') __showSafeError(e, 'v264-pa-claim-screen-logic-recheck');
+      else console.error(e);
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(refresh, 0); setTimeout(refresh, 150); }, { once:true });
+  } else {
+    setTimeout(refresh, 0);
+    setTimeout(refresh, 150);
+  }
+})();
+</script>
+
+
+<style id="v265-pa-horizontal-compact-design-style">
+  #claimEntryPage.pa-horizontal-compact .main-section-card,
+  #claimEntryPage.pa-horizontal-compact section.rounded-\[28px\],
+  #claimEntryPage.pa-horizontal-compact section.rounded-\[26px\],
+  #claimEntryPage.pa-horizontal-compact section.rounded-3xl{
+    border-radius:22px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:16px !important;
+    align-items:stretch;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{
+    display:grid !important;
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+    gap:16px !important;
+    align-items:stretch;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card{
+    min-height:88px !important;
+    padding:14px 18px !important;
+    border-radius:16px !important;
+    box-shadow:none !important;
+    border:1.5px solid #d7e3ef !important;
+    background:#fff !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card.active{
+    border:2px solid #1c75bc !important;
+    background:#f4f9ff !important;
+    box-shadow:none !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card:hover{
+    transform:none !important;
+    background:#f8fbff !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card > div,
+  #claimEntryPage.pa-horizontal-compact .choice-card .flex.items-center.gap-2\.5,
+  #claimEntryPage.pa-horizontal-compact .choice-card .flex.items-center.gap-3{
+    display:flex !important;
+    align-items:center !important;
+    gap:14px !important;
+    min-width:0;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card .choice-icon{
+    width:42px !important;
+    height:42px !important;
+    border-radius:11px !important;
+    margin:0 !important;
+    flex:none;
+    background:#eaf3fb !important;
+    color:#156db4 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card .choice-icon .material-icons-round{
+    font-size:22px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card .choice-title-sm{
+    font-size:17px !important;
+    line-height:1.3 !important;
+    font-weight:800 !important;
+    white-space:normal;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .choice-card .choice-desc-sm{
+    margin-top:3px !important;
+    font-size:12px !important;
+    line-height:1.35 !important;
+    font-weight:700 !important;
+    color:#6b7b8d !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:12px !important;
+    align-items:flex-start;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios > .rounded-xl.border.border-dashed{
+    width:100%;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios label.cursor-pointer.rounded-xl.border{
+    border-radius:999px !important;
+    padding:10px 18px !important;
+    font-size:15px !important;
+    line-height:1.2 !important;
+    min-height:0 !important;
+    box-shadow:none !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubTitle{
+    font-size:18px !important;
+    line-height:1.35 !important;
+    font-weight:800 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios .basis-full{
+    flex:1 1 100% !important;
+    margin-top:6px !important;
+    border:1px solid #cfe0f0 !important;
+    border-radius:18px !important;
+    background:#f6faff !important;
+    padding:16px 18px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios .basis-full .mb-3.flex.items-center.gap-2{
+    margin-bottom:12px !important;
+    font-size:17px !important;
+    line-height:1.3 !important;
+    font-weight:800 !important;
+    color:#1f4f7e !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios .basis-full .flex.flex-wrap.gap-3{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:22px !important;
+    align-items:center !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios .death-extra-input{
+    width:20px !important;
+    height:20px !important;
+    margin:0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios label.inline-flex.cursor-pointer.items-center.gap-2.rounded-lg{
+    padding:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    ring:0 !important;
+    font-size:16px !important;
+    font-weight:700 !important;
+    color:#334155 !important;
+    min-width:max-content;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios label.inline-flex.cursor-pointer.items-center.gap-2.rounded-lg:hover{
+    background:transparent !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios .basis-full .material-icons-round{
+    font-size:20px !important;
+  }
+
+  @media (max-width: 1280px){
+    #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{
+      grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    }
+  }
+
+  @media (max-width: 760px){
+    #claimEntryPage.pa-horizontal-compact #incidentCauseRadios,
+    #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{
+      grid-template-columns:1fr !important;
+    }
+
+    #claimEntryPage.pa-horizontal-compact .choice-card{
+      min-height:82px !important;
+      padding:12px 14px !important;
+    }
+
+    #claimEntryPage.pa-horizontal-compact #claimSubRadios .basis-full .flex.flex-wrap.gap-3{
+      flex-direction:column;
+      align-items:flex-start !important;
+      gap:12px !important;
+    }
+  }
+</style>
+
+<script id="v265-pa-horizontal-compact-design-script">
+(function(){
+  function shouldApply(){
+    try {
+      return typeof currentProductType === 'function' && currentProductType() === 'PA';
+    } catch(e){ return false; }
+  }
+
+  function applyClass(){
+    const page = document.getElementById('claimEntryPage');
+    if(!page) return;
+    page.classList.toggle('pa-horizontal-compact', shouldApply());
+  }
+
+  const previousRenderClaimEntry = typeof renderClaimEntry === 'function' ? renderClaimEntry : null;
+  if(previousRenderClaimEntry && !previousRenderClaimEntry.__v265Wrapped){
+    const wrapped = function(){
+      const result = previousRenderClaimEntry.apply(this, arguments);
+      setTimeout(applyClass, 0);
+      return result;
+    };
+    wrapped.__v265Wrapped = true;
+    window.renderClaimEntry = wrapped;
+    try { renderClaimEntry = window.renderClaimEntry; } catch(e) {}
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(applyClass, 0); }, { once:true });
+  } else {
+    setTimeout(applyClass, 0);
+  }
+
+  const observer = new MutationObserver(function(){ applyClass(); });
+  observer.observe(document.documentElement, { childList:true, subtree:true });
+})();
+</script>
+
+
+<style id="v266-pa-field-size-standard-style">
+  /* Apply only Claim Entry page for PA layout */
+  #claimEntryPage.pa-horizontal-compact label > span,
+  #claimEntryPage.pa-horizontal-compact .field-label,
+  #claimEntryPage.pa-horizontal-compact .text-lg.font-bold.text-slate-500{
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    letter-spacing: 0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact label > span .text-danger,
+  #claimEntryPage.pa-horizontal-compact .text-lg.font-bold.text-slate-500 .text-danger{
+    font-size: inherit !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .claim-standard-field,
+  #claimEntryPage.pa-horizontal-compact input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="hidden"]):not([type="range"]),
+  #claimEntryPage.pa-horizontal-compact select,
+  #claimEntryPage.pa-horizontal-compact textarea,
+  #claimEntryPage.pa-horizontal-compact .be-date-display {
+    height: 44px !important;
+    min-height: 44px !important;
+    border-radius: 12px !important;
+    border-width: 1px !important;
+    border-color: #cfd8e3 !important;
+    background: #fff !important;
+    padding: 0 14px !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    font-weight: 600 !important;
+    color: #334155 !important;
+    box-shadow: none !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact textarea {
+    min-height: 44px !important;
+    height: auto !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    line-height: 1.45 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact input::placeholder,
+  #claimEntryPage.pa-horizontal-compact textarea::placeholder,
+  #claimEntryPage.pa-horizontal-compact select,
+  #claimEntryPage.pa-horizontal-compact .be-date-display::placeholder {
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: #94a3b8 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .claim-standard-field:focus,
+  #claimEntryPage.pa-horizontal-compact input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="hidden"]):not([type="range"]):focus,
+  #claimEntryPage.pa-horizontal-compact select:focus,
+  #claimEntryPage.pa-horizontal-compact textarea:focus,
+  #claimEntryPage.pa-horizontal-compact .be-date-display:focus {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(96,165,250,.12) !important;
+    outline: none !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact label {
+    gap: 0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact label > span,
+  #claimEntryPage.pa-horizontal-compact label > div:first-child {
+    margin-bottom: 6px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .mt-1 {
+    margin-top: 0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .grid.gap-3,
+  #claimEntryPage.pa-horizontal-compact .grid.gap-4,
+  #claimEntryPage.pa-horizontal-compact .space-y-2,
+  #claimEntryPage.pa-horizontal-compact .space-y-3 {
+    gap: 12px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #dateFields,
+  #claimEntryPage.pa-horizontal-compact #hospitalFields,
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields {
+    margin-top: 4px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .be-date-field-wrap,
+  #claimEntryPage.pa-horizontal-compact .relative {
+    --field-icon-size: 34px;
+  }
+
+  #claimEntryPage.pa-horizontal-compact button[aria-label*="calendar"],
+  #claimEntryPage.pa-horizontal-compact .date-trigger,
+  #claimEntryPage.pa-horizontal-compact .calendar-trigger,
+  #claimEntryPage.pa-horizontal-compact .be-date-picker-trigger,
+  #claimEntryPage.pa-horizontal-compact .be-date-field button {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact .material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #dateFields .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #hospitalFields .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields .material-icons-round {
+    font-size: 20px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #transferAmount {
+    height: 46px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #organLossPanel select,
+  #claimEntryPage.pa-horizontal-compact #organLossPanel input {
+    height: 44px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #organLossPanel h4,
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields button,
+  #claimEntryPage.pa-horizontal-compact #hospitalFields .text-xl,
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields .text-xl {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields button {
+    height: 38px !important;
+    padding: 0 14px !important;
+    font-weight: 700 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact section.rounded-\[28px\],
+  #claimEntryPage.pa-horizontal-compact section.rounded-\[26px\],
+  #claimEntryPage.pa-horizontal-compact section.rounded-3xl,
+  #claimEntryPage.pa-horizontal-compact .main-section-card {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+</style>
+
+
+<style id="v267-pa-field-font-lighter-style">
+  /* PA Claim Entry: lighter, smaller enterprise field typography */
+  #claimEntryPage.pa-horizontal-compact label > span,
+  #claimEntryPage.pa-horizontal-compact .field-label,
+  #claimEntryPage.pa-horizontal-compact .text-lg.font-bold.text-slate-500,
+  #claimEntryPage.pa-horizontal-compact label > div:first-child {
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    font-weight: 600 !important;
+    color: #64748b !important;
+    letter-spacing: 0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .claim-standard-field,
+  #claimEntryPage.pa-horizontal-compact input:not([type="radio"]):not([type="checkbox"]):not([type="file"]):not([type="hidden"]):not([type="range"]),
+  #claimEntryPage.pa-horizontal-compact select,
+  #claimEntryPage.pa-horizontal-compact textarea,
+  #claimEntryPage.pa-horizontal-compact .be-date-display {
+    height: 40px !important;
+    min-height: 40px !important;
+    border-radius: 9px !important;
+    border-width: 1px !important;
+    border-color: #d6dee8 !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+    font-weight: 500 !important;
+    color: #334155 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact select {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact option {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact input::placeholder,
+  #claimEntryPage.pa-horizontal-compact textarea::placeholder,
+  #claimEntryPage.pa-horizontal-compact .be-date-display::placeholder {
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #a1aab8 !important;
+    opacity: 1 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact textarea {
+    min-height: 40px !important;
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+    font-weight: 400 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact label > span,
+  #claimEntryPage.pa-horizontal-compact label > div:first-child {
+    margin-bottom: 5px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #transferAmount {
+    height: 42px !important;
+    min-height: 42px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #organLossPanel select,
+  #claimEntryPage.pa-horizontal-compact #organLossPanel input {
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields button {
+    height: 36px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .be-date-button,
+  #claimEntryPage.pa-horizontal-compact button[aria-label*="calendar"],
+  #claimEntryPage.pa-horizontal-compact .date-trigger,
+  #claimEntryPage.pa-horizontal-compact .calendar-trigger,
+  #claimEntryPage.pa-horizontal-compact .be-date-picker-trigger,
+  #claimEntryPage.pa-horizontal-compact .be-date-field button {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    border-radius: 8px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #dateFields .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #hospitalFields .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #diagnosisFields .material-icons-round {
+    font-size: 18px !important;
+  }
+</style>
+
+
+<style id="v268-pa-symptom-compact-design-style">
+/* PA Claim Entry: compact symptom selector */
+#claimEntryPage.pa-horizontal-compact #symptomWrap{
+  max-width:none !important;
+  width:100% !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap > .space-y-3{
+  display:grid !important;
+  grid-template-columns:auto minmax(320px,1fr) !important;
+  align-items:center !important;
+  gap:10px 12px !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-grid{
+  display:inline-flex !important;
+  flex-wrap:nowrap !important;
+  gap:6px !important;
+  width:auto !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card{
+  min-width:122px !important;
+  min-height:40px !important;
+  height:40px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:7px !important;
+  border:1px solid #d7e0ea !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  padding:0 30px 0 9px !important;
+  box-shadow:none !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card:hover{
+  border-color:#9cccf0 !important;
+  background:#f8fbff !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card:has(input:checked){
+  border-color:#2387cf !important;
+  background:#f2f8fd !important;
+  box-shadow:0 0 0 2px rgba(35,135,207,.07) !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-icon{
+  width:27px !important;
+  height:27px !important;
+  border-radius:7px !important;
+  background:#edf4fa !important;
+  color:#58738c !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card:has(input:checked) .symptom-mode-icon{
+  background:#1684cf !important;
+  color:#fff !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-icon .material-icons-round{
+  font-size:15px !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-title{
+  font-size:14px !important;
+  line-height:1 !important;
+  font-weight:600 !important;
+  color:#334155 !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-check{
+  right:8px !important;
+  font-size:16px !important;
+  color:#2387cf !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomSelect{
+  width:100% !important;
+  height:40px !important;
+  min-height:40px !important;
+  border:1px solid #d2dce8 !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  padding:0 36px 0 12px !important;
+  font-size:14px !important;
+  line-height:1.3 !important;
+  font-weight:500 !important;
+  color:#334155 !important;
+  box-shadow:none !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomSelect:focus{
+  border-color:#60a5fa !important;
+  box-shadow:0 0 0 3px rgba(96,165,250,.10) !important;
+  outline:none !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomOtherNoteWrap{
+  grid-column:1 / -1 !important;
+  margin-top:0 !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomOtherNoteWrap > span{
+  font-size:13px !important;
+  font-weight:600 !important;
+}
+#claimEntryPage.pa-horizontal-compact #symptomOtherNote{
+  min-height:64px !important;
+  height:64px !important;
+  border-radius:10px !important;
+  padding:9px 12px !important;
+  font-size:14px !important;
+  font-weight:400 !important;
+  line-height:1.4 !important;
+}
+@media(max-width:900px){
+  #claimEntryPage.pa-horizontal-compact #symptomWrap > .space-y-3{
+    grid-template-columns:1fr !important;
+  }
+  #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-grid{
+    width:100% !important;
+  }
+  #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+  }
+}
+</style>
+
+
+<style id="v269-global-data-field-font-14px-style">
+  /* Global standard: Data field font = 14px on every page */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"]),
+  select,
+  textarea,
+  .claim-standard-field,
+  .be-date-display,
+  .global-be-date-display {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    font-weight: 500 !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"])::placeholder,
+  textarea::placeholder,
+  .claim-standard-field::placeholder,
+  .be-date-display::placeholder,
+  .global-be-date-display::placeholder {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    font-weight: 400 !important;
+  }
+
+  select option {
+    font-size: 14px !important;
+  }
+
+  /* Keep money / emphasis fields readable but still standard */
+  #transferAmount,
+  .money-field,
+  input[data-money="1"] {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+</style>
+
+<style id="v271-field14-label13-global-light-style">
+  /* Global lighter form typography */
+  label > span,
+  label > div:first-child,
+  .field-label,
+  .form-label,
+  .input-label,
+  .select-label,
+  .textarea-label,
+  .dd-field-label,
+  .rf-label {
+    font-size:13px !important;
+    line-height:1.35 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"]),
+  select,
+  textarea,
+  .claim-standard-field,
+  .be-date-display,
+  .global-be-date-display {
+    font-size:14px !important;
+    line-height:1.4 !important;
+    font-weight:500 !important;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"])::placeholder,
+  textarea::placeholder,
+  .claim-standard-field::placeholder,
+  .be-date-display::placeholder,
+  .global-be-date-display::placeholder {
+    font-size:14px !important;
+    font-weight:400 !important;
+  }
+</style>
+
+
+<style id="v272-force-global-field-typography-style">
+  /* High-specificity fallback: beat Tailwind text/font utility !important rules */
+  html body input[class]:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"]),
+  html body select[class],
+  html body textarea[class],
+  html body .claim-standard-field,
+  html body .be-date-display,
+  html body .global-be-date-display {
+    font-size:14px !important;
+    line-height:1.35 !important;
+    font-weight:500 !important;
+    letter-spacing:0 !important;
+  }
+
+  html body input[class]::placeholder,
+  html body textarea[class]::placeholder,
+  html body .claim-standard-field::placeholder,
+  html body .be-date-display::placeholder,
+  html body .global-be-date-display::placeholder {
+    font-size:14px !important;
+    font-weight:400 !important;
+  }
+
+  html body label > span[class],
+  html body label > div[class]:first-child,
+  html body .field-label,
+  html body .form-label,
+  html body .input-label,
+  html body .select-label,
+  html body .textarea-label,
+  html body .dd-field-label,
+  html body .rf-label {
+    font-size:13px !important;
+    line-height:1.3 !important;
+    font-weight:600 !important;
+    letter-spacing:0 !important;
+  }
+</style>
+
+<script id="v272-force-global-field-typography-script">
+(function(){
+  const FIELD_SELECTOR = 'input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"]), select, textarea, .claim-standard-field, .be-date-display, .global-be-date-display';
+  const LABEL_SELECTOR = 'label > span, label > div:first-child, .field-label, .form-label, .input-label, .select-label, .textarea-label, .dd-field-label, .rf-label';
+
+  function forceTypography(root){
+    root = root || document;
+    try {
+      root.querySelectorAll(FIELD_SELECTOR).forEach(function(el){
+        el.style.setProperty('font-size','14px','important');
+        el.style.setProperty('line-height','1.35','important');
+        el.style.setProperty('font-weight','500','important');
+        el.style.setProperty('letter-spacing','0','important');
+      });
+      root.querySelectorAll(LABEL_SELECTOR).forEach(function(el){
+        el.style.setProperty('font-size','13px','important');
+        el.style.setProperty('line-height','1.3','important');
+        el.style.setProperty('font-weight','600','important');
+        el.style.setProperty('letter-spacing','0','important');
+      });
+    } catch(e){ console.error('[v272 typography]', e); }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ forceTypography(document); }, {once:true});
+  } else {
+    forceTypography(document);
+  }
+
+  let queued = false;
+  const observer = new MutationObserver(function(mutations){
+    if(queued) return;
+    queued = true;
+    requestAnimationFrame(function(){
+      queued = false;
+      mutations.forEach(function(m){
+        m.addedNodes.forEach(function(node){
+          if(node && node.nodeType === 1) forceTypography(node);
+        });
+      });
+    });
+  });
+  observer.observe(document.documentElement,{subtree:true,childList:true});
+
+  document.addEventListener('click', function(){ setTimeout(function(){ forceTypography(document); },0); }, true);
+})();
+</script>
+
+
+<style id="v273-symptom-position-back-to-below-style">
+  /* Restore symptom field position: selector buttons on top, data field below */
+  #claimEntryPage.pa-horizontal-compact #symptomWrap{
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #symptomWrap > .space-y-3{
+    display: block !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-grid{
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    width: auto !important;
+    margin-bottom: 12px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #symptomWrap #symptomSelect{
+    display: block !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #symptomWrap #symptomOtherNoteWrap{
+    display: block !important;
+    grid-column: auto !important;
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #symptomWrap #symptomOtherNoteWrap.hidden{
+    display: none !important;
+  }
+
+  @media (max-width: 900px){
+    #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-grid{
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      width: 100% !important;
+    }
+
+    #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-card{
+      min-width: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  @media (max-width: 640px){
+    #claimEntryPage.pa-horizontal-compact #symptomWrap .symptom-mode-grid{
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+
+<style id="v274-global-typography-standard-style">
+  :root{
+    --ca-page-title:22px;
+    --ca-page-subtitle:14px;
+    --ca-section-title:16px;
+    --ca-subsection-title:15px;
+    --ca-field-label:14px;
+    --ca-field-value:14px;
+    --ca-status:13px;
+    --ca-table:14px;
+    --ca-button:14px;
+    --ca-helper:12px;
+    --ca-error:12px;
+    --ca-badge:12px;
+    --ca-modal-title:18px;
+    --ca-modal-body:14px;
+    --ca-toast-title:14px;
+    --ca-toast-detail:13px;
+    --ca-pagination:13px;
+    --ca-meta:12px;
+  }
+
+  /* Page Title */
+  #pageTitle,
+  .page-title,
+  [data-page-title],
+  main > .page h1,
+  main > section h1{
+    font-size:var(--ca-page-title)!important;
+    font-weight:700!important;
+    line-height:31px!important;
+  }
+
+  /* Page subtitle / breadcrumb */
+  #pageSubtitle,
+  .page-subtitle,
+  .breadcrumb,
+  .breadcrumbs,
+  [aria-label="breadcrumb"],
+  [data-breadcrumb]{
+    font-size:var(--ca-page-subtitle)!important;
+    font-weight:400!important;
+    line-height:20px!important;
+  }
+
+  /* Section title */
+  .balanced-title,
+  .section-title,
+  .section-head,
+  .summary-head,
+  .card-title,
+  [data-section-title],
+  section > header h2,
+  section > header h3,
+  .page section > h2,
+  .page section > h3{
+    font-size:var(--ca-section-title)!important;
+    font-weight:600!important;
+    line-height:24px!important;
+  }
+
+  /* Subsection title */
+  .subsection-title,
+  .panel-title,
+  .group-title,
+  .form-section-title,
+  [data-subsection-title],
+  .page h4{
+    font-size:var(--ca-subsection-title)!important;
+    font-weight:600!important;
+    line-height:22px!important;
+  }
+
+  /* Field labels */
+  label > span:not(.material-icons-round):not(.material-symbols-outlined),
+  .field-label,
+  .form-label,
+  .input-label,
+  .dd-field-label,
+  .rf-label,
+  .tt-fieldset label,
+  [data-field-label]{
+    font-size:var(--ca-field-label)!important;
+    font-weight:500!important;
+    line-height:21px!important;
+  }
+
+  /* Input / Dropdown / Textarea values */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"]),
+  select,
+  textarea,
+  .claim-standard-field,
+  .be-date-display,
+  .global-be-date-display,
+  .balanced-field{
+    font-size:var(--ca-field-value)!important;
+    font-weight:400!important;
+    line-height:20px!important;
+  }
+
+  /* Readonly / displayed field values */
+  .field-value,
+  .dd-field-value,
+  .detail-value,
+  .kv-value,
+  [data-field-value]{
+    font-size:var(--ca-field-value)!important;
+    font-weight:500!important;
+    line-height:21px!important;
+  }
+
+  /* Highlighted values / links */
+  .field-value a,
+  .detail-value a,
+  .tt-link,
+  a[data-field-link],
+  .claim-link{
+    font-size:14px!important;
+    font-weight:600!important;
+    line-height:20px!important;
+  }
+
+  /* Placeholder */
+  input::placeholder,
+  textarea::placeholder,
+  .claim-standard-field::placeholder,
+  .be-date-display::placeholder,
+  .global-be-date-display::placeholder{
+    font-size:14px!important;
+    font-weight:400!important;
+    line-height:20px!important;
+  }
+
+  /* Buttons */
+  button,
+  .btn,
+  .tt-btn,
+  [role="button"]{
+    font-size:var(--ca-button)!important;
+    line-height:20px!important;
+    font-weight:600!important;
+  }
+  .btn-secondary,
+  .secondary-btn,
+  button.secondary{
+    font-weight:500!important;
+  }
+
+  /* Table */
+  table,
+  .tt-table,
+  .dd-table,
+  .memo-modern-table{
+    font-size:var(--ca-table)!important;
+    line-height:21px!important;
+  }
+  th,
+  .tt-table th,
+  .dd-table th,
+  .memo-modern-table th{
+    font-size:14px!important;
+    font-weight:600!important;
+    line-height:20px!important;
+  }
+  td,
+  .tt-table td,
+  .dd-table td,
+  .memo-modern-table td{
+    font-size:14px!important;
+    font-weight:400!important;
+    line-height:21px!important;
+  }
+  td.text-right,
+  td.text-end,
+  .table-number,
+  .numeric,
+  [data-numeric]{
+    font-size:14px!important;
+    font-weight:500!important;
+    line-height:20px!important;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* Status / badge / tag */
+  .status-text,
+  .tt-status,
+  [data-status]{
+    font-size:13px!important;
+    font-weight:600!important;
+    line-height:20px!important;
+  }
+  .badge,
+  .tag,
+  .chip,
+  .pill,
+  [data-badge],
+  [data-tag]{
+    font-size:var(--ca-badge)!important;
+    font-weight:600!important;
+    line-height:16px!important;
+  }
+
+  /* Helper / validation */
+  .helper-text,
+  .form-helper,
+  [data-helper]{
+    font-size:var(--ca-helper)!important;
+    font-weight:400!important;
+    line-height:18px!important;
+  }
+  .error-text,
+  .validation-error,
+  .text-danger:not(h1):not(h2):not(h3):not(h4),
+  [data-error]{
+    font-size:12px!important;
+    font-weight:500!important;
+    line-height:18px!important;
+  }
+
+  /* Modal */
+  [role="dialog"] h2,
+  [role="dialog"] h3,
+  .modal-title,
+  #claimModal h3,
+  #claimModalBox h3{
+    font-size:var(--ca-modal-title)!important;
+    font-weight:600!important;
+    line-height:26px!important;
+  }
+  [role="dialog"] p,
+  [role="dialog"] .modal-body,
+  .modal-body,
+  #claimModal p,
+  #claimModalBox p{
+    font-size:var(--ca-modal-body)!important;
+    font-weight:400!important;
+    line-height:22px!important;
+  }
+
+  /* Toast / alert */
+  .toast-title,
+  .alert-title,
+  [data-toast-title]{
+    font-size:var(--ca-toast-title)!important;
+    font-weight:600!important;
+    line-height:20px!important;
+  }
+  .toast-detail,
+  .alert-detail,
+  [data-toast-detail]{
+    font-size:var(--ca-toast-detail)!important;
+    font-weight:400!important;
+    line-height:20px!important;
+  }
+
+  /* Pagination / metadata */
+  .pagination,
+  .pager,
+  .tt-pager,
+  .dd-pager,
+  [data-pagination]{
+    font-size:var(--ca-pagination)!important;
+    font-weight:500!important;
+    line-height:18px!important;
+  }
+  .metadata,
+  .last-updated,
+  .version-text,
+  footer,
+  [data-metadata]{
+    font-size:var(--ca-meta)!important;
+    font-weight:400!important;
+    line-height:17px!important;
+  }
+
+  /* Tooltip */
+  [role="tooltip"],
+  .tooltip,
+  [data-tooltip-content]{
+    font-size:12px!important;
+    font-weight:400!important;
+    line-height:17px!important;
+  }
+
+  /* Keep icon sizes independent from typography */
+  .material-icons-round,
+  .material-symbols-outlined{
+    font-weight:normal!important;
+    line-height:1!important;
+  }
+</style>
+
+
+<style id="v275-global-typography-force-all-pages-style">
+  :root{
+    --ca-page-title:22px;
+    --ca-page-subtitle:14px;
+    --ca-section-title:16px;
+    --ca-subsection-title:15px;
+    --ca-field-label:14px;
+    --ca-field-value:14px;
+    --ca-link-value:14px;
+    --ca-status:13px;
+    --ca-table:14px;
+    --ca-button:14px;
+    --ca-helper:12px;
+    --ca-error:12px;
+    --ca-badge:12px;
+    --ca-modal-title:18px;
+    --ca-modal-body:14px;
+    --ca-toast-title:14px;
+    --ca-toast-detail:13px;
+    --ca-pagination:13px;
+    --ca-meta:12px;
+  }
+
+  html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]),
+  html body select,
+  html body textarea,
+  html body .claim-standard-field,
+  html body .be-date-display,
+  html body .global-be-date-display{
+    font-size:14px !important;
+    font-weight:400 !important;
+    line-height:20px !important;
+  }
+
+  html body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"])::placeholder,
+  html body textarea::placeholder,
+  html body .claim-standard-field::placeholder,
+  html body .be-date-display::placeholder,
+  html body .global-be-date-display::placeholder{
+    font-size:14px !important;
+    font-weight:400 !important;
+    line-height:20px !important;
+  }
+
+  html body label > span:first-child,
+  html body label > div:first-child,
+  html body .field-label,
+  html body .form-label,
+  html body .input-label,
+  html body .dd-field-label,
+  html body [data-field-label]{
+    font-size:14px !important;
+    font-weight:500 !important;
+    line-height:20px !important;
+  }
+
+  html body table th,
+  html body .tt-table th,
+  html body .dd-table th,
+  html body .memo-modern-table th{
+    font-size:14px !important;
+    font-weight:600 !important;
+    line-height:20px !important;
+  }
+
+  html body table td,
+  html body .tt-table td,
+  html body .dd-table td,
+  html body .memo-modern-table td{
+    font-size:14px !important;
+    font-weight:400 !important;
+    line-height:21px !important;
+  }
+</style>
+
+<script id="v275-global-typography-force-all-pages-script">
+(function(){
+  const MAP = {
+    pageTitle: { size:'22px', weight:'700', lh:'31px' },
+    pageSubtitle: { size:'14px', weight:'400', lh:'20px' },
+    sectionTitle: { size:'16px', weight:'600', lh:'24px' },
+    subsectionTitle: { size:'15px', weight:'600', lh:'22px' },
+    fieldLabel: { size:'14px', weight:'500', lh:'20px' },
+    fieldValue: { size:'14px', weight:'400', lh:'20px' },
+    displayValue: { size:'14px', weight:'500', lh:'21px' },
+    fieldLink: { size:'14px', weight:'600', lh:'20px' },
+    status: { size:'13px', weight:'600', lh:'20px' },
+    tableHead: { size:'14px', weight:'600', lh:'20px' },
+    tableBody: { size:'14px', weight:'400', lh:'21px' },
+    tableNumeric: { size:'14px', weight:'500', lh:'20px' },
+    buttonPrimary: { size:'14px', weight:'600', lh:'20px' },
+    buttonSecondary: { size:'14px', weight:'500', lh:'20px' },
+    helper: { size:'12px', weight:'400', lh:'18px' },
+    error: { size:'12px', weight:'500', lh:'18px' },
+    badge: { size:'12px', weight:'600', lh:'16px' },
+    tooltip: { size:'12px', weight:'400', lh:'17px' },
+    modalTitle: { size:'18px', weight:'600', lh:'26px' },
+    modalBody: { size:'14px', weight:'400', lh:'22px' },
+    toastTitle: { size:'14px', weight:'600', lh:'20px' },
+    toastDetail: { size:'13px', weight:'400', lh:'20px' },
+    pagination: { size:'13px', weight:'500', lh:'18px' },
+    meta: { size:'12px', weight:'400', lh:'17px' }
+  };
+
+  const SELECTORS = {
+    pageTitle: ['#pageTitle','.page-title','[data-page-title]','main > .page h1','main > section h1','.content-title','.topbar-title'],
+    pageSubtitle: ['#pageSubtitle','.page-subtitle','.breadcrumb','.breadcrumbs','[aria-label="breadcrumb"]','[data-breadcrumb]','.page-path'],
+    sectionTitle: ['.balanced-title','.section-title','.section-head','.summary-head','.card-title','[data-section-title]','section > header h2','section > header h3','.page section > h2','.page section > h3','.block-title'],
+    subsectionTitle: ['.subsection-title','.panel-title','.group-title','.form-section-title','[data-subsection-title]','.page h4','.sub-title'],
+    fieldLabel: ['label > span:first-child','label > div:first-child','.field-label','.form-label','.input-label','.dd-field-label','.rf-label','[data-field-label]'],
+    fieldValue: ['input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="range"]):not([type="file"]):not([type="color"])','select','textarea','.claim-standard-field','.be-date-display','.global-be-date-display','.balanced-field'],
+    displayValue: ['.field-value','.dd-field-value','.detail-value','.kv-value','[data-field-value]','.value-text'],
+    fieldLink: ['.field-value a','.detail-value a','.tt-link','a[data-field-link]','.claim-link'],
+    status: ['.status-text','.tt-status','[data-status]','.status-badge-text'],
+    tableHead: ['table th','.tt-table th','.dd-table th','.memo-modern-table th'],
+    tableBody: ['table td','.tt-table td','.dd-table td','.memo-modern-table td'],
+    tableNumeric: ['td.text-right','td.text-end','.table-number','.numeric','[data-numeric]'],
+    buttonPrimary: ['button','.btn','.tt-btn','[role="button"]'],
+    helper: ['.helper-text','.form-helper','[data-helper]','.hint-text'],
+    error: ['.error-text','.validation-error','.text-danger:not(h1):not(h2):not(h3):not(h4)','[data-error]','.field-error'],
+    badge: ['.badge','.tag','.chip','.pill','[data-badge]','[data-tag]'],
+    tooltip: ['[role="tooltip"]','.tooltip','[data-tooltip-content]'],
+    modalTitle: ['[role="dialog"] h2','[role="dialog"] h3','.modal-title','#claimModal h3','#claimModalBox h3'],
+    modalBody: ['[role="dialog"] p','[role="dialog"] .modal-body','.modal-body','#claimModal p','#claimModalBox p'],
+    toastTitle: ['.toast-title','.alert-title','[data-toast-title]'],
+    toastDetail: ['.toast-detail','.alert-detail','[data-toast-detail]'],
+    pagination: ['.pagination','.pager','.tt-pager','.dd-pager','[data-pagination]'],
+    meta: ['.metadata','.last-updated','.version-text','footer','[data-metadata]']
+  };
+
+  function setTypo(el, cfg){
+    if(!el || !cfg) return;
+    if(el.classList && (el.classList.contains('material-icons-round') || el.classList.contains('material-symbols-outlined'))) return;
+    el.style.setProperty('font-size', cfg.size, 'important');
+    el.style.setProperty('font-weight', cfg.weight, 'important');
+    el.style.setProperty('line-height', cfg.lh, 'important');
+  }
+
+  function queryAllSafe(selectors){
+    const result = [];
+    selectors.forEach(sel => {
+      try { document.querySelectorAll(sel).forEach(el => result.push(el)); } catch(e) {}
+    });
+    return Array.from(new Set(result));
+  }
+
+  function applyTypography(root=document){
+    Object.keys(SELECTORS).forEach(key => {
+      const cfg = MAP[key === 'buttonPrimary' ? 'buttonPrimary' : key];
+      queryAllSafe(SELECTORS[key]).forEach(el => {
+        if(key === 'buttonPrimary'){
+          const isSecondary = el.classList.contains('btn-secondary') || el.classList.contains('secondary-btn') || el.matches('button.secondary');
+          setTypo(el, isSecondary ? MAP.buttonSecondary : MAP.buttonPrimary);
+          return;
+        }
+        if(key === 'tableNumeric'){
+          setTypo(el, MAP.tableNumeric);
+          el.style.setProperty('font-variant-numeric', 'tabular-nums', 'important');
+          return;
+        }
+        if(key === 'fieldValue' && (el.id === 'transferAmount' || el.matches('.money-field,[data-money="1"]'))){
+          setTypo(el, { size:'14px', weight:'500', lh:'20px' });
+          return;
+        }
+        setTypo(el, cfg);
+      });
+    });
+
+    document.querySelectorAll('select option').forEach(opt => {
+      opt.style.setProperty('font-size', '14px', 'important');
+      opt.style.setProperty('line-height', '20px', 'important');
+      opt.style.setProperty('font-weight', '400', 'important');
+    });
+
+    document.querySelectorAll('input::placeholder');
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      applyTypography(document);
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', schedule, { once:true });
+  } else {
+    schedule();
+  }
+
+  window.applyClaimAgentGlobalTypography = schedule;
+  const mo = new MutationObserver(schedule);
+  mo.observe(document.documentElement, { childList:true, subtree:true, attributes:false });
+})();
+</script>
