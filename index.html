@@ -54060,10 +54060,13 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
       const isContinuousClaimControl =
         field.matches('.continuous-claim-modal-trigger,[data-continuous-claim-modal="true"]') ||
         /ContinuousClaimCheckbox$/i.test(field.id || '');
-      if(isContinuousClaimControl){
+      const isDecisionField = !!field.closest('#customerDecisionSection,.customer-decision-section,.dd-decision-dynamic');
+      if(isContinuousClaimControl || isDecisionField){
         field.disabled=false;
+        field.removeAttribute('disabled');
         field.removeAttribute('aria-disabled');
-        field.dataset.hospitalContinuousEditable='true';
+        if(isContinuousClaimControl) field.dataset.hospitalContinuousEditable='true';
+        if(isDecisionField) field.dataset.hospitalDecisionEditable='true';
         return;
       }
       field.disabled=true;
@@ -56886,3 +56889,115 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   };
 })();
 </script>
+
+
+
+<script id="v284-hospital-decision-all-fields-original-rules-script">
+(function(){
+  const reasonMap = {
+    waitdocs: ['เอกสารไม่ครบถ้วน','ขอเอกสารประกอบเพิ่มเติม','เอกสารไม่ชัดเจน','เอกสารไม่ตรงกับข้อมูลเคลม','รอเอกสารจากผู้เอาประกัน'],
+    edit: ['บันทึกข้อมูลในระบบไม่ถูกต้อง','บันทึกยอดเงินในระบบไม่ถูกต้อง','ข้อมูลผู้เอาประกันไม่ถูกต้อง','ข้อมูลการรักษาไม่ถูกต้อง','ไม่มีไฟล์สแกน','อนุมัติบางส่วน'],
+    reject: ['อยู่ในระยะรอคอย','เป็นข้อยกเว้นของกรมธรรม์','เป็นโรคยกเว้นของกรมธรรม์','ไม่มีความคุ้มครอง','เต็มสิทธิ์ความคุ้มครอง','เกินระยะเวลาดำเนินการ'],
+    cancel: ['ผู้เอาประกันขอยกเลิกเคลม','โรงพยาบาลยกเลิกรายการ','แจ้งเคลมซ้ำ','บันทึกข้อมูลผิดรายการ','ไม่ประสงค์ดำเนินการต่อ']
+  };
+
+  function options(items){
+    return '<option value="">กรุณาเลือกสาเหตุ</option>' + (items||[]).map(x => '<option value="'+String(x).replace(/"/g,'&quot;')+'">'+x+'</option>').join('');
+  }
+
+  function requestDocBox(title, docType){
+    return '<div class="dd-document-request-box">'
+      + '<div class="dd-document-request-title"><span class="material-icons-round">upload_file</span>'+title+'</div>'
+      + '<table class="dd-document-request-table"><thead><tr><th>ประเภทเอกสาร</th><th>สแกนเอกสาร</th><th>จำนวนเอกสาร</th><th>รายละเอียด</th></tr></thead>'
+      + '<tbody><tr><td>'+docType+'</td><td><button type="button" class="dd-small-action-btn"><span class="material-icons-round">document_scanner</span>สแกนเอกสาร</button></td><td>0</td><td><button type="button" class="tt-action view"><span class="material-icons-round">visibility</span></button></td></tr></tbody></table></div>';
+  }
+
+  const configs = {
+    waitdocs: {
+      icon:'hourglass_top', title:'รอเอกสาร', chip:'ขอเอกสารเพิ่มเติม',
+      body:'<div class="dd-fieldset-modern"><label for="ccWaitDocReason">สาเหตุรอเอกสาร <span class="req">*</span></label><select id="ccWaitDocReason" class="dd-select-modern">'+options(reasonMap.waitdocs)+'</select></div>'
+        + '<div class="dd-fieldset-modern"><label for="ccWaitDocDetail">รายละเอียดเอกสารที่ต้องการ</label><textarea id="ccWaitDocDetail" class="dd-textarea-modern" placeholder="ระบุรายละเอียดเอกสารที่ต้องการเพิ่มเติม"></textarea></div>'
+    },
+    edit: {
+      icon:'edit_note', title:'รอแก้ไข', chip:'ขอแก้ไขข้อมูล',
+      body:'<div class="dd-fieldset-modern"><label for="ccEditReason">สาเหตุรอแก้ไข <span class="req">*</span></label><select id="ccEditReason" class="dd-select-modern">'+options(reasonMap.edit)+'</select></div>'
+        + '<div class="dd-fieldset-modern"><label for="ccEditDetail">รายละเอียดการรอแก้ไข</label><textarea id="ccEditDetail" class="dd-textarea-modern" placeholder="ระบุรายละเอียดการรอแก้ไข"></textarea></div>'
+    },
+    reject: {
+      icon:'block', title:'ปฏิเสธ', chip:'ปิดผลเป็นปฏิเสธ',
+      body:'<div class="dd-fieldset-modern"><label for="ccRejectReason">สาเหตุการปฏิเสธ <span class="req">*</span></label><select id="ccRejectReason" class="dd-select-modern">'+options(reasonMap.reject)+'</select></div>'
+        + '<div class="dd-fieldset-modern"><label for="ccRejectDetail">รายละเอียดการปฏิเสธ</label><textarea id="ccRejectDetail" class="dd-textarea-modern" placeholder="ระบุรายละเอียดการปฏิเสธ"></textarea></div>'
+        + requestDocBox('เอกสารประกอบการปฏิเสธ','เอกสารประกอบการปฏิเสธ')
+    },
+    cancel: {
+      icon:'cancel', title:'ยกเลิก', chip:'ยกเลิกรายการเคลม',
+      body:'<div class="dd-fieldset-modern"><label for="ccCancelReason">สาเหตุการยกเลิก <span class="req">*</span></label><select id="ccCancelReason" class="dd-select-modern">'+options(reasonMap.cancel)+'</select></div>'
+        + '<div class="dd-fieldset-modern"><label for="ccCancelDetail">รายละเอียดการยกเลิก</label><textarea id="ccCancelDetail" class="dd-textarea-modern" placeholder="ระบุรายละเอียดการยกเลิก"></textarea></div>'
+    }
+  };
+
+  function syncPressed(type){
+    document.querySelectorAll('.customer-decision-section .dd-decision-btn[data-decision], #customerDecisionSection .dd-decision-btn[data-decision]').forEach(btn => {
+      const active = !!type && btn.dataset.decision === type;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function renderFields(type){
+    const cfg = configs[type];
+    document.querySelectorAll('.customerDecisionDynamicFields, #customerDecisionDynamicFields').forEach(target => {
+      if(!target) return;
+      if(!cfg){
+        target.classList.add('hidden');
+        target.innerHTML='';
+        return;
+      }
+      target.classList.remove('hidden');
+      target.innerHTML = '<div class="dd-decision-form-card">'
+        + '<div class="dd-decision-form-head"><div class="dd-decision-form-title"><span class="material-icons-round">'+cfg.icon+'</span>'+cfg.title+'</div><span class="dd-decision-form-chip">'+cfg.chip+'</span></div>'
+        + '<div class="dd-decision-form-body">'+cfg.body+'</div></div>';
+    });
+  }
+
+  window.syncCustomerDecisionUI = function(){
+    const type = String(window.customerDecisionState?.type || '').trim();
+    syncPressed(type);
+    renderFields(type);
+  };
+
+  window.selectCustomerDecision = function(type){
+    const current = String(window.customerDecisionState?.type || '').trim();
+    const clicked = String(type || '').trim();
+    const next = current === clicked ? '' : clicked;
+    window.customerDecisionState = { ...(window.customerDecisionState || {}), type: next };
+    window.syncCustomerDecisionUI();
+
+    try{
+      if(typeof window.syncHospitalDecisionSaveButtonsV281 === 'function') window.syncHospitalDecisionSaveButtonsV281();
+      if(typeof window.enableHospitalDecisionSaveButtons === 'function') window.enableHospitalDecisionSaveButtons();
+    }catch(e){}
+  };
+})();
+</script>
+
+
+<style id="v285-hospital-decision-fields-editable-style">
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+:is(#hhStepPane1,#hfStepPane1)
+#customerDecisionSection :is(select,textarea,input)[data-hospital-decision-editable="true"],
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+:is(#hhStepPane1,#hfStepPane1)
+.dd-decision-dynamic :is(select,textarea,input):not(:disabled){
+  background:#fff !important;
+  color:#334155 !important;
+  cursor:text !important;
+  opacity:1 !important;
+  border-color:#cbd5e1 !important;
+}
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage)
+:is(#hhStepPane1,#hfStepPane1)
+.dd-decision-dynamic select:not(:disabled){
+  cursor:pointer !important;
+}
+</style>
