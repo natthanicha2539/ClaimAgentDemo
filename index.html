@@ -13641,6 +13641,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ];
 
     const considerationHospitalRows = [
+      { date: "28/08/2569 16:45:10", claimCode: "CL6908000201", caseNo: "CC6908000201-01", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางสาวกมลชนก สุขสวัสดิ์", claimType: "IPD", product: "PH", amount: "24,580.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", admitDate: "24/08/2569", dischargeDate: "27/08/2569", admitTime: "14:20", dischargeTime: "11:10", ipdDays: 3, icuDays: 0, diagnosis: "J18.9 : Pneumonia, unspecified organism | ปอดอักเสบ", chiefComplaint: "ไข้สูง ไอ หายใจเหนื่อย", an: "AN6908240201", hn: "HN69080201", vn: "VN6908240201" },
+      { date: "30/08/2569 23:20:15", claimCode: "CL6908000210", caseNo: "CC6908000210-01", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายธนภัทร วัฒนากุล", claimType: "OPD Full", product: "PH", amount: "3,250.00", hospitalOpdAmount: "3,500.00", hospitalOpdDiscount: "250.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", treatmentType: "OPD", incidentDate: "30/08/2569", incidentTime: "09:15", admitDate: "30/08/2569", admitTime: "09:40", dischargeDate: "30/08/2569", dischargeTime: "12:10", chiefComplaint: "ไข้ ไอ เจ็บคอ และอ่อนเพลีย 2 วัน", diagnosis: "J06.9 : Acute upper respiratory infection, unspecified | การติดเชื้อทางเดินหายใจส่วนบนเฉียบพลัน", diagnosis2: "R50.9 : Fever, unspecified | ไข้ไม่ระบุสาเหตุ", hn: "HN69080210", vn: "VN6908300210", doctorName: "พญ.วริศรา ศรีสุข", doctorLicense: "ว.54321", note: "Mockup OPD Full สถานะรอพิจารณา", remainingBalance: "16,750.00", cumulativePaid: "0.00" },
       { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", hospital: "โรงพยาบาลรวมใจรักษ์", province: "กรุงเทพมหานคร", name: "นางสาวนวพร ก้องเกียรติสกุล", claimType: "OPD Full", product: "PA", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา"},
       { date: "17/05/2569 10:08:20", claimCode: "CL6905000072", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายณัฐวัฒน์ เกตุวิชิต", claimType: "IPD", product: "PH", amount: "8,450.00" , itemStatus: "รอเอกสาร"},
       { date: "17/05/2569 11:22:45", claimCode: "CLPA6905000107", hospital: "โรงพยาบาลเด็ก", province: "กรุงเทพมหานคร", name: "ด.ญ.ปาริฉัตร แก้วมณี", claimType: "OPD Half", product: "PA", amount: "620.00" , itemStatus: "รอแก้ไข"},
@@ -28167,7 +28169,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             </tr>
           </thead>
           <tbody>
-            ${getHospitalCheckDocsByMode(modeLabel).map((name, index) => `
+            ${getHospitalCheckDocsByMode(modeLabel).map((name, index) => {
+              const opdFullMockCounts = [1, 1, 2, 1, 0, 0, 0];
+              const mockCount = String(modeLabel).toUpperCase() === 'OPD FULL' ? (opdFullMockCounts[index] ?? 0) : 0;
+              return `
               <tr data-scan-doc-row="${modeLabel}-${index}" class="${index % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'} border-b border-slate-200 last:border-b-0">
                 <td class="px-3 py-3 align-middle text-base font-bold text-slate-700">${name}</td>
                 <td class="px-3 py-3 align-middle text-center">
@@ -28176,7 +28181,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                   </button>
                 </td>
                 <td class="px-3 py-3 align-middle text-center">
-                  <div class="mx-auto inline-flex h-10 min-w-[52px] items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-lg font-extrabold text-slate-700 shadow-sm">0</div>
+                  <div data-doc-count class="mx-auto inline-flex h-10 min-w-[52px] items-center justify-center rounded-lg border border-slate-200 bg-white px-3 text-lg font-extrabold text-slate-700 shadow-sm">${mockCount}</div>
                 </td>
                 <td class="px-3 py-3 align-middle text-center">
                   <button type="button" class="inline-flex h-10 w-16 items-center justify-center rounded-lg border border-brand-500 bg-white text-brand-600 shadow-sm transition hover:bg-brand-50">
@@ -28193,7 +28198,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <td class="px-3 py-3 align-middle">
                   <input type="text" class="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-700 shadow-sm focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100" placeholder="ระบุหมายเหตุ">
                 </td>
-              </tr>`).join('')}
+              </tr>`;
+            }).join('')}
           </tbody>
         </table>
       </div>
@@ -28520,7 +28526,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
 
-  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${docs(kind === 'full' ? 'full' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
+  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${docs(kind === 'full' ? 'customer' : (kind !== 'customer' && /IPD/i.test(row?.claimType || '') ? 'ipd' : 'customer'))}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
   function fieldSum(label,value){ return `<div><div class="text-sm font-medium text-slate-500">${label}</div><div class="mt-1 text-base font-normal text-slate-700 leading-6">${value}</div></div>`; }
   const customerContinuousClaimOptions = [
     {
@@ -56999,5 +57005,1591 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 :is(#hhStepPane1,#hfStepPane1)
 .dd-decision-dynamic select:not(:disabled){
   cursor:pointer !important;
+}
+</style>
+
+
+<style id="v287-opdfull-expense-type-simb-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .cc-ref-prelim-table{
+    min-width: 1280px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .cc-ref-prelim-table .opd-full-expense-type-col{
+    width: 145px !important;
+    min-width: 145px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-select{
+    width:100% !important;
+    min-width:110px !important;
+    height:34px !important;
+    border:1px solid #cbd5e1 !important;
+    border-radius:6px !important;
+    background:#fff !important;
+    padding:0 28px 0 10px !important;
+    font-size:14px !important;
+    font-weight:500 !important;
+    color:#334155 !important;
+    outline:none !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-select:focus{
+    border-color:#3b82f6 !important;
+    box-shadow:0 0 0 3px rgba(59,130,246,.10) !important;
+  }
+</style>
+
+<script id="v287-opdfull-expense-type-simb-script">
+(function(){
+  const PAGE = '#considerHospitalOpdFullPage';
+  const PANE = '#hfStepPane2';
+
+  const MOCK = [
+    { type:'SimB1', receipt:'350.00', discount:'0.00' },
+    { type:'SimB1', receipt:'150.00', discount:'10.00' },
+    { type:'SimB2', receipt:'500.00', discount:'50.00' },
+    { type:'SimB2', receipt:'200.00', discount:'0.00' }
+  ];
+
+  function enhance(){
+    const page = document.querySelector(PAGE);
+    if(!page) return;
+    const pane = page.querySelector(PANE);
+    if(!pane) return;
+    const table = pane.querySelector('.cc-ref-prelim-table');
+    if(!table || table.dataset.v287ExpenseTypeEnhanced === 'true') return;
+
+    const headRow = table.querySelector('thead tr');
+    if(!headRow || headRow.children.length < 2) return;
+
+    const th = document.createElement('th');
+    th.textContent = 'ประเภทรายการค่าใช้จ่าย';
+    th.className = 'opd-full-expense-type-col';
+    headRow.insertBefore(th, headRow.children[1]);
+
+    const colgroup = table.querySelector('colgroup');
+    if(colgroup && colgroup.children.length){
+      const col = document.createElement('col');
+      col.className = 'opd-full-expense-type-col';
+      colgroup.insertBefore(col, colgroup.children[1] || null);
+    }
+
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    rows.forEach((row,index)=>{
+      if(row.querySelector('.opd-full-expense-type-select')) return;
+      if(row.children.length < 2) return;
+
+      const td = document.createElement('td');
+      td.className = 'opd-full-expense-type-col';
+      td.innerHTML = `
+        <select class="opd-full-expense-type-select" aria-label="ประเภทรายการค่าใช้จ่าย">
+          <option value="">--- เลือก ---</option>
+          <option value="SimB1">SimB1</option>
+          <option value="SimB2">SimB2</option>
+        </select>`;
+      row.insertBefore(td, row.children[1]);
+
+      const mock = MOCK[index];
+      if(!mock) return;
+      const select = td.querySelector('select');
+      if(select) select.value = mock.type;
+
+      const inputs = row.querySelectorAll('input');
+      // original order: receipt, eligible, discount, uncovered, note
+      if(inputs[0] && !String(inputs[0].value || '').trim()) inputs[0].value = mock.receipt;
+      if(inputs[2] && !String(inputs[2].value || '').trim()) inputs[2].value = mock.discount;
+    });
+
+    table.dataset.v287ExpenseTypeEnhanced = 'true';
+    try { window.recalculateCustomerExpenseSummary?.(); } catch(e) {}
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(()=>{ raf = null; enhance(); });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, {once:true});
+  else schedule();
+
+  document.addEventListener('click', schedule, false);
+  const observer = new MutationObserver(schedule);
+  function startObserver(){ if(document.body) observer.observe(document.body,{childList:true,subtree:true}); }
+  if(document.body) startObserver(); else document.addEventListener('DOMContentLoaded', startObserver, {once:true});
+
+  window.applyOpdFullExpenseTypeSimBMockup = enhance;
+})();
+</script>
+
+
+<style id="v288-opdfull-receipt-discount-disabled-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-readonly-money{
+    background:#f1f5f9 !important;
+    color:#64748b !important;
+    cursor:not-allowed !important;
+    opacity:1 !important;
+  }
+</style>
+
+<script id="v288-opdfull-receipt-discount-disabled-script">
+(function(){
+  const PAGE = '#considerHospitalOpdFullPage';
+  const PANE = '#hfStepPane2';
+
+  function headerIndex(table, text){
+    const headers = Array.from(table.querySelectorAll('thead th'));
+    return headers.findIndex(th => String(th.textContent || '').replace(/\s+/g,' ').trim().includes(text));
+  }
+
+  function apply(){
+    const page = document.querySelector(PAGE);
+    if(!page) return;
+    const pane = page.querySelector(PANE);
+    if(!pane) return;
+
+    const tables = Array.from(pane.querySelectorAll('table'));
+    tables.forEach(table=>{
+      const receiptIdx = headerIndex(table, 'ยอดเงินตามใบเสร็จ');
+      const discountIdx = headerIndex(table, 'ส่วนลด');
+      if(receiptIdx < 0 && discountIdx < 0) return;
+
+      table.querySelectorAll('tbody tr').forEach(row=>{
+        [receiptIdx, discountIdx].forEach(idx=>{
+          if(idx < 0) return;
+          const cell = row.children[idx];
+          if(!cell) return;
+          cell.querySelectorAll('input,select,textarea').forEach(el=>{
+            el.disabled = true;
+            el.setAttribute('disabled','');
+            el.setAttribute('aria-disabled','true');
+            el.classList.add('opd-full-readonly-money');
+            el.tabIndex = -1;
+          });
+        });
+      });
+    });
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(()=>{
+      raf = null;
+      apply();
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', schedule, {once:true});
+  }else{
+    schedule();
+  }
+
+  document.addEventListener('click', schedule, false);
+  const observer = new MutationObserver(schedule);
+
+  function observe(){
+    if(document.body){
+      observer.observe(document.body,{childList:true,subtree:true});
+    }
+  }
+
+  if(document.body) observe();
+  else document.addEventListener('DOMContentLoaded', observe, {once:true});
+
+  window.applyOpdFullReceiptDiscountDisabled = apply;
+})();
+</script>
+
+
+<style id="v289-opdfull-expense-type-button-select-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    display:flex !important;
+    align-items:center !important;
+    gap:14px !important;
+    padding:12px 14px !important;
+    margin:0 0 10px 0 !important;
+    border:1px solid #d7e3ef !important;
+    border-radius:14px !important;
+    background:#f8fbff !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:500 !important;
+    color:#475569 !important;
+    white-space:nowrap !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .req{
+    color:#ef4444 !important;
+    font-weight:600 !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+    display:flex !important;
+    flex-wrap:wrap !important;
+    gap:8px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn{
+    height:34px !important;
+    min-width:74px !important;
+    padding:0 14px !important;
+    border:1px solid #cbd5e1 !important;
+    border-radius:999px !important;
+    background:#fff !important;
+    color:#475569 !important;
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:500 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:6px !important;
+    cursor:pointer !important;
+    transition:all .16s ease !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn:hover{
+    border-color:#93c5fd !important;
+    background:#f8fbff !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active{
+    border-color:#2563eb !important;
+    background:#eff6ff !important;
+    color:#1d4ed8 !important;
+    font-weight:600 !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn .dot{
+    width:6px !important;
+    height:6px !important;
+    border-radius:999px !important;
+    background:currentColor !important;
+    display:none !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active .dot{
+    display:inline-block !important;
+  }
+</style>
+
+<script id="v289-opdfull-expense-type-button-select-script">
+(function(){
+  const PAGE = '#considerHospitalOpdFullPage';
+  const PANE = '#hfStepPane2';
+  const DEFAULT_TYPE = 'SimB1';
+
+  function findHeaderIndex(table, text){
+    const headers = Array.from(table.querySelectorAll('thead th'));
+    return headers.findIndex(th => String(th.textContent || '').replace(/\s+/g,' ').trim().includes(text));
+  }
+
+  function removeExpenseTypeColumn(table){
+    const idx = findHeaderIndex(table, 'ประเภทรายการค่าใช้จ่าย');
+    if(idx < 0) return;
+    const headRow = table.querySelector('thead tr');
+    if(headRow && headRow.children[idx]) headRow.children[idx].remove();
+    table.querySelectorAll('tbody tr').forEach(row => {
+      if(row.children[idx]) row.children[idx].remove();
+    });
+    const colgroup = table.querySelector('colgroup');
+    if(colgroup && colgroup.children[idx]) colgroup.children[idx].remove();
+  }
+
+  function buildToolbar(){
+    const wrap = document.createElement('div');
+    wrap.className = 'opd-full-expense-type-toolbar';
+    wrap.innerHTML = `
+      <div class="toolbar-label">ประเภทรายการค่าใช้จ่าย <span class="req">*</span> :</div>
+      <div class="button-group" role="radiogroup" aria-label="ประเภทรายการค่าใช้จ่าย">
+        <button type="button" class="opd-full-expense-type-btn" data-type="SimB1" aria-pressed="false"><span class="dot"></span>Sim B1</button>
+        <button type="button" class="opd-full-expense-type-btn" data-type="SimB2" aria-pressed="false"><span class="dot"></span>Sim B2</button>
+      </div>`;
+    return wrap;
+  }
+
+  function applySelectedType(pane, selectedType){
+    pane.dataset.opdFullExpenseType = selectedType;
+    const toolbar = pane.querySelector('.opd-full-expense-type-toolbar');
+    if(toolbar){
+      toolbar.querySelectorAll('.opd-full-expense-type-btn').forEach(btn => {
+        const active = btn.dataset.type === selectedType;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+    }
+
+    const table = pane.querySelector('.cc-ref-prelim-table');
+    if(table){
+      table.dataset.opdFullExpenseType = selectedType;
+      table.querySelectorAll('tbody tr').forEach(row => {
+        row.dataset.opdFullExpenseType = selectedType;
+      });
+    }
+  }
+
+  function enhance(){
+    const page = document.querySelector(PAGE);
+    if(!page) return;
+    const pane = page.querySelector(PANE);
+    if(!pane) return;
+    const table = pane.querySelector('.cc-ref-prelim-table');
+    if(!table) return;
+
+    removeExpenseTypeColumn(table);
+
+    let toolbar = pane.querySelector('.opd-full-expense-type-toolbar');
+    if(!toolbar){
+      toolbar = buildToolbar();
+      const insertionTarget = table.closest('.overflow-x-auto') || table.parentElement || table;
+      insertionTarget.parentNode.insertBefore(toolbar, insertionTarget);
+      toolbar.querySelectorAll('.opd-full-expense-type-btn').forEach(btn => {
+        btn.addEventListener('click', function(){
+          applySelectedType(pane, btn.dataset.type || DEFAULT_TYPE);
+        });
+      });
+    }
+
+    applySelectedType(pane, pane.dataset.opdFullExpenseType || DEFAULT_TYPE);
+    table.dataset.v289ExpenseTypeButtonSelect = 'true';
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(() => { raf = null; enhance(); });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, {once:true});
+  else schedule();
+
+  document.addEventListener('click', schedule, false);
+  const observer = new MutationObserver(schedule);
+  function observe(){ if(document.body) observer.observe(document.body, {childList:true, subtree:true}); }
+  if(document.body) observe(); else document.addEventListener('DOMContentLoaded', observe, {once:true});
+
+  window.applyOpdFullExpenseTypeButtonSelect = enhance;
+})();
+</script>
+
+
+<style id="v290-opdfull-expense-type-beautified-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    flex-wrap:wrap !important;
+    gap:14px !important;
+    width:fit-content !important;
+    max-width:100% !important;
+    min-width:min(100%, 520px) !important;
+    padding:14px 18px !important;
+    margin:0 0 14px 0 !important;
+    border:1px solid #d9e5f2 !important;
+    border-radius:18px !important;
+    background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%) !important;
+    box-shadow:0 8px 24px rgba(15,23,42,.05), 0 1px 3px rgba(15,23,42,.04) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:8px !important;
+    padding-right:2px !important;
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:600 !important;
+    color:#475569 !important;
+    white-space:nowrap !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label::before{
+    content:'';
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    background:linear-gradient(180deg,#60a5fa 0%, #2563eb 100%);
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    flex:none;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .req{
+    color:#ef4444 !important;
+    font-weight:700 !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+    display:inline-flex !important;
+    align-items:center !important;
+    flex-wrap:wrap !important;
+    gap:10px !important;
+    padding:4px !important;
+    border:1px solid #e2e8f0 !important;
+    border-radius:999px !important;
+    background:#f8fafc !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn{
+    height:38px !important;
+    min-width:104px !important;
+    padding:0 18px !important;
+    border:1px solid transparent !important;
+    border-radius:999px !important;
+    background:transparent !important;
+    color:#475569 !important;
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:600 !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+    cursor:pointer !important;
+    box-shadow:none !important;
+    transition:all .18s ease !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn:hover{
+    background:#ffffff !important;
+    border-color:#d5e3f3 !important;
+    color:#1e40af !important;
+    box-shadow:0 2px 8px rgba(37,99,235,.08) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active{
+    border-color:#2563eb !important;
+    background:linear-gradient(180deg,#eff6ff 0%,#dbeafe 100%) !important;
+    color:#1d4ed8 !important;
+    font-weight:700 !important;
+    box-shadow:0 6px 14px rgba(37,99,235,.14) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn .dot{
+    width:7px !important;
+    height:7px !important;
+    border-radius:999px !important;
+    background:currentColor !important;
+    display:none !important;
+    flex:none !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active .dot{
+    display:inline-block !important;
+  }
+
+  @media (max-width: 768px){
+    #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+      display:flex !important;
+      width:100% !important;
+      min-width:0 !important;
+      padding:12px 14px !important;
+      border-radius:16px !important;
+    }
+
+    #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+      width:100% !important;
+      justify-content:flex-start !important;
+    }
+
+    #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn{
+      min-width:96px !important;
+      flex:0 0 auto !important;
+    }
+  }
+</style>
+
+
+<style id="v291-opdfull-expense-type-disabled-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly{
+    background: linear-gradient(180deg,#fbfdff 0%,#f8fafc 100%) !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .toolbar-label{
+    color:#64748b !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .button-group{
+    background:#f8fafc !important;
+    border-color:#e2e8f0 !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn{
+    cursor:not-allowed !important;
+    pointer-events:none !important;
+    user-select:none !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn:not(.active){
+    color:#64748b !important;
+    background:transparent !important;
+    border-color:transparent !important;
+    box-shadow:none !important;
+    opacity:.85 !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn.active{
+    border-color:#93c5fd !important;
+    background:linear-gradient(180deg,#eff6ff 0%,#e0f2fe 100%) !important;
+    color:#1d4ed8 !important;
+    box-shadow:none !important;
+  }
+</style>
+
+<script id="v291-opdfull-expense-type-disabled-script">
+(function(){
+  const PAGE = '#considerHospitalOpdFullPage';
+  const PANE = '#hfStepPane2';
+
+  function apply(){
+    const pane = document.querySelector(PAGE + ' ' + PANE);
+    if(!pane) return;
+    const toolbar = pane.querySelector('.opd-full-expense-type-toolbar');
+    if(!toolbar) return;
+
+    toolbar.classList.add('is-readonly');
+    toolbar.setAttribute('aria-readonly','true');
+
+    toolbar.querySelectorAll('.opd-full-expense-type-btn').forEach(btn => {
+      btn.disabled = true;
+      btn.setAttribute('disabled','');
+      btn.setAttribute('aria-disabled','true');
+      btn.tabIndex = -1;
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }, true);
+    });
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      apply();
+    });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once:true });
+  else schedule();
+
+  document.addEventListener('click', schedule, true);
+  const observer = new MutationObserver(schedule);
+  function observe(){
+    if(document.body) observer.observe(document.body, { childList:true, subtree:true, attributes:true });
+  }
+  if(document.body) observe(); else document.addEventListener('DOMContentLoaded', observe, { once:true });
+
+  window.applyOpdFullExpenseTypeDisabled = apply;
+})();
+</script>
+
+
+<style id="v292-opdfull-expense-type-flat-design-style">
+  /* Flat design: remove card-on-card feeling */
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:16px !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+    padding:10px 0 12px 0 !important;
+    margin:0 0 8px 0 !important;
+    border:0 !important;
+    border-bottom:1px solid #e2e8f0 !important;
+    border-radius:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:4px !important;
+    padding:0 !important;
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:500 !important;
+    color:#475569 !important;
+    white-space:nowrap !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label::before{
+    display:none !important;
+    content:none !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+    display:inline-flex !important;
+    align-items:center !important;
+    gap:0 !important;
+    padding:0 !important;
+    border:1px solid #cbd5e1 !important;
+    border-radius:10px !important;
+    overflow:hidden !important;
+    background:#fff !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn{
+    height:34px !important;
+    min-width:92px !important;
+    padding:0 16px !important;
+    border:0 !important;
+    border-radius:0 !important;
+    background:#fff !important;
+    color:#64748b !important;
+    font-size:14px !important;
+    line-height:20px !important;
+    font-weight:500 !important;
+    box-shadow:none !important;
+    cursor:not-allowed !important;
+    pointer-events:none !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn + .opd-full-expense-type-btn{
+    border-left:1px solid #e2e8f0 !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active{
+    background:#eff6ff !important;
+    color:#1d4ed8 !important;
+    font-weight:600 !important;
+    box-shadow:inset 0 -2px 0 #3b82f6 !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn .dot{
+    display:none !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly{
+    background:transparent !important;
+  }
+
+  @media(max-width:700px){
+    #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+      align-items:flex-start !important;
+      flex-direction:column !important;
+      gap:8px !important;
+    }
+  }
+</style>
+
+
+<style id="v293-opdfull-expense-type-inline-compact-style">
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  margin:0 0 12px 0 !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:4px !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-size:14px !important;
+  line-height:20px !important;
+  font-weight:500 !important;
+  color:#475569 !important;
+  white-space:nowrap !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label::before{
+  display:none !important;
+  content:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .req{
+  color:#ef4444 !important;
+  font-weight:600 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn,
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn:disabled{
+  height:32px !important;
+  min-width:76px !important;
+  padding:0 14px !important;
+  border:1px solid #cbd5e1 !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  color:#64748b !important;
+  font-size:14px !important;
+  line-height:20px !important;
+  font-weight:500 !important;
+  box-shadow:none !important;
+  opacity:1 !important;
+  cursor:not-allowed !important;
+  pointer-events:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active,
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active:disabled{
+  border-color:#93c5fd !important;
+  background:#eff6ff !important;
+  color:#1d4ed8 !important;
+  font-weight:600 !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn .dot{
+  width:5px !important;
+  height:5px !important;
+  margin-right:1px !important;
+}
+@media(max-width:640px){
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    gap:8px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+    width:auto !important;
+  }
+}
+</style>
+
+
+<style id="v294-opdfull-expense-type-match-reference-style">
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  flex-wrap:wrap !important;
+  gap:14px !important;
+  width:100% !important;
+  max-width:none !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  padding:12px 16px !important;
+  margin:0 0 14px 0 !important;
+  border:1px solid #dbe3ec !important;
+  border-radius:12px !important;
+  background:#f1f5f9 !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:3px !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:#475569 !important;
+  font-size:14px !important;
+  line-height:20px !important;
+  font-weight:500 !important;
+  white-space:nowrap !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label::before{
+  content:none !important;
+  display:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .req{
+  color:#ef4444 !important;
+  font-size:14px !important;
+  font-weight:700 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+  display:inline-flex !important;
+  align-items:center !important;
+  flex-wrap:wrap !important;
+  gap:10px !important;
+  padding:0 !important;
+  margin:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn,
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:6px !important;
+  min-width:92px !important;
+  height:36px !important;
+  padding:0 16px !important;
+  border:1px solid #cbd5e1 !important;
+  border-radius:999px !important;
+  background:#fff !important;
+  color:#475569 !important;
+  box-shadow:none !important;
+  opacity:1 !important;
+  font-size:14px !important;
+  line-height:20px !important;
+  font-weight:500 !important;
+  cursor:not-allowed !important;
+  pointer-events:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active,
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn.active{
+  border:2px solid #1976d2 !important;
+  background:#eaf4ff !important;
+  color:#1266b3 !important;
+  font-weight:600 !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn .dot{
+  width:6px !important;
+  height:6px !important;
+  border-radius:999px !important;
+  background:currentColor !important;
+  display:none !important;
+  flex:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active .dot{
+  display:inline-block !important;
+}
+@media(max-width:640px){
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    gap:10px !important;
+    padding:10px 12px !important;
+  }
+}
+</style>
+<script id="v294-opdfull-expense-type-match-reference-script">
+(function(){
+  function apply(){
+    const pane=document.querySelector('#considerHospitalOpdFullPage #hfStepPane2');
+    if(!pane) return;
+    pane.dataset.opdFullExpenseType='SimB2';
+    const toolbar=pane.querySelector('.opd-full-expense-type-toolbar');
+    if(!toolbar) return;
+    toolbar.classList.add('is-readonly');
+    toolbar.setAttribute('aria-readonly','true');
+    toolbar.querySelectorAll('.opd-full-expense-type-btn').forEach(btn=>{
+      const active=btn.dataset.type==='SimB2';
+      btn.classList.toggle('active',active);
+      btn.disabled=true;
+      btn.setAttribute('disabled','');
+      btn.setAttribute('aria-disabled','true');
+      btn.setAttribute('aria-pressed',active?'true':'false');
+      btn.tabIndex=-1;
+    });
+  }
+  let raf=null;
+  function schedule(){
+    if(raf) return;
+    raf=requestAnimationFrame(()=>{raf=null;apply();});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',schedule,{once:true}); else schedule();
+  const mo=new MutationObserver(schedule);
+  function observe(){if(document.body) mo.observe(document.body,{childList:true,subtree:true});}
+  if(document.body) observe(); else document.addEventListener('DOMContentLoaded',observe,{once:true});
+  window.applyOpdFullExpenseTypeReferenceStyle=apply;
+})();
+</script>
+
+
+<style id="v295-opdfull-expense-type-background-beautify-style">
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar{
+    background: linear-gradient(180deg, #f4f7fb 0%, #eef3f8 100%) !important;
+    border: 1px solid #d7e2ee !important;
+    border-radius: 12px !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.75) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .button-group{
+    background: transparent !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn,
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn{
+    background: #ffffff !important;
+    border: 1px solid #c8d0dc !important;
+    color: #4b5563 !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.85) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-btn.active,
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar.is-readonly .opd-full-expense-type-btn.active{
+    background: linear-gradient(180deg, #eef6ff 0%, #dbeafe 100%) !important;
+    border: 2px solid #3b82f6 !important;
+    color: #2563eb !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.95) !important;
+  }
+
+  #considerHospitalOpdFullPage #hfStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+    color: #475569 !important;
+  }
+</style>
+
+
+<script id="v296-opdfull-step3-doc-match-opdhalf-script">
+(function(){
+  /* OPD Full Step 3 intentionally uses the same document-summary renderer as OPD Half. */
+  window.__v296OpdFullStep3DocMatchOpdHalf = true;
+})();
+</script>
+
+
+<style id="v297-hospital-ipd-noncontinuous-mockup-style">
+  #considerHospitalOpdHalfPage .ipd-noncontinuous-demo-note{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-left:8px;
+    padding:4px 9px;
+    border-radius:999px;
+    background:#f1f5f9;
+    color:#64748b;
+    font-size:12px!important;
+    font-weight:600!important;
+    line-height:16px!important;
+  }
+  #considerHospitalOpdHalfPage .ipd-noncontinuous-demo-note .material-icons-round{
+    font-size:15px!important;
+  }
+</style>
+
+<script id="v297-hospital-ipd-noncontinuous-mockup-script">
+(function(){
+  const DEMO_CODE = 'CL6908000201';
+
+  function setValue(el, value){
+    if(!el || value == null) return;
+    el.value = String(value);
+    try { el.dispatchEvent(new Event('input',{bubbles:true})); } catch(e) {}
+    try { el.dispatchEvent(new Event('change',{bubbles:true})); } catch(e) {}
+  }
+
+  function setSelectByText(select, text){
+    if(!select || !text) return;
+    const wanted = String(text).trim();
+    let option = Array.from(select.options || []).find(o => String(o.textContent || '').trim() === wanted);
+    if(!option){
+      option = document.createElement('option');
+      option.textContent = wanted;
+      option.value = wanted;
+      select.appendChild(option);
+    }
+    select.value = option.value;
+    try { select.dispatchEvent(new Event('change',{bubbles:true})); } catch(e) {}
+  }
+
+  function applyIpdDemo(row){
+    if(!row || row.claimCode !== DEMO_CODE) return;
+    const page = document.getElementById('considerHospitalOpdHalfPage');
+    if(!page || page.classList.contains('hidden')) return;
+
+    // Non-continuous by design.
+    const continuous = page.querySelector('#hhContinuousClaimCheckbox');
+    if(continuous){
+      continuous.checked = false;
+      continuous.disabled = true;
+      continuous.setAttribute('aria-disabled','true');
+    }
+    const continuousWrap = page.querySelector('#hhContinuousClaimSelectedDisplayWrap');
+    if(continuousWrap) continuousWrap.classList.add('hidden');
+
+    // Core IPD admission mockup.
+    setValue(page.querySelector('#hhAdmitDate'), '2026-08-24');
+    setValue(page.querySelector('#hhAdmitTime'), row.admitTime || '14:20');
+    setValue(page.querySelector('#hhDischargeDate'), '2026-08-27');
+    setValue(page.querySelector('#hhDischargeTime'), row.dischargeTime || '11:10');
+    setValue(page.querySelector('#hhIpdDays'), row.ipdDays ?? 3);
+    setValue(page.querySelector('#hhIcuDays'), row.icuDays ?? 0);
+
+    // Main mockup fields by label order.
+    const labels = Array.from(page.querySelectorAll('#hhStepPane1 label'));
+    labels.forEach(label => {
+      const title = String(label.querySelector('div,span')?.textContent || '').replace(/\*/g,'').trim();
+      const control = label.querySelector('input,select,textarea');
+      if(!control) return;
+      if(title.includes('สถานพยาบาล')) setSelectByText(control, row.hospital);
+      else if(title.includes('อาการสำคัญ')) setSelectByText(control, row.chiefComplaint || 'ไข้สูง ไอ หายใจเหนื่อย');
+      else if(title.includes('การวินิจฉัย1')) setSelectByText(control, row.diagnosis);
+      else if(title === 'HN') setValue(control, row.hn || 'HN69080201');
+      else if(title === 'VN') setValue(control, row.vn || 'VN6908240201');
+      else if(title === 'AN') setValue(control, row.an || 'AN6908240201');
+      else if(title.includes('ข้อบ่งชี้การ Admit')) setValue(control, 'มีไข้สูง หายใจเหนื่อย และต้องได้รับยาทางหลอดเลือดดำ');
+      else if(title.includes('วิธีการรักษาพยาบาล')) setValue(control, 'Admit ให้สารน้ำ ยาปฏิชีวนะ และติดตามอาการ');
+      else if(title.includes('ผลการตรวจ LAB')) setValue(control, 'CBC: WBC สูง, Chest X-ray พบ infiltrate ปอดขวา');
+      else if(title.includes('รายละเอียดเพิ่มเติม')) setValue(control, 'อาการดีขึ้นหลังรักษา 3 วัน แพทย์อนุญาตให้กลับบ้าน');
+    });
+
+    try { window.updateClaimHospitalStayNights?.('hh'); } catch(e) {}
+
+    const detailTitle = page.querySelector('.treatment-detail-actual > .mb-3');
+    if(detailTitle && !detailTitle.querySelector('.ipd-noncontinuous-demo-note')){
+      const badge = document.createElement('span');
+      badge.className = 'ipd-noncontinuous-demo-note';
+      badge.innerHTML = '<span class="material-icons-round">link_off</span>ไม่ใช่เคลมต่อเนื่อง';
+      detailTitle.appendChild(badge);
+    }
+  }
+
+  const previousOpen = window.openConsiderHospitalRow;
+  if(typeof previousOpen === 'function'){
+    window.openConsiderHospitalRow = function(index){
+      const result = previousOpen.apply(this, arguments);
+      try{
+        const rows = (typeof considerationHospitalRows !== 'undefined') ? considerationHospitalRows : [];
+        const row = rows[index] || window.currentConsiderHospitalRow;
+        if(row?.claimCode === DEMO_CODE){
+          setTimeout(() => applyIpdDemo(row), 0);
+          setTimeout(() => applyIpdDemo(row), 80);
+        }
+      }catch(e){ console.warn('[v297] apply IPD non-continuous demo',e); }
+      return result;
+    };
+    try { openConsiderHospitalRow = window.openConsiderHospitalRow; } catch(e) {}
+  }
+})();
+</script>
+
+
+<!-- v299: พิจารณาเคลม > เคลมโรงพยาบาล - Mockup จำนวนเอกสารใน Section ตรวจสอบเอกสาร ทุกสถานะ -->
+<script id="v298-hospital-all-status-doc-count-mockup-script">
+(function(){
+  const DOC_COUNT_MAP = {
+    'แบบฟอร์ม a': 1,
+    'ใบแจ้งหนี้': 1,
+    'รายละเอียดใบแจ้งหนี้': 2,
+    'ผลการตรวจ lab / x-ray': 1,
+    'ผลการตรวจ lab/x-ray': 1,
+    'ผล lab / x-ray': 1,
+    'เอกสารอื่นๆ': 0,
+    'เอกสารอื่น ๆ': 0,
+    'บัตรประชาชน': 0,
+    'ชุดรวมเอกสาร': 0,
+    'เอกสารประกอบการพิจารณาเคลม': 1
+  };
+
+  function normalize(text){
+    return String(text || '')
+      .replace(/\s+/g,' ')
+      .replace(/\u00a0/g,' ')
+      .trim()
+      .toLowerCase();
+  }
+
+  function findCountFromRow(row){
+    const cells = Array.from(row.children || []);
+    const first = normalize(cells[0]?.textContent || '');
+    const second = normalize(cells[1]?.textContent || '');
+    for(const [key, value] of Object.entries(DOC_COUNT_MAP)){
+      if(first.includes(key) || second.includes(key)) return value;
+    }
+    return null;
+  }
+
+  function getHeaderIndex(table, keyword){
+    const headers = Array.from(table.querySelectorAll('thead th'));
+    return headers.findIndex(th => normalize(th.textContent).includes(normalize(keyword)));
+  }
+
+  function setCountCell(cell, count){
+    if(!cell) return;
+    const countText = String(count);
+    cell.setAttribute('data-doc-count', countText);
+
+    const badge = cell.querySelector('.opd-half-doc-count');
+    if(badge){
+      badge.textContent = countText;
+      badge.classList.toggle('has-doc', Number(count) > 0);
+      return;
+    }
+
+    const embedded = cell.querySelector('[data-doc-count]');
+    if(embedded && embedded !== cell){
+      embedded.textContent = countText;
+      embedded.setAttribute('data-doc-count', countText);
+      return;
+    }
+
+    const simple = cell.querySelector('span,div,strong');
+    if(simple && normalize(simple.textContent).match(/^\d+$/)){
+      simple.textContent = countText;
+      return;
+    }
+
+    cell.textContent = countText;
+  }
+
+  function applyOneTable(table){
+    const countIndex = getHeaderIndex(table, 'จำนวนเอกสาร');
+    if(countIndex < 0) return;
+    table.querySelectorAll('tbody tr').forEach(row => {
+      const count = findCountFromRow(row);
+      if(count === null || count === undefined) return;
+      const cell = row.children[countIndex];
+      setCountCell(cell, count);
+    });
+  }
+
+  function isHospitalDocSection(el){
+    const text = normalize(el.textContent || '');
+    return text.includes('ตรวจสอบเอกสาร');
+  }
+
+  function apply(){
+    const pages = document.querySelectorAll('#considerHospitalOpdHalfPage, #considerHospitalOpdFullPage');
+    pages.forEach(page => {
+      page.querySelectorAll('section, div').forEach(block => {
+        if(!isHospitalDocSection(block)) return;
+        block.querySelectorAll('table').forEach(applyOneTable);
+      });
+    });
+  }
+
+  let raf = null;
+  function schedule(){
+    if(raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      apply();
+    });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once:true });
+  else schedule();
+
+  document.addEventListener('click', schedule, false);
+  const observer = new MutationObserver(schedule);
+  function observe(){
+    if(document.body) observer.observe(document.body, { childList:true, subtree:true, attributes:false });
+  }
+  if(document.body) observe(); else document.addEventListener('DOMContentLoaded', observe, { once:true });
+
+  window.applyHospitalAllStatusDocCountMockup = apply;
+})();
+</script>
+
+
+<!-- v299: IPD Step2 ใช้รูปแบบการแสดงเดียวกับ OPD Full -->
+<script id="v299-ipd-step2-match-opdfull-script">
+(function(){
+  function install(){
+    const previousExpenses = window.expenses;
+    const previousSetHospitalFullStep = window.setHospitalFullStep;
+
+    window.expenses = function(kind, row){
+      row = row || window.currentConsiderHospitalRow || {};
+      const mode = String(window.__hospitalConsiderMode || row.claimType || '').trim();
+      if(kind === 'full' && /IPD/i.test(mode) && typeof window.renderHospitalExpenseStep2V111 === 'function'){
+        return window.renderHospitalExpenseStep2V111('full', row);
+      }
+      return typeof previousExpenses === 'function' ? previousExpenses.apply(this, arguments) : '';
+    };
+
+    window.syncHospitalStep2CustomerStyleV299 = function(){
+      const kind = window.currentConsiderHospitalKind || 'half';
+      if(kind !== 'full') return;
+      const row = window.currentConsiderHospitalRow || {};
+      const claimType = String(window.__hospitalConsiderMode || row.claimType || '').trim();
+      if(!/IPD/i.test(claimType)) return;
+      const page = document.getElementById('considerHospitalOpdFullPage');
+      if(!page) return;
+      const pane2 = page.querySelector('#hfStepPane2');
+      if(!pane2) return;
+      if(typeof window.renderHospitalExpenseStep2V111 === 'function'){
+        pane2.innerHTML = window.renderHospitalExpenseStep2V111('full', row);
+        if(typeof window.restoreCustomerOcrUi === 'function') setTimeout(window.restoreCustomerOcrUi, 0);
+        if(typeof window.recalculateCustomerExpenseSummary === 'function') setTimeout(window.recalculateCustomerExpenseSummary, 0);
+      }
+    };
+
+    window.setHospitalFullStep = function(step){
+      const result = typeof previousSetHospitalFullStep === 'function'
+        ? previousSetHospitalFullStep.apply(this, arguments)
+        : undefined;
+      if(Number(step) === 2) setTimeout(window.syncHospitalStep2CustomerStyleV299, 0);
+      return result;
+    };
+
+    const previousOpen = window.openConsiderHospitalRow;
+    if(typeof previousOpen === 'function' && !window.__v299HospitalOpenWrapped){
+      window.openConsiderHospitalRow = function(){
+        const result = previousOpen.apply(this, arguments);
+        setTimeout(window.syncHospitalStep2CustomerStyleV299, 0);
+        return result;
+      };
+      window.__v299HospitalOpenWrapped = true;
+    }
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', install, { once:true });
+  else install();
+})();
+</script>
+
+<!-- v302: Restore "เป็นส่วนเกินจาก บ.ประกัน" section in Hospital OPD Full/IPD Step 2 -->
+<script id="v302-restore-hospital-insurance-excess-section">
+(function(){
+  function install(){
+    const previousRenderer = window.renderHospitalExpenseStep2V111;
+    if(typeof previousRenderer !== 'function') return;
+
+    window.renderHospitalExpenseStep2V111 = function(kind,row){
+      let output = previousRenderer.apply(this, arguments);
+
+      try{
+        if(typeof window.renderHospitalInsuranceExcessBox === 'function'){
+          const marker = '<div class="cc-ref-decision-wrap">';
+          const hasInsuranceExcess =
+            /hospital-insurance-excess-box/.test(output) ||
+            /เป็นส่วนเกินจากบริษัทประกัน/.test(output) ||
+            /เป็นส่วนเกินจาก บ\.ประกัน/.test(output);
+
+          if(!hasInsuranceExcess && output.includes(marker)){
+            const excessHtml = window.renderHospitalInsuranceExcessBox('hf');
+            output = output.replace(marker, excessHtml + marker);
+          }
+        }
+      }catch(e){
+        console.warn('[v302] restore insurance excess section', e);
+      }
+
+      return output;
+    };
+
+    function refreshCurrentStep2(){
+      const page = document.getElementById('considerHospitalOpdFullPage');
+      if(!page) return;
+      const pane2 = page.querySelector('#hfStepPane2');
+      if(!pane2 || pane2.classList.contains('hidden')) return;
+
+      const row = window.currentConsiderHospitalRow || {};
+      const mode = String(window.__hospitalConsiderMode || row.claimType || '');
+      if(/OPD Full|IPD/i.test(mode)){
+        pane2.innerHTML = window.renderHospitalExpenseStep2V111('full', row);
+
+        if(typeof window.restoreCustomerOcrUi === 'function'){
+          setTimeout(window.restoreCustomerOcrUi,0);
+        }
+        if(typeof window.recalculateCustomerExpenseSummary === 'function'){
+          setTimeout(window.recalculateCustomerExpenseSummary,0);
+        }
+        if(typeof window.toggleHospitalInsuranceExcessStep2 === 'function'){
+          setTimeout(function(){
+            try{ window.toggleHospitalInsuranceExcessStep2('hf'); }catch(e){}
+          },0);
+        }
+      }
+    }
+
+    const prevSetFullStep = window.setHospitalFullStep;
+    if(typeof prevSetFullStep === 'function'){
+      window.setHospitalFullStep = function(step){
+        const result = prevSetFullStep.apply(this, arguments);
+        if(Number(step) === 2) setTimeout(refreshCurrentStep2, 0);
+        return result;
+      };
+    }
+
+    const prevOpen = window.openConsiderHospitalRow;
+    if(typeof prevOpen === 'function'){
+      window.openConsiderHospitalRow = function(){
+        const result = prevOpen.apply(this, arguments);
+        setTimeout(refreshCurrentStep2, 0);
+        return result;
+      };
+    }
+
+    setTimeout(refreshCurrentStep2,0);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', install, {once:true});
+  }else{
+    install();
+  }
+})();
+</script>
+
+<!-- v303: Force-render Insurance Excess section in active OPD Full/IPD Step 2 renderer -->
+<script id="v303-insurance-excess-renderer-fix">
+(function(){
+  function insuranceExcessHtml(){
+    return `
+      <section id="hfInsuranceExcessStep2Box" class="hospital-insurance-excess-box is-disabled" data-v303-insurance-excess="true">
+        <div class="hospital-insurance-excess-left">
+          <input id="hfInsuranceExcessStep2Checkbox"
+                 type="checkbox"
+                 class="hospital-insurance-excess-check"
+                 onchange="toggleHospitalInsuranceExcessStep2('hf')">
+          <span class="hospital-insurance-excess-icon">
+            <span class="material-icons-round">verified_user</span>
+          </span>
+          <div class="hospital-insurance-excess-copy">
+            <div class="hospital-insurance-excess-title">เป็นส่วนเกินจากบริษัทประกัน</div>
+            <div class="hospital-insurance-excess-desc">
+              เลือกเมื่อรายการค่าใช้จ่ายครั้งนี้เป็นยอดส่วนเกินที่รับช่วงต่อจากบริษัทประกันอื่น
+            </div>
+          </div>
+        </div>
+        <div class="hospital-insurance-excess-field">
+          <div class="hospital-insurance-excess-label">บริษัทประกัน</div>
+          <select id="hfInsuranceExcessCompanyStep2" class="hospital-insurance-excess-select" disabled>
+            <option value="">---เลือกบริษัทประกัน---</option>
+            <option>วิริยะประกันภัย</option>
+            <option>กรุงเทพประกันภัย</option>
+            <option>เมืองไทยประกันชีวิต</option>
+            <option>ไทยประกันชีวิต</option>
+            <option>อลิอันซ์ อยุธยา</option>
+            <option>เอไอเอ</option>
+          </select>
+        </div>
+      </section>`;
+  }
+
+  function install(){
+    const previousRenderer = window.renderHospitalExpenseStep2V111;
+    if(typeof previousRenderer !== 'function') return;
+
+    window.renderHospitalExpenseStep2V111 = function(kind,row){
+      let output = previousRenderer.apply(this, arguments);
+
+      if(!/data-v303-insurance-excess|hfInsuranceExcessStep2Box/.test(output)){
+        const marker = '<div class="cc-ref-decision-wrap">';
+        if(output.includes(marker)){
+          output = output.replace(marker, insuranceExcessHtml() + marker);
+        }else{
+          const actionMarker = '<div class="cc-ref-actionbar">';
+          if(output.includes(actionMarker)){
+            output = output.replace(actionMarker, insuranceExcessHtml() + actionMarker);
+          }else{
+            output += insuranceExcessHtml();
+          }
+        }
+      }
+      return output;
+    };
+
+    function refresh(){
+      const page = document.getElementById('considerHospitalOpdFullPage');
+      const pane = page?.querySelector('#hfStepPane2');
+      if(!pane || pane.classList.contains('hidden')) return;
+
+      const row = window.currentConsiderHospitalRow || {};
+      const mode = String(window.__hospitalConsiderMode || row.claimType || '');
+      if(!/OPD Full|IPD/i.test(mode)) return;
+
+      pane.innerHTML = window.renderHospitalExpenseStep2V111('full', row);
+
+      if(typeof window.restoreCustomerOcrUi === 'function'){
+        setTimeout(window.restoreCustomerOcrUi,0);
+      }
+      if(typeof window.recalculateCustomerExpenseSummary === 'function'){
+        setTimeout(window.recalculateCustomerExpenseSummary,0);
+      }
+    }
+
+    const prevSet = window.setHospitalFullStep;
+    if(typeof prevSet === 'function'){
+      window.setHospitalFullStep = function(step){
+        const result = prevSet.apply(this, arguments);
+        if(Number(step) === 2) setTimeout(refresh, 0);
+        return result;
+      };
+    }
+
+    const prevOpen = window.openConsiderHospitalRow;
+    if(typeof prevOpen === 'function'){
+      window.openConsiderHospitalRow = function(){
+        const result = prevOpen.apply(this, arguments);
+        setTimeout(refresh, 0);
+        return result;
+      };
+    }
+
+    setTimeout(refresh,0);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', install, {once:true});
+  }else{
+    install();
+  }
+})();
+</script>
+
+
+<!-- v305: Insurance Excess section position/layout match reference -->
+<style id="v304-insurance-excess-match-reference-style">
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box{
+  display:grid !important;
+  grid-template-columns:240px minmax(0,1fr) !important;
+  align-items:center !important;
+  gap:22px !important;
+  width:100% !important;
+  min-height:132px !important;
+  margin:14px 0 0 !important;
+  padding:24px 30px !important;
+  border:1px solid #c9dff3 !important;
+  border-radius:22px !important;
+  background:#f4f9fd !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-left{
+  display:flex !important;
+  align-items:center !important;
+  gap:16px !important;
+  min-height:auto !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-check{
+  display:block !important;
+  width:34px !important;
+  height:34px !important;
+  min-width:34px !important;
+  margin:0 !important;
+  accent-color:#0b79bd !important;
+  cursor:pointer !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-icon,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-desc,
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-label{
+  display:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-copy{
+  display:block !important;
+  min-width:0 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-title{
+  display:block !important;
+  margin:0 !important;
+  color:#086aa8 !important;
+  font-size:16px !important;
+  line-height:1.35 !important;
+  font-weight:800 !important;
+  white-space:nowrap !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-field{
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-select{
+  display:block !important;
+  width:100% !important;
+  height:80px !important;
+  min-height:80px !important;
+  margin:0 !important;
+  padding:0 30px !important;
+  border:1px solid #c9d5e2 !important;
+  border-radius:18px !important;
+  background:#f8fafc !important;
+  color:#8a94a3 !important;
+  font-size:23px !important;
+  font-weight:600 !important;
+  box-shadow:none !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box:not(.is-disabled) .hospital-insurance-excess-select{
+  background:#fff !important;
+  color:#334155 !important;
+  border-color:#b8c8d8 !important;
+}
+@media(max-width:900px){
+  #considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+    padding:20px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-select{
+    height:56px !important;
+    min-height:56px !important;
+    font-size:16px !important;
+  }
+}
+</style>
+<script id="v304-insurance-excess-position-script">
+(function(){
+  function moveSection(){
+    const pane=document.querySelector('#considerHospitalOpdFullPage #hfStepPane2');
+    if(!pane) return;
+    const box=pane.querySelector('.hospital-insurance-excess-box');
+    if(!box) return;
+
+    const summaries=Array.from(pane.querySelectorAll('.cc-ref-summary-box, .customer-expense-summary, [class*="summary"]'));
+    let anchor=null;
+    for(const el of summaries){
+      const txt=(el.textContent||'').replace(/\s+/g,' ').trim();
+      if(/สรุปยอดเงิน|ยอดเงินสุทธิ|ยอดเงินโอน|ยอดเงินตามใบเสร็จรวม/.test(txt)) anchor=el;
+    }
+    if(anchor && anchor.nextElementSibling!==box){
+      anchor.insertAdjacentElement('afterend',box);
+    }
+  }
+  let raf=null;
+  function schedule(){if(raf)return;raf=requestAnimationFrame(()=>{raf=null;moveSection();});}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+  document.addEventListener('click',schedule,true);
+  new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+
+<!-- v305: ย่อขนาด Layout Section เป็นส่วนเกินจากบริษัทประกัน ให้ใกล้ OPDHalf -->
+<style id="v305-insurance-excess-compact-like-opdhalf-style">
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box{
+  grid-template-columns: 240px minmax(0,1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-height: 0 !important;
+  margin: 8px 0 0 !important;
+  padding: 10px 16px !important;
+  border-radius: 12px !important;
+  background: #f5f9fd !important;
+  border: 1px solid #d5e3f0 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-left{
+  gap: 10px !important;
+  min-height: 48px !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-check{
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-copy{
+  display:flex !important;
+  align-items:center !important;
+  min-height: 48px !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-title{
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  color: #0b6aa9 !important;
+  white-space: nowrap !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-field{
+  display:block !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-select{
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 16px !important;
+  border-radius: 10px !important;
+  border: 1px solid #cfd9e4 !important;
+  background: #ffffff !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box.is-disabled .hospital-insurance-excess-select{
+  background:#f8fafc !important;
+  color:#94a3b8 !important;
+}
+#considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box:not(.is-disabled) .hospital-insurance-excess-select{
+  color:#334155 !important;
+  background:#fff !important;
+}
+@media(max-width:900px){
+  #considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-box{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+    padding:10px 12px !important;
+  }
+  #considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-copy,
+  #considerHospitalOpdFullPage #hfStepPane2 .hospital-insurance-excess-left{
+    min-height: auto !important;
+  }
 }
 </style>
