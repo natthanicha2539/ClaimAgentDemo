@@ -8987,6 +8987,15 @@ body > .min-h-screen > main,
 }
 </style>
 
+
+<style id="step3-reference-scan-section-style">
+.step3-reference-scan-section{box-shadow:none!important;}
+.step3-reference-scan-section table{table-layout:fixed!important;}
+.step3-reference-scan-section th,.step3-reference-scan-section td{vertical-align:middle!important;}
+.step3-reference-scan-section thead tr{background:#0788d6!important;}
+@media(max-width:768px){.step3-reference-scan-section{padding:14px!important}.step3-reference-scan-section table{min-width:840px!important}}
+</style>
+<!-- vHospitalStatus: removed hospital-only รอเอกสาร status; existing mock rows normalized to รอแก้ไข -->
 </head>
 
 <body class="min-h-screen bg-slate-100 text-ink">
@@ -13643,16 +13652,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const considerationHospitalRows = [
       { date: "28/08/2569 16:45:10", claimCode: "CL6908000201", caseNo: "CC6908000201-01", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางสาวกมลชนก สุขสวัสดิ์", claimType: "IPD", product: "PH", amount: "24,580.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", admitDate: "24/08/2569", dischargeDate: "27/08/2569", admitTime: "14:20", dischargeTime: "11:10", ipdDays: 3, icuDays: 0, diagnosis: "J18.9 : Pneumonia, unspecified organism | ปอดอักเสบ", chiefComplaint: "ไข้สูง ไอ หายใจเหนื่อย", an: "AN6908240201", hn: "HN69080201", vn: "VN6908240201" },
       { date: "30/08/2569 23:20:15", claimCode: "CL6908000210", caseNo: "CC6908000210-01", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายธนภัทร วัฒนากุล", claimType: "OPD Full", product: "PH", amount: "3,250.00", hospitalOpdAmount: "3,500.00", hospitalOpdDiscount: "250.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", treatmentType: "OPD", incidentDate: "30/08/2569", incidentTime: "09:15", admitDate: "30/08/2569", admitTime: "09:40", dischargeDate: "30/08/2569", dischargeTime: "12:10", chiefComplaint: "ไข้ ไอ เจ็บคอ และอ่อนเพลีย 2 วัน", diagnosis: "J06.9 : Acute upper respiratory infection, unspecified | การติดเชื้อทางเดินหายใจส่วนบนเฉียบพลัน", diagnosis2: "R50.9 : Fever, unspecified | ไข้ไม่ระบุสาเหตุ", hn: "HN69080210", vn: "VN6908300210", doctorName: "พญ.วริศรา ศรีสุข", doctorLicense: "ว.54321", note: "Mockup OPD Full สถานะรอพิจารณา", remainingBalance: "16,750.00", cumulativePaid: "0.00" },
+      { date: "31/08/2569 10:35:42", claimCode: "CL6908000215", caseNo: "CC6908000215-01", hospital: "โรงพยาบาลพญาไท 2", province: "กรุงเทพมหานคร", name: "นางสาวศิรินภา วัฒนชัย", claimType: "Day Case Surgery", product: "PH", amount: "18,750.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", treatmentType: "Day Case Surgery", incidentDate: "31/08/2569", incidentTime: "07:30", admitDate: "31/08/2569", admitTime: "08:15", dischargeDate: "31/08/2569", dischargeTime: "15:40", ipdDays: 1, icuDays: 0, totalStayDays: 1, chiefComplaint: "ปวดท้องใต้ชายโครงขวาเป็น ๆ หาย ๆ หลังรับประทานอาหาร", diagnosis: "K80.20 : Calculus of gallbladder without cholecystitis | นิ่วในถุงน้ำดี", diagnosis2: "-", hn: "HN69080215", vn: "VN6908310215", an: "AN6908310215", doctorName: "นพ.ภาคิน ศรีวิชัย", doctorLicense: "ว.67890", note: "Mockup Day Case Surgery สถานะรอพิจารณา", remainingBalance: "31,250.00", cumulativePaid: "0.00" },
       { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", hospital: "โรงพยาบาลรวมใจรักษ์", province: "กรุงเทพมหานคร", name: "นางสาวนวพร ก้องเกียรติสกุล", claimType: "OPD Full", product: "PA", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา"},
-      { date: "17/05/2569 10:08:20", claimCode: "CL6905000072", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายณัฐวัฒน์ เกตุวิชิต", claimType: "IPD", product: "PH", amount: "8,450.00" , itemStatus: "รอเอกสาร"},
+      { date: "17/05/2569 10:08:20", claimCode: "CL6905000072", hospital: "โรงพยาบาลกรุงเทพ", province: "กรุงเทพมหานคร", name: "นายณัฐวัฒน์ เกตุวิชิต", claimType: "IPD", product: "PH", amount: "8,450.00" , itemStatus: "รอแก้ไข"},
       { date: "17/05/2569 11:22:45", claimCode: "CLPA6905000107", hospital: "โรงพยาบาลเด็ก", province: "กรุงเทพมหานคร", name: "ด.ญ.ปาริฉัตร แก้วมณี", claimType: "OPD Half", product: "PA", amount: "620.00" , itemStatus: "รอแก้ไข"},
       { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", hospital: "โรงพยาบาลมะการักษ์", province: "กาญจนบุรี", name: "นายชาญวิทย์ อินแสง", claimType: "OPD Half", product: "PH", amount: "550.00", hospitalOpdAmount: "650.00", hospitalOpdDiscount: "50.00", exgratiaAmount: "250.00", itemStatus: "รอพิจารณา", isContinuous:true, previousClaimNo:"CL6904000193", previousCaseNo:"CC6904000193-01", caseNo:"CC6905000082-02", previousServiceDate:"25/03/2569", diagnosis:"A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษ", remainingBalance:"3,200.00", cumulativePaid:"1,800.00"},
-      { date: "17/05/2569 14:29:43", claimCode: "CL6905000095", hospital: "โรงพยาบาลวิภารามพัฒนาการ", province: "กรุงเทพมหานคร", name: "นายภูบดินทร์ เจริญทิพย์", claimType: "OPD Full", product: "PH", amount: "700.00" , itemStatus: "รอเอกสาร", isContinuous:true, previousClaimNo:"CL6904000095", previousCaseNo:"CC6904000095-01", caseNo:"CC6905000095-02", previousServiceDate:"12/04/2569", diagnosis:"J06.9 : Acute upper respiratory infection, unspecified | การติดเชื้อทางเดินหายใจส่วนบน", remainingBalance:"4,300.00", cumulativePaid:"5,700.00"},
+      { date: "17/05/2569 14:29:43", claimCode: "CL6905000095", hospital: "โรงพยาบาลวิภารามพัฒนาการ", province: "กรุงเทพมหานคร", name: "นายภูบดินทร์ เจริญทิพย์", claimType: "OPD Full", product: "PH", amount: "700.00" , itemStatus: "รอแก้ไข", isContinuous:true, previousClaimNo:"CL6904000095", previousCaseNo:"CC6904000095-01", caseNo:"CC6905000095-02", previousServiceDate:"12/04/2569", diagnosis:"J06.9 : Acute upper respiratory infection, unspecified | การติดเชื้อทางเดินหายใจส่วนบน", remainingBalance:"4,300.00", cumulativePaid:"5,700.00"},
       { date: "18/05/2569 10:42:24", claimCode: "CLPA6905000112", hospital: "โรงพยาบาลสมิติเวช สุขุมวิท", province: "กรุงเทพมหานคร", name: "นายเยี่ยมพงษ์ รัชนีทิพย์", claimType: "OPD Full", product: "PA", amount: "2,310.50" , itemStatus: "ปฏิเสธ"},
       { date: "18/05/2569 10:47:27", claimCode: "CLPA6905000113", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางณัฐฐิกานต์ ทรัพย์ปรีชา", claimType: "IPD", product: "PA", amount: "2,140.90" , itemStatus: "ยกเลิก"},
       { date: "18/05/2569 11:25:10", claimCode: "CL6905000120", hospital: "โรงพยาบาลเกษมราษฎร์ ประชาชื่น", province: "กรุงเทพมหานคร", name: "นางสาวภัทรวดี ใจดี", claimType: "OPD Full", product: "PH", amount: "980.00" , itemStatus: "รอพิจารณา"},
-      { date: "18/05/2569 13:40:12", claimCode: "CL6905000122", hospital: "โรงพยาบาลพญาไท 2", province: "กรุงเทพมหานคร", name: "นางโสรัตน์ จันทร์จุฬา", claimType: "Day Case", product: "PH", amount: "3,850.00" , itemStatus: "รอแก้ไข"},
-      { date: "19/05/2569 09:12:33", claimCode: "CLPA6905000123", hospital: "โรงพยาบาลวิชัยเวช", province: "สมุทรสาคร", name: "ด.ช.ธนวัฒน์ ปัญญาดี", claimType: "OPD Full", product: "PA", amount: "1,420.00" , itemStatus: "รอเอกสาร"},
+      { date: "18/05/2569 13:40:12", claimCode: "CL6905000122", hospital: "โรงพยาบาลพญาไท 2", province: "กรุงเทพมหานคร", name: "นางโสรัตน์ จันทร์จุฬา", claimType: "Day Case Surgery", product: "PH", amount: "3,850.00" , itemStatus: "รอแก้ไข"},
+      { date: "19/05/2569 09:12:33", claimCode: "CLPA6905000123", hospital: "โรงพยาบาลวิชัยเวช", province: "สมุทรสาคร", name: "ด.ช.ธนวัฒน์ ปัญญาดี", claimType: "OPD Full", product: "PA", amount: "1,420.00" , itemStatus: "รอแก้ไข"},
       { date: "19/05/2569 10:58:40", claimCode: "CL6905000124", hospital: "โรงพยาบาลนนทเวช", province: "นนทบุรี", name: "นายกฤตภาส จันทร์เพ็ญ", claimType: "OPD Half", product: "PH", amount: "760.00" , itemStatus: "รอพิจารณา"},
       { date: "20/05/2569 08:30:25", claimCode: "CL6905000125", hospital: "โรงพยาบาลสินแพทย์", province: "กรุงเทพมหานคร", name: "นางสาววริศรา พูลผล", claimType: "IPD", product: "PH", amount: "12,600.00" , itemStatus: "รอพิจารณา", isContinuous:true, previousClaimNo:"CL6904000125", previousCaseNo:"CC6904000125-01", caseNo:"CC6905000125-02", previousServiceDate:"05/05/2569", diagnosis:"K35.8 : Other and unspecified acute appendicitis | ไส้ติ่งอักเสบเฉียบพลัน", remainingBalance:"37,400.00", cumulativePaid:"12,600.00"}
     ];
@@ -15521,7 +15531,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function openConsiderHospitalRow(index = 0) {
       currentConsiderHospitalRowIndex = index;
       const row = considerationHospitalRows[index] || considerationHospitalRows[0];
-      if (String(row.claimType || '').includes("Full")) {
+      if (/Full|IPD|Day\s*Case/i.test(String(row.claimType || ''))) {
         showConsiderHospitalOpdFullPage(row);
       } else {
         showConsiderHospitalOpdHalfPage(row);
@@ -15879,7 +15889,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                     </div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center justify-between"><div class="text-lg font-extrabold text-brand-700">ข้อมูลการเข้ารับการรักษา</div><button class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button></div><div class="grid gap-2.5 md:grid-cols-2"><label><div class="mb-1 text-sm font-bold text-slate-500">HN <span class="text-red-500">*</span></div><input value="HN2601" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label><label><div class="mb-1 text-sm font-bold text-slate-500">VN <span class="text-red-500">*</span></div><input value="VN660612001" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>${/IPD/i.test(claimTypeLabel) ? `<label><div class="mb-1 text-sm font-bold text-slate-500">AN</div><input value="AN660612001" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>` : ''}<label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">โรคประจำตัว (U/D)</div><input value="ไม่มี" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>${/IPD/i.test(claimTypeLabel) ? `<label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">ข้อบ่งชี้การ Admit <span class="text-red-500">*</span></div><input value="มีข้อบ่งชี้ต้องนอนรักษาในโรงพยาบาล" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label><label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">วิธีการรักษาพยาบาล <span class="text-red-500">*</span></div><input value="ให้สารน้ำและยาตามแผนการรักษา" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>` : ''}<label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">วินิจฉัยการเจ็บป่วย <span class="text-red-500">*</span></div><input value="โรคท้องเสียและผลแล็บทางการ" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label><label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">ผลการตรวจ LAB, EKG, X-ray และอื่นๆ</div><textarea class="min-h-[96px] w-full rounded-lg border border-slate-300 px-3 py-2 text-lg">ไม่มี</textarea></label><label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="min-h-[96px] w-full rounded-lg border border-slate-300 px-3 py-2 text-lg"></textarea></label><label class="md:col-span-2"><div class="mb-1 text-sm font-bold text-slate-500">วินิจฉัยการเจ็บป่วยก่อนกลับ</div><textarea class="min-h-[96px] w-full rounded-lg border border-slate-300 px-3 py-2 text-lg">ไม่มี</textarea></label><div><div class="mb-1 text-sm font-bold text-slate-500">มีการทำหัตถการหรือไม่ <span class="text-red-500">*</span></div><div class="flex gap-2"><button class="h-10 min-w-[72px] rounded-lg border border-slate-300 bg-white px-4 text-lg font-bold text-slate-600">ใช่</button><button class="h-10 min-w-[72px] rounded-lg border border-brand-500 bg-brand-50 px-4 text-lg font-bold text-brand-700">ไม่ใช่</button></div></div></div></div>
                     <div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 flex items-center justify-between"><div class="text-lg font-extrabold text-brand-700">แพทย์เจ้าของไข้</div><button class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button></div><div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4"><label><div class="mb-1 text-sm font-bold text-slate-500">เลขใบประกอบวิชาชีพเวชกรรม <span class="text-red-500">*</span></div><input value="12345" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label><label><div class="mb-1 text-sm font-bold text-slate-500">แพทย์(ชื่อ-สกุล) <span class="text-red-500">*</span></div><input value="นพ.ชายชาย" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label></div></div>
-                    ${/IPD/i.test(claimTypeLabel) ? renderOpdFullDocumentCheckSection('IPD') : renderOpdFullDocumentCheckSection('OPD Half')}
+                    ${/(IPD|Day\s*Case(?:\s*Surgery)?)/i.test(claimTypeLabel) ? renderOpdFullDocumentCheckSection(/Day\s*Case/i.test(claimTypeLabel) ? 'Day Case Surgery' : 'IPD') : renderOpdFullDocumentCheckSection('OPD Half')}
                     <section class="dd-section" id="customerDecisionSection"><div class="dd-doc-title"><span class="material-icons-round">fact_check</span>ผลการพิจารณา</div><div class="dd-action-panel"><div class="dd-decision-row" role="group" aria-label="เลือกผลการพิจารณา"><button type="button" class="dd-decision-btn edit" data-decision="edit" onclick="selectCustomerDecision('edit')"><span class="material-icons-round">edit_note</span>รอแก้ไข</button><button type="button" class="dd-decision-btn wait" data-decision="waitdocs" onclick="selectCustomerDecision('waitdocs')"><span class="material-icons-round">hourglass_top</span>รอเอกสาร</button><button type="button" class="dd-decision-btn reject" data-decision="reject" onclick="selectCustomerDecision('reject')"><span class="material-icons-round">block</span>ปฏิเสธ</button><button type="button" class="dd-decision-btn cancel" data-decision="cancel" onclick="selectCustomerDecision('cancel')"><span class="material-icons-round">cancel</span>ยกเลิก</button></div><div id="customerDecisionDynamicFields" class="dd-decision-dynamic hidden"></div></div></section>
                   </div>
                 </div>
@@ -25988,7 +25998,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   window.openConsiderHospitalRow = function(index=0){
     const row = (typeof considerationHospitalRows !== 'undefined' && considerationHospitalRows[index]) ? considerationHospitalRows[index] : null;
-    if (row && String(row.claimType || '').includes('Full')) {
+    if (row && /Full|IPD|Day\s*Case/i.test(String(row.claimType || ''))) {
       window.showConsiderHospitalOpdFullPage(row);
     } else {
       window.showConsiderHospitalOpdHalfPage(row);
@@ -28146,6 +28156,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
 
   function renderOpdFullDocumentCheckSection(modeLabel='OPD Full'){
+    // Step1: IPD และ Day Case Surgery ใช้ Section ตรวจสอบเอกสารแบบเดิม
+    // (รายการเอกสาร / สแกน / จำนวน / รายละเอียด / ผลการตรวจ / หมายเหตุ)
     return `<div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
       <div class="mb-3 flex items-center gap-3 rounded-lg border-l-4 border-brand-500 bg-brand-50 px-3 py-2">
         <div class="grid h-9 w-9 place-items-center rounded-lg bg-brand-700 text-white shadow-sm">
@@ -28509,12 +28521,30 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
   function renderStaySummaryStep3(kind, selected){
-    if(kind !== 'customer') return '';
-    const treatmentText = String(selected?.treatment || window.currentConsiderCustomerRow?.claimType || '');
+    const isCustomer = kind === 'customer';
+    const hospitalRow = (!isCustomer && window.currentConsiderHospitalRow) ? window.currentConsiderHospitalRow : {};
+    const treatmentText = String(
+      selected?.treatment ||
+      (isCustomer ? window.currentConsiderCustomerRow?.claimType : (hospitalRow.treatmentType || hospitalRow.claimType)) ||
+      ''
+    );
     if(!/IPD/i.test(treatmentText) && !/Day\s*Case/i.test(treatmentText)) return '';
-    const ipdDays = Math.max(0, Number(document.getElementById('ccIpdDays')?.value || 0) || 0);
-    const icuDays = Math.max(0, Number(document.getElementById('ccIcuDays')?.value || 0) || 0);
-    const totalDays = Math.max(0, Number(document.getElementById('ccTotalStayDays')?.value || Math.max(ipdDays, icuDays)) || 0);
+
+    let ipdDays = 0;
+    let icuDays = 0;
+    let totalDays = 0;
+
+    if(isCustomer){
+      ipdDays = Math.max(0, Number(document.getElementById('ccIpdDays')?.value || window.currentConsiderCustomerRow?.ipdDays || 0) || 0);
+      icuDays = Math.max(0, Number(document.getElementById('ccIcuDays')?.value || window.currentConsiderCustomerRow?.icuDays || 0) || 0);
+      totalDays = Math.max(0, Number(document.getElementById('ccTotalStayDays')?.value || window.currentConsiderCustomerRow?.totalStayDays || Math.max(ipdDays, icuDays)) || 0);
+    } else {
+      ipdDays = Math.max(0, Number(hospitalRow.ipdDays ?? hospitalRow.ipdDay ?? 0) || 0);
+      icuDays = Math.max(0, Number(hospitalRow.icuDays ?? hospitalRow.icuDay ?? 0) || 0);
+      totalDays = Math.max(0, Number(hospitalRow.totalStayDays ?? hospitalRow.totalDays ?? Math.max(ipdDays, icuDays)) || 0);
+      if(/Day\s*Case/i.test(treatmentText) && totalDays <= 0) totalDays = Math.max(ipdDays, 1);
+    }
+
     const treatmentLabel = /IPD/i.test(treatmentText) ? 'IPD' : 'Day Case Surgery';
     return `<div class="claim-step3-stay-summary">
       <div class="claim-step3-stay-title"><span class="material-icons-round">bed</span><div><strong>สรุปจำนวนวันนอน</strong><span>${treatmentLabel}</span></div></div>
@@ -28733,7 +28763,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return `<section class="hospital-main-pane" data-hospital-pane="claimHistory"><div class="hospital-mock-panel"><div class="hospital-mock-panel-title"><span class="material-icons-round">folder_open</span><div><strong>ประวัติการเคลม</strong><small>ประวัติเคลมย้อนหลังของผู้เอาประกัน</small></div><span class="hospital-count-pill">${rows.length} รายการ</span></div><div class="hospital-table-scroll"><table class="hospital-mock-table"><thead><tr><th>เลขที่เคลม</th><th>ลักษณะการเคลม</th><th>สถานพยาบาล</th><th>วันเกิดเหตุ</th><th>สถานะ</th><th>ยอดเคลม</th><th>ยอดจ่าย</th></tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,j)=>`<td>${j===4?`<span class="hospital-state-chip">${c}</span>`:c}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div></section>`;
   }
   function hospitalMockPayment(){
-    return `<section class="hospital-main-pane" data-hospital-pane="payment"><div class="hospital-payment-grid"><div class="hospital-mock-panel"><div class="hospital-mock-panel-title"><span class="material-icons-round">account_balance_wallet</span><div><strong>ข้อมูลการชำระเงิน</strong><small>รายการตั้งหนี้และชำระให้โรงพยาบาล</small></div><span class="hospital-state-chip">รออนุมัติจ่าย</span></div><div class="hospital-kv-list"><div><span>เลขที่ชำระเงิน</span><strong>PM6905000442</strong></div><div><span>ผู้รับชำระ</span><strong>โรงพยาบาลมะการักษ์</strong></div><div><span>ช่องทางชำระ</span><strong>โอนเข้าบัญชีโรงพยาบาล</strong></div><div><span>ยอดตั้งชำระ</span><strong>5,500.00 บาท</strong></div><div><span>วันที่นัดชำระ</span><strong>21/05/2569 14:00 น.</strong></div></div></div><div class="hospital-mock-panel"><div class="hospital-mock-panel-title"><span class="material-icons-round">summarize</span><div><strong>สรุปยอดเงิน</strong><small>ยอดจากการพิจารณาล่าสุด</small></div></div><div class="hospital-kv-list"><div><span>ยอดตามใบเสร็จ</span><strong>6,200.00 บาท</strong></div><div><span>ส่วนลด</span><strong>200.00 บาท</strong></div><div><span>ยอดไม่คุ้มครอง</span><strong>500.00 บาท</strong></div><div class="em"><span>ยอดสุทธิชำระโรงพยาบาล</span><strong>5,500.00 บาท</strong></div><div><span>ค่าชดเชยโอนให้ลูกค้า</span><strong>0.00 บาท</strong></div></div></div></div></section>`;
+    return `<section class="hospital-main-pane" data-hospital-pane="payment"><div class="hospital-payment-grid"><div class="hospital-mock-panel"><div class="hospital-mock-panel-title"><span class="material-icons-round">account_balance_wallet</span><div><strong>ข้อมูลการชำระเงิน</strong><small>รายการตั้งหนี้และชำระให้โรงพยาบาล</small></div><span class="hospital-state-chip">รออนุมัติจ่าย</span></div><div class="hospital-kv-list"><div><span>เลขที่ชำระเงิน</span><strong>PM6905000442</strong></div><div><span>ผู้รับชำระ</span><strong>โรงพยาบาลมะการักษ์</strong></div><div><span>ช่องทางชำระ</span><strong>โอนเข้าบัญชีโรงพยาบาล</strong></div><div><span>ยอดตั้งชำระ</span><strong>5,500.00 บาท</strong></div><div><span>วันที่นัดชำระ</span><strong>21/05/2569 14:00 น.</strong></div></div></div><div class="hospital-mock-panel"><div class="hospital-mock-panel-title"><span class="material-icons-round">summarize</span><div><strong>สรุปยอดเงิน</strong><small>ยอดจากการพิจารณาล่าสุด</small></div></div><div class="hospital-kv-list"><div><span>ยอดตามใบเสร็จ</span><strong>6,200.00 บาท</strong></div><div><span>ส่วนลด</span><strong>200.00 บาท</strong></div><div><span>ยอดไม่คุ้มครอง</span><strong>500.00 บาท</strong></div><div class="em"><span>ยอดสุทธิชำระโรงพยาบาล</span><strong>5,500.00 บาท</strong></div><div><span>ค่าชดเชยที่โอนให้ลูกค้า</span><strong>0.00 บาท</strong></div></div></div></div></section>`;
   }
   function hospitalMockMemo(){
     const rows=[
@@ -47514,7 +47544,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
             const rows=typeof considerationHospitalRows!=='undefined'?considerationHospitalRows:[];
             const row=rows[index]||rows[0]||{};
             const type=String(row.claimType||'OPD Half');
-            window.__hospitalConsiderMode=/IPD/i.test(type)?'IPD':(/Full/i.test(type)?'OPD Full':'OPD Half');
+            window.__hospitalConsiderMode=/IPD|Day\s*Case/i.test(type)?'IPD':(/Full/i.test(type)?'OPD Full':'OPD Half');
             return previousOpen.apply(this,arguments);
           };
 
@@ -54462,6 +54492,17 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
       warn('กรุณาเลือกผลการตรวจเป็น “ผ่าน” ให้ครบทุกรายการที่มีเอกสารก่อนอนุมัติ');
       return;
     }
+
+    // IMPORTANT: This is the authoritative approval path for Hospital Step 3.
+    // For a separate compensation transfer, the confirmation modal must open
+    // BEFORE the existing complete() logic changes the status or returns to the list.
+    if(typeof window.__hcShouldOpenSeparateApprovalModal === 'function' &&
+       window.__hcShouldOpenSeparateApprovalModal(btn,page)){
+      const opened = (typeof window.__hcOpenSeparateApprovalModal === 'function') &&
+        window.__hcOpenSeparateApprovalModal(btn,page,function(){ complete(btn,page); });
+      if(opened) return;
+    }
+
     complete(btn,page);
   },true);
 
@@ -54829,8 +54870,282 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
   }
 })();
 </script>
-</body>
-</html>
+
+<!-- Final patch: keep Day Case Surgery pending mockup visible in Hospital Consideration list -->
+<script id="daycase-pending-hospital-list-final-patch">
+(function(){
+  const MOCK_CLAIM = 'CL6908000215';
+  const MOCK_ROW = {
+    date: '31/08/2569 10:35:42',
+    claimCode: MOCK_CLAIM,
+    caseNo: 'CC6908000215-01',
+    hospital: 'โรงพยาบาลพญาไท 2',
+    province: 'กรุงเทพมหานคร',
+    name: 'นางสาวศิรินภา วัฒนชัย',
+    claimType: 'Day Case Surgery',
+    product: 'PH',
+    amount: '18,750.00',
+    itemStatus: 'รอพิจารณา',
+    claimStatus: 'Open',
+    isContinuous: false,
+    claimCause: 'เจ็บป่วย',
+    coverageType: 'ค่ารักษา',
+    treatmentType: 'Day Case Surgery',
+    incidentDate: '31/08/2569',
+    incidentTime: '07:30',
+    admitDate: '31/08/2569',
+    admitTime: '08:15',
+    dischargeDate: '31/08/2569',
+    dischargeTime: '15:40',
+    ipdDays: 1,
+    icuDays: 0,
+    totalStayDays: 1,
+    chiefComplaint: 'ปวดท้องใต้ชายโครงขวาเป็น ๆ หาย ๆ หลังรับประทานอาหาร',
+    diagnosis: 'K80.20 : Calculus of gallbladder without cholecystitis | นิ่วในถุงน้ำดี',
+    diagnosis2: '-',
+    hn: 'HN69080215',
+    vn: 'VN6908310215',
+    an: 'AN6908310215',
+    doctorName: 'นพ.ภาคิน ศรีวิชัย',
+    doctorLicense: 'ว.67890',
+    note: 'Mockup Day Case Surgery สถานะรอพิจารณา',
+    remainingBalance: '31,250.00',
+    cumulativePaid: '0.00',
+    __dayCasePendingMock: true
+  };
+
+  function ensureMock(){
+    try{
+      if(typeof considerationHospitalRows === 'undefined' || !Array.isArray(considerationHospitalRows)) return;
+      let idx = considerationHospitalRows.findIndex(r => r && r.claimCode === MOCK_CLAIM);
+      let row;
+      if(idx < 0){
+        row = {...MOCK_ROW};
+        considerationHospitalRows.unshift(row);
+      }else{
+        row = considerationHospitalRows[idx];
+        Object.assign(row, MOCK_ROW);
+        if(idx !== 0){
+          considerationHospitalRows.splice(idx,1);
+          considerationHospitalRows.unshift(row);
+        }
+      }
+      row.itemStatus = 'รอพิจารณา';
+      row.claimStatus = 'Open';
+      delete row.processStatus;
+      delete row.correctionReason;
+      delete row.correctionDetail;
+      delete row.statusClass;
+    }catch(e){ console.warn('ensure Day Case pending mock failed', e); }
+  }
+
+  function refreshIfHospital(){
+    ensureMock();
+    try{
+      if(typeof currentConsiderationTab !== 'undefined' && currentConsiderationTab === 'hospital'){
+        currentConsiderMonitorPage = 1;
+        if(typeof renderConsiderationTable === 'function') renderConsiderationTable();
+      }
+    }catch(e){}
+  }
+
+  // Run after older index-based status mock patches so this Day Case case stays "รอพิจารณา".
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => setTimeout(refreshIfHospital, 0), {once:true});
+  else setTimeout(refreshIfHospital, 0);
+
+  // Also keep the mock intact whenever the hospital tab is opened again.
+  const oldSetTab = window.setConsiderationTab || (typeof setConsiderationTab === 'function' ? setConsiderationTab : null);
+  if(oldSetTab && !window.__dayCasePendingSetTabWrapped){
+    const wrapped = function(tab){
+      ensureMock();
+      const result = oldSetTab.apply(this, arguments);
+      if(tab === 'hospital') setTimeout(refreshIfHospital, 0);
+      return result;
+    };
+    window.setConsiderationTab = wrapped;
+    try{ setConsiderationTab = wrapped; }catch(e){}
+    window.__dayCasePendingSetTabWrapped = true;
+  }
+
+  window.ensureDayCasePendingHospitalMock = ensureMock;
+})();
+</script>
+
+
+<!-- vNEXT: Hospital IPD / Day Case Surgery Step3 compensation transfer flow. Scoped patch only. -->
+
+<!-- CLEAN REPAIR: consolidated hospital compensation UX; replaces stacked compensation patches only -->
+<style id="hospital-compensation-clean-repair-style">
+  /* Scope strictly to the injected compensation controls. Do not restyle Step 3, cards, tables, or page typography. */
+  [data-hospital-comp-ux="1"]{margin-top:14px;border-top:1px solid #e2e8f0;padding-top:14px;font-family:inherit;}
+  [data-hospital-comp-ux="1"] .hc-transfer-choice{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid #dbe7f3;border-radius:10px;background:#f8fbff;color:#334155;cursor:pointer;}
+  [data-hospital-comp-ux="1"] .hc-transfer-choice input{width:17px;height:17px;margin-top:2px;accent-color:#0788d6;flex:none;}
+  [data-hospital-comp-ux="1"] .hc-transfer-choice strong{display:block;font-size:14px;line-height:1.3;font-weight:700;color:#1e293b;}
+  [data-hospital-comp-ux="1"] .hc-transfer-choice small{display:block;margin-top:2px;font-size:12px;line-height:1.35;font-weight:400;color:#64748b;}
+  [data-hospital-comp-ux="1"] .hc-account{margin-top:12px;border:1px solid #dbe7f3;border-radius:12px;background:#fff;overflow:hidden;}
+  [data-hospital-comp-ux="1"] .hc-account.hidden{display:none!important;}
+  [data-hospital-comp-ux="1"] .hc-account-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;background:#f8fbff;border-bottom:1px solid #e2e8f0;}
+  [data-hospital-comp-ux="1"] .hc-account-title{display:flex;align-items:center;gap:8px;min-width:0;}
+  [data-hospital-comp-ux="1"] .hc-account-title .material-icons-round{font-size:19px!important;color:#075f99;}
+  [data-hospital-comp-ux="1"] .hc-account-title strong{font-size:14px;font-weight:700;color:#334155;}
+  [data-hospital-comp-ux="1"] .hc-source{display:inline-flex;align-items:center;min-height:24px;padding:2px 8px;border-radius:999px;background:#e9f6ff;color:#075f99;font-size:11px;font-weight:700;white-space:nowrap;}
+  [data-hospital-comp-ux="1"] .hc-edit{display:inline-flex;align-items:center;justify-content:center;gap:5px;height:32px;padding:0 10px;border:1px solid #9bd3f7;border-radius:8px;background:#fff;color:#075f99;font-size:12px;font-weight:700;cursor:pointer;}
+  [data-hospital-comp-ux="1"] .hc-edit .material-icons-round{font-size:16px!important;}
+  [data-hospital-comp-ux="1"] .hc-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 14px;padding:13px;}
+  [data-hospital-comp-ux="1"] .hc-field label{display:block;margin-bottom:5px;font-size:12px;font-weight:600;color:#64748b;}
+  [data-hospital-comp-ux="1"] .hc-field label .req{color:#dc2626;}
+  [data-hospital-comp-ux="1"] .hc-input,[data-hospital-comp-ux="1"] .hc-select{width:100%;height:38px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc;padding:0 10px;font:500 14px/1.3 inherit;color:#334155;outline:none;}
+  [data-hospital-comp-ux="1"] .hc-input:not([readonly]),[data-hospital-comp-ux="1"] .hc-select:not(:disabled){background:#fff;border-color:#94a3b8;}
+  [data-hospital-comp-ux="1"] .hc-input:focus,[data-hospital-comp-ux="1"] .hc-select:focus{border-color:#0788d6;box-shadow:0 0 0 3px rgba(7,136,214,.10);}
+  [data-hospital-comp-ux="1"] .hc-error{display:none;margin:0 13px 13px;padding:8px 10px;border:1px solid #fecaca;border-radius:8px;background:#fff7f7;color:#b91c1c;font-size:12px;font-weight:600;}
+  [data-hospital-comp-ux="1"] .hc-error.show{display:flex;align-items:center;gap:6px;}
+  [data-hospital-comp-ux="1"] .hc-error .material-icons-round{font-size:17px!important;}
+  @media(max-width:700px){[data-hospital-comp-ux="1"] .hc-account-grid{grid-template-columns:1fr;}[data-hospital-comp-ux="1"] .hc-account-head{align-items:flex-start;flex-wrap:wrap;}}
+</style>
+<script id="hospital-compensation-clean-repair-script">
+(function(){
+  'use strict';
+  if(window.__hospitalCompensationCleanRepairInstalled) return;
+  window.__hospitalCompensationCleanRepairInstalled=true;
+
+  const stateByClaim=new Map();
+  let activeKey='';
+
+  const num=v=>{ const n=Number(String(v??'').replace(/,/g,'').replace(/[^0-9.-]/g,'')); return Number.isFinite(n)?n:0; };
+  const money=v=>num(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const pick=(...vals)=>{ for(const v of vals){ if(v!=null && String(v).trim()!=='') return String(v).trim(); } return ''; };
+
+  function currentRow(){ return window.currentConsiderHospitalRow || {}; }
+  function selectedTreatment(){
+    const r=currentRow(), s=window.hospitalClaimSelectionState||{};
+    return String(s.treatment || r.treatmentType || r.claimType || r.treatment || '');
+  }
+  function isTarget(){ return /IPD/i.test(selectedTreatment()) || /Day\s*Case|DayCase/i.test(selectedTreatment()); }
+  function pane(){
+    const h=document.getElementById('considerHospitalOpdHalfPage'), f=document.getElementById('considerHospitalOpdFullPage');
+    if(h && !h.classList.contains('hidden')) return h.querySelector('#hhStepPane3');
+    if(f && !f.classList.contains('hidden')) return f.querySelector('#hfStepPane3');
+    return null;
+  }
+  function claimKey(){ const r=currentRow(); return pick(r.claimCode,r.claimNo,r.claimId,r.id,r.code,'__current__'); }
+  function payerDefaults(){
+    const r=currentRow();
+    const p=r.premiumPayer || r.payer || r.premiumPayerInfo || {};
+    return {
+      bank:pick(p.bankName,p.bank,r.payerBankName,r.payerBank,r.premiumPayerBankName,r.premiumPayerBank,'กรุงไทย'),
+      accountName:pick(p.accountName,p.name,r.payerAccountName,r.payerName,r.premiumPayerAccountName,r.premiumPayerName,'ประดิษฐ์ ทาเภา'),
+      accountNo:pick(p.accountNo,p.bankAccountNo,r.payerAccountNo,r.payerBankAccountNo,r.premiumPayerAccountNo,r.premiumPayerBankAccountNo,'017062701369'),
+      phone:pick(p.phone,p.mobile,r.payerPhone,r.payerMobile,r.premiumPayerPhone,r.premiumPayerMobile,'0979240465')
+    };
+  }
+  function state(){
+    const key=claimKey(); activeKey=key;
+    if(!stateByClaim.has(key)) stateByClaim.set(key,{combine:false,editing:false,...payerDefaults()});
+    return stateByClaim.get(key);
+  }
+  function days(){
+    const r=currentRow(), p=pane(), pre=p?.id==='hfStepPane3'?'hf':'hh';
+    let total=num(document.getElementById(pre+'TotalStayDays')?.value || r.totalStayDays || r.totalDays);
+    const ipd=num(document.getElementById(pre+'IpdDays')?.value || r.ipdDays || r.ipdDay);
+    if(!total) total=ipd;
+    if(/Day\s*Case|DayCase/i.test(selectedTreatment()) && total<=0) total=1;
+    return Math.max(0,total);
+  }
+  function dailyRate(){ const r=currentRow(); return num(r.compensationDailyRate ?? r.compDailyRate ?? r.dailyCompensation ?? r.compensationRate ?? 400); }
+  function benefitLimit(){ const r=currentRow(); return num(r.compensationBenefitLimit ?? r.compBenefitLimit ?? r.compensationRemainingBenefit ?? 40000); }
+  function amounts(){ const total=days()*dailyRate(); return {total,covered:Math.min(total,benefitLimit()||total)}; }
+
+  function findCompCard(){
+    const p=pane(); if(!p) return null;
+    // Match the smallest existing card whose own text contains the exact section title.
+    const title=Array.from(p.querySelectorAll('div')).find(el=>el.children.length===0 && (el.textContent||'').trim()==='สรุปค่าชดเชย');
+    if(!title) return null;
+    return title.closest('.rounded-xl.border') || title.parentElement;
+  }
+  function setSummaryValues(card){
+    if(!card) return;
+    const a=amounts();
+    const rows=Array.from(card.querySelectorAll('.flex.justify-between'));
+    const set=(label,val)=>{ const row=rows.find(x=>(x.querySelector('span')?.textContent||'').trim()===label); const strong=row?.querySelector('strong,b'); if(strong) strong.textContent=money(val); };
+    set('ค่าชดเชยรวม',a.total);
+    set('ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)',a.covered);
+    const remain=Array.from(card.querySelectorAll('div')).find(x=>/ค่าชดเชยคงเหลือ \(โอนให้ลูกค้า\)/.test(x.textContent||''));
+    if(remain){
+      const s=state();
+      remain.textContent='ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) '+money(s.combine?0:a.covered);
+    }
+  }
+  function syncState(root){
+    const s=state();
+    const gv=id=>root.querySelector('#'+id)?.value?.trim()||'';
+    s.bank=gv('hcBank'); s.accountName=gv('hcAccountName'); s.accountNo=gv('hcAccountNo'); s.phone=gv('hcPhone');
+  }
+  function renderControls(card){
+    if(!card) return;
+    let root=card.querySelector('[data-hospital-comp-ux="1"]');
+    if(!root){ root=document.createElement('div'); root.dataset.hospitalCompUx='1'; card.appendChild(root); }
+    const s=state();
+    root.innerHTML=`
+      <label class="hc-transfer-choice">
+        <input id="hcCombine" type="checkbox" ${s.combine?'checked':''}>
+        <span><strong>โอนค่าชดเชยรวมกับค่ารักษา</strong><small>เลือกเมื่อต้องการใช้ช่องทางและบัญชีการโอนเดียวกับค่ารักษาพยาบาล</small></span>
+      </label>
+      <section class="hc-account ${s.combine?'hidden':''}" id="hcAccountSection">
+        <div class="hc-account-head">
+          <div class="hc-account-title"><span class="material-icons-round">account_balance</span><strong>บัญชีรับเงินค่าชดเชย</strong><span class="hc-source">ข้อมูลผู้ชำระเบี้ยในระบบ</span></div>
+          <button type="button" class="hc-edit" id="hcEdit"><span class="material-icons-round">${s.editing?'save':'edit'}</span>${s.editing?'บันทึกบัญชี':'แก้ไขบัญชี'}</button>
+        </div>
+        <div class="hc-account-grid">
+          <div class="hc-field"><label>ธนาคาร <span class="req">*</span></label><select id="hcBank" class="hc-select" ${s.editing?'':'disabled'}><option value="กรุงไทย">กรุงไทย</option><option value="กสิกรไทย">กสิกรไทย</option><option value="ไทยพาณิชย์">ไทยพาณิชย์</option><option value="กรุงเทพ">กรุงเทพ</option><option value="ออมสิน">ออมสิน</option><option value="ทหารไทยธนชาต">ทหารไทยธนชาต</option></select></div>
+          <div class="hc-field"><label>ชื่อบัญชี <span class="req">*</span></label><input id="hcAccountName" class="hc-input" ${s.editing?'':'readonly'}></div>
+          <div class="hc-field"><label>เลขที่บัญชี <span class="req">*</span></label><input id="hcAccountNo" class="hc-input" ${s.editing?'':'readonly'}></div>
+          <div class="hc-field"><label>เบอร์โทร <span class="req">*</span></label><input id="hcPhone" class="hc-input" ${s.editing?'':'readonly'}></div>
+        </div>
+        <div class="hc-error" id="hcError"><span class="material-icons-round">error_outline</span>กรุณาตรวจสอบข้อมูลบัญชีรับเงินค่าชดเชยให้ครบถ้วนก่อนอนุมัติ</div>
+      </section>`;
+    const bank=root.querySelector('#hcBank'); if(bank){ if(!Array.from(bank.options).some(o=>o.value===s.bank) && s.bank){ const o=document.createElement('option');o.value=o.textContent=s.bank;bank.appendChild(o);} bank.value=s.bank; }
+    root.querySelector('#hcAccountName').value=s.accountName;
+    root.querySelector('#hcAccountNo').value=s.accountNo;
+    root.querySelector('#hcPhone').value=s.phone;
+
+    root.querySelector('#hcCombine').addEventListener('change',e=>{ s.combine=!!e.target.checked; renderControls(card); setSummaryValues(card); });
+    root.querySelector('#hcEdit').addEventListener('click',()=>{ if(s.editing) syncState(root); s.editing=!s.editing; renderControls(card); });
+    ['hcBank','hcAccountName','hcAccountNo','hcPhone'].forEach(id=>root.querySelector('#'+id)?.addEventListener('input',()=>syncState(root)));
+  }
+  function hydrate(){
+    if(!isTarget()) return;
+    const p=pane(); if(!p || p.classList.contains('hidden')) return;
+    const card=findCompCard(); if(!card) return;
+    // Remove the original bare checkbox only; preserve every existing summary row and every sibling section.
+    Array.from(card.querySelectorAll('label')).forEach(l=>{ if((l.textContent||'').includes('โอนค่าชดเชยรวมกับค่ารักษา') && !l.closest('[data-hospital-comp-ux="1"]')) l.style.display='none'; });
+    setSummaryValues(card); renderControls(card);
+  }
+  function validateBeforeApproval(e){
+    if(!isTarget()) return;
+    const p=pane(), btn=e.target?.closest?.('button'); if(!p || !btn || !p.contains(btn)) return;
+    const label=(btn.textContent||'').replace(/\s+/g,' ').trim();
+    if(label!=='อนุมัติ' && label!=='อนุมัติรายการ') return;
+    const s=state(); if(s.combine) return;
+    const root=findCompCard()?.querySelector('[data-hospital-comp-ux="1"]'); if(root) syncState(root);
+    const ok=!!(s.bank&&s.accountName&&s.accountNo&&s.phone&&amounts().covered>0);
+    if(ok) return;
+    e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+    const err=root?.querySelector('#hcError'); err?.classList.add('show');
+    const first=[root?.querySelector('#hcBank'),root?.querySelector('#hcAccountName'),root?.querySelector('#hcAccountNo'),root?.querySelector('#hcPhone')].find(x=>x && !String(x.value||'').trim());
+    if(first){ s.editing=true; renderControls(findCompCard()); setTimeout(()=>{ const rr=findCompCard()?.querySelector('[data-hospital-comp-ux="1"]'); const f=[rr?.querySelector('#hcBank'),rr?.querySelector('#hcAccountName'),rr?.querySelector('#hcAccountNo'),rr?.querySelector('#hcPhone')].find(x=>x&&!String(x.value||'').trim()); f?.focus(); rr?.querySelector('#hcError')?.classList.add('show'); },0); }
+  }
+
+  document.addEventListener('click',validateBeforeApproval,true);
+  document.addEventListener('change',e=>{ if(/^(hh|hf)(IpdDays|IcuDays|TotalStayDays)$/.test(e.target?.id||'')) setTimeout(hydrate,0); });
+
+  ['setHospitalHalfStep','setHospitalFullStep','openConsiderHospitalRow'].forEach(name=>{
+    const prev=window[name]; if(typeof prev!=='function' || prev.__cleanCompRepairWrapped) return;
+    const wrapped=function(){ const r=prev.apply(this,arguments); setTimeout(hydrate,0); setTimeout(hydrate,40); return r; };
+    wrapped.__cleanCompRepairWrapped=true; window[name]=wrapped; try{ eval(name+'=wrapped'); }catch(_e){}
+  });
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(hydrate,50),{once:true}); else setTimeout(hydrate,50);
+})();
+</script>
 
 
 
@@ -58593,3 +58908,1235 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
 }
 </style>
+
+
+<!-- v306: IPD Step2 match OPD Full while keeping IPD Step1/Step3 flow -->
+<style id="v306-ipd-step2-match-opdfull-style">
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box{
+  grid-template-columns: 240px minmax(0,1fr) !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-height: 0 !important;
+  margin: 8px 0 0 !important;
+  padding: 10px 16px !important;
+  border-radius: 12px !important;
+  background: #f5f9fd !important;
+  border: 1px solid #d5e3f0 !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-left{
+  gap: 10px !important;
+  min-height: 48px !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-check{
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-icon,
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-desc,
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-label{
+  display:none !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-copy{
+  display:flex !important;
+  align-items:center !important;
+  min-height: 48px !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-title{
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  color: #0b6aa9 !important;
+  white-space: nowrap !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-field{display:block !important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-select{
+  display:block !important;
+  width:100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 16px !important;
+  border-radius: 10px !important;
+  border: 1px solid #cfd9e4 !important;
+  background: #ffffff !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  font-weight: 400 !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box.is-disabled .hospital-insurance-excess-select{
+  background:#f8fafc !important;
+  color:#94a3b8 !important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box:not(.is-disabled) .hospital-insurance-excess-select{
+  color:#334155 !important;
+  background:#fff !important;
+}
+@media(max-width:900px){
+  #considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box{
+    grid-template-columns:1fr !important;
+    gap:10px !important;
+    padding:10px 12px !important;
+  }
+  #considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-copy,
+  #considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-left{
+    min-height:auto !important;
+  }
+}
+</style>
+<script id="v306-ipd-step2-match-opdfull-script">
+(function(){
+  function isIPD(){
+    const row = window.currentConsiderHospitalRow || {};
+    const mode = String(window.currentConsiderHospitalKind || '').trim().toLowerCase();
+    const claimType = String(row.claimType || row.treatmentType || '').trim();
+    return mode === 'ipd' || /IPD/i.test(claimType);
+  }
+
+  function render(){
+    if(!isIPD()) return;
+    const page = document.getElementById('considerHospitalOpdHalfPage');
+    if(!page || page.classList.contains('hidden')) return;
+    const pane = page.querySelector('#hhStepPane2');
+    if(!pane) return;
+    const row = window.currentConsiderHospitalRow || {};
+    if(typeof window.renderHospitalExpenseStep2V111 !== 'function') return;
+
+    let html = window.renderHospitalExpenseStep2V111('full', row);
+    html = html
+      .replace(/setHospitalFullStep\(1\)/g, 'setHospitalHalfStep(1)')
+      .replace(/setHospitalFullStep\(3\)/g, 'setHospitalHalfStep(3)');
+    pane.innerHTML = html;
+
+    if(typeof window.restoreCustomerOcrUi === 'function') setTimeout(window.restoreCustomerOcrUi, 0);
+    if(typeof window.recalculateCustomerExpenseSummary === 'function') setTimeout(window.recalculateCustomerExpenseSummary, 0);
+  }
+
+  const prevSetHalf = window.setHospitalHalfStep;
+  if(typeof prevSetHalf === 'function'){
+    window.setHospitalHalfStep = function(step){
+      const result = prevSetHalf.apply(this, arguments);
+      if(Number(step) === 2) setTimeout(render, 0);
+      return result;
+    };
+  }
+
+  const prevOpen = window.openConsiderHospitalRow;
+  if(typeof prevOpen === 'function' && !window.__v306OpenWrapped){
+    window.openConsiderHospitalRow = function(){
+      const result = prevOpen.apply(this, arguments);
+      setTimeout(function(){
+        if(isIPD() && Number(window.currentHospitalHalfStep || 0) === 2) render();
+      }, 0);
+      return result;
+    };
+    window.__v306OpenWrapped = true;
+  }
+})();
+</script>
+
+
+<!-- v307: Day Case => Day Case Surgery และ Step2 ใช้รูปแบบเดียวกับ IPD -->
+<script id="v307-daycase-surgery-step2-match-ipd-script">
+(function(){
+  function isIpdOrDayCase(){
+    const row = window.currentConsiderHospitalRow || {};
+    const mode = String(window.currentConsiderHospitalKind || '').trim().toLowerCase();
+    const raw = String(row.claimType || row.treatmentType || window.hospitalClaimSelectionState?.treatment || '').trim();
+    return mode === 'ipd' || /IPD/i.test(raw) || /Day\s*Case(?:\s*Surgery)?/i.test(raw);
+  }
+
+  function normalizeDayCaseState(){
+    const row = window.currentConsiderHospitalRow || {};
+    if(/Day\s*Case(?:\s*Surgery)?/i.test(String(row.claimType || row.treatmentType || ''))){
+      row.claimType = 'Day Case Surgery';
+      row.treatmentType = 'Day Case Surgery';
+      window.hospitalClaimSelectionState = window.hospitalClaimSelectionState || {};
+      window.hospitalClaimSelectionState.treatment = 'Day Case Surgery';
+    }
+  }
+
+  function renderStep2(){
+    if(!isIpdOrDayCase()) return;
+    normalizeDayCaseState();
+
+    const page = document.getElementById('considerHospitalOpdHalfPage');
+    if(!page || page.classList.contains('hidden')) return;
+    const pane = page.querySelector('#hhStepPane2');
+    if(!pane || typeof window.renderHospitalExpenseStep2V111 !== 'function') return;
+
+    const row = window.currentConsiderHospitalRow || {};
+    let output = window.renderHospitalExpenseStep2V111('full', row);
+    output = output
+      .replace(/setHospitalFullStep\(1\)/g, 'setHospitalHalfStep(1)')
+      .replace(/setHospitalFullStep\(3\)/g, 'setHospitalHalfStep(3)');
+    pane.innerHTML = output;
+
+    if(typeof window.restoreCustomerOcrUi === 'function') setTimeout(window.restoreCustomerOcrUi,0);
+    if(typeof window.recalculateCustomerExpenseSummary === 'function') setTimeout(window.recalculateCustomerExpenseSummary,0);
+  }
+
+  const previousSetHalf = window.setHospitalHalfStep;
+  if(typeof previousSetHalf === 'function'){
+    window.setHospitalHalfStep = function(step){
+      const result = previousSetHalf.apply(this, arguments);
+      if(Number(step) === 2) setTimeout(renderStep2,0);
+      return result;
+    };
+  }
+
+  const previousOpen = window.openConsiderHospitalRow;
+  if(typeof previousOpen === 'function'){
+    window.openConsiderHospitalRow = function(){
+      const result = previousOpen.apply(this, arguments);
+      normalizeDayCaseState();
+      setTimeout(function(){
+        // Normalize any visible old label left by earlier renderers.
+        document.querySelectorAll('#considerHospitalOpdHalfPage, #considerHospitalOpdFullPage').forEach(page => {
+          if(page.classList.contains('hidden')) return;
+          page.querySelectorAll('*').forEach(el => {
+            if(el.children.length === 0 && /^Day\s*Case$/i.test(String(el.textContent || '').trim())){
+              el.textContent = 'Day Case Surgery';
+            }
+          });
+        });
+      },0);
+      return result;
+    };
+  }
+
+  // Normalize list/table text in case old mock text is rendered from cached markup.
+  const observer = new MutationObserver(function(){
+    document.querySelectorAll('#considerPage td, #considerPage span, #considerPage div').forEach(el => {
+      if(el.children.length === 0 && /^Day\s*Case$/i.test(String(el.textContent || '').trim())){
+        el.textContent = 'Day Case Surgery';
+      }
+    });
+  });
+  if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<!-- v308: Day Case Surgery Step2 exact same renderer/data treatment as IPD -->
+<script id="v308-daycase-step2-exact-ipd-script">
+(function(){
+  function currentRow(){ return window.currentConsiderHospitalRow || {}; }
+  function isDayCase(){
+    const row=currentRow();
+    const raw=String(row.claimType || row.treatmentType || '').trim();
+    return /Day\s*Case(?:\s*Surgery)?/i.test(raw);
+  }
+
+  function normalizeLabels(){
+    const row=currentRow();
+    if(isDayCase()){
+      row.claimType='Day Case Surgery';
+      row.treatmentType='Day Case Surgery';
+    }
+    document.querySelectorAll('#considerPage td,#considerPage span,#considerPage div,#considerHospitalOpdHalfPage *').forEach(el=>{
+      if(el.children.length===0 && /^Day\s*Case(?:\s*Surgery)?$/i.test(String(el.textContent||'').trim())){
+        el.textContent='Day Case Surgery';
+      }
+    });
+  }
+
+  function renderDayCaseStep2AsExactIpd(){
+    if(!isDayCase()) return;
+    normalizeLabels();
+
+    const page=document.getElementById('considerHospitalOpdHalfPage');
+    if(!page || page.classList.contains('hidden')) return;
+    const pane=page.querySelector('#hhStepPane2');
+    if(!pane || typeof window.renderHospitalExpenseStep2V111!=='function') return;
+
+    const row=currentRow();
+    const state=window.hospitalClaimSelectionState || (window.hospitalClaimSelectionState={});
+    const savedTreatment=state.treatment;
+    const savedRowTreatment=row.treatmentType;
+
+    // สำคัญ: Step2 ใช้ treatment=IPD ชั่วคราว เพื่อให้ section/table/master เหมือน IPD 1:1
+    state.treatment='IPD';
+    row.treatmentType='IPD';
+
+    let output='';
+    try{
+      output=window.renderHospitalExpenseStep2V111('full',row);
+    } finally {
+      state.treatment=savedTreatment || 'Day Case Surgery';
+      row.treatmentType=savedRowTreatment || 'Day Case Surgery';
+    }
+
+    output=output
+      .replace(/setHospitalFullStep\(1\)/g,'setHospitalHalfStep(1)')
+      .replace(/setHospitalFullStep\(3\)/g,'setHospitalHalfStep(3)');
+
+    pane.innerHTML=output;
+    pane.setAttribute('data-daycase-step2-rendered-as','IPD');
+
+    if(typeof window.restoreCustomerOcrUi==='function') setTimeout(window.restoreCustomerOcrUi,0);
+    if(typeof window.recalculateCustomerExpenseSummary==='function') setTimeout(window.recalculateCustomerExpenseSummary,0);
+  }
+
+  const prevSetHalf=window.setHospitalHalfStep;
+  if(typeof prevSetHalf==='function'){
+    window.setHospitalHalfStep=function(step){
+      const result=prevSetHalf.apply(this,arguments);
+      if(Number(step)===2 && isDayCase()) setTimeout(renderDayCaseStep2AsExactIpd,0);
+      return result;
+    };
+  }
+
+  const prevOpen=window.openConsiderHospitalRow;
+  if(typeof prevOpen==='function'){
+    window.openConsiderHospitalRow=function(){
+      const result=prevOpen.apply(this,arguments);
+      setTimeout(normalizeLabels,0);
+      return result;
+    };
+  }
+
+  const observer=new MutationObserver(()=>setTimeout(normalizeLabels,0));
+  if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<!-- v309: Force required Step2 sections for IPD + Day Case Surgery -->
+<style id="v309-ipd-daycase-required-sections-style">
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-toolbar{
+  display:flex!important;align-items:center!important;gap:14px!important;width:100%!important;
+  padding:12px 16px!important;margin:0 0 14px!important;border:1px solid #d7e2ee!important;
+  border-radius:12px!important;background:linear-gradient(180deg,#f4f7fb 0%,#eef3f8 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75)!important;box-sizing:border-box!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-toolbar .toolbar-label{
+  display:inline-flex!important;align-items:center!important;gap:3px!important;color:#475569!important;
+  font-size:14px!important;line-height:20px!important;font-weight:500!important;white-space:nowrap!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-toolbar .req{color:#ef4444!important;font-weight:700!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-toolbar .button-group{
+  display:inline-flex!important;align-items:center!important;gap:10px!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-btn{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;
+  min-width:92px!important;height:36px!important;padding:0 16px!important;border:1px solid #cbd5e1!important;
+  border-radius:999px!important;background:#fff!important;color:#475569!important;font-size:14px!important;
+  font-weight:500!important;opacity:1!important;cursor:not-allowed!important;pointer-events:none!important;box-shadow:none!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-btn.active{
+  border:2px solid #3b82f6!important;background:linear-gradient(180deg,#eef6ff 0%,#dbeafe 100%)!important;
+  color:#2563eb!important;font-weight:600!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-btn .dot{display:none!important;width:6px!important;height:6px!important;border-radius:999px!important;background:currentColor!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .opd-full-expense-type-btn.active .dot{display:inline-block!important;}
+
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess]{
+  display:grid!important;grid-template-columns:240px minmax(0,1fr)!important;align-items:center!important;gap:14px!important;
+  width:100%!important;margin:8px 0 0!important;padding:10px 16px!important;border:1px solid #d5e3f0!important;
+  border-radius:12px!important;background:#f5f9fd!important;box-shadow:none!important;box-sizing:border-box!important;
+}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] .hospital-insurance-excess-left{display:flex!important;align-items:center!important;gap:10px!important;min-height:48px!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] .hospital-insurance-excess-check{display:block!important;width:20px!important;height:20px!important;min-width:20px!important;margin:0!important;accent-color:#0b79bd!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] :is(.hospital-insurance-excess-icon,.hospital-insurance-excess-desc,.hospital-insurance-excess-label){display:none!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] .hospital-insurance-excess-title{font-size:14px!important;line-height:20px!important;font-weight:600!important;color:#0b6aa9!important;white-space:nowrap!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] .hospital-insurance-excess-field{display:block!important;width:100%!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess] .hospital-insurance-excess-select{display:block!important;width:100%!important;height:48px!important;min-height:48px!important;padding:0 16px!important;border:1px solid #cfd9e4!important;border-radius:10px!important;background:#f8fafc!important;color:#94a3b8!important;font-size:14px!important;font-weight:400!important;}
+#considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess]:not(.is-disabled) .hospital-insurance-excess-select{background:#fff!important;color:#334155!important;}
+@media(max-width:900px){
+  #considerHospitalOpdHalfPage #hhStepPane2 .hospital-insurance-excess-box[data-v309-excess]{grid-template-columns:1fr!important;gap:10px!important;padding:10px 12px!important;}
+}
+</style>
+<script id="v309-ipd-daycase-required-sections-script">
+(function(){
+  function isTarget(){
+    const row=window.currentConsiderHospitalRow||{};
+    const mode=String(window.currentConsiderHospitalKind||'').toLowerCase();
+    const type=String(row.claimType||row.treatmentType||'');
+    return mode==='ipd' || /IPD|Day\s*Case/i.test(type);
+  }
+
+  function expenseTypeToolbar(){
+    const wrap=document.createElement('div');
+    wrap.className='opd-full-expense-type-toolbar is-readonly';
+    wrap.setAttribute('aria-readonly','true');
+    wrap.innerHTML=`<div class="toolbar-label">ประเภทรายการค่าใช้จ่าย <span class="req">*</span> :</div>
+      <div class="button-group" role="radiogroup" aria-label="ประเภทรายการค่าใช้จ่าย">
+        <button type="button" class="opd-full-expense-type-btn" disabled aria-disabled="true" data-type="SimB1"><span class="dot"></span>SIM B1</button>
+        <button type="button" class="opd-full-expense-type-btn active" disabled aria-disabled="true" data-type="SimB2"><span class="dot"></span>SIM B2</button>
+      </div>`;
+    return wrap;
+  }
+
+  function excessBox(){
+    const section=document.createElement('section');
+    section.id='hhInsuranceExcessStep2Box';
+    section.className='hospital-insurance-excess-box is-disabled';
+    section.setAttribute('data-v309-excess','true');
+    section.innerHTML=`<div class="hospital-insurance-excess-left">
+        <input id="hhInsuranceExcessStep2Checkbox" type="checkbox" class="hospital-insurance-excess-check" onchange="toggleHospitalInsuranceExcessStep2('hh')">
+        <span class="hospital-insurance-excess-icon"><span class="material-icons-round">verified_user</span></span>
+        <div class="hospital-insurance-excess-copy"><div class="hospital-insurance-excess-title">เป็นส่วนเกินจากบริษัทประกัน</div><div class="hospital-insurance-excess-desc">เลือกเมื่อรายการค่าใช้จ่ายครั้งนี้เป็นยอดส่วนเกินที่รับช่วงต่อจากบริษัทประกันอื่น</div></div>
+      </div>
+      <div class="hospital-insurance-excess-field"><div class="hospital-insurance-excess-label">บริษัทประกัน</div>
+        <select id="hhInsuranceExcessCompanyStep2" class="hospital-insurance-excess-select" disabled>
+          <option value="">---เลือกบริษัทประกัน---</option><option>วิริยะประกันภัย</option><option>กรุงเทพประกันภัย</option><option>เมืองไทยประกันชีวิต</option><option>ไทยประกันชีวิต</option><option>อลิอันซ์ อยุธยา</option><option>เอไอเอ</option>
+        </select>
+      </div>`;
+    return section;
+  }
+
+  function ensure(){
+    if(!isTarget()) return;
+    const pane=document.querySelector('#considerHospitalOpdHalfPage #hhStepPane2');
+    if(!pane) return;
+
+    if(!pane.querySelector('.opd-full-expense-type-toolbar')){
+      const table=pane.querySelector('.cc-ref-prelim-table');
+      const target=table ? (table.closest('.cc-ref-table-wrap, .overflow-x-auto') || table) : null;
+      if(target && target.parentNode) target.parentNode.insertBefore(expenseTypeToolbar(),target);
+      else {
+        const title=pane.querySelector('.cc-ref-title-strip');
+        if(title) title.insertAdjacentElement('afterend',expenseTypeToolbar());
+      }
+    }
+
+    let existing=pane.querySelector('.hospital-insurance-excess-box');
+    if(existing && !existing.hasAttribute('data-v309-excess')) existing.remove();
+    if(!pane.querySelector('.hospital-insurance-excess-box[data-v309-excess]')){
+      const box=excessBox();
+      const decision=pane.querySelector('.cc-ref-decision-wrap');
+      const summaries=Array.from(pane.querySelectorAll('.cc-ref-summary-box, .customer-expense-summary, [class*="summary"]')).filter(el=>!el.closest('.cc-ref-decision-wrap'));
+      const anchor=summaries.length ? summaries[summaries.length-1] : null;
+      if(anchor && anchor.parentNode) anchor.insertAdjacentElement('afterend',box);
+      else if(decision && decision.parentNode) decision.parentNode.insertBefore(box,decision);
+      else pane.appendChild(box);
+    }
+  }
+
+  const prevSet=window.setHospitalHalfStep;
+  if(typeof prevSet==='function'){
+    window.setHospitalHalfStep=function(step){
+      const r=prevSet.apply(this,arguments);
+      if(Number(step)===2) setTimeout(ensure,0);
+      return r;
+    };
+  }
+
+  document.addEventListener('click',function(){setTimeout(ensure,0);},false);
+  const mo=new MutationObserver(function(){setTimeout(ensure,0);});
+  function observe(){if(document.body) mo.observe(document.body,{childList:true,subtree:true});}
+  if(document.body) observe(); else document.addEventListener('DOMContentLoaded',observe,{once:true});
+  setTimeout(ensure,0);
+  window.ensureIpdDayCaseRequiredSectionsV309=ensure;
+})();
+</script>
+
+
+<!-- v310: IPD / Day Case Surgery Step3 - stay cards + document display same as OPD Full -->
+
+
+
+
+<!-- v311: Restyle IPD / Day Case Surgery Step3 stay cards to match claim info design -->
+
+
+
+
+<!-- v312: IPD / Day Case Surgery Step3 scan documents match reference -->
+
+
+
+
+<!-- v313: stable Step 3 rendering for IPD / Day Case Surgery, no flicker and no duplicate cards -->
+
+<!-- FIX: Step 3 IPD / Day Case Surgery - edit ONLY existing document section -->
+
+<!-- v321: Restore Step 3 stay summary for pending IPD / Day Case Surgery without touching other sections -->
+<script id="v321-step3-stay-summary-pending-fix">
+(function(){
+  'use strict';
+
+  function currentHospitalRow(){
+    return window.currentConsiderHospitalRow || {};
+  }
+
+  function treatmentOf(row){
+    const state = window.hospitalClaimSelectionState || {};
+    const raw = String(state.treatment || row.treatmentType || row.claimType || '');
+    if (/IPD/i.test(raw)) return 'IPD';
+    if (/Day\s*Case/i.test(raw)) return 'Day Case Surgery';
+    return raw;
+  }
+
+  function isTarget(row){
+    const t = treatmentOf(row);
+    return t === 'IPD' || t === 'Day Case Surgery';
+  }
+
+  function stayValues(row){
+    const t = treatmentOf(row);
+    let ipd = Number(row.ipdDays ?? row.ipdDay ?? 0);
+    let icu = Number(row.icuDays ?? row.icuDay ?? 0);
+    let total = Number(row.totalStayDays ?? row.totalDays ?? 0);
+
+    if (!Number.isFinite(ipd) || ipd < 0) ipd = 0;
+    if (!Number.isFinite(icu) || icu < 0) icu = 0;
+    if (!Number.isFinite(total) || total < 0) total = 0;
+
+    // Day Case Surgery mockup/pending case should still show one treatment day
+    if (t === 'Day Case Surgery') {
+      if (ipd <= 0 && total > 0) ipd = total;
+      if (total <= 0) total = Math.max(ipd, 1);
+      if (ipd <= 0) ipd = 1;
+    } else if (total <= 0) {
+      total = Math.max(ipd, icu);
+    }
+
+    return { ipd, icu, total };
+  }
+
+  function summaryMarkup(row){
+    const t = treatmentOf(row);
+    const v = stayValues(row);
+    return `
+      <div class="claim-step3-stay-summary v321-step3-stay-summary" data-v321-stay-summary="true">
+        <div class="claim-step3-stay-title">
+          <span class="material-icons-round">bed</span>
+          <div><strong>สรุปจำนวนวันนอน</strong><span>${t}</span></div>
+        </div>
+        <div class="claim-step3-stay-grid">
+          <div class="claim-step3-stay-item ipd"><span>จำนวนวัน IPD</span><strong>${v.ipd}</strong><small>วัน</small></div>
+          <div class="claim-step3-stay-item icu"><span>จำนวนวัน ICU</span><strong>${v.icu}</strong><small>วัน</small></div>
+          <div class="claim-step3-stay-item total"><span>จำนวนวันนอน</span><strong>${v.total}</strong><small>วัน</small></div>
+        </div>
+      </div>`;
+  }
+
+  function visibleStep3Pane(){
+    const candidates = [
+      document.querySelector('#considerHospitalOpdHalfPage:not(.hidden) #hhStepPane3'),
+      document.querySelector('#considerHospitalOpdFullPage:not(.hidden) #hfStepPane3'),
+      document.getElementById('hhStepPane3'),
+      document.getElementById('hfStepPane3')
+    ].filter(Boolean);
+    return candidates.find(p => !p.classList.contains('hidden')) || candidates[0] || null;
+  }
+
+  function ensureStaySummary(){
+    const row = currentHospitalRow();
+    if (!row || !isTarget(row)) return;
+
+    const pane = visibleStep3Pane();
+    if (!pane) return;
+
+    // Do not touch the document section or any other Step 3 content.
+    // Only ensure the stay-summary block exists inside the existing claim-detail card.
+    const card = pane.querySelector('.claim-detail-summary-card');
+    if (!card) return;
+
+    const existing = card.querySelector('.claim-step3-stay-summary');
+    const html = summaryMarkup(row);
+
+    if (existing) {
+      // Update only this existing block so mockup values/status changes are reflected.
+      const holder = document.createElement('div');
+      holder.innerHTML = html.trim();
+      existing.replaceWith(holder.firstElementChild);
+      return;
+    }
+
+    const detailGrid = card.querySelector('.grid');
+    if (detailGrid) detailGrid.insertAdjacentHTML('afterend', html);
+    else card.insertAdjacentHTML('beforeend', html);
+  }
+
+  function schedule(){
+    setTimeout(ensureStaySummary, 0);
+    setTimeout(ensureStaySummary, 60);
+  }
+
+  const oldHalf = window.setHospitalHalfStep;
+  if (typeof oldHalf === 'function' && !oldHalf.__v321StayWrapped) {
+    const wrapped = function(step){
+      const result = oldHalf.apply(this, arguments);
+      if (Number(step) === 3) schedule();
+      return result;
+    };
+    wrapped.__v321StayWrapped = true;
+    window.setHospitalHalfStep = wrapped;
+    try { setHospitalHalfStep = wrapped; } catch(e) {}
+  }
+
+  const oldFull = window.setHospitalFullStep;
+  if (typeof oldFull === 'function' && !oldFull.__v321StayWrapped) {
+    const wrapped = function(step){
+      const result = oldFull.apply(this, arguments);
+      if (Number(step) === 3) schedule();
+      return result;
+    };
+    wrapped.__v321StayWrapped = true;
+    window.setHospitalFullStep = wrapped;
+    try { setHospitalFullStep = wrapped; } catch(e) {}
+  }
+
+  const oldOpen = window.openConsiderHospitalRow;
+  if (typeof oldOpen === 'function' && !oldOpen.__v321StayWrapped) {
+    const wrapped = function(){
+      const result = oldOpen.apply(this, arguments);
+      schedule();
+      return result;
+    };
+    wrapped.__v321StayWrapped = true;
+    window.openConsiderHospitalRow = wrapped;
+    try { openConsiderHospitalRow = wrapped; } catch(e) {}
+  }
+
+  document.addEventListener('click', function(){
+    const row = currentHospitalRow();
+    if (isTarget(row)) setTimeout(ensureStaySummary, 20);
+  }, false);
+})();
+</script>
+
+
+<!-- FIX: keep "โอนค่าชดเชยรวมกับค่ารักษา" selected; prevent legacy re-render from resetting it -->
+
+<!-- VERIFIED FIX: Separate compensation transfer approval modal (single authoritative handler) -->
+<style id="hc-separate-approval-modal-verified-style">
+  #hcSeparateApprovalModal{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.52);backdrop-filter:blur(3px)}
+  #hcSeparateApprovalModal.hidden{display:none!important}
+  #hcSeparateApprovalModal .hcm-dialog{width:min(920px,96vw);max-height:92vh;overflow:auto;border:1px solid #dbe7f3;border-radius:20px;background:#fff;box-shadow:0 28px 70px rgba(15,23,42,.28)}
+  #hcSeparateApprovalModal .hcm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 26px 18px;border-bottom:1px solid #e8eef5;background:linear-gradient(180deg,#f8fcff,#fff)}
+  #hcSeparateApprovalModal .hcm-title-wrap{display:flex;align-items:center;gap:13px;min-width:0}
+  #hcSeparateApprovalModal .hcm-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#e8f5ff;color:#0678bd;flex:none}
+  #hcSeparateApprovalModal .hcm-icon .material-icons-round{font-size:24px!important}
+  #hcSeparateApprovalModal .hcm-title{margin:0;color:#1f2937;font-size:20px!important;font-weight:800!important;line-height:1.25!important}
+  #hcSeparateApprovalModal .hcm-subtitle{margin-top:3px;color:#64748b;font-size:13px!important;font-weight:500!important}
+  #hcSeparateApprovalModal .hcm-close{width:36px;height:36px;border:1px solid #dbe3ec;border-radius:10px;background:#fff;color:#64748b;display:grid;place-items:center;flex:none}
+  #hcSeparateApprovalModal .hcm-body{padding:20px 26px 22px;background:#fff}
+  #hcSeparateApprovalModal .hcm-result-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:11px 14px;border:1px solid #d8e8f5;border-radius:12px;background:#f8fcff}
+  #hcSeparateApprovalModal .hcm-result-title{display:flex;align-items:center;gap:8px;color:#075f99;font-size:15px!important;font-weight:800!important}
+  #hcSeparateApprovalModal .hcm-ready{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:12px!important;font-weight:700!important;white-space:nowrap}
+  #hcSeparateApprovalModal .hcm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  #hcSeparateApprovalModal .hcm-card{overflow:hidden;border:1px solid #dbe5ef;border-radius:15px;background:#fff}
+  #hcSeparateApprovalModal .hcm-card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid #e8eef5;background:#f8fafc}
+  #hcSeparateApprovalModal .hcm-card-title{display:flex;align-items:center;gap:8px;color:#334155;font-size:15px!important;font-weight:800!important}
+  #hcSeparateApprovalModal .hcm-card-title .material-icons-round{font-size:19px!important;color:#0788d6}
+  #hcSeparateApprovalModal .hcm-status{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:11px!important;font-weight:800!important;white-space:nowrap}
+  #hcSeparateApprovalModal .hcm-status.approve{background:#dcfce7;color:#15803d}
+  #hcSeparateApprovalModal .hcm-status.transfer{background:#dff2ff;color:#075f99}
+  #hcSeparateApprovalModal .hcm-list{padding:7px 15px 11px}
+  #hcSeparateApprovalModal .hcm-row{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:37px;border-bottom:1px dashed #e7edf4;color:#64748b;font-size:13px!important}
+  #hcSeparateApprovalModal .hcm-row:last-child{border-bottom:0}
+  #hcSeparateApprovalModal .hcm-row strong{color:#334155;font-size:14px!important;font-weight:700!important;text-align:right}
+  #hcSeparateApprovalModal .hcm-row.total{margin:5px -4px 0;padding:7px 8px;border:0;border-radius:9px;background:#f0f9ff;color:#075f99}
+  #hcSeparateApprovalModal .hcm-row.total strong{color:#0678bd;font-size:17px!important;font-weight:800!important}
+  #hcSeparateApprovalModal .hcm-account{margin-top:15px;border:1px solid #dbe5ef;border-radius:15px;background:#fff;overflow:hidden}
+  #hcSeparateApprovalModal .hcm-account-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid #e8eef5;background:#fbfdff}
+  #hcSeparateApprovalModal .hcm-account-title{display:flex;align-items:center;gap:8px;color:#334155;font-size:15px!important;font-weight:800!important}
+  #hcSeparateApprovalModal .hcm-account-title .material-icons-round{font-size:20px!important;color:#0788d6}
+  #hcSeparateApprovalModal .hcm-source{padding:4px 9px;border-radius:999px;background:#eef6ff;color:#075f99;font-size:11px!important;font-weight:700!important}
+  #hcSeparateApprovalModal .hcm-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:4px 15px 12px}
+  #hcSeparateApprovalModal .hcm-account-item{padding:10px 8px;border-bottom:1px solid #edf2f7}
+  #hcSeparateApprovalModal .hcm-account-item:nth-last-child(-n+2){border-bottom:0}
+  #hcSeparateApprovalModal .hcm-label{color:#94a3b8;font-size:11px!important;font-weight:600!important;margin-bottom:3px}
+  #hcSeparateApprovalModal .hcm-value{color:#334155;font-size:14px!important;font-weight:700!important;word-break:break-word}
+  #hcSeparateApprovalModal .hcm-note{display:flex;align-items:flex-start;gap:8px;margin-top:14px;padding:10px 12px;border:1px solid #fde7b2;border-radius:11px;background:#fffaf0;color:#7c5a05;font-size:12px!important;font-weight:500!important;line-height:1.45!important}
+  #hcSeparateApprovalModal .hcm-note .material-icons-round{font-size:18px!important;color:#d39b12;flex:none}
+  #hcSeparateApprovalModal .hcm-actions{display:flex;justify-content:flex-end;gap:10px;padding:15px 26px 20px;border-top:1px solid #e8eef5;background:#fbfcfe}
+  #hcSeparateApprovalModal .hcm-btn{height:40px;border-radius:10px;padding:0 17px;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:13px!important;font-weight:700!important;cursor:pointer}
+  #hcSeparateApprovalModal .hcm-btn.secondary{border:1px solid #cbd5e1;background:#fff;color:#475569}
+  #hcSeparateApprovalModal .hcm-btn.primary{min-width:176px;border:1px solid #0788d6;background:#0788d6;color:#fff;box-shadow:0 5px 13px rgba(7,136,214,.18)}
+  #hcSeparateApprovalModal .hcm-btn.primary:hover{background:#0077bd}
+  @media(max-width:760px){#hcSeparateApprovalModal{padding:10px;align-items:flex-start;overflow:auto}#hcSeparateApprovalModal .hcm-dialog{margin-top:12px;border-radius:16px}#hcSeparateApprovalModal .hcm-grid,#hcSeparateApprovalModal .hcm-account-grid{grid-template-columns:1fr}#hcSeparateApprovalModal .hcm-head,#hcSeparateApprovalModal .hcm-body,#hcSeparateApprovalModal .hcm-actions{padding-left:16px;padding-right:16px}#hcSeparateApprovalModal .hcm-actions{flex-direction:column-reverse}#hcSeparateApprovalModal .hcm-btn{width:100%}}
+</style>
+<div id="hcSeparateApprovalModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="hcSeparateApprovalTitle">
+  <div class="hcm-dialog">
+    <div class="hcm-head"><div class="hcm-title-wrap"><span class="hcm-icon"><span class="material-icons-round">fact_check</span></span><div><h3 id="hcSeparateApprovalTitle" class="hcm-title">ยืนยันการทำรายการ</h3><div class="hcm-subtitle">ผลการอนุมัติเคลม</div></div></div><button type="button" class="hcm-close" id="hcSeparateApprovalClose"><span class="material-icons-round">close</span></button></div>
+    <div class="hcm-body">
+      <div class="hcm-result-strip"><div class="hcm-result-title"><span class="material-icons-round">verified</span>ผลการอนุมัติเคลม</div><span class="hcm-ready"><span class="material-icons-round">check_circle</span>พร้อมยืนยัน</span></div>
+      <div class="hcm-grid">
+        <section class="hcm-card"><div class="hcm-card-head"><div class="hcm-card-title"><span class="material-icons-round">medical_services</span>ค่ารักษาพยาบาล</div><span class="hcm-status approve">อนุมัติ</span></div><div class="hcm-list"><div class="hcm-row"><span>ยอดตามใบเสร็จ</span><strong id="hcmReceipt">0.00 บาท</strong></div><div class="hcm-row"><span>ยอดอนุมัติตามสิทธิ์</span><strong id="hcmApproved">0.00 บาท</strong></div><div class="hcm-row"><span>ส่วนเกินสิทธิ์</span><strong id="hcmExcess">0.00 บาท</strong></div><div class="hcm-row total"><span>ยอดบริษัทตั้งเบิก</span><strong id="hcmCompanyClaim">0.00 บาท</strong></div></div></section>
+        <section class="hcm-card"><div class="hcm-card-head"><div class="hcm-card-title"><span class="material-icons-round">payments</span>ค่าชดเชยที่โอนให้ลูกค้า</div><span class="hcm-status transfer">โอนให้ลูกค้า</span></div><div class="hcm-list"><div class="hcm-row"><span>จำนวนวันนอน</span><strong id="hcmDays">0 วัน</strong></div><div class="hcm-row"><span>ค่าชดเชยต่อวัน</span><strong id="hcmDailyRate">0.00 บาท</strong></div><div class="hcm-row"><span>ค่าชดเชยรวม</span><strong id="hcmCompTotal">0.00 บาท</strong></div><div class="hcm-row total"><span>ยอดโอนให้ลูกค้า</span><strong id="hcmTransfer">0.00 บาท</strong></div></div></section>
+      </div>
+      <section class="hcm-account"><div class="hcm-account-head"><div class="hcm-account-title"><span class="material-icons-round">account_balance</span>รายละเอียดบัญชีรับเงินค่าชดเชย</div><span class="hcm-source">ข้อมูลรายการโอนครั้งนี้</span></div><div class="hcm-account-grid"><div class="hcm-account-item"><div class="hcm-label">ธนาคาร</div><div class="hcm-value" id="hcmBank">-</div></div><div class="hcm-account-item"><div class="hcm-label">ชื่อบัญชี</div><div class="hcm-value" id="hcmAccountName">-</div></div><div class="hcm-account-item"><div class="hcm-label">เลขที่บัญชี</div><div class="hcm-value" id="hcmAccountNo">-</div></div><div class="hcm-account-item"><div class="hcm-label">เบอร์โทร</div><div class="hcm-value" id="hcmPhone">-</div></div></div></section>
+      <div class="hcm-note"><span class="material-icons-round">info</span><span>ค่าชดเชยรายการนี้จะถูกสร้างเป็นยอดโอนแยกจากค่ารักษาพยาบาล กรุณาตรวจสอบยอดเงินและบัญชีผู้รับเงินก่อนยืนยัน</span></div>
+    </div>
+    <div class="hcm-actions"><button type="button" class="hcm-btn secondary" id="hcSeparateApprovalBack">กลับไปตรวจสอบ</button><button type="button" class="hcm-btn primary" id="hcSeparateApprovalConfirm"><span class="material-icons-round">check_circle</span>ยืนยันการทำรายการ</button></div>
+  </div>
+</div>
+<script id="hc-separate-approval-modal-verified-script">
+(function(){
+  'use strict';
+  if(window.__hcSeparateApprovalModalVerifiedInstalled) return;
+  window.__hcSeparateApprovalModalVerifiedInstalled=true;
+  const modal=document.getElementById('hcSeparateApprovalModal');
+  let pendingButton=null, bypass=false;
+  const num=v=>{const n=Number(String(v??'').replace(/,/g,'').replace(/[^0-9.-]/g,''));return Number.isFinite(n)?n:0};
+  const money=v=>num(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท';
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
+
+  function visibleStep3(){
+    return document.querySelector('#considerHospitalOpdHalfPage:not(.hidden) #hhStepPane3:not(.hidden),#considerHospitalOpdFullPage:not(.hidden) #hfStepPane3:not(.hidden)') ||
+           document.querySelector('#considerHospitalOpdHalfPage:not(.hidden) #hhStepPane3,#considerHospitalOpdFullPage:not(.hidden) #hfStepPane3');
+  }
+  function rootFromButton(btn){
+    const p=btn?.closest?.('#hhStepPane3,#hfStepPane3') || visibleStep3();
+    return p?.querySelector('[data-hospital-comp-ux="1"]') || null;
+  }
+  function account(root){return {bank:root?.querySelector('#hcBank')?.value?.trim()||'',name:root?.querySelector('#hcAccountName')?.value?.trim()||'',no:root?.querySelector('#hcAccountNo')?.value?.trim()||'',phone:root?.querySelector('#hcPhone')?.value?.trim()||''}}
+  function compCard(root){return root?.closest('.rounded-xl.border') || root?.parentElement || null}
+  function compCovered(root){
+    const card=compCard(root); if(!card)return 0;
+    const rows=Array.from(card.querySelectorAll('.flex.justify-between'));
+    const row=rows.find(x=>clean(x.querySelector('span')?.textContent)==='ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)');
+    return num(row?.querySelector('strong,b')?.textContent);
+  }
+  function stayDays(){
+    const p=visibleStep3(); if(!p)return 0; const pre=p.id==='hfStepPane3'?'hf':'hh';
+    let d=num(document.getElementById(pre+'TotalStayDays')?.value)||num(document.getElementById(pre+'IpdDays')?.value);
+    const r=window.currentConsiderHospitalRow||{}; if(!d)d=num(r.totalStayDays||r.totalDays||r.ipdDays||r.ipdDay);
+    const t=clean((window.hospitalClaimSelectionState||{}).treatment||r.treatmentType||r.claimType||r.treatment);
+    if(!d&&/Day\s*Case|DayCase/i.test(t))d=1; return d;
+  }
+  function dailyRate(){const r=window.currentConsiderHospitalRow||{};return num(r.compensationDailyRate??r.compDailyRate??r.dailyCompensation??r.compensationRate??400)}
+  function findAmount(labels){
+    const p=visibleStep3(); if(!p)return 0;
+    const nodes=Array.from(p.querySelectorAll('*'));
+    for(const label of labels){
+      const n=nodes.find(el=>el.children.length===0&&clean(el.textContent)===label); if(!n)continue;
+      const holder=n.closest('tr,.flex,.grid,[class*="row"],[class*="item"],[class*="summary"]')||n.parentElement; if(!holder)continue;
+      const c=Array.from(holder.querySelectorAll('strong,b,input,[data-value],span,div')).filter(x=>x!==n).reverse();
+      for(const el of c){const raw=el.value!=null?el.value:el.textContent; if(/\d/.test(String(raw||'')))return num(raw)}
+    }
+    return 0;
+  }
+  function validate(root){
+    const a=account(root), amount=compCovered(root);
+    if(a.bank&&a.name&&a.no&&a.phone&&amount>0)return true;
+    root?.querySelector('#hcError')?.classList.add('show');
+    root?.scrollIntoView({behavior:'smooth',block:'center'});
+    return false;
+  }
+  function fill(root){
+    const a=account(root), days=stayDays(), rate=dailyRate(), transfer=compCovered(root) || days*rate;
+    let receipt=findAmount(['ยอดตามใบเสร็จ','ยอดเงินตามใบเสร็จรวม','ยอดตามใบเสร็จรวม']);
+    let excess=findAmount(['ส่วนเกินสิทธิ์','ยอดส่วนเกินสิทธิ์','ยอดไม่คุ้มครอง']);
+    let approved=findAmount(['ยอดอนุมัติตามสิทธิ์','ยอดอนุมัติ','ยอดพิจารณาตามสิทธิ์']);
+    let company=findAmount(['ยอดบริษัทตั้งเบิก','ยอดตั้งเบิกบริษัทประกัน','ยอดที่บริษัทตั้งเบิก']);
+    const r=window.currentConsiderHospitalRow||{}; if(!receipt)receipt=num(r.receiptAmount||r.amount||r.claimAmount); if(!approved)approved=Math.max(0,receipt-excess); if(!company)company=approved;
+    set('hcmReceipt',money(receipt));set('hcmApproved',money(approved));set('hcmExcess',money(excess));set('hcmCompanyClaim',money(company));
+    set('hcmDays',days.toLocaleString('th-TH')+' วัน');set('hcmDailyRate',money(rate));set('hcmCompTotal',money(days*rate));set('hcmTransfer',money(transfer));
+    set('hcmBank',a.bank||'-');set('hcmAccountName',a.name||'-');set('hcmAccountNo',a.no||'-');set('hcmPhone',a.phone||'-');
+  }
+  function open(btn,root){pendingButton=btn;fill(root);modal.classList.remove('hidden');document.body.style.overflow='hidden'}
+  function close(){modal.classList.add('hidden');document.body.style.overflow=''}
+
+  // Expose a deterministic hook that is called directly from the EXISTING
+  // hospital approval handler (v249). This avoids competing click listeners.
+  let pendingComplete=null;
+  function findCombineCheckbox(page,root){
+    const direct=root?.querySelector('#hcCombine') || page?.querySelector('#hcCombine');
+    if(direct) return direct;
+    const labels=Array.from(page?.querySelectorAll('label')||[]);
+    const label=labels.find(l=>clean(l.textContent).includes('โอนค่าชดเชยรวมกับค่ารักษา'));
+    return label?.querySelector('input[type="checkbox"]') || null;
+  }
+
+  window.__hcShouldOpenSeparateApprovalModal=function(btn,page){
+    const p=page || btn?.closest?.('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+    if(!p) return false;
+    const root=rootFromButton(btn) || p.querySelector('[data-hospital-comp-ux="1"]');
+    const combine=findCombineCheckbox(p,root);
+    // If there is no compensation choice on the current Step 3, keep legacy approval flow.
+    if(!combine) return false;
+    return !combine.checked;
+  };
+
+  window.__hcOpenSeparateApprovalModal=function(btn,page,onConfirm){
+    const p=page || btn?.closest?.('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+    const root=rootFromButton(btn) || p?.querySelector('[data-hospital-comp-ux="1"]');
+    if(!p || !root || !modal) return false;
+    const combine=findCombineCheckbox(p,root);
+    if(!combine || combine.checked) return false;
+    if(!validate(root)) return true; // approval is intentionally paused by validation
+    pendingButton=btn;
+    pendingComplete=typeof onConfirm==='function' ? onConfirm : null;
+    fill(root);
+    modal.classList.remove('hidden');
+    modal.style.display='flex';
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    return true;
+  };
+
+  function closeVerifiedModal(){
+    modal.classList.add('hidden');
+    modal.style.removeProperty('display');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('hcSeparateApprovalClose')?.addEventListener('click',closeVerifiedModal);
+  document.getElementById('hcSeparateApprovalBack')?.addEventListener('click',closeVerifiedModal);
+  modal?.addEventListener('click',e=>{if(e.target===modal)closeVerifiedModal()});
+  document.getElementById('hcSeparateApprovalConfirm')?.addEventListener('click',function(){
+    const done=pendingComplete;
+    pendingComplete=null;
+    pendingButton=null;
+    closeVerifiedModal();
+    if(typeof done==='function') done();
+  });
+
+  // Test helper: invoke the exact same authoritative modal API without approving.
+  window.__openSeparateCompApprovalForTest=function(){
+    const p=visibleStep3();
+    const btn=Array.from(p?.querySelectorAll('button')||[]).find(b=>['อนุมัติ','อนุมัติรายการ'].includes(clean(b.textContent)));
+    if(!btn) return false;
+    const page=btn.closest('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
+    if(!window.__hcShouldOpenSeparateApprovalModal(btn,page)) return false;
+    return window.__hcOpenSeparateApprovalModal(btn,page,function(){});
+  };
+})();
+</script>
+
+
+<style id="final-ipd-stay-approval-modal-v1">
+  .final-stay-summary{border:1px solid #dbeafe;border-radius:14px;background:#fff;overflow:hidden;margin:16px 0}
+  .final-stay-summary__head{display:flex;align-items:center;gap:9px;padding:12px 16px;background:#eff6ff;border-left:5px solid #0ea5e9;font-size:17px;font-weight:800;color:#334155}
+  .final-stay-summary__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px}
+  .final-stay-card{border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;padding:14px;text-align:center}
+  .final-stay-card b{display:block;font-size:25px;line-height:1.1;color:#0369a1;margin:4px 0}
+  .final-stay-card span{font-size:13px;color:#64748b;font-weight:700}
+  .final-stay-card small{font-size:12px;color:#94a3b8;font-weight:600}
+  .final-approval-modal{position:fixed;inset:0;z-index:999999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.48);backdrop-filter:blur(2px)}
+  .final-approval-modal.show{display:flex}
+  .final-approval-card{width:min(960px,96vw);max-height:90vh;overflow:auto;border-radius:18px;background:#fff;box-shadow:0 28px 80px rgba(15,23,42,.28)}
+  .final-approval-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid #e2e8f0;background:linear-gradient(180deg,#f8fbff,#fff)}
+  .final-approval-title{display:flex;align-items:center;gap:12px}
+  .final-approval-icon{width:44px;height:44px;border-radius:12px;background:#e0f2fe;color:#0369a1;display:grid;place-items:center}
+  .final-approval-title h3{margin:0;font-size:21px;font-weight:800;color:#1e293b}
+  .final-approval-title p{margin:2px 0 0;font-size:13px;font-weight:600;color:#64748b}
+  .final-close{width:36px;height:36px;border:0;border-radius:50%;background:#f1f5f9;color:#475569;display:grid;place-items:center;cursor:pointer}
+  .final-approval-body{padding:20px 22px 22px}
+  .final-result-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .final-result-label strong{font-size:17px;color:#334155}
+  .final-ready{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:12px;font-weight:800}
+  .final-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .final-result-card{border:1px solid #dbeafe;border-radius:14px;background:#fff;overflow:hidden}
+  .final-result-card__head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#f8fafc;border-bottom:1px solid #e2e8f0}
+  .final-result-card__head strong{font-size:16px;color:#334155}
+  .final-status{padding:4px 9px;border-radius:999px;font-size:12px;font-weight:800}
+  .final-status.green{background:#dcfce7;color:#15803d}.final-status.blue{background:#e0f2fe;color:#0369a1}
+  .final-kv{padding:5px 14px 12px}
+  .final-kv-row{display:flex;justify-content:space-between;gap:18px;padding:8px 0;border-bottom:1px dashed #e2e8f0;font-size:14px;color:#475569}
+  .final-kv-row:last-child{border-bottom:0}.final-kv-row b{color:#0f172a}.final-kv-row.emphasis b{font-size:17px;color:#0369a1}
+  .final-account{margin-top:14px;border:1px solid #dbeafe;border-radius:14px;background:#f8fbff;padding:14px}
+  .final-account-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:#334155;font-size:16px;font-weight:800}
+  .final-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .final-account-item{border:1px solid #e2e8f0;border-radius:10px;background:#fff;padding:10px 12px}
+  .final-account-item small{display:block;font-size:12px;color:#64748b;font-weight:700;margin-bottom:2px}.final-account-item b{font-size:14px;color:#1e293b}
+  .final-approval-note{display:flex;gap:8px;align-items:flex-start;margin-top:14px;padding:10px 12px;border-radius:10px;background:#fffbeb;color:#92400e;font-size:13px;font-weight:650}
+  .final-approval-actions{display:flex;justify-content:flex-end;gap:10px;padding:16px 22px;border-top:1px solid #e2e8f0;background:#fff}
+  .final-btn{height:42px;border-radius:9px;padding:0 18px;font-size:14px;font-weight:800;cursor:pointer}.final-btn.secondary{border:1px solid #cbd5e1;background:#fff;color:#475569}.final-btn.primary{border:1px solid #16a34a;background:#16a34a;color:#fff}
+  .final-toast{position:fixed;right:22px;top:22px;z-index:1000000;display:none;align-items:center;gap:10px;min-width:300px;padding:13px 16px;border-radius:12px;background:#166534;color:#fff;box-shadow:0 14px 35px rgba(22,101,52,.3);font-size:14px;font-weight:800}
+  .final-toast.show{display:flex;animation:finalToastIn .2s ease-out}@keyframes finalToastIn{from{transform:translateY(-8px);opacity:0}to{transform:none;opacity:1}}
+  @media(max-width:760px){.final-stay-summary__grid,.final-result-grid,.final-account-grid{grid-template-columns:1fr}.final-approval-actions{flex-direction:column-reverse}.final-btn{width:100%}}
+</style>
+<div id="finalApprovalModal" class="final-approval-modal" aria-hidden="true">
+  <div class="final-approval-card" role="dialog" aria-modal="true" aria-labelledby="finalApprovalTitle">
+    <div class="final-approval-head">
+      <div class="final-approval-title"><span class="final-approval-icon"><span class="material-icons-round">fact_check</span></span><div><h3 id="finalApprovalTitle">ยืนยันการทำรายการ</h3><p>ผลการอนุมัติเคลม</p></div></div>
+      <button type="button" id="finalApprovalClose" class="final-close"><span class="material-icons-round">close</span></button>
+    </div>
+    <div class="final-approval-body">
+      <div class="final-result-label"><strong>ผลการอนุมัติเคลม</strong><span class="final-ready"><span class="material-icons-round" style="font-size:16px!important">check_circle</span>พร้อมยืนยัน</span></div>
+      <div class="final-result-grid">
+        <section class="final-result-card">
+          <div class="final-result-card__head"><strong>ค่ารักษาพยาบาล</strong><span class="final-status green">อนุมัติ</span></div>
+          <div class="final-kv">
+            <div class="final-kv-row"><span>ยอดตามใบเสร็จ</span><b id="faReceipt">0.00 บาท</b></div>
+            <div class="final-kv-row"><span>ยอดอนุมัติตามสิทธิ์</span><b id="faApproved">0.00 บาท</b></div>
+            <div class="final-kv-row"><span>ส่วนเกินสิทธิ์</span><b id="faExcess">0.00 บาท</b></div>
+            <div class="final-kv-row emphasis"><span>ยอดบริษัทตั้งเบิก</span><b id="faHospitalPay">0.00 บาท</b></div>
+          </div>
+        </section>
+        <section class="final-result-card">
+          <div class="final-result-card__head"><strong>ค่าชดเชยที่โอนให้ลูกค้า</strong><span class="final-status blue">โอนให้ลูกค้า</span></div>
+          <div class="final-kv">
+            <div class="final-kv-row"><span>จำนวนวันนอน</span><b id="faDays">0 วัน</b></div>
+            <div class="final-kv-row"><span>ค่าชดเชยต่อวัน</span><b id="faDaily">0.00 บาท</b></div>
+            <div class="final-kv-row"><span>ค่าชดเชยรวม</span><b id="faCompTotal">0.00 บาท</b></div>
+            <div class="final-kv-row emphasis"><span>ยอดโอนให้ลูกค้า</span><b id="faCustomerPay">0.00 บาท</b></div>
+          </div>
+        </section>
+      </div>
+      <section class="final-account">
+        <div class="final-account-head"><span class="material-icons-round">account_balance</span>รายละเอียดบัญชีรับเงินค่าชดเชย</div>
+        <div class="final-account-grid">
+          <div class="final-account-item"><small>ธนาคาร</small><b id="faBank">-</b></div>
+          <div class="final-account-item"><small>ชื่อบัญชี</small><b id="faAccountName">-</b></div>
+          <div class="final-account-item"><small>เลขที่บัญชี</small><b id="faAccountNo">-</b></div>
+          <div class="final-account-item"><small>เบอร์โทร</small><b id="faPhone">-</b></div>
+        </div>
+      </section>
+      <div class="final-approval-note"><span class="material-icons-round" style="font-size:18px!important">info</span><span>กรุณาตรวจสอบยอดอนุมัติและข้อมูลบัญชีให้ถูกต้องก่อนยืนยัน ระบบจะสร้างรายการโอนค่าชดเชยแยกจากค่ารักษาพยาบาล</span></div>
+    </div>
+    <div class="final-approval-actions"><button type="button" id="finalApprovalBack" class="final-btn secondary">กลับไปตรวจสอบ</button><button type="button" id="finalApprovalConfirm" class="final-btn primary"><span style="display:inline-flex;align-items:center;gap:6px"><span class="material-icons-round" style="font-size:18px!important">check_circle</span>ยืนยันการทำรายการ</span></button></div>
+  </div>
+</div>
+<div id="finalApprovalToast" class="final-toast"><span class="material-icons-round">check_circle</span><span>อนุมัติสำเร็จ</span></div>
+<script id="final-ipd-stay-approval-modal-script-v1">
+(function(){
+  'use strict';
+  if(window.__finalIpdApprovalPatch) return; window.__finalIpdApprovalPatch=true;
+  const $=s=>document.querySelector(s);
+  const num=v=>{const n=Number(String(v??'').replace(/,/g,'').replace(/[^0-9.-]/g,''));return Number.isFinite(n)?n:0};
+  const money=v=>num(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท';
+  function visiblePane(){
+    for(const id of ['hfStepPane3','hhStepPane3']){const p=document.getElementById(id);if(p&&!p.classList.contains('hidden')&&p.offsetParent!==null)return p}return null;
+  }
+  function treatment(p){
+    const txt=(p?.textContent||'').replace(/\s+/g,' ');
+    if(/Day\s*Case|DayCase/i.test(txt)) return 'Day Case Surgery';
+    if(/\bIPD\b/i.test(txt)) return 'IPD';
+    return '';
+  }
+  function mockStay(p){const t=treatment(p);return t==='IPD'?{ipd:3,icu:0,total:3}:t==='Day Case Surgery'?{ipd:1,icu:0,total:1}:null}
+  function ensureStay(){
+    const p=visiblePane(); if(!p) return; const stay=mockStay(p); if(!stay)return;
+    let box=p.querySelector('[data-final-stay-summary="1"]');
+    if(!box){
+      box=document.createElement('section');box.className='final-stay-summary';box.dataset.finalStaySummary='1';
+      const detail=Array.from(p.querySelectorAll('div')).find(x=>(x.textContent||'').trim()==='รายละเอียดเคลม')?.closest('.rounded-xl.border');
+      if(detail) detail.insertAdjacentElement('afterend',box); else p.prepend(box);
+    }
+    box.innerHTML=`<div class="final-stay-summary__head"><span class="material-icons-round">bed</span>สรุปจำนวนวันนอน</div><div class="final-stay-summary__grid"><div class="final-stay-card"><small>IPD</small><b>${stay.ipd}</b><span>วัน IPD</span></div><div class="final-stay-card"><small>ICU</small><b>${stay.icu}</b><span>วัน ICU</span></div><div class="final-stay-card"><small>รวม</small><b>${stay.total}</b><span>จำนวนวันนอนรวม</span></div></div>`;
+    // Keep the existing compensation summary consistent with the IPD mockup.
+    const rate=500,total=stay.total*rate;
+    const compTitle=Array.from(p.querySelectorAll('div')).find(x=>(x.textContent||'').trim()==='สรุปค่าชดเชย');
+    const card=compTitle?.closest('.rounded-xl.border')||compTitle?.parentElement;
+    if(card){
+      Array.from(card.querySelectorAll('.flex.justify-between')).forEach(r=>{const label=(r.querySelector('span')?.textContent||'').trim();const val=r.querySelector('strong,b');if(!val)return;if(label==='ค่าชดเชยรวม'||label==='ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)')val.textContent=total.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})});
+    }
+  }
+  function combineChecked(p){const c=p?.querySelector('#hcCombine')||p?.querySelector('input[type="checkbox"]');return !!c?.checked}
+  function account(){return {bank:$('#hcBank')?.value?.trim()||'กรุงไทย',name:$('#hcAccountName')?.value?.trim()||'ประดิษฐ์ ทาเภา',no:$('#hcAccountNo')?.value?.trim()||'017062701369',phone:$('#hcPhone')?.value?.trim()||'0979240465'}}
+  function treatmentAmounts(p){
+    let receipt=0,approved=0,excess=0;
+    const tables=Array.from(p.querySelectorAll('table'));
+    const table=tables.find(t=>(t.textContent||'').includes('รายการเบิก')&&(t.textContent||'').includes('สิทธิเบิก'));
+    if(table){const rows=Array.from(table.querySelectorAll('tbody tr'));const totalRow=rows.find(r=>(r.textContent||'').includes('รวม'));if(totalRow){const td=totalRow.querySelectorAll('td');receipt=num(td[1]?.textContent);approved=num(td[2]?.textContent);excess=num(td[3]?.textContent)}}
+    return {receipt,approved,excess,hospitalPay:approved};
+  }
+  function openModal(p){
+    ensureStay(); const stay=mockStay(p)||{total:0}; const rate=500,comp=stay.total*rate,a=account(),m=treatmentAmounts(p);
+    $('#faReceipt').textContent=money(m.receipt);$('#faApproved').textContent=money(m.approved);$('#faExcess').textContent=money(m.excess);$('#faHospitalPay').textContent=money(m.hospitalPay);
+    $('#faDays').textContent=stay.total+' วัน';$('#faDaily').textContent=money(rate);$('#faCompTotal').textContent=money(comp);$('#faCustomerPay').textContent=money(comp);
+    $('#faBank').textContent=a.bank||'-';$('#faAccountName').textContent=a.name||'-';$('#faAccountNo').textContent=a.no||'-';$('#faPhone').textContent=a.phone||'-';
+    const modal=$('#finalApprovalModal');modal.classList.add('show');modal.setAttribute('aria-hidden','false');
+  }
+  function closeModal(){const m=$('#finalApprovalModal');m.classList.remove('show');m.setAttribute('aria-hidden','true')}
+  function toast(){const t=$('#finalApprovalToast');t.classList.add('show');clearTimeout(window.__finalToastTimer);window.__finalToastTimer=setTimeout(()=>t.classList.remove('show'),2600)}
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest('button');if(!btn)return;const p=visiblePane();if(!p||!p.contains(btn))return;
+    const label=(btn.textContent||'').replace(/\s+/g,' ').trim();if(label!=='อนุมัติ'&&label!=='อนุมัติรายการ')return;
+    if(!mockStay(p)||combineChecked(p))return;
+    const a=account();if(!a.bank||!a.name||!a.no||!a.phone){e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();alert('กรุณาตรวจสอบข้อมูลบัญชีรับเงินค่าชดเชยให้ครบถ้วนก่อนอนุมัติ');return}
+    e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();openModal(p);
+  },true);
+  document.addEventListener('click',function(e){if(e.target.closest('#finalApprovalClose')||e.target.closest('#finalApprovalBack'))closeModal();if(e.target.closest('#finalApprovalConfirm')){closeModal();toast()}if(e.target.id==='finalApprovalModal')closeModal()});
+  function hydrate(){ensureStay()}
+  ['setHospitalFullStep','setHospitalHalfStep','openConsiderHospitalRow'].forEach(name=>{const prev=window[name];if(typeof prev!=='function'||prev.__finalStayWrapped)return;const w=function(){const r=prev.apply(this,arguments);setTimeout(hydrate,0);setTimeout(hydrate,80);return r};w.__finalStayWrapped=true;window[name]=w;try{eval(name+'=w')}catch(_){}});
+  const mo=new MutationObserver(()=>{const p=visiblePane();if(p)setTimeout(hydrate,0)});mo.observe(document.body,{childList:true,subtree:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(hydrate,100),{once:true});else setTimeout(hydrate,100);
+})();
+</script>
+
+
+<!-- stable compensation / approval modal patch -->
+<style id="stable-compensation-ui-patch">
+  .scm-comp-card{border:1px solid #d9e4ef !important;border-radius:16px !important;background:#fff !important;overflow:hidden !important;box-shadow:none !important}
+  .scm-comp-title{padding:16px 18px 10px !important;color:#0b67b2 !important;font-size:20px !important;font-weight:800 !important}
+  .scm-comp-body{padding:8px 18px 18px !important}
+  .scm-comp-rows{display:grid !important;gap:12px !important;margin-top:6px !important}
+  .scm-comp-row{display:flex !important;align-items:center !important;justify-content:space-between !important;gap:16px !important;font-size:16px !important;color:#334155 !important}
+  .scm-comp-row strong{font-size:16px !important;font-weight:800 !important;color:#334155 !important}
+  .scm-comp-choice{display:flex !important;align-items:flex-start !important;gap:12px !important;margin:14px 0 12px !important;padding:0 !important}
+  .scm-comp-choice input{width:22px !important;height:22px !important;margin-top:2px !important;flex:none}
+  .scm-comp-choice-main{display:block !important;color:#334155 !important;font-size:16px !important;font-weight:800 !important;line-height:1.45 !important}
+  .scm-comp-choice-sub{display:block !important;margin-top:2px !important;color:#94a3b8 !important;font-size:13px !important;font-weight:500 !important;line-height:1.5 !important}
+  .scm-transfer-left{margin-top:12px !important;border:1px solid #bce7c9 !important;background:#f2fbf5 !important;border-radius:14px !important;padding:14px 16px !important;font-size:17px !important;font-weight:800 !important;color:#15803d !important}
+  .scm-account-card{margin-top:16px !important;border:1px solid #d9e4ef !important;border-radius:16px !important;background:#fbfdff !important;overflow:hidden !important}
+  .scm-account-card.hidden{display:none !important}
+  .scm-account-head{display:flex !important;align-items:flex-start !important;justify-content:space-between !important;gap:12px !important;padding:16px 18px 12px !important;border-bottom:1px solid #e8eef5 !important}
+  .scm-account-head strong{display:block !important;color:#0b67b2 !important;font-size:19px !important;font-weight:800 !important;line-height:1.3 !important}
+  .scm-account-head p{margin:4px 0 0 !important;color:#94a3b8 !important;font-size:13px !important;line-height:1.5 !important}
+  .scm-account-source{display:inline-flex !important;align-items:center !important;padding:4px 10px !important;border-radius:999px !important;background:#edf6ff !important;color:#0b67b2 !important;font-size:12px !important;font-weight:700 !important;margin-top:6px !important}
+  .scm-edit-btn{height:42px !important;padding:0 16px !important;border:1px solid #c7d5e4 !important;border-radius:12px !important;background:#fff !important;color:#334155 !important;font-size:14px !important;font-weight:700 !important;cursor:pointer !important}
+  .scm-account-grid{display:grid !important;grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px 16px !important;padding:16px 18px 18px !important}
+  .scm-field label{display:block !important;margin-bottom:6px !important;color:#64748b !important;font-size:13px !important;font-weight:700 !important}
+  .scm-field input,.scm-field select{width:100% !important;height:48px !important;border:1px solid #cbd5e1 !important;border-radius:12px !important;background:#fff !important;padding:0 14px !important;color:#334155 !important;font-size:16px !important;font-weight:500 !important;outline:none !important}
+  .scm-field input[readonly],.scm-field select:disabled{background:#f8fafc !important;color:#475569 !important}
+  .scm-error{display:none !important;align-items:flex-start !important;gap:8px !important;margin:0 18px 18px !important;padding:10px 12px !important;border-radius:12px !important;background:#fff4f4 !important;border:1px solid #fecaca !important;color:#b91c1c !important;font-size:13px !important;font-weight:600 !important}
+  .scm-error.show{display:flex !important}
+  #scmApprovalModal{position:fixed;inset:0;z-index:2147483600;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.56);backdrop-filter:blur(3px)}
+  #scmApprovalModal.show{display:flex !important}
+  .scm-modal-card{width:min(980px,96vw);max-height:92vh;overflow:auto;border-radius:24px;background:#fff;box-shadow:0 28px 80px rgba(15,23,42,.26)}
+  .scm-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:22px 24px 18px;border-bottom:1px solid #e2e8f0;background:linear-gradient(180deg,#f8fbff,#fff)}
+  .scm-modal-title{display:flex;align-items:center;gap:14px}
+  .scm-modal-icon{width:46px;height:46px;border-radius:14px;background:#e0f2fe;color:#0369a1;display:grid;place-items:center;flex:none}
+  .scm-modal-title h3{margin:0;color:#1e293b;font-size:20px;font-weight:800;line-height:1.25}
+  .scm-modal-title p{margin:4px 0 0;color:#64748b;font-size:13px;font-weight:600}
+  .scm-modal-close{width:38px;height:38px;border:1px solid #dbe3ec;border-radius:12px;background:#fff;color:#64748b;display:grid;place-items:center;cursor:pointer}
+  .scm-modal-body{padding:20px 24px 22px}
+  .scm-modal-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:12px 14px;border:1px solid #dbe7f3;border-radius:14px;background:#f8fcff}
+  .scm-modal-strip strong{display:flex;align-items:center;gap:8px;color:#075f99;font-size:15px;font-weight:800}
+  .scm-modal-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:12px;font-weight:800}
+  .scm-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .scm-modal-section{border:1px solid #dbe5ef;border-radius:16px;background:#fff;overflow:hidden}
+  .scm-modal-section.head-blue{background:#f8fbff}
+  .scm-modal-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid #e8eef5;background:#f8fafc}
+  .scm-modal-section-title{display:flex;align-items:center;gap:8px;color:#334155;font-size:15px;font-weight:800}
+  .scm-status{padding:5px 10px;border-radius:999px;font-size:12px;font-weight:800}
+  .scm-status.approve{background:#dcfce7;color:#15803d}.scm-status.transfer{background:#e0f2fe;color:#0369a1}
+  .scm-kv{padding:8px 16px 14px}
+  .scm-kv-row{display:flex;justify-content:space-between;gap:18px;padding:10px 0;border-bottom:1px dashed #e2e8f0;color:#64748b;font-size:14px}
+  .scm-kv-row:last-child{border-bottom:0}.scm-kv-row strong{color:#334155;font-size:15px;font-weight:800;text-align:right}
+  .scm-kv-row.total{margin-top:4px;padding:12px 12px;border:0;border-radius:12px;background:#f0f9ff;color:#075f99}.scm-kv-row.total strong{color:#0678bd;font-size:20px}
+  .scm-modal-account{margin-top:15px;border:1px solid #dbe5ef;border-radius:16px;background:#fff;overflow:hidden}
+  .scm-modal-account-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid #e8eef5;background:#fbfdff}
+  .scm-modal-account-title{display:flex;align-items:center;gap:8px;color:#334155;font-size:15px;font-weight:800}
+  .scm-modal-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:4px 16px 12px}
+  .scm-modal-account-item{padding:10px 8px;border-bottom:1px solid #edf2f7}
+  .scm-modal-account-item:nth-last-child(-n+2){border-bottom:0}
+  .scm-modal-account-item small{display:block;color:#94a3b8;font-size:11px;font-weight:700;margin-bottom:3px}
+  .scm-modal-account-item b{display:block;color:#334155;font-size:15px;font-weight:800;word-break:break-word}
+  .scm-modal-note{display:flex;align-items:flex-start;gap:8px;margin-top:15px;padding:12px 14px;border:1px solid #fde7b2;border-radius:14px;background:#fffaf0;color:#7c5a05;font-size:13px;font-weight:600;line-height:1.45}
+  .scm-modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:18px 24px 22px;border-top:1px solid #e8eef5;background:#fbfcfe}
+  .scm-btn{height:44px;border-radius:12px;padding:0 18px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:800;cursor:pointer}
+  .scm-btn.secondary{border:1px solid #cbd5e1;background:#fff;color:#475569}.scm-btn.primary{min-width:190px;border:1px solid #16a34a;background:#16a34a;color:#fff}
+  #scmApprovalToast{position:fixed;right:20px;top:20px;z-index:2147483700;display:none;align-items:center;gap:10px;min-width:280px;padding:14px 16px;border-radius:14px;background:#166534;color:#fff;box-shadow:0 16px 40px rgba(22,101,52,.35);font-size:14px;font-weight:800}
+  #scmApprovalToast.show{display:flex}
+  @media(max-width:760px){
+    .scm-account-grid,.scm-modal-grid,.scm-modal-account-grid{grid-template-columns:1fr !important}
+    .scm-account-head,.scm-modal-head,.scm-modal-body,.scm-modal-actions{padding-left:16px !important;padding-right:16px !important}
+    .scm-modal-actions{flex-direction:column-reverse !important}
+    .scm-btn{width:100% !important}
+  }
+</style>
+<div id="scmApprovalModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="scm-modal-card">
+    <div class="scm-modal-head">
+      <div class="scm-modal-title"><span class="scm-modal-icon"><span class="material-icons-round">fact_check</span></span><div><h3>ยืนยันการทำรายการ</h3><p>ผลการอนุมัติเคลม</p></div></div>
+      <button type="button" class="scm-modal-close" id="scmModalClose"><span class="material-icons-round">close</span></button>
+    </div>
+    <div class="scm-modal-body">
+      <div class="scm-modal-strip"><strong><span class="material-icons-round">verified</span>ผลการอนุมัติเคลม</strong><span class="scm-modal-pill"><span class="material-icons-round">check_circle</span>พร้อมยืนยัน</span></div>
+      <div class="scm-modal-grid">
+        <section class="scm-modal-section">
+          <div class="scm-modal-section-head"><div class="scm-modal-section-title"><span class="material-icons-round">medical_services</span>ค่ารักษาพยาบาล</div><span class="scm-status approve">อนุมัติ</span></div>
+          <div class="scm-kv">
+            <div class="scm-kv-row"><span>ยอดตามใบเสร็จ</span><strong id="scmReceipt">0.00 บาท</strong></div>
+            <div class="scm-kv-row"><span>ยอดอนุมัติตามสิทธิ์</span><strong id="scmApproved">0.00 บาท</strong></div>
+            <div class="scm-kv-row"><span>ส่วนเกินสิทธิ์</span><strong id="scmExcess">0.00 บาท</strong></div>
+            <div class="scm-kv-row total"><span>ยอดบริษัทตั้งเบิก</span><strong id="scmCompanyClaim">0.00 บาท</strong></div>
+          </div>
+        </section>
+        <section class="scm-modal-section">
+          <div class="scm-modal-section-head"><div class="scm-modal-section-title"><span class="material-icons-round">payments</span>ค่าชดเชยที่โอนให้ลูกค้า</div><span class="scm-status transfer">โอนให้ลูกค้า</span></div>
+          <div class="scm-kv">
+            <div class="scm-kv-row"><span>จำนวนวันนอน</span><strong id="scmDays">0 วัน</strong></div>
+            <div class="scm-kv-row"><span>ค่าชดเชยต่อวัน</span><strong id="scmDailyRate">0.00 บาท</strong></div>
+            <div class="scm-kv-row"><span>ค่าชดเชยรวม</span><strong id="scmCompTotal">0.00 บาท</strong></div>
+            <div class="scm-kv-row total"><span>ยอดโอนให้ลูกค้า</span><strong id="scmTransfer">0.00 บาท</strong></div>
+          </div>
+        </section>
+      </div>
+      <section class="scm-modal-account">
+        <div class="scm-modal-account-head"><div class="scm-modal-account-title"><span class="material-icons-round">account_balance</span>รายละเอียดบัญชีรับเงินค่าชดเชย</div><span class="scm-modal-pill" style="background:#eef6ff;color:#075f99">ข้อมูลผู้ชำระเบี้ย</span></div>
+        <div class="scm-modal-account-grid">
+          <div class="scm-modal-account-item"><small>ธนาคาร</small><b id="scmBank">-</b></div>
+          <div class="scm-modal-account-item"><small>ชื่อบัญชี</small><b id="scmAccountName">-</b></div>
+          <div class="scm-modal-account-item"><small>เลขที่บัญชี</small><b id="scmAccountNo">-</b></div>
+          <div class="scm-modal-account-item"><small>เบอร์โทร</small><b id="scmPhone">-</b></div>
+        </div>
+      </section>
+      <div class="scm-modal-note"><span class="material-icons-round">info</span><span>กรุณาตรวจสอบผลการอนุมัติ ค่าชดเชย และข้อมูลบัญชีให้ถูกต้องก่อนยืนยันการทำรายการ</span></div>
+    </div>
+    <div class="scm-modal-actions">
+      <button type="button" class="scm-btn secondary" id="scmModalBack">กลับไปตรวจสอบ</button>
+      <button type="button" class="scm-btn primary" id="scmModalConfirm"><span class="material-icons-round">check</span>ยืนยันการทำรายการ</button>
+    </div>
+  </div>
+</div>
+<div id="scmApprovalToast"><span class="material-icons-round">check_circle</span><span>อนุมัติสำเร็จ</span></div>
+<script id="stable-compensation-logic-patch">
+(function(){
+  const stateMap = new Map();
+  let modalTargetButton = null;
+  let bypassNextApprove = false;
+  let toastTimer = null;
+
+  function pick(){ for(let i=0;i<arguments.length;i++){ const v=arguments[i]; if(v!==undefined && v!==null && String(v).trim()!=='') return v; } return ''; }
+  function num(v){ if(typeof v==='number') return Number.isFinite(v)?v:0; const s=String(v==null?'':v).replace(/,/g,'').replace(/บาท/g,'').trim(); const m=s.match(/-?\d+(?:\.\d+)?/); return m?Number(m[0]):0; }
+  function money(v){ return Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท'; }
+  function clean(t){ return String(t||'').replace(/\s+/g,' ').trim(); }
+  function currentRow(){ return window.currentConsiderHospitalRow || {}; }
+  function claimKey(){ const r=currentRow(); return pick(r.claimCode,r.claimNo,r.claimId,r.id,r.code,'__current__'); }
+  function getState(){ const key=claimKey(); if(!stateMap.has(key)){ const d=payerDefaults(); stateMap.set(key,{combine:false,editing:false,bank:d.bank,name:d.name,no:d.no,phone:d.phone}); } return stateMap.get(key); }
+  function payerDefaults(){ const r=currentRow(); const p=r.premiumPayer || r.payer || r.premiumPayerInfo || {}; return { bank:pick(p.bankName,p.bank,r.payerBankName,r.payerBank,r.premiumPayerBankName,r.premiumPayerBank,'กรุงไทย'), name:pick(p.accountName,p.name,r.payerAccountName,r.payerName,r.premiumPayerAccountName,r.premiumPayerName,'ประดิษฐ์ ทาเภา'), no:pick(p.accountNo,p.bankAccountNo,r.payerAccountNo,r.payerBankAccountNo,r.premiumPayerAccountNo,r.premiumPayerBankAccountNo,'017062701369'), phone:pick(p.phone,p.mobile,r.payerPhone,r.payerMobile,r.premiumPayerPhone,r.premiumPayerMobile,'0979240465')}; }
+  function visiblePage(){ const h=document.getElementById('considerHospitalOpdHalfPage'); if(h && !h.classList.contains('hidden')) return h; const f=document.getElementById('considerHospitalOpdFullPage'); if(f && !f.classList.contains('hidden')) return f; return null; }
+  function visiblePane(){ const p=visiblePage(); if(!p) return null; return p.querySelector('#hhStepPane3,#hfStepPane3'); }
+  function selectedTreatment(){ const r=currentRow(), s=window.hospitalClaimSelectionState || {}; return String(pick(s.treatment,r.treatmentType,r.claimType,r.treatment,r.subType,r.claimSubtype,'')).trim(); }
+  function isTarget(){ return /IPD/i.test(selectedTreatment()) || /Day\s*Case|DayCase/i.test(selectedTreatment()); }
+  function stayDays(){ const r=currentRow(); const pane=visiblePane(); let total=0, ipd=0, icu=0; const ids=['hhTotalStayDays','hfTotalStayDays','hhIpdDays','hfIpdDays','hhIcuDays','hfIcuDays']; ids.forEach(id=>{ const el=document.getElementById(id); if(el && !el.closest('.hidden')){ if(/TotalStayDays/.test(id)) total=num(el.value||el.textContent); if(/IpdDays/.test(id)) ipd=num(el.value||el.textContent); if(/IcuDays/.test(id)) icu=num(el.value||el.textContent); } }); total=total||num(r.totalStayDays||r.totalDays); ipd=ipd||num(r.ipdDays||r.ipdDay); icu=icu||num(r.icuDays||r.icuDay); if(!total) total=ipd; if(/Day\s*Case|DayCase/i.test(selectedTreatment()) && total<=0) total=1; if(/IPD/i.test(selectedTreatment()) && total<=0) total=3; return {total:Math.max(0,total), ipd:Math.max(0,ipd||(/IPD/i.test(selectedTreatment())?total:0)), icu:Math.max(0,icu)}; }
+  function dailyRate(){ const r=currentRow(); return num(pick(r.compensationDailyRate,r.compDailyRate,r.dailyCompensation,r.compensationRate,500)); }
+  function compensationAmounts(){ const stay=stayDays(); const total=stay.total*dailyRate(); const limit=num(pick(currentRow().compensationBenefitLimit,currentRow().compBenefitLimit,currentRow().compensationRemainingBenefit,total)); return { total: total, covered: Math.min(total, limit || total) }; }
+  function shouldShowCompensation(){ return isTarget() && stayDays().total>0; }
+  function findCompCard(){ const pane=visiblePane(); if(!pane) return null; const all=Array.from(pane.querySelectorAll('div,h3,h4')); const title=all.find(el=>clean(el.textContent)==='สรุปค่าชดเชย'); if(!title) return null; return title.closest('.rounded-xl.border') || title.parentElement; }
+  function syncStateFromDom(root){ if(!root) return; const s=getState(); const q=id=>root.querySelector('#'+id); if(q('scmBankInput')) s.bank=q('scmBankInput').value.trim(); if(q('scmNameInput')) s.name=q('scmNameInput').value.trim(); if(q('scmNoInput')) s.no=q('scmNoInput').value.trim(); if(q('scmPhoneInput')) s.phone=q('scmPhoneInput').value.trim(); }
+  function renderAccountSection(s){ return `<section class="scm-account-card ${s.combine?'hidden':''}" id="scmAccountCard"><div class="scm-account-head"><div><strong>บัญชีรับเงินค่าชดเชย</strong><p>ระบบแสดงข้อมูล Default จากข้อมูลผู้ชำระเบี้ย/ข้อมูลบัญชีที่มีอยู่ ผู้ใช้สามารถแก้ไขสำหรับรายการโอนครั้งนี้ได้</p><span class="scm-account-source">แหล่งข้อมูล: ผู้ชำระเบี้ยในระบบ</span></div><button type="button" class="scm-edit-btn" id="scmEditBtn">${s.editing?'บันทึกบัญชี':'แก้ไขบัญชี'}</button></div><div class="scm-account-grid"><div class="scm-field"><label>เบอร์โทร *</label><input id="scmPhoneInput" ${s.editing?'':'readonly'} value="${s.phone||''}"></div><div class="scm-field"><label>ธนาคาร *</label><select id="scmBankInput" ${s.editing?'':'disabled'}><option value="กรุงไทย">กรุงไทย</option><option value="กสิกรไทย">กสิกรไทย</option><option value="ไทยพาณิชย์">ไทยพาณิชย์</option><option value="กรุงเทพ">กรุงเทพ</option><option value="ออมสิน">ออมสิน</option><option value="ทหารไทยธนชาต">ทหารไทยธนชาต</option></select></div><div class="scm-field"><label>ชื่อบัญชี *</label><input id="scmNameInput" ${s.editing?'':'readonly'} value="${s.name||''}"></div><div class="scm-field"><label>เลขที่บัญชี *</label><input id="scmNoInput" ${s.editing?'':'readonly'} value="${s.no||''}"></div></div><div class="scm-error" id="scmAccountError"><span class="material-icons-round">error_outline</span><span>กรุณากรอกข้อมูลบัญชีรับเงินค่าชดเชยให้ครบถ้วนก่อนอนุมัติ</span></div></section>`; }
+  function renderCompensation(){ if(!shouldShowCompensation()) return; const card=findCompCard(); if(!card) return; const s=getState(); const stay=stayDays(); const amounts=compensationAmounts(); const remain=s.combine?0:amounts.covered; card.classList.add('scm-comp-card'); card.innerHTML = `<div class="scm-comp-title">สรุปค่าชดเชย</div><div class="scm-comp-body"><div class="scm-comp-rows"><div class="scm-comp-row"><span>จำนวนวันนอนที่นำมาคำนวณ</span><strong>${stay.total} วัน</strong></div><div class="scm-comp-row"><span>ค่าชดเชยต่อวัน</span><strong>${money(dailyRate())}</strong></div><div class="scm-comp-row"><span>ค่าชดเชยรวม</span><strong>${money(amounts.total)}</strong></div><div class="scm-comp-row"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${money(amounts.covered)}</strong></div></div><label class="scm-comp-choice"><input type="checkbox" id="scmCombineCheckbox" ${s.combine?'checked':''}><span><span class="scm-comp-choice-main">โอนค่าชดเชยรวมกับค่ารักษา</span><span class="scm-comp-choice-sub">เมื่อเลือก ระบบจะใช้บัญชี/ช่องทางการโอนเดียวกับค่ารักษา และไม่แสดงบัญชีรับค่าชดเชยแยก</span></span></label><div class="scm-transfer-left">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) ${money(remain)}</div>${renderAccountSection(s)}</div>`;
+      const bankSel=card.querySelector('#scmBankInput'); if(bankSel){ if(!Array.from(bankSel.options).some(o=>o.value===s.bank) && s.bank){ const opt=document.createElement('option'); opt.value=s.bank; opt.textContent=s.bank; bankSel.appendChild(opt);} bankSel.value=s.bank||'กรุงไทย'; }
+      card.querySelector('#scmCombineCheckbox')?.addEventListener('change', function(){ const st=getState(); st.combine=this.checked; renderCompensation(); });
+      card.querySelector('#scmEditBtn')?.addEventListener('click', function(){ const st=getState(); if(st.editing) syncStateFromDom(card); st.editing=!st.editing; renderCompensation(); });
+      ['scmBankInput','scmNameInput','scmNoInput','scmPhoneInput'].forEach(id=>card.querySelector('#'+id)?.addEventListener('input', ()=>syncStateFromDom(card)));
+  }
+  function validateAccount(){ const card=findCompCard(); if(!card) return true; const s=getState(); syncStateFromDom(card); const ok=!!(s.bank && s.name && s.no && s.phone && compensationAmounts().covered>0); const err=card.querySelector('#scmAccountError'); if(err) err.classList.toggle('show', !ok && !s.combine); if(!ok && !s.combine){ s.editing=true; renderCompensation(); setTimeout(()=>{ const c=findCompCard(); c?.querySelector('#scmAccountError')?.classList.add('show'); c?.querySelector('#scmPhoneInput')?.focus(); },0); return false; } return true; }
+  function setText(id, value){ const el=document.getElementById(id); if(el) el.textContent=value; }
+  function scanAmount(labels){ const pane=visiblePane(); if(!pane) return 0; const nodes=Array.from(pane.querySelectorAll('div,span,p,strong,b,td')); for(const n of nodes){ const t=clean(n.textContent); if(!t) continue; if(labels.some(l=>t===l || t.startsWith(l+' :') || t.startsWith(l+':'))){ const parent=n.parentElement; if(parent){ const sibs=Array.from(parent.querySelectorAll('strong,b,input,span,div,td')).filter(x=>x!==n).reverse(); for(const s of sibs){ const raw=s.value!=null?s.value:s.textContent; if(/\d/.test(String(raw||''))) return num(raw); } } } } return 0; }
+  function openModal(){ const s=getState(); const stay=stayDays(); const amounts=compensationAmounts(); const row=currentRow(); const receipt=scanAmount(['ยอดตามใบเสร็จ','ยอดเงินตามใบเสร็จรวม']) || num(pick(row.receiptAmount,row.amount,row.claimAmount,8500)); const approved=scanAmount(['ยอดอนุมัติตามสิทธิ์','ยอดอนุมัติ','ยอดพิจารณาตามสิทธิ์']) || Math.max(0, receipt - (scanAmount(['ส่วนเกินสิทธิ์','ยอดส่วนเกินสิทธิ์','ยอดไม่คุ้มครอง']) || 500)); const excess=scanAmount(['ส่วนเกินสิทธิ์','ยอดส่วนเกินสิทธิ์','ยอดไม่คุ้มครอง']) || Math.max(0, receipt-approved); const company=scanAmount(['ยอดบริษัทตั้งเบิก','ยอดตั้งเบิกบริษัทประกัน','ยอดที่บริษัทตั้งเบิก']) || approved;
+    setText('scmReceipt', money(receipt)); setText('scmApproved', money(approved)); setText('scmExcess', money(excess)); setText('scmCompanyClaim', money(company));
+    setText('scmDays', stay.total + ' วัน'); setText('scmDailyRate', money(dailyRate())); setText('scmCompTotal', money(amounts.total)); setText('scmTransfer', money(amounts.covered));
+    setText('scmBank', s.bank || '-'); setText('scmAccountName', s.name || '-'); setText('scmAccountNo', s.no || '-'); setText('scmPhone', s.phone || '-');
+    const modal=document.getElementById('scmApprovalModal'); if(modal){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  }
+  function closeModal(){ const modal=document.getElementById('scmApprovalModal'); if(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; } }
+  function showToast(){ const toast=document.getElementById('scmApprovalToast'); if(!toast) return; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.classList.remove('show'), 2200); }
+  function shouldIntercept(btn){ if(bypassNextApprove) return false; if(!btn) return false; const label=clean(btn.textContent); if(label!=='อนุมัติ' && label!=='อนุมัติรายการ') return false; const pane=visiblePane(); if(!pane || !pane.contains(btn)) return false; if(!shouldShowCompensation()) return false; const s=getState(); return !s.combine; }
+  document.addEventListener('click', function(e){ const btn=e.target && e.target.closest ? e.target.closest('button') : null; if(!shouldIntercept(btn)) return; e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); renderCompensation(); if(!validateAccount()) return; modalTargetButton=btn; openModal(); }, true);
+  document.getElementById('scmModalClose')?.addEventListener('click', closeModal);
+  document.getElementById('scmModalBack')?.addEventListener('click', closeModal);
+  document.getElementById('scmApprovalModal')?.addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+  document.getElementById('scmModalConfirm')?.addEventListener('click', function(){ const btn=modalTargetButton; closeModal(); showToast(); if(btn){ bypassNextApprove=true; setTimeout(()=>{ try{ btn.click(); }catch(_e){} }, 80); setTimeout(()=>{ bypassNextApprove=false; }, 800); } });
+  function hydrate(){ if(!shouldShowCompensation()) return; renderCompensation(); }
+  ['setHospitalHalfStep','setHospitalFullStep','openConsiderHospitalRow'].forEach(function(name){ const prev=window[name]; if(typeof prev!=='function' || prev.__stableCompWrapped) return; const wrapped=function(){ const r=prev.apply(this, arguments); setTimeout(hydrate, 0); setTimeout(hydrate, 60); return r; }; wrapped.__stableCompWrapped=true; window[name]=wrapped; try{ eval(name+'=wrapped'); }catch(_e){} });
+  document.addEventListener('change', function(e){ const id=e.target && e.target.id || ''; if(/^(hh|hf)(IpdDays|IcuDays|TotalStayDays)$/.test(id)) setTimeout(hydrate,0); });
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(hydrate, 100); }, {once:true}); else setTimeout(hydrate, 100);
+})();
+</script>
+
+
+
+<!-- FINAL FIX: wire the modal into the existing authoritative hospital approval handler (v249) -->
+<script id="scm-authoritative-hook-fix">
+(function(){
+  let pendingComplete = null;
+  let pendingButton = null;
+
+  function clean(v){ return String(v||'').replace(/\s+/g,' ').trim(); }
+  function currentPage(btn){ return btn?.closest?.('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage') || null; }
+  function currentPane(page){ return page?.querySelector('#hhStepPane3,#hfStepPane3') || null; }
+  function currentRow(){ return window.currentConsiderHospitalRow || {}; }
+  function num(v){ if(typeof v==='number') return Number.isFinite(v)?v:0; const m=String(v==null?'':v).replace(/,/g,'').match(/-?\d+(?:\.\d+)?/); return m?Number(m[0]):0; }
+  function money(v){ return Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' บาท'; }
+  function treatment(){ const r=currentRow(), st=window.hospitalClaimSelectionState||{}; return String(st.treatment||r.treatmentType||r.claimType||r.treatment||r.subType||r.claimSubtype||''); }
+  function isTarget(){ return /IPD/i.test(treatment()) || /Day\s*Case|DayCase/i.test(treatment()); }
+  function stayDays(){ const r=currentRow(); let total=0; ['hhTotalStayDays','hfTotalStayDays'].forEach(id=>{ const e=document.getElementById(id); if(e && !e.closest('.hidden')) total=num(e.value||e.textContent)||total; }); total=total||num(r.totalStayDays||r.totalDays); if(!total){ ['hhIpdDays','hfIpdDays'].forEach(id=>{ const e=document.getElementById(id); if(e && !e.closest('.hidden')) total=num(e.value||e.textContent)||total; }); } if(!total && /IPD/i.test(treatment())) total=3; if(!total && /Day\s*Case|DayCase/i.test(treatment())) total=1; return total; }
+  function dailyRate(){ const r=currentRow(); return num(r.compensationDailyRate??r.compDailyRate??r.dailyCompensation??r.compensationRate??500); }
+  function compCovered(){ const total=stayDays()*dailyRate(); const r=currentRow(); const lim=num(r.compensationBenefitLimit??r.compBenefitLimit??r.compensationRemainingBenefit??total); return Math.min(total,lim||total); }
+
+  function compCard(page){
+    const pane=currentPane(page); if(!pane) return null;
+    const t=Array.from(pane.querySelectorAll('div,h3,h4')).find(el=>clean(el.textContent)==='สรุปค่าชดเชย');
+    return t?.closest('.rounded-xl.border') || t?.closest('.scm-comp-card') || t?.parentElement || null;
+  }
+  function combineCheckbox(page){
+    const card=compCard(page);
+    return card?.querySelector('#scmCombineCheckbox,#hcCombine,input[type="checkbox"]') ||
+      Array.from(page?.querySelectorAll('label')||[]).find(l=>clean(l.textContent).includes('โอนค่าชดเชยรวมกับค่ารักษา'))?.querySelector('input[type="checkbox"]') || null;
+  }
+  function readAccount(page){
+    const card=compCard(page);
+    const val=(sel)=>clean(card?.querySelector(sel)?.value || card?.querySelector(sel)?.textContent || '');
+    return {
+      bank:val('#scmBankInput,#hcBank'),
+      name:val('#scmNameInput,#hcAccountName'),
+      no:val('#scmNoInput,#hcAccountNo'),
+      phone:val('#scmPhoneInput,#hcPhone')
+    };
+  }
+  function showAccountError(page){
+    const card=compCard(page);
+    const err=card?.querySelector('#scmAccountError,#hcError');
+    if(err){ err.classList.add('show'); err.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+  function amountByLabel(page, labels){
+    const pane=currentPane(page); if(!pane) return 0;
+    const nodes=Array.from(pane.querySelectorAll('div,span,p,strong,b,td'));
+    for(const n of nodes){
+      const text=clean(n.textContent);
+      if(!labels.some(l=>text===l || text.startsWith(l+' :') || text.startsWith(l+':'))) continue;
+      const parent=n.parentElement; if(!parent) continue;
+      const candidates=Array.from(parent.querySelectorAll('strong,b,input,span,div,td')).filter(x=>x!==n).reverse();
+      for(const c of candidates){ const raw=c.value!=null?c.value:c.textContent; if(/\d/.test(String(raw||''))) return num(raw); }
+    }
+    return 0;
+  }
+  function setText(id,v){ const e=document.getElementById(id); if(e) e.textContent=v; }
+  function fillModal(page){
+    const r=currentRow();
+    const days=stayDays(), rate=dailyRate(), comp=compCovered();
+    let receipt=amountByLabel(page,['ยอดตามใบเสร็จ','ยอดเงินตามใบเสร็จรวม','ยอดตามใบเสร็จรวม']) || num(r.receiptAmount||r.amount||r.claimAmount||8500);
+    let excess=amountByLabel(page,['ส่วนเกินสิทธิ์','ยอดส่วนเกินสิทธิ์','ยอดไม่คุ้มครอง']);
+    let approved=amountByLabel(page,['ยอดอนุมัติตามสิทธิ์','ยอดอนุมัติ','ยอดพิจารณาตามสิทธิ์']);
+    let company=amountByLabel(page,['ยอดบริษัทตั้งเบิก','ยอดตั้งเบิกบริษัทประกัน','ยอดที่บริษัทตั้งเบิก']);
+    if(!approved) approved=Math.max(0,receipt-excess); if(!excess) excess=Math.max(0,receipt-approved); if(!company) company=approved;
+    const a=readAccount(page);
+    setText('scmReceipt',money(receipt)); setText('scmApproved',money(approved)); setText('scmExcess',money(excess)); setText('scmCompanyClaim',money(company));
+    setText('scmDays',days+' วัน'); setText('scmDailyRate',money(rate)); setText('scmCompTotal',money(days*rate)); setText('scmTransfer',money(comp));
+    setText('scmBank',a.bank||'-'); setText('scmAccountName',a.name||'-'); setText('scmAccountNo',a.no||'-'); setText('scmPhone',a.phone||'-');
+  }
+  function openModal(btn,page,onConfirm){
+    const modal=document.getElementById('scmApprovalModal'); if(!modal) return false;
+    const a=readAccount(page);
+    if(!a.bank || !a.name || !a.no || !a.phone || compCovered()<=0){ showAccountError(page); return true; }
+    pendingComplete = typeof onConfirm==='function' ? onConfirm : null;
+    pendingButton = btn || null;
+    fillModal(page);
+    modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+    return true;
+  }
+  function closeModal(){ const modal=document.getElementById('scmApprovalModal'); if(modal){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); } document.body.style.overflow=''; }
+
+  // These two functions are called by the EXISTING authoritative Hospital Step 3 approval handler.
+  // Overriding them is the reliable integration point; no competing click listener is required.
+  window.__hcShouldOpenSeparateApprovalModal = function(btn,page){
+    const p=page || currentPage(btn); if(!p || !isTarget() || stayDays()<=0 || compCovered()<=0) return false;
+    const cb=combineCheckbox(p); return !!cb && !cb.checked;
+  };
+  window.__hcOpenSeparateApprovalModal = function(btn,page,onConfirm){
+    const p=page || currentPage(btn); if(!p) return false;
+    return openModal(btn,p,onConfirm);
+  };
+
+  const confirm=document.getElementById('scmModalConfirm');
+  if(confirm && !confirm.dataset.authoritativeHook){
+    confirm.dataset.authoritativeHook='1';
+    // Remove cloned listener uncertainty by replacing the button node.
+    const clone=confirm.cloneNode(true); confirm.replaceWith(clone);
+    clone.addEventListener('click',function(){
+      const done=pendingComplete; pendingComplete=null; pendingButton=null; closeModal();
+      if(typeof done==='function') done();
+    });
+  }
+  ['scmModalClose','scmModalBack'].forEach(id=>{ const el=document.getElementById(id); if(el && !el.dataset.authoritativeHook){ el.dataset.authoritativeHook='1'; el.addEventListener('click',closeModal); } });
+  document.getElementById('scmApprovalModal')?.addEventListener('click',function(e){ if(e.target===this) closeModal(); });
+})();
+</script>
+
+</body>
+</html>
