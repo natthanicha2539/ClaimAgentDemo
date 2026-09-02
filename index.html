@@ -28699,7 +28699,58 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
 
-  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${kind === 'customer' ? docs('customer') : renderOpdFullDocumentCheckSection('IPD')}<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody><tr><td class="px-3 py-2">ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr><tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">550.00</td><td class="px-3 py-2 text-right">0.00</td></tr></tbody></table></div></div><div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
+
+  function renderStep3TreatmentTable(kind, selected){
+    const clean = v => String(v ?? '').replace(/\s+/g,' ').trim();
+    const escHtml = v => String(v ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    const moneyNum = v => {
+      const m=String(v ?? '').replace(/,/g,'').match(/-?\d+(?:\.\d+)?/);
+      return m ? Number(m[0]) : 0;
+    };
+    const fmt = v => Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    const treatment = clean(selected?.treatment || '');
+    const prefix = kind === 'full' ? 'hf' : (kind === 'half' ? 'hh' : 'cc');
+    const pane2 = document.getElementById(prefix+'StepPane2');
+    const source = new Map();
+    if(pane2){
+      pane2.querySelectorAll('table tbody tr').forEach(tr=>{
+        const td=Array.from(tr.querySelectorAll('td'));
+        if(td.length < 4) return;
+        const name=clean(td[0].textContent);
+        if(!name || /^รวม\s*:?$/.test(name)) return;
+        source.set(name,[moneyNum(td[1].textContent),moneyNum(td[2].textContent),moneyNum(td[3].textContent)]);
+      });
+    }
+    const getVals = name => source.get(clean(name)) || [0,0,0];
+    let names;
+    if(/IPD/i.test(treatment)){
+      names=[
+        'การดูแลโดยแพทย์ (ค่าแพทย์เยี่ยมไข้ ผู้ป่วยใน)',
+        'การรักษาโดยการผ่าตัด',
+        'ค่ารักษาพยาบาล และค่าบริการทั่วไป',
+        'ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยปกติ',
+        'ค่าห้องค่าอาหาร และการพยาบาลผู้ป่วยหนัก ICU',
+        'ค่าชดเชยการนอนรักษาพยาบาลสูงสุด (ต่อโรค ต่อครั้ง)'
+      ];
+    }else{
+      names=['ค่ารักษาพยาบาล จากโรคภัยไข้เจ็บ กรณีผู้ป่วยนอก OPD แบบเหมาจ่าย'];
+    }
+    const rows=names.map(name=>{
+      let vals=getVals(name);
+      if(name==='ค่าชดเชยการนอนรักษาพยาบาลสูงสุด (ต่อโรค ต่อครั้ง)' && vals.every(v=>v===0)){
+        const r=window.currentConsiderHospitalRow||{};
+        const claim=moneyNum(r.compensationTotal ?? r.compTotal ?? r.compensation ?? 0);
+        const eligible=moneyNum(r.compensationCovered ?? r.compCovered ?? claim);
+        vals=[claim,eligible,Math.max(0,claim-eligible)];
+      }
+      return {name,vals};
+    });
+    const totals=rows.reduce((a,r)=>[a[0]+r.vals[0],a[1]+r.vals[1],a[2]+r.vals[2]],[0,0,0]);
+    const body=rows.map(r=>`<tr class="border-b border-slate-200"><td class="px-3 py-2">${escHtml(r.name)}</td><td class="px-3 py-2 text-right">${fmt(r.vals[0])}</td><td class="px-3 py-2 text-right">${fmt(r.vals[1])}</td><td class="px-3 py-2 text-right">${fmt(r.vals[2])}</td></tr>`).join('');
+    return `<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm" data-step3-treatment-table="1"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${body}<tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${fmt(totals[0])}</td><td class="px-3 py-2 text-right">${fmt(totals[1])}</td><td class="px-3 py-2 text-right">${fmt(totals[2])}</td></tr></tbody></table></div></div>`;
+  }
+
+  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${kind === 'customer' ? docs('customer') : renderOpdFullDocumentCheckSection('IPD')}${renderStep3TreatmentTable(kind, selected)}<div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
   function fieldSum(label,value){ return `<div><div class="text-sm font-medium text-slate-500">${label}</div><div class="mt-1 text-base font-normal text-slate-700 leading-6">${value}</div></div>`; }
   const customerContinuousClaimOptions = [
     {
