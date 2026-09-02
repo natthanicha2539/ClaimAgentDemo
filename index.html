@@ -62408,15 +62408,36 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     return product==='PA' || active==='PA' || claim.startsWith('CLPA');
   }
 
+  function isOPDNoSeparateTransfer(){
+    const r=currentRow();
+    const raw=clean(
+      r.claimType ||
+      r.claimItemType ||
+      r.itemType ||
+      r.claimSubtype ||
+      r.subType ||
+      window.__hospitalConsiderMode ||
+      ''
+    ).toUpperCase();
+    const compact=raw.replace(/[\s_-]+/g,'');
+    return compact==='OPDFULL' || compact==='OPDHALF';
+  }
+
+  function hasNoSeparateCompensationTransfer(){
+    return isPA() || isOPDNoSeparateTransfer();
+  }
+
   function applyToPane(pane){
     if(!pane) return;
     const card=pane.querySelector('.hospital-comp-v10,.hospital-comp-v5,.scm-comp-card');
     if(!card) return;
-    const pa=isPA();
-    card.classList.toggle('is-pa-compensation',pa);
-    if(!pa) return;
+    const forced=hasNoSeparateCompensationTransfer();
+    card.classList.toggle('is-pa-compensation',forced);
+    card.classList.toggle('is-no-separate-compensation',forced);
+    if(!forced) return;
 
-    // PA has no separate compensation transfer: force same route as treatment payment.
+    // PA and OPD Full / OPD Half have no separate compensation transfer.
+    // Force compensation to use the same route as treatment payment.
     const cb=card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheckbox,#scmCombineCheck');
     if(cb){
       if(!cb.checked) cb.checked=true;
@@ -62454,23 +62475,23 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     raf=requestAnimationFrame(()=>{raf=0;apply()});
   }
 
-  // PA must never open the separate compensation-account approval flow.
+  // PA and OPD Full / OPD Half must never open the separate compensation-account approval flow.
   const prevShould=window.__hcShouldOpenSeparateApprovalModal;
   window.__hcShouldOpenSeparateApprovalModal=function(btn,page){
-    if(isPA()) return false;
+    if(hasNoSeparateCompensationTransfer()) return false;
     return typeof prevShould==='function' ? prevShould(btn,page) : false;
   };
   const prevOpen=window.__hcOpenSeparateApprovalModal;
   window.__hcOpenSeparateApprovalModal=function(btn,page,onConfirm){
-    if(isPA()) return false;
+    if(hasNoSeparateCompensationTransfer()) return false;
     return typeof prevOpen==='function' ? prevOpen(btn,page,onConfirm) : false;
   };
 
-  // If any older validator directly asks for compensation account completeness, PA bypasses it.
+  // If any older validator asks for separate compensation account completeness, bypass it for PA / OPD Full / OPD Half.
   const prevValidate=window.__hcValidateCompensationAccount;
   if(typeof prevValidate==='function'){
     window.__hcValidateCompensationAccount=function(){
-      if(isPA()) return true;
+      if(hasNoSeparateCompensationTransfer()) return true;
       return prevValidate.apply(this,arguments);
     };
   }
@@ -62501,5 +62522,140 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 .hc10-field input.hc10-field-editing,.hc10-field select.hc10-field-editing{background:#fff!important;border-color:#0788d6!important;box-shadow:0 0 0 3px rgba(7,136,214,.10)!important;color:#0f172a!important;cursor:text!important;}
 .hc10-field select.hc10-field-editing{cursor:pointer!important;}
 </style>
+
+<script id="hospital-opd-full-half-pending-mockup-v1">
+(function(){
+  'use strict';
+
+  const MOCKS = [
+    {
+      date: '02/09/2569 09:20:15',
+      claimCode: 'CL6909000320',
+      caseNo: 'CC6909000320-01',
+      hospital: 'โรงพยาบาลนนทเวช',
+      province: 'นนทบุรี',
+      name: 'นางสาวชลธิชา วงศ์สวัสดิ์',
+      claimType: 'OPD Full',
+      treatmentType: 'OPD',
+      product: 'PH',
+      amount: '1,850.00',
+      hospitalOpdAmount: '2,000.00',
+      hospitalOpdDiscount: '150.00',
+      itemStatus: 'รอพิจารณา',
+      claimStatus: 'Open',
+      isContinuous: false,
+      claimCause: 'เจ็บป่วย',
+      coverageType: 'ค่ารักษา',
+      incidentDate: '02/09/2569',
+      incidentTime: '08:35',
+      admitDate: '02/09/2569',
+      admitTime: '08:50',
+      dischargeDate: '02/09/2569',
+      dischargeTime: '10:05',
+      diagnosis: 'J00 : Acute nasopharyngitis | ไข้หวัด',
+      chiefComplaint: 'มีไข้ต่ำ น้ำมูก ไอ และเจ็บคอ',
+      hn: 'HN69090320',
+      vn: 'VN6909020320',
+      note: 'Mockup OPD Full สถานะรอพิจารณา',
+      __opdPendingMock: true
+    },
+    {
+      date: '02/09/2569 09:28:40',
+      claimCode: 'CL6909000321',
+      caseNo: 'CC6909000321-01',
+      hospital: 'โรงพยาบาลมะการักษ์',
+      province: 'กาญจนบุรี',
+      name: 'นายธนกฤต แสงทอง',
+      claimType: 'OPD Half',
+      treatmentType: 'OPD',
+      product: 'PH',
+      amount: '550.00',
+      hospitalOpdAmount: '650.00',
+      hospitalOpdDiscount: '50.00',
+      exgratiaAmount: '250.00',
+      itemStatus: 'รอพิจารณา',
+      claimStatus: 'Open',
+      isContinuous: false,
+      claimCause: 'เจ็บป่วย',
+      coverageType: 'ค่ารักษา',
+      incidentDate: '02/09/2569',
+      incidentTime: '09:00',
+      admitDate: '02/09/2569',
+      admitTime: '09:10',
+      dischargeDate: '02/09/2569',
+      dischargeTime: '10:20',
+      diagnosis: 'A05.0 : Food poisoning | อาหารเป็นพิษ',
+      chiefComplaint: 'ปวดท้อง คลื่นไส้ และถ่ายเหลว',
+      hn: 'HN69090321',
+      vn: 'VN6909020321',
+      note: 'Mockup OPD Half สถานะรอพิจารณา',
+      __opdPendingMock: true
+    }
+  ];
+
+  function ensureMocks(){
+    try{
+      if(typeof considerationHospitalRows === 'undefined' || !Array.isArray(considerationHospitalRows)) return;
+
+      const ordered = [];
+      MOCKS.forEach(mock => {
+        let idx = considerationHospitalRows.findIndex(r => r && r.claimCode === mock.claimCode);
+        let row;
+        if(idx < 0){
+          row = {...mock};
+        }else{
+          row = considerationHospitalRows[idx];
+          Object.assign(row, mock);
+          considerationHospitalRows.splice(idx, 1);
+        }
+        row.itemStatus = 'รอพิจารณา';
+        row.claimStatus = 'Open';
+        delete row.processStatus;
+        delete row.correctionReason;
+        delete row.correctionDetail;
+        delete row.statusClass;
+        ordered.push(row);
+      });
+
+      // Keep both dedicated pending OPD mockups near the top and in the requested order.
+      considerationHospitalRows.unshift(...ordered);
+    }catch(e){
+      console.warn('ensure OPD Full/Half pending mockups failed', e);
+    }
+  }
+
+  function refreshHospital(){
+    ensureMocks();
+    try{
+      if(typeof currentConsiderationTab !== 'undefined' && currentConsiderationTab === 'hospital'){
+        currentConsiderMonitorPage = 1;
+        if(typeof renderConsiderationTable === 'function') renderConsiderationTable();
+      }
+    }catch(e){}
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => setTimeout(refreshHospital, 0), {once:true});
+  }else{
+    setTimeout(refreshHospital, 0);
+  }
+
+  const oldSetTab = window.setConsiderationTab || (typeof setConsiderationTab === 'function' ? setConsiderationTab : null);
+  if(oldSetTab && !window.__opdPendingMockSetTabWrapped){
+    const wrapped = function(tab){
+      ensureMocks();
+      const result = oldSetTab.apply(this, arguments);
+      if(tab === 'hospital') setTimeout(refreshHospital, 0);
+      return result;
+    };
+    window.setConsiderationTab = wrapped;
+    try{ setConsiderationTab = wrapped; }catch(e){}
+    window.__opdPendingMockSetTabWrapped = true;
+  }
+
+  window.ensureHospitalOpdPendingMocks = ensureMocks;
+})();
+</script>
+
 </body>
 </html>
