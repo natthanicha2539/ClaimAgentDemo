@@ -55316,6 +55316,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
 </style>
 <script id="hospital-compensation-clean-repair-script">
 (function(){
+  return; // DISABLED 2026-09-02: legacy renderer created duplicate Step3 compensation controls
   'use strict';
   if(window.__hospitalCompensationCleanRepairInstalled) return;
   window.__hospitalCompensationCleanRepairInstalled=true;
@@ -55384,7 +55385,17 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     const remain=Array.from(card.querySelectorAll('div')).find(x=>/ค่าชดเชยคงเหลือ \(โอนให้ลูกค้า\)/.test(x.textContent||''));
     if(remain){
       const s=state();
-      remain.textContent='ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) '+money(s.combine?0:a.covered);
+      const value=money(s.combine?0:a.covered);
+      // Preserve the modern Step3 structure. Never replace the whole remain box,
+      // because doing so removes its <span>/<strong> children and causes later
+      // sync patches to append a second amount (e.g. "0.00 2,000.00 บาท").
+      const strong=remain.querySelector('strong,b');
+      if(strong){
+        strong.textContent = value + (remain.classList.contains('hc10-remain') ? ' บาท' : '');
+      } else {
+        const label='ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)';
+        remain.textContent=label+' '+value;
+      }
     }
   }
   function syncState(root){
@@ -60300,6 +60311,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <div id="scmApprovalToast"><span class="material-icons-round">check_circle</span><span>อนุมัติสำเร็จ</span></div>
 <script id="stable-compensation-logic-patch">
 (function(){
+  return; // DISABLED 2026-09-02: superseded by hc10 single-owner renderer
   const stateMap = new Map();
   let modalTargetButton = null;
   let bypassNextApprove = false;
@@ -61421,7 +61433,9 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const val=box.querySelector('strong,b');
     if(val) val.textContent=money(value)+' บาท';
     else {
-      const text=clean(box.textContent).replace(/[-\d,.]+\s*บาท?$/,'').trim();
+      const text=clean(box.textContent)
+        .replace(/\s*-?[\d,.]+(?:\s*บาท)?\s*$/,'')
+        .trim();
       box.textContent=text+' '+money(value)+' บาท';
     }
   }
@@ -61718,7 +61732,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
   function setRow(card,label,value){if(!card)return;const next=money(value);const rows=Array.from(card.querySelectorAll('.flex.justify-between,div'));for(const r of rows){const sp=Array.from(r.children||[]).find(x=>x.tagName==='SPAN');if(!sp||clean(sp.textContent)!==label)continue;const v=Array.from(r.children||[]).find(x=>x.tagName==='STRONG'||x.tagName==='B');if(v){if(clean(v.textContent)!==next)v.textContent=next;return}}}
   function syncHospitalSummary(pane){if(!pane||!isComp())return;const a=amounts();const title=Array.from(pane.querySelectorAll('div,h3,h4')).find(x=>clean(x.textContent)==='สรุปค่าใช้จ่ายโรงพยาบาล');const card=title?.closest('.rounded-xl.border,.step3-hospital-expense-card');if(card)setRow(card,'ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)',a.covered)}
-  function ensureStep3(){for(const pane of [document.querySelector('#considerHospitalOpdFullPage #hfStepPane3'),document.querySelector('#considerHospitalOpdHalfPage #hhStepPane3')]){renderComp(pane);syncHospitalSummary(pane)}}
+  function ensureStep3(){ return; /* Step3 compensation is owned exclusively by hospital-final-v10-script */ }
   let queued=false;function sync(){if(queued)return;queued=true;queueMicrotask(()=>{queued=false;ensureStep2();ensureStep3()})}
   let observerBusy=false;
   const obs=new MutationObserver(m=>{
@@ -62092,7 +62106,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   function amountByLabel(root,label){for(const r of Array.from(root?.querySelectorAll('div')||[])){const kids=Array.from(r.children||[]);const l=kids.find(x=>clean(x.textContent)===label);if(!l)continue;const v=kids.find(x=>x!==l&&(x.tagName==='STRONG'||x.tagName==='B'||/amount/i.test(x.className||'')));if(v)return num(v.textContent)}return 0}
   function currentAmounts(card){const r=window.currentConsiderHospitalRow||{};let total=amountByLabel(card,'ค่าชดเชยรวม');let covered=amountByLabel(card,'ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)');if(!total){let days=num(r.totalStayDays??r.totalDays??r.ipdDays??r.ipdDay);const treatment=clean((window.hospitalClaimSelectionState||{}).treatment||r.treatmentType||r.claimType);if(!days&&/Day\s*Case|DayCase/i.test(treatment))days=1;const rate=num(r.compensationDailyRate??r.compDailyRate??r.dailyCompensation??r.compensationRate)||500;total=days*rate}if(!covered)covered=total;return{total,covered}}
   function fieldValue(card,ids,fallback){for(const id of ids){const x=card?.querySelector(id);if(x&&clean(x.value))return clean(x.value)}return fallback}
-  function renderComp(pane){const card=findComp(pane);if(!pane||!card)return;const a=currentAmounts(card);const combine=!!card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheck')?.checked;const phone=fieldValue(card,['#hc10Phone','#hcv5Phone','#scmPhoneInput'],'0979240465'), name=fieldValue(card,['#hc10Name','#hcv5Name','#scmNameInput'],'ประดิษฐ์ ทาลา'), bank=fieldValue(card,['#hc10Bank','#hcv5Bank','#scmBankInput'],'กรุงไทย'), no=fieldValue(card,['#hc10No','#hcv5No','#scmNoInput'],'017062701369');const remain=combine?0:a.covered;const sig=[a.total,a.covered,combine,phone,name,bank,no].join('|');if(card.classList.contains('hospital-comp-v10')&&card.dataset.v10sig===sig)return;card.classList.add('hospital-comp-v10');card.dataset.v10sig=sig;card.innerHTML=`<div class="hc10-head"><div class="hc10-title">สรุปค่าชดเชย</div><div class="hc10-sub">ข้อมูลสำหรับพิจารณาการจ่ายค่าชดเชย</div></div><div class="hc10-body"><div><div class="hc10-amount-row"><span>ค่าชดเชยรวม</span><strong>${money(a.total)} บาท</strong></div><div class="hc10-amount-row"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${money(a.covered)} บาท</strong></div></div><label class="hc10-choice"><input id="hc10Combine" type="checkbox" ${combine?'checked':''}><span><strong>โอนค่าชดเชยรวมกับค่ารักษา</strong><small>หากเลือก ระบบจะรวมค่าชดเชยเข้ากับยอดค่ารักษา และไม่ต้องใช้บัญชีรับเงินค่าชดเชยแยก</small></span></label><div class="hc10-remain"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${money(remain)} บาท</strong></div><section class="hc10-account ${combine?'hidden':''}"><div class="hc10-account-head"><div><div class="hc10-account-title">บัญชีรับเงินค่าชดเชย <span class="hc10-badge">ผู้ชำระเบี้ยในระบบ</span></div><div class="hc10-account-desc">ระบบแสดงข้อมูล Default จากข้อมูลผู้ชำระเบี้ย/ข้อมูลบัญชีที่มีอยู่ สามารถแก้ไขเฉพาะรายการนี้ได้</div></div><button type="button" class="hc10-edit">แก้ไขบัญชี</button></div><div class="hc10-account-grid"><div class="hc10-field"><label>เบอร์โทรศัพท์ *</label><input id="hc10Phone" readonly value="${phone}"></div><div class="hc10-field"><label>ชื่อบัญชี *</label><input id="hc10Name" readonly value="${name}"></div><div class="hc10-field"><label>ธนาคาร *</label><select id="hc10Bank" disabled><option>${bank}</option></select></div><div class="hc10-field"><label>เลขที่บัญชี *</label><input id="hc10No" readonly value="${no}"></div></div></section></div>`;
+  function renderComp(pane){const card=findComp(pane);if(!pane||!card)return;const a=currentAmounts(card);const combine=!!card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheck')?.checked;const phone=fieldValue(card,['#hc10Phone','#hcv5Phone','#scmPhoneInput'],'0979240465'), name=fieldValue(card,['#hc10Name','#hcv5Name','#scmNameInput'],'ประดิษฐ์ ทาลา'), bank=fieldValue(card,['#hc10Bank','#hcv5Bank','#scmBankInput'],'กรุงไทย'), no=fieldValue(card,['#hc10No','#hcv5No','#scmNoInput'],'017062701369');const remain=combine?0:a.covered;const sig=[a.total,a.covered,combine,phone,name,bank,no].join('|');if(card.classList.contains('hospital-comp-v10')&&card.dataset.v10sig===sig&&card.querySelector('.hc10-remain > span')&&card.querySelector('.hc10-remain > strong'))return;card.classList.add('hospital-comp-v10');card.dataset.v10sig=sig;card.innerHTML=`<div class="hc10-head"><div class="hc10-title">สรุปค่าชดเชย</div><div class="hc10-sub">ข้อมูลสำหรับพิจารณาการจ่ายค่าชดเชย</div></div><div class="hc10-body"><div><div class="hc10-amount-row"><span>ค่าชดเชยรวม</span><strong>${money(a.total)} บาท</strong></div><div class="hc10-amount-row"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${money(a.covered)} บาท</strong></div></div><label class="hc10-choice"><input id="hc10Combine" type="checkbox" ${combine?'checked':''}><span><strong>โอนค่าชดเชยรวมกับค่ารักษา</strong><small>หากเลือก ระบบจะรวมค่าชดเชยเข้ากับยอดค่ารักษา และไม่ต้องใช้บัญชีรับเงินค่าชดเชยแยก</small></span></label><div class="hc10-remain"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${money(remain)} บาท</strong></div><section class="hc10-account ${combine?'hidden':''}"><div class="hc10-account-head"><div><div class="hc10-account-title">บัญชีรับเงินค่าชดเชย <span class="hc10-badge">ผู้ชำระเบี้ยในระบบ</span></div><div class="hc10-account-desc">ระบบแสดงข้อมูล Default จากข้อมูลผู้ชำระเบี้ย/ข้อมูลบัญชีที่มีอยู่ สามารถแก้ไขเฉพาะรายการนี้ได้</div></div><button type="button" class="hc10-edit">แก้ไขบัญชี</button></div><div class="hc10-account-grid"><div class="hc10-field"><label>เบอร์โทรศัพท์ *</label><input id="hc10Phone" readonly value="${phone}"></div><div class="hc10-field"><label>ชื่อบัญชี *</label><input id="hc10Name" readonly value="${name}"></div><div class="hc10-field"><label>ธนาคาร *</label><select id="hc10Bank" disabled><option>${bank}</option></select></div><div class="hc10-field"><label>เลขที่บัญชี *</label><input id="hc10No" readonly value="${no}"></div></div></section></div>`;
     card.querySelector('#hc10Combine')?.addEventListener('change',()=>{card.dataset.v10sig='';renderComp(pane);syncRight(pane)});
     card.querySelector('.hc10-edit')?.addEventListener('click',e=>{const edit=e.currentTarget.dataset.edit!=='1';e.currentTarget.dataset.edit=edit?'1':'0';e.currentTarget.textContent=edit?'บันทึกบัญชี':'แก้ไขบัญชี';card.querySelectorAll('input').forEach(x=>{if(x.id!=='hc10Combine')x.readOnly=!edit});const s=card.querySelector('#hc10Bank');if(s)s.disabled=!edit});
   }
@@ -62106,5 +62120,187 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 </script>
 
 <!-- FIX: compensation approval reads current Step3 hc10/hcv5 account controls -->
+
+
+<!-- FINAL FIX 2026-09-02: Step1/Step2 action order + remove duplicate injected stay summary -->
+<style id="final-step12-order-stay-cleanup-style">
+  /* Legacy patch-created stay summary duplicated the real stay summary and used mock values. */
+  [data-final-stay-summary="1"]{display:none !important;}
+</style>
+<script id="final-step12-order-stay-cleanup-script">
+(function(){
+  'use strict';
+
+  function normalizeText(el){
+    return String(el && el.textContent || '').replace(/\s+/g,' ').trim();
+  }
+
+  function isStep12Pane(el){
+    if(!el || el.nodeType !== 1) return false;
+    const id = String(el.id || '');
+    return /StepPane[12]$/.test(id) || /StepPane[12]\b/.test(id);
+  }
+
+  function reorderActionsInPane(pane){
+    if(!isStep12Pane(pane)) return;
+    const buttons = Array.from(pane.querySelectorAll('button'));
+    const nextBtn = buttons.find(b => normalizeText(b).replace(/arrow_forward/g,'').trim() === 'ถัดไป' || normalizeText(b).includes('ถัดไป'));
+    const decisionBtn = buttons.find(b => {
+      const t = normalizeText(b);
+      return t.includes('ยืนยันบันทึกผลพิจารณา') || (t.includes('บันทึกผลพิจารณา') && !t.includes('แบบร่าง'));
+    });
+    if(!nextBtn || !decisionBtn || nextBtn === decisionBtn) return;
+
+    // Only swap when both buttons belong to the same action row.
+    const nextRow = nextBtn.parentElement;
+    const decisionRow = decisionBtn.parentElement;
+    if(!nextRow || nextRow !== decisionRow) return;
+
+    // Desired order: Draft -> Decision -> Next.
+    if(decisionBtn.nextElementSibling !== nextBtn){
+      nextRow.insertBefore(decisionBtn, nextBtn);
+    }
+  }
+
+  function reorderAllStep12(){
+    document.querySelectorAll('[id*="StepPane1"], [id*="StepPane2"]').forEach(reorderActionsInPane);
+  }
+
+  function removeDuplicateStaySummary(root){
+    const scope = root && root.querySelectorAll ? root : document;
+    scope.querySelectorAll('[data-final-stay-summary="1"]').forEach(el => el.remove());
+  }
+
+  let scheduled = false;
+  function applyFinalFix(){
+    if(scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function(){
+      scheduled = false;
+      removeDuplicateStaySummary(document);
+      reorderAllStep12();
+    });
+  }
+
+  // Run once after current HTML is ready.
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyFinalFix, {once:true});
+  } else {
+    applyFinalFix();
+  }
+
+  // Hospital panes are rendered dynamically. This observer is idempotent:
+  // it changes DOM only when a duplicate node exists or button order is wrong.
+  const observer = new MutationObserver(function(mutations){
+    let relevant = false;
+    for(const m of mutations){
+      if(m.type !== 'childList' || !m.addedNodes.length) continue;
+      for(const n of m.addedNodes){
+        if(n.nodeType !== 1) continue;
+        if((n.matches && (n.matches('[data-final-stay-summary="1"]') || isStep12Pane(n))) ||
+           (n.querySelector && (n.querySelector('[data-final-stay-summary="1"]') || n.querySelector('[id*="StepPane1"], [id*="StepPane2"]')))){
+          relevant = true;
+          break;
+        }
+      }
+      if(relevant) break;
+    }
+    if(relevant) applyFinalFix();
+  });
+
+  function startObserver(){
+    if(document.body) observer.observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.body) startObserver();
+  else document.addEventListener('DOMContentLoaded', startObserver, {once:true});
+
+  // Re-apply after known step navigation functions without changing their business logic.
+  ['setHospitalFullStep','setHospitalHalfStep','setCustomerStep'].forEach(function(name){
+    const prev = window[name];
+    if(typeof prev !== 'function' || prev.__step12OrderFixed) return;
+    const wrapped = function(){
+      const result = prev.apply(this, arguments);
+      applyFinalFix();
+      return result;
+    };
+    wrapped.__step12OrderFixed = true;
+    window[name] = wrapped;
+    try { eval(name + ' = wrapped'); } catch(e) {}
+  });
+
+  window.__applyStep12OrderAndStayCleanup = applyFinalFix;
+})();
+</script>
+
+<!-- 2026-09-02: compensation remain integrity guard -->
+<script id="compensation-remain-integrity-guard">
+(function(){
+  'use strict';
+  function clean(v){return String(v||'').replace(/\s+/g,' ').trim()}
+  function normalize(box){
+    if(!box)return;
+    const span=box.querySelector(':scope > span');
+    const strong=box.querySelector(':scope > strong,:scope > b');
+    if(span&&strong){
+      // Remove stray text nodes left by legacy patches, while preserving the label and value elements.
+      Array.from(box.childNodes).forEach(n=>{if(n.nodeType===3&&clean(n.nodeValue))n.remove()});
+    }
+  }
+  function run(){document.querySelectorAll('#hfStepPane3 .hc10-remain,#hhStepPane3 .hc10-remain').forEach(normalize)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true}); else run();
+})();
+</script>
+
+<style id="hospital-compensation-single-owner-style">
+:is(#hfStepPane3,#hhStepPane3) [data-hospital-comp-ux="1"],
+:is(#hfStepPane3,#hhStepPane3) .hc-transfer-choice,
+:is(#hfStepPane3,#hhStepPane3) #hcAccountSection,
+:is(#hfStepPane3,#hhStepPane3) .hc-account:not(.hc10-account){display:none!important}
+</style>
+<script id="hospital-compensation-single-owner-final">
+(function(){
+  'use strict';
+  if(window.__hospitalCompensationSingleOwnerFinal)return;
+  window.__hospitalCompensationSingleOwnerFinal=true;
+  const paneSel='#hfStepPane3,#hhStepPane3';
+  const clean=v=>String(v||'').replace(/\s+/g,' ').trim();
+  function removeLegacy(pane){
+    if(!pane)return;
+    // Exact nodes generated by the disabled legacy renderer.
+    pane.querySelectorAll('[data-hospital-comp-ux="1"]').forEach(n=>n.remove());
+    pane.querySelectorAll('.hc-transfer-choice,#hcAccountSection,.hc-account').forEach(n=>{
+      if(n.closest('.hospital-comp-v10')) return;
+      n.remove();
+    });
+    // Defensive cleanup for a legacy block that may already exist before this fix executes.
+    Array.from(pane.querySelectorAll('label')).forEach(label=>{
+      if(label.closest('.hospital-comp-v10'))return;
+      const t=clean(label.textContent);
+      if(!t.includes('โอนค่าชดเชยรวมกับค่ารักษา'))return;
+      if(t.includes('เลือกเมื่อต้องการใช้ช่องทางและบัญชีการโอนเดียวกับค่ารักษาพยาบาล')){
+        const wrap=label.closest('[data-hospital-comp-ux="1"]')||label;
+        wrap.remove();
+      }
+    });
+    Array.from(pane.querySelectorAll('section,div')).forEach(n=>{
+      if(!n.isConnected||n.closest('.hospital-comp-v10'))return;
+      const t=clean(n.textContent);
+      if(!t.includes('บัญชีรับเงินค่าชดเชย')||!t.includes('ข้อมูลผู้ชำระเบี้ยในระบบ'))return;
+      if(n.querySelectorAll('input,select').length<2)return;
+      // Remove the smallest matching legacy account block only.
+      const child=Array.from(n.children).find(c=>clean(c.textContent).includes('บัญชีรับเงินค่าชดเชย')&&clean(c.textContent).includes('ข้อมูลผู้ชำระเบี้ยในระบบ')&&c.querySelectorAll('input,select').length>=2);
+      if(!child)n.remove();
+    });
+  }
+  function run(){document.querySelectorAll(paneSel).forEach(removeLegacy)}
+  let queued=false;
+  const schedule=()=>{if(queued)return;queued=true;queueMicrotask(()=>{queued=false;run()})};
+  const obs=new MutationObserver(ms=>{
+    if(ms.some(m=>Array.from(m.addedNodes||[]).some(n=>n.nodeType===1&&(n.matches?.(paneSel+', [data-hospital-comp-ux="1"], .hc-transfer-choice, #hcAccountSection, .hc-account')||n.querySelector?.('[data-hospital-comp-ux="1"],.hc-transfer-choice,#hcAccountSection,.hc-account')))))schedule();
+  });
+  function start(){obs.observe(document.body,{childList:true,subtree:true});run();requestAnimationFrame(run);setTimeout(run,50);setTimeout(run,250)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
 </body>
 </html>
