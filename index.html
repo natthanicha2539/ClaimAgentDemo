@@ -62157,9 +62157,37 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   function amountByLabel(root,label){for(const r of Array.from(root?.querySelectorAll('div')||[])){const kids=Array.from(r.children||[]);const l=kids.find(x=>clean(x.textContent)===label);if(!l)continue;const v=kids.find(x=>x!==l&&(x.tagName==='STRONG'||x.tagName==='B'||/amount/i.test(x.className||'')));if(v)return num(v.textContent)}return 0}
   function currentAmounts(card){const r=window.currentConsiderHospitalRow||{};let total=amountByLabel(card,'ค่าชดเชยรวม');let covered=amountByLabel(card,'ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)');if(!total){let days=num(r.totalStayDays??r.totalDays??r.ipdDays??r.ipdDay);const treatment=clean((window.hospitalClaimSelectionState||{}).treatment||r.treatmentType||r.claimType);if(!days&&/Day\s*Case|DayCase/i.test(treatment))days=1;const rate=num(r.compensationDailyRate??r.compDailyRate??r.dailyCompensation??r.compensationRate)||500;total=days*rate}if(!covered)covered=total;return{total,covered}}
   function fieldValue(card,ids,fallback){for(const id of ids){const x=card?.querySelector(id);if(x&&clean(x.value))return clean(x.value)}return fallback}
-  function renderComp(pane){const card=findComp(pane);if(!pane||!card)return;const a=currentAmounts(card);const combine=!!card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheck')?.checked;const phone=fieldValue(card,['#hc10Phone','#hcv5Phone','#scmPhoneInput'],'0979240465'), name=fieldValue(card,['#hc10Name','#hcv5Name','#scmNameInput'],'ประดิษฐ์ ทาลา'), bank=fieldValue(card,['#hc10Bank','#hcv5Bank','#scmBankInput'],'กรุงไทย'), no=fieldValue(card,['#hc10No','#hcv5No','#scmNoInput'],'017062701369');const remain=combine?0:a.covered;const sig=[a.total,a.covered,combine,phone,name,bank,no].join('|');if(card.classList.contains('hospital-comp-v10')&&card.dataset.v10sig===sig&&card.querySelector('.hc10-remain > span')&&card.querySelector('.hc10-remain > strong'))return;card.classList.add('hospital-comp-v10');card.dataset.v10sig=sig;card.innerHTML=`<div class="hc10-head"><div class="hc10-title">สรุปค่าชดเชย</div><div class="hc10-sub">ข้อมูลสำหรับพิจารณาการจ่ายค่าชดเชย</div></div><div class="hc10-body"><div><div class="hc10-amount-row"><span>ค่าชดเชยรวม</span><strong>${money(a.total)} บาท</strong></div><div class="hc10-amount-row"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${money(a.covered)} บาท</strong></div></div><label class="hc10-choice"><input id="hc10Combine" type="checkbox" ${combine?'checked':''}><span><strong>โอนค่าชดเชยรวมกับค่ารักษา</strong><small>หากเลือก ระบบจะรวมค่าชดเชยเข้ากับยอดค่ารักษา และไม่ต้องใช้บัญชีรับเงินค่าชดเชยแยก</small></span></label><div class="hc10-remain"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${money(remain)} บาท</strong></div><section class="hc10-account ${combine?'hidden':''}"><div class="hc10-account-head"><div><div class="hc10-account-title">บัญชีรับเงินค่าชดเชย <span class="hc10-badge">ผู้ชำระเบี้ยในระบบ</span></div><div class="hc10-account-desc">ระบบแสดงข้อมูล Default จากข้อมูลผู้ชำระเบี้ย/ข้อมูลบัญชีที่มีอยู่ สามารถแก้ไขเฉพาะรายการนี้ได้</div></div><button type="button" class="hc10-edit">แก้ไขบัญชี</button></div><div class="hc10-account-grid"><div class="hc10-field"><label>เบอร์โทรศัพท์ *</label><input id="hc10Phone" readonly value="${phone}"></div><div class="hc10-field"><label>ชื่อบัญชี *</label><input id="hc10Name" readonly value="${name}"></div><div class="hc10-field"><label>ธนาคาร *</label><select id="hc10Bank" disabled><option>${bank}</option></select></div><div class="hc10-field"><label>เลขที่บัญชี *</label><input id="hc10No" readonly value="${no}"></div></div></section></div>`;
+  function renderComp(pane){const card=findComp(pane);if(!pane||!card)return;const a=currentAmounts(card);const combine=!!card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheck')?.checked;const phone=fieldValue(card,['#hc10Phone','#hcv5Phone','#scmPhoneInput'],'0979240465'), name=fieldValue(card,['#hc10Name','#hcv5Name','#scmNameInput'],'ประดิษฐ์ ทาลา'), bank=fieldValue(card,['#hc10Bank','#hcv5Bank','#scmBankInput'],'กรุงไทย'), no=fieldValue(card,['#hc10No','#hcv5No','#scmNoInput'],'017062701369');const remain=combine?0:a.covered;const sig=[a.total,a.covered,combine,phone,name,bank,no].join('|');if(card.classList.contains('hospital-comp-v10')&&card.dataset.v10sig===sig&&card.querySelector('.hc10-remain > span')&&card.querySelector('.hc10-remain > strong'))return;card.classList.add('hospital-comp-v10');card.dataset.v10sig=sig;card.innerHTML=`<div class="hc10-head"><div class="hc10-title">สรุปค่าชดเชย</div><div class="hc10-sub">ข้อมูลสำหรับพิจารณาการจ่ายค่าชดเชย</div></div><div class="hc10-body"><div><div class="hc10-amount-row"><span>ค่าชดเชยรวม</span><strong>${money(a.total)} บาท</strong></div><div class="hc10-amount-row"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>${money(a.covered)} บาท</strong></div></div><label class="hc10-choice"><input id="hc10Combine" type="checkbox" ${combine?'checked':''}><span><strong>โอนค่าชดเชยรวมกับค่ารักษา</strong><small>หากเลือก ระบบจะรวมค่าชดเชยเข้ากับยอดค่ารักษา และไม่ต้องใช้บัญชีรับเงินค่าชดเชยแยก</small></span></label><div class="hc10-remain"><span>ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)</span><strong>${money(remain)} บาท</strong></div><section class="hc10-account ${combine?'hidden':''}"><div class="hc10-account-head"><div><div class="hc10-account-title">บัญชีรับเงินค่าชดเชย <span class="hc10-badge">ผู้ชำระเบี้ยในระบบ</span></div><div class="hc10-account-desc">ระบบแสดงข้อมูล Default จากข้อมูลผู้ชำระเบี้ย/ข้อมูลบัญชีที่มีอยู่ สามารถแก้ไขเฉพาะรายการนี้ได้</div></div><button type="button" class="hc10-edit">แก้ไขบัญชี</button></div><div class="hc10-account-grid"><div class="hc10-field"><label>เบอร์โทรศัพท์ *</label><input id="hc10Phone" readonly value="${phone}"></div><div class="hc10-field"><label>ชื่อบัญชี *</label><input id="hc10Name" readonly value="${name}"></div><div class="hc10-field"><label>ธนาคาร *</label><select id="hc10Bank" disabled><option value="กรุงไทย" ${bank==='กรุงไทย'?'selected':''}>กรุงไทย</option><option value="กสิกรไทย" ${bank==='กสิกรไทย'?'selected':''}>กสิกรไทย</option><option value="ไทยพาณิชย์" ${bank==='ไทยพาณิชย์'?'selected':''}>ไทยพาณิชย์</option><option value="กรุงเทพ" ${bank==='กรุงเทพ'?'selected':''}>กรุงเทพ</option><option value="ออมสิน" ${bank==='ออมสิน'?'selected':''}>ออมสิน</option><option value="ทหารไทยธนชาต" ${bank==='ทหารไทยธนชาต'?'selected':''}>ทหารไทยธนชาต</option></select></div><div class="hc10-field"><label>เลขที่บัญชี *</label><input id="hc10No" readonly value="${no}"></div></div></section></div>`;
     card.querySelector('#hc10Combine')?.addEventListener('change',()=>{card.dataset.v10sig='';renderComp(pane);syncRight(pane)});
-    card.querySelector('.hc10-edit')?.addEventListener('click',e=>{const edit=e.currentTarget.dataset.edit!=='1';e.currentTarget.dataset.edit=edit?'1':'0';e.currentTarget.textContent=edit?'บันทึกบัญชี':'แก้ไขบัญชี';card.querySelectorAll('input').forEach(x=>{if(x.id!=='hc10Combine')x.readOnly=!edit});const s=card.querySelector('#hc10Bank');if(s)s.disabled=!edit});
+    card.querySelector('.hc10-edit')?.addEventListener('click',e=>{
+      const btn=e.currentTarget;
+      const edit=btn.dataset.edit!=='1';
+      btn.dataset.edit=edit?'1':'0';
+      btn.textContent=edit?'บันทึกบัญชี':'แก้ไขบัญชี';
+
+      const phone=card.querySelector('#hc10Phone');
+      const name=card.querySelector('#hc10Name');
+      const bank=card.querySelector('#hc10Bank');
+      const no=card.querySelector('#hc10No');
+
+      [phone,name,no].forEach(el=>{
+        if(!el) return;
+        el.readOnly=!edit;
+        el.disabled=false;
+        el.setAttribute('aria-disabled', edit ? 'false' : 'true');
+        el.classList.toggle('hc10-field-editing', edit);
+      });
+      if(bank){
+        bank.disabled=!edit;
+        bank.setAttribute('aria-disabled', edit ? 'false' : 'true');
+        bank.classList.toggle('hc10-field-editing', edit);
+      }
+
+      if(edit){
+        phone?.focus();
+        phone?.select?.();
+      }
+    });
   }
   function syncRight(pane){const comp=findComp(pane),a=currentAmounts(comp);const title=Array.from(pane?.querySelectorAll('div,h3,h4')||[]).find(x=>clean(x.textContent)==='สรุปค่าใช้จ่ายโรงพยาบาล');const card=title?.closest('.rounded-xl.border,.step3-hospital-expense-card');if(!card)return;for(const r of Array.from(card.querySelectorAll('div'))){const kids=Array.from(r.children||[]),l=kids.find(x=>clean(x.textContent)==='ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)');if(!l)continue;const v=kids.find(x=>x.tagName==='STRONG'||x.tagName==='B');if(v){const nv=money(a.covered);if(clean(v.textContent)!==nv)v.textContent=nv}break}}
   function enforce(){for(const p of document.querySelectorAll('#hfStepPane3,#hhStepPane3')){renderComp(p);syncRight(p)}for(const p of document.querySelectorAll(PAGE))capture(p)}
@@ -62353,5 +62381,125 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 </script>
+
+
+<!-- FINAL PA RULE 2026-09-02: PA has no separate compensation transfer -->
+<style id="hospital-pa-compensation-rule-style">
+:is(#hfStepPane3,#hhStepPane3) .hospital-comp-v10.is-pa-compensation .hc10-account{display:none!important}
+:is(#hfStepPane3,#hhStepPane3) .hospital-comp-v10.is-pa-compensation .hc10-choice{cursor:not-allowed!important;opacity:.78!important}
+:is(#hfStepPane3,#hhStepPane3) .hospital-comp-v10.is-pa-compensation .hc10-choice input{cursor:not-allowed!important}
+</style>
+<script id="hospital-pa-compensation-rule-script">
+(function(){
+  'use strict';
+  if(window.__hospitalPACompRuleV1) return;
+  window.__hospitalPACompRuleV1 = true;
+
+  const clean=v=>String(v??'').replace(/\s+/g,' ').trim();
+  const money=v=>Number(v||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+  function currentRow(){ return window.currentConsiderHospitalRow || {}; }
+  function isPA(){
+    const r=currentRow();
+    const product=clean(r.product||r.productType||r.policyType).toUpperCase();
+    const claim=clean(r.claimCode||r.claimNo||r.caseNo).toUpperCase();
+    let active='';
+    try{ if(typeof window.currentProductType==='function') active=clean(window.currentProductType()).toUpperCase(); }catch(_e){}
+    return product==='PA' || active==='PA' || claim.startsWith('CLPA');
+  }
+
+  function applyToPane(pane){
+    if(!pane) return;
+    const card=pane.querySelector('.hospital-comp-v10,.hospital-comp-v5,.scm-comp-card');
+    if(!card) return;
+    const pa=isPA();
+    card.classList.toggle('is-pa-compensation',pa);
+    if(!pa) return;
+
+    // PA has no separate compensation transfer: force same route as treatment payment.
+    const cb=card.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheckbox,#scmCombineCheck');
+    if(cb){
+      if(!cb.checked) cb.checked=true;
+      cb.disabled=true;
+      cb.setAttribute('aria-disabled','true');
+      cb.dataset.paForced='1';
+    }
+
+    // No customer-separate account is applicable for PA.
+    card.querySelectorAll('.hc10-account,.hospital-comp-v5-account,.scm-account-card,.hc-account').forEach(el=>{
+      el.classList.add('hidden');
+      el.setAttribute('aria-hidden','true');
+      el.style.display='none';
+    });
+
+    // No amount remains for a separate customer transfer.
+    const remain=card.querySelector('.hc10-remain,.hospital-comp-v5-remain,.scm-transfer-left');
+    if(remain){
+      const strong=remain.querySelector('strong,b');
+      if(strong) strong.textContent=money(0)+' บาท';
+      else {
+        const label='ค่าชดเชยคงเหลือ (โอนให้ลูกค้า)';
+        remain.textContent=label+' '+money(0)+' บาท';
+      }
+    }
+  }
+
+  function apply(){
+    document.querySelectorAll('#hfStepPane3,#hhStepPane3').forEach(applyToPane);
+  }
+
+  let raf=0;
+  function schedule(){
+    if(raf) return;
+    raf=requestAnimationFrame(()=>{raf=0;apply()});
+  }
+
+  // PA must never open the separate compensation-account approval flow.
+  const prevShould=window.__hcShouldOpenSeparateApprovalModal;
+  window.__hcShouldOpenSeparateApprovalModal=function(btn,page){
+    if(isPA()) return false;
+    return typeof prevShould==='function' ? prevShould(btn,page) : false;
+  };
+  const prevOpen=window.__hcOpenSeparateApprovalModal;
+  window.__hcOpenSeparateApprovalModal=function(btn,page,onConfirm){
+    if(isPA()) return false;
+    return typeof prevOpen==='function' ? prevOpen(btn,page,onConfirm) : false;
+  };
+
+  // If any older validator directly asks for compensation account completeness, PA bypasses it.
+  const prevValidate=window.__hcValidateCompensationAccount;
+  if(typeof prevValidate==='function'){
+    window.__hcValidateCompensationAccount=function(){
+      if(isPA()) return true;
+      return prevValidate.apply(this,arguments);
+    };
+  }
+
+  ['openConsiderHospitalRow','setHospitalFullStep','setHospitalHalfStep'].forEach(name=>{
+    const prev=window[name];
+    if(typeof prev!=='function'||prev.__paCompRuleWrapped) return;
+    const wrapped=function(){
+      const r=prev.apply(this,arguments);
+      schedule(); setTimeout(apply,30); setTimeout(apply,120);
+      return r;
+    };
+    wrapped.__paCompRuleWrapped=true;
+    window[name]=wrapped;
+    try{eval(name+'=wrapped')}catch(_e){}
+  });
+
+  new MutationObserver(ms=>{
+    if(ms.some(m=>Array.from(m.addedNodes||[]).some(n=>n.nodeType===1 && (n.matches?.('#hfStepPane3,#hhStepPane3,.hospital-comp-v10,.hospital-comp-v5,.scm-comp-card') || n.querySelector?.('#hfStepPane3,#hhStepPane3,.hospital-comp-v10,.hospital-comp-v5,.scm-comp-card'))))) schedule();
+  }).observe(document.documentElement,{subtree:true,childList:true});
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',apply,{once:true});
+  else apply();
+})();
+</script>
+
+<style id="hc10-account-edit-state-style">
+.hc10-field input.hc10-field-editing,.hc10-field select.hc10-field-editing{background:#fff!important;border-color:#0788d6!important;box-shadow:0 0 0 3px rgba(7,136,214,.10)!important;color:#0f172a!important;cursor:text!important;}
+.hc10-field select.hc10-field-editing{cursor:pointer!important;}
+</style>
 </body>
 </html>
