@@ -54677,7 +54677,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     if(!btn || btn.tagName !== 'BUTTON') return false;
     if(!btn.closest(STEP3_SELECTOR)) return false;
     const label=txt(btn).replace(/check_circle/g,'').trim();
-    return label === 'อนุมัติ' || label === 'อนุมัติรายการ';
+    return label === 'อนุมัติ' || label === 'อนุมัติรายการ' || label === 'อนุมัติและตรวจสอบรายการ';
   }
 
   function hospitalNotify(options){
@@ -60005,7 +60005,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   // Test helper: invoke the exact same authoritative modal API without approving.
   window.__openSeparateCompApprovalForTest=function(){
     const p=visibleStep3();
-    const btn=Array.from(p?.querySelectorAll('button')||[]).find(b=>['อนุมัติ','อนุมัติรายการ'].includes(clean(b.textContent)));
+    const btn=Array.from(p?.querySelectorAll('button')||[]).find(b=>['อนุมัติ','อนุมัติรายการ','อนุมัติและตรวจสอบรายการ'].includes(clean(b.textContent)));
     if(!btn) return false;
     const page=btn.closest('#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage');
     if(!window.__hcShouldOpenSeparateApprovalModal(btn,page)) return false;
@@ -60377,26 +60377,27 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   function compCard(page){
     const pane=currentPane(page); if(!pane) return null;
     const t=Array.from(pane.querySelectorAll('div,h3,h4')).find(el=>clean(el.textContent)==='สรุปค่าชดเชย');
-    return t?.closest('.rounded-xl.border') || t?.closest('.scm-comp-card') || t?.parentElement || null;
+    return t?.closest('.hospital-comp-v10') || t?.closest('.hospital-comp-v5') || t?.closest('.scm-comp-card') || t?.closest('[data-hospital-comp-ux="1"]') || t?.closest('.rounded-xl.border') || t?.parentElement || null;
   }
   function combineCheckbox(page){
     const card=compCard(page);
-    return card?.querySelector('#scmCombineCheckbox,#hcCombine,input[type="checkbox"]') ||
+    return card?.querySelector('#hc10Combine,#hcv5Combine,#scmCombineCheckbox,#hcCombine,input[type="checkbox"]') ||
       Array.from(page?.querySelectorAll('label')||[]).find(l=>clean(l.textContent).includes('โอนค่าชดเชยรวมกับค่ารักษา'))?.querySelector('input[type="checkbox"]') || null;
   }
   function readAccount(page){
     const card=compCard(page);
     const val=(sel)=>clean(card?.querySelector(sel)?.value || card?.querySelector(sel)?.textContent || '');
     return {
-      bank:val('#scmBankInput,#hcBank'),
-      name:val('#scmNameInput,#hcAccountName'),
-      no:val('#scmNoInput,#hcAccountNo'),
-      phone:val('#scmPhoneInput,#hcPhone')
+      bank:val('#hc10Bank,#hcv5Bank,#scmBankInput,#hcBank'),
+      name:val('#hc10Name,#hcv5Name,#scmNameInput,#hcAccountName'),
+      no:val('#hc10No,#hcv5No,#scmNoInput,#hcAccountNo'),
+      phone:val('#hc10Phone,#hcv5Phone,#scmPhoneInput,#hcPhone')
     };
   }
   function showAccountError(page){
     const card=compCard(page);
-    const err=card?.querySelector('#scmAccountError,#hcError');
+    let err=card?.querySelector('#scmAccountError,#hcError,.hc-error');
+    if(!err && card){ err=document.createElement('div'); err.className='hc-error show'; err.style.cssText='margin:10px 0 0;padding:10px 12px;border:1px solid #fecaca;border-radius:10px;background:#fff7f7;color:#b91c1c;font-weight:700'; err.textContent='กรุณาตรวจสอบข้อมูลบัญชีรับเงินค่าชดเชยให้ครบถ้วนก่อนอนุมัติ'; (card.querySelector('.hc10-account,.hospital-comp-v5-account,.scm-account-card')||card).appendChild(err); }
     if(err){ err.classList.add('show'); err.scrollIntoView({behavior:'smooth',block:'center'}); }
   }
   function amountByLabel(page, labels){
@@ -61151,7 +61152,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     if(!btn || btn.tagName !== 'BUTTON') return false;
     if(!btn.closest(STEP3_SELECTOR)) return false;
     const label = textOf(btn).replace(/check_circle/g,'').trim();
-    return label === 'อนุมัติ' || label === 'อนุมัติรายการ';
+    return label === 'อนุมัติ' || label === 'อนุมัติรายการ' || label === 'อนุมัติและตรวจสอบรายการ';
   }
 
   function notify(message){
@@ -62104,5 +62105,6 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 })();
 </script>
 
+<!-- FIX: compensation approval reads current Step3 hc10/hcv5 account controls -->
 </body>
 </html>
