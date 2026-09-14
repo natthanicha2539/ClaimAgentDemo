@@ -60,6 +60,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
   <link rel="stylesheet" href="css/menu-hospital-claim-traffic-accident.css" />
+  <link rel="stylesheet" href="css/menu-claim-work-search.css" />
+  <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css" />
 
   <script>
     tailwind.config = {
@@ -9117,6 +9119,10 @@ body > .min-h-screen > main,
               <span class="material-icons-round !text-xl">local_hospital</span>
               <span class="hidden lg:inline">เคลมโรงพยาบาล</span>
             </button>
+            <button id="submenuConsiderHospitalAdditionalTransfer" type="button" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
+              <span class="material-icons-round !text-xl">add_card</span>
+              <span class="hidden lg:inline">เคลมโรงพยาบาล (โอนเพิ่ม)</span>
+            </button>
             <button id="submenuConsiderDeath" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
               <span class="material-icons-round !text-xl">description</span>
               <span class="hidden lg:inline">Death&amp;Disability</span>
@@ -9679,12 +9685,35 @@ body > .min-h-screen > main,
               </select>
             </label>
             <label>
-              <span class="mb-1 block text-lg font-bold text-slate-500">คำค้นหา <span class="text-danger">*</span></span>
+              <span class="mb-1 block text-lg font-bold text-slate-500">คำค้นหา <span class="text-sm font-semibold text-slate-400">(ไม่บังคับเมื่อใช้ตัวกรอง)</span></span>
               <input id="claimKeyword" value="" class="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-xl font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100" />
               <span id="claimKeywordError" class="mt-1 hidden text-lg font-bold text-danger">กรุณาระบุคำค้นหา</span>
             </label>
             <button type="submit" class="mt-auto inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 text-xl font-bold text-white transition hover:bg-brand-700"><span class="material-icons-round">search</span>ค้นหา</button>
             <button type="button" id="claimClearBtn" class="mt-auto h-12 rounded-lg border border-red-300 bg-white px-5 text-xl font-bold text-red-700 transition hover:bg-red-50">ล้างค่า</button>
+
+            <div id="claimContextFilters" class="lg:col-span-4 grid gap-3 rounded-xl bg-brand-25 p-4 ring-1 ring-brand-100 sm:grid-cols-2 xl:grid-cols-4">
+              <label>
+                <span class="mb-1 block text-lg font-bold text-slate-500">ผลิตภัณฑ์</span>
+                <select id="claimContextProduct" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
+                  <option value="">ทั้งหมด</option><option value="PH">PH</option><option value="PA">PA</option>
+                </select>
+              </label>
+              <label>
+                <span class="mb-1 block text-lg font-bold text-slate-500">ประเภทเคลม</span>
+                <select id="claimContextCategory" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
+                  <option value="">ทั้งหมด</option><option value="เคลมลูกค้า">เคลมลูกค้า</option><option value="เคลมโรงพยาบาล">เคลมโรงพยาบาล</option>
+                </select>
+              </label>
+              <label>
+                <span class="mb-1 block text-lg font-bold text-slate-500">ประเภทการรักษา</span>
+                <select id="claimContextTreatment" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></select>
+              </label>
+              <label>
+                <span class="mb-1 block text-lg font-bold text-slate-500">สถานะรายการ</span>
+                <select id="claimContextStatus" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></select>
+              </label>
+            </div>
 
             <label class="lg:col-span-4 inline-flex w-fit items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 text-xl font-bold text-slate-600 ring-1 ring-slate-200">
               <input id="advancedSearchToggle" type="checkbox" class="h-5 w-5" /> ค้นหาแบบละเอียด
@@ -10037,6 +10066,26 @@ body > .min-h-screen > main,
             <button id="considerNextBtn" type="button" onclick="changeConsiderMonitorPage(1)" class="consider-page-btn" aria-label="ถัดไป"><span class="material-icons-round">chevron_right</span></button>
           </div>
         </section>
+      </section>
+
+      <section id="considerHospitalAdditionalTransferPage" class="hat-page page monitor-unified monitor-table-theme hidden px-1 py-2 lg:px-1 lg:py-3 xl:px-1 xl:py-4" aria-labelledby="hatMonitorPageTitle">
+        <div class="hat-page-shell">
+          <header class="hat-page-header">
+            <span class="hat-page-icon material-icons-round" aria-hidden="true">add_card</span>
+            <div class="hat-page-heading">
+              <p class="hat-page-eyebrow">พิจารณาเคลม</p>
+              <h2 id="hatMonitorPageTitle" class="hat-page-title">เคลมโรงพยาบาล (โอนเพิ่ม)</h2>
+              <p class="hat-page-description">ติดตามคำขอโอนเพิ่มจากโรงพยาบาลและเลือกเคสที่ต้องพิจารณา</p>
+            </div>
+          </header>
+          <div id="hospitalAdditionalTransferMonitorMount" class="hat-page-mount"></div>
+        </div>
+      </section>
+
+      <section id="considerHospitalAdditionalTransferDetailPage" class="hat-page page hidden px-1 py-2 lg:px-1 lg:py-3 xl:px-1 xl:py-4" aria-label="รายละเอียดคำขอโอนเพิ่ม">
+        <div class="hat-page-shell">
+          <div id="hospitalAdditionalTransferDetailMount" class="hat-page-mount"></div>
+        </div>
       </section>
 
       <section id="considerCustomerDetailPage" class="page hidden px-1 py-2 lg:px-1 lg:py-3 xl:px-1 xl:py-4"></section>
@@ -11138,14 +11187,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             &lt;div class=&quot;continue-box&quot;&gt;
               &lt;div class=&quot;section-title&quot; style=&quot;margin-bottom:12px&quot;&gt;
                 &lt;div class=&quot;icon-box&quot; style=&quot;width:34px;height:34px&quot;&gt;&lt;span class=&quot;material-symbols-outlined&quot;&gt;history&lt;/span&gt;&lt;/div&gt;
-                &lt;div&gt;&lt;h2&gt;เคลมต่อเนื่อง&lt;/h2&gt;&lt;p class=&quot;hint&quot;&gt;เลือก ClaimNo เดิม เพื่อใช้ในการคำนวณวงเงินคงเหลือ&lt;/p&gt;&lt;/div&gt;
+                &lt;div&gt;&lt;h2&gt;เคลมต่อเนื่อง&lt;/h2&gt;&lt;p class=&quot;hint&quot;&gt;เลือกเลขที่ Case เดิม เพื่อใช้ในการคำนวณวงเงินคงเหลือ&lt;/p&gt;&lt;/div&gt;
               &lt;/div&gt;
               &lt;div class=&quot;inline-form&quot;&gt;
                 &lt;label class=&quot;check&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;continueClaim&quot; onchange=&quot;toggleContinue()&quot;&gt; เป็นเคลมต่อเนื่อง&lt;/label&gt;
                 &lt;select class=&quot;select&quot; id=&quot;continueSelect&quot; disabled onchange=&quot;showLimit()&quot;&gt;
                   &lt;option value=&quot;&quot;&gt;---เลือก---&lt;/option&gt;
-                  &lt;option value=&quot;CL6904000021&quot;&gt;CL6904000021 | วันที่ 10/5/2569 | Dx: ไข้และหวัด | หมายเหตุ: -&lt;/option&gt;
-                  &lt;option value=&quot;CL6903000188&quot;&gt;CL6903000188 | วันที่ 28/3/2569 | Dx: กระเพาะอาหารอักเสบ&lt;/option&gt;
+                  &lt;option value=&quot;CC6904000021-01&quot;&gt;CC6904000021-01 | วันที่ 10/5/2569 | Dx: ไข้และหวัด | หมายเหตุ: -&lt;/option&gt;
+                  &lt;option value=&quot;CC6903000188-02&quot;&gt;CC6903000188-02 | วันที่ 28/3/2569 | Dx: กระเพาะอาหารอักเสบ&lt;/option&gt;
                 &lt;/select&gt;
               &lt;/div&gt;
               &lt;div id=&quot;limitStrip&quot; class=&quot;limit-strip hide&quot;&gt;
@@ -12387,6 +12436,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </main>
   </div>
 
+  <!-- Claim Monitor mock source data: must load before the core/legacy script. -->
+  <script src="js/mock-data/claim-monitor.mock.js"></script>
   <script>
     const monitorRows = [
       {
@@ -12505,6 +12556,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const continuousClaims = [
       {
         claimNo: "CL6904000193",
+        caseNo: "CC6904000193-01",
         symptom: "ปวดท้องเสียบพลัน",
         accidentDate: "25/03/2569",
         claimAmount: 500,
@@ -12516,6 +12568,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       },
       {
         claimNo: "CL6903000188",
+        caseNo: "CC6903000188-02",
         symptom: "ลำไส้อักเสบจากเชื้อโรคไวรัส",
         accidentDate: "16/03/2569",
         claimAmount: 22581.10,
@@ -12530,6 +12583,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       },
       {
         claimNo: "CL6902000105",
+        caseNo: "CC6902000105-01",
         symptom: "โดนแมวข่วน",
         accidentDate: "10/02/2569",
         claimAmount: 1800,
@@ -12544,6 +12598,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const continuousEntryDetails = {
       "CL6904000193": {
         claimNo: "CL6904000193",
+        caseNo: "CC6904000193-01",
         diagnosisCode: "A281",
         diagnosisName: "Cat-scratch disease",
         symptom: "โดนแมวข่วน",
@@ -12560,6 +12615,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       },
       "CLPA6903000099": {
         claimNo: "CLPA6903000099",
+        caseNo: "CCPA6903000099-01",
         diagnosisCode: "S06.0",
         diagnosisName: "การบาดเจ็บจากอุบัติเหตุ",
         symptom: "เสียชีวิตจากอุบัติเหตุทั่วไป",
@@ -12576,6 +12632,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       },
       "CL6904000021": {
         claimNo: "CL6904000021",
+        caseNo: "CC6904000021-01",
         diagnosisCode: "A281",
         diagnosisName: "Cat-scratch disease",
         symptom: "โดนแมวข่วน",
@@ -12984,7 +13041,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       document.getElementById("continuousPanel").classList.add("hidden");
 
       continuousClaims.forEach((claim) => {
-        claim.checked = claim.claimNo === "CL6903000188";
+        claim.checked = claim.caseNo === "CC6903000188-02";
       });
 
       renderBenefits("ทั้งหมด");
@@ -13042,6 +13099,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function getEligibilityClaimHistoryItems() {
       return continuousClaims.map((claim) => ({
         claimNo: claim.claimNo,
+        caseNo: claim.caseNo,
         incidentDate: claim.accidentDate,
         chiefComplaint: claim.symptom,
         diagnosis: claim.symptom,
@@ -13058,7 +13116,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         paymentDate: "-",
         remark: "-",
         cases: [{
-          caseNo: `${claim.claimNo.replace(/^CL/, "CASE")}-01`,
+          caseNo: claim.caseNo,
           continuousCaseNo: "-",
           serviceDate: claim.accidentDate,
           chiefComplaint: claim.symptom,
@@ -13134,8 +13192,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                   <span class="material-icons-round !text-sm">link</span>เลือกเป็นเคลมต่อเนื่อง
                 </span>
               </div>
-              <p class="text-sm font-normal text-slate-500">เลขที่เคลม</p>
-              <a class="block truncate text-xl font-semibold text-brand-700 underline decoration-brand-300 underline-offset-2">${item.claimNo}</a>
+              <p class="text-sm font-normal text-slate-500">เลขที่ Case</p>
+              <span class="block truncate text-xl font-semibold text-brand-700">${item.caseNo}</span>
             </div>
           </div>
           <div class="grid gap-3 sm:grid-cols-[150px_minmax(0,1fr)]">
@@ -13165,10 +13223,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function renderContinuousClaims() {
       const container = document.getElementById("continuousClaimList");
       const items = getEligibilityClaimHistoryItems();
-      const selectedClaimNos = new Set(
-        continuousClaims.filter((claim) => claim.checked).map((claim) => claim.claimNo)
+      const selectedCaseNos = new Set(
+        continuousClaims.filter((claim) => claim.checked).map((claim) => claim.caseNo)
       );
-      const selectedItems = items.filter((item) => selectedClaimNos.has(item.claimNo));
+      const selectedItems = items.filter((item) => selectedCaseNos.has(item.caseNo));
       const count = document.getElementById("eligibilityClaimHistoryCount");
       const viewAll = document.getElementById("eligibilityClaimHistoryViewAllBtn");
       if (count) count.textContent = `${selectedItems.length} รายการที่เลือก`;
@@ -13283,7 +13341,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
 
     /* ===== Claim workflow screens ===== */
-    const claimPages = ["claimMonitorPage", "claimSearchPage", "claimSearchInsuredDetailPage", "claimRecordPhDetailPage", "transferTrackingPage", "transferClaimDetailPage", "considerPage", "considerCustomerDetailPage", "considerHospitalOpdHalfPage", "considerHospitalOpdFullPage", "considerDeathPage", "considerDeathDetailPage", "billingClaimPage", "claimEntryPage", "claimCalcPage", "documentPage", "ocrPage", "paymentPage"];
+    const claimPages = ["claimMonitorPage", "claimSearchPage", "claimSearchInsuredDetailPage", "claimRecordPhDetailPage", "transferTrackingPage", "transferClaimDetailPage", "considerPage", "considerHospitalAdditionalTransferPage", "considerHospitalAdditionalTransferDetailPage", "considerCustomerDetailPage", "considerHospitalOpdHalfPage", "considerHospitalOpdFullPage", "considerDeathPage", "considerDeathDetailPage", "billingClaimPage", "claimEntryPage", "claimCalcPage", "documentPage", "ocrPage", "paymentPage"];
     const claimSteps = [
       ["assignment", "บันทึกเคลม"],
       ["upload_file", "แนบเอกสาร"],
@@ -13320,311 +13378,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return 0;
     }
 
-    const claimMonitorRows = [
-      {
-        appId: "003067",
-        name: "นายกรภัทร วรวงศ์คุณากร",
-        product: "PH",
-        plan: "662",
-        start: "01/01/2559",
-        end: "-",
-        idCard: "2494029825403",
-        school: "-",
-        province: "กรุงเทพมหานคร",
-        address: "-",
-        phone: "081-234-5678",
-        age: "29 ปี",
-        appStatus: "ปกติ",
-        organLossClaimed: true,
-        organLossClaimNo: "CL6903000217",
-        claimHistory: [
-          { claimNo: "CL6903000217", incidentDate: "12/03/2569", chiefComplaint: "สูญเสียปลายนิ้วมือจากอุบัติเหตุ", claimAmount: "60,000.00", paidAmount: "60,000.00", incidentCause: "อุบัติเหตุ", coverageType: "ค่ารักษาพยาบาล", treatmentType: "OPD", paymentStatus: "โอนสำเร็จ", isContinuous: false, continuousText: "เคยเบิกสูญเสียอวัยวะแล้ว", cases: [
-            { caseNo: "CC6903000217-01", continuousCaseNo: "-", serviceDate: "12/03/2569", chiefComplaint: "สูญเสียปลายนิ้วมือจากอุบัติเหตุ", remark: "เข้ารับการรักษาครั้งแรก", incidentCause: "อุบัติเหตุ", coverageType: "ค่ารักษาพยาบาล", treatmentType: "OPD", claimAmount: "40,000.00", paidAmount: "40,000.00", paymentStatus: "อยู่ระหว่างการโอน", status: "เคสแรก" },
-            { caseNo: "CC6903000217-02", continuousCaseNo: "-", serviceDate: "19/03/2569", chiefComplaint: "ติดตามอาการและทำแผลต่อเนื่อง", remark: "เคลมต่อเนื่องจาก ClaimCase แรก", incidentCause: "อุบัติเหตุ", coverageType: "ค่ารักษาพยาบาล", treatmentType: "OPD", claimAmount: "20,000.00", paidAmount: "20,000.00", paymentStatus: "โอนสำเร็จ", status: "เคสต่อเนื่อง" }
-          ] },
-          { claimNo: "CL6902000128", incidentDate: "18/02/2569", chiefComplaint: "ปวดท้องเฉียบพลัน", claimAmount: "1,250.00", paidAmount: "1,250.00", isContinuous: false, continuousText: "ไม่ใช่เคลมต่อเนื่อง", cases: [{ caseNo: "CASE6902000128-01", continuousCaseNo: "-", serviceDate: "18/02/2569", chiefComplaint: "ปวดท้องเฉียบพลัน", claimAmount: "1,250.00", paidAmount: "1,250.00", status: "เคสแรก" }] }
-        ]
-      },
-      {
-        appId: "69102612",
-        name: "ด.ช.ธนกฤต พรรษาสกุล",
-        product: "PA",
-        plan: "ชดเชย+สุขภาพ",
-        start: "01/01/2569",
-        end: "01/12/2569",
-        idCard: "2620481791249",
-        school: "โรงเรียนพระตำหนักสวนกุหลาบ",
-        province: "กรุงเทพมหานคร",
-        address: "อำเภอ : พระนคร ตำบล : พระบรมมหาราชวัง",
-        phone: "086-555-1212",
-        age: "8 ปี",
-        appStatus: "ปกติ",
-        coordinatorName: "นางกนก พันธรัญา",
-        coordinatorPhone: "091-123-2345",
-        bankName: "กรุงไทย",
-        bankAccount: "1821000000",
-        bankOwner: "นางกนก พันธรัญา",
-        claimHistory: [
-          {
-            claimNo: "CL6906000142",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุ",
-            coverageType: "ค่ารักษา",
-            treatmentType: "OPD",
-            incidentDate: "12/06/2569",
-            serviceDate: "12/06/2569",
-            hospitalName: "โรงพยาบาลวชิรพยาบาล",
-            diagnosis: "ข้อเท้าขวาแพลงจากลื่นล้มบริเวณสนามโรงเรียน",
-            chiefComplaint: "ลื่นล้ม ข้อเท้าขวาบวม เดินลงน้ำหนักแล้วเจ็บ",
-            claimAmount: "1,250.00",
-            paidAmount: "1,050.00",
-            nonCoveredAmount: "200.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "18/06/2569",
-            isContinuous: false,
-            continuousText: "เคลมปกติ - OPD อุบัติเหตุ",
-            remark: "เวชภัณฑ์บางรายการไม่อยู่ในสิทธิ์ความคุ้มครอง",
-            cases: [
-              {
-                caseNo: "CASE6906000142-01",
-                continuousCaseNo: "-",
-                serviceDate: "12/06/2569",
-                chiefComplaint: "ลื่นล้ม ข้อเท้าขวาบวม เดินลงน้ำหนักแล้วเจ็บ",
-                claimAmount: "1,250.00",
-                paidAmount: "1,050.00",
-                status: "เคสแรก"
-              }
-            ]
-          },
-          {
-            claimNo: "CL6905000098",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "เจ็บป่วย",
-            coverageType: "ค่ารักษา",
-            treatmentType: "IPD",
-            incidentDate: "19/05/2569",
-            serviceDate: "19/05/2569",
-            admitDate: "19/05/2569",
-            dischargeDate: "21/05/2569",
-            stayNights: "2 คืน",
-            hospitalName: "โรงพยาบาลเด็กสมิติเวช อินเตอร์เนชั่นแนล",
-            diagnosis: "กระเพาะและลำไส้อักเสบเฉียบพลันจากอาหารเป็นพิษ",
-            chiefComplaint: "ไข้สูง อาเจียน ถ่ายเหลว รับประทานอาหารไม่ได้",
-            claimAmount: "6,850.00",
-            paidAmount: "6,550.00",
-            nonCoveredAmount: "300.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "27/05/2569",
-            isContinuous: false,
-            continuousText: "เคลมปกติ - IPD เจ็บป่วย",
-            remark: "ค่าอาหารผู้ปกครองและของใช้ส่วนตัวไม่คุ้มครอง",
-            cases: [
-              {
-                caseNo: "CASE6905000098-01",
-                continuousCaseNo: "-",
-                serviceDate: "19/05/2569",
-                chiefComplaint: "ไข้สูง อาเจียน ถ่ายเหลว รับประทานอาหารไม่ได้",
-                claimAmount: "6,850.00",
-                paidAmount: "6,550.00",
-                status: "เคสแรก"
-              }
-            ]
-          },
-          {
-            claimNo: "CL6903000088",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุ",
-            coverageType: "ค่ารักษา",
-            treatmentType: "OPD",
-            incidentDate: "08/03/2569",
-            serviceDate: "08/03/2569",
-            hospitalName: "โรงพยาบาลศิริราช ปิยมหาราชการุณย์",
-            diagnosis: "แผลฉีกขาดบริเวณคางจากการหกล้ม เย็บ 3 เข็ม",
-            chiefComplaint: "หกล้มคางกระแทกพื้น มีเลือดออกและแผลเปิด",
-            claimAmount: "2,480.00",
-            paidAmount: "2,480.00",
-            nonCoveredAmount: "0.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "14/03/2569",
-            isContinuous: true,
-            continuousCaseNo: "CC6903000088-01",
-            continuousText: "เคลมต่อเนื่องจากการทำแผลและติดตามอาการ",
-            remark: "นัดทำแผลต่อเนื่อง 2 ครั้ง",
-            cases: [
-              {
-                caseNo: "CASE6903000088-01",
-                continuousCaseNo: "-",
-                serviceDate: "08/03/2569",
-                chiefComplaint: "หกล้มคางกระแทกพื้น มีเลือดออกและแผลเปิด",
-                claimAmount: "1,680.00",
-                paidAmount: "1,680.00",
-                status: "เคสแรก"
-              },
-              {
-                caseNo: "CASE6903000088-02",
-                continuousCaseNo: "CC6903000088-01",
-                serviceDate: "10/03/2569",
-                chiefComplaint: "นัดทำแผลบริเวณคางและประเมินอาการบวม",
-                claimAmount: "400.00",
-                paidAmount: "400.00",
-                status: "เคสต่อเนื่อง"
-              },
-              {
-                caseNo: "CASE6903000088-03",
-                continuousCaseNo: "CC6903000088-02",
-                serviceDate: "13/03/2569",
-                chiefComplaint: "นัดตัดไหมและติดตามอาการหลังหกล้ม",
-                claimAmount: "400.00",
-                paidAmount: "400.00",
-                status: "เคสต่อเนื่อง"
-              }
-            ]
-          }
-        ]
-      },
-      { appId: "012345", name: "นางโสรัตน์ จันทร์จุฬา", product: "PH", plan: "661", start: "01/03/2565", end: "-", idCard: "8941196407026", school: "-", province: "กรุงเทพมหานคร", address: "-", phone: "089-441-7026", age: "42 ปี", appStatus: "ปกติ", claimHistory: [{ claimNo: "CL6901000064", incidentDate: "18/01/2569", chiefComplaint: "ไข้หวัดใหญ่", claimAmount: "1,250.00", paidAmount: "1,250.00", isContinuous: false, continuousText: "ไม่ใช่เคลมต่อเนื่อง", cases: [{ caseNo: "CASE6901000064-01", continuousCaseNo: "-", serviceDate: "18/01/2569", chiefComplaint: "ไข้หวัดใหญ่", claimAmount: "1,250.00", paidAmount: "1,250.00", status: "เคสแรก" }] }] },
-      { appId: "009099", name: "นายบวรพจน์ ขจรศักดิ์โกศล", product: "PH", plan: "502Pro", start: "01/04/2565", end: "-", idCard: "2714145414250", school: "-", province: "กรุงเทพมหานคร", address: "-", phone: "092-414-5414", age: "36 ปี", appStatus: "ปกติ", claimHistory: [] },
-      { appId: "001543", name: "นายจิโรจน์ สิริประภาชัย", product: "PH", plan: "661", start: "01/01/2566", end: "-", idCard: "1721371846555", school: "-", province: "กรุงเทพมหานคร", address: "-", phone: "080-137-1846", age: "45 ปี", appStatus: "ปกติ", claimHistory: [] },
-      { appId: "002940", name: "นายชานนท์ มาลัยแก้ว", product: "PH", plan: "662", start: "01/01/2566", end: "-", idCard: "7544739303542", school: "-", province: "กรุงเทพมหานคร", address: "-", phone: "063-473-9303", age: "31 ปี", appStatus: "ปกติ", claimHistory: [] },
-      {
-        appId: "69102613",
-        name: "ด.ช.ปิติภูมิ แสนวงศ์",
-        product: "PA",
-        plan: "รักษา",
-        start: "01/01/2569",
-        end: "01/12/2569",
-        idCard: "3321349692974",
-        school: "โรงเรียนชิโนรสวิทยาลัย",
-        province: "กรุงเทพมหานคร",
-        address: "อำเภอ : บางกอกน้อย ตำบล : บ้านช่างหล่อ",
-        phone: "087-134-9692",
-        age: "10 ปี",
-        appStatus: "ปกติ",
-        claimHistory: [
-          {
-            claimNo: "CLPA6907000214",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุทั่วไป",
-            coverageType: "ค่ารักษาพยาบาลจากอุบัติเหตุ",
-            treatmentType: "OPD",
-            incidentDate: "18/06/2569",
-            serviceDate: "22/07/2569",
-            hospitalName: "โรงพยาบาลศิริราช",
-            diagnosis: "ติดตามอาการกระดูกแขนซ้ายหักหลังถอดเฝือก",
-            chiefComplaint: "ปวดตึงแขนซ้ายและขยับข้อศอกได้ไม่เต็มที่",
-            claimAmount: "2,350.00",
-            paidAmount: "2,050.00",
-            nonCoveredAmount: "300.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "28/07/2569",
-            isContinuous: true,
-            continuousCaseNo: "CCPA6906000182-02",
-            continuousText: "เคลมต่อเนื่องจาก CLPA6906000182",
-            remark: "ค่าอุปกรณ์พยุงแขนส่วนเกินไม่อยู่ในความคุ้มครอง",
-            cases: [
-              { caseNo: "CASEPA6907000214-01", continuousCaseNo: "CCPA6906000182-02", serviceDate: "22/07/2569", chiefComplaint: "ติดตามอาการหลังถอดเฝือกและทำกายภาพแขนซ้าย", claimAmount: "2,350.00", paidAmount: "2,050.00", status: "เคสต่อเนื่อง" }
-            ]
-          },
-          {
-            claimNo: "CLPA6906000182",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุทั่วไป",
-            coverageType: "ค่ารักษาพยาบาลจากอุบัติเหตุ",
-            treatmentType: "IPD",
-            incidentDate: "18/06/2569",
-            serviceDate: "18/06/2569",
-            admitDate: "18/06/2569",
-            dischargeDate: "20/06/2569",
-            stayNights: "2 คืน",
-            hospitalName: "โรงพยาบาลศิริราช",
-            diagnosis: "กระดูกแขนซ้ายส่วนปลายหักจากการหกล้ม",
-            chiefComplaint: "หกล้มขณะเล่นกีฬา แขนซ้ายบวมและผิดรูป",
-            claimAmount: "18,450.00",
-            paidAmount: "17,800.00",
-            nonCoveredAmount: "650.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "27/06/2569",
-            isContinuous: false,
-            continuousText: "เคลมหลักของการรักษากระดูกแขนซ้ายหัก",
-            remark: "หักค่าอาหารผู้เฝ้าไข้และของใช้ส่วนตัว",
-            cases: [
-              { caseNo: "CASEPA6906000182-01", continuousCaseNo: "-", serviceDate: "18/06/2569", chiefComplaint: "รับไว้รักษาและใส่เฝือกแขนซ้าย", claimAmount: "16,900.00", paidAmount: "16,350.00", status: "เคสแรก" },
-              { caseNo: "CASEPA6906000182-02", continuousCaseNo: "CCPA6906000182-01", serviceDate: "25/06/2569", chiefComplaint: "ตรวจติดตามตำแหน่งกระดูกและปรับเฝือก", claimAmount: "1,550.00", paidAmount: "1,450.00", status: "เคสต่อเนื่อง" }
-            ]
-          },
-          {
-            claimNo: "CLPA6905000117",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อาหารและเครื่องดื่มเป็นพิษ",
-            coverageType: "ค่ารักษาพยาบาลเนื่องจากอาหารเป็นพิษ",
-            treatmentType: "OPD",
-            incidentDate: "09/05/2569",
-            serviceDate: "09/05/2569",
-            hospitalName: "โรงพยาบาลธนบุรี",
-            diagnosis: "กระเพาะและลำไส้อักเสบเฉียบพลันจากอาหารเป็นพิษ",
-            chiefComplaint: "ปวดท้อง อาเจียน และถ่ายเหลวหลังรับประทานอาหาร",
-            claimAmount: "1,250.00",
-            paidAmount: "1,000.00",
-            nonCoveredAmount: "250.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "15/05/2569",
-            isContinuous: false,
-            continuousText: "เคลมปกติ - สิทธิประโยชน์ร่วมสำหรับนักเรียน",
-            remark: "ค่ายานอกบัญชีไม่อยู่ในความคุ้มครอง",
-            cases: [
-              { caseNo: "CASEPA6905000117-01", continuousCaseNo: "-", serviceDate: "09/05/2569", chiefComplaint: "ปวดท้อง อาเจียน และถ่ายเหลว", claimAmount: "1,250.00", paidAmount: "1,000.00", status: "เคสแรก" }
-            ]
-          },
-          {
-            claimNo: "CLPA6904000079",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุทั่วไป",
-            coverageType: "ค่ารักษาพยาบาลจากอุบัติเหตุ",
-            treatmentType: "OPD",
-            incidentDate: "28/04/2569",
-            serviceDate: "28/04/2569",
-            hospitalName: "โรงพยาบาลศิริราช",
-            diagnosis: "แผลฉีกขาดบริเวณเข่าขวาจากการหกล้ม",
-            chiefComplaint: "สะดุดล้มในสนามโรงเรียน มีแผลเปิดที่เข่าขวา",
-            claimAmount: "1,480.00",
-            paidAmount: "1,480.00",
-            nonCoveredAmount: "0.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "05/05/2569",
-            isContinuous: false,
-            continuousText: "เคลมปกติ - OPD อุบัติเหตุ",
-            remark: "อนุมัติจ่ายเต็มตามสิทธิ์",
-            cases: [
-              { caseNo: "CASEPA6904000079-01", continuousCaseNo: "-", serviceDate: "28/04/2569", chiefComplaint: "ทำแผลและเย็บแผลบริเวณเข่าขวา 3 เข็ม", claimAmount: "1,480.00", paidAmount: "1,480.00", status: "เคสแรก" }
-            ]
-          },
-          {
-            claimNo: "CLPA6903000046",
-            claimCategory: "เคลมลูกค้า",
-            incidentCause: "อุบัติเหตุทั่วไป",
-            coverageType: "ค่ารักษาพยาบาลจากอุบัติเหตุ",
-            treatmentType: "OPD",
-            incidentDate: "25/03/2569",
-            serviceDate: "25/03/2569",
-            hospitalName: "โรงพยาบาลธนบุรี",
-            diagnosis: "กล้ามเนื้อหัวไหล่ขวาฟกช้ำจากการลื่นล้ม",
-            chiefComplaint: "ลื่นล้มในห้องน้ำ ปวดหัวไหล่ขวาและยกแขนลำบาก",
-            claimAmount: "950.00",
-            paidAmount: "950.00",
-            nonCoveredAmount: "0.00",
-            paymentStatus: "โอนสำเร็จ",
-            paymentDate: "31/03/2569",
-            isContinuous: false,
-            continuousText: "เคลมปกติ - OPD อุบัติเหตุ",
-            remark: "อนุมัติจ่ายเต็มตามสิทธิ์",
-            cases: [
-              { caseNo: "CASEPA6903000046-01", continuousCaseNo: "-", serviceDate: "25/03/2569", chiefComplaint: "ตรวจเอกซเรย์และรักษาอาการฟกช้ำที่หัวไหล่ขวา", claimAmount: "950.00", paidAmount: "950.00", status: "เคสแรก" }
-            ]
-          }
-        ]
-      },
-      { appId: "69102614", name: "ด.ญ.กมลพร จันทร์สิงห์", product: "PA", plan: "เลือกสิทธิ์+สุขภาพ", start: "01/01/2569", end: "01/12/2569", idCard: "1351606116733", school: "โรงเรียนสตรีวิทยา ๒", province: "กรุงเทพมหานคร", address: "อำเภอ : บางกอกน้อย ตำบล : บ้านช่างหล่อ", phone: "095-160-6116", age: "9 ปี", appStatus: "ปกติ", claimHistory: [] }
-    ];
+    /* claimMonitorRows is declared by js/mock-data/claim-monitor.mock.js. */
     let claimMonitorFilteredRows = claimMonitorRows;
 
     const considerationCustomerRows = [
@@ -13724,6 +13478,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       deathExtras: [],
       isContinuous: false,
       continuousClaim: null,
+      continuousCaseNo: "",
       paClaims: [],
       paPrimaryRow: null,
       paPrimaryRemoved: false,
@@ -13868,9 +13623,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const inactiveSub = "flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white";
       const customer = document.getElementById("submenuConsiderCustomer");
       const hospital = document.getElementById("submenuConsiderHospital");
+      const hospitalAdditionalTransfer = document.getElementById("submenuConsiderHospitalAdditionalTransfer");
       const death = document.getElementById("submenuConsiderDeath");
       if (customer) customer.className = submenu === "customer" ? activeSub : inactiveSub;
       if (hospital) hospital.className = submenu === "hospital" ? activeSub : inactiveSub;
+      if (hospitalAdditionalTransfer) hospitalAdditionalTransfer.className = submenu === "hospitalAdditionalTransfer" ? activeSub : inactiveSub;
       if (death) death.className = submenu === "death" ? activeSub : inactiveSub;
     }
 
@@ -16035,7 +15792,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const rowsHtml = rows.length ? rows.map((row, i) => `
         <tr class="transition ${selectedClaimMonitorIndex === i ? 'bg-brand-50' : ''}">
           <td class="px-4 py-3">
-            <button onclick="selectClaimMonitorRow(${i})" class="inline-flex min-w-[54px] items-center justify-center rounded-md bg-brand-800 px-3 py-1.5 text-base font-bold text-white hover:bg-brand-700">เลือก</button>
+            <div class="flex items-center gap-2">
+              <button onclick="selectClaimMonitorRow(${i})" class="inline-flex min-w-[54px] items-center justify-center rounded-md bg-brand-800 px-3 py-1.5 text-base font-bold text-white hover:bg-brand-700">เลือก</button>
+              <button type="button" onclick="openClaimMonitorDetail('${row.appId}')" class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-100 text-brand-700 transition hover:bg-brand-600 hover:text-white" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${row.appId}"><span class="material-icons-round !text-lg">visibility</span></button>
+            </div>
           </td>
           <td class="px-4 py-3 font-bold text-brand-700 underline">${row.appId}</td>
           <td class="px-4 py-3 font-bold">${row.name}</td>
@@ -16058,7 +15818,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <p class="text-sm font-semibold text-slate-500">เลขบัตรประชาชน: ${row.idCard}</p>
                 ${row.school && row.school !== '-' ? `<p class="text-sm font-semibold text-slate-500">สถานศึกษา: ${row.school}</p>` : ""}
               </div>
-              <button onclick="selectClaimMonitorRow(${i})" class="h-10 rounded-lg bg-brand-800 px-4 text-lg font-bold text-white">เลือก</button>
+              <div class="flex shrink-0 items-center gap-2">
+                <button onclick="selectClaimMonitorRow(${i})" class="h-10 rounded-lg bg-brand-800 px-4 text-lg font-bold text-white">เลือก</button>
+                <button type="button" onclick="openClaimMonitorDetail('${row.appId}')" class="grid h-10 w-10 place-items-center rounded-full bg-brand-100 text-brand-700 transition hover:bg-brand-600 hover:text-white" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${row.appId}"><span class="material-icons-round !text-xl">visibility</span></button>
+              </div>
             </div>
             <dl class="space-y-2 text-xl">
               <div class="flex justify-between border-b border-dashed pb-1"><dt>แผน</dt><dd class="font-bold">${row.plan}</dd></div>
@@ -16085,6 +15848,20 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const row = getClaimMonitorRowByIndex(index);
       const detail = document.getElementById("claimSelectedDetail");
       if (!detail) return;
+      const continuousCaseRows = (row.claimHistory || []).flatMap((historyItem) => {
+        const cases = Array.isArray(historyItem.cases) && historyItem.cases.length
+          ? historyItem.cases
+          : [{
+              caseNo: historyItem.caseNo || historyItem.continuousCaseNo,
+              serviceDate: historyItem.incidentDate,
+              chiefComplaint: historyItem.chiefComplaint,
+              claimAmount: historyItem.claimAmount,
+              paidAmount: historyItem.paidAmount
+            }];
+        return cases
+          .filter((caseItem) => caseItem.caseNo)
+          .map((caseItem) => ({ historyItem, caseItem }));
+      });
       detail.innerHTML = `
         <section>
           <header class="mb-3 border-l-4 border-brand-500 bg-brand-50 px-4 py-2">
@@ -16119,9 +15896,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                   <col style="width: 11%">
                   <col style="width: 20%">
                 </colgroup>
-                <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2.5 text-left whitespace-nowrap">ClaimNo</th><th class="px-3 py-2.5 text-left">อาการสำคัญ(ChiefComplain)</th><th class="px-3 py-2.5 text-left whitespace-nowrap">วันที่เกิดเหตุ</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดเงินตามใบเสร็จรวม</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดจ่ายรวม</th><th class="px-3 py-2.5 text-right"></th></tr></thead>
+                <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2.5 text-left whitespace-nowrap">เลขที่ Case</th><th class="px-3 py-2.5 text-left">อาการสำคัญ(ChiefComplain)</th><th class="px-3 py-2.5 text-left whitespace-nowrap">วันที่เกิดเหตุ</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดเงินตามใบเสร็จรวม</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดจ่ายรวม</th><th class="px-3 py-2.5 text-right"></th></tr></thead>
                 <tbody class="divide-y divide-slate-100">
-                  ${(row.claimHistory || []).length ? row.claimHistory.map(h => `<tr><td class="px-3 py-2.5 font-bold text-brand-700 whitespace-nowrap">${h.claimNo}</td><td class="px-3 py-2.5 break-words">${h.chiefComplaint}</td><td class="px-3 py-2.5 whitespace-nowrap">${h.incidentDate}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${h.claimAmount}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${h.paidAmount}</td><td class="px-3 py-2.5 text-right"><button onclick="openContinuousClaimEntry(${index}, '${h.claimNo}')" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded bg-brand-800 px-3 py-1.5 font-bold text-white"><span class="material-icons-round !text-base align-middle">add_box</span> แจ้งเคลมต่อเนื่อง</button></td></tr>`).join("") : `<tr><td colspan="6" class="px-5 py-8 text-center text-xl font-bold text-slate-400">ไม่พบประวัติการเคลม</td></tr>`}
+                  ${continuousCaseRows.length ? continuousCaseRows.map(({ caseItem }) => `<tr><td class="px-3 py-2.5 font-bold text-brand-700 whitespace-nowrap">${caseItem.caseNo}</td><td class="px-3 py-2.5 break-words">${caseItem.chiefComplaint || '-'}</td><td class="px-3 py-2.5 whitespace-nowrap">${caseItem.serviceDate || '-'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.claimAmount || '0.00'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.paidAmount || '0.00'}</td><td class="px-3 py-2.5 text-right"><button type="button" onclick="openContinuousClaimEntry(${index}, '${caseItem.caseNo}')" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded bg-brand-800 px-3 py-1.5 font-bold text-white"><span class="material-icons-round !text-base align-middle">add_box</span> แจ้งเคลมต่อเนื่อง</button></td></tr>`).join("") : `<tr><td colspan="6" class="px-5 py-8 text-center text-xl font-bold text-slate-400">ไม่พบประวัติ Case</td></tr>`}
                 </tbody>
               </table>
             </div>
@@ -16165,6 +15942,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       claimState.primaryAccidentDate = "";
       claimState.phIpdAmounts = {};
       claimState.phIpdTransferTotal = 0;
+      claimState.continuousCaseNo = "";
       claimState.scanned = { idcard: false, receipt: false, medcert: false, other: false };
     }
 
@@ -16193,11 +15971,29 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       clearClaimEntryFormInputs();
     }
 
-    function openContinuousClaimEntry(index = 0, claimNo = "CL6904000021") {
-      const detail = continuousEntryDetails[claimNo] || continuousEntryDetails["CL6904000021"];
-      claimState.row = getClaimMonitorRowByIndex(index);
+    function openContinuousClaimEntry(index = 0, caseNo = "") {
+      if (!caseNo) return;
+      const sourceRow = getClaimMonitorRowByIndex(index);
+      const historyItem = (sourceRow.claimHistory || []).find((item) =>
+        (item.cases || []).some((caseItem) => caseItem.caseNo === caseNo)
+        || item.caseNo === caseNo
+        || item.continuousCaseNo === caseNo
+      );
+      if (!historyItem) return;
+      const selectedCase = (historyItem.cases || []).find((caseItem) => caseItem.caseNo === caseNo) || {};
+      const baseDetail = continuousEntryDetails[historyItem.claimNo] || continuousEntryDetails["CL6904000021"];
+      const detail = {
+        ...baseDetail,
+        claimNo: historyItem.claimNo || baseDetail.claimNo,
+        caseNo,
+        symptom: selectedCase.chiefComplaint || historyItem.chiefComplaint || baseDetail.symptom,
+        incidentDate: selectedCase.serviceDate || historyItem.incidentDate || baseDetail.incidentDate,
+        claimAmount: parseMoney(selectedCase.claimAmount || historyItem.claimAmount) || baseDetail.claimAmount
+      };
+      claimState.row = sourceRow;
       claimState.isContinuous = true;
       claimState.continuousClaim = detail;
+      claimState.continuousCaseNo = caseNo;
       claimState.incidentCause = detail.incidentCause || "เจ็บป่วย";
       claimState.coverageType = detail.coverageType || "ค่ารักษา";
       claimState.subType = detail.subType || "OPD";
@@ -16229,7 +16025,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="grid gap-4 xl:grid-cols-[minmax(0,1fr)_220px]">
             <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
               <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4 text-lg">
-                <div><p class="font-bold text-slate-500">ClaimNo :</p><p class="font-extrabold text-brand-700 underline">${item.claimNo}</p></div>
+                <div><p class="font-bold text-slate-500">เลขที่ Case :</p><p class="font-extrabold text-brand-700">${item.caseNo}</p></div>
                 <div class="md:col-span-2"><p class="font-bold text-slate-500">Diagnosis :</p><p class="font-extrabold text-brand-700">${item.diagnosisCode || "-"} : ${item.diagnosisName || item.coverageType || "-"} <span class="text-slate-500">[${item.symptom || "-"}]</span></p></div>
                 <div><p class="font-bold text-slate-500">วันที่เกิดเหตุ :</p><p class="font-extrabold text-brand-700">${item.incidentDate}</p></div>
                 <div><p class="font-bold text-slate-500">ยอดเงินตามใบเสร็จรวม :</p><p class="font-extrabold text-brand-700">${formatMoney(item.claimAmount)}</p></div>
@@ -16245,7 +16041,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="overflow-hidden rounded-xl border border-slate-200">
             <div class="overflow-x-auto soft-scroll">
               <table class="min-w-[760px] w-full border-collapse text-base lg:text-lg">
-                <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2 text-center">ลำดับ</th><th class="px-3 py-2 text-left">ClaimCase</th><th class="px-3 py-2 text-left">ประเภทการรักษา</th><th class="px-3 py-2 text-left">อาการสำคัญ</th><th class="px-3 py-2 text-left">วันที่เข้ารักษา</th><th class="px-3 py-2 text-center">สถานะ</th><th class="px-3 py-2 text-right">ยอดเบิก</th><th class="px-3 py-2 text-right">ยอดจ่าย</th></tr></thead>
+                <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2 text-center">ลำดับ</th><th class="px-3 py-2 text-left">เลขที่ Case</th><th class="px-3 py-2 text-left">ประเภทการรักษา</th><th class="px-3 py-2 text-left">อาการสำคัญ</th><th class="px-3 py-2 text-left">วันที่เข้ารักษา</th><th class="px-3 py-2 text-center">สถานะ</th><th class="px-3 py-2 text-right">ยอดเบิก</th><th class="px-3 py-2 text-right">ยอดจ่าย</th></tr></thead>
                 <tbody class="divide-y divide-slate-100 bg-white">
                   ${item.lines.map(line => `<tr><td class="px-3 py-2 text-center">${line.no}</td><td class="px-3 py-2 font-semibold text-brand-700">${line.claimCode}</td><td class="px-3 py-2">${line.type}</td><td class="px-3 py-2">${line.symptom}</td><td class="px-3 py-2">${line.serviceDate}</td><td class="px-3 py-2 text-center"><span class="inline-flex rounded-full bg-green-100 px-2.5 py-1 text-sm font-bold text-success">${line.status}</span></td><td class="px-3 py-2 text-right">${formatMoney(line.amount)}</td><td class="px-3 py-2 text-right">${formatMoney(line.paid)}</td></tr>`).join("")}
                 </tbody>
@@ -20957,7 +20753,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     document.getElementById("menuConsider")?.addEventListener("click", () => {
       setClaimSubmenuExpanded(false);
       setBillingSubmenuExpanded(false);
-      const isConsiderActive = !document.getElementById("considerPage")?.classList.contains("hidden") || !document.getElementById("considerDeathPage")?.classList.contains("hidden");
+      const isConsiderActive = !document.getElementById("considerPage")?.classList.contains("hidden") || !document.getElementById("considerHospitalAdditionalTransferPage")?.classList.contains("hidden") || !document.getElementById("considerHospitalAdditionalTransferDetailPage")?.classList.contains("hidden") || !document.getElementById("considerDeathPage")?.classList.contains("hidden");
       if (isConsiderActive) {
         toggleConsiderSubmenu();
       } else {
@@ -27358,20 +27154,20 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
         <div class="customer-review-metagrid">
           <div class="customer-review-meta-box"><div class="customer-review-meta-label">เบอร์โทรศัพท์</div><div class="customer-review-meta-value">${phone}</div></div>
-          <div class="customer-review-meta-box"><div class="customer-review-meta-label">อายุกรมธรรม์(ณ วันเกิดเหตุ)</div><div class="customer-review-meta-value">10 ปี 2 เดือน 9 วัน</div></div>
-          <div class="customer-review-meta-box"><div class="customer-review-meta-label">สถานะ App</div><div class="customer-review-meta-value"><span class="customer-review-app-status">ปกติ</span></div></div>
-          <div class="customer-review-meta-box"><div class="customer-review-meta-label">วันที่เริ่มคุ้มครอง</div><div class="customer-review-meta-value">01/01/2559</div></div>
-          <div class="customer-review-meta-box"><div class="customer-review-meta-label">วันที่สิ้นสุดความคุ้มครอง</div><div class="customer-review-meta-value">-</div></div>
+          <div class="customer-review-meta-box"><div class="customer-review-meta-label">อายุกรมธรรม์(ณ วันเกิดเหตุ)</div><div class="customer-review-meta-value">${row?.policyAge || row?.age || '10 ปี 2 เดือน 9 วัน'}</div></div>
+          <div class="customer-review-meta-box"><div class="customer-review-meta-label">สถานะ App</div><div class="customer-review-meta-value"><span class="customer-review-app-status">${row?.appStatus || 'ปกติ'}</span></div></div>
+          <div class="customer-review-meta-box"><div class="customer-review-meta-label">วันที่เริ่มคุ้มครอง</div><div class="customer-review-meta-value">${row?.coverageStart || row?.start || '01/01/2559'}</div></div>
+          <div class="customer-review-meta-box"><div class="customer-review-meta-label">วันที่สิ้นสุดความคุ้มครอง</div><div class="customer-review-meta-value">${row?.coverageEnd || row?.end || '-'}</div></div>
         </div>
         <div class="customer-review-plan"><span class="material-icons-round">health_and_safety</span>แผน : ${plan}</div>
       </section>
       ${continuousBanner}
       <section class="customer-review-topcard">
         <div class="customer-review-topgrid">
-          ${customerTopItem('calendar_month','วันที่แจ้ง','25/08/2569 09:38:00')}
-          ${customerTopItem('calendar_month','วันที่โอนเงิน','25/08/2569 09:42:18')}
-          ${customerTopItem('work','ผู้แจ้งเคลม','06590 - ณัฏฐณิชา โตรักษา')}
-          ${customerTopItem('location_on','สาขา','กรุงเทพมหานคร')}
+          ${customerTopItem('calendar_month','วันที่แจ้ง',row?.claimDate || row?.date || '25/08/2569 09:38:00')}
+          ${customerTopItem('calendar_month','วันที่โอนเงิน',row?.decisionDate || '-')}
+          ${customerTopItem('work','ผู้แจ้งเคลม',row?.reviewer || '06590 - ณัฏฐณิชา โตรักษา')}
+          ${customerTopItem('location_on','สาขา',row?.province || 'กรุงเทพมหานคร')}
         </div>
         <div class="customer-review-codegrid bg-slate-50/70">
           ${customerTopItem('description','เลขที่เคลม :', customerClaimLink(claimNo))}
@@ -27398,8 +27194,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="insured-reference-box box-phone"><span>เบอร์โทรศัพท์</span><strong>${row?.phone || '081-233-4444'}</strong></div>
         <div class="insured-reference-box box-status"><span>สถานะ App</span><strong><em class="insured-reference-status">${row?.appStatus || 'ปกติ'}</em></strong></div>
         <div class="insured-reference-box box-age"><span>อายุกรมธรรม์(ณ วันเกิดเหตุ)</span><strong>${row?.policyAge || row?.age || '10 ปี 2 เดือน 9 วัน'}</strong></div>
-        <div class="insured-reference-box box-start"><span>วันที่เริ่มคุ้มครอง</span><strong>${row?.coverageStart || '01/01/2559'}</strong></div>
-        <div class="insured-reference-box box-end"><span>วันที่สิ้นสุดความคุ้มครอง</span><strong>${row?.coverageEnd || '-'}</strong></div>
+        <div class="insured-reference-box box-start"><span>วันที่เริ่มคุ้มครอง</span><strong>${row?.coverageStart || row?.start || '01/01/2559'}</strong></div>
+        <div class="insured-reference-box box-end"><span>วันที่สิ้นสุดความคุ้มครอง</span><strong>${row?.coverageEnd || row?.end || '-'}</strong></div>
       </div>
       <div class="insured-reference-plan"><span class="material-icons-round">health_and_safety</span><span>แผน : ${hospitalProduct === 'PA'
         ? (window.resolvePAProductCate ? window.resolvePAProductCate(row?.plan, row?.appId, hospitalClaimNo) : (row?.plan || 'เลือกสิทธิ์+สุขภาพ'))
@@ -27558,7 +27354,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div id="${prefix}ContinuousClaimSelectedDisplayWrap" class="min-h-[44px] flex items-center">
             <button id="${prefix}ContinuousClaimSelectedDisplay" type="button" onclick="openCustomerContinuousClaimModal()" class="${autoContinuous ? 'inline-flex' : 'hidden'} max-w-full items-center gap-2 rounded-lg border border-brand-200 bg-white px-4 py-2 text-left text-base font-bold text-brand-700">
               <span class="material-icons-round !text-[18px]">description</span>
-              <span id="${prefix}ContinuousClaimSelectedText" class="truncate">${autoContinuous ? 'CL6904000058 | เคลมเดิมวันที่ 26/03/2569' : '-'}</span>
+              <span id="${prefix}ContinuousClaimSelectedText" class="truncate">${autoContinuous ? 'CC6904000058-01 | Case เดิมวันที่ 26/03/2569' : '-'}</span>
             </button>
           </div>
         </div>
@@ -27790,6 +27586,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const prefix = kind === 'customer' ? 'cc' : (kind === 'full' ? 'hf' : 'hh');
     const isCustomer = kind === 'customer';
     const hospitalId = (suffix) => `${prefix}${suffix}`;
+    const detail = row?.claimDetailMock || row || {};
+    const incident = detail.incidentDateTime || { date: row?.incidentDate, time: row?.incidentTime };
+    const hospitalIn = detail.hospitalInDateTime || { date: row?.admitDate, time: row?.admitTime };
+    const hospitalOut = detail.hospitalOutDateTime || { date: row?.dischargeDate, time: row?.dischargeTime };
+    const stay = detail.stayDays || { ipd: row?.ipdDays || 0, icu: row?.icuDays || 0, total: row?.totalStayDays || 0 };
     const selected = getConsiderClaimSelection(row, kind);
     const isHospitalIpd = !isCustomer && /IPD/i.test(selected.treatment || row?.claimType || '');
     const treatmentText = String(selected.treatment || row?.claimType || '');
@@ -27806,7 +27607,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <span class="claim-ipd-stay-icon"><span class="material-icons-round">hotel</span></span>
                 <span class="claim-ipd-stay-chip">IPD</span>
               </div>
-              <div id="${hospitalId('IpdDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div id="${hospitalId('IpdDaysDisplay')}" class="claim-ipd-stay-number">${stay.ipd || 0}</div>
               <div class="claim-ipd-stay-label">วัน IPD</div>
               <div class="claim-ipd-stay-hint">จำนวนวันนอนรักษาในโรงพยาบาล</div>
             </div>
@@ -27815,7 +27616,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <span class="claim-ipd-stay-icon"><span class="material-icons-round">medical_services</span></span>
                 <span class="claim-ipd-stay-chip">ICU</span>
               </div>
-              <div id="${hospitalId('IcuDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div id="${hospitalId('IcuDaysDisplay')}" class="claim-ipd-stay-number">${stay.icu || 0}</div>
               <div class="claim-ipd-stay-label">วัน ICU</div>
               <div class="claim-ipd-stay-hint">จำนวนวันที่พักรักษาในหอผู้ป่วยวิกฤต</div>
             </div>
@@ -27824,7 +27625,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <span class="claim-ipd-stay-icon"><span class="material-icons-round">bedtime</span></span>
                 <span class="claim-ipd-stay-chip">รวม</span>
               </div>
-              <div id="${hospitalId('TotalStayDaysDisplay')}" class="claim-ipd-stay-number">0</div>
+              <div id="${hospitalId('TotalStayDaysDisplay')}" class="claim-ipd-stay-number">${stay.total || 0}</div>
               <div class="claim-ipd-stay-label">วันที่นอน</div>
               <div class="claim-ipd-stay-hint">จำนวนวันที่ใช้ประกอบการพิจารณา</div>
             </div>
@@ -27832,18 +27633,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="claim-ipd-stay-input-grid">
             <label>
               <div id="${hospitalId('IpdDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน IPD ${stayRequiredMark} ${stayOptionalNote}</div>
-              <input id="${hospitalId('IpdDays')}" type="number" min="0" step="1" value="0" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
+              <input id="${hospitalId('IpdDays')}" type="number" min="0" step="1" value="${stay.ipd || 0}" data-stay-required="${isIpdTreatment ? 'true' : 'false'}" class="claim-ipd-stay-input">
             </label>
             <label>
               <div id="${hospitalId('IcuDaysLabel')}" class="claim-ipd-stay-input-label">จำนวนวัน ICU</div>
-              <input id="${hospitalId('IcuDays')}" type="number" min="0" step="1" value="0" data-stay-required="false" class="claim-ipd-stay-input">
+              <input id="${hospitalId('IcuDays')}" type="number" min="0" step="1" value="${stay.icu || 0}" data-stay-required="false" class="claim-ipd-stay-input">
             </label>
             <label>
               <div class="claim-ipd-stay-input-label">จำนวนวันนอน</div>
-              <input id="${hospitalId('TotalStayDays')}" type="number" value="0" readonly class="claim-ipd-stay-input readonly">
+              <input id="${hospitalId('TotalStayDays')}" type="number" value="${stay.total || 0}" readonly class="claim-ipd-stay-input readonly">
             </label>
           </div>
-          <div id="${hospitalId('TotalStayNights')}" class="hidden">จำนวนวันนอนรวม : 0 คืน</div>
+          <div id="${hospitalId('TotalStayNights')}" class="hidden">จำนวนวันนอนรวม : ${stay.total || 0} คืน</div>
           <div id="${hospitalId('StayHourText')}" class="hidden"></div>
         </div>` : '';
     const doctor = includeDoctor ? `<div class="hospital-doctor-section rounded-xl border border-slate-200 p-3" data-collapsible-section><div class="mb-2.5 flex items-center justify-between"><div class="hospital-doctor-title text-brand-700">แพทย์เจ้าของไข้</div><button type="button" onclick="toggleClaimSubSection(this)" class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button></div><div data-collapsible-body class="grid gap-2.5 md:grid-cols-2 xl:grid-cols-3"><label><div class="hospital-doctor-label mb-1 text-slate-500">เลขใบประกอบวิชาชีพเวชกรรม <span class="text-red-500">*</span></div><input value="12345" class="hospital-doctor-input w-full rounded-lg border border-slate-300 px-3"></label><label><div class="hospital-doctor-label mb-1 text-slate-500">แพทย์(ชื่อ-สกุล) <span class="text-red-500">*</span></div><input value="นพ.สมชาย ใจดี" class="hospital-doctor-input w-full rounded-lg border border-slate-300 px-3"></label></div></div>` : '';
@@ -27856,7 +27657,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     };
     const previousClaimCard = '';
     const hospitalIsContinuous = !isCustomer && !!row?.isContinuous;
-    const hospitalPreviousClaim = row?.previousClaimNo || 'CL6904000193';
+    const hospitalPreviousCase = row?.previousCaseNo || 'CC6904000193-01';
     const hospitalPreviousDate = row?.previousServiceDate || '25/03/2569';
     const hospitalContinuousOption = !isCustomer ? `
       <div class="claim-detail-inline-options rounded-xl border border-brand-100 bg-brand-25 p-4">
@@ -27867,7 +27668,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div id="${continuousIds.wrap}" class="min-h-[44px] flex items-center">
             <button id="${continuousIds.display}" type="button" onclick="openCustomerContinuousClaimModal()" class="${hospitalIsContinuous ? 'inline-flex' : 'hidden'} max-w-full items-center gap-2 rounded-lg border border-brand-200 bg-white px-4 py-2 text-left text-base font-bold text-brand-700">
               <span class="material-icons-round !text-[18px]">description</span>
-              <span id="${continuousIds.text}" class="truncate">${hospitalIsContinuous ? `${hospitalPreviousClaim} | เคลมเดิมวันที่ ${hospitalPreviousDate}` : '-'}</span>
+              <span id="${continuousIds.text}" class="truncate">${hospitalIsContinuous ? `${hospitalPreviousCase} | Case เดิมวันที่ ${hospitalPreviousDate}` : '-'}</span>
             </button>
           </div>
         </div>
@@ -27882,22 +27683,22 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${hospitalContinuousOption}
       ${optionCards(row, kind)}
       <div class="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        ${input('วันที่แจ้ง*','2026-05-17','date')}
-        ${input('วันที่เอกสารครบ*','2026-06-19','date')}
-        ${input('วันที่เกิดเหตุ*','2026-03-26','date')}
-        ${input('เวลาที่เกิดเหตุ*','09:30','time')}
-        <label><div class="mb-1 text-[11px] font-medium text-slate-500">วันที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitDate')}" type="date" value="2026-03-26" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
-        <label><div class="mb-1 text-[11px] font-medium text-slate-500">เวลาที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitTime')}" type="time" value="10:00" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
-        <label><div class="mb-1 text-[11px] font-medium text-slate-500">วันที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeDate')}" type="date" value="2026-03-26" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
-        <label><div class="mb-1 text-[11px] font-medium text-slate-500">เวลาที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeTime')}" type="time" value="11:30" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
+        ${input('วันที่แจ้ง*',incident.date || '2026-03-26','date')}
+        ${input('วันที่เอกสารครบ*',incident.date || '2026-03-26','date')}
+        ${input('วันที่เกิดเหตุ*',incident.date || '2026-03-26','date')}
+        ${input('เวลาที่เกิดเหตุ*',incident.time || '09:30','time')}
+        <label><div class="mb-1 text-[11px] font-medium text-slate-500">วันที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitDate')}" type="date" value="${hospitalIn.date || '2026-03-26'}" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
+        <label><div class="mb-1 text-[11px] font-medium text-slate-500">เวลาที่เข้า รพ.<span class="req-star">*</span></div><input id="${hospitalId('AdmitTime')}" type="time" value="${hospitalIn.time || '10:00'}" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
+        <label><div class="mb-1 text-[11px] font-medium text-slate-500">วันที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeDate')}" type="date" value="${hospitalOut.date || '2026-03-26'}" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
+        <label><div class="mb-1 text-[11px] font-medium text-slate-500">เวลาที่ออก รพ.<span class="req-star">*</span></div><input id="${hospitalId('DischargeTime')}" type="time" value="${hospitalOut.time || '11:30'}" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>
         ${ipdStayFields}
         <div class="hidden xl:block"></div>
-        ${select('สถานพยาบาล*','โรงพยาบาลมะการักษ์','md:col-span-2 xl:col-span-4')}
-        ${select('อาการสำคัญ(ChiefComplaint)*','0024:ไข้ + ปวดท้อง','md:col-span-2 xl:col-span-4')}
-        ${select('การวินิจฉัย1(Diagnosis1)*','---โปรดระบุ---','md:col-span-2 xl:col-span-4')}
-        ${select('การวินิจฉัย2(Diagnosis2)','---เลือก---','md:col-span-2 xl:col-span-4')}
-        ${select('การวินิจฉัย3(Diagnosis3)','---เลือก---','md:col-span-2 xl:col-span-4')}
-        ${input('รายละเอียด','','text','md:col-span-2 xl:col-span-4')}
+        ${select('สถานพยาบาล*',detail.hospitalName || row?.hospital || 'โรงพยาบาลมะการักษ์','md:col-span-2 xl:col-span-4')}
+        ${select('อาการสำคัญ(ChiefComplaint)*',detail.chiefComplaint || row?.chiefComplaint || '0024:ไข้ + ปวดท้อง','md:col-span-2 xl:col-span-4')}
+        ${select('การวินิจฉัย1(Diagnosis1)*',detail.diagnosis1 || row?.diagnosis1 || '---โปรดระบุ---','md:col-span-2 xl:col-span-4')}
+        ${select('การวินิจฉัย2(Diagnosis2)',detail.diagnosis2 || row?.diagnosis2 || '---เลือก---','md:col-span-2 xl:col-span-4')}
+        ${select('การวินิจฉัย3(Diagnosis3)',detail.diagnosis3 || row?.diagnosis3 || '---เลือก---','md:col-span-2 xl:col-span-4')}
+        ${input('รายละเอียด',detail.medicalNote || row?.note || '','text','md:col-span-2 xl:col-span-4')}
       </div>
     </div>
     ${includeDoctor ? `<div class="hospital-medical-info-section rounded-xl border border-slate-200 p-3" data-collapsible-section>
@@ -27906,9 +27707,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <button type="button" onclick="toggleClaimSubSection(this)" class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button>
       </div>
       <div data-collapsible-body class="grid gap-2.5 md:grid-cols-2">
-        ${input('HN*','HN2601')}
-        ${input('VN*','VN660612001')}
-        ${isHospitalIpd ? input('AN','AN660612001') : ''}
+        ${input('HN*',detail.hn || row?.hn || 'HN2601')}
+        ${input('VN*',detail.vn || row?.vn || 'VN660612001')}
+        ${isHospitalIpd ? input('AN',detail.an || row?.an || 'AN660612001') : ''}
         ${input('โรคประจำตัว (U/D)','ไม่มี','text','md:col-span-2')}
         ${isHospitalIpd ? input('ข้อบ่งชี้การ Admit*','มีข้อบ่งชี้ต้องนอนรักษาในโรงพยาบาล','text','md:col-span-2') : ''}
         ${input(isCustomer ? 'วินิจฉัยการเจ็บป่วย*' : 'วิธีการรักษาพยาบาล*', isCustomer ? 'ไข้หวัดทั่วไปและอ่อนเพลียจากอาการ' : 'ให้สารน้ำและยาตามแผนการรักษา','text','md:col-span-2')}
@@ -27933,7 +27734,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       'การวินิจฉัย2(Diagnosis2)': ['---เลือก---','A09:Other gastroenteritis and colitis of infectious and unspecified origin | ลำไส้อักเสบจากการติดเชื้อ','S61:Open wound of wrist and hand | แผลเปิดบริเวณข้อมือและมือ','-'],
       'การวินิจฉัย3(Diagnosis3)': ['---เลือก---','R10:Abdominal and pelvic pain | ปวดท้องและอุ้งเชิงกราน','Z09:Follow-up examination after treatment | ตรวจติดตามหลังการรักษา','-']
     };
-    const options = optionMap[label] || [value];
+    const options = optionMap[label] ? [...optionMap[label]] : [value];
+    if (!options.includes(value)) options.unshift(value);
     const html = options.map(item => `<option ${item === value ? 'selected' : ''}>${item}</option>`).join('');
     return `<label class="${cls}"><div class="mb-1 text-[11px] font-medium text-slate-500">${label}</div><select class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700">${html}</select></label>`;
   }
@@ -28057,7 +27859,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       btn.classList.toggle('inline-flex', !!selected);
     }
     if(textEl && selected){
-      textEl.textContent = `${selected.claimNo} | วันที่ ${selected.incidentDate} | ${selected.chiefComplaint} | หมายเหตุ : ${selected.note || '-'}`;
+      textEl.textContent = `${selected.caseNo} | วันที่ ${selected.incidentDate} | ${selected.chiefComplaint} | หมายเหตุ : ${selected.note || '-'}`;
     } else if(textEl){
       textEl.textContent = '-';
     }
@@ -28372,7 +28174,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </section>`;
   }
 
-  function docs(kind='customer'){
+  function docs(kind='customer', row={}){
     if(kind === 'full') return renderOpdFullDocumentCheckSection('OPD Full');
     if(kind === 'ipd') return renderOpdFullDocumentCheckSection('IPD');
 
@@ -28445,6 +28247,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       </section>`;
     }
 
+    const detailDocuments = row?.claimDetailMock?.documents || row?.documents || [];
+    const customerDocuments = detailDocuments.length ? detailDocuments : [
+      { code:'DOC690600229', name:'เอกสารประกอบการพิจารณาเคลม', status:'', note:'' }
+    ];
     return `<div class="rounded-xl border border-slate-200 p-4">
       <div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700"><span class="material-icons-round">subject</span>สแกนเอกสาร</div>
       <div class="overflow-x-auto">
@@ -28459,13 +28265,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             </tr>
           </thead>
           <tbody>
-            <tr class="border-b border-slate-200">
-              <td class="px-3 py-3 text-center">DOC690600229</td>
-              <td class="px-3 py-3 text-center">เอกสารประกอบการพิจารณาเคลม</td>
+            ${customerDocuments.map(document => `<tr class="border-b border-slate-200">
+              <td class="px-3 py-3 text-center">${document.code || '-'}</td>
+              <td class="px-3 py-3 text-center">${document.name || '-'}</td>
               <td class="px-3 py-3 text-center"><button class="rounded-lg bg-brand-600 px-6 py-2 font-bold text-white">สแกนเอกสาร</button></td>
-              <td class="px-3 py-3 text-center">0</td>
+              <td class="px-3 py-3 text-center">1</td>
               <td class="px-3 py-3 text-center"><button class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><span class="material-icons-round">visibility</span></button></td>
-            </tr>
+            </tr>`).join('')}
           </tbody>
         </table>
       </div>
@@ -28766,6 +28572,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   const customerContinuousClaimOptions = [
     {
       claimNo: 'CL6904000058',
+      caseNo: 'CC6904000058-01',
       chiefComplaint: 'ปวดศีรษะตุบข้างขวา ร่วมกับคลื่นไส้และไวต่อแสง',
       incidentDate: '28/04/2569',
       claimAmount: '2,350.00',
@@ -28778,6 +28585,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     },
     {
       claimNo: 'CL6904000193',
+      caseNo: 'CC6904000193-01',
       chiefComplaint: '0024:ไข้ + ปวดท้อง',
       incidentDate: '25/03/2569',
       claimAmount: '500.00',
@@ -28790,6 +28598,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     },
     {
       claimNo: 'CL6904000021',
+      caseNo: 'CC6904000021-01',
       chiefComplaint: '0150 : สุนัขกัด',
       incidentDate: '16/03/2569',
       claimAmount: '1,800.00',
@@ -28801,21 +28610,21 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       note: 'สุนัขกัด'
     }
   ];
-  let selectedCustomerContinuousClaimNo = '';
+  let selectedCustomerContinuousCaseNo = '';
   function renderCustomerContinuousClaimModal(){
     return `<div id="customerContinuousClaimModal" class="fixed inset-0 z-[200] hidden items-center justify-center bg-slate-900/45 p-4 backdrop-blur-[1px]">
       <div class="max-h-[92vh] w-full max-w-6xl overflow-auto rounded-[28px] border border-brand-100 bg-white shadow-2xl">
         <div class="border-b border-slate-200 bg-gradient-to-r from-brand-50 to-white px-8 py-5">
           <div class="flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4"><span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-100 text-brand-700 shadow-sm"><span class="material-icons-round !text-[28px]">link</span></span><div><h3 class="text-[24px] font-extrabold text-slate-800">เลือกเคลมต่อเนื่อง</h3><p class="mt-1 text-sm font-semibold text-slate-500">เลือกเคลมเดิมเพื่ออ้างอิงวงเงินคงเหลือและประวัติการรักษา</p></div></div>
+            <div class="flex items-center gap-4"><span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-100 text-brand-700 shadow-sm"><span class="material-icons-round !text-[28px]">link</span></span><div><h3 class="text-[24px] font-extrabold text-slate-800">เลือก Case สำหรับเคลมต่อเนื่อง</h3><p class="mt-1 text-sm font-semibold text-slate-500">เลือกเลขที่ Case เดิมเพื่ออ้างอิงวงเงินคงเหลือและประวัติการรักษา</p></div></div>
             <button type="button" onclick="closeCustomerContinuousClaimModal(true)" class="grid h-11 w-11 place-items-center rounded-full border border-red-200 bg-white text-red-600 transition hover:bg-red-50"><span class="material-icons-round !text-[28px]">close</span></button>
           </div>
         </div>
         <div class="space-y-6 px-8 py-6">
-          <div class="rounded-xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-sm font-bold text-brand-700"><span class="material-icons-round !text-base align-middle">info</span> เลือกรายการที่ต้องการผูกเป็นเคลมต่อเนื่อง แล้วกดยืนยันการเลือก</div>
+          <div class="rounded-xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-sm font-bold text-brand-700"><span class="material-icons-round !text-base align-middle">info</span> เลือกเลขที่ Case ที่ต้องการผูกเป็นเคลมต่อเนื่อง แล้วกดยืนยันการเลือก</div>
           <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
             <table class="min-w-full text-lg">
-              <thead class="bg-brand-700 text-white"><tr><th class="px-4 py-3 text-center">เลือก</th><th class="px-4 py-3 text-left">ClaimNo</th><th class="px-4 py-3 text-left">อาการสำคัญ(ChiefComplain)</th><th class="px-4 py-3 text-left">วันที่เกิดเหตุ</th><th class="px-4 py-3 text-right">ยอดเงินตามใบเสร็จรวม</th><th class="px-4 py-3 text-right">ยอดจ่ายรวม</th></tr></thead>
+              <thead class="bg-brand-700 text-white"><tr><th class="px-4 py-3 text-center">เลือก</th><th class="px-4 py-3 text-left">เลขที่ Case</th><th class="px-4 py-3 text-left">อาการสำคัญ(ChiefComplain)</th><th class="px-4 py-3 text-left">วันที่เกิดเหตุ</th><th class="px-4 py-3 text-right">ยอดเงินตามใบเสร็จรวม</th><th class="px-4 py-3 text-right">ยอดจ่ายรวม</th></tr></thead>
               <tbody id="customerContinuousClaimModalRows"></tbody>
             </table>
           </div>
@@ -28825,7 +28634,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <div class="grid gap-5 xl:grid-cols-[1fr_260px]">
                 <div class="space-y-4">
                   <div class="grid gap-4 md:grid-cols-3">
-                    <div class="rounded-xl bg-slate-50 px-4 py-3"><div class="text-sm font-bold text-slate-500">ClaimNo :</div><div id="customerContinuousClaimSelectedNo" class="text-[18px] font-extrabold text-brand-700">-</div></div>
+                    <div class="rounded-xl bg-slate-50 px-4 py-3"><div class="text-sm font-bold text-slate-500">เลขที่ Case :</div><div id="customerContinuousClaimSelectedNo" class="text-[18px] font-extrabold text-brand-700">-</div></div>
                     <div class="rounded-xl bg-slate-50 px-4 py-3"><div class="text-sm font-bold text-slate-500">วันที่เข้า รพ. :</div><div id="customerContinuousClaimSelectedAdmitDate" class="text-[18px] font-extrabold text-brand-700">-</div></div>
                     <div class="rounded-xl bg-slate-50 px-4 py-3"><div class="text-sm font-bold text-slate-500">ข้อมูลเคลม :</div><div id="customerContinuousClaimSelectedInfo" class="text-[18px] font-extrabold text-brand-700">-</div></div>
                   </div>
@@ -28841,25 +28650,25 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </div>`;
   }
   function getSelectedCustomerContinuousClaim(){
-    return customerContinuousClaimOptions.find(item => item.claimNo === selectedCustomerContinuousClaimNo) || null;
+    return customerContinuousClaimOptions.find(item => item.caseNo === selectedCustomerContinuousCaseNo) || null;
   }
-  window.selectCustomerContinuousClaim = safeCall('selectCustomerContinuousClaim', function(claimNo){
-    selectedCustomerContinuousClaimNo = claimNo || '';
+  window.selectCustomerContinuousClaim = safeCall('selectCustomerContinuousClaim', function(caseNo){
+    selectedCustomerContinuousCaseNo = caseNo || '';
     renderCustomerContinuousClaimModalRows();
   });
   function renderCustomerContinuousClaimModalRows(){
     const tbody = document.getElementById('customerContinuousClaimModalRows');
     if(!tbody) return;
     tbody.innerHTML = customerContinuousClaimOptions.map(item => {
-      const selected = item.claimNo === selectedCustomerContinuousClaimNo;
-      return `<tr class="border-b border-slate-200 ${selected ? 'bg-blue-50' : 'bg-white'}"><td class="px-4 py-3 text-center"><button type="button" onclick="selectCustomerContinuousClaim('${item.claimNo}')" class="inline-flex h-10 items-center justify-center rounded-lg ${selected ? 'bg-brand-700 text-white' : 'bg-brand-700/90 text-white'} px-4 text-base font-extrabold">เลือก</button></td><td class="px-4 py-3 font-extrabold text-brand-700">${item.claimNo}</td><td class="px-4 py-3 text-slate-700">${item.chiefComplaint}</td><td class="px-4 py-3 text-slate-700">${item.incidentDate}</td><td class="px-4 py-3 text-right text-slate-700">${item.claimAmount}</td><td class="px-4 py-3 text-right text-slate-700">${item.paidAmount}</td></tr>`;
+      const selected = item.caseNo === selectedCustomerContinuousCaseNo;
+      return `<tr class="border-b border-slate-200 ${selected ? 'bg-blue-50' : 'bg-white'}"><td class="px-4 py-3 text-center"><button type="button" onclick="selectCustomerContinuousClaim('${item.caseNo}')" aria-label="เลือก Case ${item.caseNo}" class="inline-flex h-10 items-center justify-center rounded-lg ${selected ? 'bg-brand-700 text-white' : 'bg-brand-700/90 text-white'} px-4 text-base font-extrabold">เลือก</button></td><td class="px-4 py-3 font-extrabold text-brand-700">${item.caseNo}</td><td class="px-4 py-3 text-slate-700">${item.chiefComplaint}</td><td class="px-4 py-3 text-slate-700">${item.incidentDate}</td><td class="px-4 py-3 text-right text-slate-700">${item.claimAmount}</td><td class="px-4 py-3 text-right text-slate-700">${item.paidAmount}</td></tr>`;
     }).join('');
     const selected = getSelectedCustomerContinuousClaim();
     const wrap = document.getElementById('customerContinuousClaimSelectedWrap');
     if(wrap) wrap.classList.toggle('hidden', !selected);
     if(selected){
       const setTxt = (id, value) => { const el = document.getElementById(id); if(el) el.textContent = value; };
-      setTxt('customerContinuousClaimSelectedNo', selected.claimNo);
+      setTxt('customerContinuousClaimSelectedNo', selected.caseNo);
       setTxt('customerContinuousClaimSelectedAdmitDate', selected.admitDate);
       setTxt('customerContinuousClaimSelectedInfo', selected.claimInfo);
       setTxt('customerContinuousClaimSelectedDiagnosis', selected.diagnosis1);
@@ -28879,7 +28688,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   window.closeCustomerContinuousClaimModal = safeCall('closeCustomerContinuousClaimModal', function(resetWhenEmpty){
     const modal = document.getElementById('customerContinuousClaimModal');
     if(modal){ modal.classList.add('hidden'); modal.classList.remove('flex'); }
-    if(resetWhenEmpty && !selectedCustomerContinuousClaimNo){
+    if(resetWhenEmpty && !selectedCustomerContinuousCaseNo){
       document.querySelectorAll('[data-continuous-claim-modal="true"], #ccContinuousClaimCheckbox, #hfContinuousClaimCheckbox, #hhContinuousClaimCheckbox').forEach(checkbox => { checkbox.checked = false; });
     }
   });
@@ -28898,7 +28707,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     window.closeCustomerContinuousClaimModal(false);
   });
   function resetCustomerContinuousClaimSelection(){
-    selectedCustomerContinuousClaimNo = '';
+    selectedCustomerContinuousCaseNo = '';
     document.querySelectorAll('[id$="ContinuousClaimSelectedDisplay"]').forEach(el => { el.classList.add('hidden'); el.classList.remove('inline-flex'); });
     document.querySelectorAll('[id$="ContinuousClaimSelectedText"]').forEach(el => { el.textContent = '-'; });
     updateCustomerContinuousClaimSelectedDisplay();
@@ -29001,7 +28810,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const includeDoctor = kind !== 'customer';
     const prefix = kind==='customer'?'cc':(kind==='full'?'hf':'hh');
     if(kind === 'customer'){
-      return `<div class="space-y-4">${baseTop('customer', row)}<div id="ccStepPane1" class="space-y-4"><div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">บันทึกข้อมูลเคลม</div><div class="space-y-4 p-4">${detailForm(false, row, kind)}${docs(kind)}${decision()}</div></div>${actionBar(`showConsiderationPage('customer')`,`setCustomerStep(2)`)}</div><div id="ccStepPane2" class="hidden space-y-4">${expenses(kind, row)}</div><div id="ccStepPane3" class="hidden space-y-4">${summary(kind, row)}</div>${renderCustomerContinuousClaimModal()}</div>`;
+      return `<div class="space-y-4">${baseTop('customer', row)}<div id="ccStepPane1" class="space-y-4"><div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">บันทึกข้อมูลเคลม</div><div class="space-y-4 p-4">${detailForm(false, row, kind)}${docs(kind, row)}${decision()}</div></div>${actionBar(`showConsiderationPage('customer')`,`setCustomerStep(2)`)}</div><div id="ccStepPane2" class="hidden space-y-4">${expenses(kind, row)}</div><div id="ccStepPane3" class="hidden space-y-4">${summary(kind, row)}</div>${renderCustomerContinuousClaimModal()}</div>`;
     }
     const claimType = row?.claimType || (kind==='full'?'OPD Full':kind==='half'?'OPD Half':'IPD');
     const stepHeader = `<div class="hospital-step-grid">${stepBtn(kind,1)}${stepBtn(kind,2)}${stepBtn(kind,3)}</div>`;
@@ -29117,9 +28926,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   window.setHospitalHalfStep = safeCall('setHospitalHalfStep', function(step){ update('hh',step); });
   window.openConsiderCustomerRow = safeCall('openConsiderCustomerRow', function(index){
     const rows = (typeof considerationCustomerRows !== 'undefined') ? considerationCustomerRows : [];
-    const row = rows[index] || rows[0] || {};
+    const suppliedRecord = index && typeof index === 'object' ? index : null;
+    const row = suppliedRecord || rows[index] || rows[0] || {};
     window.currentConsiderCustomerRow = row;
-    window.currentConsiderCustomerRowIndex = index;
+    window.currentConsiderCustomerRowIndex = suppliedRecord ? rows.indexOf(suppliedRecord) : index;
     const baseClaimType = String(row.claimType || 'OPD');
     // v72: open the mockup with the existing claim selection already complete,
     // while keeping Cause / Coverage / Treatment editable. When an upstream
@@ -29143,12 +28953,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     document.getElementById('claimMonitorPage')?.classList.add('hidden'); document.getElementById('detailPage')?.classList.add('hidden'); safeHideClaimPages();
     page.innerHTML = build('customer', row); page.classList.remove('hidden'); setHeader('บันทึกข้อมูลเคลม - เคลมลูกค้า','บันทึกข้อมูลเคลม - เคลมลูกค้า','customer'); update('cc',1); updateCustomerHospitalStayNights(); if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
     if(row.claimCode === 'CL6905000076'){
-      selectedCustomerContinuousClaimNo = 'CL6904000058';
+      selectedCustomerContinuousCaseNo = 'CC6904000058-01';
       const continuousCheckbox = document.getElementById('ccContinuousClaimCheckbox');
       if(continuousCheckbox) continuousCheckbox.checked = true;
       updateCustomerContinuousClaimSelectedDisplay();
     } else {
-      selectedCustomerContinuousClaimNo = '';
+      selectedCustomerContinuousCaseNo = '';
       const continuousCheckbox = document.getElementById('ccContinuousClaimCheckbox');
       if(continuousCheckbox) continuousCheckbox.checked = false;
       updateCustomerContinuousClaimSelectedDisplay();
@@ -29156,7 +28966,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   });
   window.openConsiderHospitalRow = safeCall('openConsiderHospitalRow', function(index){
     const rows = (typeof considerationHospitalRows !== 'undefined') ? considerationHospitalRows : [];
-    const row = rows[index] || rows[0] || {};
+    const suppliedRecord = index && typeof index === 'object' ? index : null;
+    const row = suppliedRecord || rows[index] || rows[0] || {};
     const claimModeText = String(row.claimType||row.treatmentType||'');
     const isDayCase = /Day\s*Case|DayCase/i.test(claimModeText);
     const mode = (/IPD/i.test(claimModeText) || isDayCase || claimModeText.includes('Full')) ? 'full' : 'half';
@@ -46419,10 +46230,10 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
 </style>
 <script id="eligibility-selected-claim-mockup-v63-script">
 (function(){
-  let selectedClaimNo='';
+  let selectedCaseNo='';
 
   function selectedClaim(){
-    return continuousClaims.find(claim=>claim.claimNo===selectedClaimNo) || null;
+    return continuousClaims.find(claim=>claim.caseNo===selectedCaseNo) || null;
   }
   function formatSelectedMoney(value){
     return typeof formatMoney==='function'?formatMoney(value):Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -46455,8 +46266,8 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
           <span class="esc-check"><span class="material-icons-round">check</span></span>
           <div class="esc-main-copy">
             <div class="esc-meta"><span class="esc-index">รายการที่ 1</span><span class="esc-status"><span class="material-icons-round">link</span>เลือกเป็นเคลมต่อเนื่อง</span></div>
-            <div class="esc-label">เลขที่เคลม</div>
-            <a href="#" onclick="return false" class="esc-claim-link">${claim.claimNo}</a>
+            <div class="esc-label">เลขที่ Case</div>
+            <span class="esc-claim-link">${claim.caseNo}</span>
           </div>
         </div>
         <div class="esc-field"><div class="esc-label">วันที่เกิดเหตุ</div><div class="esc-value">${claim.accidentDate}</div></div>
@@ -46469,7 +46280,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
       `<div class="grid min-h-[130px] place-items-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-4 text-center text-slate-500">ยังไม่ได้เลือกรายการเคลมต่อเนื่อง</div>`;
   }
   function syncSelection(){
-    continuousClaims.forEach(claim=>{claim.checked=claim.claimNo===selectedClaimNo});
+    continuousClaims.forEach(claim=>{claim.checked=claim.caseNo===selectedCaseNo});
     renderSelectedCard();
     if(typeof renderBenefits==='function')renderBenefits(currentFilter);
   }
@@ -46512,10 +46323,10 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     const host=document.getElementById('eligibilitySelectedClaimOptions');
     if(!host)return;
     host.innerHTML=continuousClaims.map(claim=>{
-      const active=claim.claimNo===selectedClaimNo;
-      return `<button type="button" class="esc-option ${active?'active':''}" onclick="selectEligibilitySelectedClaim('${claim.claimNo}')">
+      const active=claim.caseNo===selectedCaseNo;
+      return `<button type="button" class="esc-option ${active?'active':''}" onclick="selectEligibilitySelectedClaim('${claim.caseNo}')" aria-label="เลือก Case ${claim.caseNo}">
         <span class="esc-option-check"><span class="material-icons-round">${active?'check':'add'}</span></span>
-        <span><small>เลขที่เคลม</small><strong>${claim.claimNo}</strong></span>
+        <span><small>เลขที่ Case</small><strong>${claim.caseNo}</strong></span>
         <span><small>วันที่เกิดเหตุ / อาการสำคัญ</small>${claim.accidentDate} · ${claim.symptom}</span>
         <span class="esc-option-money"><small>ยอดจ่ายรวม</small>${formatSelectedMoney(claim.paidAmount)}</span>
       </button>`;
@@ -46531,8 +46342,8 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     document.getElementById('eligibilitySelectedClaimModal')?.classList.add('hidden');
     document.body.style.overflow='';
   };
-  window.selectEligibilitySelectedClaim=function(claimNo){
-    selectedClaimNo=claimNo;
+  window.selectEligibilitySelectedClaim=function(caseNo){
+    selectedCaseNo=caseNo;
     syncSelection();
     renderOptions();
     closeEligibilitySelectedClaimModal();
@@ -46540,11 +46351,11 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   document.addEventListener('change',event=>{
     if(event.target?.id!=='continuousClaim')return;
     if(event.target.checked){
-      selectedClaimNo=continuousClaims.find(claim=>claim.checked)?.claimNo||selectedClaimNo||continuousClaims[0]?.claimNo||'';
+      selectedCaseNo=continuousClaims.find(claim=>claim.checked)?.caseNo||selectedCaseNo||continuousClaims[0]?.caseNo||'';
       syncSelection();
       ensureHeaderActions();
     }else{
-      selectedClaimNo='';
+      selectedCaseNo='';
       syncSelection();
     }
   });
@@ -46553,7 +46364,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   if(typeof previousRender==='function'&&!previousRender.__eligibilitySelectedMockupV63){
     const wrapped=function(){
       const result=previousRender.apply(this,arguments);
-      selectedClaimNo=continuousClaims.find(claim=>claim.checked)?.claimNo||'';
+      selectedCaseNo=continuousClaims.find(claim=>claim.checked)?.caseNo||'';
       ensureHeaderActions();
       renderSelectedCard();
       return result;
@@ -54268,6 +54079,8 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
       setTimeout(()=>el.remove(),220);
     },4200);
   }
+
+  window.hospitalNotify = hospitalNotify;
 
   function readHeaderReference(page,label){
     if(!page) return '';
@@ -62473,6 +62286,32 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- งานเคลม > ค้นหาเคลม > รายละเอียดเคลมลูกค้า (read-only) -->
 <script src="js/menu-customer-claim-detail.js"></script>
+
+<!-- งานเคลม > ค้นหาเคลม > ดูรายละเอียด: เคลียร์เนื้อหาเป็นหน้าว่าง -->
+<script src="js/menu-claim-search-detail-blank.js"></script>
+
+<!-- งานเคลม > ค้นหาเคลม: Search / Result / Policy / Claim History -->
+<script src="js/mock-data/claim-search.mock.js"></script>
+<script src="js/menu-claim-work-search.js"></script>
+
+<!-- แจ้งเคลม > Claim Monitor: ตัวกรอง Product / Claim Type / Treatment / Status -->
+<script src="js/claim-monitor-context-filters.js"></script>
+
+<!-- Claim Detail: composable mock data and appId resolver -->
+<script src="js/mock-data/claim-detail.mock.js"></script>
+<script src="js/claim-detail-mock-resolver.js"></script>
+
+<!-- แจ้งเคลม > Claim Monitor: record-aware routing ไป Claim Detail -->
+<script src="js/claim-monitor-detail-routing.js"></script>
+
+<!-- พิจารณาเคลม > เคลมโรงพยาบาล (โอนเพิ่ม): dedicated mock data -->
+<script src="js/mock-data/hospital-additional-transfer.mock.js"></script>
+
+<!-- พิจารณาเคลม > เคลมโรงพยาบาล (โอนเพิ่ม): monitor and navigation shell -->
+<script src="js/menu-consider-hospital-additional-transfer.js"></script>
+
+<!-- พิจารณาเคลม Customer/Hospital > Step 3: wording ตารางรายการค่ารักษา -->
+<script src="js/menu-consider-step3-wording.js"></script>
 
 </body>
 </html>
