@@ -62,6 +62,9 @@
   <link rel="stylesheet" href="css/menu-hospital-claim-traffic-accident.css" />
   <link rel="stylesheet" href="css/menu-claim-work-search.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css" />
+  <link rel="stylesheet" href="css/menu-fund-reserve-dashboard.css" />
+  <link rel="stylesheet" href="css/menu-fund-hospital-payments.css" />
+  <link rel="stylesheet" href="css/menu-consider-hospital-notice.css" />
 
   <script>
     tailwind.config = {
@@ -9169,15 +9172,15 @@ body > .min-h-screen > main,
             </button>
 
             <div id="fundManagementSubmenu" class="hidden space-y-1 rounded-xl bg-brand-900/25 p-1 lg:ml-3">
-              <button id="submenuFundReserveDashboard" type="button" disabled aria-disabled="true" aria-label="Dashboard สำรองเงิน" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75">
+              <button id="submenuFundReserveDashboard" type="button" aria-label="Dashboard สำรองเงิน" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
                 <span class="material-icons-round !text-xl">savings</span>
                 <span class="hidden lg:inline">Dashboard สำรองเงิน</span>
               </button>
-              <button id="submenuFundHospitalTransfer" type="button" disabled aria-disabled="true" aria-label="โอนเงิน รพ." class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75">
+              <button id="submenuFundHospitalTransfer" type="button" aria-label="โอนเงิน รพ." class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
                 <span class="material-icons-round !text-xl">local_hospital</span>
                 <span class="hidden lg:inline">โอนเงิน รพ.</span>
               </button>
-              <button id="submenuFundHospitalPaymentSettings" type="button" disabled aria-disabled="true" aria-label="ตั้งค่าการจ่ายเงิน รพ." class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75">
+              <button id="submenuFundHospitalPaymentSettings" type="button" aria-label="ตั้งค่าการจ่ายเงิน รพ." class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
                 <span class="material-icons-round !text-xl">settings</span>
                 <span class="hidden lg:inline">ตั้งค่าการจ่ายเงิน รพ.</span>
               </button>
@@ -10623,13 +10626,14 @@ body > .min-h-screen > main,
                 <table class="min-w-[1120px] w-full border-collapse text-[15px]">
                   <thead id="billingClaimThead" class="bg-brand-600 text-white">
                     <tr>
+                      <th class="px-3 py-2.5 text-center font-extrabold"><span class="inline-flex items-center justify-center gap-2"><input id="billingSelectAll" type="checkbox" onchange="toggleBillingSelectAll(this.checked)" class="h-5 w-5 rounded border-white/70" title="เลือกทั้งหมด" aria-label="เลือกทั้งหมด" /><span>เลือกรายการ</span></span></th>
                       <th class="px-3 py-2.5 text-center font-extrabold">วันที่แจ้งเคลม</th>
                       <th class="px-3 py-2.5 text-center font-extrabold">วันที่อนุมัติเคลม</th>
                       <th class="px-3 py-2.5 text-left font-extrabold">เลขที่ Case</th>
                       <th class="px-3 py-2.5 text-left font-extrabold">ผู้อนุมัติ</th>
                       <th class="px-3 py-2.5 text-right font-extrabold">จำนวนเงินตั้งเบิก</th>
                       <th class="px-3 py-2.5 text-left font-extrabold">ชื่อบริษัทประกัน</th>
-                      <th class="px-3 py-2.5 text-center font-extrabold"><span class="inline-flex items-center justify-center gap-2"><input id="billingSelectAll" type="checkbox" onchange="toggleBillingSelectAll(this.checked)" class="h-5 w-5 rounded border-white/70" title="เลือกทั้งหมด" aria-label="เลือกทั้งหมด" /><span>ดำเนินการ</span></span></th>
+                      <th class="px-3 py-2.5 text-center font-extrabold">ดำเนินการ</th>
                     </tr>
                   </thead>
                   <tbody id="billingClaimTbody" class="divide-y divide-slate-100"></tbody>
@@ -11952,6 +11956,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
       <!-- Screen 8: ติดตามการโอนเงิน -->
       <section id="transferTrackingPage" class="tt-page page hidden monitor-table-theme tt-redesign">
+        <div class="tt-transfer-type-tabs" role="tablist" aria-label="ประเภทการโอนเงิน">
+          <button id="ttCustomerModeBtn" type="button" class="tt-transfer-type-tab active" role="tab" aria-selected="true" onclick="setTransferTrackingType('customer')">
+            <span class="material-icons-round" aria-hidden="true">person</span>
+            <span>เคลมลูกค้า (CPG)</span>
+          </button>
+          <button id="ttHospitalModeBtn" type="button" class="tt-transfer-type-tab" role="tab" aria-selected="false" onclick="setTransferTrackingType('hospital')">
+            <span class="material-icons-round" aria-hidden="true">local_hospital</span>
+            <span>เคลมโรงพยาบาล (HCG)</span>
+          </button>
+        </div>
+
         <section class="tt-filter tt-monitor-filter tt-filter-redesign">
           <div class="tt-monitor-primary-grid">
             <label class="tt-monitor-control">
@@ -11992,6 +12007,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <span class="tt-monitor-search-wrap">
                 <span class="material-icons-round">search</span>
                 <input id="ttKeyword" class="tt-monitor-input" placeholder="ค้นหาจากเลข CPG / CL / ชื่อผู้เอาประกัน / ชื่อสถานศึกษา" />
+                <button id="ttKeywordClear" type="button" class="tt-keyword-clear hidden" onclick="clearTransferTrackingKeyword()" aria-label="ล้างคำค้นหา" title="ล้างคำค้นหา"><span class="material-icons-round" aria-hidden="true">close</span></button>
               </span>
             </label>
             <div class="tt-monitor-actions tt-monitor-actions-inline">
@@ -12006,21 +12022,30 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div id="ttStatusFilters" class="tt-status-filter-list"></div>
         </section>
 
-        <div class="tt-view-toggle tt-view-toggle-redesign">
-          <button type="button" id="ttCardViewBtn" onclick="setTransferTrackingView('card')"><span class="material-icons-round">dashboard</span> Card View</button>
-          <button type="button" id="ttTableViewBtn" class="active" onclick="setTransferTrackingView('table')"><span class="material-icons-round">view_list</span> Table View</button>
-        </div>
+        <section id="ttSummary" class="tt-premium-summary" aria-label="สรุปรายการโอนเงิน"></section>
 
-        <section id="ttTableShell" class="tt-table-shell">
-          <div class="overflow-x-auto soft-scroll">
-            <table class="tt-table">
-              <thead id="transferTrackingTableHead"></thead>
-              <tbody id="transferTrackingTableBody"></tbody>
-            </table>
-          </div>
-          <div class="tt-pager"><span>ข้อมูลต่อหน้า</span><span>10 ▼</span><span id="ttPagerText">1-6 จาก 6</span><button type="button" class="text-slate-300">‹</button><button type="button" class="text-slate-900">›</button></div>
+        <section class="tt-results-surface">
+          <header class="tt-results-head">
+            <div>
+              <h2 id="ttResultTitle">รายการโอนเงินลูกค้า</h2>
+              <p id="ttResultSubtitle">แสดงหนึ่งแถวต่อหนึ่งรายการโอนเงิน</p>
+            </div>
+            <div class="tt-view-toggle tt-view-toggle-redesign" role="group" aria-label="เลือกรูปแบบการแสดงผล">
+              <button type="button" id="ttCardViewBtn" onclick="setTransferTrackingView('card')" aria-pressed="false"><span class="material-icons-round">dashboard</span> Card View</button>
+              <button type="button" id="ttTableViewBtn" class="active" onclick="setTransferTrackingView('table')" aria-pressed="true"><span class="material-icons-round">view_list</span> Table View</button>
+            </div>
+          </header>
+          <section id="ttTableShell" class="tt-table-shell">
+            <div class="overflow-x-auto soft-scroll">
+              <table class="tt-table">
+                <thead id="transferTrackingTableHead"></thead>
+                <tbody id="transferTrackingTableBody"></tbody>
+              </table>
+            </div>
+            <div class="tt-pager"><span>ข้อมูลต่อหน้า</span><span>10 ▼</span><span id="ttPagerText">1-10 จาก 14</span><button id="ttPrevPageBtn" type="button" onclick="changeTransferTrackingPage(-1)" aria-label="หน้าก่อนหน้า">‹</button><button id="ttNextPageBtn" type="button" onclick="changeTransferTrackingPage(1)" aria-label="หน้าถัดไป">›</button></div>
+          </section>
+          <section id="ttCardList" class="tt-card-list" style="display:none;"></section>
         </section>
-        <section id="ttCardList" class="tt-card-list" style="display:none;"></section>
       </section>
 
 
@@ -12302,6 +12327,144 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </footer>
         </section>
       </div>
+
+      <section id="fundReserveDashboardPage" class="page hidden frd-page" aria-labelledby="frdTitle">
+        <header class="frd-heading">
+          <div>
+            <p class="frd-eyebrow"><span class="material-icons-round" aria-hidden="true">savings</span> จัดการเงินกองทุน</p>
+            <h2 id="frdTitle">ภาพรวมการจ่ายเงินโรงพยาบาล</h2>
+            <p>ติดตามยอดเงินในบัญชีและประมาณการเงินที่ต้องใช้ภายใน 7 วัน</p>
+          </div>
+          <div class="frd-refresh-group">
+            <span id="frdUpdatedAt">อัปเดตล่าสุด 7 ก.ย. 2569 16:05 น.</span>
+            <button id="frdRefreshButton" type="button" class="frd-refresh-button">
+              <span class="material-icons-round" aria-hidden="true">refresh</span>
+              <span class="frd-refresh-label">รีเฟรชข้อมูล</span>
+            </button>
+          </div>
+        </header>
+
+        <div id="frdLiveStatus" class="frd-sr-only" role="status" aria-live="polite"></div>
+
+        <section class="frd-summary-grid" aria-label="ข้อมูลเงินสำรองโดยสรุป">
+          <article class="frd-summary-card frd-balance-card">
+            <span class="frd-summary-icon"><span class="material-icons-round" aria-hidden="true">account_balance</span></span>
+            <div>
+              <span>ยอดเงินคงเหลือในบัญชี</span>
+              <strong>฿12,850,000.00</strong>
+              <small>บัญชีสำรองเงินโรงพยาบาล XXX-X-X9890-X</small>
+            </div>
+          </article>
+          <article class="frd-summary-card">
+            <span class="frd-summary-icon is-sky"><span class="material-icons-round" aria-hidden="true">calendar_month</span></span>
+            <div>
+              <span>ยอดที่คาดว่าจะออกวันนี้</span>
+              <strong>฿2,480,000.00</strong>
+              <small class="frd-chip is-positive"><span aria-hidden="true">●</span> เงินเพียงพอ</small>
+            </div>
+          </article>
+          <article class="frd-summary-card">
+            <span class="frd-summary-icon is-sky"><span class="material-icons-round" aria-hidden="true">donut_small</span></span>
+            <div>
+              <span>ยอดรวมที่คาดว่าจะออก 7 วัน</span>
+              <strong>฿15,720,000.00</strong>
+              <small class="frd-chip is-warning"><span aria-hidden="true">●</span> ควรสำรองเพิ่ม ฿2,870,000</small>
+            </div>
+          </article>
+        </section>
+
+        <section class="frd-analysis-grid">
+          <article class="frd-panel frd-forecast-panel">
+            <header class="frd-panel-heading">
+              <div>
+                <h3>ประมาณการเงินออก 7 วัน</h3>
+                <p>จำนวนเงิน (ล้านบาท)</p>
+              </div>
+              <span class="frd-data-badge">ข้อมูลตัวอย่าง</span>
+            </header>
+            <div class="frd-chart-scroll" tabindex="0" aria-label="กราฟและสถานะรายวัน เลื่อนในแนวนอนได้บนหน้าจอขนาดเล็ก">
+              <div class="frd-chart" role="img" aria-label="กราฟประมาณการเงินออก 7 วัน ตั้งแต่ 7 ถึง 13 กันยายน 2569 ยอดสูงสุด 3.20 ล้านบาทในวันที่ 9 กันยายน">
+                <div class="frd-chart-gridlines" aria-hidden="true"></div>
+                <div id="frdChartBars" class="frd-chart-bars"></div>
+              </div>
+              <div id="frdCoverageStrip" class="frd-coverage-strip" aria-label="สถานะเงินสำรองรายวัน"></div>
+            </div>
+          </article>
+
+          <article class="frd-panel frd-reserve-panel" aria-labelledby="frdReserveTitle">
+            <header class="frd-panel-heading">
+              <div><h3 id="frdReserveTitle">การสำรองเงิน</h3><p>สถานะตามยอดประมาณการล่าสุด</p></div>
+            </header>
+            <div class="frd-warning-box">
+              <span class="material-icons-round" aria-hidden="true">error_outline</span>
+              <div><strong>ยอดเงินอาจไม่เพียงพอ</strong><p>คาดว่าจะมีเงินไม่เพียงพอในวันที่ 12 ก.ย. 2569</p></div>
+            </div>
+            <p class="frd-reserve-label">ควรสำรองเพิ่มอย่างน้อย</p>
+            <strong class="frd-reserve-amount">฿2,870,000.00</strong>
+            <div class="frd-reserve-note"><span class="material-icons-round" aria-hidden="true">info</span><span>คำนวณจากยอดคงเหลือเทียบกับรายการที่คาดว่าจะจ่ายสะสม 7 วัน</span></div>
+          </article>
+        </section>
+
+        <section class="frd-panel frd-table-panel" aria-labelledby="frdUpcomingTitle">
+          <header class="frd-panel-heading frd-table-heading">
+            <div>
+              <h3 id="frdUpcomingTitle">รายการจ่ายเงินที่กำลังจะถึง</h3>
+              <p>ยอดคาดการณ์แยกตามวันและจำนวนโรงพยาบาล</p>
+            </div>
+            <span class="frd-data-badge">7 วันข้างหน้า</span>
+          </header>
+          <div class="frd-table-wrap" tabindex="0" aria-label="ตารางรายการจ่ายเงินที่กำลังจะถึง เลื่อนในแนวนอนได้บนหน้าจอขนาดเล็ก">
+            <table class="frd-table">
+              <thead><tr><th scope="col">วันที่คาดว่าจะออก</th><th scope="col">จำนวนรายการ</th><th scope="col">จำนวนโรงพยาบาล</th><th scope="col">ยอดเงิน</th><th scope="col">สถานะ</th></tr></thead>
+              <tbody id="frdUpcomingTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
+      <section id="fundHospitalTransferPage" class="page hidden fhp-page" aria-labelledby="fhtTitle">
+        <header class="fhp-heading">
+          <div>
+            <p class="fhp-eyebrow"><span class="material-icons-round" aria-hidden="true">account_balance</span> จัดการเงินกองทุน</p>
+            <h2 id="fhtTitle">โอนเงินเคลมโรงพยาบาล</h2>
+            <p>ติดตามและจำลองขั้นตอนการจัดกลุ่มและโอนเงินให้สถานพยาบาล</p>
+          </div>
+          <span class="fhp-demo-badge"><span class="material-icons-round" aria-hidden="true">science</span> Mock Data</span>
+        </header>
+        <div id="fhtLiveStatus" class="fhp-sr-only" role="status" aria-live="polite"></div>
+        <section class="fhp-filter-card" aria-label="ตัวกรองรายการโอนเงิน">
+          <label class="fhp-field"><span>สถานะ</span><select id="fhtStatusFilter"><option value="">โปรดระบุ</option><option>รอสร้างรายการ</option><option>รอโอน</option><option>รอจ่ายอัตโนมัติ</option><option>โอนสำเร็จ</option><option>โอนไม่สำเร็จ</option></select></label>
+          <div class="fhp-filter-actions"><button id="fhtResetButton" type="button" class="fhp-button is-secondary"><span class="material-icons-round" aria-hidden="true">restart_alt</span>ล้างค่า</button><button id="fhtSearchButton" type="button" class="fhp-button is-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button></div>
+        </section>
+        <div id="fhtStatusShortcuts" class="fhp-status-shortcuts" aria-label="เลือกสถานะอย่างรวดเร็ว"></div>
+        <section id="fhtWorkspace" class="fhp-panel fhp-transfer-workspace" aria-live="polite"></section>
+      </section>
+
+      <section id="fundHospitalPaymentSettingsPage" class="page hidden fhp-page" aria-labelledby="fhpsTitle">
+        <header class="fhp-heading fhps-heading">
+          <div>
+            <p class="fhp-eyebrow"><span class="material-icons-round" aria-hidden="true">settings</span> จัดการเงินกองทุน</p>
+            <h2 id="fhpsTitle">ตั้งค่าการจ่ายเงินโรงพยาบาล</h2>
+            <p>กำหนดรูปแบบการจ่ายอัตโนมัติ ระยะเวลารอ และสถานะ Hold รายสถานพยาบาล</p>
+          </div>
+          <button id="fhpsAddHospitalButton" type="button" class="fhp-button is-success"><span class="material-icons-round" aria-hidden="true">add</span>เพิ่มสถานพยาบาล</button>
+        </header>
+        <div id="fhpsLiveStatus" class="fhp-sr-only" role="status" aria-live="polite"></div>
+        <section class="fhps-summary" aria-label="ภาพรวมการตั้งค่า">
+          <div><span class="material-icons-round" aria-hidden="true">tune</span><div><strong>กำหนดการจ่ายอัตโนมัติรายสถานพยาบาล</strong><p>ข้อมูลตัวอย่างสำหรับสาธิตการตั้งค่าเท่านั้น</p></div></div>
+          <dl><div><dt>เปิดจ่ายอัตโนมัติ</dt><dd id="fhpsAutoCount">0</dd></div><div><dt>สถานะ Hold</dt><dd id="fhpsHoldCount">0</dd></div></dl>
+        </section>
+        <section class="fhp-filter-card fhps-search-card" aria-label="ค้นหาสถานพยาบาล">
+          <label class="fhp-field"><span>สถานพยาบาล</span><input id="fhpsSearchInput" type="search" placeholder="ค้นหาชื่อสถานพยาบาล" autocomplete="off"></label>
+          <div class="fhp-filter-actions"><button id="fhpsResetButton" type="button" class="fhp-button is-secondary"><span class="material-icons-round" aria-hidden="true">restart_alt</span>ล้างค่า</button><button id="fhpsSearchButton" type="button" class="fhp-button is-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button></div>
+        </section>
+        <section class="fhp-panel fhps-table-panel" aria-labelledby="fhpsTableTitle">
+          <header class="fhp-panel-heading"><div><h3 id="fhpsTableTitle">รายการตั้งค่าการจ่ายเงิน</h3><p id="fhpsResultCount">0 สถานพยาบาล</p></div></header>
+          <div class="fhp-table-wrap" tabindex="0" aria-label="ตารางตั้งค่าการจ่ายเงินโรงพยาบาล เลื่อนในแนวนอนได้บนหน้าจอขนาดเล็ก">
+            <table class="fhp-table fhps-table"><thead><tr><th scope="col">สถานพยาบาล</th><th scope="col">จ่ายเงินอัตโนมัติ</th><th scope="col">Delay (วัน)</th><th scope="col">สถานะ Hold</th><th scope="col">ผลการตั้งค่า</th><th scope="col">อัปเดตล่าสุด</th><th scope="col">บันทึกการตั้งค่า</th></tr></thead><tbody id="fhpsTableBody"></tbody></table>
+          </div>
+        </section>
+      </section>
 
       <section id="claimTrackingDashboardPage" class="page hidden cad-page" aria-labelledby="cadTitle">
         <div class="cad-hero">
@@ -15363,6 +15526,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     let currentHospitalHalfStep = 1;
 
     function openConsiderHospitalRow(index = 0) {
+      window.__isHospitalBillingReview = false;
+      window.__forceLegacyHospitalExpense = false;
       currentConsiderHospitalRowIndex = index;
       const row = considerationHospitalRows[index] || considerationHospitalRows[0];
       if (/Full|IPD|Day\s*Case/i.test(String(row.claimType || ''))) {
@@ -20354,7 +20519,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function getBillingFilteredRows() {
       const rows = currentFundBillingClaimType === "hospital"
-        ? hospitalBillingRows.filter(row => row.status === "รอตรวจสอบ")
+        ? hospitalBillingRows.filter(row => row.status === "รอตั้งเบิก")
         : billingClaimData.customer.filter(row => row.status === "รอวางบิล");
       const q = (document.getElementById("billingSearchInput")?.value || "").trim().toLowerCase();
       const branch = document.getElementById("billingBranchFilter")?.value || "all";
@@ -20579,13 +20744,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <th class="px-3 py-2.5 text-center font-extrabold">ดำเนินการ</th>
           </tr>` : `
           <tr>
+            <th class="px-3 py-2.5 text-center font-extrabold"><span class="inline-flex items-center justify-center gap-2"><input id="billingSelectAll" type="checkbox" onchange="toggleBillingSelectAll(this.checked)" class="h-5 w-5 rounded border-white/70" title="เลือกทั้งหมด" aria-label="เลือกทั้งหมด" /><span>เลือกรายการ</span></span></th>
             <th class="px-3 py-2.5 text-center font-extrabold">วันที่แจ้งเคลม</th>
             <th class="px-3 py-2.5 text-center font-extrabold">วันที่อนุมัติเคลม</th>
             <th class="px-3 py-2.5 text-left font-extrabold">เลขที่ Case</th>
             <th class="px-3 py-2.5 text-left font-extrabold">ผู้อนุมัติ</th>
             <th class="px-3 py-2.5 text-right font-extrabold">จำนวนเงินตั้งเบิก</th>
             <th class="px-3 py-2.5 text-left font-extrabold">ชื่อบริษัทประกัน</th>
-            <th class="px-3 py-2.5 text-center font-extrabold"><span class="inline-flex items-center justify-center gap-2"><input id="billingSelectAll" type="checkbox" onchange="toggleBillingSelectAll(this.checked)" class="h-5 w-5 rounded border-white/70" title="เลือกทั้งหมด" aria-label="เลือกทั้งหมด" /><span>ดำเนินการ</span></span></th>
+            <th class="px-3 py-2.5 text-center font-extrabold">ดำเนินการ</th>
           </tr>`;
       }
       if (tbody) {
@@ -20593,6 +20759,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           ? "กรุณาเลือกประเภทการเคลมก่อน ระบบจึงจะแสดงข้อมูลในตาราง"
           : !currentBillingProductFilter
           ? "กรุณาเลือกผลิตภัณฑ์ PH หรือ PA ก่อน ระบบจึงจะแสดงข้อมูลในตาราง"
+          : currentFundBillingClaimType === "hospital"
+          ? "ไม่พบรายการรอตั้งเบิกตามเงื่อนไขที่ค้นหา"
           : "ไม่พบรายการรอวางบิลตามเงื่อนไขที่ค้นหา";
         tbody.innerHTML = filtered.length ? (isHospital ? filtered.map(r => `
           <tr class="bg-white hover:bg-brand-50/60 transition">
@@ -20605,14 +20773,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <td class="px-3 py-2.5 text-center"><button type="button" onclick="openHospitalBillingReview('${r.id}')" class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm transition hover:bg-brand-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${r.caseNo}"><span class="material-icons-round !text-lg">visibility</span></button></td>
           </tr>`).join("") : filtered.map(r => `
           <tr class="bg-white hover:bg-brand-50/60 transition">
+            <td class="px-3 py-2.5 text-center"><input type="checkbox" class="h-5 w-5 rounded" ${billingSelectedIds.has(r.id) ? "checked" : ""} onchange="toggleBillingRow('${r.id}', this.checked)" aria-label="เลือกตั้งเบิก ${r.caseNo || r.claimNo}" /></td>
             <td class="px-3 py-2.5 text-center font-bold text-slate-600">${r.notifiedDate || r.admitDate || "-"}</td>
             <td class="px-3 py-2.5 text-center font-bold text-slate-600">${r.date}</td>
             <td class="px-3 py-2.5 font-extrabold text-brand-700">${r.caseNo || r.claimNo}</td>
             <td class="px-3 py-2.5 font-bold text-slate-800">${r.officer}</td>
             <td class="px-3 py-2.5 text-right font-extrabold text-slate-800">${moneyFormat(r.amount)}</td>
             <td class="px-3 py-2.5 font-extrabold text-slate-700">${getBillingInsurerShort(r)}</td>
-            <td class="px-3 py-2.5 text-center"><span class="inline-flex items-center justify-center gap-2"><input type="checkbox" class="h-5 w-5 rounded" ${billingSelectedIds.has(r.id) ? "checked" : ""} onchange="toggleBillingRow('${r.id}', this.checked)" aria-label="เลือกตั้งเบิก ${r.caseNo || r.claimNo}" /><button type="button" class="grid h-8 w-8 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm hover:bg-brand-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${r.caseNo || r.claimNo}"><span class="material-icons-round !text-lg">visibility</span></button></span></td>
-          </tr>`).join("")) : `<tr><td colspan="7" class="px-4 py-8 text-center font-bold text-slate-400">${emptyMessage}</td></tr>`;
+            <td class="px-3 py-2.5 text-center"><button type="button" class="mx-auto grid h-8 w-8 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm hover:bg-brand-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${r.caseNo || r.claimNo}"><span class="material-icons-round !text-lg">visibility</span></button></td>
+          </tr>`).join("")) : `<tr><td colspan="${isHospital ? 7 : 8}" class="px-4 py-8 text-center font-bold text-slate-400">${emptyMessage}</td></tr>`;
       }
       const amount = filtered.reduce((sum, r) => sum + Number(r.amount || 0), 0);
       const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
@@ -20624,7 +20793,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           ? `แสดง ${filtered.length} รายการ`
           : !currentBillingProductFilter
             ? "กรุณาเลือกผลิตภัณฑ์ก่อนแสดงข้อมูล"
-            : `แสดง ${filtered.length} จาก ${rows.filter(r => r.status === "รอวางบิล" && r.product === currentBillingProductFilter).length} รายการ`;
+          : `แสดง ${filtered.length} จาก ${rows.filter(r => r.status === "รอวางบิล" && r.product === currentBillingProductFilter).length} รายการ`;
       setText("billingTableFooter", footerText);
       if (isCustomer) updateBillingSelectedSummary();
     }
@@ -20810,6 +20979,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function openHospitalBillingReview(rowId) {
       const row = hospitalBillingRows.find(item => item.id === rowId);
       if (!row) return;
+      window.__isHospitalBillingReview = true;
       const profile = hospitalBillingReviewProfiles[rowId] || {};
       const payload = {
         claimType: row.claimType,
@@ -20817,8 +20987,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         province: profile.province || "กรุงเทพมหานคร",
         name: profile.name || "นายทดสอบ ระบบ",
         claimCode: row.claimNo,
-        amount: row.amount
+        amount: row.amount,
+        isBillingReview: true
       };
+      window.__hospitalBillingClaimNo = row.claimNo;
+      window.__forceLegacyHospitalExpense = true;
       if (typeof window.showConsiderHospitalOpdHalfPage === 'function' && typeof window.showConsiderHospitalOpdFullPage === 'function') {
         const useHalf = String(row.claimType || '').includes('Half');
         if (useHalf) {
@@ -20826,6 +20999,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         } else {
           window.showConsiderHospitalOpdFullPage(payload);
         }
+        // Billing reuses the hospital consideration shell, but keeps its legacy editable expense fields.
+        window.__isHospitalBillingReview = true;
+        window.__forceLegacyHospitalExpense = true;
+        window.__hospitalBillingClaimNo = row.claimNo;
+        if (window.currentConsiderHospitalRow) window.currentConsiderHospitalRow.__isBillingReview = true;
+        document.querySelector('#considerHospitalOpdFullPage:not(.hidden), #considerHospitalOpdHalfPage:not(.hidden)')?.setAttribute('data-billing-review', 'true');
+        if (typeof window.syncHospitalStep2CustomerStyleV111 === 'function') window.syncHospitalStep2CustomerStyleV111();
         setTimeout(() => {
           try {
             const visiblePage = document.querySelector('#considerHospitalOpdFullPage:not(.hidden), #considerHospitalOpdHalfPage:not(.hidden)');
@@ -20907,6 +21087,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         }
       }
     }
+
+    // Compatibility aliases for legacy callers that used the old billing menu names.
+    window.showBillingCustomerPage = window.showBillingCustomerPage || function(){ showBillingClaimPage("customer"); };
+    window.showBillingHospitalPage = window.showBillingHospitalPage || function(){ showBillingClaimPage("hospital"); };
 
     document.getElementById("menuClaim").addEventListener("click", () => {
       setConsiderSubmenuExpanded(false);
@@ -25527,6 +25711,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function getModeData(mode, row){
     const base = JSON.parse(JSON.stringify(HOSPITAL_OPD_CASES[mode] || HOSPITAL_OPD_CASES.half));
+    base.isBillingReview = Boolean(row?.isBillingReview === true || (row && String(row.claimNo || row.claimCode || '') === String(window.__hospitalBillingClaimNo || '')));
     if(row){
       base.claimType = row.claimType || base.claimType;
       base.top.hospital = row.hospital || base.top.hospital;
@@ -26046,6 +26231,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   };
 
   window.openConsiderHospitalRow = function(index=0){
+    window.__isHospitalBillingReview = false;
+    window.__forceLegacyHospitalExpense = false;
     const row = (typeof considerationHospitalRows !== 'undefined' && considerationHospitalRows[index]) ? considerationHospitalRows[index] : null;
     if (row && /Full|IPD|Day\s*Case/i.test(String(row.claimType || ''))) {
       window.showConsiderHospitalOpdFullPage(row);
@@ -26506,21 +26693,52 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return coverage === 'ค่ารักษา';
   }
 
-  function renderClaimlinePrelimRows(treatment, coverage){
+  function claimlineMoneyNumber(value){
+    const number = Number(String(value ?? '').replace(/,/g, ''));
+    return Number.isFinite(number) ? Math.max(0, number) : 0;
+  }
+
+  function calculateClaimlineEntitlement(receipt, discount, uncovered){
+    return Math.max(0, claimlineMoneyNumber(receipt) - claimlineMoneyNumber(discount) - claimlineMoneyNumber(uncovered));
+  }
+
+  function claimlineMoneyText(value){
+    return calculateClaimlineEntitlement(value, 0, 0).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  }
+
+  function renderClaimlinePrelimRows(treatment, coverage, options = {}){
+    const autoCalculateEntitlement = options.autoCalculateEntitlement === true;
     if (coverage !== undefined && !isMedicalCoverage(coverage)) return '';
     const rows = getPrelimItemsByTreatment(treatment);
     if (!rows.length) return `<tr><td colspan="8" class="px-3 py-4 text-center text-slate-400">ไม่พบรายการตามประเภทการรักษาที่เลือก</td></tr>`;
-    return rows.map((r, index) => `
+    return rows.map((r, index) => {
+      const receipt = autoCalculateEntitlement
+        ? `<input data-claimline-field="receipt" value="${cEsc(r.receipt ?? '')}" class="ce-input" placeholder="0.00" inputmode="decimal">`
+        : `<input value="${cEsc(r.receipt ?? r.claim ?? '')}" class="ce-input" placeholder="0.00" inputmode="decimal">`;
+      const entitlement = autoCalculateEntitlement
+        ? `<input data-claimline-field="entitlement" value="${claimlineMoneyText(calculateClaimlineEntitlement(r.receipt, r.discount, r.uncovered))}" class="ce-input ce-input-derived" placeholder="0.00" disabled aria-disabled="true" readonly title="คำนวณจากยอดเงินตามใบเสร็จ - ส่วนลด - ยอดไม่คุ้มครอง">`
+        : `<input value="${cEsc(r.claim ?? '')}" class="ce-input" placeholder="0.00" inputmode="decimal">`;
+      const discount = autoCalculateEntitlement
+        ? `<input data-claimline-field="discount" value="${cEsc(r.discount)}" class="ce-input" placeholder="0.00" inputmode="decimal">`
+        : `<input value="${cEsc(r.discount)}" class="ce-input" placeholder="0.00" inputmode="decimal">`;
+      const uncovered = autoCalculateEntitlement
+        ? `<input data-claimline-field="uncovered" value="${cEsc(r.uncovered)}" class="ce-input" placeholder="0.00" inputmode="decimal">`
+        : `<input value="${cEsc(r.uncovered)}" class="ce-input" placeholder="0.00" inputmode="decimal">`;
+      const note = autoCalculateEntitlement
+        ? `<input data-claimline-field="note" value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ">`
+        : `<input value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ">`;
+      return `
       <tr class="border-b border-slate-200">
         <td>${cEsc(r.item)}</td>
-        <td><input value="${cEsc(r.receipt ?? r.claim)}" class="ce-input" placeholder="0.00"></td>
-        <td><input value="${cEsc(r.claim)}" class="ce-input" placeholder="0.00"></td>
-        <td><input value="${cEsc(r.discount)}" class="ce-input" placeholder="0.00"></td>
-        <td><input value="${cEsc(r.uncovered)}" class="ce-input" placeholder="0.00"></td>
-        <td><select class="ce-select">${nonCoverageReasonOptions(r.reason)}</select></td>
-        <td><input value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ"></td>
+        <td>${receipt}</td>
+        <td>${entitlement}</td>
+        <td>${discount}</td>
+        <td>${uncovered}</td>
+        <td><select data-claimline-field="reason" class="ce-select">${nonCoverageReasonOptions(r.reason)}</select></td>
+        <td>${note}</td>
         <td class="text-center"><button type="button" class="ce-delete-btn" onclick="this.closest('tr').remove()"><span class="material-icons-round">delete</span></button></td>
-      </tr>`).join('');
+      </tr>`;
+    }).join('');
   }
 
   // Initial State: Panel Collapse / no selected item / all amount fields + Add button disabled
@@ -26589,6 +26807,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function renderCustomerMedicalExpenseSections(context){
     const coverage = context?.coverage || '';
     const treatment = context?.treatment || 'OPD';
+    const autoCalculateEntitlement = context?.autoCalculateEntitlement === true;
     if (!isMedicalCoverage(coverage)) {
       return '';
     }
@@ -26596,7 +26815,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <section class="cc-ref-card cc-ref-prelim-card">
         <div class="cc-ref-card-title">รายการค่ารักษา(เบื้องต้น)</div>
         <div class="cc-ref-table-wrap">
-          <table class="cc-ref-prelim-table cc-ref-prelim-table-modern">
+          <table class="cc-ref-prelim-table cc-ref-prelim-table-modern" data-auto-entitlement="${autoCalculateEntitlement ? 'true' : 'false'}">
             <colgroup>
               <col class="cc-col-item">
               <col class="cc-col-receipt">
@@ -26619,7 +26838,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <th>ลบ</th>
               </tr>
             </thead>
-            <tbody id="customerPrelimTableBody">${renderClaimlinePrelimRows(treatment, coverage)}</tbody>
+            <tbody id="customerPrelimTableBody">${renderClaimlinePrelimRows(treatment, coverage, {autoCalculateEntitlement})}</tbody>
           </table>
         </div>
         <div class="cc-ref-summary-box">
@@ -26860,16 +27079,19 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const noteEl = document.getElementById('customerAdditionalNote');
     const tbody = document.getElementById('customerPrelimTableBody');
     if (!tbody || !itemEl || !itemEl.value.trim()) return;
+    const autoCalculateEntitlement = tbody.closest('table')?.dataset.autoEntitlement === 'true';
     const row = document.createElement('tr');
     row.className = 'border-b border-slate-200';
     row.innerHTML = `
       <td>${itemEl.value}</td>
-      <td><input value="${receiptEl?.value || ''}" class="ce-input" placeholder="0.00"></td>
-      <td><input value="${claimEl?.value || ''}" class="ce-input" placeholder="0.00"></td>
-      <td><input value="${discountEl?.value || ''}" class="ce-input" placeholder="0.00"></td>
-      <td><input value="${uncoveredEl?.value || ''}" class="ce-input" placeholder="0.00"></td>
-      <td><select class="ce-select">${nonCoverageReasonOptions(reasonEl?.value || '')}</select></td>
-      <td><input value="${noteEl?.value || ''}" class="ce-input" placeholder="หมายเหตุ"></td>
+      <td><input ${autoCalculateEntitlement ? 'data-claimline-field="receipt"' : ''} value="${receiptEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
+      <td>${autoCalculateEntitlement
+        ? `<input data-claimline-field="entitlement" value="${claimlineMoneyText(calculateClaimlineEntitlement(receiptEl?.value, discountEl?.value, uncoveredEl?.value))}" class="ce-input ce-input-derived" placeholder="0.00" disabled aria-disabled="true" readonly title="คำนวณจากยอดเงินตามใบเสร็จ - ส่วนลด - ยอดไม่คุ้มครอง">`
+        : `<input value="${claimEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal">`}</td>
+      <td><input ${autoCalculateEntitlement ? 'data-claimline-field="discount"' : ''} value="${discountEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
+      <td><input ${autoCalculateEntitlement ? 'data-claimline-field="uncovered"' : ''} value="${uncoveredEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
+      <td><select data-claimline-field="reason" class="ce-select">${nonCoverageReasonOptions(reasonEl?.value || '')}</select></td>
+      <td><input ${autoCalculateEntitlement ? 'data-claimline-field="note"' : ''} value="${noteEl?.value || ''}" class="ce-input" placeholder="หมายเหตุ"></td>
       <td class="text-center"><button type="button" class="ce-delete-btn" onclick="this.closest('tr').remove()"><span class="material-icons-round">delete</span></button></td>`;
     tbody.appendChild(row);
     window.resetAdditionalEntryForm('customer');
@@ -26929,7 +27151,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${window.renderCustomerTransferScenarioAlert ? window.renderCustomerTransferScenarioAlert() : ""}
       ${renderTransferValidationMockups()}
       <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</section>
-      ${renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment })}
+      ${renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, autoCalculateEntitlement:true })}
       <div class="cc-ref-decision-wrap">${renderDecisionButtons()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="setCustomerStep(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
@@ -27900,27 +28122,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ${input('รายละเอียด',detail.medicalNote || row?.note || '','text','md:col-span-2 xl:col-span-4')}
       </div>
     </div>
-    ${includeDoctor ? `<div class="hospital-medical-info-section rounded-xl border border-slate-200 p-3" data-collapsible-section>
+    ${includeDoctor ? `<div class="hospital-medical-info-section hospital-medical-info-compact rounded-xl border border-slate-200 p-3" data-collapsible-section>
       <div class="mb-2.5 flex items-center justify-between">
-        <div class="text-[15px] font-semibold text-brand-700">ข้อมูลการเข้ารับการรักษา</div>
+        <div><div class="text-[15px] font-semibold text-brand-700">ข้อมูลประกอบการพิจารณา</div><div class="text-xs text-slate-500">ข้อมูลที่จำเป็นต่อการตรวจสอบเคลมโรงพยาบาล</div></div>
         <button type="button" onclick="toggleClaimSubSection(this)" class="grid h-6 w-6 place-items-center rounded bg-brand-500 text-white"><span class="material-icons-round !text-sm">remove</span></button>
       </div>
       <div data-collapsible-body class="grid gap-2.5 md:grid-cols-2">
         ${input('HN*',detail.hn || row?.hn || 'HN2601')}
-        ${input('VN*',detail.vn || row?.vn || 'VN660612001')}
-        ${isHospitalIpd ? input('AN',detail.an || row?.an || 'AN660612001') : ''}
-        ${input('โรคประจำตัว (U/D)','ไม่มี','text','md:col-span-2')}
-        ${isHospitalIpd ? input('ข้อบ่งชี้การ Admit*','มีข้อบ่งชี้ต้องนอนรักษาในโรงพยาบาล','text','md:col-span-2') : ''}
-        ${input(isCustomer ? 'วินิจฉัยการเจ็บป่วย*' : 'วิธีการรักษาพยาบาล*', isCustomer ? 'ไข้หวัดทั่วไปและอ่อนเพลียจากอาการ' : 'ให้สารน้ำและยาตามแผนการรักษา','text','md:col-span-2')}
-        <label class="md:col-span-2"><div class="mb-1 text-[11px] font-medium text-slate-500">ผลการตรวจ LAB, EKG, X-ray และอื่นๆ</div><textarea class="claim-standard-field min-h-[74px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13px] font-normal text-slate-700">ไม่มี</textarea></label>
-        <label class="md:col-span-2"><div class="mb-1 text-[11px] font-medium text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="claim-standard-field min-h-[74px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13px] font-normal text-slate-700"></textarea></label>
-        <div class="md:col-span-2">
-          <div class="mb-1 text-[11px] font-medium text-slate-500">มีการทำหัตถการหรือไม่<span class="text-red-500">*</span></div>
-          <div class="inline-flex overflow-hidden rounded-lg border border-slate-300 bg-white">
-            <button type="button" class="min-w-[64px] px-3 py-2 text-[13px] font-medium text-slate-600 hover:bg-brand-50">ใช่</button>
-            <button type="button" class="min-w-[64px] border-l border-slate-300 px-3 py-2 text-[13px] font-medium text-brand-700 bg-brand-50">ไม่ใช่</button>
-          </div>
-        </div>
+        <label class="md:col-span-2"><div class="mb-1 text-[11px] font-medium text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="claim-standard-field min-h-[64px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13px] font-normal text-slate-700"></textarea></label>
       </div>
     </div>` : ''}${doctor}`;
   }
@@ -28035,8 +28244,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function getHospitalCheckDocsByMode(modeLabel='OPD Full'){
     const mode = String(modeLabel || '').trim().toUpperCase();
-    const originalDocs = mode === 'IPD' ? OPD_FULL_CHECK_DOCS : OPD_FULL_CHECK_DOCS.filter(name => name !== 'แบบฟอร์ม B');
-    return [...originalDocs, 'บัตรประชาชน', 'ชุดรวมเอกสาร'];
+    if (mode === 'OPD HALF') return [...OPD_FULL_CHECK_DOCS.filter(name => name !== 'แบบฟอร์ม B'), 'บัตรประชาชน', 'ชุดรวมเอกสาร'];
+    return ['ชุดรวมเอกสาร'];
   }
 
 
@@ -28320,7 +28529,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
 
   function renderHospitalStep1DocumentCheckSection(modeLabel='IPD'){
-    const docs = [
+    const isOpdHalf = /OPD\s*Half/i.test(String(modeLabel || ''));
+    const docs = isOpdHalf ? [
       {name:'แบบฟอร์ม A', count:1},
       {name:'แบบฟอร์ม B', count:0},
       {name:'ใบแจ้งหนี้', count:1},
@@ -28329,7 +28539,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       {name:'เอกสารอื่นๆ', count:0},
       {name:'บัตรประชาชน', count:0},
       {name:'ชุดรวมเอกสาร', count:0}
-    ];
+    ] : [{name:'ชุดรวมเอกสาร', count:1}];
     const label = /DAY\s*CASE/i.test(String(modeLabel||'')) ? 'Day Case Surgery' : (/IPD/i.test(String(modeLabel||'')) ? 'IPD' : String(modeLabel||''));
     return `<section class="hospital-step1-document-check rounded-xl border border-slate-200 bg-white p-4">
       <div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700">
@@ -28575,7 +28785,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     // ใช้รายการค่ารักษาเบื้องต้น + รายการค่ารักษาเพิ่มเติมชุดเดียวกับเคลมลูกค้า
     // แต่ตัด insurance excess ของ customer ออก เพื่อไม่ให้ซ้ำกับ hospital excess ด้านล่าง
     let expenseContent = typeof window.renderCustomerMedicalExpenseSections === 'function'
-      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment:treatment, source:'hospital', prefix:'hh', insuranceExcessHtml:renderHospitalInsuranceExcessBox('hh')})
+      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment:treatment, source:'hospital', prefix:'hh', autoCalculateEntitlement:true, insuranceExcessHtml:renderHospitalInsuranceExcessBox('hh')})
       : '';
     if(expenseContent){
       const holder = document.createElement('div');
@@ -28667,7 +28877,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${renderCustomerTransferScenarioAlert()}
       ` : ''}
       <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</section>
-      ${window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital'), prefix:prefix, insuranceExcessHtml:(kind === 'customer' ? '' : renderHospitalInsuranceExcessBox(prefix)) })}
+      ${window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital'), prefix:prefix, autoCalculateEntitlement:(window.__forceLegacyHospitalExpense !== true && row?.isBillingReview !== true), insuranceExcessHtml:(kind === 'customer' ? '' : renderHospitalInsuranceExcessBox(prefix)) })}
       <div class="cc-ref-decision-wrap">${decision()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="set${stepName}Step(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
@@ -28729,12 +28939,22 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const pane2 = document.getElementById(prefix+'StepPane2');
     const source = new Map();
     if(pane2){
-      pane2.querySelectorAll('table tbody tr').forEach(tr=>{
+      pane2.querySelectorAll('table').forEach(table=>{
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th=>clean(th.textContent));
+        const receiptIndex = headers.findIndex(header=>header.includes('ยอดเงินตามใบเสร็จ'));
+        const entitlementIndex = headers.findIndex(header=>header.includes('สิทธิ์เบิก'));
+        const uncoveredIndex = headers.findIndex(header=>header.includes('ยอดไม่คุ้มครอง') || header.includes('ส่วนเกินสิทธิ์'));
+        if(receiptIndex < 0 && entitlementIndex < 0) return;
+        table.querySelectorAll('tbody tr').forEach(tr=>{
         const td=Array.from(tr.querySelectorAll('td'));
         if(td.length < 4) return;
         const name=clean(td[0].textContent);
         if(!name || /^รวม\s*:?$/.test(name)) return;
-        source.set(name,[moneyNum(td[1].textContent),moneyNum(td[2].textContent),moneyNum(td[3].textContent)]);
+        const receiptCell = td[receiptIndex >= 0 ? receiptIndex : 1];
+        const entitlementCell = td[entitlementIndex >= 0 ? entitlementIndex : 2];
+        const uncoveredCell = td[uncoveredIndex >= 0 ? uncoveredIndex : 3];
+        source.set(name,[moneyNum(receiptCell?.textContent),moneyNum(entitlementCell?.textContent),moneyNum(uncoveredCell?.textContent)]);
+        });
       });
     }
     const getVals = name => source.get(clean(name)) || [0,0,0];
@@ -45961,6 +46181,66 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     font-weight:600!important;
   }
 </style>
+<style id="claimline-entitlement-derived-v1">
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived,
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived:disabled{
+    background:#eef3f7!important;
+    border-color:#c7d4df!important;
+    color:#29475e!important;
+    font-weight:800!important;
+    cursor:not-allowed!important;
+    opacity:1!important;
+  }
+</style>
+<style id="claimline-field-state-visuals-v2">
+  /* Editable amounts: blue-tinted surface + blue border */
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table :is(
+    [data-claimline-field="receipt"],
+    [data-claimline-field="discount"],
+    [data-claimline-field="uncovered"],
+    [data-claimline-field="note"]
+  ){
+    background:#eff6ff!important;
+    border:1.5px solid #60a5fa!important;
+    color:#0f3557!important;
+    cursor:text!important;
+    opacity:1!important;
+  }
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table :is(
+    [data-claimline-field="receipt"],
+    [data-claimline-field="discount"],
+    [data-claimline-field="uncovered"],
+    [data-claimline-field="note"]
+  ):focus{
+    background:#fff!important;
+    border-color:#2563eb!important;
+    box-shadow:0 0 0 3px rgba(37,99,235,.16)!important;
+  }
+  /* Derived / disabled amount: neutral read-only surface, never looks editable */
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived,
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived:disabled{
+    background:#e8eef3!important;
+    border:1.5px solid #94a3b8!important;
+    color:#334155!important;
+    font-weight:800!important;
+    cursor:not-allowed!important;
+    opacity:1!important;
+    box-shadow:inset 0 1px 2px rgba(15,23,42,.08)!important;
+  }
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-select.ce-reason-required{
+    background:#fff7ed!important;
+    border:2px solid #f97316!important;
+    color:#9a3412!important;
+    box-shadow:0 0 0 3px rgba(249,115,22,.15)!important;
+  }
+  :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-reason-hint{
+    margin-top:4px;
+    color:#c2410c;
+    font-size:11px;
+    font-weight:700;
+    line-height:1.2;
+  }
+</style>
 <style id="insured-ph-field-icons-v1">
   /* รายละเอียดตรวจสอบสิทธิ์ > ข้อมูลผู้เอาประกัน PH */
   #insuredInfo .insured-ph-field-row{
@@ -47233,8 +47513,8 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
           const money = value => Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
           const docRowsByMode = {
             'OPD Half':['แบบฟอร์ม A','ใบแจ้งหนี้','รายละเอียดใบแจ้งหนี้','ผลการตรวจ LAB / X-ray','เอกสารอื่นๆ','บัตรประชาชน','ชุดรวมเอกสาร'],
-            'OPD Full':['แบบฟอร์ม A','ใบแจ้งหนี้','รายละเอียดใบแจ้งหนี้','ผลการตรวจ LAB / X-ray','เอกสารอื่นๆ','บัตรประชาชน','ชุดรวมเอกสาร'],
-            'IPD':['แบบฟอร์ม A','แบบฟอร์ม B','ใบแจ้งหนี้','รายละเอียดใบแจ้งหนี้','ผลการตรวจ LAB / X-ray','เอกสารอื่นๆ','บัตรประชาชน','ชุดรวมเอกสาร']
+            'OPD Full':['ชุดรวมเอกสาร'],
+            'IPD':['ชุดรวมเอกสาร']
           };
           window.__hospitalConsiderMode = 'OPD Half';
 
@@ -47465,10 +47745,43 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   window.recalculateCustomerExpenseSummary=function(){
     const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr')).filter(r=>r.querySelectorAll('input').length>=4);
     let receipt=0,discount=0,uncovered=0;
-    rows.forEach(r=>{const ins=r.querySelectorAll('input');receipt+=moneyNumber(ins[0]?.value);discount+=moneyNumber(ins[2]?.value);uncovered+=moneyNumber(ins[3]?.value);});
+    rows.forEach(r=>{
+      const receiptInput=r.querySelector('[data-claimline-field="receipt"]'), entitlementInput=r.querySelector('[data-claimline-field="entitlement"]'), discountInput=r.querySelector('[data-claimline-field="discount"]'), uncoveredInput=r.querySelector('[data-claimline-field="uncovered"]');
+      if(!receiptInput || !discountInput || !uncoveredInput) return;
+      const rowReceipt=moneyNumber(receiptInput?.value), rowDiscount=moneyNumber(discountInput?.value), rowUncovered=moneyNumber(uncoveredInput?.value), entitlement=Math.max(0,rowReceipt-rowDiscount-rowUncovered);
+      if(entitlementInput) entitlementInput.value=moneyText(entitlement);
+      receipt+=rowReceipt; discount+=rowDiscount; uncovered+=rowUncovered;
+    });
     const net=Math.max(0,receipt-discount-uncovered);
     const a=$('customerSummaryReceiptTotal'),b=$('customerSummaryDiscountTotal'),c=$('customerSummaryUncoveredTotal'),d=$('customerSummaryNet');
     if(a)a.textContent=moneyText(receipt);if(b)b.textContent=moneyText(discount);if(c)c.textContent=moneyText(uncovered);if(d)d.textContent=moneyText(net);
+  };
+  window.validateClaimlineNonCoverageReasons=function(){
+    const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr'));
+    let valid=true, firstInvalid=null;
+    rows.forEach(row=>{
+      const uncovered=row.querySelector('[data-claimline-field="uncovered"]');
+      const reason=row.querySelector('[data-claimline-field="reason"]');
+      if(!uncovered || !reason) return;
+      const amount=Number(String(uncovered.value||'').replace(/,/g,''))||0;
+      const required=amount>0;
+      const invalid=required && !String(reason.value||'').trim();
+      reason.toggleAttribute('aria-required', required);
+      reason.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+      reason.classList.toggle('ce-reason-required', invalid);
+      reason.title=invalid ? 'กรุณาเลือกสาเหตุไม่คุ้มครอง' : '';
+      const cell=reason.closest('td');
+      let hint=cell?.querySelector('.ce-reason-hint');
+      if(invalid && cell && !hint){
+        hint=document.createElement('div');
+        hint.className='ce-reason-hint';
+        hint.textContent='กรุณาเลือกสาเหตุ';
+        cell.appendChild(hint);
+      }else if(!invalid && hint){ hint.remove(); }
+      if(invalid){ valid=false; if(!firstInvalid) firstInvalid=reason; }
+    });
+    if(firstInvalid){ firstInvalid.focus({preventScroll:true}); }
+    return valid;
   };
   window.mapCustomerOcrUnmatchedItem=function(index){
     const item=S.unmatchedItems[index], select=$('customerOcrMasterSelect'+index);
@@ -47483,9 +47796,8 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     if(receipt)receipt.value=moneyText(item.receipt);
     if(discount)discount.value=moneyText(item.discount);
     if(uncovered)uncovered.value='0.00';
-    const net=Math.max(0,moneyNumber(item.receipt)-moneyNumber(item.discount));
-    const mockBenefit=Number(btn.dataset.benefit||1000);
-    if(claim)claim.value=moneyText(Math.min(net,mockBenefit));
+    const net=Math.max(0,moneyNumber(item.receipt)-moneyNumber(item.discount)-moneyNumber(item.uncovered));
+    if(claim)claim.value=moneyText(net);
     item.mappedLabel=label;
     item.masterCode=btn.dataset.code||'';
     // เมื่อจับคู่สำเร็จ ให้เพิ่มเข้าตารางรายการค่ารักษา(เบื้องต้น) อัตโนมัติ
@@ -47498,16 +47810,17 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   };
 
   function expenseRows(){ return Array.from(document.querySelectorAll('#customerPrelimTableBody tr')).filter(r=>r.querySelectorAll('input').length>=3); }
+  function claimlineField(row, field){ return row?.querySelector?.(`[data-claimline-field="${field}"]`); }
   function captureBaseValues(){
     if(S.baseValues) return;
-    S.baseValues=expenseRows().map(r=>{ const ins=r.querySelectorAll('input'); return {claim:ins[0]?.value ?? '', discount:ins[2]?.value ?? ''}; });
+    S.baseValues=expenseRows().map(r=>({receipt:claimlineField(r,'receipt')?.value ?? '', discount:claimlineField(r,'discount')?.value ?? ''}));
   }
   function clearOcrAmounts(){
     const rows=expenseRows();
     if(Array.isArray(S.baseValues)){
-      rows.forEach((r,i)=>{ const ins=r.querySelectorAll('input'), b=S.baseValues[i]; if(!b)return; if(ins[0]){ins[0].value=b.claim; delete ins[0].dataset.ocrFilled;} if(ins[2]){ins[2].value=b.discount; delete ins[2].dataset.ocrFilled;} });
+      rows.forEach((r,i)=>{ const b=S.baseValues[i]; if(!b)return; const receipt=claimlineField(r,'receipt'), discount=claimlineField(r,'discount'); if(receipt){receipt.value=b.receipt; delete receipt.dataset.ocrFilled;} if(discount){discount.value=b.discount; delete discount.dataset.ocrFilled;} });
     }else{
-      rows.forEach(r=>{ const ins=r.querySelectorAll('input'); [ins[0],ins[2]].forEach(el=>{ if(el?.dataset.ocrFilled==='1'){el.value=''; delete el.dataset.ocrFilled;} }); });
+      rows.forEach(r=>{ ['receipt','discount'].forEach(field=>{ const el=claimlineField(r,field); if(el?.dataset.ocrFilled==='1'){el.value=''; delete el.dataset.ocrFilled;} }); });
     }
   }
   function fillAmounts(partial){
@@ -47515,9 +47828,9 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     const mock=[['3,000.00','0.00'],['1,250.00','50.00'],['2,480.00','0.00'],['780.00','30.00'],['1,600.00','0.00'],['420.00','0.00']];
     const rows=expenseRows(), n=partial?Math.min(3,rows.length):Math.min(mock.length,rows.length);
     for(let i=0;i<n;i++){
-      const ins=rows[i].querySelectorAll('input');
-      if(ins[0]){ ins[0].value=mock[i][0]; ins[0].dataset.ocrFilled='1'; }
-      if(ins[2]){ ins[2].value=mock[i][1]; ins[2].dataset.ocrFilled='1'; }
+      const receipt=claimlineField(rows[i],'receipt'), discount=claimlineField(rows[i],'discount');
+      if(receipt){ receipt.value=mock[i][0]; receipt.dataset.ocrFilled='1'; }
+      if(discount){ discount.value=mock[i][1]; discount.dataset.ocrFilled='1'; }
     }
     window.recalculateCustomerExpenseSummary?.();
   }
@@ -47620,7 +47933,16 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   };
   window.closeCustomerOcrPreview=function(){ $('customerOcrPreviewModal')?.classList.add('hidden'); };
   document.addEventListener('input',e=>{ if(e.target?.closest?.('#customerPrelimTableBody')) window.recalculateCustomerExpenseSummary?.(); });
-  document.addEventListener('change',e=>{ if(e.target?.closest?.('#customerPrelimTableBody')) window.recalculateCustomerExpenseSummary?.(); });
+  document.addEventListener('input',e=>{ if(e.target?.matches?.('[data-claimline-field="uncovered"]')) window.validateClaimlineNonCoverageReasons?.(); });
+  document.addEventListener('change',e=>{ if(e.target?.closest?.('#customerPrelimTableBody')){ window.recalculateCustomerExpenseSummary?.(); window.validateClaimlineNonCoverageReasons?.(); } });
+  document.addEventListener('click',e=>{
+    const button=e.target?.closest?.('button');
+    const onclick=button?.getAttribute('onclick')||'';
+    if(button && /set(?:Customer|HospitalFull|HospitalHalf)Step\(3\)/.test(onclick) && !window.validateClaimlineNonCoverageReasons?.()){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  },true);
   document.addEventListener('click',e=>{ if(e.target?.closest?.('#customerPrelimTableBody .ce-delete-btn')) setTimeout(()=>window.recalculateCustomerExpenseSummary?.(),0); });
   window.restoreCustomerOcrUi=function(){ if(S.files.length){ renderFiles(); setStatus(S.status); if(S.running)progress(25,'กำลังอ่านข้อมูลจากเอกสาร'); } };
 
@@ -48516,11 +48838,14 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     kind = 'full';
     const stepName = hospitalStepName(kind);
     const treatment = hospitalTreatment(kind,row);
+    const billingPage = document.querySelector('#considerHospitalOpdFullPage:not(.hidden)[data-billing-review="true"], #considerHospitalOpdHalfPage:not(.hidden)[data-billing-review="true"]');
+    const isBillingClaim = row?.isBillingReview === true || String(row?.claimNo || row?.claimCode || '') === String(window.__hospitalBillingClaimNo || '');
+    const autoCalculateEntitlement = !window.__forceLegacyHospitalExpense && !billingPage && !isBillingClaim && window.__isHospitalBillingReview !== true && row?.__isBillingReview !== true;
     const ocr = hospitalOcrAllowed(kind,row) && typeof renderActiveCustomerOcrPanel === 'function'
       ? renderActiveCustomerOcrPanel()
       : '';
     const expenseContent = typeof window.renderCustomerMedicalExpenseSections === 'function'
-      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment, source:'hospital'})
+      ? window.renderCustomerMedicalExpenseSections({coverage:'ค่ารักษา', treatment, source:'hospital', autoCalculateEntitlement})
       : '';
     const decisionHtml = typeof decision === 'function' ? decision() : '';
     return `<div class="cc-ref-step2-shell hospital-customer-style-step2" data-hospital-step2-treatment="${treatment}">
@@ -52976,6 +53301,31 @@ label > b:only-child,
   #considerHospitalOpdHalfPage #hhStepPane1 .customer-decision-section{margin-top:14px;}
 </style>
 
+<style id="hospital-consideration-compact-v1">
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-medical-info-compact{
+    background:linear-gradient(135deg,#f8fbff,#ffffff);
+    border-color:#d7e3ef!important;
+    box-shadow:0 8px 22px rgba(15,65,102,.06);
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-medical-info-compact .claim-standard-field{
+    min-height:42px!important;
+    border-color:#cbd8e5!important;
+    background:#fff!important;
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-step1-document-check{
+    border-color:#d7e3ef!important;
+    box-shadow:0 8px 22px rgba(15,65,102,.06);
+  }
+  :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-step1-document-check table{
+    min-width:760px!important;
+  }
+  @media (max-width:640px){
+    :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-medical-info-compact{padding:12px!important}
+    :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-step1-document-check{padding:12px!important}
+    :is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage) .hospital-step1-document-check table{min-width:700px!important}
+  }
+</style>
+
 <!-- v201: Hospital OPD Half Step 2 fixed at source renderer; Customer OCR rules reused directly -->
 <script id="claimagent-build-metadata">
 /*
@@ -52984,8 +53334,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "272",
-  updatedAt: "16/09/2026 21:13:40"
+  version: "292",
+  updatedAt: "22/09/2026 00:42:00"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -62583,6 +62933,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <!-- งานเคลม > ค้นหาเคลม > รายละเอียดเคลมลูกค้า (read-only) -->
 <script src="js/menu-customer-claim-detail.js"></script>
 
+<!-- จัดการเงินกองทุน > Dashboard สำรองเงิน -->
+<script src="js/menu-fund-reserve-dashboard.js"></script>
+
+<!-- จัดการเงินกองทุน > โอนเงิน รพ. / ตั้งค่าการจ่ายเงิน รพ. -->
+<script src="js/mock-data/fund-hospital-payments.mock.js"></script>
+<script src="js/menu-fund-hospital-transfer.js"></script>
+<script src="js/menu-fund-hospital-payment-settings.js"></script>
+
 <!-- งานเคลม > ค้นหาเคลม > ดูรายละเอียด: เคลียร์เนื้อหาเป็นหน้าว่าง -->
 <script src="js/menu-claim-search-detail-blank.js"></script>
 
@@ -62606,6 +62964,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <!-- พิจารณาเคลม > เคลมโรงพยาบาล (โอนเพิ่ม): monitor and navigation shell -->
 <script src="js/menu-consider-hospital-additional-transfer.js"></script>
 
+<!-- พิจารณาเคลม > เคลมโรงพยาบาล: Hospital Notice workspace -->
+<script src="js/mock-data/consider-hospital-notice.mock.js"></script>
+<script src="js/menu-consider-hospital-notice.js"></script>
+
 <!-- พิจารณาเคลม Customer/Hospital และ Hospital Billing > Step 3: wording และสรุปค่าใช้จ่าย -->
 <script src="js/menu-consider-step3-wording.js"></script>
 
@@ -62618,6 +62980,776 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <!-- แจ้งเคลม > ค้นหาการแจ้งเคลม > ดูรายละเอียด: accessible tabs and matching detail visual -->
 <script src="js/claim-record-detail-tabs.js?v=256"></script>
 <link rel="stylesheet" href="css/claim-record-detail-refresh.css?v=256">
+
+<style id="v144-transfer-tracking-premium-reference">
+  /* แจ้งเคลม > ติดตามการโอนเงิน — scoped visual system based on the supplied v21 reference. */
+  #transferTrackingPage.tt-page{
+    --ttp-primary:#1458d6;
+    --ttp-primary-2:#2f7df3;
+    --ttp-primary-dark:#0d4f8f;
+    --ttp-surface:#fff;
+    --ttp-surface-soft:#f8fbff;
+    --ttp-line:#dce7f1;
+    --ttp-text:#17324d;
+    --ttp-muted:#6d8297;
+    --ttp-success:#17864b;
+    --ttp-warning:#a86b00;
+    --ttp-progress:#c65c0a;
+    --ttp-danger:#c9363e;
+    width:100%;
+    max-width:1540px;
+    margin:0 auto;
+    padding:16px 18px 34px!important;
+    color:var(--ttp-text);
+    font-size:16px;
+    background:
+      radial-gradient(circle at 100% 0%,rgba(47,125,243,.065),transparent 28%),
+      linear-gradient(180deg,#f8fbfe 0%,#f3f7fb 100%);
+  }
+  #transferTrackingPage *{box-sizing:border-box}
+  #transferTrackingPage button,#transferTrackingPage input,#transferTrackingPage select{font-family:inherit}
+  #transferTrackingPage button{cursor:pointer}
+  #transferTrackingPage button:focus-visible,
+  #transferTrackingPage input:focus-visible,
+  #transferTrackingPage select:focus-visible{
+    outline:3px solid rgba(20,88,214,.22)!important;
+    outline-offset:2px!important;
+  }
+  #transferTrackingPage .tt-transfer-type-tabs{
+    display:inline-flex;
+    max-width:100%;
+    gap:5px;
+    margin:0 0 12px;
+    padding:5px;
+    overflow-x:auto;
+    border:1px solid #d7e5f1;
+    border-radius:14px;
+    background:linear-gradient(180deg,#edf5fb,#e7f0f8);
+    box-shadow:0 3px 10px rgba(28,70,108,.055);
+    scrollbar-width:thin;
+  }
+  #transferTrackingPage .tt-transfer-type-tab{
+    min-width:190px;
+    min-height:44px;
+    padding:8px 16px;
+    border:0;
+    border-radius:10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:transparent;
+    color:#637b91;
+    font-size:16px;
+    font-weight:800;
+    white-space:nowrap;
+    transition:background-color .16s ease,color .16s ease,box-shadow .16s ease;
+  }
+  #transferTrackingPage .tt-transfer-type-tab .material-icons-round{font-size:20px!important}
+  #transferTrackingPage .tt-transfer-type-tab:hover{color:var(--ttp-primary-dark);background:rgba(255,255,255,.58)}
+  #transferTrackingPage .tt-transfer-type-tab.active{
+    background:#fff;
+    color:var(--ttp-primary);
+    box-shadow:0 5px 14px rgba(29,87,140,.13);
+  }
+  #transferTrackingPage.tt-redesign .tt-filter-redesign{
+    position:relative;
+    margin:0!important;
+    padding:18px!important;
+    overflow:hidden;
+    border:1px solid var(--ttp-line)!important;
+    border-radius:18px 18px 0 0!important;
+    background:linear-gradient(180deg,#fff,#fbfdff)!important;
+    box-shadow:0 8px 22px rgba(25,62,98,.06)!important;
+  }
+  #transferTrackingPage.tt-redesign .tt-filter-redesign::after{
+    content:"";
+    position:absolute;
+    inset:14px auto 14px 0;
+    width:4px;
+    border-radius:0 6px 6px 0;
+    background:linear-gradient(180deg,var(--ttp-primary-2),var(--ttp-primary));
+  }
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid{
+    display:grid!important;
+    grid-template-columns:repeat(12,minmax(0,1fr))!important;
+    gap:13px!important;
+    align-items:end!important;
+  }
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(1),
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(2),
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(3),
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(4){grid-column:span 3!important}
+  #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(5){grid-column:span 3!important;grid-row:auto!important}
+  #transferTrackingPage.tt-redesign .tt-monitor-keyword{grid-column:span 5!important;grid-row:auto!important;min-width:0!important}
+  #transferTrackingPage.tt-redesign .tt-monitor-actions-inline{
+    grid-column:span 4!important;
+    grid-row:auto!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:10px!important;
+    width:100%!important;
+  }
+  #transferTrackingPage .tt-monitor-label{margin-bottom:6px!important;color:#526b82!important;font-size:14px!important;font-weight:800!important}
+  #transferTrackingPage .tt-monitor-input,
+  #transferTrackingPage .tt-inline-checks{
+    height:44px!important;
+    min-height:44px!important;
+    border-radius:11px!important;
+  }
+  #transferTrackingPage .tt-monitor-input{
+    border:1px solid #cbdbe8!important;
+    color:#274157!important;
+    background:#fff!important;
+    font-size:16px!important;
+    font-weight:650!important;
+  }
+  #transferTrackingPage .tt-monitor-input:hover{border-color:#adc7db!important}
+  #transferTrackingPage .tt-monitor-input:focus{border-color:#5b9fe0!important;box-shadow:0 0 0 3px rgba(20,88,214,.09)!important}
+  #transferTrackingPage .tt-inline-checks{padding:0 12px;border:1px solid #cbdbe8;background:#fff}
+  #transferTrackingPage .tt-monitor-search-wrap{height:44px!important}
+  #transferTrackingPage .tt-monitor-search-wrap .tt-monitor-input{height:44px!important;padding-right:44px!important}
+  #transferTrackingPage .tt-keyword-clear{
+    position:absolute;
+    top:50%;right:9px;
+    width:30px;height:30px;
+    transform:translateY(-50%);
+    border:0;border-radius:8px;
+    display:grid;place-items:center;
+    background:#eef4fa;color:#5e758a;
+  }
+  #transferTrackingPage .tt-keyword-clear.hidden{display:none!important}
+  #transferTrackingPage .tt-keyword-clear .material-icons-round{font-size:18px!important}
+  #transferTrackingPage .tt-monitor-actions-inline .tt-btn{
+    height:44px!important;
+    border-radius:11px!important;
+    font-size:15px!important;
+    font-weight:800!important;
+  }
+  #transferTrackingPage .tt-btn-primary{background:linear-gradient(135deg,var(--ttp-primary-2),var(--ttp-primary-dark))!important;box-shadow:0 8px 18px rgba(20,88,214,.16)!important}
+  #transferTrackingPage .tt-btn-danger{border:1px solid #efb7bb!important;background:#fff!important;color:var(--ttp-danger)!important}
+  #transferTrackingPage .tt-status-filter-bar{
+    margin:0 0 14px!important;
+    padding:13px 14px!important;
+    border:1px solid var(--ttp-line)!important;
+    border-top:0!important;
+    border-radius:0 0 18px 18px!important;
+    display:grid!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:12px!important;
+    background:rgba(255,255,255,.96)!important;
+    box-shadow:0 8px 22px rgba(25,62,98,.05)!important;
+  }
+  #transferTrackingPage .tt-status-filter-head{color:#36536d!important;font-size:15px!important;font-weight:900!important;white-space:nowrap}
+  #transferTrackingPage .tt-status-filter-list{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(150px,1fr))!important;
+    gap:9px!important;
+    overflow-x:auto!important;
+    padding:1px!important;
+    scrollbar-width:thin;
+  }
+  #transferTrackingPage .tt-status-filter-btn{
+    min-width:150px!important;
+    min-height:44px!important;
+    padding:8px 12px!important;
+    border:1px solid #d6e2ec!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    color:#5f7387!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:7px!important;
+    box-shadow:none!important;
+    font-size:14px!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+  }
+  #transferTrackingPage .tt-status-filter-btn .tt-filter-count{font-size:13px;font-weight:900;opacity:.72}
+  #transferTrackingPage .tt-status-filter-btn.active{transform:none!important;box-shadow:0 5px 14px rgba(31,73,113,.07)!important}
+  #transferTrackingPage .tt-status-filter-btn.all.active{border-color:#64a6df!important;background:#edf7ff!important;color:#1267ad!important}
+  #transferTrackingPage .tt-status-filter-btn.success.active{border-color:#a8dbc0!important;background:#edf9f2!important;color:var(--ttp-success)!important}
+  #transferTrackingPage .tt-status-filter-btn.pending.active{border-color:#ead18e!important;background:#fff8e7!important;color:var(--ttp-warning)!important}
+  #transferTrackingPage .tt-status-filter-btn.processing.active{border-color:#efbf9e!important;background:#fff3e9!important;color:var(--ttp-progress)!important}
+  #transferTrackingPage .tt-status-filter-btn.fail.active{border-color:#e9b2b6!important;background:#fff0f1!important;color:var(--ttp-danger)!important}
+  #transferTrackingPage .tt-premium-summary{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:12px;
+    margin:0 0 14px;
+  }
+  #transferTrackingPage .tt-premium-summary-card{
+    position:relative;
+    min-width:0;
+    min-height:108px;
+    padding:16px 17px;
+    overflow:hidden;
+    border:1px solid var(--ttp-line);
+    border-radius:16px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 44px;
+    align-items:start;
+    gap:12px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 2px 8px rgba(24,57,90,.045);
+  }
+  #transferTrackingPage .tt-premium-summary-card::after{content:"";position:absolute;right:-24px;top:-24px;width:78px;height:78px;border-radius:50%;background:var(--summary-wash,#edf7ff);opacity:.62}
+  #transferTrackingPage .tt-summary-copy{position:relative;z-index:1;min-width:0}
+  #transferTrackingPage .tt-summary-label{display:block;color:#526b82;font-size:14px;font-weight:800}
+  #transferTrackingPage .tt-summary-value{display:block;margin-top:3px;color:#17324d;font-size:26px;line-height:1.1;font-weight:900;overflow-wrap:anywhere}
+  #transferTrackingPage .tt-summary-note{display:block;margin-top:6px;color:#8495a6;font-size:13px;font-weight:700}
+  #transferTrackingPage .tt-summary-symbol{position:relative;z-index:1;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--summary-icon-bg,#eaf5ff);color:var(--summary-icon,#1976d2)}
+  #transferTrackingPage .tt-summary-symbol .material-icons-round{font-size:22px!important}
+  #transferTrackingPage .tt-results-surface{
+    overflow:hidden;
+    border:1px solid var(--ttp-line);
+    border-radius:18px;
+    background:#fff;
+    box-shadow:0 8px 24px rgba(25,62,98,.065);
+  }
+  #transferTrackingPage .tt-results-head{
+    min-height:76px;
+    padding:15px 18px;
+    border-bottom:1px solid var(--ttp-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    background:linear-gradient(180deg,#fff,#fbfdff);
+  }
+  #transferTrackingPage .tt-results-head h2{margin:0;color:#173d5b;font-size:20px;font-weight:900}
+  #transferTrackingPage .tt-results-head p{margin:3px 0 0;color:#71879b;font-size:14px;font-weight:650}
+  #transferTrackingPage .tt-view-toggle-redesign{
+    flex:none;
+    width:auto!important;
+    height:46px!important;
+    margin:0!important;
+    padding:4px!important;
+    border:1px solid #d8e5ef!important;
+    border-radius:13px!important;
+    background:#eef5fa!important;
+  }
+  #transferTrackingPage .tt-view-toggle-redesign button{min-width:116px;padding:0 12px!important;border-radius:9px!important;color:#5d748a!important;font-size:14px!important}
+  #transferTrackingPage .tt-view-toggle-redesign button.active{background:#fff!important;color:var(--ttp-primary)!important;box-shadow:0 4px 12px rgba(29,87,140,.11)!important}
+  #transferTrackingPage #ttTableShell{border:0!important;border-radius:0!important;box-shadow:none!important;display:block!important;overflow-x:auto!important;overflow-y:visible!important;scrollbar-gutter:stable}
+  #transferTrackingPage #ttTableShell.hidden{display:none!important}
+  #transferTrackingPage .tt-table{min-width:1040px!important;width:100%!important;border-collapse:separate!important;border-spacing:0!important}
+  #transferTrackingPage.tt-redesign .tt-table thead th{
+    padding:12px!important;
+    border:0!important;
+    background:linear-gradient(180deg,#237dbc,#176ca9)!important;
+    color:#fff!important;
+    font-size:14px!important;
+    font-weight:900!important;
+    white-space:nowrap!important;
+  }
+  #transferTrackingPage.tt-redesign .tt-table tbody td{
+    padding:11px 12px!important;
+    border-bottom:1px solid #e5edf4!important;
+    background:#fff!important;
+    color:#294158!important;
+    font-size:15px!important;
+    vertical-align:middle!important;
+  }
+  #transferTrackingPage .tt-table tbody tr.tt-main-row:hover>td{background:#f3f9fe!important}
+  #transferTrackingPage .tt-table th:last-child,#transferTrackingPage .tt-table td:last-child{width:92px!important;min-width:92px!important;max-width:92px!important}
+  #transferTrackingPage .tt-transfer-ref{color:#0874bd!important;font-size:15px!important;font-weight:900!important;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+  #transferTrackingPage .tt-secondary-ref{margin-top:3px;color:#74889b;font-size:13px;font-weight:650}
+  #transferTrackingPage .tt-recipient-name{color:#213b52;font-size:15px;font-weight:850}
+  #transferTrackingPage .tt-recipient-sub{margin-top:3px;color:#7b8fa2;font-size:13px;font-weight:650}
+  #transferTrackingPage .tt-claim-stack{display:grid;gap:2px}
+  #transferTrackingPage .tt-claim-stack strong{color:#26465f;font-size:14px}
+  #transferTrackingPage .tt-claim-stack span{color:#8294a5;font-size:13px;white-space:nowrap}
+  #transferTrackingPage .tt-claim-count{width:max-content;max-width:100%;padding:5px 8px;border:1px solid #b9d8ef;border-radius:8px;background:#edf7ff;color:#126cae;font-size:13px;font-weight:850;white-space:nowrap}
+  #transferTrackingPage .tt-money{color:#17324d!important;font-size:15px!important;font-weight:900!important;font-variant-numeric:tabular-nums}
+  #transferTrackingPage .tt-status{
+    padding:6px 10px!important;
+    border-radius:999px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    border:1px solid transparent!important;
+    font-size:13px!important;
+    font-weight:900!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+  }
+  #transferTrackingPage .tt-status.success{border-color:#bae6ca!important;background:#e6f7ed!important;color:var(--ttp-success)!important}
+  #transferTrackingPage .tt-status.pending{border-color:#f1db9d!important;background:#fff5d9!important;color:var(--ttp-warning)!important}
+  #transferTrackingPage .tt-status.processing{border-color:#f3c3a2!important;background:#fff0e3!important;color:var(--ttp-progress)!important}
+  #transferTrackingPage .tt-status.fail{border-color:#efbdc0!important;background:#fde9ea!important;color:var(--ttp-danger)!important}
+  #transferTrackingPage .tt-status .material-icons-round{font-size:15px!important}
+  #transferTrackingPage .tt-expand{
+    width:30px!important;height:30px!important;
+    border:1px solid #cfe1ef!important;
+    border-radius:999px!important;
+    background:#f7fbff!important;color:#1474b9!important;
+  }
+  #transferTrackingPage .tt-expand .material-icons-round{font-size:19px!important}
+  #transferTrackingPage .tt-row-actions{width:auto!important;min-width:0!important;max-width:none!important;display:flex!important;justify-content:center!important;gap:7px!important}
+  #transferTrackingPage .tt-row-icon-btn{
+    width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;
+    border:1px solid #bcdcf3!important;border-radius:999px!important;
+    display:grid!important;place-items:center!important;
+    background:#f4faff!important;color:#0874bd!important;
+  }
+  #transferTrackingPage .tt-row-icon-btn:hover{background:#e5f4ff!important;border-color:#79bceb!important}
+  #transferTrackingPage .tt-detail-row>td{padding:0!important;background:#f5f9fc!important}
+  #transferTrackingPage .tt-premium-detail{margin:12px 14px 14px;padding:16px;border:1px solid #dce8f1;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(28,62,96,.04)}
+  #transferTrackingPage .tt-detail-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:12px}
+  #transferTrackingPage .tt-detail-banner{margin:-16px -16px 14px;padding:9px 13px;border-bottom:1px solid #dce8f1;display:flex;align-items:center;gap:6px;border-radius:14px 14px 0 0;background:#edf6fd;color:#176ca9;font-size:14px;font-weight:900}
+  #transferTrackingPage .tt-detail-banner .material-icons-round{font-size:19px!important}
+  #transferTrackingPage .tt-detail-topline h3{margin:0;color:#1f455f;font-size:17px;font-weight:900}
+  #transferTrackingPage .tt-detail-amount{padding:8px 13px;border-radius:999px;background:#e8f3fd;color:#1268ae;font-size:15px;font-weight:900;white-space:nowrap}
+  #transferTrackingPage .tt-detail-side{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:7px}
+  #transferTrackingPage .tt-detail-action{min-height:38px;padding:0 12px;border:1px solid #cfe0ec;border-radius:9px;background:#f7fbff;color:#176ca9;display:inline-flex;align-items:center;gap:5px;font-size:14px;font-weight:850}
+  #transferTrackingPage .tt-detail-action.edit{border-color:#efd49c;background:#fff9eb;color:#a56800}
+  #transferTrackingPage .tt-detail-action.pay{border-color:#a9dec0;background:#effaf4;color:#14804a}
+  #transferTrackingPage .tt-detail-action .material-icons-round{font-size:17px!important}
+  #transferTrackingPage .tt-detail-meta{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 11px}
+  #transferTrackingPage .tt-detail-meta>div{padding:5px 9px;border:1px solid #dce8f1;border-radius:999px;background:#f7fafc}
+  #transferTrackingPage .tt-detail-meta span{display:none}
+  #transferTrackingPage .tt-detail-meta strong{display:block;color:#526f85;font-size:13px;font-weight:800;overflow-wrap:anywhere}
+  #transferTrackingPage .tt-failure-alert{margin-bottom:11px;padding:11px 13px;border:1px solid #efb8bc;border-left:4px solid var(--ttp-danger);border-radius:10px;background:#fff2f3;color:#8f2830;font-size:14px;font-weight:750}
+  #transferTrackingPage .tt-failure-alert strong{font-weight:900}
+  #transferTrackingPage .tt-detail-content-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  #transferTrackingPage .tt-detail-panel{min-width:0;overflow:hidden;border:1px solid #dce7f0;border-radius:12px;background:#fff}
+  #transferTrackingPage .tt-claims-table-wrap{overflow-x:auto}
+  #transferTrackingPage .tt-claims-table{width:100%;min-width:620px;border-collapse:collapse}
+  #transferTrackingPage .tt-claims-table th{padding:10px 11px;background:#edf5fa;color:#48677e;font-size:13px;text-align:left;white-space:nowrap}
+  #transferTrackingPage .tt-claims-table td{padding:11px;border-top:1px solid #edf2f6;color:#395369;font-size:14px}
+  #transferTrackingPage .tt-pager{min-height:52px!important;padding:8px 16px!important;border-top:1px solid #e1eaf2!important;background:#fff!important}
+  #transferTrackingPage .tt-pager button{width:34px;height:34px;border:1px solid #dce7f0;border-radius:9px;background:#fff;color:#31536e;font-size:18px}
+  #transferTrackingPage .tt-pager button:disabled{cursor:not-allowed;opacity:.38;background:#f3f6f8}
+  #transferTrackingPage .tt-card-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:14px!important;background:#f7fafc!important}
+  #transferTrackingPage .tt-mobile-card{padding:15px!important;border:1px solid #dce7f1!important;border-radius:15px!important;background:#fff!important;box-shadow:0 2px 8px rgba(24,57,90,.045)!important}
+  #transferTrackingPage .tt-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  #transferTrackingPage .tt-card-ref{color:#0874bd;font-size:18px;font-weight:900;text-decoration:underline;text-underline-offset:3px}
+  #transferTrackingPage .tt-card-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:14px;margin-top:14px;padding:14px 0;border-top:1px solid #e8eef3;border-bottom:1px solid #e8eef3}
+  #transferTrackingPage .tt-card-label{display:block;color:#7e90a1;font-size:13px;font-weight:750}
+  #transferTrackingPage .tt-card-value{margin-top:3px;color:#233f56;font-size:16px;font-weight:900;overflow-wrap:anywhere}
+  #transferTrackingPage .tt-card-secondary{margin-top:3px;color:#7a8ea1;font-size:13px;font-weight:650}
+  #transferTrackingPage .tt-card-money-block{text-align:right}
+  #transferTrackingPage .tt-card-money{margin-top:3px;color:#17324d;font-size:22px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #transferTrackingPage .tt-card-count{color:#526f85;font-size:13px;font-weight:800}
+  #transferTrackingPage .tt-card-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;padding-top:11px;border-top:1px solid #e5edf3}
+  #transferTrackingPage .tt-card-detail-btn{min-height:40px;padding:0 13px;border:1px solid #cfe0ec;border-radius:9px;background:linear-gradient(180deg,#fff,#f2f8fd);color:#176ca9;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:850}
+  #transferTrackingPage .tt-card-detail-btn:hover{background:#eaf5ff;box-shadow:0 5px 12px rgba(22,111,185,.1)}
+  #transferTrackingPage .tt-card-detail-btn .material-icons-round{font-size:17px!important}
+  #transferTrackingPage .tt-empty-state{padding:52px 20px;text-align:center;color:#70869a;background:#fff}
+  #transferTrackingPage .tt-empty-icon{width:54px;height:54px;margin:0 auto 11px;border-radius:16px;display:grid;place-items:center;background:#edf5fb;color:#5d8eb4}
+  #transferTrackingPage .tt-empty-icon .material-icons-round{font-size:28px!important}
+  #transferTrackingPage .tt-empty-state strong{display:block;color:#35536a;font-size:15px}
+  #transferTrackingPage .tt-empty-state span{display:block;margin-top:4px;font-size:13px}
+  #transferClaimDetailPage .tdr-transfer-failure{margin:0 0 14px;padding:12px 14px;border:1px solid #efb8bc;border-left:4px solid #c9363e;border-radius:11px;background:#fff2f3;color:#8f2830;font-weight:800}
+  @media(max-width:1100px){
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(1),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(2),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(3),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(4),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(5),
+    #transferTrackingPage.tt-redesign .tt-monitor-keyword,
+    #transferTrackingPage.tt-redesign .tt-monitor-actions-inline{grid-column:span 1!important;grid-row:auto!important}
+    #transferTrackingPage .tt-status-filter-bar{grid-template-columns:1fr!important}
+    #transferTrackingPage .tt-status-filter-list{grid-template-columns:repeat(5,minmax(145px,1fr))!important}
+    #transferTrackingPage .tt-premium-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #transferTrackingPage .tt-detail-content-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:760px){
+    #transferTrackingPage.tt-page{padding:10px 8px 26px!important}
+    #transferTrackingPage .tt-transfer-type-tabs{display:flex;width:100%}
+    #transferTrackingPage .tt-transfer-type-tab{min-width:max-content;flex:1}
+    #transferTrackingPage.tt-redesign .tt-filter-redesign{padding:14px!important;border-radius:15px 15px 0 0!important}
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid{grid-template-columns:1fr!important}
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(1),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(2),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(3),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(4),
+    #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(5),
+    #transferTrackingPage.tt-redesign .tt-monitor-keyword,
+    #transferTrackingPage.tt-redesign .tt-monitor-actions-inline{grid-column:1!important}
+    #transferTrackingPage.tt-redesign .tt-monitor-actions-inline{grid-template-columns:1fr 1fr!important}
+    #transferTrackingPage .tt-status-filter-bar{padding:11px 12px!important;border-radius:0 0 15px 15px!important}
+    #transferTrackingPage .tt-status-filter-list{display:flex!important;overflow-x:auto!important;scroll-snap-type:x proximity}
+    #transferTrackingPage .tt-status-filter-btn{scroll-snap-align:start}
+    #transferTrackingPage .tt-premium-summary{grid-template-columns:1fr 1fr;gap:8px}
+    #transferTrackingPage .tt-premium-summary-card{min-height:96px;padding:13px;grid-template-columns:minmax(0,1fr) 36px}
+    #transferTrackingPage .tt-summary-symbol{width:36px;height:36px}
+    #transferTrackingPage .tt-summary-value{font-size:22px}
+    #transferTrackingPage .tt-results-head{align-items:stretch;flex-direction:column;padding:14px}
+    #transferTrackingPage .tt-view-toggle-redesign{width:100%!important}
+    #transferTrackingPage .tt-view-toggle-redesign button{min-width:0!important}
+    #transferTrackingPage .tt-card-list{grid-template-columns:1fr!important;padding:10px!important}
+    #transferTrackingPage .tt-detail-meta{grid-template-columns:1fr 1fr}
+    #transferTrackingPage .tt-detail-topline{flex-direction:column}
+    #transferTrackingPage .tt-detail-side{justify-content:flex-start}
+    #transferTrackingPage .tt-detail-amount{white-space:normal}
+  }
+  @media(max-width:460px){
+    #transferTrackingPage .tt-transfer-type-tab{min-width:170px;flex:none}
+    #transferTrackingPage .tt-premium-summary{grid-template-columns:1fr}
+    #transferTrackingPage .tt-monitor-actions-inline{grid-template-columns:1fr!important}
+    #transferTrackingPage .tt-card-main{grid-template-columns:1fr}
+    #transferTrackingPage .tt-card-money-block{text-align:left}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #transferTrackingPage *,#transferTrackingPage *::before,#transferTrackingPage *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+  }
+</style>
+
+<script id="v144-transfer-tracking-premium-behavior">
+(function(){
+  'use strict';
+  if(typeof transferTrackingRows === 'undefined' || typeof transferTrackingState === 'undefined') return;
+
+  const STATUS_KEYS=['success','pending','processing','fail'];
+  const statusMeta={
+    success:{label:'โอนสำเร็จ',icon:'check_circle',tone:'success'},
+    pending:{label:'รอโอนเงิน',icon:'schedule',tone:'pending'},
+    processing:{label:'อยู่ระหว่างการโอน',icon:'sync',tone:'processing'},
+    fail:{label:'โอนไม่สำเร็จ',icon:'cancel',tone:'fail'}
+  };
+  const esc=value=>String(value==null?'':value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const money=value=>Number(value||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const claimCase=(claimNo,index)=>`CASE${String(claimNo||'').replace(/\D/g,'').slice(-8)}-${String(index+1).padStart(2,'0')}`;
+  const rowStatusKey=row=>row.statusFilter||(row.statusKey==='success'?'success':row.statusKey==='fail'?'fail':String(row.status||'').includes('ระหว่าง')?'processing':'pending');
+  const rowStatusClass=row=>rowStatusKey(row);
+  const rowStatusIcon=row=>statusMeta[rowStatusKey(row)]?.icon||'info';
+
+  function enrichCustomer(row,index){
+    const copy=row;
+    copy.transferMode='customer';
+    copy.recipient=copy.payee||copy.insured;
+    copy.recipientCaption=copy.payeeRelation||'ผู้รับเงิน';
+    copy.failureReason=copy.failureReason||(rowStatusKey(copy)==='fail'?(index%2?'บัญชีผู้รับไม่สามารถรับโอนได้':'เลขบัญชีไม่ถูกต้อง'):'');
+    copy.claims=Array.isArray(copy.claims)&&copy.claims.length?copy.claims:[{
+      claimNo:copy.claimNo,
+      caseNo:claimCase(copy.claimNo,0),
+      insured:copy.insured,
+      amount:copy.amount,
+      product:copy.product
+    }];
+    return copy;
+  }
+
+  const customerRows=transferTrackingRows.map(enrichCustomer);
+  const hospitalRows=[
+    {refNo:'HCG690800024',claimNo:'CL690800224',created:'25/08/2569 13:15:20',notifyDate:'25/08/2569 13:28:05',transferDate:'-',insured:'นายปกรณ์ วัฒนา',hospital:'โรงพยาบาลพระราม 9',product:'PH',claimType:'IPD',amount:127000,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'กสิกรไทย',account:'154-2-884210',payee:'บจก. โรงพยาบาลพระราม 9',payeeRelation:'สถานพยาบาล',branch:'สำนักงานใหญ่',canEdit:false,canPay:true,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800224',caseNo:'CASE69080224-01',insured:'นายปกรณ์ วัฒนา',amount:85000,product:'PH'},{claimNo:'CL690800225',caseNo:'CASE69080225-01',insured:'นางวรรณา พรชัย',amount:42000,product:'PH'}]},
+    {refNo:'HCG690800023',claimNo:'CL690800223',created:'25/08/2569 12:42:10',notifyDate:'25/08/2569 12:55:41',transferDate:'25/08/2569 13:12:06',insured:'นางสาวชนิดา สุขสันต์',hospital:'โรงพยาบาลกรุงเทพ',product:'PH',claimType:'IPD',amount:192500,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'ไทยพาณิชย์',account:'989-0-447120',payee:'บมจ. กรุงเทพดุสิตเวชการ',payeeRelation:'สถานพยาบาล',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800223',caseNo:'CASE69080223-01',insured:'นางสาวชนิดา สุขสันต์',amount:118000,product:'PH'},{claimNo:'CL690800222',caseNo:'CASE69080222-01',insured:'นายอนุชา แก้วดี',amount:74500,product:'PH'}]},
+    {refNo:'HCG690800022',claimNo:'CLPA690800222',created:'25/08/2569 11:48:33',notifyDate:'25/08/2569 12:01:44',transferDate:'-',insured:'เด็กชายนนทกร ศรีสุข',hospital:'โรงพยาบาลเชียงใหม่ราม',product:'PA',claimType:'อุบัติเหตุ',amount:36800,status:'อยู่ระหว่างการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงไทย',account:'612-4-778950',payee:'โรงพยาบาลเชียงใหม่ราม',payeeRelation:'สถานพยาบาล',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CLPA690800222',caseNo:'CASE69080222-01',insured:'เด็กชายนนทกร ศรีสุข',amount:14800,product:'PA'},{claimNo:'CLPA690800221',caseNo:'CASE69080221-01',insured:'เด็กหญิงกมลพร จันทร์สิงห์',amount:22000,product:'PA'}]},
+    {refNo:'HCG690800021',claimNo:'CL690800221',created:'25/08/2569 10:53:44',notifyDate:'25/08/2569 11:08:12',transferDate:'25/08/2569 11:22:37',insured:'นายจิรายุ ทองดี',hospital:'โรงพยาบาลศิริเวช สายไหม',product:'PH',claimType:'OPD',amount:44700,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',failureReason:'ธนาคารปลายทางปฏิเสธรายการ',bank:'กรุงเทพ',account:'482-1-995420',payee:'บจก. ศิริเวช สายไหม',payeeRelation:'สถานพยาบาล',branch:'กรุงเทพมหานคร',canEdit:true,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800221',caseNo:'CASE69080221-02',insured:'นายจิรายุ ทองดี',amount:44700,product:'PH'}]},
+    {refNo:'HCG690800020',claimNo:'CL690800220',created:'24/08/2569 16:30:18',notifyDate:'24/08/2569 16:45:11',transferDate:'24/08/2569 17:02:29',insured:'นางสาวนภา ใจมั่น',hospital:'โรงพยาบาลพญาไท 3',product:'PH',claimType:'Day Case Surgery',amount:53500,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'721-0-331540',payee:'บจก. โรงพยาบาลพญาไท 3',payeeRelation:'สถานพยาบาล',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800220',caseNo:'CASE69080220-01',insured:'นางสาวนภา ใจมั่น',amount:53500,product:'PH'}]},
+    {refNo:'HCG690800019',claimNo:'CLPA690800219',created:'23/08/2569 14:18:09',notifyDate:'23/08/2569 14:34:25',transferDate:'23/08/2569 14:49:50',insured:'เด็กหญิงรินรดา แสงทอง',hospital:'โรงพยาบาลเกษมราษฎร์ ประชาชื่น',product:'PA',claimType:'อุบัติเหตุ',amount:26400,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',failureReason:'บัญชีปิด',bank:'กรุงศรีอยุธยา',account:'455-0-882190',payee:'โรงพยาบาลเกษมราษฎร์ ประชาชื่น',payeeRelation:'สถานพยาบาล',branch:'นนทบุรี',canEdit:true,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CLPA690800219',caseNo:'CASE69080219-01',insured:'เด็กหญิงรินรดา แสงทอง',amount:26400,product:'PA'}]}
+  ].map(row=>Object.assign(row,{transferMode:'hospital',recipient:row.hospital,recipientCaption:'สถานพยาบาล'}));
+
+  transferTrackingState.mode=transferTrackingState.mode||'customer';
+  transferTrackingState.pageSize=10;
+  transferTrackingState.page=1;
+  const sourceRows=()=>transferTrackingState.mode==='hospital'?hospitalRows:customerRows;
+  const totalPages=()=>Math.max(1,Math.ceil(transferTrackingState.rows.length/transferTrackingState.pageSize));
+  const pageRows=()=>{
+    transferTrackingState.page=Math.min(Math.max(1,transferTrackingState.page),totalPages());
+    const start=(transferTrackingState.page-1)*transferTrackingState.pageSize;
+    return transferTrackingState.rows.slice(start,start+transferTrackingState.pageSize).map((row,index)=>({row,sourceIndex:start+index}));
+  };
+
+  function syncPager(){
+    const total=transferTrackingState.rows.length;
+    const start=total?(transferTrackingState.page-1)*transferTrackingState.pageSize+1:0;
+    const end=Math.min(total,transferTrackingState.page*transferTrackingState.pageSize);
+    const pager=document.getElementById('ttPagerText');
+    const previous=document.getElementById('ttPrevPageBtn');
+    const next=document.getElementById('ttNextPageBtn');
+    if(pager)pager.textContent=`${start}-${end} จาก ${total}`;
+    if(previous)previous.disabled=transferTrackingState.page<=1;
+    if(next)next.disabled=transferTrackingState.page>=totalPages();
+  }
+
+  function syncModeUi(){
+    const hospital=transferTrackingState.mode==='hospital';
+    const customerBtn=document.getElementById('ttCustomerModeBtn');
+    const hospitalBtn=document.getElementById('ttHospitalModeBtn');
+    [customerBtn,hospitalBtn].forEach((button,index)=>{
+      if(!button)return;
+      const selected=index===(hospital?1:0);
+      button.classList.toggle('active',selected);
+      button.setAttribute('aria-selected',String(selected));
+      button.tabIndex=selected?0:-1;
+    });
+    const title=document.getElementById('ttResultTitle');
+    const keyword=document.getElementById('ttKeyword');
+    if(title)title.textContent=hospital?'รายการโอนเงินโรงพยาบาล':'รายการโอนเงินลูกค้า';
+    if(keyword)keyword.placeholder=hospital?'ค้นหาจากเลข HCG / CL / Case / ชื่อผู้เอาประกัน / สถานพยาบาล':'ค้นหาจากเลข CPG / CL / Case / ชื่อผู้เอาประกัน / ชื่อสถานศึกษา';
+  }
+
+  function syncActiveSource(){
+    transferTrackingRows.splice(0,transferTrackingRows.length,...sourceRows());
+  }
+
+  window.setTransferTrackingType=function(mode){
+    transferTrackingState.mode=mode==='hospital'?'hospital':'customer';
+    transferTrackingState.openRows.clear();
+    transferTrackingState.selectedStatuses=new Set(STATUS_KEYS);
+    transferTrackingState.page=1;
+    syncActiveSource();
+    syncModeUi();
+    window.renderTransferBranchOptions();
+    window.applyTransferTrackingFilters();
+  };
+
+  window.renderTransferBranchOptions=function(){
+    const select=document.getElementById('ttBranch');
+    if(!select)return;
+    const previous=select.value||'ทั้งหมด';
+    const branches=['ทั้งหมด',...Array.from(new Set(sourceRows().map(row=>row.branch).filter(Boolean)))];
+    select.innerHTML=branches.map(branch=>`<option value="${esc(branch)}">${esc(branch)}</option>`).join('');
+    select.value=branches.includes(previous)?previous:'ทั้งหมด';
+  };
+
+  window.renderTransferStatusFilters=function(){
+    const wrap=document.getElementById('ttStatusFilters');
+    if(!wrap)return;
+    const counts=sourceRows().reduce((result,row)=>{const key=rowStatusKey(row);result[key]=(result[key]||0)+1;return result;},{});
+    const allActive=STATUS_KEYS.every(key=>transferTrackingState.selectedStatuses.has(key));
+    const items=[{key:'all',label:'ทั้งหมด',icon:'done_all',tone:'all',count:sourceRows().length},...STATUS_KEYS.map(key=>Object.assign({key,count:counts[key]||0},statusMeta[key]))];
+    wrap.innerHTML=items.map(item=>{
+      const active=item.key==='all'?allActive:transferTrackingState.selectedStatuses.has(item.key);
+      return `<button type="button" class="tt-status-filter-btn ${item.tone} ${active?'active':''}" data-status="${item.key}" onclick="toggleTransferStatusFilter('${item.key}')" aria-pressed="${active}"><span class="material-icons-round tt-filter-icon" aria-hidden="true">${item.icon}</span><span class="tt-filter-label">${item.label}</span><span class="tt-filter-count">${item.count}</span></button>`;
+    }).join('');
+  };
+
+  window.toggleTransferStatusFilter=function(key){
+    if(key==='all') transferTrackingState.selectedStatuses=new Set(STATUS_KEYS);
+    else if(transferTrackingState.selectedStatuses.has(key)) transferTrackingState.selectedStatuses.delete(key);
+    else transferTrackingState.selectedStatuses.add(key);
+    window.applyTransferTrackingFilters();
+  };
+
+  function readDate(value){
+    const raw=String(value||'').trim().split(' ')[0];
+    if(/^\d{4}-\d{2}-\d{2}$/.test(raw)){const [y,m,d]=raw.split('-').map(Number);return new Date(y,m-1,d);}
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(raw)){let [d,m,y]=raw.split('/').map(Number);if(y>2400)y-=543;return new Date(y,m-1,d);}
+    return null;
+  }
+  function valueByDateType(row,type){
+    if(type==='วันที่แจ้งโอนเงิน')return row.notifyDate||null;
+    if(type==='วันที่โอนเงิน')return row.transferDate&&row.transferDate!=='-'?row.transferDate:null;
+    return row.created||null;
+  }
+  function searchable(row){
+    const claims=(row.claims||[]).flatMap(item=>[item.claimNo,item.caseNo,item.insured,item.product]);
+    return [row.refNo,row.claimNo,row.insured,row.school,row.hospital,row.payee,row.bank,row.account,row.claimType,row.branch,row.failureReason,...claims].join(' ').toLowerCase();
+  }
+
+  window.applyTransferTrackingFilters=function(){
+    const keyword=String(document.getElementById('ttKeyword')?.value||'').trim().toLowerCase();
+    const type=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    const from=readDate(document.getElementById('transferDateFrom')?.value);
+    const to=readDate(document.getElementById('transferDateTo')?.value);
+    const branch=document.getElementById('ttBranch')?.value||'ทั้งหมด';
+    const ph=!!document.getElementById('ttProductPH')?.checked;
+    const pa=!!document.getElementById('ttProductPA')?.checked;
+    transferTrackingState.rows=sourceRows().filter(row=>{
+      const date=readDate(valueByDateType(row,type));
+      return ((!ph&&!pa)||(ph&&row.product==='PH')||(pa&&row.product==='PA'))
+        && (!keyword||searchable(row).includes(keyword))
+        && (branch==='ทั้งหมด'||row.branch===branch)
+        && transferTrackingState.selectedStatuses.has(rowStatusKey(row))
+        && !!date&&(!from||date>=from)&&(!to||date<=to);
+    });
+    transferTrackingState.page=1;
+    transferTrackingState.openRows.clear();
+    const subtitle=document.getElementById('ttResultSubtitle');
+    if(subtitle)subtitle.textContent=`พบ ${transferTrackingState.rows.length} รายการ • คลิกแถวหรือ Card เพื่อดูรายละเอียด`;
+    window.renderTransferStatusFilters();
+    renderSummary();
+    window.renderTransferTrackingTable();
+    window.renderTransferTrackingCards();
+    syncKeywordClear();
+  };
+
+  function renderSummary(){
+    const host=document.getElementById('ttSummary');
+    if(!host)return;
+    const rows=transferTrackingState.rows;
+    const success=rows.filter(row=>rowStatusKey(row)==='success').length;
+    const follow=rows.filter(row=>rowStatusKey(row)!=='success').length;
+    const label=transferTrackingState.mode==='hospital'?'HCG':'CPG';
+    const items=[
+      {label:'รายการโอนทั้งหมด',value:String(rows.length),note:label,icon:'receipt_long',wash:'#edf7ff',iconBg:'#eaf5ff',iconColor:'#1976d2'},
+      {label:'ยอดเงินรวม',value:money(rows.reduce((sum,row)=>sum+Number(row.amount||0),0)),note:'บาท',icon:'account_balance_wallet',wash:'#f2efff',iconBg:'#efebff',iconColor:'#7557ef'},
+      {label:'โอนสำเร็จ',value:String(success),note:'รายการ',icon:'check_circle',wash:'#eaf8f0',iconBg:'#e5f7ec',iconColor:'#1d9251'},
+      {label:'ต้องติดตาม',value:String(follow),note:'รอโอน / กำลังโอน / ไม่สำเร็จ',icon:'pending_actions',wash:'#fff3e7',iconBg:'#fff0e2',iconColor:'#d46d1b'}
+    ];
+    host.innerHTML=items.map(item=>`<article class="tt-premium-summary-card" style="--summary-wash:${item.wash};--summary-icon-bg:${item.iconBg};--summary-icon:${item.iconColor}"><div class="tt-summary-copy"><span class="tt-summary-label">${item.label}</span><strong class="tt-summary-value">${item.value}</strong><span class="tt-summary-note">${item.note}</span></div><span class="tt-summary-symbol"><span class="material-icons-round" aria-hidden="true">${item.icon}</span></span></article>`).join('');
+  }
+
+  function claimRows(row){return Array.isArray(row.claims)&&row.claims.length?row.claims:[{claimNo:row.claimNo,caseNo:claimCase(row.claimNo,0),insured:row.insured,amount:row.amount,product:row.product}];}
+  function buildExpanded(row){
+    const claims=claimRows(row);
+    const sourceIndex=transferTrackingState.rows.indexOf(row);
+    const failure=rowStatusKey(row)==='fail'?`<div class="tt-failure-alert"><strong>สาเหตุที่โอนไม่สำเร็จ:</strong> ${esc(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร')}</div>`:'';
+    const accountMeta=transferTrackingState.mode==='hospital'?`<div><span>บัญชีปลายทาง</span><strong>${esc(row.bank||'-')} •••• ${esc(String(row.account||'').replace(/\D/g,'').slice(-4)||'-')}</strong></div>`:'';
+    const detailActions=`${rowStatusKey(row)==='fail'?`<button type="button" class="tt-detail-action edit" onclick="openTransferTrackingEdit(${sourceIndex})"><span class="material-icons-round" aria-hidden="true">edit</span>แก้ไขบัญชี</button>`:''}${row.canPay?`<button type="button" class="tt-detail-action pay" onclick="showTransferPaymentModal(${sourceIndex})"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>แจ้งโอนเงิน</button>`:''}`;
+    return `<div class="tt-premium-detail"><div class="tt-detail-banner"><span class="material-icons-round" aria-hidden="true">keyboard_arrow_up</span>รายละเอียดรายการโอน</div><div class="tt-detail-topline"><div><h3>${esc(row.refNo)} • ${esc(row.recipient||row.payee||row.hospital||'-')}</h3><div class="tt-detail-meta"><div><span>Claim / Case</span><strong>${claims.length} Claim · ${claims.length} Case</strong></div><div><span>ผลิตภัณฑ์</span><strong>${esc(row.product)}</strong></div>${accountMeta}</div></div><div class="tt-detail-side"><span class="tt-detail-amount">จำนวนเงิน ${money(row.amount)} บาท</span>${detailActions}</div></div>${failure}<div class="tt-detail-content-grid"><section class="tt-detail-panel"><div class="tt-claims-table-wrap"><table class="tt-claims-table"><thead><tr><th>เลขที่ Claim</th><th>เลขที่ Case</th><th>ผู้เอาประกัน</th><th>ผลิตภัณฑ์</th><th class="text-right">จำนวนเงิน</th></tr></thead><tbody>${claims.map(item=>`<tr><td>${esc(item.claimNo)}</td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(item.product||row.product)}</td><td class="text-right">${money(item.amount)}</td></tr>`).join('')}</tbody></table></div></section></div></div>`;
+  }
+
+  function applyTransferTrackingTypography(){
+    const page=document.getElementById('transferTrackingPage');
+    if(!page)return;
+    const rules=[
+      ['.tt-main-row td','15px','400','22px'],
+      ['.tt-table thead th','14px','900','20px'],
+      ['.tt-transfer-ref,.tt-recipient-name,.tt-money','15px','900','21px'],
+      ['.tt-claim-stack strong','14px','800','20px'],
+      ['.tt-claim-stack span,.tt-recipient-sub,.tt-secondary-ref','13px','650','19px'],
+      ['.tt-status','13px','800','16px'],
+      ['.tt-detail-banner','14px','900','20px'],
+      ['.tt-detail-topline h3','17px','900','24px'],
+      ['.tt-detail-meta strong','13px','700','19px'],
+      ['.tt-detail-amount','15px','900','21px'],
+      ['.tt-detail-action,.tt-failure-alert,.tt-claims-table td','14px','800','20px'],
+      ['.tt-claims-table th','13px','800','19px'],
+      ['.tt-card-ref','18px','900','24px'],
+      ['.tt-card-label,.tt-card-secondary,.tt-card-count','13px','700','19px'],
+      ['.tt-card-value','16px','900','22px'],
+      ['.tt-card-money','22px','900','27px'],
+      ['.tt-card-detail-btn','14px','850','20px']
+    ];
+    rules.forEach(([selector,size,weight,lineHeight])=>page.querySelectorAll(selector).forEach(element=>{
+      element.style.setProperty('font-size',size,'important');
+      element.style.setProperty('font-weight',weight,'important');
+      element.style.setProperty('line-height',lineHeight,'important');
+    }));
+  }
+  function scheduleTransferTrackingTypography(){
+    requestAnimationFrame(()=>requestAnimationFrame(applyTransferTrackingTypography));
+  }
+
+  window.toggleTransferTrackingRow=function(refNo){
+    if(transferTrackingState.openRows.has(refNo))transferTrackingState.openRows.delete(refNo);else transferTrackingState.openRows.add(refNo);
+    window.renderTransferTrackingTable();
+  };
+  window.toggleTransferTrackingCard=function(refNo){
+    if(transferTrackingState.openRows.has(refNo))transferTrackingState.openRows.delete(refNo);else transferTrackingState.openRows.add(refNo);
+    window.renderTransferTrackingCards();
+  };
+  window.changeTransferTrackingPage=function(direction){
+    const nextPage=Math.min(Math.max(1,transferTrackingState.page+Number(direction||0)),totalPages());
+    if(nextPage===transferTrackingState.page)return;
+    transferTrackingState.page=nextPage;
+    transferTrackingState.openRows.clear();
+    window.renderTransferTrackingTable();
+    window.renderTransferTrackingCards();
+    document.querySelector('#transferTrackingPage .tt-results-surface')?.scrollIntoView({block:'start',behavior:'smooth'});
+  };
+
+  window.renderTransferTrackingTable=function(){
+    const head=document.getElementById('transferTrackingTableHead');
+    const body=document.getElementById('transferTrackingTableBody');
+    const pager=document.getElementById('ttPagerText');
+    if(!head||!body)return;
+    const hospital=transferTrackingState.mode==='hospital';
+    const dateType=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    head.innerHTML=`<tr><th aria-label="ขยายรายละเอียด"></th><th>เลขที่การโอนเงิน</th><th>${esc(dateType)}</th><th>${hospital?'สถานพยาบาล':'ผู้รับเงิน / กลุ่มการโอน'}</th><th>Claim / Case</th><th>ผลิตภัณฑ์</th><th class="text-right">จำนวนเงิน</th><th>สถานะการโอน</th><th class="text-center">ดำเนินการ</th></tr>`;
+    if(!transferTrackingState.rows.length){body.innerHTML='<tr><td colspan="9"><div class="tt-empty-state"><span class="tt-empty-icon"><span class="material-icons-round" aria-hidden="true">search_off</span></span><strong>ไม่พบรายการตามเงื่อนไขที่เลือก</strong><span>ลองปรับช่วงวันที่ ตัวกรอง หรือคำค้นหาแล้วค้นหาอีกครั้ง</span></div></td></tr>';syncPager();return;}
+    body.innerHTML=pageRows().map(({row,sourceIndex})=>{
+      const open=transferTrackingState.openRows.has(row.refNo);
+      const claims=claimRows(row);
+      const actions=`<div class="tt-row-actions"><button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}" title="ดูรายละเอียด"><span class="material-icons-round" aria-hidden="true">visibility</span></button></div>`;
+      const recipientSub=transferTrackingState.mode==='hospital'
+        ?`${row.bank||'-'} •••• ${String(row.account||'').replace(/\D/g,'').slice(-4)||'-'}`
+        :(row.beneficiaries?.length?(row.beneficiaries[0].note||''): '');
+      const claimDisplay=claims.length===1?`<div class="tt-claim-stack"><strong>${esc(claims[0].claimNo)}</strong><span>${esc(claims[0].caseNo)}</span></div>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')">${claims.length} Claim · ${claims.length} Case</button>`;
+      return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><button type="button" class="tt-transfer-ref" onclick="openTransferTrackingDetail(${sourceIndex})">${esc(row.refNo)}</button></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${recipientSub?`<div class="tt-recipient-sub">${esc(recipientSub)}</div>`:''}</td><td>${claimDisplay}</td><td><span class="tt-sub-badge">${esc(row.product)}</span></td><td class="text-right tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(row.status)}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="9">${buildExpanded(row)}</td></tr>`:''}`;
+    }).join('');
+    syncPager();
+    scheduleTransferTrackingTypography();
+  };
+
+  window.renderTransferTrackingCards=function(){
+    const host=document.getElementById('ttCardList');
+    if(!host)return;
+    if(!transferTrackingState.rows.length){host.innerHTML='<article class="tt-empty-state"><span class="tt-empty-icon"><span class="material-icons-round" aria-hidden="true">search_off</span></span><strong>ไม่พบรายการตามเงื่อนไขที่เลือก</strong><span>ลองปรับตัวกรองแล้วค้นหาอีกครั้ง</span></article>';return;}
+    const dateType=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
+    host.innerHTML=pageRows().map(({row,sourceIndex})=>{
+      const claims=claimRows(row);
+      const receiverSub=transferTrackingState.mode==='hospital'
+        ?`${row.bank||'-'} •••• ${String(row.account||'').replace(/\D/g,'').slice(-4)||'-'}`
+        :(row.beneficiaries?.length?(row.beneficiaries[0].note||''): '');
+      const productLine=[row.product,row.claimType].filter(Boolean).join(' • ');
+      return `<article class="tt-mobile-card"><div class="tt-card-head"><div><button type="button" class="tt-card-ref" onclick="openTransferTrackingDetail(${sourceIndex})">${esc(row.refNo)}</button><div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(row.status)}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล / บัญชี':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${receiverSub?`<div class="tt-card-secondary">${esc(receiverSub)}</div>`:''}<div class="tt-card-secondary">${esc(productLine)}</div></div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${claims.length} Claim · ${claims.length} Case</span><button type="button" class="tt-card-detail-btn" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span>ดูรายละเอียด</button></div></article>`;
+    }).join('');
+    syncPager();
+    scheduleTransferTrackingTypography();
+  };
+
+  window.setTransferTrackingView=function(view){
+    transferTrackingState.view=view==='card'?'card':'table';
+    const card=transferTrackingState.view==='card';
+    const cardBtn=document.getElementById('ttCardViewBtn');
+    const tableBtn=document.getElementById('ttTableViewBtn');
+    cardBtn?.classList.toggle('active',card);tableBtn?.classList.toggle('active',!card);
+    cardBtn?.setAttribute('aria-pressed',String(card));tableBtn?.setAttribute('aria-pressed',String(!card));
+    document.getElementById('ttTableShell')?.classList.toggle('hidden',card);
+    const cards=document.getElementById('ttCardList');if(cards)cards.style.display=card?'grid':'none';
+    window.renderTransferTrackingCards();
+  };
+
+  const baseReset=window.resetTransferTrackingFilters;
+  window.resetTransferTrackingFilters=function(){
+    if(typeof baseReset==='function')baseReset();
+    transferTrackingState.selectedStatuses=new Set(STATUS_KEYS);
+    window.applyTransferTrackingFilters();
+  };
+
+  const baseShow=window.showTransferTrackingPage;
+  window.showTransferTrackingPage=function(){
+    if(typeof baseShow==='function')baseShow();
+    syncActiveSource();syncModeUi();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();window.setTransferTrackingView(transferTrackingState.view||'table');
+  };
+
+  const baseOpenDetail=window.openTransferTrackingDetail;
+  window.openTransferTrackingDetail=function(index){
+    const row=transferTrackingState.rows[index];
+    if(!row||typeof baseOpenDetail!=='function')return;
+    baseOpenDetail(index);
+    const firstLabel=document.querySelector('#tdrClaimSummary .tdr-info-item div>span');
+    if(firstLabel)firstLabel.textContent=transferTrackingState.mode==='hospital'?'เลขที่ HCG':'เลขที่ CPG';
+    const claimBody=document.getElementById('tdrClaimTableBody');
+    if(claimBody)claimBody.innerHTML=claimRows(row).map(item=>`<tr><td><button type="button" class="tdr-link">${esc(item.claimNo)}</button></td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>-</td><td>${esc(row.claimType||'-')}</td><td class="text-right">${money(item.amount)}</td><td class="text-center"><button type="button" class="tdr-doc-btn" title="ดูเอกสาร" aria-label="ดูเอกสาร ${esc(item.claimNo)}"><span class="material-icons-round" aria-hidden="true">description</span></button></td></tr>`).join('');
+    document.querySelector('#transferClaimDetailPage .tdr-transfer-failure')?.remove();
+    if(rowStatusKey(row)==='fail')document.getElementById('tdrClaimSummary')?.insertAdjacentHTML('afterend',`<div class="tdr-transfer-failure"><strong>สาเหตุที่โอนไม่สำเร็จ:</strong> ${esc(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร')}</div>`);
+  };
+
+  function syncKeywordClear(){
+    const input=document.getElementById('ttKeyword');
+    const clear=document.getElementById('ttKeywordClear');
+    clear?.classList.toggle('hidden',!String(input?.value||'').length);
+  }
+  const keyword=document.getElementById('ttKeyword');
+  keyword?.addEventListener('input',syncKeywordClear);
+  window.clearTransferTrackingKeyword=function(){
+    if(!keyword)return;
+    keyword.value='';
+    syncKeywordClear();
+    window.applyTransferTrackingFilters();
+    keyword.focus();
+  };
+  document.querySelector('.tt-transfer-type-tabs')?.addEventListener('keydown',event=>{
+    if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
+    event.preventDefault();
+    window.setTransferTrackingType(transferTrackingState.mode==='hospital'?'customer':'hospital');
+    document.getElementById(transferTrackingState.mode==='hospital'?'ttHospitalModeBtn':'ttCustomerModeBtn')?.focus();
+  });
+
+  syncActiveSource();syncModeUi();window.renderTransferBranchOptions();
+  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{syncActiveSource();syncModeUi();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();window.setTransferTrackingView(transferTrackingState.view||'table');},700));
+})();
+</script>
 
 </body>
 </html>
