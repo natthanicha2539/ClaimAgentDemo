@@ -60,6 +60,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
   <link rel="stylesheet" href="css/menu-hospital-claim-traffic-accident.css" />
+  <link rel="stylesheet" href="css/menu-claim-entry-category.css" />
+  <link rel="stylesheet" href="css/menu-physical-therapy.css?v=314" />
   <link rel="stylesheet" href="css/menu-claim-work-search.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css" />
   <link rel="stylesheet" href="css/menu-fund-reserve-dashboard.css" />
@@ -9714,7 +9716,7 @@ body > .min-h-screen > main,
             </aside>
           </div>
 
-          <form id="claimSearchForm" class="grid gap-4 lg:grid-cols-[260px_1fr_150px_150px]">
+          <form id="claimSearchForm" novalidate class="grid gap-4 lg:grid-cols-[260px_1fr_150px_150px]">
             <label>
               <span class="mb-1 block text-lg font-bold text-slate-500">ค้นหาจาก <span class="text-danger">*</span></span>
               <select id="claimSearchType" class="h-12 w-full rounded-lg border border-slate-300 bg-white px-4 text-xl font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
@@ -9729,31 +9731,13 @@ body > .min-h-screen > main,
             <button type="submit" class="mt-auto inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 text-xl font-bold text-white transition hover:bg-brand-700"><span class="material-icons-round">search</span>ค้นหา</button>
             <button type="button" id="claimClearBtn" class="mt-auto h-12 rounded-lg border border-red-300 bg-white px-5 text-xl font-bold text-red-700 transition hover:bg-red-50">ล้างค่า</button>
 
-            <div id="claimContextFilters" class="lg:col-span-4 grid gap-3 rounded-xl bg-brand-25 p-4 ring-1 ring-brand-100 sm:grid-cols-2 xl:grid-cols-4">
-              <label>
+            <div id="claimContextFilters" class="lg:col-span-4 rounded-xl bg-brand-25 p-4 ring-1 ring-brand-100">
+              <label class="block max-w-[480px]">
                 <span class="mb-1 block text-lg font-bold text-slate-500">ผลิตภัณฑ์</span>
                 <select id="claimContextProduct" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
                   <option value="">ทั้งหมด</option><option value="PH">PH</option><option value="PA">PA</option>
                 </select>
               </label>
-              <label>
-                <span class="mb-1 block text-lg font-bold text-slate-500">ประเภทเคลม</span>
-                <select id="claimContextCategory" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
-                  <option value="">ทั้งหมด</option><option value="เคลมลูกค้า">เคลมลูกค้า</option><option value="เคลมโรงพยาบาล">เคลมโรงพยาบาล</option>
-                </select>
-              </label>
-              <label>
-                <span class="mb-1 block text-lg font-bold text-slate-500">ประเภทการรักษา</span>
-                <select id="claimContextTreatment" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></select>
-              </label>
-              <label>
-                <span class="mb-1 block text-lg font-bold text-slate-500">สถานะรายการ</span>
-                <select id="claimContextStatus" class="h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-lg font-semibold outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></select>
-              </label>
-              <div id="claimContextMockNote" role="note" class="inline-flex items-start gap-2 rounded-lg border border-brand-100 bg-white/80 px-3 py-2 text-base font-semibold text-brand-700 sm:col-span-2 xl:col-span-4">
-                <span class="material-icons-round mt-0.5 !text-xl" aria-hidden="true">info</span>
-                <span><strong>หมายเหตุ:</strong> ตัวเลือกส่วนนี้ใช้สำหรับ Mock เพื่อทดสอบเท่านั้น และไม่มีผลต่อการแสดงผลข้อมูล</span>
-              </div>
             </div>
 
             <label class="lg:col-span-4 inline-flex w-fit items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 text-xl font-bold text-slate-600 ring-1 ring-slate-200">
@@ -12042,7 +12026,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <tbody id="transferTrackingTableBody"></tbody>
               </table>
             </div>
-            <div class="tt-pager"><span>ข้อมูลต่อหน้า</span><span>10 ▼</span><span id="ttPagerText">1-10 จาก 14</span><button id="ttPrevPageBtn" type="button" onclick="changeTransferTrackingPage(-1)" aria-label="หน้าก่อนหน้า">‹</button><button id="ttNextPageBtn" type="button" onclick="changeTransferTrackingPage(1)" aria-label="หน้าถัดไป">›</button></div>
+            <div class="tt-pager" aria-label="การแบ่งหน้ารายการโอนเงิน"><label class="tt-page-size-label" for="ttPageSize">ข้อมูลต่อหน้า</label><select id="ttPageSize" class="tt-page-size-select" onchange="setTransferTrackingPageSize(this.value)" aria-label="จำนวนข้อมูลต่อหน้า"><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option></select><span id="ttPagerText" aria-live="polite">1-10 จาก 14</span><button id="ttPrevPageBtn" type="button" onclick="changeTransferTrackingPage(-1)" aria-label="หน้าก่อนหน้า" title="หน้าก่อนหน้า">‹</button><button id="ttNextPageBtn" type="button" onclick="changeTransferTrackingPage(1)" aria-label="หน้าถัดไป" title="หน้าถัดไป">›</button></div>
           </section>
           <section id="ttCardList" class="tt-card-list" style="display:none;"></section>
         </section>
@@ -13595,6 +13579,46 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const considerationCustomerRows = [
       { date: "25/08/2569 09:42:18", claimCode: "CLPA6905000104", school: "โรงเรียนบ้านหนองโบประชานุเคราะห์", name: "นางสาวนวพร ก้องเกียรติสกุล", idCard: "902596216345X", amount: "1,250.00", exgratiaAmount: "500.00", itemStatus: "รอพิจารณา" },
+      {
+        sourceKey: "claim-entry-ipd-compensation-mock",
+        source: "claim-entry",
+        date: "22/09/2569 13:30:00",
+        claimCode: "CL6909000415",
+        caseNo: "CC6909000415-01",
+        school: "-",
+        name: "นางสาวพิมพ์ชนก ชื่นใจ",
+        idCard: "110370245681X",
+        appId: "0019415",
+        phone: "089-415-2569",
+        plan: "631",
+        product: "PH",
+        amount: "5,400.00",
+        itemStatus: "รอพิจารณา",
+        claimStatus: "Open",
+        claimCause: "เจ็บป่วย",
+        coverageType: "ค่าชดเชย",
+        claimType: "IPD",
+        treatmentType: "IPD",
+        incidentDate: "2026-09-15",
+        incidentTime: "08:20",
+        admitDate: "2026-09-15",
+        admitTime: "10:15",
+        dischargeDate: "2026-09-18",
+        dischargeTime: "11:00",
+        ipdDays: 2,
+        icuDays: 1,
+        totalStayDays: 3,
+        hospital: "โรงพยาบาลพระรามเก้า",
+        chiefComplaint: "ไข้สูง ไอ และหายใจเหนื่อย",
+        diagnosis: "J18.9 : Pneumonia | ปอดอักเสบ",
+        diagnosis1: "J18.9 : Pneumonia | ปอดอักเสบ",
+        diagnosis2: "-",
+        diagnosis3: "-",
+        note: "ข้อมูลจากการบันทึกแจ้งเคลม IPD ค่าชดเชย",
+        compensationDailyRate: 1200,
+        compensationIcuDailyRate: 3000,
+        compensationBenefitLimit: 25000
+      },
       { date: "17/05/2569 10:12:19", claimCode: "CLPA6905000108", school: "โรงเรียนสตรีวิทยา ๒", name: "ด.ญ.กมลพร จันทร์สิงห์", idCard: "135160611673X", amount: "850.00", itemStatus: "รอพิจารณา" },
       { date: "17/05/2569 11:44:05", claimCode: "CL6905000076", caseNo: "CC6905000076-02", school: "-", name: "นางสาวภัทรวดี ใจดี", idCard: "618374901225X", appId: "0019284", phone: "089-374-9012", plan: "631", amount: "1,780.00", exgratiaAmount: "300.00", itemStatus: "รอพิจารณา", claimStatus: "Re-Open", claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", claimType: "OPD", isContinuous: true, previousClaimNo: "CL6904000058", previousCaseNo: "CC6904000058-01", previousServiceDate: "28/04/2569", hospital: "โรงพยาบาลพญาไท 2", chiefComplaint: "ปวดศีรษะ เวียนศีรษะ และคลื่นไส้ต่อเนื่อง", diagnosis: "G43.0 ไมเกรนชนิดไม่มีออรา", continuousNote: "แพทย์นัดติดตามอาการภายใน 30 วันจากการรักษาครั้งก่อน" },
       { date: "17/05/2569 13:15:38", claimCode: "CL6905000082", school: "-", name: "ด.ช.ตริณภพ รัตนเศรษฐวิ", idCard: "485562621138X", amount: "300.00", itemStatus: "รอเอกสาร" },
@@ -16152,6 +16176,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       claimState.primaryClaimLabel = "";
       claimState.primaryClaimAmount = "";
       claimState.primaryAccidentDate = "";
+      claimState.createdConsiderationClaimCode = "";
       claimState.phIpdAmounts = {};
       claimState.phIpdTransferTotal = 0;
       claimState.continuousCaseNo = "";
@@ -17282,7 +17307,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const active = sub === item.value;
         return `<label class="cursor-pointer rounded-xl border px-5 py-3 text-xl font-extrabold shadow-sm transition ${locked ? "opacity-70 cursor-not-allowed" : ""} ${active ? "border-brand-600 bg-brand-600 text-white" : "border-slate-200 bg-white text-slate-600 hover:border-brand-300 hover:bg-brand-50"}">
           <input class="sr-only claim-sub-input" type="radio" name="claimSub" value="${item.value}" ${active ? "checked" : ""} ${locked ? "disabled" : ""}>
-          ${item.label || item.value}${locked ? `<span class="ml-2 rounded-full bg-white/80 px-2 py-0.5 text-sm font-bold text-brand-700">Default</span>` : ""}
+          ${item.label || item.value}
         </label>`;
       }).join("");
 
@@ -19028,7 +19053,113 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       showModal(`<header class="flex items-center justify-between border-b px-6 py-4"><h3 class="flex items-center gap-3 text-2xl font-extrabold"><span class="grid h-11 w-11 place-items-center rounded-full bg-brand-50 text-brand-700"><span class="material-icons-round !text-2xl">sms</span></span>ยืนยันแจ้งโอนเงิน</h3><button onclick="closeModal()" class="modal-close"><span class="material-icons-round !text-2xl">close</span></button></header><div class="space-y-4 p-6 text-xl"><p>ชื่อลูกค้า : <b class="text-brand-700">${claimState.row.name}</b></p><p>เบอร์โทรติดต่อ : <b class="text-brand-700">${contactPhone}</b></p><p>รายละเอียดบัญชีรับสินไหม :</p><div class="flex items-center gap-5 rounded-xl bg-slate-100 p-5"><span class="grid h-20 w-20 place-items-center rounded-full bg-sky-100 text-brand-700"><span class="material-icons-round !text-6xl">account_balance</span></span><div class="grid gap-1 text-xl"><p>ธนาคาร : <b>${bankName}</b></p><p>เลขที่บัญชี : <b>${bankAccount}</b></p><p>ชื่อบัญชี : <b>${bankOwner}</b></p></div></div><div class="text-center"><p class="text-lg font-bold text-slate-500">จำนวนเงินโอน</p><p class="text-5xl font-extrabold text-brand-700">THB ${formatMoney(claimState.transferAmount)}</p></div><p class="warning-strip">กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนยืนยันการทำรายการ</p><div class="text-center"><button onclick="showSuccessModal('ทำรายการสำเร็จ','ระบบได้ทำรายการเรียบร้อย และระบบจะทำการโอนเงินหลังจากได้รับ SMS')" class="h-14 rounded-lg bg-green-700 px-16 text-2xl font-bold text-white hover:bg-green-800">ยืนยันแจ้งโอนเงิน</button></div></div>`, "max-w-2xl");
     }
 
+    function formatSavedClaimDateTime(now = new Date()) {
+      const parts = new Intl.DateTimeFormat('th-TH-u-ca-buddhist', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+      }).formatToParts(now).reduce((result, part) => {
+        result[part.type] = part.value;
+        return result;
+      }, {});
+      return `${parts.day}/${parts.month}/${parts.year} ${parts.hour}:${parts.minute}:${parts.second}`;
+    }
+
+    function claimEntryStayDays(state = claimState) {
+      const source = state.row || {};
+      const admit = state.claimDates?.admit ? new Date(`${state.claimDates.admit}T00:00:00`) : null;
+      const discharge = state.claimDates?.discharge ? new Date(`${state.claimDates.discharge}T00:00:00`) : null;
+      const dateDiff = admit && discharge && !Number.isNaN(admit.getTime()) && !Number.isNaN(discharge.getTime())
+        ? Math.max(0, Math.round((discharge - admit) / 86400000))
+        : 0;
+      const ipdDays = Math.max(0, Number(source.ipdDays ?? source.ipdDay ?? state.ipdDays ?? dateDiff) || 0);
+      const icuDays = Math.max(0, Number(source.icuDays ?? source.icuDay ?? state.icuDays ?? 0) || 0);
+      return { ipdDays, icuDays, totalStayDays: Math.max(0, Number(source.totalStayDays ?? state.totalStayDays ?? (ipdDays + icuDays)) || 0) };
+    }
+
+    function buildCustomerConsiderationRecordFromClaimEntry(state = claimState) {
+      const source = state.row || {};
+      const product = source.product === 'PA' ? 'PA' : 'PH';
+      const treatment = String(state.subType || state.claimType || 'OPD').trim();
+      const stay = claimEntryStayDays(state);
+      const benefitDefaults = typeof CUSTOMER_COMPENSATION_MOCK_BENEFITS !== 'undefined'
+        ? (CUSTOMER_COMPENSATION_MOCK_BENEFITS[product] || {})
+        : { ipdRate: product === 'PA' ? 1000 : 1200, icuRate: product === 'PA' ? 2000 : 2500, opdFlat: product === 'PA' ? 700 : 800, benefitLimit: product === 'PA' ? 30000 : 40000 };
+      const ipdRate = Number(source.compensationDailyRate ?? benefitDefaults.ipdRate) || 0;
+      const icuRate = Number(source.compensationIcuDailyRate ?? source.icuCompensationDailyRate ?? benefitDefaults.icuRate) || 0;
+      const opdFlat = Number(source.compensationOpdFlatAmount ?? benefitDefaults.opdFlat) || 0;
+      const compensationAmount = /IPD/i.test(treatment)
+        ? (stay.ipdDays * ipdRate) + (stay.icuDays * icuRate)
+        : opdFlat;
+      const savedAmount = state.coverageType === 'ค่าชดเชย'
+        ? compensationAmount
+        : (Number(String(state.transferAmount || 0).replace(/,/g, '')) || 0);
+      const now = new Date();
+      const buddhistYear = String(now.getFullYear() + 543).slice(-2);
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const dynamicCount = considerationCustomerRows.filter(item => item.source === 'claim-entry' && item.sourceKey !== 'claim-entry-ipd-compensation-mock').length;
+      const claimCode = state.createdConsiderationClaimCode || `CL${buddhistYear}${month}${String(416 + dynamicCount).padStart(6, '0')}`;
+      state.createdConsiderationClaimCode = claimCode;
+      const symptomMode = document.querySelector('input[name="symptomMode"]:checked')?.value;
+      const chiefComplaint = symptomMode === 'other'
+        ? (document.getElementById('symptomOtherNote')?.value || source.chiefComplaint || '-')
+        : (document.getElementById('symptomSelect')?.value || source.chiefComplaint || '-');
+      return {
+        sourceKey: `claim-entry:${claimCode}`,
+        source: 'claim-entry',
+        date: formatSavedClaimDateTime(now),
+        claimCode,
+        caseNo: `CC${claimCode.replace(/^CL/, '')}-01`,
+        school: source.school || '-',
+        name: source.name || '-',
+        idCard: source.idCard || '-',
+        appId: source.appId || '-',
+        phone: source.phone || '-',
+        plan: source.plan || '-',
+        product,
+        amount: formatMoney(savedAmount),
+        itemStatus: 'รอพิจารณา',
+        claimStatus: 'Open',
+        claimCause: state.incidentCause || source.claimCause || '-',
+        coverageType: state.coverageType || source.coverageType || '-',
+        claimType: treatment,
+        treatmentType: treatment,
+        incidentDate: state.claimDates?.incident || source.incidentDate || '',
+        incidentTime: source.incidentTime || '09:00',
+        admitDate: state.claimDates?.admit || source.admitDate || '',
+        admitTime: source.admitTime || '10:00',
+        dischargeDate: state.claimDates?.discharge || source.dischargeDate || '',
+        dischargeTime: source.dischargeTime || '11:00',
+        ipdDays: stay.ipdDays,
+        icuDays: stay.icuDays,
+        totalStayDays: stay.totalStayDays,
+        hospital: source.hospital || 'โรงพยาบาลพระรามเก้า',
+        chiefComplaint,
+        diagnosis: source.diagnosis || source.diagnosis1 || '-',
+        diagnosis1: source.diagnosis1 || source.diagnosis || '-',
+        diagnosis2: source.diagnosis2 || '-',
+        diagnosis3: source.diagnosis3 || '-',
+        note: source.note || 'ข้อมูลจากการบันทึกแจ้งเคลม',
+        compensationDailyRate: ipdRate,
+        compensationIcuDailyRate: icuRate,
+        compensationOpdFlatAmount: opdFlat,
+        compensationBenefitLimit: Number(source.compensationBenefitLimit ?? benefitDefaults.benefitLimit) || 0
+      };
+    }
+
+    function syncClaimEntryToCustomerConsideration() {
+      const paymentPage = document.getElementById('paymentPage');
+      if (!paymentPage || paymentPage.classList.contains('hidden') || !claimState.row || !claimState.coverageType) return null;
+      const record = buildCustomerConsiderationRecordFromClaimEntry(claimState);
+      const existingIndex = considerationCustomerRows.findIndex(item => item.sourceKey === record.sourceKey);
+      if (existingIndex >= 0) considerationCustomerRows.splice(existingIndex, 1, record);
+      else considerationCustomerRows.unshift(record);
+      return record;
+    }
+    window.buildCustomerConsiderationRecordFromClaimEntry = buildCustomerConsiderationRecordFromClaimEntry;
+    window.syncClaimEntryToCustomerConsideration = syncClaimEntryToCustomerConsideration;
+
     function showSuccessModal(title, desc) {
+      if (String(title || '').includes('ทำรายการสำเร็จ')) syncClaimEntryToCustomerConsideration();
       const isApproveSuccess = String(title || '').trim() === 'อนุมัติรายการสำเร็จ';
       const currentRow = window.currentConsiderCustomerRow || {};
       const visibleClaim = document.getElementById('customerApproveClaimNo')?.textContent?.trim();
@@ -28189,10 +28320,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const ipdDisplay = document.getElementById(`${prefix}IpdDaysDisplay`);
     const icuDisplay = document.getElementById(`${prefix}IcuDaysDisplay`);
     const totalDisplay = document.getElementById(`${prefix}TotalStayDaysDisplay`);
-    if(ipdInput && document.activeElement !== ipdInput) ipdInput.value = String(nights);
+    const sourceRow = prefix === 'cc' ? (window.currentConsiderCustomerRow || {}) : (window.currentConsiderHospitalRow || {});
+    const activeDateEditor = new RegExp(`^${prefix}(Admit|Discharge)(Date|Time)$`).test(document.activeElement?.id || '');
+    const hasRecordedStay = prefix === 'cc' && Number.isFinite(Number(sourceRow.ipdDays ?? sourceRow.ipdDay));
+    const shouldKeepRecordedStay = hasRecordedStay && !activeDateEditor;
+    if(ipdInput && document.activeElement !== ipdInput && !shouldKeepRecordedStay) ipdInput.value = String(nights);
     const ipdDays = Math.max(0, Number(ipdInput?.value || nights) || 0);
     const icuDays = Math.max(0, Number(icuInput?.value || 0) || 0);
-    const totalStayDays = Math.max(ipdDays, icuDays);
+    const recordedTotal = Number(sourceRow.totalStayDays ?? sourceRow.totalDays);
+    const totalStayDays = shouldKeepRecordedStay && Number.isFinite(recordedTotal)
+      ? Math.max(0, recordedTotal)
+      : Math.max(ipdDays, icuDays);
     if(totalDaysInput) totalDaysInput.value = String(totalStayDays);
     if(ipdDisplay) ipdDisplay.textContent = String(ipdDays);
     if(icuDisplay) icuDisplay.textContent = String(icuDays);
@@ -28861,6 +28999,193 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     </section>`;
   }
 
+  const CUSTOMER_COMPENSATION_MOCK_BENEFITS = Object.freeze({
+    PH: Object.freeze({ ipdRate:1200, icuRate:2500, opdFlatAmount:800, benefitLimit:40000 }),
+    PA: Object.freeze({ ipdRate:1000, icuRate:2000, opdFlatAmount:700, benefitLimit:30000 })
+  });
+  const customerCompensationStateByClaim = new Map();
+
+  function customerCompensationNumber(value){
+    const parsed = Number(String(value ?? '').replace(/,/g,'').trim());
+    return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+  }
+  function customerCompensationMoney(value){
+    return customerCompensationNumber(value).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function customerCompensationEscape(value){
+    return String(value ?? '').replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+  }
+  function customerCompensationKey(row = {}){
+    return String(row.claimCode || row.claimNo || row.id || '__customer_compensation__');
+  }
+  function customerCompensationState(row = {}){
+    const key = customerCompensationKey(row);
+    if(!customerCompensationStateByClaim.has(key)) customerCompensationStateByClaim.set(key,{uncovered:0,ipdUncovered:0,icuUncovered:0,reason:'',note:''});
+    return customerCompensationStateByClaim.get(key);
+  }
+  function customerCompensationBenefit(row = {}){
+    const product = String(row.product || (String(row.claimCode || '').startsWith('CLPA') ? 'PA' : 'PH')).toUpperCase();
+    const mock = CUSTOMER_COMPENSATION_MOCK_BENEFITS[product] || CUSTOMER_COMPENSATION_MOCK_BENEFITS.PH;
+    const pick = (values, fallback) => {
+      const supplied = values.find(value => value !== undefined && value !== null && String(value).trim() !== '');
+      return supplied === undefined ? fallback : customerCompensationNumber(supplied);
+    };
+    const hasIpdRate = [row.compensationDailyRate,row.compDailyRate,row.dailyCompensation,row.compensationRate].some(value => value !== undefined && value !== null && String(value).trim() !== '');
+    const hasIcuRate = [row.compensationIcuDailyRate,row.compensationIcuRate,row.icuCompensationRate].some(value => value !== undefined && value !== null && String(value).trim() !== '');
+    const hasOpdAmount = [row.compensationOpdFlatAmount,row.compensationOpdAmount,row.opdCompensationAmount].some(value => value !== undefined && value !== null && String(value).trim() !== '');
+    const hasBenefitLimit = [row.compensationBenefitLimit,row.compBenefitLimit,row.compensationRemainingBenefit].some(value => value !== undefined && value !== null && String(value).trim() !== '');
+    return {
+      product,
+      ipdRate:pick([row.compensationDailyRate,row.compDailyRate,row.dailyCompensation,row.compensationRate],mock.ipdRate),
+      icuRate:pick([row.compensationIcuDailyRate,row.compensationIcuRate,row.icuCompensationRate],mock.icuRate),
+      opdFlatAmount:pick([row.compensationOpdFlatAmount,row.compensationOpdAmount,row.opdCompensationAmount],mock.opdFlatAmount),
+      benefitLimit:pick([row.compensationBenefitLimit,row.compBenefitLimit,row.compensationRemainingBenefit],mock.benefitLimit),
+      isMock:!(hasIpdRate && hasIcuRate && hasOpdAmount && hasBenefitLimit)
+    };
+  }
+  function customerCompensationAmounts(row = {}, selected = getConsiderClaimSelection(row)){
+    const benefit = customerCompensationBenefit(row);
+    const state = customerCompensationState(row);
+    const treatment = String(selected?.treatment || '').toUpperCase();
+    const ipdDays = customerCompensationNumber(document.getElementById('ccIpdDays')?.value ?? row.ipdDays ?? row.ipdDay);
+    const icuDays = customerCompensationNumber(document.getElementById('ccIcuDays')?.value ?? row.icuDays ?? row.icuDay);
+    const ipdAmount = ipdDays * benefit.ipdRate;
+    const icuAmount = icuDays * benefit.icuRate;
+    const calculated = treatment === 'IPD' ? ipdAmount + icuAmount : benefit.opdFlatAmount;
+    const automaticExcess = Math.max(0, calculated - benefit.benefitLimit);
+    const ipdUncovered = customerCompensationNumber(state.ipdUncovered);
+    const icuUncovered = customerCompensationNumber(state.icuUncovered);
+    const uncovered = treatment === 'IPD'
+      ? ipdUncovered + icuUncovered
+      : Math.max(customerCompensationNumber(state.uncovered), automaticExcess);
+    const approved = Math.max(0, calculated - Math.min(uncovered, calculated));
+    return {benefit,state,treatment,ipdDays,icuDays,ipdAmount,icuAmount,ipdUncovered,icuUncovered,calculated,automaticExcess,uncovered,approved};
+  }
+
+  function customerCompensationReasonOptions(selected){
+    const reasons = ['เกินวงเงินความคุ้มครอง','ไม่เป็นไปตามเงื่อนไขกรมธรรม์','จำนวนวันเกินสิทธิ์','เอกสารประกอบไม่ครบถ้วน','อื่น ๆ'];
+    return `<option value="">--- เลือกสาเหตุ ---</option>${reasons.map(reason=>`<option value="${reason}" ${reason===selected?'selected':''}>${reason}</option>`).join('')}`;
+  }
+  function renderCustomerCompensationExpense(row = {}, selected = getConsiderClaimSelection(row)){
+    const amount = customerCompensationAmounts(row, selected);
+    const isIpd = amount.treatment === 'IPD';
+    const rateSource = amount.benefit.isMock ? '<span class="cc-comp-source mock">ข้อมูลตัวอย่างสิทธิ์</span>' : '<span class="cc-comp-source">สิทธิ์ตามกรมธรรม์</span>';
+    const calculation = isIpd ? `
+      <div class="cc-comp-table-wrap"><table class="cc-comp-table" aria-label="รายละเอียดการคำนวณค่าชดเชย IPD">
+        <thead><tr><th>ประเภทค่าชดเชย</th><th>จำนวนวัน</th><th>อัตราต่อวัน</th><th>ยอดรวม</th><th>ยอดไม่คุ้มครอง</th></tr></thead>
+        <tbody>
+          <tr><td><span class="material-icons-round">hotel</span>ค่าชดเชย IPD</td><td>${amount.ipdDays} วัน</td><td>${customerCompensationMoney(amount.benefit.ipdRate)} บาท</td><td><strong>${customerCompensationMoney(amount.ipdAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดไม่คุ้มครองค่าชดเชย IPD</span><span class="cc-comp-row-input"><input id="customerCompensationIpdUncovered" type="number" min="0" max="${amount.ipdAmount}" step="0.01" value="${amount.ipdUncovered.toFixed(2)}" oninput="updateCustomerCompensationField('ipdUncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
+          <tr><td><span class="material-icons-round">monitor_heart</span>ค่าชดเชย ICU</td><td>${amount.icuDays} วัน</td><td>${customerCompensationMoney(amount.benefit.icuRate)} บาท</td><td><strong>${customerCompensationMoney(amount.icuAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดไม่คุ้มครองค่าชดเชย ICU</span><span class="cc-comp-row-input"><input id="customerCompensationIcuUncovered" type="number" min="0" max="${amount.icuAmount}" step="0.01" value="${amount.icuUncovered.toFixed(2)}" oninput="updateCustomerCompensationField('icuUncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
+        </tbody>
+      </table></div>` : `
+      <div class="cc-comp-opd-amount"><div><span class="material-icons-round">payments</span><span>ยอดค่าชดเชยเหมาจ่ายตามสิทธิ์</span></div><strong>${customerCompensationMoney(amount.benefit.opdFlatAmount)} บาท</strong></div>`;
+    return `<section class="cc-compensation-card" data-customer-compensation="true" data-treatment="${isIpd?'IPD':'OPD'}">
+      <header class="cc-comp-head"><div class="cc-comp-title-wrap"><span class="cc-comp-icon"><span class="material-icons-round">account_balance_wallet</span></span><div><h3>รายการค่าชดเชย</h3><p>${isIpd?'คำนวณจากจำนวนวันที่ระบุในขั้นตอนบันทึกข้อมูลเคลม':'ยอดเหมาจ่ายอ้างอิงสิทธิ์ความคุ้มครองที่เลือก'}</p></div></div>${rateSource}</header>
+      <div class="cc-comp-body">${calculation}
+        <div class="cc-comp-formula" aria-label="สูตรคำนวณค่าชดเชย"><span class="material-icons-round">calculate</span><span>${isIpd?'(วัน IPD × อัตรา IPD) + (วัน ICU × อัตรา ICU)':'ยอดเหมาจ่ายตามสิทธิ์'}</span><strong data-cc-comp-calculated>${customerCompensationMoney(amount.calculated)} บาท</strong></div>
+        <div class="cc-comp-section-caption"><span class="material-icons-round">summarize</span><span>สรุปยอดค่าชดเชย</span></div>
+        <div class="cc-comp-summary-grid">
+          <div class="cc-comp-summary-item"><span>ยอดค่าชดเชยที่คำนวณได้</span><strong data-cc-comp-calculated>${customerCompensationMoney(amount.calculated)} บาท</strong></div>
+          <div class="cc-comp-summary-item"><span>สิทธิ์/วงเงินคงเหลือ</span><strong>${customerCompensationMoney(amount.benefit.benefitLimit)} บาท</strong></div>
+          ${isIpd?`<div class="cc-comp-summary-item"><span>ยอดไม่คุ้มครองรวม</span><strong data-cc-comp-uncovered>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>`:`<label class="cc-comp-field"><span>ยอดไม่คุ้มครอง</span><div class="cc-comp-input-wrap"><input id="customerCompensationUncovered" type="number" min="${amount.automaticExcess}" max="${amount.calculated}" step="0.01" value="${amount.uncovered.toFixed(2)}" oninput="updateCustomerCompensationField('uncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></div></label>`}
+          <label class="cc-comp-field"><span>สาเหตุไม่คุ้มครอง</span><select id="customerCompensationReason" onchange="updateCustomerCompensationField('reason',this.value)" aria-describedby="customerCompensationValidation">${customerCompensationReasonOptions(amount.state.reason)}</select></label>
+        </div>
+        <label class="cc-comp-note"><span>หมายเหตุ</span><textarea id="customerCompensationNote" rows="2" oninput="updateCustomerCompensationField('note',this.value)" placeholder="ระบุหมายเหตุเพิ่มเติม (ถ้ามี)">${customerCompensationEscape(amount.state.note || '')}</textarea></label>
+        <div id="customerCompensationValidation" class="cc-comp-validation" role="alert" aria-live="polite"></div>
+        <div class="cc-comp-approved"><div><span class="material-icons-round">verified</span><span>ยอดค่าชดเชยที่พิจารณาจ่าย</span></div><strong data-cc-comp-approved>${customerCompensationMoney(amount.approved)} บาท</strong></div>
+      </div>
+    </section>`;
+  }
+
+  window.updateCustomerCompensationField = function(field,value){
+    const row = window.currentConsiderCustomerRow || {};
+    const state = customerCompensationState(row);
+    if(field === 'uncovered') state.uncovered = customerCompensationNumber(value);
+    if(field === 'ipdUncovered') state.ipdUncovered = customerCompensationNumber(value);
+    if(field === 'icuUncovered') state.icuUncovered = customerCompensationNumber(value);
+    if(field === 'reason') state.reason = String(value || '');
+    if(field === 'note') state.note = String(value || '');
+    window.refreshCustomerCompensationTotals();
+  };
+  window.refreshCustomerCompensationTotals = function(){
+    const card = document.querySelector('#considerCustomerDetailPage .cc-compensation-card');
+    if(!card) return;
+    const amount = customerCompensationAmounts(window.currentConsiderCustomerRow || {});
+    const uncoveredInput = card.querySelector('#customerCompensationUncovered');
+    if(uncoveredInput && customerCompensationNumber(uncoveredInput.value) !== amount.uncovered) uncoveredInput.value = amount.uncovered.toFixed(2);
+    card.querySelectorAll('[data-cc-comp-calculated]').forEach(el=>{el.textContent=`${customerCompensationMoney(amount.calculated)} บาท`;});
+    card.querySelectorAll('[data-cc-comp-uncovered]').forEach(el=>{el.textContent=`${customerCompensationMoney(amount.uncovered)} บาท`;});
+    card.querySelectorAll('[data-cc-comp-approved]').forEach(el=>{el.textContent=`${customerCompensationMoney(amount.approved)} บาท`;});
+    window.validateCustomerCompensation(false);
+  };
+  window.validateCustomerCompensation = function(shouldFocus=true){
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    if(selected.coverage !== 'ค่าชดเชย') return true;
+    const amount = customerCompensationAmounts(window.currentConsiderCustomerRow || {},selected);
+    const input = document.getElementById('customerCompensationUncovered');
+    const ipdInput = document.getElementById('customerCompensationIpdUncovered');
+    const icuInput = document.getElementById('customerCompensationIcuUncovered');
+    const reason = document.getElementById('customerCompensationReason');
+    const message = document.getElementById('customerCompensationValidation');
+    let error = '';
+    let errorTarget = input;
+    if(amount.calculated <= 0) error = amount.treatment === 'IPD' ? 'ไม่สามารถคำนวณค่าชดเชยได้ กรุณาระบุจำนวนวัน IPD หรือ ICU ให้ถูกต้อง' : 'ไม่พบยอดค่าชดเชยเหมาจ่ายตามสิทธิ์ กรุณาตรวจสอบข้อมูลความคุ้มครอง';
+    else if(amount.treatment === 'IPD' && amount.ipdUncovered > amount.ipdAmount){error='ยอดไม่คุ้มครองค่าชดเชย IPD ต้องไม่เกินยอดรวม IPD';errorTarget=ipdInput;}
+    else if(amount.treatment === 'IPD' && amount.icuUncovered > amount.icuAmount){error='ยอดไม่คุ้มครองค่าชดเชย ICU ต้องไม่เกินยอดรวม ICU';errorTarget=icuInput;}
+    else if(amount.uncovered < amount.automaticExcess){error=`ยอดไม่คุ้มครองรวมต้องไม่น้อยกว่าส่วนที่เกินวงเงิน ${customerCompensationMoney(amount.automaticExcess)} บาท`;errorTarget=amount.treatment==='IPD'?(ipdInput||icuInput):input;}
+    else if(amount.uncovered > amount.calculated) error = 'ยอดไม่คุ้มครองต้องไม่เกินยอดค่าชดเชยที่คำนวณได้';
+    else if(amount.uncovered > 0 && !String(amount.state.reason || '').trim()){error='กรุณาระบุสาเหตุไม่คุ้มครอง';errorTarget=reason;}
+    if(message){message.textContent=error;message.classList.toggle('show',Boolean(error));}
+    [input,ipdInput,icuInput,reason].forEach(el=>{if(el)el.setAttribute('aria-invalid',error&&el===errorTarget?'true':'false');});
+    if(error && shouldFocus){errorTarget?.scrollIntoView({behavior:'smooth',block:'center'});errorTarget?.focus({preventScroll:true});}
+    return !error;
+  };
+
+  function renderCustomerCompensationStep3(row = {}, selected = getConsiderClaimSelection(row)){
+    const amount = customerCompensationAmounts(row,selected);
+    const isLargeIpdCompensation = String(selected?.coverage || '').trim() === 'ค่าชดเชย' && amount.treatment === 'IPD';
+    const benefitRows = isLargeIpdCompensation ? [
+      {
+        key:'ipd',
+        name:'(เบิกค่ารักษาจากที่อื่น) ค่าชดเชยผู้ป่วยใน ห้องปกติ (คืนละ)',
+        requested:amount.ipdAmount
+      },
+      {
+        key:'icu',
+        name:'(เบิกค่ารักษาจากที่อื่น) ค่าชดเชยผู้ป่วยใน ห้อง ICU (คืนละ)',
+        requested:amount.icuAmount
+      }
+    ] : [];
+    const requestedCents = benefitRows.map(item=>Math.max(0,Math.round(customerCompensationNumber(item.requested)*100)));
+    const requestedTotalCents = requestedCents.reduce((sum,value)=>sum+value,0);
+    const enteredUncoveredCents = [amount.ipdUncovered,amount.icuUncovered].map(value=>Math.max(0,Math.round(customerCompensationNumber(value)*100)));
+    const allocatedRows = benefitRows.map((item,index)=>{
+      const uncoveredCents = Math.min(requestedCents[index],enteredUncoveredCents[index] || 0);
+      return {...item,requestedCents:requestedCents[index],uncoveredCents,eligibleCents:requestedCents[index]-uncoveredCents};
+    });
+    const uncoveredTotalCents = allocatedRows.reduce((sum,item)=>sum+item.uncoveredCents,0);
+    const benefitTable = isLargeIpdCompensation ? `<div class="cc-comp-review-table-wrap" role="region" aria-label="ตาราง Benefit ค่าชดเชยใหญ่" tabindex="0">
+      <table class="cc-comp-review-table">
+        <thead><tr><th scope="col">รายการ</th><th scope="col">รายการเบิก</th><th scope="col">สิทธิ์เบิกตามความคุ้มครอง</th><th scope="col">ส่วนเกินสิทธิ์</th></tr></thead>
+        <tbody>
+          ${allocatedRows.map(item=>`<tr data-cc-comp-benefit="${item.key}"><th scope="row">${item.name}</th><td>${customerCompensationMoney(item.requestedCents/100)}</td><td>${customerCompensationMoney(item.eligibleCents/100)}</td><td>${customerCompensationMoney(item.uncoveredCents/100)}</td></tr>`).join('')}
+          <tr class="cc-comp-review-table-total"><th scope="row">รวม :</th><td>${customerCompensationMoney(requestedTotalCents/100)}</td><td>${customerCompensationMoney((requestedTotalCents-uncoveredTotalCents)/100)}</td><td>${customerCompensationMoney(uncoveredTotalCents/100)}</td></tr>
+        </tbody>
+      </table>
+    </div>` : '';
+    return `<section class="cc-compensation-review" data-customer-compensation-summary="true">
+      <div class="cc-comp-review-head"><span class="material-icons-round">task_alt</span><div><h3>สรุปค่าชดเชย</h3><p>ตรวจสอบยอดก่อนอนุมัติรายการ</p></div></div>
+      ${benefitTable}
+      <div class="cc-comp-review-lines">
+        ${isLargeIpdCompensation?'':`<div><span>ค่าชดเชย OPD แบบเหมาจ่าย</span><strong>${customerCompensationMoney(amount.calculated)} บาท</strong></div>`}
+        <div><span>สิทธิ์/วงเงินคงเหลือ</span><strong>${customerCompensationMoney(amount.benefit.benefitLimit)} บาท</strong></div>
+        <div><span>ยอดไม่คุ้มครอง</span><strong>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>
+        ${amount.uncovered>0?`<div><span>สาเหตุไม่คุ้มครอง</span><strong>${amount.state.reason || '-'}</strong></div>`:''}
+      </div>
+      <div class="cc-comp-review-total"><span>ยอดค่าชดเชยที่พิจารณาจ่าย</span><strong>${customerCompensationMoney(amount.approved)} บาท</strong></div>
+    </section>`;
+  }
+
   function expenses(kind, row = {}){
     const prefix = kind === 'customer' ? 'cc' : (kind === 'full' ? 'hf' : 'hh');
     const stepName = prefix === 'cc' ? 'Customer' : (prefix === 'hf' ? 'HospitalFull' : 'HospitalHalf');
@@ -28870,14 +29195,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     // จำนวนวันนอนย้ายไปแสดงใน Step 1 และ Step 3 เท่านั้น
 
-    return `<div class="cc-ref-step2-shell">
-      ${kind === 'customer' ? renderActiveCustomerOcrPanel() : `<div class="cc-ref-upload-row"><button type="button" class="cc-ref-upload-btn"><span class="material-icons-round">note_add</span>อัปโหลดใบแจ้งค่ารักษา</button></div>`}
+    const isCustomerCompensation = kind === 'customer' && selected.coverage === 'ค่าชดเชย';
+    return `<div class="cc-ref-step2-shell" data-customer-coverage="${selected.coverage || ''}">
+      ${kind === 'customer' ? (isCustomerCompensation ? '' : renderActiveCustomerOcrPanel()) : `<div class="cc-ref-upload-row"><button type="button" class="cc-ref-upload-btn"><span class="material-icons-round">note_add</span>อัปโหลดใบแจ้งค่ารักษา</button></div>`}
       ${kind === 'customer' ? `
-      ${renderCustomerTransferSummary()}
-      ${renderCustomerTransferScenarioAlert()}
+      ${isCustomerCompensation ? '' : renderCustomerTransferSummary()}
+      ${isCustomerCompensation ? '' : renderCustomerTransferScenarioAlert()}
       ` : ''}
-      <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</section>
-      ${window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital'), prefix:prefix, autoCalculateEntitlement:(window.__forceLegacyHospitalExpense !== true && row?.isBillingReview !== true), insuranceExcessHtml:(kind === 'customer' ? '' : renderHospitalInsuranceExcessBox(prefix)) })}
+      <section class="cc-ref-title-strip"><span class="material-icons-round">${isCustomerCompensation?'payments':'note_add'}</span>${isCustomerCompensation?'รายละเอียดค่าชดเชย':'รายการค่าใช้จ่าย'}</section>
+      ${isCustomerCompensation ? renderCustomerCompensationExpense(row,selected) : window.renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:(kind === 'customer' ? 'customer' : 'hospital'), prefix:prefix, autoCalculateEntitlement:(window.__forceLegacyHospitalExpense !== true && row?.isBillingReview !== true), insuranceExcessHtml:(kind === 'customer' ? '' : renderHospitalInsuranceExcessBox(prefix)) })}
       <div class="cc-ref-decision-wrap">${decision()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="set${stepName}Step(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
@@ -28986,7 +29312,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return `<div class="rounded-xl border border-slate-200 p-4"><div class="mb-3 text-lg font-extrabold text-brand-700">รายการค่ารักษา</div><div class="overflow-x-auto"><table class="min-w-full text-sm" data-step3-treatment-table="1"><thead class="bg-brand-600 text-white"><tr><th class="px-3 py-2 text-left">รายการ</th><th class="px-3 py-2 text-right">รายการเบิก</th><th class="px-3 py-2 text-right">สิทธิเบิก</th><th class="px-3 py-2 text-right">ส่วนเกินสิทธิ์</th></tr></thead><tbody>${body}<tr class="bg-brand-600 text-white font-bold"><td class="px-3 py-2 text-right">รวม :</td><td class="px-3 py-2 text-right">${fmt(totals[0])}</td><td class="px-3 py-2 text-right">${fmt(totals[1])}</td><td class="px-3 py-2 text-right">${fmt(totals[2])}</td></tr></tbody></table></div></div>`;
   }
 
-  function summary(kind, row = {}){ const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh'); const selected = getConsiderClaimSelection(row, kind); return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${kind === 'customer' ? docs('customer') : renderOpdFullDocumentCheckSection('IPD')}${renderStep3TreatmentTable(kind, selected)}<div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`; }
+  function summary(kind, row = {}){
+    const prefix=kind==='customer'?'cc':(kind==='full'?'hf':'hh');
+    const selected = getConsiderClaimSelection(row, kind);
+    if(kind === 'customer' && selected.coverage === 'ค่าชดเชย'){
+      return `<div class="rounded-xl border border-slate-200 bg-white" data-customer-compensation-step3="true"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}</div>${renderStaySummaryStep3(kind,selected)}</div>${docs('customer')}${renderCustomerCompensationStep3(row,selected)}</div></div>${actionBar('setCustomerStep(2)','',true)}`;
+    }
+    return `<div class="rounded-xl border border-slate-200 bg-white"><div class="border-l-4 border-brand-500 bg-brand-50 px-4 py-3 text-xl font-extrabold text-slate-700">สรุปรายการ</div><div class="space-y-4 p-4"><div class="claim-detail-summary-card rounded-xl border border-slate-200 p-4"><div class="claim-detail-summary-title mb-3 text-lg font-extrabold text-brand-700">รายละเอียดเคลม</div><div class="grid gap-6 md:grid-cols-3 xl:grid-cols-5 text-lg">${fieldSum('เหตุของการเคลม :',selected.cause)}${fieldSum('ประเภทความคุ้มครอง :',selected.coverage)}${fieldSum('ประเภทการรักษา :',selected.treatment)}${fieldSum('วันที่แจ้งเคลม :','19/06/2569')}${fieldSum('วันที่เกิดเหตุ :','19/06/2569')}${fieldSum('เวลาที่เกิดเหตุ :','09:30')}${fieldSum('วันที่เข้า รพ. :','-')}${fieldSum('เวลาที่เข้า รพ. :','10:00')}${fieldSum('วันที่ออก รพ. :','-')}${fieldSum('เวลาที่ออก รพ. :','11:30')}<div class="md:col-span-3 xl:col-span-3">${fieldSum('สถานพยาบาล :','โรงพยาบาลมะการักษ์')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('อาการสำคัญ :','0024:ไข้ + ปวดท้อง')}</div><div class="md:col-span-2 xl:col-span-5">${fieldSum('คำวินิจฉัย 1 :','A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 2 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('คำวินิจฉัย 3 :','-')}</div><div class="md:col-span-3 xl:col-span-5">${fieldSum('หมายเหตุ :','-')}</div></div>${renderStaySummaryStep3(kind, selected)}</div>${kind === 'customer' ? docs('customer') : renderOpdFullDocumentCheckSection('IPD')}${renderStep3TreatmentTable(kind, selected)}<div class="grid gap-4 xl:grid-cols-2"><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าชดเชย</div><div class="mt-3 space-y-3 text-lg"><label class="flex items-center gap-2"><input type="checkbox" class="h-4 w-4"> โอนค่าชดเชยรวมกับค่ารักษา</label><div class="flex justify-between"><span>ค่าชดเชยรวม</span><strong>0.00</strong></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><strong>0.00</strong></div><div class="rounded-lg border border-green-200 bg-green-50 px-4 py-2 font-extrabold text-green-700">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div><div class="rounded-xl border border-slate-200 p-4"><div class="text-lg font-bold text-brand-700">สรุปค่าใช้จ่ายโรงพยาบาล</div><div class="mt-3 space-y-2"><div class="flex justify-between"><span>ค่าใช้จ่ายทั้งหมด</span><b>550.00</b></div><div class="flex justify-between"><span>สิทธิ์ความคุ้มครอง</span><b>550.00</b></div><div class="flex justify-between"><span>ค่าชดเชย (รวมในสิทธิ์ความคุ้มครอง)</span><b>0.00</b></div><div class="rounded-lg border border-blue-200 bg-blue-50 p-3 font-bold text-brand-700">สิทธิ์โรงพยาบาลตั้งเบิกกับบริษัท 550.00</div><div class="rounded-lg border border-red-200 bg-red-50 p-3 font-bold text-red-600">ค่าชดเชยคงเหลือ (โอนให้ลูกค้า) 0.00</div></div></div></div></div></div>${actionBar(`set${prefix==='cc'?'Customer':prefix==='hf'?'HospitalFull':'HospitalHalf'}Step(2)`,'',true)}`;
+  }
   function fieldSum(label,value){ return `<div><div class="text-sm font-medium text-slate-500">${label}</div><div class="mt-1 text-base font-normal text-slate-700 leading-6">${value}</div></div>`; }
   const customerContinuousClaimOptions = [
     {
@@ -29324,6 +29657,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const currentStep = prefix === 'cc' ? Number(window.currentCustomerStep || 1) : 1;
     if(prefix === 'cc' && currentStep === 1 && Number(step) === 2 && typeof window.validateCustomerClaimSelectionRequired === 'function' && !window.validateCustomerClaimSelectionRequired(true)) return;
     if(prefix === 'cc' && currentStep === 1 && Number(step) === 2 && typeof window.validateConsiderStayDays === 'function' && !window.validateConsiderStayDays(prefix)) return;
+    if(prefix === 'cc' && currentStep === 2 && Number(step) === 3 && typeof window.validateCustomerCompensation === 'function' && !window.validateCustomerCompensation(true)) return;
     if(prefix === 'cc') window.currentCustomerStep = step;
     if(prefix === 'cc' && step === 2 && typeof expenses === 'function'){
       const pane2 = document.getElementById('ccStepPane2');
@@ -29343,6 +29677,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   window.setCustomerStep = safeCall('setCustomerStep', function(step){ update('cc',step); });
   window.setHospitalFullStep = safeCall('setHospitalFullStep', function(step){ update('hf',step); });
   window.setHospitalHalfStep = safeCall('setHospitalHalfStep', function(step){ update('hh',step); });
+  document.addEventListener('click',function(event){
+    const button = event.target?.closest?.('#considerCustomerDetailPage #ccStepPane3 button');
+    if(!button || !/อนุมัติ/.test(String(button.textContent || ''))) return;
+    const selected = getConsiderClaimSelection(window.currentConsiderCustomerRow || {});
+    if(selected.coverage !== 'ค่าชดเชย' || window.validateCustomerCompensation(false)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    update('cc',2);
+    requestAnimationFrame(()=>window.validateCustomerCompensation(true));
+  },true);
   window.openConsiderCustomerRow = safeCall('openConsiderCustomerRow', function(index){
     const rows = (typeof considerationCustomerRows !== 'undefined') ? considerationCustomerRows : [];
     const suppliedRecord = index && typeof index === 'object' ? index : null;
@@ -46181,6 +46526,94 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     font-weight:600!important;
   }
 </style>
+<style id="customer-compensation-amount-style">
+#considerCustomerDetailPage .cc-compensation-card,
+#considerCustomerDetailPage .cc-compensation-review{overflow:hidden;border:1px solid #d8e5f2;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+#considerCustomerDetailPage .cc-comp-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 15px;border-left:4px solid #12a3ff;border-bottom:1px solid #dbe7f3;background:#eef6ff}
+#considerCustomerDetailPage .cc-comp-title-wrap{display:flex;align-items:center;gap:13px;min-width:0}
+#considerCustomerDetailPage .cc-comp-icon{display:grid;width:36px;height:36px;flex:none;place-items:center;border-radius:9px;background:#dff2ff;color:#075f99}
+#considerCustomerDetailPage .cc-comp-icon .material-icons-round{font-size:21px!important}
+#considerCustomerDetailPage .cc-comp-head h3,#considerCustomerDetailPage .cc-comp-review-head h3{margin:0;color:#334155;font-size:20px!important;font-weight:700!important;line-height:1.3!important}
+#considerCustomerDetailPage .cc-comp-head p,#considerCustomerDetailPage .cc-comp-review-head p{margin:2px 0 0;color:#64748b;font-size:14px!important;line-height:1.4!important}
+#considerCustomerDetailPage .cc-comp-source{display:inline-flex;align-items:center;min-height:28px;flex:none;border:1px solid #bfe3ce;border-radius:999px;background:#f0faf4;padding:3px 10px;color:#16794c;font-size:12px!important;font-weight:600!important;white-space:nowrap}
+#considerCustomerDetailPage .cc-comp-source.mock{background:#fff5df;color:#9a5b00}
+#considerCustomerDetailPage .cc-comp-body{display:grid;gap:14px;padding:16px}
+#considerCustomerDetailPage .cc-comp-table-wrap{overflow-x:auto;border:1px solid #dbe7f3;border-radius:10px;scrollbar-gutter:stable}
+#considerCustomerDetailPage .cc-comp-table{width:100%;min-width:860px;border-collapse:collapse;font-size:16px!important}
+#considerCustomerDetailPage .cc-comp-table th{background:#f1f6fd;padding:11px 13px;border-right:1px solid #dbe7f3;color:#334155;font-weight:700;text-align:right}
+#considerCustomerDetailPage .cc-comp-table th:first-child{text-align:left}
+#considerCustomerDetailPage .cc-comp-table th:last-child{border-right:0}
+#considerCustomerDetailPage .cc-comp-table td{padding:12px 13px;border-top:1px solid #e6edf5;border-right:1px solid #edf2f7;color:#40556d;text-align:right;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-table td:last-child{border-right:0}
+#considerCustomerDetailPage .cc-comp-table tbody tr:hover td{background:#f8fbff}
+#considerCustomerDetailPage .cc-comp-table td:first-child{display:flex;align-items:center;gap:9px;text-align:left;font-weight:600;color:#243f5d}
+#considerCustomerDetailPage .cc-comp-table td:first-child .material-icons-round{color:#0b80c9;font-size:19px!important}
+#considerCustomerDetailPage .cc-comp-table td strong{color:#173454;font-size:17px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-row-uncovered{display:block;min-width:150px}
+#considerCustomerDetailPage .cc-comp-row-input{position:relative;display:block}
+#considerCustomerDetailPage .cc-comp-row-input input{width:100%;height:44px;border:1px solid #c9d6e4;border-radius:9px;background:#fff;padding:0 48px 0 10px;color:#203850;font-size:16px!important;font-weight:600;text-align:right;outline:none;font-variant-numeric:tabular-nums;transition:border-color .15s ease,box-shadow .15s ease}
+#considerCustomerDetailPage .cc-comp-row-input>span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#718096;font-size:13px!important;font-weight:600!important;pointer-events:none}
+#considerCustomerDetailPage .cc-comp-row-input input:focus{border-color:#1458d6;box-shadow:0 0 0 3px rgba(20,88,214,.14)}
+#considerCustomerDetailPage .cc-comp-opd-amount{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #cfe1f4;border-radius:10px;background:#f8fbff;padding:15px 16px}
+#considerCustomerDetailPage .cc-comp-opd-amount>div{display:flex;align-items:center;gap:9px;color:#40556d;font-size:16px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-opd-amount .material-icons-round{color:#2f7df3}
+#considerCustomerDetailPage .cc-comp-opd-amount strong{color:#075f99;font-size:21px!important;font-weight:700!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-formula{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;border-left:4px solid #38a8eb;border-radius:8px;background:#f0f8ff;padding:11px 13px;color:#315679;font-size:15px!important;font-weight:600!important}
+#considerCustomerDetailPage .cc-comp-formula .material-icons-round{color:#1458d6;font-size:21px!important}
+#considerCustomerDetailPage .cc-comp-formula strong{color:#075f99;font-size:18px!important;font-weight:700!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-section-caption{display:flex;align-items:center;gap:8px;margin-top:2px;color:#075f99;font-size:16px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-section-caption .material-icons-round{display:grid;width:28px;height:28px;place-items:center;border-radius:7px;background:#e5f3ff;color:#075f99;font-size:18px!important}
+#considerCustomerDetailPage .cc-comp-summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#considerCustomerDetailPage .cc-comp-summary-item,#considerCustomerDetailPage .cc-comp-field{display:grid;gap:7px;min-height:82px;border:1px solid #dbe7f3;border-radius:10px;background:#fff;padding:12px 13px}
+#considerCustomerDetailPage .cc-comp-summary-item{background:#f8fbff}
+#considerCustomerDetailPage .cc-comp-summary-item span,#considerCustomerDetailPage .cc-comp-field>span,#considerCustomerDetailPage .cc-comp-note>span{color:#586c82;font-size:15px!important;font-weight:600!important}
+#considerCustomerDetailPage .cc-comp-summary-item strong{color:#173454;font-size:19px!important;font-weight:700!important;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-input-wrap{position:relative}
+#considerCustomerDetailPage .cc-comp-input-wrap input,#considerCustomerDetailPage .cc-comp-field select,#considerCustomerDetailPage .cc-comp-note textarea{width:100%;border:1px solid #c9d6e4;border-radius:9px;background:#fff;color:#203850;font-size:16px!important;outline:none;transition:border-color .15s ease,box-shadow .15s ease}
+#considerCustomerDetailPage .cc-comp-input-wrap input{height:46px;padding:0 54px 0 12px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-input-wrap span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#718096;font-size:14px!important;font-weight:600!important}
+#considerCustomerDetailPage .cc-comp-field select{height:46px;padding:0 11px}
+#considerCustomerDetailPage .cc-comp-note{display:grid;gap:7px}
+#considerCustomerDetailPage .cc-comp-note textarea{min-height:78px;resize:none;padding:10px 12px;line-height:1.5}
+#considerCustomerDetailPage .cc-comp-input-wrap input:focus,#considerCustomerDetailPage .cc-comp-field select:focus,#considerCustomerDetailPage .cc-comp-note textarea:focus{border-color:#1458d6;box-shadow:0 0 0 3px rgba(20,88,214,.14)}
+#considerCustomerDetailPage [aria-invalid="true"]{border-color:#dc3545!important;box-shadow:0 0 0 3px rgba(220,53,69,.10)!important}
+#considerCustomerDetailPage .cc-comp-validation{display:none;border:1px solid #f3b8bf;border-radius:10px;background:#fff1f2;padding:10px 12px;color:#b42332;font-size:15px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-validation.show{display:block}
+#considerCustomerDetailPage .cc-comp-approved{display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #afe0c3;border-left:4px solid #20a464;border-radius:10px;background:#effbf4;padding:13px 15px;color:#137545}
+#considerCustomerDetailPage .cc-comp-approved>div{display:flex;align-items:center;gap:8px;font-size:17px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-approved strong{font-size:22px!important;font-weight:700!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-review-head{display:flex;align-items:center;gap:11px;padding:13px 15px;border-left:4px solid #12a3ff;border-bottom:1px solid #dbe7f3;background:#eef6ff}
+#considerCustomerDetailPage .cc-comp-review-head>.material-icons-round{display:grid;width:36px;height:36px;place-items:center;border-radius:9px;background:#dff2ff;color:#075f99;font-size:21px!important}
+#considerCustomerDetailPage .cc-comp-review-table-wrap{margin:16px 16px 7px;overflow-x:auto;border:1px solid #d8e5f2;border-radius:10px;background:#fff;scrollbar-color:#9bbbd8 #edf5fc;scrollbar-width:thin}
+#considerCustomerDetailPage .cc-comp-review-table-wrap:focus-visible{outline:3px solid rgba(20,88,214,.20);outline-offset:2px}
+#considerCustomerDetailPage .cc-comp-review-table{width:100%;min-width:820px;border-collapse:collapse;font-size:15px!important}
+#considerCustomerDetailPage .cc-comp-review-table th,#considerCustomerDetailPage .cc-comp-review-table td{padding:12px 13px;border-right:1px solid #e0e9f2;border-bottom:1px solid #e0e9f2;vertical-align:middle}
+#considerCustomerDetailPage .cc-comp-review-table tr>*:last-child{border-right:0}
+#considerCustomerDetailPage .cc-comp-review-table thead th{background:#f1f6fd;color:#31506f;font-size:15px!important;font-weight:700!important;text-align:left;white-space:nowrap}
+#considerCustomerDetailPage .cc-comp-review-table thead th:not(:first-child),#considerCustomerDetailPage .cc-comp-review-table tbody td{text-align:right}
+#considerCustomerDetailPage .cc-comp-review-table tbody th{width:52%;color:#334b63;font-size:15px!important;font-weight:600!important;line-height:1.45;text-align:left}
+#considerCustomerDetailPage .cc-comp-review-table tbody td{color:#203850;font-weight:600!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-review-table tbody tr:not(.cc-comp-review-table-total):hover{background:#f8fbff}
+#considerCustomerDetailPage .cc-comp-review-table .cc-comp-review-table-total th,#considerCustomerDetailPage .cc-comp-review-table .cc-comp-review-table-total td{border-bottom:0;border-top:2px solid #bcd7f2;background:#eef6ff;color:#075f99;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-review-lines{display:grid;gap:0;padding:7px 16px}
+#considerCustomerDetailPage .cc-comp-review-lines>div{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed #dce5ee;color:#52677d;font-size:16px!important}
+#considerCustomerDetailPage .cc-comp-review-lines strong{color:#203850;text-align:right;font-weight:600!important;font-variant-numeric:tabular-nums}
+#considerCustomerDetailPage .cc-comp-review-total{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:7px 16px 16px;border:1px solid #afe0c3;border-left:4px solid #20a464;border-radius:10px;background:#effbf4;padding:13px 15px;color:#137545;font-size:17px!important;font-weight:700!important}
+#considerCustomerDetailPage .cc-comp-review-total strong{font-size:22px!important;font-weight:700!important;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:700px){
+  #considerCustomerDetailPage .cc-comp-head{flex-direction:column;padding:16px}
+  #considerCustomerDetailPage .cc-comp-source{align-self:flex-start}
+  #considerCustomerDetailPage .cc-comp-body{padding:15px}
+  #considerCustomerDetailPage .cc-comp-summary-grid{grid-template-columns:1fr}
+  #considerCustomerDetailPage .cc-comp-formula{grid-template-columns:auto 1fr}
+  #considerCustomerDetailPage .cc-comp-formula strong{grid-column:1/-1;padding-left:31px}
+  #considerCustomerDetailPage .cc-comp-opd-amount,#considerCustomerDetailPage .cc-comp-approved,#considerCustomerDetailPage .cc-comp-review-total{align-items:flex-start;flex-direction:column}
+  #considerCustomerDetailPage .cc-comp-review-lines>div{flex-direction:column;gap:5px}
+  #considerCustomerDetailPage .cc-comp-review-lines strong{text-align:left}
+}
+@media(prefers-reduced-motion:reduce){#considerCustomerDetailPage .cc-comp-input-wrap input,#considerCustomerDetailPage .cc-comp-row-input input,#considerCustomerDetailPage .cc-comp-field select,#considerCustomerDetailPage .cc-comp-note textarea{transition:none}}
+</style>
+
 <style id="claimline-entitlement-derived-v1">
   :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived,
   :is(#ccStepPane2,#hfStepPane2,#hhStepPane2) .cc-ref-prelim-table .ce-input-derived:disabled{
@@ -53334,8 +53767,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "292",
-  updatedAt: "22/09/2026 00:42:00"
+  version: "314",
+  updatedAt: "24/09/2026 08:34:27"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -56414,12 +56847,14 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     root = root || document;
     try {
       root.querySelectorAll(FIELD_SELECTOR).forEach(function(el){
+        if (el.closest('.physical-therapy-section')) return;
         el.style.setProperty('font-size','14px','important');
         el.style.setProperty('line-height','1.35','important');
         el.style.setProperty('font-weight','500','important');
         el.style.setProperty('letter-spacing','0','important');
       });
       root.querySelectorAll(LABEL_SELECTOR).forEach(function(el){
+        if (el.closest('.physical-therapy-section')) return;
         el.style.setProperty('font-size','13px','important');
         el.style.setProperty('line-height','1.3','important');
         el.style.setProperty('font-weight','600','important');
@@ -56936,6 +57371,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
 
   function setTypo(el, cfg){
     if(!el || !cfg) return;
+    if(el.closest('.physical-therapy-section')) return;
     if(el.classList && (el.classList.contains('material-icons-round') || el.classList.contains('material-symbols-outlined'))) return;
     el.style.setProperty('font-size', cfg.size, 'important');
     el.style.setProperty('font-weight', cfg.weight, 'important');
@@ -56973,6 +57409,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     });
 
     document.querySelectorAll('select option').forEach(opt => {
+      if(opt.closest('.physical-therapy-section')) return;
       opt.style.setProperty('font-size', '14px', 'important');
       opt.style.setProperty('line-height', '20px', 'important');
       opt.style.setProperty('font-weight', '400', 'important');
@@ -62999,12 +63436,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     width:100%;
     max-width:1540px;
     margin:0 auto;
-    padding:16px 18px 34px!important;
+    padding:18px 20px 36px!important;
     color:var(--ttp-text);
     font-size:16px;
     background:
-      radial-gradient(circle at 100% 0%,rgba(47,125,243,.065),transparent 28%),
-      linear-gradient(180deg,#f8fbfe 0%,#f3f7fb 100%);
+      radial-gradient(circle at 100% 0%,rgba(47,125,243,.055),transparent 30%),
+      linear-gradient(180deg,#f9fbfd 0%,#f3f7fb 100%);
   }
   #transferTrackingPage *{box-sizing:border-box}
   #transferTrackingPage button,#transferTrackingPage input,#transferTrackingPage select{font-family:inherit}
@@ -63030,7 +63467,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
   #transferTrackingPage .tt-transfer-type-tab{
     min-width:190px;
-    min-height:44px;
+    min-height:46px;
     padding:8px 16px;
     border:0;
     border-radius:10px;
@@ -63055,12 +63492,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage.tt-redesign .tt-filter-redesign{
     position:relative;
     margin:0!important;
-    padding:18px!important;
+    padding:20px!important;
     overflow:hidden;
     border:1px solid var(--ttp-line)!important;
     border-radius:18px 18px 0 0!important;
     background:linear-gradient(180deg,#fff,#fbfdff)!important;
-    box-shadow:0 8px 22px rgba(25,62,98,.06)!important;
+    box-shadow:0 10px 28px rgba(25,62,98,.055)!important;
   }
   #transferTrackingPage.tt-redesign .tt-filter-redesign::after{
     content:"";
@@ -63093,8 +63530,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-monitor-label{margin-bottom:6px!important;color:#526b82!important;font-size:14px!important;font-weight:800!important}
   #transferTrackingPage .tt-monitor-input,
   #transferTrackingPage .tt-inline-checks{
-    height:44px!important;
-    min-height:44px!important;
+    height:46px!important;
+    min-height:46px!important;
     border-radius:11px!important;
   }
   #transferTrackingPage .tt-monitor-input{
@@ -63107,8 +63544,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-monitor-input:hover{border-color:#adc7db!important}
   #transferTrackingPage .tt-monitor-input:focus{border-color:#5b9fe0!important;box-shadow:0 0 0 3px rgba(20,88,214,.09)!important}
   #transferTrackingPage .tt-inline-checks{padding:0 12px;border:1px solid #cbdbe8;background:#fff}
-  #transferTrackingPage .tt-monitor-search-wrap{height:44px!important}
-  #transferTrackingPage .tt-monitor-search-wrap .tt-monitor-input{height:44px!important;padding-right:44px!important}
+  #transferTrackingPage .tt-monitor-search-wrap{height:46px!important}
+  #transferTrackingPage .tt-monitor-search-wrap .tt-monitor-input{height:46px!important;padding-right:44px!important}
   #transferTrackingPage .tt-keyword-clear{
     position:absolute;
     top:50%;right:9px;
@@ -63121,7 +63558,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-keyword-clear.hidden{display:none!important}
   #transferTrackingPage .tt-keyword-clear .material-icons-round{font-size:18px!important}
   #transferTrackingPage .tt-monitor-actions-inline .tt-btn{
-    height:44px!important;
+    height:46px!important;
     border-radius:11px!important;
     font-size:15px!important;
     font-weight:800!important;
@@ -63152,7 +63589,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
   #transferTrackingPage .tt-status-filter-btn{
     min-width:150px!important;
-    min-height:44px!important;
+    min-height:46px!important;
     padding:8px 12px!important;
     border:1px solid #d6e2ec!important;
     border-radius:12px!important;
@@ -63163,7 +63600,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     justify-content:center!important;
     gap:7px!important;
     box-shadow:none!important;
-    font-size:14px!important;
+    font-size:15px!important;
     font-weight:800!important;
     white-space:nowrap!important;
   }
@@ -63183,8 +63620,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-premium-summary-card{
     position:relative;
     min-width:0;
-    min-height:108px;
-    padding:16px 17px;
+    min-height:112px;
+    padding:17px 18px;
     overflow:hidden;
     border:1px solid var(--ttp-line);
     border-radius:16px;
@@ -63210,8 +63647,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     box-shadow:0 8px 24px rgba(25,62,98,.065);
   }
   #transferTrackingPage .tt-results-head{
-    min-height:76px;
-    padding:15px 18px;
+    min-height:78px;
+    padding:16px 18px;
     border-bottom:1px solid var(--ttp-line);
     display:flex;
     align-items:center;
@@ -63246,7 +63683,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     white-space:nowrap!important;
   }
   #transferTrackingPage.tt-redesign .tt-table tbody td{
-    padding:11px 12px!important;
+    height:64px;
+    padding:12px!important;
     border-bottom:1px solid #e5edf4!important;
     background:#fff!important;
     color:#294158!important;
@@ -63254,6 +63692,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     vertical-align:middle!important;
   }
   #transferTrackingPage .tt-table tbody tr.tt-main-row:hover>td{background:#f3f9fe!important}
+  #transferTrackingPage .tt-table tbody tr.tt-main-row:has(.tt-expand[aria-expanded="true"])>td{background:#eef7ff!important}
   #transferTrackingPage .tt-table th:last-child,#transferTrackingPage .tt-table td:last-child{width:92px!important;min-width:92px!important;max-width:92px!important}
   #transferTrackingPage .tt-transfer-ref{color:#0874bd!important;font-size:15px!important;font-weight:900!important;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
   #transferTrackingPage .tt-secondary-ref{margin-top:3px;color:#74889b;font-size:13px;font-weight:650}
@@ -63271,7 +63710,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     align-items:center!important;
     gap:5px!important;
     border:1px solid transparent!important;
-    font-size:13px!important;
+    font-size:14px!important;
     font-weight:900!important;
     line-height:1.2!important;
     white-space:nowrap!important;
@@ -63282,7 +63721,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-status.fail{border-color:#efbdc0!important;background:#fde9ea!important;color:var(--ttp-danger)!important}
   #transferTrackingPage .tt-status .material-icons-round{font-size:15px!important}
   #transferTrackingPage .tt-expand{
-    width:30px!important;height:30px!important;
+    width:36px!important;height:36px!important;
     border:1px solid #cfe1ef!important;
     border-radius:999px!important;
     background:#f7fbff!important;color:#1474b9!important;
@@ -63290,7 +63729,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-expand .material-icons-round{font-size:19px!important}
   #transferTrackingPage .tt-row-actions{width:auto!important;min-width:0!important;max-width:none!important;display:flex!important;justify-content:center!important;gap:7px!important}
   #transferTrackingPage .tt-row-icon-btn{
-    width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;
+    width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
     border:1px solid #bcdcf3!important;border-radius:999px!important;
     display:grid!important;place-items:center!important;
     background:#f4faff!important;color:#0874bd!important;
@@ -63320,8 +63759,20 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-claims-table{width:100%;min-width:620px;border-collapse:collapse}
   #transferTrackingPage .tt-claims-table th{padding:10px 11px;background:#edf5fa;color:#48677e;font-size:13px;text-align:left;white-space:nowrap}
   #transferTrackingPage .tt-claims-table td{padding:11px;border-top:1px solid #edf2f6;color:#395369;font-size:14px}
-  #transferTrackingPage .tt-pager{min-height:52px!important;padding:8px 16px!important;border-top:1px solid #e1eaf2!important;background:#fff!important}
-  #transferTrackingPage .tt-pager button{width:34px;height:34px;border:1px solid #dce7f0;border-radius:9px;background:#fff;color:#31536e;font-size:18px}
+  #transferTrackingPage .tt-pager{min-height:56px!important;padding:8px 16px!important;border-top:1px solid #e1eaf2!important;background:#fff!important;font-size:14px!important}
+  #transferTrackingPage .tt-page-size-label{color:#526b82;font-size:14px;font-weight:800;white-space:nowrap}
+  #transferTrackingPage .tt-page-size-select{
+    width:80px;height:40px;padding:0 30px 0 12px;
+    border:1px solid #cbdbe8;border-radius:10px;
+    background-color:#fff;color:#274157;
+    font-family:inherit;font-size:15px;font-weight:800;
+    cursor:pointer;
+  }
+  #transferTrackingPage .tt-page-size-select:hover{border-color:#8fb8d8;background-color:#f8fbff}
+  #transferTrackingPage .tt-page-size-select:focus-visible{border-color:#5b9fe0;box-shadow:0 0 0 3px rgba(20,88,214,.09)}
+  #transferTrackingPage #ttPagerText{min-width:92px;color:#526b82;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #transferTrackingPage .tt-pager button{width:40px;height:40px;border:1px solid #dce7f0;border-radius:10px;background:#fff;color:#31536e;font-size:18px}
+  #transferTrackingPage .tt-pager button:not(:disabled):hover{border-color:#8fb8d8;background:#edf7ff;color:#126cae}
   #transferTrackingPage .tt-pager button:disabled{cursor:not-allowed;opacity:.38;background:#f3f6f8}
   #transferTrackingPage .tt-card-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;padding:14px!important;background:#f7fafc!important}
   #transferTrackingPage .tt-mobile-card{padding:15px!important;border:1px solid #dce7f1!important;border-radius:15px!important;background:#fff!important;box-shadow:0 2px 8px rgba(24,57,90,.045)!important}
@@ -63344,6 +63795,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferTrackingPage .tt-empty-state strong{display:block;color:#35536a;font-size:15px}
   #transferTrackingPage .tt-empty-state span{display:block;margin-top:4px;font-size:13px}
   #transferClaimDetailPage .tdr-transfer-failure{margin:0 0 14px;padding:12px 14px;border:1px solid #efb8bc;border-left:4px solid #c9363e;border-radius:11px;background:#fff2f3;color:#8f2830;font-weight:800}
+
   @media(max-width:1100px){
     #transferTrackingPage.tt-redesign .tt-monitor-primary-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
     #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(1),
@@ -63362,7 +63814,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     #transferTrackingPage.tt-page{padding:10px 8px 26px!important}
     #transferTrackingPage .tt-transfer-type-tabs{display:flex;width:100%}
     #transferTrackingPage .tt-transfer-type-tab{min-width:max-content;flex:1}
-    #transferTrackingPage.tt-redesign .tt-filter-redesign{padding:14px!important;border-radius:15px 15px 0 0!important}
+    #transferTrackingPage.tt-redesign .tt-filter-redesign{padding:16px!important;border-radius:15px 15px 0 0!important}
     #transferTrackingPage.tt-redesign .tt-monitor-primary-grid{grid-template-columns:1fr!important}
     #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(1),
     #transferTrackingPage.tt-redesign .tt-monitor-primary-grid>.tt-monitor-control:nth-child(2),
@@ -63387,6 +63839,15 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     #transferTrackingPage .tt-detail-topline{flex-direction:column}
     #transferTrackingPage .tt-detail-side{justify-content:flex-start}
     #transferTrackingPage .tt-detail-amount{white-space:normal}
+    #transferTrackingPage .tt-monitor-input,
+    #transferTrackingPage .tt-inline-checks,
+    #transferTrackingPage .tt-monitor-actions-inline .tt-btn,
+    #transferTrackingPage .tt-status-filter-btn{min-height:48px!important;height:48px!important}
+    #transferTrackingPage .tt-row-icon-btn,
+    #transferTrackingPage .tt-card-detail-btn{min-height:44px!important}
+    #transferTrackingPage .tt-pager{gap:8px!important;padding:10px 12px!important;flex-wrap:wrap}
+    #transferTrackingPage .tt-page-size-select{height:44px}
+    #transferTrackingPage .tt-pager button{width:44px;height:44px}
   }
   @media(max-width:460px){
     #transferTrackingPage .tt-transfer-type-tab{min-width:170px;flex:none}
@@ -63436,6 +63897,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
 
   const customerRows=transferTrackingRows.map(enrichCustomer);
+  const multiCaseCustomer=customerRows.find(row=>row.refNo==='CPG690800139');
+  if(multiCaseCustomer){
+    multiCaseCustomer.claims=[
+      {claimNo:'CL690800139',caseNo:'CASE69080139-01',insured:'นายวิชาญ ศรีพงศ์สกุล',amount:2000,product:'PH'},
+      {claimNo:'CL690800139',caseNo:'CASE69080139-02',insured:'นายวิชาญ ศรีพงศ์สกุล',amount:1800.50,product:'PH'},
+      {claimNo:'CL690800139',caseNo:'CASE69080139-03',insured:'นายวิชาญ ศรีพงศ์สกุล',amount:2600,product:'PH'}
+    ];
+  }
   const hospitalRows=[
     {refNo:'HCG690800024',claimNo:'CL690800224',created:'25/08/2569 13:15:20',notifyDate:'25/08/2569 13:28:05',transferDate:'-',insured:'นายปกรณ์ วัฒนา',hospital:'โรงพยาบาลพระราม 9',product:'PH',claimType:'IPD',amount:127000,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'กสิกรไทย',account:'154-2-884210',payee:'บจก. โรงพยาบาลพระราม 9',payeeRelation:'สถานพยาบาล',branch:'สำนักงานใหญ่',canEdit:false,canPay:true,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800224',caseNo:'CASE69080224-01',insured:'นายปกรณ์ วัฒนา',amount:85000,product:'PH'},{claimNo:'CL690800225',caseNo:'CASE69080225-01',insured:'นางวรรณา พรชัย',amount:42000,product:'PH'}]},
     {refNo:'HCG690800023',claimNo:'CL690800223',created:'25/08/2569 12:42:10',notifyDate:'25/08/2569 12:55:41',transferDate:'25/08/2569 13:12:06',insured:'นางสาวชนิดา สุขสันต์',hospital:'โรงพยาบาลกรุงเทพ',product:'PH',claimType:'IPD',amount:192500,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'ไทยพาณิชย์',account:'989-0-447120',payee:'บมจ. กรุงเทพดุสิตเวชการ',payeeRelation:'สถานพยาบาล',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'โรงพยาบาล',claims:[{claimNo:'CL690800223',caseNo:'CASE69080223-01',insured:'นางสาวชนิดา สุขสันต์',amount:118000,product:'PH'},{claimNo:'CL690800222',caseNo:'CASE69080222-01',insured:'นายอนุชา แก้วดี',amount:74500,product:'PH'}]},
@@ -63461,9 +63930,11 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const start=total?(transferTrackingState.page-1)*transferTrackingState.pageSize+1:0;
     const end=Math.min(total,transferTrackingState.page*transferTrackingState.pageSize);
     const pager=document.getElementById('ttPagerText');
+    const pageSize=document.getElementById('ttPageSize');
     const previous=document.getElementById('ttPrevPageBtn');
     const next=document.getElementById('ttNextPageBtn');
     if(pager)pager.textContent=`${start}-${end} จาก ${total}`;
+    if(pageSize)pageSize.value=String(transferTrackingState.pageSize);
     if(previous)previous.disabled=transferTrackingState.page<=1;
     if(next)next.disabled=transferTrackingState.page>=totalPages();
   }
@@ -63588,25 +64059,37 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
 
   function claimRows(row){return Array.isArray(row.claims)&&row.claims.length?row.claims:[{claimNo:row.claimNo,caseNo:claimCase(row.claimNo,0),insured:row.insured,amount:row.amount,product:row.product}];}
+  function claimCaseCounts(row){
+    const cases=claimRows(row);
+    return {claimCount:new Set(cases.map(item=>item.claimNo)).size,caseCount:cases.length};
+  }
   function buildExpanded(row){
     const claims=claimRows(row);
+    const counts=claimCaseCounts(row);
     const sourceIndex=transferTrackingState.rows.indexOf(row);
     const failure=rowStatusKey(row)==='fail'?`<div class="tt-failure-alert"><strong>สาเหตุที่โอนไม่สำเร็จ:</strong> ${esc(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร')}</div>`:'';
     const accountMeta=transferTrackingState.mode==='hospital'?`<div><span>บัญชีปลายทาง</span><strong>${esc(row.bank||'-')} •••• ${esc(String(row.account||'').replace(/\D/g,'').slice(-4)||'-')}</strong></div>`:'';
     const detailActions=`${rowStatusKey(row)==='fail'?`<button type="button" class="tt-detail-action edit" onclick="openTransferTrackingEdit(${sourceIndex})"><span class="material-icons-round" aria-hidden="true">edit</span>แก้ไขบัญชี</button>`:''}${row.canPay?`<button type="button" class="tt-detail-action pay" onclick="showTransferPaymentModal(${sourceIndex})"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>แจ้งโอนเงิน</button>`:''}`;
-    return `<div class="tt-premium-detail"><div class="tt-detail-banner"><span class="material-icons-round" aria-hidden="true">keyboard_arrow_up</span>รายละเอียดรายการโอน</div><div class="tt-detail-topline"><div><h3>${esc(row.refNo)} • ${esc(row.recipient||row.payee||row.hospital||'-')}</h3><div class="tt-detail-meta"><div><span>Claim / Case</span><strong>${claims.length} Claim · ${claims.length} Case</strong></div><div><span>ผลิตภัณฑ์</span><strong>${esc(row.product)}</strong></div>${accountMeta}</div></div><div class="tt-detail-side"><span class="tt-detail-amount">จำนวนเงิน ${money(row.amount)} บาท</span>${detailActions}</div></div>${failure}<div class="tt-detail-content-grid"><section class="tt-detail-panel"><div class="tt-claims-table-wrap"><table class="tt-claims-table"><thead><tr><th>เลขที่ Claim</th><th>เลขที่ Case</th><th>ผู้เอาประกัน</th><th>ผลิตภัณฑ์</th><th class="text-right">จำนวนเงิน</th></tr></thead><tbody>${claims.map(item=>`<tr><td>${esc(item.claimNo)}</td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(item.product||row.product)}</td><td class="text-right">${money(item.amount)}</td></tr>`).join('')}</tbody></table></div></section></div></div>`;
+    return `<div class="tt-premium-detail"><div class="tt-detail-banner"><span class="material-icons-round" aria-hidden="true">keyboard_arrow_up</span>รายละเอียดรายการโอน</div><div class="tt-detail-topline"><div><h3>${esc(row.refNo)} • ${esc(row.recipient||row.payee||row.hospital||'-')}</h3><div class="tt-detail-meta"><div><span>Claim / Case</span><strong>${counts.claimCount} Claim · ${counts.caseCount} Case</strong></div><div><span>ผลิตภัณฑ์</span><strong>${esc(row.product)}</strong></div>${accountMeta}</div></div><div class="tt-detail-side"><span class="tt-detail-amount">จำนวนเงิน ${money(row.amount)} บาท</span>${detailActions}</div></div>${failure}<div class="tt-detail-content-grid"><section class="tt-detail-panel"><div class="tt-claims-table-wrap"><table class="tt-claims-table"><thead><tr><th>เลขที่ Claim</th><th>เลขที่ Case</th><th>ผู้เอาประกัน</th><th>ผลิตภัณฑ์</th><th class="text-right">จำนวนเงิน</th></tr></thead><tbody>${claims.map(item=>`<tr><td>${esc(item.claimNo)}</td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(item.product||row.product)}</td><td class="text-right">${money(item.amount)}</td></tr>`).join('')}</tbody></table></div></section></div></div>`;
   }
 
   function applyTransferTrackingTypography(){
     const page=document.getElementById('transferTrackingPage');
     if(!page)return;
     const rules=[
+      ['.tt-transfer-type-tab','16px','800','22px'],
+      ['.tt-monitor-input','16px','650','22px'],
+      ['.tt-monitor-label,.tt-summary-label,.tt-results-head p,.tt-view-toggle-redesign button','14px','700','20px'],
+      ['.tt-monitor-actions-inline .tt-btn,.tt-status-filter-head,.tt-status-filter-btn','15px','800','21px'],
+      ['.tt-summary-value','26px','900','29px'],
+      ['.tt-summary-note,.tt-status-filter-btn .tt-filter-count','13px','700','19px'],
+      ['.tt-results-head h2','20px','900','28px'],
       ['.tt-main-row td','15px','400','22px'],
       ['.tt-table thead th','14px','900','20px'],
       ['.tt-transfer-ref,.tt-recipient-name,.tt-money','15px','900','21px'],
       ['.tt-claim-stack strong','14px','800','20px'],
       ['.tt-claim-stack span,.tt-recipient-sub,.tt-secondary-ref','13px','650','19px'],
-      ['.tt-status','13px','800','16px'],
+      ['.tt-status','14px','800','18px'],
       ['.tt-detail-banner','14px','900','20px'],
       ['.tt-detail-topline h3','17px','900','24px'],
       ['.tt-detail-meta strong','13px','700','19px'],
@@ -63617,7 +64100,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       ['.tt-card-label,.tt-card-secondary,.tt-card-count','13px','700','19px'],
       ['.tt-card-value','16px','900','22px'],
       ['.tt-card-money','22px','900','27px'],
-      ['.tt-card-detail-btn','14px','850','20px']
+      ['.tt-card-detail-btn,.tt-pager','14px','850','20px']
     ];
     rules.forEach(([selector,size,weight,lineHeight])=>page.querySelectorAll(selector).forEach(element=>{
       element.style.setProperty('font-size',size,'important');
@@ -63627,6 +64110,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
   function scheduleTransferTrackingTypography(){
     requestAnimationFrame(()=>requestAnimationFrame(applyTransferTrackingTypography));
+    [60,180].forEach(delay=>setTimeout(applyTransferTrackingTypography,delay));
   }
 
   window.toggleTransferTrackingRow=function(refNo){
@@ -63646,6 +64130,15 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     window.renderTransferTrackingCards();
     document.querySelector('#transferTrackingPage .tt-results-surface')?.scrollIntoView({block:'start',behavior:'smooth'});
   };
+  window.setTransferTrackingPageSize=function(value){
+    const pageSize=Number(value);
+    if(![10,20,50].includes(pageSize))return;
+    transferTrackingState.pageSize=pageSize;
+    transferTrackingState.page=1;
+    transferTrackingState.openRows.clear();
+    window.renderTransferTrackingTable();
+    window.renderTransferTrackingCards();
+  };
 
   window.renderTransferTrackingTable=function(){
     const head=document.getElementById('transferTrackingTableHead');
@@ -63659,11 +64152,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     body.innerHTML=pageRows().map(({row,sourceIndex})=>{
       const open=transferTrackingState.openRows.has(row.refNo);
       const claims=claimRows(row);
+      const counts=claimCaseCounts(row);
       const actions=`<div class="tt-row-actions"><button type="button" class="tt-row-icon-btn detail" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}" title="ดูรายละเอียด"><span class="material-icons-round" aria-hidden="true">visibility</span></button></div>`;
       const recipientSub=transferTrackingState.mode==='hospital'
         ?`${row.bank||'-'} •••• ${String(row.account||'').replace(/\D/g,'').slice(-4)||'-'}`
         :(row.beneficiaries?.length?(row.beneficiaries[0].note||''): '');
-      const claimDisplay=claims.length===1?`<div class="tt-claim-stack"><strong>${esc(claims[0].claimNo)}</strong><span>${esc(claims[0].caseNo)}</span></div>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')">${claims.length} Claim · ${claims.length} Case</button>`;
+      const claimDisplay=counts.caseCount===1?`<div class="tt-claim-stack"><strong>${esc(claims[0].claimNo)}</strong><span>${esc(claims[0].caseNo)}</span></div>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-label="ขยาย ${counts.claimCount} Claim ${counts.caseCount} Case">${counts.claimCount} Claim · ${counts.caseCount} Case</button>`;
       return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><button type="button" class="tt-transfer-ref" onclick="openTransferTrackingDetail(${sourceIndex})">${esc(row.refNo)}</button></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${recipientSub?`<div class="tt-recipient-sub">${esc(recipientSub)}</div>`:''}</td><td>${claimDisplay}</td><td><span class="tt-sub-badge">${esc(row.product)}</span></td><td class="text-right tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(row.status)}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="9">${buildExpanded(row)}</td></tr>`:''}`;
     }).join('');
     syncPager();
@@ -63677,11 +64171,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const dateType=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
     host.innerHTML=pageRows().map(({row,sourceIndex})=>{
       const claims=claimRows(row);
+      const counts=claimCaseCounts(row);
       const receiverSub=transferTrackingState.mode==='hospital'
         ?`${row.bank||'-'} •••• ${String(row.account||'').replace(/\D/g,'').slice(-4)||'-'}`
         :(row.beneficiaries?.length?(row.beneficiaries[0].note||''): '');
       const productLine=[row.product,row.claimType].filter(Boolean).join(' • ');
-      return `<article class="tt-mobile-card"><div class="tt-card-head"><div><button type="button" class="tt-card-ref" onclick="openTransferTrackingDetail(${sourceIndex})">${esc(row.refNo)}</button><div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(row.status)}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล / บัญชี':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${receiverSub?`<div class="tt-card-secondary">${esc(receiverSub)}</div>`:''}<div class="tt-card-secondary">${esc(productLine)}</div></div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${claims.length} Claim · ${claims.length} Case</span><button type="button" class="tt-card-detail-btn" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span>ดูรายละเอียด</button></div></article>`;
+      return `<article class="tt-mobile-card"><div class="tt-card-head"><div><button type="button" class="tt-card-ref" onclick="openTransferTrackingDetail(${sourceIndex})">${esc(row.refNo)}</button><div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(row.status)}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล / บัญชี':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${receiverSub?`<div class="tt-card-secondary">${esc(receiverSub)}</div>`:''}<div class="tt-card-secondary">${esc(productLine)}</div></div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${counts.claimCount} Claim · ${counts.caseCount} Case</span><button type="button" class="tt-card-detail-btn" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span>ดูรายละเอียด</button></div></article>`;
     }).join('');
     syncPager();
     scheduleTransferTrackingTypography();
@@ -63750,6 +64245,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>{syncActiveSource();syncModeUi();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();window.setTransferTrackingView(transferTrackingState.view||'table');},700));
 })();
 </script>
+
+<!-- แจ้งเคลม: เลือกประเภทเคลม และส่งเคลมโรงพยาบาลเข้าคิวพิจารณา (authoritative late patch) -->
+<script src="js/menu-claim-entry-category.js"></script>
+
+<!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
+<script src="js/menu-physical-therapy.js?v=314"></script>
 
 </body>
 </html>
