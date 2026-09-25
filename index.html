@@ -53734,8 +53734,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "343",
-  updatedAt: "25/09/2026 16:59:17"
+  version: "344",
+  updatedAt: "25/09/2026 17:08:34"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64236,6 +64236,34 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- Death & Disability: จัดการบัญชีปลายทางแบบสร้าง/แก้ไข/ลบ -->
 <script src="js/menu-consider-death-account-management.js?v=331"></script>
+
+<!-- แจ้งเคลม: ซ่อนช่องยอดโอนแบบรวมเมื่อเลือกค่าชดเชย(ใหญ่) -->
+<style id="claim-entry-large-compensation-transfer-style">
+  #transferAmountWrap.hidden-by-large-compensation{display:none!important}
+</style>
+<script id="claim-entry-large-compensation-transfer-patch">
+(function(){
+  const sync = () => {
+    const wrap = document.getElementById('transferAmountWrap');
+    if (!wrap) return;
+    const isLargeCompensation = String(window.claimState?.coverageType || '') === 'ค่าชดเชย';
+    wrap.classList.toggle('hidden-by-large-compensation', isLargeCompensation);
+  };
+  const originalRender = window.renderClaimDynamicFields;
+  if (typeof originalRender === 'function') {
+    window.renderClaimDynamicFields = function(){
+      const result = originalRender.apply(this, arguments);
+      sync();
+      return result;
+    };
+  }
+  document.addEventListener('change', event => {
+    if (event.target?.matches('.coverage-type-input')) setTimeout(sync, 0);
+  });
+  window.syncLargeCompensationTransferVisibility = sync;
+  sync();
+})();
+</script>
 
 </body>
 </html>
