@@ -9005,7 +9005,7 @@ body > .min-h-screen > main,
 @media(max-width:768px){.step3-reference-scan-section{padding:14px!important}.step3-reference-scan-section table{min-width:840px!important}}
 </style>
 <!-- vHospitalStatus: removed hospital-only รอเอกสาร status; existing mock rows normalized to รอแก้ไข -->
-<link rel="stylesheet" href="css/claim-status-detail-card.css?v=332">
+<link rel="stylesheet" href="css/claim-status-detail-card.css?v=334">
 <link rel="stylesheet" href="css/menu-consider-death-account-management.css?v=331">
 <link rel="stylesheet" href="css/menu-consider-death-status.css?v=331">
 <!-- VERIFIED: Hospital Step1=Document Check, Step3=Scan Documents; isolated renderers -->
@@ -26949,7 +26949,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="cc-ref-money-card"><div class="cc-ref-money-label">ยอดไม่คุ้มครองรวม :</div><div><span id="customerSummaryUncoveredTotal" class="cc-ref-money-value">0.00</span><span class="cc-ref-money-unit">บาท</span></div></div>
             <div class="cc-ref-transfer-stack">
               <div class="cc-ref-transfer-card green"><span class="cc-ref-transfer-icon"><span class="material-icons-round">account_balance_wallet</span></span><span>ยอดเงินสุทธิ :</span><strong id="customerSummaryNet">0.00</strong><span>บาท</span></div>
-              <div class="cc-ref-transfer-card blue"><span class="cc-ref-transfer-icon"><span class="material-icons-round">request_quote</span></span><span>ยอดเงินโอน :</span><strong>${context?.source === 'hospital' ? '0.00' : '550.00'}</strong><span>บาท</span></div>
+              <div class="cc-ref-transfer-card blue"><span class="cc-ref-transfer-icon"><span class="material-icons-round">request_quote</span></span><span>จำนวนเงินโอนรวม :</span><strong>${context?.source === 'hospital' ? '0.00' : claimlineMoneyText(context?.transferAmount ?? window.currentConsiderCustomerRow?.amount ?? 0)}</strong><span>บาท</span></div>
             </div>
           </div>
         </div>
@@ -27251,7 +27251,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ${window.renderCustomerTransferScenarioAlert ? window.renderCustomerTransferScenarioAlert() : ""}
       ${renderTransferValidationMockups()}
       <section class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</section>
-      ${renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, autoCalculateEntitlement:true })}
+      ${renderCustomerMedicalExpenseSections({ coverage:selected.coverage, treatment:selected.treatment, source:'customer', transferAmount:window.currentConsiderCustomerRow?.amount, autoCalculateEntitlement:true })}
       <div class="cc-ref-decision-wrap">${renderDecisionButtons()}</div>
       <div class="cc-ref-actionbar">
         <button type="button" onclick="setCustomerStep(1)" class="cc-ref-back-btn claim-step-action-btn"><span class="material-icons-round">arrow_back</span>กลับ</button>
@@ -27357,7 +27357,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
       </div>
       <div class="cc-transfer-summary-grid">
-        ${card('eligible','verified_user','สิทธิ์เบิก',data.eligible, data.benefitSource ? `Benefit: ${data.benefitSource}` : 'Benefit ตามประเภทความคุ้มครองที่เลือก')}
+        ${card('eligible','verified_user','สิทธิ์ความคุ้มครอง',data.eligible, data.benefitSource ? `Benefit: ${data.benefitSource}` : 'Benefit ตามประเภทความคุ้มครองที่เลือก')}
         <article class="cc-transfer-summary-card npl ${data.npl <= 0 ? 'no-npl' : ''}">
           <div class="cc-transfer-summary-card-top">
             <span class="cc-transfer-summary-icon"><span class="material-icons-round">price_check</span></span>
@@ -48054,7 +48054,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     const a=$('customerSummaryReceiptTotal'),b=$('customerSummaryDiscountTotal'),c=$('customerSummaryUncoveredTotal'),d=$('customerSummaryNet');
     if(a)a.textContent=moneyText(receipt);if(b)b.textContent=moneyText(discount);if(c)c.textContent=moneyText(uncovered);if(d)d.textContent=moneyText(net);
   };
-  window.validateClaimlineNonCoverageReasons=function(){
+  window.validateClaimlineNonCoverageReasons=function(options={}){
     const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr'));
     let valid=true, firstInvalid=null;
     rows.forEach(row=>{
@@ -48078,7 +48078,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
       }else if(!invalid && hint){ hint.remove(); }
       if(invalid){ valid=false; if(!firstInvalid) firstInvalid=reason; }
     });
-    if(firstInvalid){ firstInvalid.focus({preventScroll:true}); }
+    if(firstInvalid && options.focusFirstInvalid === true){ firstInvalid.focus({preventScroll:true}); }
     return valid;
   };
   window.mapCustomerOcrUnmatchedItem=function(index){
@@ -48236,7 +48236,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   document.addEventListener('click',e=>{
     const button=e.target?.closest?.('button');
     const onclick=button?.getAttribute('onclick')||'';
-    if(button && /set(?:Customer|HospitalFull|HospitalHalf)Step\(3\)/.test(onclick) && !window.validateClaimlineNonCoverageReasons?.()){
+    if(button && /set(?:Customer|HospitalFull|HospitalHalf)Step\(3\)/.test(onclick) && !window.validateClaimlineNonCoverageReasons?.({focusFirstInvalid:true})){
       e.preventDefault();
       e.stopImmediatePropagation();
     }
@@ -53632,8 +53632,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "333",
-  updatedAt: "25/09/2026 15:02:48"
+  version: "339",
+  updatedAt: "25/09/2026 15:53:05"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64130,7 +64130,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- Shared historical status detail card for customer/hospital/Death claim entry -->
 <script src="js/mock-data/death-consideration-status.mock.js?v=329"></script>
-<script src="js/claim-status-detail-card.js?v=330"></script>
+<script src="js/claim-status-detail-card.js?v=334"></script>
 
 <!-- Death & Disability: จัดการบัญชีปลายทางแบบสร้าง/แก้ไข/ลบ -->
 <script src="js/menu-consider-death-account-management.js?v=331"></script>
