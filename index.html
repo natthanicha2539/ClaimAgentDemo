@@ -9005,6 +9005,9 @@ body > .min-h-screen > main,
 @media(max-width:768px){.step3-reference-scan-section{padding:14px!important}.step3-reference-scan-section table{min-width:840px!important}}
 </style>
 <!-- vHospitalStatus: removed hospital-only รอเอกสาร status; existing mock rows normalized to รอแก้ไข -->
+<link rel="stylesheet" href="css/claim-status-detail-card.css?v=332">
+<link rel="stylesheet" href="css/menu-consider-death-account-management.css?v=331">
+<link rel="stylesheet" href="css/menu-consider-death-status.css?v=331">
 <!-- VERIFIED: Hospital Step1=Document Check, Step3=Scan Documents; isolated renderers -->
 </head>
 
@@ -10389,13 +10392,6 @@ body > .min-h-screen > main,
                   <div class="billing-filter-group" role="group" aria-label="ประเภทการเคลม บังคับเลือก">
                     <button id="billingClaimTypeCustomer" type="button" aria-pressed="false" onclick="setBillingFundClaimType('customer')">เคลมลูกค้า</button>
                     <button id="billingClaimTypeHospital" type="button" aria-pressed="false" onclick="setBillingFundClaimType('hospital')">เคลมโรงพยาบาล</button>
-                  </div>
-                </div>
-                <div class="block billing-search-field billing-search-product">
-                  <span class="mb-1 block text-sm font-extrabold text-slate-500">ผลิตภัณฑ์<span class="text-red-500" aria-hidden="true">*</span></span>
-                  <div class="billing-filter-group" role="group" aria-label="ผลิตภัณฑ์ บังคับเลือก">
-                    <button id="billingProductPH" type="button" aria-pressed="false" onclick="setBillingProductFilter('PH')">PH</button>
-                    <button id="billingProductPA" type="button" aria-pressed="false" onclick="setBillingProductFilter('PA')">PA</button>
                   </div>
                 </div>
                 <label class="block billing-search-field billing-search-branch">
@@ -13664,7 +13660,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
       { date: "01/09/2569 12:32:44", claimCode: "CL6909000312", caseNo: "CC6909000312-01", hospital: "โรงพยาบาลวิชัยเวช", province: "สมุทรสาคร", name: "นายปกรณ์ ศิริวัฒนานนท์", claimType: "IPD", treatmentType: "IPD", product: "PH", amount: "14,200.00", itemStatus: "รอแก้ไข", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", admitDate: "30/08/2569", dischargeDate: "01/09/2569", ipdDays: 2, icuDays: 0, totalStayDays: 2, compensationDailyRate: 500, diagnosis: "N39.0 : Urinary tract infection | การติดเชื้อทางเดินปัสสาวะ", chiefComplaint: "ไข้ ปัสสาวะแสบขัด", note: "IPD / รอแก้ไขข้อมูล" },
 
-      { date: "01/09/2569 13:05:33", claimCode: "CL6909000313", caseNo: "CC6909000313-01", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางสาวอัญชลี พรชัย", claimType: "Day Case Surgery", treatmentType: "Day Case Surgery", product: "PA", amount: "7,500.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "อุบัติเหตุ", coverageType: "ค่ารักษา", incidentDate: "01/09/2569", admitDate: "01/09/2569", dischargeDate: "01/09/2569", ipdDays: 0, icuDays: 0, totalStayDays: 0, diagnosis: "S61.0 : Open wound of finger | แผลเปิดที่นิ้วมือ", chiefComplaint: "บาดแผลนิ้วมือจากของมีคม ต้องเย็บแผล", note: "PA + Day Case Surgery" },
+      { date: "01/09/2569 13:05:33", claimCode: "CL6909000313", caseNo: "CC6909000313-01", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางสาวอัญชลี พรชัย", claimType: "Day Case Surgery", treatmentType: "Day Case Surgery", product: "PA", amount: "7,500.00", itemStatus: "รอตรวจสอบการแก้ไข", statusReason: "สถานพยาบาลแก้ไขข้อมูลหัตถการและยอดค่ารักษาแล้ว", statusDetail: "รอตรวจสอบเอกสารฉบับแก้ไขและยอดค่าใช้จ่ายก่อนดำเนินการพิจารณาต่อ", claimStatus: "Open", isContinuous: false, claimCause: "อุบัติเหตุ", coverageType: "ค่ารักษา", incidentDate: "01/09/2569", admitDate: "01/09/2569", dischargeDate: "01/09/2569", ipdDays: 0, icuDays: 0, totalStayDays: 0, diagnosis: "S61.0 : Open wound of finger | แผลเปิดที่นิ้วมือ", chiefComplaint: "บาดแผลนิ้วมือจากของมีคม ต้องเย็บแผล", note: "PA + Day Case Surgery" },
 
       /* เก็บเคสเดิมบางส่วนไว้เพื่อทดสอบสถานะอื่น */
       { date: "18/05/2569 10:42:24", claimCode: "CLPA6905000112", hospital: "โรงพยาบาลสมิติเวช สุขุมวิท", province: "กรุงเทพมหานคร", name: "นายเยี่ยมพงษ์ รัชนีทิพย์", claimType: "OPD Full", treatmentType: "OPD", product: "PA", amount: "2,310.50", itemStatus: "ปฏิเสธ" },
@@ -15406,7 +15402,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function getConsiderVisibleRows() {
       const sourceRows = currentConsiderationTab === "customer" ? considerationCustomerRows : considerationHospitalRows;
-      if (currentConsiderationTab !== "customer") return sourceRows.map((row, index) => ({ row, realIndex: index }));
+      if (currentConsiderationTab !== "customer") {
+        return sourceRows
+          .map((row, index) => ({ row, realIndex: index }))
+          .filter(({ row }) => row.itemStatus !== "รอเอกสาร");
+      }
       const statusValue = considerItemStatusFilterValue || "all";
       return sourceRows
         .map((row, index) => ({ row, realIndex: index }))
@@ -15499,8 +15499,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         }).join("");
       } else {
         head.innerHTML = `<tr><th class="px-4 py-3 text-left">วันที่ทำรายการ</th><th class="px-4 py-3 text-left">ClaimCode</th><th class="px-4 py-3 text-left">ชื่อสถานพยาบาล</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">ประเภทรายการเคลม</th><th class="px-4 py-3 text-left">ผลิตภัณฑ์</th><th class="px-4 py-3 text-left">จำนวนเงิน</th><th class="px-4 py-3 text-left">ยอดเงิน Exgratia</th><th class="px-4 py-3 text-center">สถานะรายการ</th><th class="px-4 py-3 text-center"></th></tr>`;
-        body.innerHTML = visibleRows.map((row, index) => {
-          const realIndex = start + index;
+        body.innerHTML = visibleEntries.map(({ row, realIndex }) => {
           return `<tr class="bg-white hover:bg-brand-50/40">
             <td class="px-4 py-4">${row.date}</td>
             <td class="px-4 py-4 font-semibold text-slate-700"><div class="flex flex-wrap items-center gap-2"><span>${row.claimCode}</span>${row.isContinuous ? '<span class="cc-continuous-list-badge"><span class="material-icons-round">sync_alt</span>เคลมต่อเนื่อง</span>' : ''}</div></td>
@@ -20636,7 +20635,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     let currentBillingClaimType = "customer";
     let currentFundBillingClaimType = "";
-    let currentBillingProductFilter = "";
     let currentBillingSearchBy = "claimNo";
     const billingSelectedIds = new Set();
 
@@ -20655,7 +20653,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const q = (document.getElementById("billingSearchInput")?.value || "").trim().toLowerCase();
       const branch = document.getElementById("billingBranchFilter")?.value || "all";
       const officer = document.getElementById("billingOfficerFilter")?.value || "all";
-      if (!currentFundBillingClaimType || !currentBillingProductFilter) return [];
+      if (!currentFundBillingClaimType) return [];
       const dateValue = row => {
         const [day, month, year] = String(row.approvedBillingDate || row.date || "").split("/").map(Number);
         return (year * 10000) + (month * 100) + day;
@@ -20664,31 +20662,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const matchQuery = !q || String(r[currentBillingSearchBy] || "").toLowerCase().includes(q);
         const matchBranch = branch === "all" || r.branch === branch;
         const matchOfficer = officer === "all" || r.officer === officer;
-        const matchProduct = r.product === currentBillingProductFilter;
-        return matchQuery && matchBranch && matchOfficer && matchProduct;
+        return matchQuery && matchBranch && matchOfficer;
       }).sort((a, b) => dateValue(a) - dateValue(b) || String(a.id).localeCompare(String(b.id), "th"));
-    }
-
-    function updateBillingProductButtons() {
-      const base = "billing-product-filter flex-1 basis-1/2 w-1/2 px-5 text-sm font-extrabold transition";
-      const active = " bg-brand-600 text-white";
-      const inactive = " text-slate-600 hover:bg-brand-50";
-      const map = {
-        PH: document.getElementById("billingProductPH"),
-        PA: document.getElementById("billingProductPA")
-      };
-      Object.entries(map).forEach(([value, el]) => {
-        if (!el) return;
-        el.className = base + (currentBillingProductFilter === value ? active : inactive);
-        el.setAttribute("aria-pressed", String(currentBillingProductFilter === value));
-      });
-    }
-
-    function setBillingProductFilter(product) {
-      currentBillingProductFilter = product || "";
-      billingSelectedIds.clear();
-      updateBillingProductButtons();
-      renderBillingClaimTable();
     }
 
     function updateBillingClaimTypeButtons() {
@@ -20847,12 +20822,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function setBillingFundClaimType(type) {
       currentFundBillingClaimType = type === "customer" || type === "hospital" ? type : "";
-      currentBillingProductFilter = "";
       billingSelectedIds.clear();
       document.getElementById("billingClaimPage")?.classList.toggle("is-fund-hospital", currentFundBillingClaimType === "hospital");
       document.getElementById("billingSelectedSummarySection")?.classList.toggle("hidden", currentFundBillingClaimType !== "customer");
       updateBillingClaimTypeButtons();
-      updateBillingProductButtons();
       renderBillingClaimTable();
     }
 
@@ -20888,8 +20861,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       if (tbody) {
         const emptyMessage = !currentFundBillingClaimType
           ? "กรุณาเลือกประเภทการเคลมก่อน ระบบจึงจะแสดงข้อมูลในตาราง"
-          : !currentBillingProductFilter
-          ? "กรุณาเลือกผลิตภัณฑ์ PH หรือ PA ก่อน ระบบจึงจะแสดงข้อมูลในตาราง"
           : currentFundBillingClaimType === "hospital"
           ? "ไม่พบรายการรอตั้งเบิกตามเงื่อนไขที่ค้นหา"
           : "ไม่พบรายการรอวางบิลตามเงื่อนไขที่ค้นหา";
@@ -20922,9 +20893,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ? "กรุณาเลือกประเภทการเคลมก่อนแสดงข้อมูล"
         : isHospital
           ? `แสดง ${filtered.length} รายการ`
-          : !currentBillingProductFilter
-            ? "กรุณาเลือกผลิตภัณฑ์ก่อนแสดงข้อมูล"
-          : `แสดง ${filtered.length} จาก ${rows.filter(r => r.status === "รอวางบิล" && r.product === currentBillingProductFilter).length} รายการ`;
+          : `แสดง ${filtered.length} จาก ${rows.filter(r => r.status === "รอวางบิล").length} รายการ`;
       setText("billingTableFooter", footerText);
       if (isCustomer) updateBillingSelectedSummary();
     }
@@ -21179,7 +21148,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function showBillingClaimPage(type = "customer") {
       currentBillingClaimType = type;
-      currentBillingProductFilter = "";
       currentFundBillingClaimType = "";
       currentBillingSearchBy = "claimNo";
       billingSelectedIds.clear();
@@ -21213,7 +21181,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           updateBillingClaimTypeButtons();
           updateBillingSearchByButtons();
           updateBillingSearchClear();
-          updateBillingProductButtons();
           renderBillingClaimTable();
         }
       }
@@ -40202,8 +40169,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   #billingClaimPage .billing-search-field{
     min-width:0;
   }
-  #billingClaimPage .billing-search-claim-type,
-  #billingClaimPage .billing-search-product,
+  #billingClaimPage .billing-search-claim-type{grid-column:span 12}
   #billingClaimPage .billing-search-branch,
   #billingClaimPage .billing-search-officer{grid-column:span 6}
   #billingClaimPage .billing-search-by{grid-column:span 5}
@@ -40251,8 +40217,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     outline:3px solid rgba(14,148,220,.28);
     outline-offset:-3px;
   }
-  #billingClaimPage .billing-filter-group button.is-active,
-  #billingClaimPage .billing-product-filter.bg-brand-600{
+  #billingClaimPage .billing-filter-group button.is-active{
     background:#0788d6;
     color:#fff;
     box-shadow:inset 0 -3px 0 rgba(0,71,124,.24);
@@ -40279,10 +40244,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     min-width:1120px!important;
   }
   @media(max-width:1180px){
-    #billingClaimPage .billing-search-claim-type,
+    #billingClaimPage .billing-search-claim-type{grid-column:span 12}
     #billingClaimPage .billing-search-branch,
-    #billingClaimPage .billing-search-officer,
-    #billingClaimPage .billing-search-product{
+    #billingClaimPage .billing-search-officer{
       grid-column:span 6;
     }
     #billingClaimPage .billing-search-by{grid-column:span 12}
@@ -40297,7 +40261,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     #billingClaimPage .billing-search-claim-type,
     #billingClaimPage .billing-search-branch,
     #billingClaimPage .billing-search-officer,
-    #billingClaimPage .billing-search-product,
     #billingClaimPage .billing-search-by,
     #billingClaimPage .billing-search-query,
     #billingClaimPage .billing-search-button{
@@ -46302,27 +46265,6 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     min-width:0!important;
     margin:0!important;
     text-align:left!important;
-  }
-</style>
-<style id="billing-customer-product-equal-layout-v1">
-  /* วางบิลเคลมลูกค้า: PH และ PA แบ่งพื้นที่เท่ากันเสมอ */
-  #billingClaimPage .billing-search-product > div{
-    display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    width:100%!important;
-  }
-  #billingClaimPage .billing-search-product .billing-product-filter{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-width:0!important;
-    max-width:none!important;
-    height:100%!important;
-    margin:0!important;
-    padding-left:12px!important;
-    padding-right:12px!important;
-    text-align:center!important;
   }
 </style>
 <style id="claimagent-font-weight-standard-v1">
@@ -53690,8 +53632,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "326",
-  updatedAt: "25/09/2026 11:30:59"
+  version: "333",
+  updatedAt: "25/09/2026 15:02:48"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -56773,14 +56715,14 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     root = root || document;
     try {
       root.querySelectorAll(FIELD_SELECTOR).forEach(function(el){
-        if (el.closest('.physical-therapy-section')) return;
+        if (el.closest('.physical-therapy-section, #considerDeathDetailPage, .death-change-account-modal')) return;
         el.style.setProperty('font-size','14px','important');
         el.style.setProperty('line-height','1.35','important');
         el.style.setProperty('font-weight','500','important');
         el.style.setProperty('letter-spacing','0','important');
       });
       root.querySelectorAll(LABEL_SELECTOR).forEach(function(el){
-        if (el.closest('.physical-therapy-section')) return;
+        if (el.closest('.physical-therapy-section, #considerDeathDetailPage, .death-change-account-modal')) return;
         el.style.setProperty('font-size','13px','important');
         el.style.setProperty('line-height','1.3','important');
         el.style.setProperty('font-weight','600','important');
@@ -57297,7 +57239,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
 
   function setTypo(el, cfg){
     if(!el || !cfg) return;
-    if(el.closest('.physical-therapy-section')) return;
+    if(el.closest('.physical-therapy-section, #considerDeathDetailPage, .death-change-account-modal')) return;
     if(el.classList && (el.classList.contains('material-icons-round') || el.classList.contains('material-symbols-outlined'))) return;
     el.style.setProperty('font-size', cfg.size, 'important');
     el.style.setProperty('font-weight', cfg.weight, 'important');
@@ -64185,6 +64127,13 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/mock-data/death-transfer-pending.mock.js?v=322"></script>
 <script src="js/menu-death-transfer-handoff.js?v=322"></script>
 <link rel="stylesheet" href="css/menu-transfer-view-toggle.css?v=322">
+
+<!-- Shared historical status detail card for customer/hospital/Death claim entry -->
+<script src="js/mock-data/death-consideration-status.mock.js?v=329"></script>
+<script src="js/claim-status-detail-card.js?v=330"></script>
+
+<!-- Death & Disability: จัดการบัญชีปลายทางแบบสร้าง/แก้ไข/ลบ -->
+<script src="js/menu-consider-death-account-management.js?v=331"></script>
 
 </body>
 </html>
