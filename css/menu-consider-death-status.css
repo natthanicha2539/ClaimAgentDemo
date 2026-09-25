@@ -1,0 +1,193 @@
+/* Death & Disability typography, list status, and shared-tab alignment. */
+#considerDeathDetailPage {
+  --dd-font-caption: 13px;
+  --dd-font-label: 14px;
+  --dd-font-body: 16px;
+  --dd-font-emphasis: 17px;
+  --dd-font-section: 18px;
+  --dd-font-page-title: 20px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+#considerDeathDetailPage .dd-title-main {
+  font-size: var(--dd-font-page-title) !important;
+  line-height: 1.25 !important;
+}
+
+#considerDeathDetailPage .dd-title-sub {
+  margin-top: 3px !important;
+  font-size: var(--dd-font-label) !important;
+  line-height: 1.35 !important;
+}
+
+#considerDeathDetailPage .dd-title-chip {
+  font-size: var(--dd-font-label) !important;
+}
+
+#considerDeathDetailPage .dd-detail-wrap {
+  width: 100%;
+  max-width: none !important;
+  padding-inline: clamp(8px, 1.2vw, 18px) !important;
+}
+
+#considerDeathDetailPage :is(.dd-field-label, .dd-meta-label, .dd-code-label, .dd-customer-info-label) {
+  font-size: var(--dd-font-label) !important;
+  line-height: 1.35 !important;
+}
+
+#considerDeathDetailPage :is(.dd-field-value, .dd-meta-value, .dd-code-value, .dd-customer-info-value) {
+  font-size: var(--dd-font-body) !important;
+  line-height: 1.55 !important;
+}
+
+#considerDeathDetailPage :is(.dd-section-title, .dd-doc-title, .customer-panel-modern-title) {
+  font-size: var(--dd-font-section) !important;
+  line-height: 1.4 !important;
+}
+
+#considerDeathDetailPage #ddClaimDetailGrid .dd-field-label,
+#considerDeathDetailPage .dd-beneficiary-box .dd-field-label {
+  font-size: 15px !important;
+}
+
+#considerDeathDetailPage #ddClaimDetailGrid .dd-field-value,
+#considerDeathDetailPage .dd-beneficiary-box .dd-field-value {
+  font-size: var(--dd-font-emphasis) !important;
+  line-height: 1.55 !important;
+}
+
+#considerDeathDetailPage .dd-beneficiary-head > div > strong {
+  font-size: var(--dd-font-emphasis) !important;
+  line-height: 1.4 !important;
+}
+
+#considerDeathDetailPage :is(.dd-green-chip, .dd-benefit-row, .dd-entry-expense-note, .dd-entry-expense-amount-wrap label) {
+  font-size: var(--dd-font-label) !important;
+}
+
+#considerDeathDetailPage :is(.dd-benefit-title, .dd-entry-expense-total-label) {
+  font-size: var(--dd-font-emphasis) !important;
+}
+
+#considerDeathDetailPage.dd-detail-page .dd-mini-table :is(th, td) {
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+#considerDeathDetailPage :is(.dd-edit-btn, .dd-transfer-btn, .dd-decision-btn, .dd-decision-save-btn) {
+  font-size: 15px !important;
+}
+
+#considerDeathDetailPage .customer-review-tabcard {
+  width: 100%;
+}
+
+#considerDeathDetailPage .customer-review-tabs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  padding: 10px 14px 0 !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  background: linear-gradient(180deg, #fff 0%, #f8fbff 100%) !important;
+  scrollbar-gutter: stable;
+}
+
+#considerDeathDetailPage .customer-review-tab {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  min-width: max-content !important;
+  height: 42px !important;
+  padding: 0 13px !important;
+  border: 0 !important;
+  border-bottom: 3px solid transparent !important;
+  background: transparent !important;
+  color: #6b7280 !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  cursor: pointer;
+}
+
+#considerDeathDetailPage .customer-review-tab:hover {
+  border-radius: 9px 9px 0 0 !important;
+  background: #f0f8ff !important;
+  color: #075f99 !important;
+}
+
+#considerDeathDetailPage .customer-review-tab.active {
+  border-bottom-color: #0075bd !important;
+  border-radius: 9px 9px 0 0 !important;
+  background: #fff !important;
+  color: #0075bd !important;
+}
+
+#considerDeathDetailPage .customer-review-tab:focus-visible {
+  outline: 3px solid rgba(20, 88, 214, .22);
+  outline-offset: -3px;
+}
+
+#considerDeathDetailPage .customer-tab-content,
+#considerDeathDetailPage .customer-tab-pane,
+#considerDeathDetailPage .customer-panel-modern {
+  width: 100%;
+  min-width: 0;
+}
+
+#considerDeathDetailPage :is(.coverage-table-wrap, .claim-history-table-wrap) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+#considerDeathDetailPage :is(.coverage-table, .claim-history-table, .memo-modern-table) {
+  font-size: 15px !important;
+}
+
+#considerDeathPage .dd-stat-strip {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(126px, 1fr)) !important;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+}
+
+#considerDeathPage .dd-status-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#considerDeathPage .dd-status-filter-btn.status-review {
+  border-color: #93c5fd;
+  color: #1d4ed8;
+}
+
+#considerDeathPage .dd-status-filter-btn.status-review:hover,
+#considerDeathPage .dd-status-filter-btn.status-review.active {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+@media (max-width: 620px) {
+  #considerDeathDetailPage {
+    --dd-font-page-title: 18px;
+    font-size: 16px;
+  }
+
+  #considerDeathDetailPage .customer-review-tabs {
+    padding-inline: 8px !important;
+  }
+
+  #considerDeathDetailPage .customer-review-tab {
+    min-height: 44px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #considerDeathDetailPage .customer-review-tab {
+    transition: none !important;
+  }
+}
