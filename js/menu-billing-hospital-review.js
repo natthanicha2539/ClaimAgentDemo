@@ -756,8 +756,6 @@
     try {
       if(typeof window.showBillingClaimPage === 'function') window.showBillingClaimPage('customer');
       if(typeof window.setBillingFundClaimType === 'function') window.setBillingFundClaimType('hospital');
-      const row = activeReviewRow();
-      if(row && typeof window.setBillingProductFilter === 'function') window.setBillingProductFilter(row.product || 'PH');
     } catch(error) { console.error('[billing-hospital-approval-to-fund]', error); }
   }
   function approveAndMove(event, button){
