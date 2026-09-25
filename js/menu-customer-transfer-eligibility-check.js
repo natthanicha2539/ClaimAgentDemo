@@ -11,6 +11,12 @@
     maximumFractionDigits: 2
   });
 
+  function getNetAmount(fallback){
+    const value = document.querySelector('#considerCustomerDetailPage #ccStepPane2 #customerSummaryNet')?.textContent;
+    if(value == null || !String(value).trim()) return parseAmount(fallback);
+    return parseAmount(value);
+  }
+
   function removeError(){
     document.getElementById(ERROR_ID)?.remove();
   }
@@ -46,10 +52,12 @@
   }
 
   window.validateCustomerTransferEntitlementMatch = function(){
-    const data = typeof window.getCustomerTransferSummaryData === 'function'
+    const summary = typeof window.getCustomerTransferSummaryData === 'function'
       ? window.getCustomerTransferSummaryData()
       : null;
-    if(!data || !Number.isFinite(Number(data.eligible)) || !Number.isFinite(Number(data.transfer))) return true;
+    if(!summary || !Number.isFinite(Number(summary.eligible)) || !Number.isFinite(Number(summary.transfer))) return true;
+
+    const data = { ...summary, eligible: getNetAmount(summary.eligible) };
 
     const eligibleCents = Math.round(parseAmount(data.eligible) * 100);
     const transferCents = Math.round(parseAmount(data.transfer) * 100);
