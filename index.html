@@ -20718,12 +20718,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function updateBillingSelectedSummary() {
-      const rows = billingClaimData[currentBillingClaimType] || [];
+      const rows = currentFundBillingClaimType === "hospital" ? hospitalBillingRows : (billingClaimData.customer || []);
       const selectedRows = rows.filter(r => billingSelectedIds.has(r.id));
       const amount = selectedRows.reduce((sum, r) => sum + Number(r.amount || 0), 0);
       const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
       setText("billingSelectedCount", selectedRows.length);
       setText("billingSelectedAmount", moneyFormat(amount));
+      const summaryTitle = document.querySelector("#billingSelectedSummarySection > div > div:first-child");
+      if (summaryTitle) summaryTitle.lastChild.textContent = " รายการที่เลือกสำหรับวางบิล";
       const confirmWrap = document.getElementById("billingConfirmWrap");
       if (confirmWrap) confirmWrap.classList.toggle("hidden", selectedRows.length === 0);
       const visibleRows = getBillingFilteredRows();
@@ -20735,18 +20737,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function confirmBillingSelectedClaims() {
-      const rows = billingClaimData[currentBillingClaimType] || [];
+      const isHospital = currentFundBillingClaimType === "hospital";
+      const rows = isHospital ? hospitalBillingRows : (billingClaimData.customer || []);
       const selectedRows = rows.filter(r => billingSelectedIds.has(r.id));
       if (!selectedRows.length) return;
-
-      if (currentBillingClaimType !== "customer") {
-        const total = selectedRows.reduce((sum, r) => sum + Number(r.amount || 0), 0);
-        alert(`ยืนยันตั้งเบิกสำเร็จ
-จำนวน ${selectedRows.length} รายการ
-เป็นเงิน ${moneyFormat(total)} บาท`);
-        return;
-      }
-
       const total = selectedRows.reduce((sum, r) => sum + Number(r.amount || 0), 0);
       const countEl = document.getElementById("billingCustomerModalCount");
       const amountEl = document.getElementById("billingCustomerModalAmount");
@@ -20756,12 +20750,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       if (countEl) countEl.textContent = selectedRows.length;
       if (amountEl) amountEl.textContent = moneyFormat(total);
       if (listCountEl) listCountEl.textContent = `${selectedRows.length} รายการ`;
+      const modalTitle = document.getElementById("billingCustomerConfirmTitle");
+      if (modalTitle) modalTitle.textContent = isHospital ? "ยืนยันตั้งเบิกเคลมโรงพยาบาล" : "ยืนยันตั้งเบิกเคลมลูกค้า";
       if (rowsEl) {
         rowsEl.innerHTML = selectedRows.map(row => `
           <tr>
-            <td><strong>${row.claimNo}</strong></td>
+            <td><strong>${row.claimNo || "-"}</strong></td>
+            <td><strong>${row.caseNo || "-"}</strong></td>
             <td><span class="billing-confirm-product">${row.product}</span></td>
-            <td>${row.branch}</td>
             <td class="text-right"><strong>${moneyFormat(row.amount)}</strong></td>
           </tr>`).join("");
       }
@@ -20776,8 +20772,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       document.body.classList.remove("billing-modal-open");
     }
 
-    function submitBillingCustomerClaims() {
-      const rows = billingClaimData.customer || [];
+    function submitBillingFundClaims() {
+      const isHospital = currentFundBillingClaimType === "hospital";
+      const rows = isHospital ? hospitalBillingRows : (billingClaimData.customer || []);
       const selectedRows = rows.filter(r => billingSelectedIds.has(r.id));
       if (!selectedRows.length) {
         closeBillingCustomerConfirmModal();
@@ -20786,6 +20783,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       selectedRows.forEach(row => { row.status = "วางบิลแล้ว"; });
       const total = selectedRows.reduce((sum, r) => sum + Number(r.amount || 0), 0);
       const count = selectedRows.length;
+      const claimTypeLabel = isHospital ? "เคลมโรงพยาบาล" : "เคลมลูกค้า";
       billingSelectedIds.clear();
       closeBillingCustomerConfirmModal();
       renderBillingClaimTable();
@@ -20795,7 +20793,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       toast.innerHTML = `
         <span class="material-icons-round">check_circle</span>
         <div>
-          <strong>ตั้งเบิกสำเร็จ</strong>
+          <strong>ตั้งเบิก${claimTypeLabel}สำเร็จ</strong>
           <span>${count} รายการ • ${moneyFormat(total)} บาท</span>
         </div>`;
       document.body.appendChild(toast);
@@ -20824,7 +20822,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       currentFundBillingClaimType = type === "customer" || type === "hospital" ? type : "";
       billingSelectedIds.clear();
       document.getElementById("billingClaimPage")?.classList.toggle("is-fund-hospital", currentFundBillingClaimType === "hospital");
-      document.getElementById("billingSelectedSummarySection")?.classList.toggle("hidden", currentFundBillingClaimType !== "customer");
+      document.getElementById("billingSelectedSummarySection")?.classList.toggle("hidden", !currentFundBillingClaimType);
       updateBillingClaimTypeButtons();
       renderBillingClaimTable();
     }
@@ -20839,6 +20837,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       if (thead) {
         thead.innerHTML = isHospital ? `
           <tr>
+            <th class="px-3 py-2.5 text-center font-extrabold"><span class="inline-flex items-center justify-center gap-2"><input id="billingSelectAll" type="checkbox" onchange="toggleBillingSelectAll(this.checked)" class="h-5 w-5 rounded border-white/70" title="เลือกทั้งหมด" aria-label="เลือกทั้งหมด" /><span>เลือกรายการ</span></span></th>
             <th class="px-3 py-2.5 text-center font-extrabold">วันที่อนุมัติเคลม</th>
             <th class="px-3 py-2.5 text-left font-extrabold">เลขที่ Case</th>
             <th class="px-3 py-2.5 text-left font-extrabold">ชื่อสถานพยาบาล</th>
@@ -20866,6 +20865,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           : "ไม่พบรายการรอวางบิลตามเงื่อนไขที่ค้นหา";
         tbody.innerHTML = filtered.length ? (isHospital ? filtered.map(r => `
           <tr class="bg-white hover:bg-brand-50/60 transition">
+            <td class="px-3 py-2.5 text-center"><input type="checkbox" class="h-5 w-5 rounded" ${billingSelectedIds.has(r.id) ? "checked" : ""} onchange="toggleBillingRow('${r.id}', this.checked)" aria-label="เลือกตั้งเบิก ${r.caseNo || r.claimNo}" /></td>
             <td class="px-3 py-2.5 text-center font-bold text-slate-600">${r.approvedBillingDate || r.sentDate}</td>
             <td class="px-3 py-2.5 font-extrabold text-brand-700">${r.caseNo}</td>
             <td class="px-3 py-2.5 font-bold text-slate-800">${r.hospital}</td>
@@ -20883,7 +20883,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <td class="px-3 py-2.5 text-right font-extrabold text-slate-800">${moneyFormat(r.amount)}</td>
             <td class="px-3 py-2.5 font-extrabold text-slate-700">${getBillingInsurerShort(r)}</td>
             <td class="px-3 py-2.5 text-center"><button type="button" class="mx-auto grid h-8 w-8 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm hover:bg-brand-600 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600" title="ดูรายละเอียด" aria-label="ดูรายละเอียด ${r.caseNo || r.claimNo}"><span class="material-icons-round !text-lg">visibility</span></button></td>
-          </tr>`).join("")) : `<tr><td colspan="${isHospital ? 7 : 8}" class="px-4 py-8 text-center font-bold text-slate-400">${emptyMessage}</td></tr>`;
+          </tr>`).join("")) : `<tr><td colspan="8" class="px-4 py-8 text-center font-bold text-slate-400">${emptyMessage}</td></tr>`;
       }
       const amount = filtered.reduce((sum, r) => sum + Number(r.amount || 0), 0);
       const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
@@ -20895,7 +20895,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           ? `แสดง ${filtered.length} รายการ`
           : `แสดง ${filtered.length} จาก ${rows.filter(r => r.status === "รอวางบิล").length} รายการ`;
       setText("billingTableFooter", footerText);
-      if (isCustomer) updateBillingSelectedSummary();
+      if (isCustomer || isHospital) updateBillingSelectedSummary();
     }
 
 
@@ -38337,6 +38337,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       && (state.subType === 'IPD' || /Day\s*Case\s*Surgery/i.test(String(state.subType || '')));
   };
 
+  const isLargeCompensationIpd = () => {
+    const state = getState();
+    let product = '';
+    try { product = typeof window.currentProductType === 'function' ? window.currentProductType() : ''; } catch(e) {}
+    product = product || state.row?.product || state.product || '';
+    return String(product).toUpperCase() === 'PH' && state.coverageType === 'ค่าชดเชย' && state.subType === 'IPD';
+  };
+
   const normalize = value => String(value || '').replace(/\s+/g,'').trim();
   const findFieldByDetail = detail => {
     const normalized = normalize(detail);
@@ -38435,10 +38443,51 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     calculateTotal();
   };
 
+  const calculateCompensationTotal = () => {
+    const state = getState();
+    const rows = typeof getCurrentBenefitRows === 'function' ? getCurrentBenefitRows() : [];
+    state.phIpdCompensationAmounts = state.phIpdCompensationAmounts || {};
+    const total = rows.reduce((sum,row) => sum + numberValue(state.phIpdCompensationAmounts[row.detail]), 0);
+    state.phIpdCompensationTransferTotal = total;
+    state.transferAmount = money(total);
+    const transferInput = document.getElementById('transferAmount');
+    if(transferInput) transferInput.value = money(total);
+    const totalLabel = document.getElementById('phIpdCompensationTotal');
+    if(totalLabel) totalLabel.textContent = money(total) + ' บาท';
+    return total;
+  };
+
+  const renderPairedCompensationSummary = () => {
+    const target = document.getElementById('benefitSummary');
+    if(!target) return;
+    const rows = typeof getCurrentBenefitRows === 'function' ? getCurrentBenefitRows() : [];
+    const state = getState();
+    state.phIpdCompensationAmounts = state.phIpdCompensationAmounts || {};
+    const plan = state.row?.plan || '662';
+    if(!rows.length){
+      target.innerHTML = `<div class="benefit-summary-shell compact-benefit-summary"><div class="benefit-summary-empty">ไม่พบรายการ Benefit สำหรับความคุ้มครองนี้</div></div>`;
+      return;
+    }
+    const pairedRows = rows.map((row,index) => `<article class="benefit-item-card excel-style ipd-benefit-card"><div class="benefit-item-row"><span class="benefit-item-icon"><span class="material-icons-round">${detailIcon(row.detail)}</span></span><div class="benefit-item-content"><h5 class="benefit-item-title">${row.detail}</h5></div></div></article>
+      <label class="ipd-input-card"><div class="ipd-input-inner"><input id="phIpdCompensation_${index}" data-ph-ipd-compensation-key="${index}" type="text" inputmode="decimal" autocomplete="off" aria-label="จำนวนเงินโอน ${row.detail}" placeholder="จำนวนเงินโอน ${row.detail}" class="ipd-input"></div></label>`).join('');
+    target.innerHTML = `<div class="ipd-paired-shell" data-ph-ipd-compensation-paired="1">
+      <section class="ipd-head-card benefit-head"><div class="ipd-head-row"><div class="ipd-head-title"><span class="material-icons-round">verified_user</span><span>รายละเอียดความคุ้มครอง</span></div><span class="ipd-plan-badge">แผน : ${plan}</span></div></section>
+      <section class="ipd-head-card amount-head"><div class="ipd-head-row"><div class="ipd-head-title"><span class="material-icons-round">account_balance_wallet</span><span>รายละเอียดจำนวนเงินโอน</span></div></div></section>
+      ${pairedRows}<div class="ipd-empty-card" aria-hidden="true"></div><div class="ipd-total-card" aria-live="polite"><span class="ipd-total-label">จำนวนเงินโอนรวม</span><div id="phIpdCompensationTotal" class="ipd-total-value">0.00 บาท</div></div>
+    </div>`;
+    rows.forEach((row,index) => {
+      const value = numberValue(state.phIpdCompensationAmounts[row.detail]);
+      const input = document.getElementById('phIpdCompensation_' + index);
+      if(input) input.value = value ? money(value) : '';
+    });
+    calculateCompensationTotal();
+  };
+
   const originalRenderBenefitSummary = window.renderBenefitSummary;
   if(typeof originalRenderBenefitSummary === 'function'){
     window.renderBenefitSummary = function(){
       if(isMedicalIpd()) return renderPairedIpdSummary();
+      if(isLargeCompensationIpd()) return renderPairedCompensationSummary();
       return originalRenderBenefitSummary.apply(this,arguments);
     };
   }
@@ -38455,6 +38504,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         }
         return;
       }
+      if(isLargeCompensationIpd() && calculateCompensationTotal() <= 0){
+        const firstInput = document.querySelector('#benefitSummary [data-ph-ipd-compensation-key]');
+        if(firstInput){
+          firstInput.setCustomValidity('กรุณาระบุจำนวนเงินโอนอย่างน้อย 1 รายการ');
+          firstInput.reportValidity();
+          firstInput.focus();
+        }
+        return;
+      }
       return originalValidate.apply(this,arguments);
     };
   }
@@ -38462,14 +38520,28 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   const syncPanel = () => {
     const transferWrap = document.getElementById('transferAmountWrap');
     const target = document.getElementById('benefitSummary');
-    if(transferWrap) transferWrap.classList.toggle('hidden-by-ph-ipd', isMedicalIpd());
-    if(!isMedicalIpd() && target?.querySelector('[data-ph-ipd-paired="1"]') && typeof originalRenderBenefitSummary === 'function'){
+    if(transferWrap) transferWrap.classList.toggle('hidden-by-ph-ipd', isMedicalIpd() || isLargeCompensationIpd());
+    if(isLargeCompensationIpd() && !target?.querySelector('[data-ph-ipd-compensation-paired="1"]')){
+      renderPairedCompensationSummary();
+    } else if(!isMedicalIpd() && !isLargeCompensationIpd() && (target?.querySelector('[data-ph-ipd-paired="1"]') || target?.querySelector('[data-ph-ipd-compensation-paired="1"]')) && typeof originalRenderBenefitSummary === 'function'){
       originalRenderBenefitSummary();
     }
     window.syncGenericExgratiaVisibility?.();
   };
 
   document.addEventListener('input',event => {
+    const compensationInput = event.target.closest('#benefitSummary [data-ph-ipd-compensation-key]');
+    if(compensationInput){
+      compensationInput.value = typingMoney(compensationInput.value);
+      const rows = typeof getCurrentBenefitRows === 'function' ? getCurrentBenefitRows() : [];
+      const row = rows[Number(compensationInput.dataset.phIpdCompensationKey)];
+      if(row){
+        getState().phIpdCompensationAmounts[row.detail] = numberValue(compensationInput.value);
+        compensationInput.setCustomValidity('');
+        calculateCompensationTotal();
+      }
+      return;
+    }
     const input = event.target.closest('#benefitSummary [data-ph-ipd-key]');
     if(!input) return;
     input.value = typingMoney(input.value);
@@ -38479,6 +38551,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   });
 
   document.addEventListener('focusout',event => {
+    const compensationInput = event.target.closest('#benefitSummary [data-ph-ipd-compensation-key]');
+    if(compensationInput){
+      compensationInput.value = compensationInput.value ? money(compensationInput.value) : '';
+      const rows = typeof getCurrentBenefitRows === 'function' ? getCurrentBenefitRows() : [];
+      const row = rows[Number(compensationInput.dataset.phIpdCompensationKey)];
+      if(row){
+        getState().phIpdCompensationAmounts[row.detail] = numberValue(compensationInput.value);
+        calculateCompensationTotal();
+      }
+      return;
+    }
     const input = event.target.closest('#benefitSummary [data-ph-ipd-key]');
     if(!input) return;
     input.value = input.value ? money(input.value) : '';
@@ -39843,8 +39926,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <thead>
               <tr>
                 <th>เลขที่ CL</th>
+                <th>เลขที่ Case</th>
                 <th>ผลิตภัณฑ์</th>
-                <th>สาขา</th>
                 <th class="text-right">จำนวนเงิน</th>
               </tr>
             </thead>
@@ -39855,13 +39938,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
       <div class="billing-confirm-note">
         <span class="material-icons-round">info</span>
-        <p>เมื่อยืนยันแล้ว รายการจะถูกเปลี่ยนสถานะเป็น <strong>วางบิลแล้ว</strong> และไม่สามารถเลือกซ้ำได้</p>
+        <p>เมื่อยืนยันแล้ว รายการที่เลือกจะถูกเปลี่ยนสถานะเป็น <strong>วางบิลแล้ว</strong> และจะไม่ปรากฏซ้ำในรายการตั้งเบิก</p>
       </div>
     </div>
 
     <footer class="billing-confirm-footer">
       <button type="button" class="billing-confirm-btn secondary" onclick="closeBillingCustomerConfirmModal()">ยกเลิก</button>
-      <button type="button" class="billing-confirm-btn primary" onclick="submitBillingCustomerClaims()">
+      <button type="button" class="billing-confirm-btn primary" onclick="submitBillingFundClaims()">
         <span class="material-icons-round">task_alt</span>
         ยืนยันตั้งเบิก
       </button>
@@ -39975,29 +40058,45 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     border-radius:17px;
     border:1px solid #dbe7f3;
     background:#fff;
+    min-width:0;
   }
+  .billing-confirm-summary-card > div{min-width:0;overflow-wrap:anywhere}
   .billing-confirm-summary-card.count{background:linear-gradient(145deg,#f0f9ff,#fff)}
   .billing-confirm-summary-card.amount{background:linear-gradient(145deg,#f5f3ff,#fff)}
   .billing-confirm-card-icon{
+    position:relative;
     display:grid;
     place-items:center;
+    align-self:center!important;
     flex:0 0 54px;
+    min-width:54px;
     width:54px;
     height:54px;
     border-radius:16px;
-    overflow:hidden;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
   }
   .billing-confirm-summary-card.count .billing-confirm-card-icon{background:#dff3ff;color:#0788d6}
   .billing-confirm-summary-card.amount .billing-confirm-card-icon{background:#eee7ff;color:#6d4bd2}
   .billing-confirm-card-icon .material-icons-round{
-    display:block;
+    position:static!important;
+    display:grid!important;
+    place-items:center!important;
+    justify-self:center;
+    align-self:center;
+    margin:0!important;
+    padding:0!important;
+    transform:none!important;
+    text-align:center;
     font-size:26px!important;
     line-height:1!important;
     width:26px;
     height:26px;
+    flex:none;
     font-variation-settings:"FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
   }
-  .billing-confirm-summary-card span:not(.material-icons-round){
+  .billing-confirm-summary-card > div > span:not(.material-icons-round){
     display:block;
     color:#64748b;
     font-size:13px;
@@ -40010,6 +40109,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     font-size:28px;
     font-weight:900;
     line-height:1;
+    max-width:100%;
+    overflow-wrap:anywhere;
+    font-variant-numeric:tabular-nums;
   }
   .billing-confirm-summary-card small{
     margin-left:5px;
@@ -53632,8 +53734,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "339",
-  updatedAt: "25/09/2026 15:53:05"
+  version: "343",
+  updatedAt: "25/09/2026 16:59:17"
 });
 
 (function renderClaimAgentBuildInfo(){
