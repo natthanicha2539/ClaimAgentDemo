@@ -53734,8 +53734,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "344",
-  updatedAt: "25/09/2026 17:08:34"
+  version: "349",
+  updatedAt: "25/09/2026 17:25:16"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -56287,9 +56287,9 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
 <script id="v265-pa-horizontal-compact-design-script">
 (function(){
   function shouldApply(){
-    try {
-      return typeof currentProductType === 'function' && currentProductType() === 'PA';
-    } catch(e){ return false; }
+    const state = window.claimState || {};
+    const row = state.paPrimaryRow || state.row || {};
+    return String(row.product || row.productType || '').trim().toUpperCase() === 'PA';
   }
 
   function applyClass(){
@@ -64246,7 +64246,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const sync = () => {
     const wrap = document.getElementById('transferAmountWrap');
     if (!wrap) return;
-    const isLargeCompensation = String(window.claimState?.coverageType || '') === 'ค่าชดเชย';
+    const product = String(window.claimState?.row?.product || window.claimState?.product || '').trim().toUpperCase();
+    const isLargeCompensation = product === 'PH' && String(window.claimState?.coverageType || '') === 'ค่าชดเชย';
     wrap.classList.toggle('hidden-by-large-compensation', isLargeCompensation);
   };
   const originalRender = window.renderClaimDynamicFields;
@@ -64264,6 +64265,121 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   sync();
 })();
 </script>
+
+<!-- แจ้งเคลม PA: ใช้ดีไซน์การ์ดเลือกข้อมูลชุดเดียวกับหน้า PH โดยไม่เปลี่ยนตัวเลือก/เงื่อนไข -->
+<style id="claim-entry-pa-selection-cards-match-ph">
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-options,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,205px))!important;
+    gap:8px!important;
+    align-items:stretch;
+  }
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{
+    display:grid!important;
+    grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),320px))!important;
+    justify-content:start!important;
+    gap:8px!important;
+    align-items:stretch;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-card{
+    width:min(205px,100%)!important;
+    min-height:52px!important;
+    padding:6px 9px!important;
+    border:1px solid #d7e3ef!important;
+    border-radius:14px!important;
+    background:#fff!important;
+    box-shadow:0 1px 4px rgba(15,23,42,.05)!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-card{
+    width:100%!important;
+    max-width:320px!important;
+    min-height:52px!important;
+    padding:6px 9px!important;
+    border:1px solid #d7e3ef!important;
+    border-radius:14px!important;
+    background:#fff!important;
+    box-shadow:0 1px 4px rgba(15,23,42,.05)!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card.active,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-card.active,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-card.active{
+    border:1.5px solid #0788d6!important;
+    background:#f4f9ff!important;
+    box-shadow:0 4px 10px rgba(7,136,214,.10)!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card:hover,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-card:hover,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-card:hover{
+    transform:none!important;
+    background:#f8fbff!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card > div,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-card > div,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-card > div{
+    display:flex!important;
+    align-items:center!important;
+    gap:12px!important;
+    min-width:0;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .choice-icon,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-icon,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-icon{
+    display:grid!important;
+    place-items:center!important;
+    flex:0 0 38px!important;
+    width:38px!important;
+    height:38px!important;
+    margin:0!important;
+    border-radius:10px!important;
+    background:#eaf3fb!important;
+    color:#156db4!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .choice-icon .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-icon .material-icons-round,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-icon .material-icons-round{
+    font-size:20px!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .choice-title-sm,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-title-sm,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-title-sm{
+    font-size:16px!important;
+    line-height:1.2!important;
+    font-weight:800!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .choice-desc-sm,
+  #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-desc-sm,
+  #claimEntryPage.pa-horizontal-compact #coverageTypeRadios .choice-desc-sm{
+    margin-top:2px!important;
+    font-size:12px!important;
+    line-height:1.2!important;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    gap:6px!important;
+    align-items:flex-start;
+  }
+  #claimEntryPage.pa-horizontal-compact #claimSubRadios label.cursor-pointer.rounded-xl.border{
+    min-height:38px!important;
+    padding:6px 10px!important;
+    border-radius:8px!important;
+    font-size:15px!important;
+    line-height:1.2!important;
+    box-shadow:0 1px 4px rgba(15,23,42,.05)!important;
+  }
+  @media(max-width:1280px){
+    #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),320px))!important}
+  }
+  @media(max-width:760px){
+    #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-options,
+    #claimEntryPage.pa-horizontal-compact #incidentCauseRadios,
+    #claimEntryPage.pa-horizontal-compact #coverageTypeRadios{grid-template-columns:minmax(0,320px)!important}
+    #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card,
+    #claimEntryPage.pa-horizontal-compact #incidentCauseRadios .choice-card{width:100%!important}
+  }
+</style>
 
 </body>
 </html>
