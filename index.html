@@ -63,7 +63,7 @@
   <link rel="stylesheet" href="css/menu-claim-entry-category.css" />
   <link rel="stylesheet" href="css/menu-physical-therapy.css?v=314" />
   <link rel="stylesheet" href="css/menu-claim-work-search.css" />
-  <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css" />
+  <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css?v=315" />
   <link rel="stylesheet" href="css/menu-fund-reserve-dashboard.css" />
   <link rel="stylesheet" href="css/menu-fund-hospital-payments.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-notice.css" />
@@ -10723,8 +10723,8 @@ body > .min-h-screen > main,
                       <option>0012 : อุบัติเหตุ</option>
                     </select>
                     <label id="symptomOtherNoteWrap" class="hidden block">
-                      <span class="text-lg font-bold text-slate-500">หมายเหตุ</span>
-                      <textarea id="symptomOtherNote" rows="3" placeholder="ระบุรายละเอียดอาการ" class="mt-1 w-full rounded-lg border border-slate-300 px-4 py-3 text-xl outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></textarea>
+                      <span class="text-lg font-bold text-slate-500">รายละเอียดการเจ็บป่วย/การบาดเจ็บ</span>
+                      <textarea id="symptomOtherNote" rows="3" placeholder="ระบุรายละเอียดการเจ็บป่วย/การบาดเจ็บ" class="mt-1 w-full rounded-lg border border-slate-300 px-4 py-3 text-xl outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-100"></textarea>
                     </label>
                   </div>
                 </div>
@@ -26053,7 +26053,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">การวินิจฉัย1(Diagnosis1) <span class="text-red-500">*</span></div><select class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"><option>${esc(d.diag1)}</option></select></label>
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">การวินิจฉัย2(Diagnosis2)</div><select class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"><option>${esc(d.diag2)}</option></select></label>
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">การวินิจฉัย3(Diagnosis3)</div><select class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"><option>${esc(d.diag3)}</option></select></label>
-          <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียด</div><input value="${esc(d.note)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
+          <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียดการเจ็บป่วย/การบาดเจ็บ</div><input value="${esc(d.chiefComplaint || d.cc)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
+          <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">หมายเหตุ</div><input value="${esc(d.note)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
         </div>
       </div></div>`;
   }
@@ -26678,7 +26679,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             ${selectField('การวินิจฉัย1(Diagnosis1)*', d.diag1, 'md:col-span-2 xl:col-span-4')}
             ${selectField('การวินิจฉัย2(Diagnosis2)', d.diag2, 'md:col-span-2 xl:col-span-4')}
             ${selectField('การวินิจฉัย3(Diagnosis3)', d.diag3, 'md:col-span-2 xl:col-span-4')}
-            ${inputField('รายละเอียด', d.note, 'md:col-span-2 xl:col-span-4')}
+            ${inputField('รายละเอียดการเจ็บป่วย/การบาดเจ็บ', d.cc, 'md:col-span-2 xl:col-span-4')}
+            ${inputField('หมายเหตุ', d.note, 'md:col-span-2 xl:col-span-4')}
           </div>
         </div>
       </div>`;
@@ -26862,10 +26864,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <tr class="border-b border-slate-200">
         <td>${cEsc(r.item)}</td>
         <td>${receipt}</td>
-        <td>${entitlement}</td>
         <td>${discount}</td>
         <td>${uncovered}</td>
         <td><select data-claimline-field="reason" class="ce-select">${nonCoverageReasonOptions(r.reason)}</select></td>
+        <td>${entitlement}</td>
         <td>${note}</td>
         <td class="text-center"><button type="button" class="ce-delete-btn" onclick="this.closest('tr').remove()"><span class="material-icons-round">delete</span></button></td>
       </tr>`;
@@ -26950,10 +26952,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <colgroup>
               <col class="cc-col-item">
               <col class="cc-col-receipt">
-              <col class="cc-col-eligible">
               <col class="cc-col-discount">
               <col class="cc-col-uncovered">
               <col class="cc-col-reason">
+              <col class="cc-col-eligible">
               <col class="cc-col-note">
               <col class="cc-col-action">
             </colgroup>
@@ -26961,10 +26963,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <tr>
                 <th>รายการค่ารักษา</th>
                 <th>ยอดเงินตามใบเสร็จ</th>
-                <th>สิทธิ์เบิก</th>
                 <th>ส่วนลด</th>
-                <th>ยอดไม่คุ้มครอง</th>
+                <th>ยอดเงินไม่คุ้มครอง</th>
                 <th>สาเหตุไม่คุ้มครอง</th>
+                <th>สิทธิ์เบิก</th>
                 <th>หมายเหตุ</th>
                 <th>ลบ</th>
               </tr>
@@ -27216,12 +27218,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     row.innerHTML = `
       <td>${itemEl.value}</td>
       <td><input ${autoCalculateEntitlement ? 'data-claimline-field="receipt"' : ''} value="${receiptEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
-      <td>${autoCalculateEntitlement
-        ? `<input data-claimline-field="entitlement" value="${claimlineMoneyText(calculateClaimlineEntitlement(receiptEl?.value, discountEl?.value, uncoveredEl?.value))}" class="ce-input ce-input-derived" placeholder="0.00" disabled aria-disabled="true" readonly title="คำนวณจากยอดเงินตามใบเสร็จ - ส่วนลด - ยอดไม่คุ้มครอง">`
-        : `<input value="${claimEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal">`}</td>
       <td><input ${autoCalculateEntitlement ? 'data-claimline-field="discount"' : ''} value="${discountEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
       <td><input ${autoCalculateEntitlement ? 'data-claimline-field="uncovered"' : ''} value="${uncoveredEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
       <td><select data-claimline-field="reason" class="ce-select">${nonCoverageReasonOptions(reasonEl?.value || '')}</select></td>
+      <td>${autoCalculateEntitlement
+        ? `<input data-claimline-field="entitlement" value="${claimlineMoneyText(calculateClaimlineEntitlement(receiptEl?.value, discountEl?.value, uncoveredEl?.value))}" class="ce-input ce-input-derived" placeholder="0.00" disabled aria-disabled="true" readonly title="คำนวณจากยอดเงินตามใบเสร็จ - ส่วนลด - ยอดไม่คุ้มครอง">`
+        : `<input value="${claimEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal">`}</td>
       <td><input ${autoCalculateEntitlement ? 'data-claimline-field="note"' : ''} value="${noteEl?.value || ''}" class="ce-input" placeholder="หมายเหตุ"></td>
       <td class="text-center"><button type="button" class="ce-delete-btn" onclick="this.closest('tr').remove()"><span class="material-icons-round">delete</span></button></td>`;
     tbody.appendChild(row);
@@ -27421,85 +27423,28 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       {
         no: '1',
         type: 'ok',
-        title: 'จ่ายครบตามยอดสุทธิในใบเสร็จ',
-        condition: 'จำนวนเงินโอน + ยอดไม่คุ้มครอง = ยอดเงินตามใบเสร็จ - ส่วนลด',
-        example: 'ใบเสร็จ 1,000 / ส่วนลด 100 / จ่าย 900 / ไม่คุ้มครอง 0',
-        calc: '900 = 1,000 - 100',
-        result: 'ไม่แจ้งเตือน'
+        title: 'สิทธิ์เบิกเท่ากับยอดที่โอน',
+        condition: 'สิทธิ์เบิก = จำนวนเงินโอน',
+        example: 'สิทธิ์เบิก 700 / จำนวนเงินโอน 700',
+        calc: '700.00 = 700.00',
+        result: 'ผ่านการตรวจสอบ'
       },
       {
         no: '2',
-        type: 'ok',
-        title: 'Benefit มากกว่าใบเสร็จ แต่จ่ายครบใบเสร็จแล้ว',
-        condition: 'จำนวนเงินโอน = ยอดสุทธิใบเสร็จ และ จำนวนเงินโอน < Benefit',
-        example: 'ใบเสร็จ 1,000 / Benefit 1,500 / จ่าย 1,000 / ไม่คุ้มครอง 0',
-        calc: '1,000 = 1,000 < 1,500',
-        result: 'ไม่แจ้งเตือน'
-      },
-      {
-        no: '3',
-        type: 'ok',
-        title: 'มีส่วนลด และจ่ายครบยอดสุทธิ',
-        condition: 'จำนวนเงินโอน + ยอดไม่คุ้มครอง = ยอดหลังหักส่วนลด',
-        example: 'ใบเสร็จ 1,000 / ส่วนลด 100 / จ่าย 900 / ไม่คุ้มครอง 0',
-        calc: 'ยอดสุทธิ 900 / จ่าย 900',
-        result: 'ไม่แจ้งเตือน'
-      },
-      {
-        no: '4',
-        type: 'ok',
-        title: 'มีรายการไม่คุ้มครองและส่วนต่างถูกระบุครบ',
-        condition: 'ส่วนต่างทั้งหมดถูกระบุเป็นยอดไม่คุ้มครอง',
-        example: 'ใบเสร็จ 1,000 / จ่าย 800 / ไม่คุ้มครอง 200',
-        calc: '800 + 200 = 1,000',
-        result: 'ไม่แจ้งเตือน'
-      },
-      {
-        no: '5',
         type: 'warn',
-        title: 'จ่ายต่ำกว่า Benefit และต่ำกว่ายอดสุทธิใบเสร็จ',
-        condition: 'ยังมีส่วนต่าง และไม่มี ยอดไม่คุ้มครอง',
-        example: 'ใบเสร็จ 1,000 / Benefit 1,000 / จ่าย 800 / ไม่คุ้มครอง 0',
-        calc: 'ขาด 200',
-        result: 'แสดงการแจ้งเตือน',
-        wording: 'พบยอดเงินส่วนต่าง 200.00 บาท กรุณาตรวจสอบยอด และโอนเพิ่มหรือระบุยอดไม่คุ้มครอง'
-      },
-      {
-        no: '6',
-        type: 'warn',
-        title: 'Benefit ต่ำกว่าใบเสร็จ แต่ยังไม่ระบุส่วนต่าง',
-        condition: 'จ่ายเต็ม Benefit แล้ว แต่ยอดใบเสร็จยังเหลือ',
-        example: 'ใบเสร็จ 1,500 / Benefit 1,000 / จ่าย 1,000 / ไม่คุ้มครอง 0',
-        calc: 'ยังเหลือ 500',
-        result: 'แสดงการแจ้งเตือน',
-        wording: 'พบยอดส่วนต่าง 500.00 บาท กรุณาระบุยอดไม่คุ้มครอง'
-      },
-      {
-        no: '7',
-        type: 'warn',
-        title: 'ยอดรวมเกินยอดสุทธิใบเสร็จ',
-        condition: 'จำนวนเงินโอน + ยอดไม่คุ้มครอง > ยอดสุทธิใบเสร็จ',
-        example: 'ใบเสร็จ 1,000 / จ่าย 900 / ไม่คุ้มครอง 200',
-        calc: 'รวม 1,100 เกินใบเสร็จ 100',
-        result: 'แสดงการแจ้งเตือน',
-        wording: 'ยอดที่จ่ายรวมกับยอดไม่คุ้มครองเกินยอดสุทธิตามใบเสร็จ 100.00 บาท กรุณาตรวจสอบข้อมูล'
-      },
-      {
-        no: '8',
-        type: 'warn',
-        title: 'จำนวนเงินโอนเกินยอดสุทธิใบเสร็จ แต่ไม่เกินสิทธิ์เบิก',
-        condition: 'จำนวนเงินโอน > ยอดสุทธิใบเสร็จ และ จำนวนเงินโอน <= Benefit',
-        example: 'ใบเสร็จ 1,000 / Benefit 1,500 / จำนวนเงินโอน 1,200',
-        calc: 'เกินใบเสร็จ 200',
-        result: 'แสดงการแจ้งเตือน',
-        wording: 'จำนวนเงินโอนเกินยอดตามใบเสร็จ 200.00 บาท กรุณาดำเนินการคืนเงินส่วนเกิน'
+        title: 'สิทธิ์เบิกไม่เท่ากับยอดที่โอน',
+        condition: 'สิทธิ์เบิก ต้องเท่ากับ จำนวนเงินโอน',
+        example: 'สิทธิ์เบิก 700 / จำนวนเงินโอน 800',
+        calc: 'ต่างกัน 100.00 บาท',
+        result: 'ไม่ผ่านการตรวจสอบ',
+        wording: 'สิทธิ์เบิกไม่เท่ากับยอดที่โอน กรุณาตรวจสอบข้อมูลก่อนดำเนินการต่อ'
       }
     ];
     return `<section class="cc-transfer-alert-mockup" aria-label="Mockup ตัวอย่างการแจ้งเตือนการตรวจสอบยอด">
       <div class="cc-transfer-alert-head">
         <div>
           <div class="cc-transfer-alert-title"><span class="material-icons-round">notifications_active</span>Mockup ตัวอย่างการแจ้งเตือนการตรวจสอบยอด</div>
-          <div class="cc-transfer-alert-subtitle">ใช้สำหรับสาธิตเงื่อนไขการแจ้งเตือนกรณีคำนวณยอดโอน ยอดไม่คุ้มครอง และยอดสุทธิจากใบเสร็จ</div>
+          <div class="cc-transfer-alert-subtitle">เงื่อนไขก่อนดำเนินการต่อ: สิทธิ์เบิกต้องเท่ากับยอดที่โอน</div>
         </div>
       </div>
       <div class="cc-transfer-alert-grid">
@@ -28371,18 +28316,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(totalInput) totalInput.value = String(total);
   });
 
-  const OPD_FULL_CHECK_DOCS = [
-    'แบบฟอร์ม A',
-    'แบบฟอร์ม B',
-    'ใบแจ้งหนี้',
-    'รายละเอียดใบแจ้งหนี้',
-    'ผลการตรวจ LAB / X-ray',
-    'เอกสารอื่นๆ'
-  ];
-
   function getHospitalCheckDocsByMode(modeLabel='OPD Full'){
-    const mode = String(modeLabel || '').trim().toUpperCase();
-    if (mode === 'OPD HALF') return [...OPD_FULL_CHECK_DOCS.filter(name => name !== 'แบบฟอร์ม B'), 'บัตรประชาชน', 'ชุดรวมเอกสาร'];
     return ['ชุดรวมเอกสาร'];
   }
 
@@ -28667,17 +28601,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
 
   function renderHospitalStep1DocumentCheckSection(modeLabel='IPD'){
-    const isOpdHalf = /OPD\s*Half/i.test(String(modeLabel || ''));
-    const docs = isOpdHalf ? [
-      {name:'แบบฟอร์ม A', count:1},
-      {name:'แบบฟอร์ม B', count:0},
-      {name:'ใบแจ้งหนี้', count:1},
-      {name:'รายละเอียดใบแจ้งหนี้', count:1},
-      {name:'ผลการตรวจ LAB / X-ray', count:1},
-      {name:'เอกสารอื่นๆ', count:0},
-      {name:'บัตรประชาชน', count:0},
-      {name:'ชุดรวมเอกสาร', count:0}
-    ] : [{name:'ชุดรวมเอกสาร', count:1}];
+    const docs = [{name:'ชุดรวมเอกสาร', count:1}];
     const label = /DAY\s*CASE/i.test(String(modeLabel||'')) ? 'Day Case Surgery' : (/IPD/i.test(String(modeLabel||'')) ? 'IPD' : String(modeLabel||''));
     return `<section class="hospital-step1-document-check rounded-xl border border-slate-200 bg-white p-4">
       <div class="mb-3 flex items-center gap-2 text-lg font-extrabold text-brand-700">
@@ -28726,16 +28650,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(kind === 'ipd') return renderOpdFullDocumentCheckSection('IPD');
 
     if(kind === 'half'){
-      // v276: OPD Half / สถานะรอพิจารณา
-      // ค่าเริ่มต้นผลการตรวจสอบเอกสารและหมายเหตุต้องเป็นค่าว่างทั้งหมด
       const rows = [
-        {name:'แบบฟอร์ม A', count:1, status:'', note:''},
-        {name:'ใบแจ้งหนี้', count:1, status:'', note:''},
-        {name:'รายละเอียดใบแจ้งหนี้', count:2, status:'', note:''},
-        {name:'ผลการตรวจ LAB / X-ray', count:1, status:'', note:''},
-        {name:'เอกสารอื่นๆ', count:0, status:'', note:''},
-        {name:'บัตรประชาชน', count:0, status:'', note:''},
-        {name:'ชุดรวมเอกสาร', count:0, status:'', note:''}
+        {name:'ชุดรวมเอกสาร', count:1, status:'', note:''}
       ];
       const statusButtons = status => `
         <div class="opd-half-doc-result-group">
@@ -29020,7 +28936,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   function customerCompensationState(row = {}){
     const key = customerCompensationKey(row);
-    if(!customerCompensationStateByClaim.has(key)) customerCompensationStateByClaim.set(key,{uncovered:0,ipdUncovered:0,icuUncovered:0,reason:'',note:''});
+    if(!customerCompensationStateByClaim.has(key)) customerCompensationStateByClaim.set(key,{uncovered:0,ipdConfirmed:0,icuConfirmed:0,reason:'',note:''});
     return customerCompensationStateByClaim.get(key);
   }
   function customerCompensationBenefit(row = {}){
@@ -29053,13 +28969,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const icuAmount = icuDays * benefit.icuRate;
     const calculated = treatment === 'IPD' ? ipdAmount + icuAmount : benefit.opdFlatAmount;
     const automaticExcess = Math.max(0, calculated - benefit.benefitLimit);
-    const ipdUncovered = customerCompensationNumber(state.ipdUncovered);
-    const icuUncovered = customerCompensationNumber(state.icuUncovered);
+    const ipdConfirmed = customerCompensationNumber(state.ipdConfirmed);
+    const icuConfirmed = customerCompensationNumber(state.icuConfirmed);
     const uncovered = treatment === 'IPD'
-      ? ipdUncovered + icuUncovered
+      ? Math.max(0, calculated - ipdConfirmed - icuConfirmed)
       : Math.max(customerCompensationNumber(state.uncovered), automaticExcess);
-    const approved = Math.max(0, calculated - Math.min(uncovered, calculated));
-    return {benefit,state,treatment,ipdDays,icuDays,ipdAmount,icuAmount,ipdUncovered,icuUncovered,calculated,automaticExcess,uncovered,approved};
+    const approved = treatment === 'IPD' ? ipdConfirmed + icuConfirmed : Math.max(0, calculated - Math.min(uncovered, calculated));
+    return {benefit,state,treatment,ipdDays,icuDays,ipdAmount,icuAmount,ipdConfirmed,icuConfirmed,calculated,automaticExcess,uncovered,approved};
   }
 
   function customerCompensationReasonOptions(selected){
@@ -29072,23 +28988,23 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const rateSource = amount.benefit.isMock ? '<span class="cc-comp-source mock">ข้อมูลตัวอย่างสิทธิ์</span>' : '<span class="cc-comp-source">สิทธิ์ตามกรมธรรม์</span>';
     const calculation = isIpd ? `
       <div class="cc-comp-table-wrap"><table class="cc-comp-table" aria-label="รายละเอียดการคำนวณค่าชดเชย IPD">
-        <thead><tr><th>ประเภทค่าชดเชย</th><th>จำนวนวัน</th><th>อัตราต่อวัน</th><th>ยอดรวม</th><th>ยอดไม่คุ้มครอง</th></tr></thead>
+        <thead><tr><th>ประเภทค่าชดเชย</th><th>จำนวนวัน</th><th>อัตราต่อวัน</th><th>ยอดรวม</th><th>ยอดที่ยืนยันจ่าย</th></tr></thead>
         <tbody>
-          <tr><td><span class="material-icons-round">hotel</span>ค่าชดเชย IPD</td><td>${amount.ipdDays} วัน</td><td>${customerCompensationMoney(amount.benefit.ipdRate)} บาท</td><td><strong>${customerCompensationMoney(amount.ipdAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดไม่คุ้มครองค่าชดเชย IPD</span><span class="cc-comp-row-input"><input id="customerCompensationIpdUncovered" type="number" min="0" max="${amount.ipdAmount}" step="0.01" value="${amount.ipdUncovered.toFixed(2)}" oninput="updateCustomerCompensationField('ipdUncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
-          <tr><td><span class="material-icons-round">monitor_heart</span>ค่าชดเชย ICU</td><td>${amount.icuDays} วัน</td><td>${customerCompensationMoney(amount.benefit.icuRate)} บาท</td><td><strong>${customerCompensationMoney(amount.icuAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดไม่คุ้มครองค่าชดเชย ICU</span><span class="cc-comp-row-input"><input id="customerCompensationIcuUncovered" type="number" min="0" max="${amount.icuAmount}" step="0.01" value="${amount.icuUncovered.toFixed(2)}" oninput="updateCustomerCompensationField('icuUncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
+          <tr><td><span class="material-icons-round">hotel</span>ค่าชดเชย IPD</td><td>${amount.ipdDays} วัน</td><td>${customerCompensationMoney(amount.benefit.ipdRate)} บาท</td><td><strong>${customerCompensationMoney(amount.ipdAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดที่ยืนยันจ่ายค่าชดเชย IPD</span><span class="cc-comp-row-input"><input id="customerCompensationIpdConfirmed" type="number" min="0" max="${amount.ipdAmount}" step="0.01" value="${amount.ipdConfirmed.toFixed(2)}" oninput="updateCustomerCompensationField('ipdConfirmed',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
+          <tr><td><span class="material-icons-round">monitor_heart</span>ค่าชดเชย ICU</td><td>${amount.icuDays} วัน</td><td>${customerCompensationMoney(amount.benefit.icuRate)} บาท</td><td><strong>${customerCompensationMoney(amount.icuAmount)} บาท</strong></td><td><label class="cc-comp-row-uncovered"><span class="sr-only">ยอดที่ยืนยันจ่ายค่าชดเชย ICU</span><span class="cc-comp-row-input"><input id="customerCompensationIcuConfirmed" type="number" min="0" max="${amount.icuAmount}" step="0.01" value="${amount.icuConfirmed.toFixed(2)}" oninput="updateCustomerCompensationField('icuConfirmed',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></span></label></td></tr>
         </tbody>
       </table></div>` : `
       <div class="cc-comp-opd-amount"><div><span class="material-icons-round">payments</span><span>ยอดค่าชดเชยเหมาจ่ายตามสิทธิ์</span></div><strong>${customerCompensationMoney(amount.benefit.opdFlatAmount)} บาท</strong></div>`;
     return `<section class="cc-compensation-card" data-customer-compensation="true" data-treatment="${isIpd?'IPD':'OPD'}">
       <header class="cc-comp-head"><div class="cc-comp-title-wrap"><span class="cc-comp-icon"><span class="material-icons-round">account_balance_wallet</span></span><div><h3>รายการค่าชดเชย</h3><p>${isIpd?'คำนวณจากจำนวนวันที่ระบุในขั้นตอนบันทึกข้อมูลเคลม':'ยอดเหมาจ่ายอ้างอิงสิทธิ์ความคุ้มครองที่เลือก'}</p></div></div>${rateSource}</header>
-      <div class="cc-comp-body">${calculation}
+      <div class="cc-comp-body">${isIpd?`<div class="cc-comp-remark" role="note"><span class="material-icons-round" aria-hidden="true">info</span><span>ยอดค่าชดเชยคำนวณจากจำนวนวันนอนและอัตราต่อวัน โปรดตรวจสอบสิทธิ์ความคุ้มครองก่อนยืนยันยอดจ่าย</span></div>`:''}${calculation}
         <div class="cc-comp-formula" aria-label="สูตรคำนวณค่าชดเชย"><span class="material-icons-round">calculate</span><span>${isIpd?'(วัน IPD × อัตรา IPD) + (วัน ICU × อัตรา ICU)':'ยอดเหมาจ่ายตามสิทธิ์'}</span><strong data-cc-comp-calculated>${customerCompensationMoney(amount.calculated)} บาท</strong></div>
         <div class="cc-comp-section-caption"><span class="material-icons-round">summarize</span><span>สรุปยอดค่าชดเชย</span></div>
         <div class="cc-comp-summary-grid">
           <div class="cc-comp-summary-item"><span>ยอดค่าชดเชยที่คำนวณได้</span><strong data-cc-comp-calculated>${customerCompensationMoney(amount.calculated)} บาท</strong></div>
           <div class="cc-comp-summary-item"><span>สิทธิ์/วงเงินคงเหลือ</span><strong>${customerCompensationMoney(amount.benefit.benefitLimit)} บาท</strong></div>
-          ${isIpd?`<div class="cc-comp-summary-item"><span>ยอดไม่คุ้มครองรวม</span><strong data-cc-comp-uncovered>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>`:`<label class="cc-comp-field"><span>ยอดไม่คุ้มครอง</span><div class="cc-comp-input-wrap"><input id="customerCompensationUncovered" type="number" min="${amount.automaticExcess}" max="${amount.calculated}" step="0.01" value="${amount.uncovered.toFixed(2)}" oninput="updateCustomerCompensationField('uncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></div></label>`}
-          <label class="cc-comp-field"><span>สาเหตุไม่คุ้มครอง</span><select id="customerCompensationReason" onchange="updateCustomerCompensationField('reason',this.value)" aria-describedby="customerCompensationValidation">${customerCompensationReasonOptions(amount.state.reason)}</select></label>
+          ${isIpd?`<div class="cc-comp-summary-item"><span>ยอดที่ยืนยันจ่ายรวม</span><strong data-cc-comp-approved>${customerCompensationMoney(amount.approved)} บาท</strong></div><div class="cc-comp-summary-item"><span>ยอดส่วนต่างที่ไม่จ่าย</span><strong data-cc-comp-uncovered>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>`:`<label class="cc-comp-field"><span>ยอดไม่คุ้มครอง</span><div class="cc-comp-input-wrap"><input id="customerCompensationUncovered" type="number" min="${amount.automaticExcess}" max="${amount.calculated}" step="0.01" value="${amount.uncovered.toFixed(2)}" oninput="updateCustomerCompensationField('uncovered',this.value)" inputmode="decimal" aria-describedby="customerCompensationValidation"><span>บาท</span></div></label>`}
+          ${isIpd?'':`<label class="cc-comp-field"><span>สาเหตุไม่คุ้มครอง</span><select id="customerCompensationReason" onchange="updateCustomerCompensationField('reason',this.value)" aria-describedby="customerCompensationValidation">${customerCompensationReasonOptions(amount.state.reason)}</select></label>`}
         </div>
         <label class="cc-comp-note"><span>หมายเหตุ</span><textarea id="customerCompensationNote" rows="2" oninput="updateCustomerCompensationField('note',this.value)" placeholder="ระบุหมายเหตุเพิ่มเติม (ถ้ามี)">${customerCompensationEscape(amount.state.note || '')}</textarea></label>
         <div id="customerCompensationValidation" class="cc-comp-validation" role="alert" aria-live="polite"></div>
@@ -29101,8 +29017,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const row = window.currentConsiderCustomerRow || {};
     const state = customerCompensationState(row);
     if(field === 'uncovered') state.uncovered = customerCompensationNumber(value);
-    if(field === 'ipdUncovered') state.ipdUncovered = customerCompensationNumber(value);
-    if(field === 'icuUncovered') state.icuUncovered = customerCompensationNumber(value);
+    if(field === 'ipdConfirmed') state.ipdConfirmed = customerCompensationNumber(value);
+    if(field === 'icuConfirmed') state.icuConfirmed = customerCompensationNumber(value);
     if(field === 'reason') state.reason = String(value || '');
     if(field === 'note') state.note = String(value || '');
     window.refreshCustomerCompensationTotals();
@@ -29123,18 +29039,20 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(selected.coverage !== 'ค่าชดเชย') return true;
     const amount = customerCompensationAmounts(window.currentConsiderCustomerRow || {},selected);
     const input = document.getElementById('customerCompensationUncovered');
-    const ipdInput = document.getElementById('customerCompensationIpdUncovered');
-    const icuInput = document.getElementById('customerCompensationIcuUncovered');
+    const ipdInput = document.getElementById('customerCompensationIpdConfirmed');
+    const icuInput = document.getElementById('customerCompensationIcuConfirmed');
     const reason = document.getElementById('customerCompensationReason');
     const message = document.getElementById('customerCompensationValidation');
     let error = '';
     let errorTarget = input;
     if(amount.calculated <= 0) error = amount.treatment === 'IPD' ? 'ไม่สามารถคำนวณค่าชดเชยได้ กรุณาระบุจำนวนวัน IPD หรือ ICU ให้ถูกต้อง' : 'ไม่พบยอดค่าชดเชยเหมาจ่ายตามสิทธิ์ กรุณาตรวจสอบข้อมูลความคุ้มครอง';
-    else if(amount.treatment === 'IPD' && amount.ipdUncovered > amount.ipdAmount){error='ยอดไม่คุ้มครองค่าชดเชย IPD ต้องไม่เกินยอดรวม IPD';errorTarget=ipdInput;}
-    else if(amount.treatment === 'IPD' && amount.icuUncovered > amount.icuAmount){error='ยอดไม่คุ้มครองค่าชดเชย ICU ต้องไม่เกินยอดรวม ICU';errorTarget=icuInput;}
-    else if(amount.uncovered < amount.automaticExcess){error=`ยอดไม่คุ้มครองรวมต้องไม่น้อยกว่าส่วนที่เกินวงเงิน ${customerCompensationMoney(amount.automaticExcess)} บาท`;errorTarget=amount.treatment==='IPD'?(ipdInput||icuInput):input;}
-    else if(amount.uncovered > amount.calculated) error = 'ยอดไม่คุ้มครองต้องไม่เกินยอดค่าชดเชยที่คำนวณได้';
-    else if(amount.uncovered > 0 && !String(amount.state.reason || '').trim()){error='กรุณาระบุสาเหตุไม่คุ้มครอง';errorTarget=reason;}
+    else if(amount.treatment === 'IPD' && amount.ipdConfirmed > amount.ipdAmount){error='ยอดที่ยืนยันจ่ายค่าชดเชย IPD ต้องไม่เกินยอดรวม IPD';errorTarget=ipdInput;}
+    else if(amount.treatment === 'IPD' && amount.icuConfirmed > amount.icuAmount){error='ยอดที่ยืนยันจ่ายค่าชดเชย ICU ต้องไม่เกินยอดรวม ICU';errorTarget=icuInput;}
+    else if(amount.treatment === 'IPD' && amount.approved > amount.benefit.benefitLimit){error=`ยอดที่ยืนยันจ่ายรวมต้องไม่เกินวงเงินคงเหลือ ${customerCompensationMoney(amount.benefit.benefitLimit)} บาท`;errorTarget=amount.icuConfirmed>0?icuInput:ipdInput;}
+    else if(amount.treatment === 'IPD' && amount.approved <= 0){error='กรุณาระบุยอดที่ยืนยันจ่ายอย่างน้อยหนึ่งรายการ';errorTarget=ipdInput;}
+    else if(amount.treatment !== 'IPD' && amount.uncovered < amount.automaticExcess){error=`ยอดไม่คุ้มครองรวมต้องไม่น้อยกว่าส่วนที่เกินวงเงิน ${customerCompensationMoney(amount.automaticExcess)} บาท`;errorTarget=input;}
+    else if(amount.treatment !== 'IPD' && amount.uncovered > amount.calculated) error = 'ยอดไม่คุ้มครองต้องไม่เกินยอดค่าชดเชยที่คำนวณได้';
+    else if(amount.treatment !== 'IPD' && amount.uncovered > 0 && !String(amount.state.reason || '').trim()){error='กรุณาระบุสาเหตุไม่คุ้มครอง';errorTarget=reason;}
     if(message){message.textContent=error;message.classList.toggle('show',Boolean(error));}
     [input,ipdInput,icuInput,reason].forEach(el=>{if(el)el.setAttribute('aria-invalid',error&&el===errorTarget?'true':'false');});
     if(error && shouldFocus){errorTarget?.scrollIntoView({behavior:'smooth',block:'center'});errorTarget?.focus({preventScroll:true});}
@@ -29158,18 +29076,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ] : [];
     const requestedCents = benefitRows.map(item=>Math.max(0,Math.round(customerCompensationNumber(item.requested)*100)));
     const requestedTotalCents = requestedCents.reduce((sum,value)=>sum+value,0);
-    const enteredUncoveredCents = [amount.ipdUncovered,amount.icuUncovered].map(value=>Math.max(0,Math.round(customerCompensationNumber(value)*100)));
+    const enteredConfirmedCents = [amount.ipdConfirmed,amount.icuConfirmed].map(value=>Math.max(0,Math.round(customerCompensationNumber(value)*100)));
     const allocatedRows = benefitRows.map((item,index)=>{
-      const uncoveredCents = Math.min(requestedCents[index],enteredUncoveredCents[index] || 0);
-      return {...item,requestedCents:requestedCents[index],uncoveredCents,eligibleCents:requestedCents[index]-uncoveredCents};
+      const confirmedCents = Math.min(requestedCents[index],enteredConfirmedCents[index] || 0);
+      return {...item,requestedCents:requestedCents[index],confirmedCents,unpaidCents:requestedCents[index]-confirmedCents};
     });
-    const uncoveredTotalCents = allocatedRows.reduce((sum,item)=>sum+item.uncoveredCents,0);
+    const confirmedTotalCents = allocatedRows.reduce((sum,item)=>sum+item.confirmedCents,0);
     const benefitTable = isLargeIpdCompensation ? `<div class="cc-comp-review-table-wrap" role="region" aria-label="ตาราง Benefit ค่าชดเชยใหญ่" tabindex="0">
       <table class="cc-comp-review-table">
-        <thead><tr><th scope="col">รายการ</th><th scope="col">รายการเบิก</th><th scope="col">สิทธิ์เบิกตามความคุ้มครอง</th><th scope="col">ส่วนเกินสิทธิ์</th></tr></thead>
+        <thead><tr><th scope="col">รายการ</th><th scope="col">ยอดคำนวณ</th><th scope="col">ยอดที่ยืนยันจ่าย</th><th scope="col">ยอดส่วนต่างที่ไม่จ่าย</th></tr></thead>
         <tbody>
-          ${allocatedRows.map(item=>`<tr data-cc-comp-benefit="${item.key}"><th scope="row">${item.name}</th><td>${customerCompensationMoney(item.requestedCents/100)}</td><td>${customerCompensationMoney(item.eligibleCents/100)}</td><td>${customerCompensationMoney(item.uncoveredCents/100)}</td></tr>`).join('')}
-          <tr class="cc-comp-review-table-total"><th scope="row">รวม :</th><td>${customerCompensationMoney(requestedTotalCents/100)}</td><td>${customerCompensationMoney((requestedTotalCents-uncoveredTotalCents)/100)}</td><td>${customerCompensationMoney(uncoveredTotalCents/100)}</td></tr>
+          ${allocatedRows.map(item=>`<tr data-cc-comp-benefit="${item.key}"><th scope="row">${item.name}</th><td>${customerCompensationMoney(item.requestedCents/100)}</td><td>${customerCompensationMoney(item.confirmedCents/100)}</td><td>${customerCompensationMoney(item.unpaidCents/100)}</td></tr>`).join('')}
+          <tr class="cc-comp-review-table-total"><th scope="row">รวม :</th><td>${customerCompensationMoney(requestedTotalCents/100)}</td><td>${customerCompensationMoney(confirmedTotalCents/100)}</td><td>${customerCompensationMoney((requestedTotalCents-confirmedTotalCents)/100)}</td></tr>
         </tbody>
       </table>
     </div>` : '';
@@ -29179,8 +29097,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <div class="cc-comp-review-lines">
         ${isLargeIpdCompensation?'':`<div><span>ค่าชดเชย OPD แบบเหมาจ่าย</span><strong>${customerCompensationMoney(amount.calculated)} บาท</strong></div>`}
         <div><span>สิทธิ์/วงเงินคงเหลือ</span><strong>${customerCompensationMoney(amount.benefit.benefitLimit)} บาท</strong></div>
-        <div><span>ยอดไม่คุ้มครอง</span><strong>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>
-        ${amount.uncovered>0?`<div><span>สาเหตุไม่คุ้มครอง</span><strong>${amount.state.reason || '-'}</strong></div>`:''}
+        <div><span>${isLargeIpdCompensation?'ยอดส่วนต่างที่ไม่จ่าย':'ยอดไม่คุ้มครอง'}</span><strong>${customerCompensationMoney(amount.uncovered)} บาท</strong></div>
+        ${!isLargeIpdCompensation && amount.uncovered>0?`<div><span>สาเหตุไม่คุ้มครอง</span><strong>${customerCompensationEscape(amount.state.reason || '-')}</strong></div>`:''}
       </div>
       <div class="cc-comp-review-total"><span>ยอดค่าชดเชยที่พิจารณาจ่าย</span><strong>${customerCompensationMoney(amount.approved)} บาท</strong></div>
     </section>`;
@@ -29269,7 +29187,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         const headers = Array.from(table.querySelectorAll('thead th')).map(th=>clean(th.textContent));
         const receiptIndex = headers.findIndex(header=>header.includes('ยอดเงินตามใบเสร็จ'));
         const entitlementIndex = headers.findIndex(header=>header.includes('สิทธิ์เบิก'));
-        const uncoveredIndex = headers.findIndex(header=>header.includes('ยอดไม่คุ้มครอง') || header.includes('ส่วนเกินสิทธิ์'));
+        const uncoveredIndex = headers.findIndex(header=>header.includes('ไม่คุ้มครอง') && !header.includes('สาเหตุ') || header.includes('ส่วนเกินสิทธิ์'));
         if(receiptIndex < 0 && entitlementIndex < 0) return;
         table.querySelectorAll('tbody tr').forEach(tr=>{
         const td=Array.from(tr.querySelectorAll('td'));
@@ -41760,8 +41678,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   .death-btn-primary:hover{transform:translateY(-1px)}
   .death-save-success{margin-top:16px;border-radius:14px;background:#eff6ff;border:1px solid #bfdbfe;padding:12px 16px;color:#1e3a8a;font-weight:800;font-size:14px;display:none}
   .death-save-success.show{display:block}
+  .death-change-account-modal{display:flex;flex-direction:column;max-height:calc(100dvh - 32px)}
+  .death-change-account-modal .death-modal-head{flex:none;padding:20px 24px 16px}
+  .death-change-account-modal .death-modal-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 24px 24px}
+  .death-change-account-modal .death-modal-note{margin:14px 0}
+  .death-change-account-modal .death-form-grid{gap:10px}
+  .death-change-account-modal .death-form-field textarea{height:84px}
+  .death-change-account-modal .death-upload-box{min-height:92px}
+  .death-change-account-modal .death-modal-actions{margin-top:18px}
   @media(max-width:1100px){.death-modal-overview{grid-template-columns:1fr}.death-modal-overview-item:not(:last-child){border-right:0;border-bottom:1px solid #d8e6f5}.death-form-field.col-3,.death-form-field.col-4,.death-form-field.col-5,.death-form-field.col-6,.death-form-field.col-7,.death-form-field.col-8{grid-column:span 12}}
-  @media(max-width:768px){.death-modal-head{padding:20px 18px 16px}.death-modal-title{font-size:24px}.death-modal-subtitle{font-size:14px}.death-modal-body{padding:18px}.death-form-row{grid-template-columns:1fr}.death-form-row-icon{width:48px;height:48px;border-radius:14px}.death-modal-actions{flex-direction:column}.death-btn-secondary,.death-btn-primary{width:100%;min-width:0}.death-money-box{font-size:22px}}
+  @media(min-width:769px) and (max-width:1100px){.death-beneficiary-modal .death-form-row:first-child .death-form-field.col-6{grid-column:span 6}.death-change-account-modal .death-modal-overview{grid-template-columns:repeat(3,minmax(0,1fr))}.death-change-account-modal .death-modal-overview-item:not(:last-child){border-right:1px solid #d8e6f5;border-bottom:0}.death-change-account-modal .death-form-field.col-3{grid-column:span 3}.death-change-account-modal .death-form-field.col-4{grid-column:span 4}.death-change-account-modal .death-form-field.col-5{grid-column:span 5}}
+  @media(max-width:768px){.death-modal-head{padding:20px 18px 16px}.death-modal-title{font-size:24px}.death-modal-subtitle{font-size:14px}.death-modal-body{padding:18px}.death-form-row{grid-template-columns:1fr}.death-form-row-icon{width:48px;height:48px;border-radius:14px}.death-modal-actions{flex-direction:column}.death-btn-secondary,.death-btn-primary{width:100%;min-width:0}.death-money-box{font-size:22px}.death-change-account-modal .death-modal-head{padding:18px 16px 14px}.death-change-account-modal .death-modal-body{padding:16px}}
 </style>
 
 <script id="death-beneficiary-modal-modern-script">
@@ -41796,10 +41723,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const accountLine = findBeneficiaryValueEl('บัญชีรับสินไหม')?.textContent?.trim() || 'กรุงไทย 18210001122 นางณัชชา วรวุฒิอนุกุล';
     const bankMatch = accountLine.match(/^([^\d]+?)\s+(\d+)\s+(.+)$/);
     const fullName = findBeneficiaryValueEl('ชื่อ-นามสกุล')?.textContent?.trim() || 'นางณัชชา วรวุฒิอนุกุล';
-    const nameParts = fullName.split(/\s+/).filter(Boolean);
-    const prefix = TITLES.find(t => nameParts[0] === t) || 'นาง';
-    const firstName = prefix && nameParts[0] === prefix ? (nameParts[1] || '') : (nameParts[0] || 'ณัชชา');
-    const lastName = prefix && nameParts[0] === prefix ? nameParts.slice(2).join(' ') : nameParts.slice(1).join(' ');
+    const matchedPrefix = [...TITLES].sort((a,b) => b.length-a.length).find(t => fullName.startsWith(t));
+    const prefix = matchedPrefix || 'นาง';
+    const nameParts = (matchedPrefix ? fullName.slice(matchedPrefix.length) : fullName).trim().split(/\s+/).filter(Boolean);
+    const firstName = nameParts[0] || 'ณัชชา';
+    const lastName = nameParts.slice(1).join(' ');
     return {
       relation: findBeneficiaryValueEl('ความสัมพันธ์')?.textContent?.trim() || 'มารดา',
       idType: 'card',
@@ -41835,7 +41763,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   window.showEditBeneficiaryModal = function(){
     const data = getCurrentBeneficiaryData();
     showModal(`
-      <div class="death-modal-shell">
+      <div class="death-modal-shell death-beneficiary-modal">
         <div class="death-modal-head">
           <div class="death-modal-title-wrap">
             <div class="death-modal-title-icon"><span class="material-icons-round">diversity_3</span></div>
@@ -41865,22 +41793,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="death-form-row">
               <div class="death-form-row-icon"><span class="material-icons-round">family_restroom</span></div>
               <div class="death-form-fields">
-                <div class="death-form-field col-4">
-                  <label>ความสัมพันธ์ <span class="req">*</span></label>
+                <div class="death-form-field col-6">
+                  <label for="deathBeneficiaryRelation">ความสัมพันธ์ <span class="req">*</span></label>
                   <select id="deathBeneficiaryRelation">${RELATIONS.map(v => `<option ${v===data.relation?'selected':''}>${v}</option>`).join('')}</select>
                 </div>
-                <div class="death-form-field col-8">
-                  <label>ประเภทเอกสาร <span class="req">*</span></label>
-                  <input type="hidden" id="beneficiaryIdType" value="${data.idType}">
-                  <div class="death-segmented">
-                    <button id="beneficiaryIdTypeCard" type="button" class="death-segmented-btn active"><span class="material-icons-round">badge</span>บัตรประชาชน</button>
-                    <button id="beneficiaryIdTypePassport" type="button" class="death-segmented-btn"><span class="material-icons-round">flight</span>Passport</button>
-                  </div>
-                </div>
-                <div class="death-form-field col-4">
-                  <label id="beneficiaryIdLabel">เลขบัตรประชาชน <span class="req">*</span></label>
+                <div class="death-form-field col-6">
+                  <label for="beneficiaryIdNo">เลขบัตรประชาชน <span class="req">*</span></label>
                   <input id="beneficiaryIdNo" type="text" inputmode="numeric" autocomplete="off" maxlength="17" placeholder="0-0000-00000-00-0" value="${esc(maskThaiCardId(data.idNo))}" oninput="this.value = maskThaiCardId(this.value)">
-                  <div id="beneficiaryIdHelp" class="death-form-help is-card">รูปแบบ Text Mask CardID: 0-0000-00000-00-0</div>
+                  <div class="death-form-help is-card">รูปแบบ Text Mask CardID: 0-0000-00000-00-0</div>
                 </div>
               </div>
             </div>
@@ -41922,16 +41842,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
       </div>
     `,'max-w-6xl');
-    setTimeout(() => {
-      if(typeof bindBeneficiaryIdTypeButtons === 'function') bindBeneficiaryIdTypeButtons();
-      if(typeof updateBeneficiaryIdMask === 'function') updateBeneficiaryIdMask();
-    }, 0);
   };
 
   window.saveDeathBeneficiaryModal = function(){
     const data = {
       relation: document.getElementById('deathBeneficiaryRelation')?.value?.trim(),
-      idType: document.getElementById('beneficiaryIdType')?.value || 'card',
+      idType: 'card',
       idNo: document.getElementById('beneficiaryIdNo')?.value?.trim(),
       prefix: document.getElementById('deathBeneficiaryPrefix')?.value?.trim(),
       firstName: document.getElementById('deathBeneficiaryFirstName')?.value?.trim(),
@@ -41955,7 +41871,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   window.showDdChangeAccountModal = function(){
     const current = getCurrentBeneficiaryData();
     showModal(`
-      <div class="death-modal-shell">
+      <div class="death-modal-shell death-change-account-modal">
         <div class="death-modal-head">
           <div class="death-modal-title-wrap">
             <div class="death-modal-title-icon"><span class="material-icons-round">currency_exchange</span></div>
@@ -41995,8 +41911,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <div class="death-form-field col-4"><label>ธนาคาร <span class="req">*</span></label><select id="ddChangeBankModern"><option value="">เลือกธนาคาร</option>${BANKS.map(v => `<option ${v===current.bank?'selected':''}>${v}</option>`).join('')}</select></div>
                 <div class="death-form-field col-4"><label>ประเภทบัญชี <span class="req">*</span></label><select id="ddChangeAccountTypeModern"><option value="">เลือกประเภทบัญชี</option>${ACCOUNT_TYPES.map(v => `<option ${v==='ออมทรัพย์'?'selected':''}>${v}</option>`).join('')}</select></div>
                 <div class="death-form-field col-4"><label>เลขที่บัญชี <span class="req">*</span></label><input id="ddChangeAccountNoModern" placeholder="กรุณากรอกเลขที่บัญชี" value="${esc(current.accountNo)}"></div>
-                <div class="death-form-field col-6"><label>ชื่อบัญชี <span class="req">*</span></label><input id="ddChangeAccountNameModern" placeholder="กรุณากรอกชื่อบัญชี" value="${esc(current.accountName)}"></div>
-                <div class="death-form-field col-6"><label>ชื่อผู้รับเงินแทน <span class="req">*</span></label><input id="ddChangeReceiverModern" placeholder="กรุณากรอกชื่อผู้รับเงินแทน" value="${esc(current.fullName)}"></div>
+                <div class="death-form-field col-12"><label>ชื่อบัญชี <span class="req">*</span></label><input id="ddChangeAccountNameModern" placeholder="กรุณากรอกชื่อบัญชี" value="${esc(current.accountName)}"></div>
+                <div class="death-form-field col-3"><label for="ddChangeReceiverPrefixModern">คำนำหน้าผู้รับเงินแทน <span class="req">*</span></label><select id="ddChangeReceiverPrefixModern">${TITLES.map(v => `<option ${v===current.prefix?'selected':''}>${v}</option>`).join('')}</select></div>
+                <div class="death-form-field col-4"><label for="ddChangeReceiverFirstNameModern">ชื่อผู้รับเงินแทน <span class="req">*</span></label><input id="ddChangeReceiverFirstNameModern" placeholder="กรุณากรอกชื่อ" value="${esc(current.firstName)}"></div>
+                <div class="death-form-field col-5"><label for="ddChangeReceiverLastNameModern">นามสกุลผู้รับเงินแทน <span class="req">*</span></label><input id="ddChangeReceiverLastNameModern" placeholder="กรุณากรอกนามสกุล" value="${esc(current.lastName)}"></div>
               </div>
             </div>
             <div class="death-form-row">
@@ -42013,7 +41931,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </div>
         </div>
       </div>
-    `,'max-w-7xl');
+    `,'max-w-4xl');
   };
 
   window.saveDdCashHandoverModal = function(){
@@ -42022,14 +41940,17 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const accountType = document.getElementById('ddChangeAccountTypeModern')?.value?.trim();
     const accountNo = document.getElementById('ddChangeAccountNoModern')?.value?.trim();
     const accountName = document.getElementById('ddChangeAccountNameModern')?.value?.trim();
-    const receiver = document.getElementById('ddChangeReceiverModern')?.value?.trim();
-    if(!reason || !bank || !accountType || !accountNo || !accountName || !receiver){
+    const receiverPrefix = document.getElementById('ddChangeReceiverPrefixModern')?.value?.trim();
+    const receiverFirstName = document.getElementById('ddChangeReceiverFirstNameModern')?.value?.trim();
+    const receiverLastName = document.getElementById('ddChangeReceiverLastNameModern')?.value?.trim();
+    if(!reason || !bank || !accountType || !accountNo || !accountName || !receiverPrefix || !receiverFirstName || !receiverLastName){
       const hint = document.getElementById('deathChangeSaveHint');
       if(hint){ hint.textContent = 'กรุณากรอกข้อมูลการเปลี่ยนบัญชีให้ครบถ้วน'; hint.classList.add('show'); hint.style.background='#fef2f2'; hint.style.borderColor='#fecaca'; hint.style.color='#b91c1c'; }
       return;
     }
     const section = document.getElementById('ddTransferAccountDetail');
     if(section){
+      const receiver = `${receiverPrefix}${receiverFirstName} ${receiverLastName}`;
       document.getElementById('ddTransferReasonText').textContent = reason;
       document.getElementById('ddTransferReceiverText').textContent = receiver;
       document.getElementById('ddTransferBankText').textContent = `${bank} (${accountType}) ${accountNo} ${accountName}`;
@@ -46550,6 +46471,8 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
 #considerCustomerDetailPage .cc-comp-table td:first-child .material-icons-round{color:#0b80c9;font-size:19px!important}
 #considerCustomerDetailPage .cc-comp-table td strong{color:#173454;font-size:17px!important;font-weight:700!important}
 #considerCustomerDetailPage .cc-comp-row-uncovered{display:block;min-width:150px}
+#considerCustomerDetailPage .cc-comp-remark{display:flex;align-items:flex-start;gap:9px;border:1px solid #cfe1f4;border-radius:9px;background:#f8fbff;padding:10px 12px;color:#315679;font-size:15px!important;line-height:1.45}
+#considerCustomerDetailPage .cc-comp-remark .material-icons-round{flex:none;color:#075f99;font-size:19px!important}
 #considerCustomerDetailPage .cc-comp-row-input{position:relative;display:block}
 #considerCustomerDetailPage .cc-comp-row-input input{width:100%;height:44px;border:1px solid #c9d6e4;border-radius:9px;background:#fff;padding:0 48px 0 10px;color:#203850;font-size:16px!important;font-weight:600;text-align:right;outline:none;font-variant-numeric:tabular-nums;transition:border-color .15s ease,box-shadow .15s ease}
 #considerCustomerDetailPage .cc-comp-row-input>span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#718096;font-size:13px!important;font-weight:600!important;pointer-events:none}
@@ -47945,7 +47868,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
         (function installHospitalConsiderationV123(){
           const money = value => Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
           const docRowsByMode = {
-            'OPD Half':['แบบฟอร์ม A','ใบแจ้งหนี้','รายละเอียดใบแจ้งหนี้','ผลการตรวจ LAB / X-ray','เอกสารอื่นๆ','บัตรประชาชน','ชุดรวมเอกสาร'],
+            'OPD Half':['ชุดรวมเอกสาร'],
             'OPD Full':['ชุดรวมเอกสาร'],
             'IPD':['ชุดรวมเอกสาร']
           };
@@ -47979,7 +47902,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
             const rows=window.hospitalIpdExpenseRows;
             const total=key=>rows.reduce((sum,row)=>sum+(Number(row[key])||0),0);
             const net=Math.max(total('eligible')-total('discount'),0);
-            return '<section class="hospital-ipd-expense-v123"><div class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</div><div class="hospital-ipd-table-wrap"><table class="hospital-ipd-table"><thead><tr><th>รายการค่ารักษา</th><th>ยอดเงินตามใบเสร็จ</th><th>สิทธิ์เบิก</th><th>ส่วนลด</th><th>ยอดไม่คุ้มครอง</th><th>สาเหตุไม่คุ้มครอง</th><th>หมายเหตุ</th><th></th></tr></thead><tbody>' + rows.map(function(row,index){return '<tr><td><select data-v123-exp-index="' + index + '" data-v123-exp-key="name">' + ipdCatalog.map(x=>'<option '+(x===row.name?'selected':'')+'>'+x+'</option>').join('') + '<option selected>' + row.name + '</option></select></td>' + ['receipt','eligible','discount','uncovered'].map(key=>'<td><input data-v123-exp-index="'+index+'" data-v123-exp-key="'+key+'" type="number" min="0" step="0.01" value="'+Number(row[key]||0).toFixed(2)+'"></td>').join('') + '<td><select><option>--- เลือก ---</option><option>เกินวงเงิน</option><option>ไม่อยู่ในความคุ้มครอง</option><option>เอกสารไม่ครบ</option></select></td><td><input type="text" placeholder="หมายเหตุ"></td><td><button type="button" class="hospital-ipd-delete" data-v123-remove="'+index+'"><span class="material-icons-round">delete</span></button></td></tr>';}).join('') + '</tbody></table></div><div class="hospital-ipd-summary"><div><span>ยอดเงินตามใบเสร็จรวม</span><strong>'+money(total('receipt'))+' บาท</strong></div><div><span>ส่วนลดรวม</span><strong>'+money(total('discount'))+' บาท</strong></div><div><span>ยอดไม่คุ้มครองรวม</span><strong>'+money(total('uncovered'))+' บาท</strong></div><div class="eligible"><span>ยอดเงินสุทธิ</span><strong>'+money(net)+' บาท</strong></div></div><div class="hospital-ipd-add"><div><strong>รายการค่ารักษาเพิ่มเติม</strong><p>กรณีไม่มีรายการค่าใช้จ่าย กรุณาเลือกหมวดและเพิ่มรายการลงในตาราง</p></div><button type="button" data-v123-add><span class="material-icons-round">add</span>เพิ่มรายการค่ารักษา</button></div></section>';
+            return '<section class="hospital-ipd-expense-v123"><div class="cc-ref-title-strip"><span class="material-icons-round">note_add</span>รายการค่าใช้จ่าย</div><div class="hospital-ipd-table-wrap"><table class="hospital-ipd-table"><thead><tr><th>รายการค่ารักษา</th><th>ยอดเงินตามใบเสร็จ</th><th>ส่วนลด</th><th>ยอดเงินไม่คุ้มครอง</th><th>สาเหตุไม่คุ้มครอง</th><th>สิทธิ์เบิก</th><th>หมายเหตุ</th><th></th></tr></thead><tbody>' + rows.map(function(row,index){return '<tr><td><select data-v123-exp-index="' + index + '" data-v123-exp-key="name">' + ipdCatalog.map(x=>'<option '+(x===row.name?'selected':'')+'>'+x+'</option>').join('') + '<option selected>' + row.name + '</option></select></td>' + ['receipt','discount','uncovered'].map(key=>'<td><input data-v123-exp-index="'+index+'" data-v123-exp-key="'+key+'" type="number" min="0" step="0.01" value="'+Number(row[key]||0).toFixed(2)+'"></td>').join('') + '<td><select><option>--- เลือก ---</option><option>เกินวงเงิน</option><option>ไม่อยู่ในความคุ้มครอง</option><option>เอกสารไม่ครบ</option></select></td><td><input data-v123-exp-index="'+index+'" data-v123-exp-key="eligible" type="number" min="0" step="0.01" value="'+Number(row.eligible||0).toFixed(2)+'"></td><td><input type="text" placeholder="หมายเหตุ"></td><td><button type="button" class="hospital-ipd-delete" data-v123-remove="'+index+'"><span class="material-icons-round">delete</span></button></td></tr>';}).join('') + '</tbody></table></div><div class="hospital-ipd-summary"><div><span>ยอดเงินตามใบเสร็จรวม</span><strong>'+money(total('receipt'))+' บาท</strong></div><div><span>ส่วนลดรวม</span><strong>'+money(total('discount'))+' บาท</strong></div><div><span>ยอดไม่คุ้มครองรวม</span><strong>'+money(total('uncovered'))+' บาท</strong></div><div class="eligible"><span>ยอดเงินสุทธิ</span><strong>'+money(net)+' บาท</strong></div></div><div class="hospital-ipd-add"><div><strong>รายการค่ารักษาเพิ่มเติม</strong><p>กรณีไม่มีรายการค่าใช้จ่าย กรุณาเลือกหมวดและเพิ่มรายการลงในตาราง</p></div><button type="button" data-v123-add><span class="material-icons-round">add</span>เพิ่มรายการค่ารักษา</button></div></section>';
           };
           window.refreshHospitalIpdExpenseV123=function(){const host=document.getElementById('hospitalIpdExpenseHostV123');if(host)host.innerHTML=window.renderHospitalIpdExpenseV123();};
           window.updateHospitalIpdExpenseV123=function(index,key,value){const row=window.hospitalIpdExpenseRows[index];if(!row)return;row[key]=key==='name'?value:(Number(value)||0);window.refreshHospitalIpdExpenseV123();};
@@ -53767,8 +53690,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "314",
-  updatedAt: "24/09/2026 08:34:27"
+  version: "326",
+  updatedAt: "25/09/2026 11:30:59"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -54457,7 +54380,7 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     if(!pane) return null;
     return Array.from(pane.querySelectorAll('table')).find(table=>{
       const heads=Array.from(table.querySelectorAll('thead th')).map(th=>String(th.textContent||'').trim());
-      return heads.some(h=>h.includes('ยอดเงินตามใบเสร็จ')) && heads.some(h=>h.includes('ส่วนลด')) && heads.some(h=>h.includes('ยอดไม่คุ้มครอง'));
+      return heads.some(h=>h.includes('ยอดเงินตามใบเสร็จ')) && heads.some(h=>h.includes('ส่วนลด')) && heads.some(h=>h.includes('ไม่คุ้มครอง') && !h.includes('สาเหตุ'));
     }) || null;
   }
   function headerIndex(table, keyword){
@@ -54485,7 +54408,10 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
     if(!table) return;
     const receiptIdx=headerIndex(table,'ยอดเงินตามใบเสร็จ');
     const discountIdx=headerIndex(table,'ส่วนลด');
-    const uncoveredIdx=headerIndex(table,'ยอดไม่คุ้มครอง');
+    const uncoveredIdx=Array.from(table.querySelectorAll('thead th')).findIndex(th=>{
+      const heading=String(th.textContent||'').replace(/\s+/g,' ').trim();
+      return heading.includes('ไม่คุ้มครอง') && !heading.includes('สาเหตุ');
+    });
     if(receiptIdx<0) return;
     let receipt=0, discount=0, uncovered=0;
     Array.from(table.querySelectorAll('tbody tr')).forEach(row=>{
@@ -58148,9 +58074,9 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       if(select) select.value = mock.type;
 
       const inputs = row.querySelectorAll('input');
-      // original order: receipt, eligible, discount, uncovered, note
+      // order: receipt, discount, uncovered, entitlement, note
       if(inputs[0] && !String(inputs[0].value || '').trim()) inputs[0].value = mock.receipt;
-      if(inputs[2] && !String(inputs[2].value || '').trim()) inputs[2].value = mock.discount;
+      if(inputs[1] && !String(inputs[1].value || '').trim()) inputs[1].value = mock.discount;
     });
 
     table.dataset.v287ExpenseTypeEnhanced = 'true';
@@ -63399,7 +63325,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/mock-data/hospital-additional-transfer.mock.js"></script>
 
 <!-- พิจารณาเคลม > เคลมโรงพยาบาล (โอนเพิ่ม): monitor and navigation shell -->
-<script src="js/menu-consider-hospital-additional-transfer.js"></script>
+<script src="js/menu-consider-hospital-additional-transfer.js?v=315"></script>
 
 <!-- พิจารณาเคลม > เคลมโรงพยาบาล: Hospital Notice workspace -->
 <script src="js/mock-data/consider-hospital-notice.mock.js"></script>
@@ -63917,7 +63843,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   transferTrackingState.mode=transferTrackingState.mode||'customer';
   transferTrackingState.pageSize=10;
   transferTrackingState.page=1;
-  const sourceRows=()=>transferTrackingState.mode==='hospital'?hospitalRows:customerRows;
+  const sourceRows=()=>transferTrackingState.mode==='hospital'?hospitalRows:[...(window.deathTransferPendingRows||[]),...customerRows];
   const totalPages=()=>Math.max(1,Math.ceil(transferTrackingState.rows.length/transferTrackingState.pageSize));
   const pageRows=()=>{
     transferTrackingState.page=Math.min(Math.max(1,transferTrackingState.page),totalPages());
@@ -64251,6 +64177,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
 <script src="js/menu-physical-therapy.js?v=314"></script>
+
+<!-- ตรวจสอบให้สิทธิ์เบิกเท่ากับยอดโอนก่อนผ่านขั้นพิจารณาเคลมลูกค้า -->
+<script src="js/menu-customer-transfer-eligibility-check.js?v=320"></script>
+
+<!-- Death & Disability: ผู้รับผลประโยชน์แต่ละรายเข้าคิวรอโอนเงินแบบ session-only -->
+<script src="js/mock-data/death-transfer-pending.mock.js?v=322"></script>
+<script src="js/menu-death-transfer-handoff.js?v=322"></script>
+<link rel="stylesheet" href="css/menu-transfer-view-toggle.css?v=322">
 
 </body>
 </html>
