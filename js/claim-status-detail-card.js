@@ -17,20 +17,7 @@
   };
   STATUS_PRESENTATION["อยู่ระหว่างการทำรายการ"] = { tone: "progress", icon: "pending_actions", reason: "เจ้าหน้าที่กำลังดำเนินการกับรายการเคลม", detail: "อยู่ระหว่างตรวจสอบข้อมูลและบันทึกผลประโยชน์ก่อนสรุปผลการพิจารณา" };
   STATUS_PRESENTATION["อยู่ระหว่างทำรายการ"] = STATUS_PRESENTATION["อยู่ระหว่างการทำรายการ"];
-
-  function normalizeHospitalWaitingDocumentStatus() {
-    try {
-      if (typeof considerationHospitalRows === "undefined" || !Array.isArray(considerationHospitalRows)) return;
-      considerationHospitalRows.forEach(row => {
-        if (row.itemStatus !== "รอเอกสาร") return;
-        row.itemStatus = "รอแก้ไข";
-        row.statusReason = row.statusReason || "ข้อมูลหรือเอกสารจากสถานพยาบาลต้องได้รับการแก้ไข";
-        row.statusDetail = row.statusDetail || "ส่งกลับให้สถานพยาบาลแก้ไขข้อมูลให้ครบถ้วนก่อนเข้าสู่การพิจารณาอีกครั้ง";
-      });
-    } catch (error) {
-      console.warn("Unable to normalize hospital claim status", error);
-    }
-  }
+  const CLAIM_DETAIL_STATUSES = new Set(Object.keys(STATUS_PRESENTATION));
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -41,8 +28,15 @@
       .replace(/'/g, "&#039;");
   }
 
+  function getStatus(row) {
+    const candidates = [row?.itemStatus, row?.status, row?.claimStatus]
+      .map(value => String(value || "").trim())
+      .filter(Boolean);
+    return candidates.find(value => STATUS_PRESENTATION[value]) || candidates[0] || "";
+  }
+
   function getCardData(row) {
-    const status = String(row && (row.itemStatus || row.status) || "").trim();
+    const status = getStatus(row);
     const presentation = STATUS_PRESENTATION[status];
     if (!presentation) return null;
     return {
@@ -85,15 +79,29 @@
     if (!page) return;
     page.querySelector(".claim-status-detail-card")?.remove();
     page.querySelector("#hospitalCorrectionReviewCard")?.remove();
-    const status = String(row && (row.itemStatus || row.status) || "").trim();
+    const status = getStatus(row);
     if (!allowedStatuses.has(status)) return;
     const data = getCardData(row);
     if (!data) return;
-    const anchor = page.querySelector(".customer-review-tabs, .customer-review-stepper, [id$='StepPane1']");
+    const anchor = page.querySelector(".customer-review-tabs, .customer-review-stepper, .ccro-nav, [id$='StepPane1']");
     const titleId = `${page.id}ClaimStatusDetailTitle`;
     if (anchor) anchor.insertAdjacentHTML("beforebegin", renderStatusCard(data, titleId));
     else page.insertAdjacentHTML("afterbegin", renderStatusCard(data, titleId));
   }
+
+  function renderClaimDetailCard(row) {
+    const status = getStatus(row || {});
+    if (!CLAIM_DETAIL_STATUSES.has(status)) return "";
+    const data = getCardData(row || {});
+    return data ? renderStatusCard(data, "customerClaimReadOnlyPageClaimStatusDetailTitle") : "";
+  }
+
+  window.ClaimStatusDetailCard = Object.freeze({
+    renderClaimDetailCard,
+    insertClaimDetailCard(page, row) {
+      insertCard(page, row || {}, CLAIM_DETAIL_STATUSES);
+    }
+  });
 
   function removeHospitalWaitingDocumentStatus(page) {
     if (!page) return;
@@ -112,10 +120,6 @@
   const openHospital = window.openConsiderHospitalRow;
   if (typeof openHospital === "function") {
     window.openConsiderHospitalRow = function () {
-      normalizeHospitalWaitingDocumentStatus();
-      if (window.customerDecisionState?.type === "waitdocs") {
-        window.customerDecisionState = { ...window.customerDecisionState, type: "" };
-      }
       if (window.hospitalDecisionState?.type === "waitdocs") {
         window.hospitalDecisionState = { ...window.hospitalDecisionState, type: "" };
       }
@@ -203,5 +207,4 @@
     };
   }
 
-  normalizeHospitalWaitingDocumentStatus();
 })();
