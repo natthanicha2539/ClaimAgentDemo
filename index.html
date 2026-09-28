@@ -9004,7 +9004,7 @@ body > .min-h-screen > main,
 .step3-reference-scan-section thead tr{background:#0788d6!important;}
 @media(max-width:768px){.step3-reference-scan-section{padding:14px!important}.step3-reference-scan-section table{min-width:840px!important}}
 </style>
-<!-- vHospitalStatus: removed hospital-only รอเอกสาร status; existing mock rows normalized to รอแก้ไข -->
+<!-- Hospital consideration hides the รอเอกสาร filter option without rewriting existing record statuses. -->
 <link rel="stylesheet" href="css/claim-status-detail-card.css?v=334">
 <link rel="stylesheet" href="css/menu-consider-death-account-management.css?v=331">
 <link rel="stylesheet" href="css/menu-consider-death-status.css?v=331">
@@ -33468,6 +33468,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ensureStatusFilterOptions();
     const statusButtonWrap = document.getElementById('considerStatusButtonFilterWrap');
     if(statusButtonWrap) statusButtonWrap.style.display = 'flex';
+    const waitingDocsFilter = statusButtonWrap?.querySelector('.consider-status-filter-btn[data-status="รอเอกสาร"]');
+    if(waitingDocsFilter){
+      waitingDocsFilter.style.display = tab === 'hospital' ? 'none' : '';
+      if(tab === 'hospital' && waitingDocsFilter.classList.contains('active')){
+        window.setConsiderStatusButtonFilter?.('all');
+        return;
+      }
+    }
     const itemStatusFilterWrap = document.getElementById('considerItemStatusFilterWrap');
     if(itemStatusFilterWrap) itemStatusFilterWrap.style.display = 'none';
     if(typeof syncConsiderStatusButtons === 'function') syncConsiderStatusButtons();
@@ -33564,6 +33572,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ensureStatusFilterOptions();
     const statusButtonWrap = document.getElementById('considerStatusButtonFilterWrap');
     if(statusButtonWrap) statusButtonWrap.style.display = 'flex';
+    const waitingDocsFilter = statusButtonWrap?.querySelector('.consider-status-filter-btn[data-status="รอเอกสาร"]');
+    if(waitingDocsFilter) waitingDocsFilter.style.display = currentConsiderationTab === 'hospital' ? 'none' : '';
     if(typeof window.renderConsiderationTable === 'function') window.renderConsiderationTable();
   });
   setTimeout(function(){
@@ -53735,8 +53745,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "349",
-  updatedAt: "25/09/2026 17:25:16"
+  version: "350",
+  updatedAt: "28/09/2026 11:00:32"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64233,7 +64243,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- Shared historical status detail card for customer/hospital/Death claim entry -->
 <script src="js/mock-data/death-consideration-status.mock.js?v=329"></script>
-<script src="js/claim-status-detail-card.js?v=334"></script>
+<script src="js/claim-status-detail-card.js?v=335"></script>
 
 <!-- Death & Disability: จัดการบัญชีปลายทางแบบสร้าง/แก้ไข/ลบ -->
 <script src="js/menu-consider-death-account-management.js?v=331"></script>
