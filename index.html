@@ -26021,7 +26021,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">การวินิจฉัย2(Diagnosis2)</div><select class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"><option>${esc(d.diag2)}</option></select></label>
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">การวินิจฉัย3(Diagnosis3)</div><select class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"><option>${esc(d.diag3)}</option></select></label>
           <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">รายละเอียดการเจ็บป่วย/การบาดเจ็บ</div><input value="${esc(d.chiefComplaint || d.cc)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
-          <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">หมายเหตุ</div><input value="${esc(d.note)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
+          <label class="md:col-span-2 xl:col-span-4"><div class="mb-1 text-sm font-bold text-slate-500">หมายเหตุ(ถ้ามี)</div><input value="${esc(d.note)}" class="h-11 w-full rounded-lg border border-slate-300 px-3 text-lg"></label>
         </div>
       </div></div>`;
   }
@@ -26647,7 +26647,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             ${selectField('การวินิจฉัย2(Diagnosis2)', d.diag2, 'md:col-span-2 xl:col-span-4')}
             ${selectField('การวินิจฉัย3(Diagnosis3)', d.diag3, 'md:col-span-2 xl:col-span-4')}
             ${inputField('รายละเอียดการเจ็บป่วย/การบาดเจ็บ', d.cc, 'md:col-span-2 xl:col-span-4')}
-            ${inputField('หมายเหตุ', d.note, 'md:col-span-2 xl:col-span-4')}
+            ${inputField('หมายเหตุ(ถ้ามี)', d.note, 'md:col-span-2 xl:col-span-4')}
           </div>
         </div>
       </div>`;
@@ -28162,7 +28162,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ${select('การวินิจฉัย1(Diagnosis1)*',detail.diagnosis1 || row?.diagnosis1 || '---โปรดระบุ---','md:col-span-2 xl:col-span-4')}
         ${select('การวินิจฉัย2(Diagnosis2)',detail.diagnosis2 || row?.diagnosis2 || '---เลือก---','md:col-span-2 xl:col-span-4')}
         ${select('การวินิจฉัย3(Diagnosis3)',detail.diagnosis3 || row?.diagnosis3 || '---เลือก---','md:col-span-2 xl:col-span-4')}
-        ${input('รายละเอียด',detail.medicalNote || row?.note || '','text','md:col-span-2 xl:col-span-4')}
+        ${input('รายละเอียดการเจ็บป่วย/การบาดเจ็บ',detail.medicalNote || row?.note || '','text','md:col-span-2 xl:col-span-4')}
+        ${input('หมายเหตุ(ถ้ามี)',detail.optionalNote || row?.optionalNote || '','text','md:col-span-2 xl:col-span-4')}
       </div>
     </div>
     ${includeDoctor ? `<div class="hospital-medical-info-section hospital-medical-info-compact rounded-xl border border-slate-200 p-3" data-collapsible-section>
