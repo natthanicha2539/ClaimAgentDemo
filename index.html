@@ -19237,6 +19237,19 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         coverageType: state.coverageType || source.coverageType || '-',
         claimType: treatment,
         treatmentType: treatment,
+        ipdBenefitAmounts: product === 'PH' && state.coverageType === 'ค่ารักษา' && treatment === 'IPD'
+          ? Object.entries({
+              IPD_Half_1: state.phIpdAmounts?.normalRoom,
+              IPD_Half_2: state.phIpdAmounts?.icuRoom,
+              IPD_Half_3: state.phIpdAmounts?.medicalExpense,
+              IPD_Half_4: state.phIpdAmounts?.doctorCare,
+              IPD_Half_5: state.phIpdAmounts?.bedCompensation
+            }).reduce((items, [code, amount]) => {
+              const value = Number(String(amount ?? '').replace(/,/g, '').trim());
+              if (Number.isFinite(value) && value > 0) items.push({ code, amount: value });
+              return items;
+            }, [])
+          : [],
         incidentDate: state.claimDates?.incident || source.incidentDate || '',
         incidentTime: source.incidentTime || '09:00',
         admitDate: state.claimDates?.admit || source.admitDate || '',
@@ -26840,7 +26853,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function getPrelimItemsByTreatment(treatment){
     const key = normalizeClaimlineTreatment(treatment);
-    return (CLAIMLINE_PRELIM[key] || []).map(item => ({ item, claim:'', discount:'', uncovered:'', reason:'', note:'' }));
+    return (CLAIMLINE_PRELIM[key] || []).map(sourceItem => {
+      const item = typeof sourceItem === 'string' ? {item:sourceItem} : (sourceItem || {});
+      return {
+        ...item,
+        item:item.item || item.label || '',
+        code:item.code || item.itemCode || '',
+        claim:item.claim ?? '', discount:item.discount ?? '', uncovered:item.uncovered ?? '', reason:item.reason ?? '', note:item.note ?? ''
+      };
+    });
   }
 
   function compareClaimlineCode(a, b){
@@ -26943,7 +26964,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ? `<input data-claimline-field="note" value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ">`
         : `<input value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ">`;
       return `
-      <tr class="border-b border-slate-200">
+      <tr class="border-b border-slate-200" data-claimline-code="${cEsc(r.code || '')}">
         <td>${cEsc(r.item)}</td>
         <td>${receipt}</td>
         <td>${discount}</td>
@@ -27029,6 +27050,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return `
       <section class="cc-ref-card cc-ref-prelim-card">
         <div class="cc-ref-card-title">รายการค่ารักษา(เบื้องต้น)</div>
+        ${context?.source === 'customer' && typeof window.renderCustomerIpdTransferBreakdown === 'function'
+          ? window.renderCustomerIpdTransferBreakdown(window.currentConsiderCustomerRow || {})
+          : ''}
         <div class="cc-ref-table-wrap">
           <table class="cc-ref-prelim-table cc-ref-prelim-table-modern" data-auto-entitlement="${autoCalculateEntitlement ? 'true' : 'false'}">
             <colgroup>
@@ -27209,7 +27233,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const uncoveredEl = document.getElementById(`${prefix}AdditionalUncovered`);
     const reasonEl = document.getElementById(`${prefix}AdditionalReason`);
     const noteEl = document.getElementById(`${prefix}AdditionalNote`);
-    if (selectedEl) selectedEl.value = '';
+    if (selectedEl) { selectedEl.value = ''; delete selectedEl.dataset.claimlineCode; }
     [receiptEl, claimEl, discountEl, uncoveredEl, noteEl].forEach(el => { if (el) el.value = ''; });
     if (reasonEl) reasonEl.selectedIndex = 0;
     document.querySelectorAll(`#${prefix}AdditionalTreeList .cc-ref-item-btn, #${prefix}AdditionalTreeList .ce-item-btn`).forEach(el => el.classList.remove('selected', 'active'));
@@ -27243,7 +27267,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     document.querySelectorAll('#customerAdditionalTreeList .cc-ref-item-btn, #customerAdditionalTreeList .ce-item-btn').forEach(el => el.classList.remove('selected'));
     btn.classList.add('selected');
-    if (input) input.value = label;
+    if (input) { input.value = label; input.dataset.claimlineCode = btn.dataset?.code || ''; }
     window.toggleAdditionalEntryFields('customer', !!label);
   };
   window.filterCustomerAdditionalItems = function(keyword){
@@ -27301,6 +27325,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const autoCalculateEntitlement = tbody.closest('table')?.dataset.autoEntitlement === 'true';
     const row = document.createElement('tr');
     row.className = 'border-b border-slate-200';
+    row.dataset.claimlineCode = itemEl.dataset.claimlineCode || '';
     row.innerHTML = `
       <td>${itemEl.value}</td>
       <td><input ${autoCalculateEntitlement ? 'data-claimline-field="receipt"' : ''} value="${receiptEl?.value || ''}" class="ce-input" placeholder="0.00" inputmode="decimal"></td>
@@ -48323,25 +48348,37 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   }
   function clearUnmatchedItems(){ S.unmatchedItems=[]; renderUnmatchedItems(); }
   window.customerOcrMasterSelectionChanged=function(index,input){ const b=$('customerOcrMapBtn'+index); const value=String(input?.value||'').trim(); const valid=getCustomerMasterOptions().some(o=>o.label===value); if(b)b.disabled=!valid; };
-  window.recalculateCustomerExpenseSummary=function(){
-    const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr')).filter(r=>r.querySelectorAll('input').length>=4);
+  window.getCustomerMedicalExpenseSettlementData=function(){
+    const tableBody=document.getElementById('customerPrelimTableBody');
+    const rows=Array.from(tableBody?.querySelectorAll('tr')||[]);
     let receipt=0,discount=0,uncovered=0,eligibleTotal=0;
-    rows.forEach(r=>{
-      const receiptInput=r.querySelector('[data-claimline-field="receipt"]'), entitlementInput=r.querySelector('[data-claimline-field="entitlement"]'), discountInput=r.querySelector('[data-claimline-field="discount"]'), uncoveredInput=r.querySelector('[data-claimline-field="uncovered"]');
+    rows.forEach(row=>{
+      const receiptInput=row.querySelector('[data-claimline-field="receipt"]'), discountInput=row.querySelector('[data-claimline-field="discount"]'), uncoveredInput=row.querySelector('[data-claimline-field="uncovered"]');
       if(!receiptInput || !discountInput || !uncoveredInput) return;
-      const rowReceipt=moneyNumber(receiptInput?.value), rowDiscount=moneyNumber(discountInput?.value), rowUncovered=moneyNumber(uncoveredInput?.value), entitlement=Math.max(0,rowReceipt-rowDiscount-rowUncovered);
-      if(entitlementInput) entitlementInput.value=moneyText(entitlement);
-      receipt+=rowReceipt; discount+=rowDiscount; uncovered+=rowUncovered; eligibleTotal+=entitlement;
+      const rowReceipt=moneyNumber(receiptInput.value), rowDiscount=moneyNumber(discountInput.value), rowUncovered=moneyNumber(uncoveredInput.value);
+      receipt+=rowReceipt; discount+=rowDiscount; uncovered+=rowUncovered; eligibleTotal+=Math.max(0,rowReceipt-rowDiscount-rowUncovered);
     });
+    const hasIpdHalf5=rows.some(row=>row.dataset.claimlineCode==='IPD_Half_5');
     const inCustomerConsideration=Boolean(document.querySelector('#considerCustomerDetailPage #ccStepPane2'));
     const compensation=inCustomerConsideration&&typeof window.getCustomerIpdMedicalCompensationData==='function'
       ? window.getCustomerIpdMedicalCompensationData(window.currentConsiderCustomerRow||{})
       : {target:false,valid:true,payableCompensation:0};
-    const payableCompensation=compensation.target&&compensation.valid?moneyNumber(compensation.payableCompensation):0;
-    const net=eligibleTotal+payableCompensation;
+    const calculatedCompensation=compensation.target&&compensation.valid?moneyNumber(compensation.payableCompensation):0;
+    const includedCompensation=compensation.target&&!hasIpdHalf5?calculatedCompensation:0;
+    return {receipt,discount,uncovered,eligibleTotal,hasIpdHalf5,compensationTarget:compensation.target,compensationValid:compensation.valid,calculatedCompensation,includedCompensation,net:eligibleTotal+includedCompensation};
+  };
+  window.recalculateCustomerExpenseSummary=function(){
+    const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr')).filter(r=>r.querySelectorAll('input').length>=4);
+    const settlement=window.getCustomerMedicalExpenseSettlementData();
+    rows.forEach(row=>{
+      const receiptInput=row.querySelector('[data-claimline-field="receipt"]'), entitlementInput=row.querySelector('[data-claimline-field="entitlement"]'), discountInput=row.querySelector('[data-claimline-field="discount"]'), uncoveredInput=row.querySelector('[data-claimline-field="uncovered"]');
+      if(!receiptInput || !discountInput || !uncoveredInput) return;
+      const entitlement=Math.max(0,moneyNumber(receiptInput.value)-moneyNumber(discountInput.value)-moneyNumber(uncoveredInput.value));
+      if(entitlementInput) entitlementInput.value=moneyText(entitlement);
+    });
     const a=$('customerSummaryReceiptTotal'),b=$('customerSummaryDiscountTotal'),c=$('customerSummaryUncoveredTotal'),d=$('customerSummaryNet');
     const eligibleEl=$('customerSummaryEligibleTotal');
-    if(a)a.textContent=moneyText(receipt);if(b)b.textContent=moneyText(discount);if(c)c.textContent=moneyText(uncovered);if(eligibleEl)eligibleEl.textContent=moneyText(eligibleTotal);if(d)d.textContent=moneyText(net);
+    if(a)a.textContent=moneyText(settlement.receipt);if(b)b.textContent=moneyText(settlement.discount);if(c)c.textContent=moneyText(settlement.uncovered);if(eligibleEl)eligibleEl.textContent=moneyText(settlement.eligibleTotal);if(d)d.textContent=moneyText(settlement.net);
   };
   window.validateClaimlineNonCoverageReasons=function(options={}){
     const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr'));
@@ -53921,8 +53958,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "359",
-  updatedAt: "30/09/2026 12:49:25"
+  version: "360",
+  updatedAt: "30/09/2026 14:19:19"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64413,7 +64450,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-customer-ipd-medical-compensation.js?v=338"></script>
 
 <!-- ตรวจสอบให้สิทธิ์เบิกเท่ากับยอดโอนก่อนผ่านขั้นพิจารณาเคลมลูกค้า -->
-<script src="js/menu-customer-transfer-eligibility-check.js?v=337"></script>
+<script src="js/menu-customer-transfer-eligibility-check.js?v=360"></script>
 
 <!-- Death & Disability: ผู้รับผลประโยชน์แต่ละรายเข้าคิวรอโอนเงินแบบ session-only -->
 <script src="js/mock-data/death-transfer-pending.mock.js?v=322"></script>
