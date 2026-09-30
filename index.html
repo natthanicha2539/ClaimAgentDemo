@@ -62,6 +62,8 @@
   <link rel="stylesheet" href="css/menu-hospital-claim-traffic-accident.css" />
   <link rel="stylesheet" href="css/menu-claim-entry-category.css" />
   <link rel="stylesheet" href="css/menu-physical-therapy.css?v=314" />
+  <link rel="stylesheet" href="css/menu-customer-ipd-medical-compensation.css?v=339" />
+  <link rel="stylesheet" href="css/menu-customer-transfer-eligibility-check.css?v=2" />
   <link rel="stylesheet" href="css/menu-claim-work-search.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-additional-transfer.css?v=315" />
   <link rel="stylesheet" href="css/menu-fund-reserve-dashboard.css" />
@@ -3946,6 +3948,7 @@
   #ccStepPane2 .cc-ref-summary-title{display:flex;align-items:center;gap:8px;color:#005ea8;font-weight:900;margin-bottom:10px;font-size:14px}
   #ccStepPane2 .cc-ref-summary-title .material-icons-round{display:grid!important;place-items:center;width:26px;height:26px;border-radius:5px;background:#0c63a7;color:#fff;font-size:17px!important}
   #ccStepPane2 .cc-ref-summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.9fr;gap:12px;align-items:stretch}
+  #ccStepPane2 .cc-ref-summary-grid[data-ipd-summary="true"]{grid-template-columns:repeat(4,minmax(0,1fr)) 1.9fr}
   #ccStepPane2 .cc-ref-money-card{height:76px;border:1px solid #cbdff5;border-radius:5px;background:#fff;padding:12px 16px;display:flex;flex-direction:column;justify-content:center}
   #ccStepPane2 .cc-ref-money-label{font-size:12px;color:#607086;font-weight:700;margin-bottom:2px}
   #ccStepPane2 .cc-ref-money-value{font-size:25px;font-weight:900;color:#005ea8;line-height:1}
@@ -4008,8 +4011,8 @@
   #ccStepPane2 .cc-ref-back-btn,#ccStepPane2 .cc-ref-draft-btn{border:1px solid #0067ad;background:#fff;color:#0067ad}
   #ccStepPane2 .cc-ref-next-btn{background:#075f99;color:#fff}
   #ccStepPane2 .cc-ref-save-btn{background:#16a34a;color:#fff}
-  @media(max-width:1100px){#ccStepPane2 .cc-ref-summary-grid{grid-template-columns:1fr 1fr}#ccStepPane2 .cc-ref-additional-grid{grid-template-columns:1fr}}
-  @media(max-width:768px){#ccStepPane2 .cc-ref-upload-row{justify-content:stretch}#ccStepPane2 .cc-ref-upload-btn{width:100%;justify-content:center}#ccStepPane2 .cc-ref-summary-grid{grid-template-columns:1fr}#ccStepPane2 .cc-ref-additional-head{flex-direction:column}#ccStepPane2 .cc-ref-outline-btn{width:100%;justify-content:center}#ccStepPane2 .cc-ref-form-2{grid-template-columns:1fr}#ccStepPane2 .cc-ref-actionbar{flex-direction:column;align-items:stretch}#ccStepPane2 .cc-ref-action-right{flex-direction:column}#ccStepPane2 .cc-ref-back-btn,#ccStepPane2 .cc-ref-draft-btn,#ccStepPane2 .cc-ref-next-btn,#ccStepPane2 .cc-ref-save-btn{width:100%}}
+  @media(max-width:1100px){#ccStepPane2 .cc-ref-summary-grid{grid-template-columns:1fr 1fr}#ccStepPane2 .cc-ref-summary-grid[data-ipd-summary="true"]{grid-template-columns:1fr 1fr}#ccStepPane2 .cc-ref-additional-grid{grid-template-columns:1fr}}
+  @media(max-width:768px){#ccStepPane2 .cc-ref-upload-row{justify-content:stretch}#ccStepPane2 .cc-ref-upload-btn{width:100%;justify-content:center}#ccStepPane2 .cc-ref-summary-grid{grid-template-columns:1fr}#ccStepPane2 .cc-ref-summary-grid[data-ipd-summary="true"]{grid-template-columns:1fr}#ccStepPane2 .cc-ref-additional-head{flex-direction:column}#ccStepPane2 .cc-ref-outline-btn{width:100%;justify-content:center}#ccStepPane2 .cc-ref-form-2{grid-template-columns:1fr}#ccStepPane2 .cc-ref-actionbar{flex-direction:column;align-items:stretch}#ccStepPane2 .cc-ref-action-right{flex-direction:column}#ccStepPane2 .cc-ref-back-btn,#ccStepPane2 .cc-ref-draft-btn,#ccStepPane2 .cc-ref-next-btn,#ccStepPane2 .cc-ref-save-btn{width:100%}}
 
 
   /* v35: Fit payment history font/table to screen */
@@ -10678,9 +10681,9 @@ body > .min-h-screen > main,
                   </section>
                 </div>
                 <div id="claimServiceFields" class="lg:col-span-3 grid gap-3 rounded-xl border border-slate-200 bg-white p-4 md:grid-cols-3">
-                  <label><span class="text-lg font-bold text-slate-500">ผู้รับเอกสาร<span class="text-danger">*</span></span><select class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="" selected>--- เลือก ---</option><option>ผู้ออกให้บริการ</option><option>FCNT (สกลนคร)</option><option>Pivot</option></select></label>
-                  <label><span class="text-lg font-bold text-slate-500">ผู้ออกให้บริการ<span class="text-danger">*</span></span><select class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="" selected>--- เลือก ---</option><option>06590 - ณัฏฐณิชา โตรักษา</option></select></label>
-                  <label><span class="text-lg font-bold text-slate-500">เจ้าของรถ<span class="text-danger">*</span></span><select class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="" selected>--- เลือก ---</option><option>006 : 00000 - คุณสำนักงาน - (-)</option></select></label>
+                  <label for="claimDocumentRecipient"><span class="text-lg font-bold text-slate-500">ผู้รับเอกสาร<span class="text-danger">*</span></span><select id="claimDocumentRecipient" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="ผู้ให้บริการ (Walk Out)">ผู้ให้บริการ (Walk Out)</option><option value="ผู้ให้บริการ (Walk in)">ผู้ให้บริการ (Walk in)</option><option value="Pivot">Pivot</option></select></label>
+                  <label for="claimServiceProvider"><span class="text-lg font-bold text-slate-500">ผู้ให้บริการ<span class="text-danger">*</span></span><select id="claimServiceProvider" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="06590 - ณัฏฐณิชา โตรักษา">06590 - ณัฏฐณิชา โตรักษา</option><option value="10234 - ณัฏฐณิชา โตรักษา">10234 - ณัฏฐณิชา โตรักษา</option><option value="10428 - มนัสนันท์ ศรีสุข">10428 - มนัสนันท์ ศรีสุข</option><option value="10715 - ปกรณ์ ชัยวัฒน์">10715 - ปกรณ์ ชัยวัฒน์</option><option value="11006 - ธนกฤต อินทร์แก้ว">11006 - ธนกฤต อินทร์แก้ว</option><option value="11392 - กัญญารัตน์ วงศ์สวัสดิ์">11392 - กัญญารัตน์ วงศ์สวัสดิ์</option><option value="000 - คุณสำนักงาน">000 - คุณสำนักงาน</option></select></label>
+                  <label for="claimVehicleOwner"><span class="text-lg font-bold text-slate-500">เจ้าของรถ<span class="text-danger">*</span></span><select id="claimVehicleOwner" aria-describedby="claimVehicleOwnerError" class="mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl"><option value="" selected>--- โปรดระบุ ---</option><option value="000 - คุณสำนักงาน">000 - คุณสำนักงาน</option></select><span id="claimVehicleOwnerError" class="mt-1 hidden text-sm font-bold text-red-700" role="alert">กรุณาระบุเจ้าของรถ</span></label>
                 </div>
                 <div id="dateFields" class="lg:col-span-3 grid gap-3 md:grid-cols-3"></div>
                 <div id="hospitalFields" class="lg:col-span-3 grid gap-3 md:grid-cols-3"></div>
@@ -13634,6 +13637,117 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       { date: "20/05/2569 09:14:18", claimCode: "CL6905000121", school: "-", name: "นางสาววริศรา พูลผล", idCard: "650284913577X", amount: "3,200.00", itemStatus: "รอพิจารณา" }
     ];
 
+    /*
+      Canonical customer-consideration case catalog.
+      Keep the first two legacy rows above in place because existing journeys use
+      them as stable entry points; these records cover every selectable
+      Cause × Coverage × Treatment combination on the customer review screen.
+    */
+    const customerConsiderationCaseMocks = [
+      {
+        sourceKey: "customer-consideration-case:illness-medical-opd",
+        scenarioLabel: "เจ็บป่วย · ค่ารักษา · OPD · เคลมต่อเนื่อง",
+        date: "24/09/2569 09:10:00", claimCode: "CL6909000501", caseNo: "CC6909000501-02",
+        school: "-", name: "นางสาวอรทัย วัฒนกิจ", idCard: "110370245501X", appId: "0019501", phone: "081-501-2569",
+        plan: "631", product: "PH", amount: "1,750.00", exgratiaAmount: "250.00", itemStatus: "รอพิจารณา", claimStatus: "Re-Open",
+        claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", claimType: "OPD", treatmentType: "OPD",
+        isContinuous: true, previousClaimNo: "CL6908000441", previousCaseNo: "CC6908000441-01", previousServiceDate: "2026-08-28",
+        incidentDate: "2026-09-24", incidentTime: "08:10", admitDate: "2026-09-24", admitTime: "08:45", dischargeDate: "2026-09-24", dischargeTime: "10:05",
+        hospital: "โรงพยาบาลพญาไท 2", chiefComplaint: "ปวดศีรษะและคลื่นไส้ต่อเนื่อง", diagnosis: "G43.0 : Migraine without aura | ไมเกรนชนิดไม่มีออรา",
+        diagnosis1: "G43.0 : Migraine without aura | ไมเกรนชนิดไม่มีออรา", diagnosis2: "-", diagnosis3: "-",
+        remainingBalance: "8,250.00", cumulativePaid: "1,750.00", note: "เคลมต่อเนื่องภายใน 30 วัน และมี Ex-gratia"
+      },
+      {
+        sourceKey: "customer-consideration-case:illness-medical-ipd",
+        scenarioLabel: "เจ็บป่วย · ค่ารักษา · IPD · ค่าชดเชยตามสิทธิ์",
+        date: "24/09/2569 10:20:00", claimCode: "CL6909000502", caseNo: "CC6909000502-01",
+        school: "-", name: "นายธีรเดช สุขเกษม", idCard: "110370245502X", appId: "0019502", phone: "082-502-2569",
+        plan: "631", product: "PH", amount: "1,500.00", itemStatus: "รอพิจารณา", claimStatus: "Open",
+        claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", claimType: "IPD", treatmentType: "IPD",
+        incidentDate: "2026-09-20", incidentTime: "07:30", admitDate: "2026-09-20", admitTime: "09:15", dischargeDate: "2026-09-23", dischargeTime: "11:00",
+        ipdDays: 3, icuDays: 0, totalStayDays: 3, compensationDailyRate: 500, compensationBenefitLimit: 10000,
+        hospital: "โรงพยาบาลพระรามเก้า", chiefComplaint: "ไข้สูง ไอ และหายใจเหนื่อย", diagnosis: "J18.9 : Pneumonia | ปอดอักเสบ",
+        diagnosis1: "J18.9 : Pneumonia | ปอดอักเสบ", diagnosis2: "-", diagnosis3: "-", note: "ตัวอย่างสูตร 3 วัน × 500 บาท = 1,500 บาท"
+      },
+      {
+        sourceKey: "customer-consideration-case:illness-medical-daycase",
+        scenarioLabel: "เจ็บป่วย · ค่ารักษา · Day Case Surgery",
+        date: "24/09/2569 11:30:00", claimCode: "CL6909000503", caseNo: "CC6909000503-01",
+        school: "-", name: "นางสาวกัลยาณี พรหมรักษ์", idCard: "110370245503X", appId: "0019503", phone: "083-503-2569",
+        plan: "631", product: "PH", amount: "12,800.00", itemStatus: "รอเอกสาร", claimStatus: "Open",
+        statusReason: "รอใบรับรองแพทย์ฉบับสมบูรณ์", statusDetail: "เอกสารหัตถการยังไม่ระบุเวลาจำหน่าย",
+        claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", claimType: "Day Case Surgery", treatmentType: "Day Case Surgery",
+        incidentDate: "2026-09-24", incidentTime: "06:45", admitDate: "2026-09-24", admitTime: "08:00", dischargeDate: "2026-09-24", dischargeTime: "16:20",
+        ipdDays: 0, icuDays: 0, totalStayDays: 0, hospital: "โรงพยาบาลสมิติเวช สุขุมวิท", chiefComplaint: "ปวดชายโครงขวาหลังรับประทานอาหาร",
+        diagnosis: "K80.20 : Gallstone | นิ่วในถุงน้ำดี", diagnosis1: "K80.20 : Gallstone | นิ่วในถุงน้ำดี", diagnosis2: "-", diagnosis3: "-", note: "ผ่าตัดแบบกลับบ้านวันเดียวกัน"
+      },
+      {
+        sourceKey: "customer-consideration-case:illness-compensation-ipd",
+        scenarioLabel: "เจ็บป่วย · ค่าชดเชย(ใหญ่) · IPD + ICU",
+        date: "24/09/2569 13:15:00", claimCode: "CL6909000504", caseNo: "CC6909000504-01",
+        school: "-", name: "นางจิราพร แก้วกาญจน์", idCard: "110370245504X", appId: "0019504", phone: "084-504-2569",
+        plan: "631", product: "PH", amount: "6,000.00", itemStatus: "รอแก้ไข", claimStatus: "Open",
+        statusReason: "รอตรวจสอบจำนวนวัน ICU", statusDetail: "จำนวนวันในใบสรุปการรักษาไม่ตรงกับ Discharge Summary",
+        claimCause: "เจ็บป่วย", coverageType: "ค่าชดเชย", claimType: "IPD", treatmentType: "IPD",
+        incidentDate: "2026-09-18", incidentTime: "18:40", admitDate: "2026-09-18", admitTime: "20:05", dischargeDate: "2026-09-22", dischargeTime: "13:30",
+        ipdDays: 3, icuDays: 1, totalStayDays: 4, compensationDailyRate: 1000, compensationIcuDailyRate: 3000, compensationBenefitLimit: 12000,
+        hospital: "โรงพยาบาลกรุงเทพ", chiefComplaint: "ไข้สูง หอบเหนื่อย ค่าออกซิเจนต่ำ", diagnosis: "J15.9 : Bacterial pneumonia | ปอดอักเสบจากเชื้อแบคทีเรีย",
+        diagnosis1: "J15.9 : Bacterial pneumonia | ปอดอักเสบจากเชื้อแบคทีเรีย", diagnosis2: "-", diagnosis3: "-", note: "ค่าชดเชย IPD 3 วัน และ ICU 1 วัน"
+      },
+      {
+        sourceKey: "customer-consideration-case:accident-medical-opd",
+        scenarioLabel: "อุบัติเหตุ · ค่ารักษา · OPD · กายภาพบำบัด",
+        date: "25/09/2569 09:05:00", claimCode: "CLPA6909000505", caseNo: "CCPA6909000505-01",
+        school: "โรงเรียนสาธิตแห่งมหาวิทยาลัยเกษตรศาสตร์", name: "ด.ญ.ณิชารีย์ อินทร์แก้ว", idCard: "110370245505X", appId: "PA19505", phone: "085-505-2569",
+        plan: "PA Student Plus", product: "PA", amount: "2,100.00", itemStatus: "รอพิจารณา", claimStatus: "Open",
+        claimCause: "อุบัติเหตุ", coverageType: "ค่ารักษา", claimType: "OPD", treatmentType: "OPD",
+        incidentDate: "2026-09-25", incidentTime: "07:50", admitDate: "2026-09-25", admitTime: "08:30", dischargeDate: "2026-09-25", dischargeTime: "10:20",
+        isPhysicalTherapy: true, medicalNecessity: "RESTORING_MOBILITY", hospital: "โรงพยาบาลเกษมราษฎร์ ประชาชื่น",
+        chiefComplaint: "ข้อเท้าขวาแพลงจากการเล่นกีฬา เคลื่อนไหวได้จำกัด", diagnosis: "S93.4 : Sprain of ankle | ข้อเท้าแพลง",
+        diagnosis1: "S93.4 : Sprain of ankle | ข้อเท้าแพลง", diagnosis2: "-", diagnosis3: "-", note: "ทำกายภาพบำบัดเพื่อฟื้นฟูการเคลื่อนไหว"
+      },
+      {
+        sourceKey: "customer-consideration-case:accident-medical-ipd",
+        scenarioLabel: "อุบัติเหตุ · ค่ารักษา · IPD · จำกัดวงเงินค่าชดเชย",
+        date: "25/09/2569 10:40:00", claimCode: "CLPA6909000506", caseNo: "CCPA6909000506-01",
+        school: "โรงเรียนเตรียมอุดมศึกษา", name: "นายกิตติศักดิ์ คงมั่น", idCard: "110370245506X", appId: "PA19506", phone: "086-506-2569",
+        plan: "PA Student Plus", product: "PA", amount: "2,000.00", exgratiaAmount: "1,000.00", itemStatus: "รอพิจารณา", claimStatus: "Open",
+        claimCause: "อุบัติเหตุ", coverageType: "ค่ารักษา", claimType: "IPD", treatmentType: "IPD",
+        incidentDate: "2026-09-20", incidentTime: "19:25", admitDate: "2026-09-20", admitTime: "20:10", dischargeDate: "2026-09-25", dischargeTime: "12:00",
+        ipdDays: 4, icuDays: 1, totalStayDays: 5, compensationDailyRate: 600, compensationRemainingBenefit: 2000,
+        hospital: "โรงพยาบาลวิภาวดี", chiefComplaint: "รถจักรยานยนต์ล้ม ปวดและบวมขาซ้าย", diagnosis: "S82.20 : Fracture of shaft of tibia | กระดูกหน้าแข้งหัก",
+        diagnosis1: "S82.20 : Fracture of shaft of tibia | กระดูกหน้าแข้งหัก", diagnosis2: "S06.0 : Concussion | สมองกระทบกระเทือน", diagnosis3: "-",
+        note: "ยอดคำนวณ 3,000 บาท จำกัดตามวงเงินคงเหลือ 2,000 บาท"
+      },
+      {
+        sourceKey: "customer-consideration-case:accident-compensation-opd",
+        scenarioLabel: "อุบัติเหตุ · ค่าชดเชย(ใหญ่) · OPD เหมาจ่าย",
+        date: "25/09/2569 13:20:00", claimCode: "CLPA6909000507", caseNo: "CCPA6909000507-01",
+        school: "โรงเรียนสวนกุหลาบวิทยาลัย", name: "ด.ช.ธนกร แสงทอง", idCard: "110370245507X", appId: "PA19507", phone: "087-507-2569",
+        plan: "PA Student Plus", product: "PA", amount: "1,000.00", itemStatus: "ปฏิเสธ", claimStatus: "Closed",
+        statusReason: "เหตุการณ์ไม่เข้าเงื่อนไขความคุ้มครอง", statusDetail: "เกิดเหตุก่อนวันเริ่มความคุ้มครองตามกรมธรรม์",
+        claimCause: "อุบัติเหตุ", coverageType: "ค่าชดเชย", claimType: "OPD", treatmentType: "OPD",
+        incidentDate: "2026-09-25", incidentTime: "11:10", admitDate: "2026-09-25", admitTime: "11:45", dischargeDate: "2026-09-25", dischargeTime: "12:30",
+        compensationOpdFlatAmount: 1000, compensationBenefitLimit: 1000, hospital: "โรงพยาบาลนนทเวช", chiefComplaint: "แผลถลอกบริเวณข้อศอกและเข่า",
+        diagnosis: "S50.3 : Contusion of elbow | ฟกช้ำบริเวณข้อศอก", diagnosis1: "S50.3 : Contusion of elbow | ฟกช้ำบริเวณข้อศอก", diagnosis2: "-", diagnosis3: "-", note: "ตัวอย่างค่าชดเชย OPD แบบเหมาจ่าย"
+      },
+      {
+        sourceKey: "customer-consideration-case:accident-compensation-ipd",
+        scenarioLabel: "อุบัติเหตุ · ค่าชดเชย(ใหญ่) · IPD · ชนเพดานสิทธิ์",
+        date: "25/09/2569 14:45:00", claimCode: "CLPA6909000508", caseNo: "CCPA6909000508-01",
+        school: "โรงเรียนบดินทรเดชา (สิงห์ สิงหเสนี)", name: "นางสาวพิชญา มณีรัตน์", idCard: "110370245508X", appId: "PA19508", phone: "088-508-2569",
+        plan: "PA Student Plus", product: "PA", amount: "5,000.00", itemStatus: "ยกเลิก", claimStatus: "Cancelled",
+        statusReason: "ผู้เอาประกันขอยกเลิกเคลม", statusDetail: "ผู้เอาประกันได้รับการชำระจากช่องทางอื่นแล้ว",
+        claimCause: "อุบัติเหตุ", coverageType: "ค่าชดเชย", claimType: "IPD", treatmentType: "IPD",
+        incidentDate: "2026-09-16", incidentTime: "17:35", admitDate: "2026-09-16", admitTime: "18:20", dischargeDate: "2026-09-22", dischargeTime: "10:45",
+        ipdDays: 5, icuDays: 1, totalStayDays: 6, compensationDailyRate: 1000, compensationIcuDailyRate: 3000, compensationBenefitLimit: 5000,
+        hospital: "โรงพยาบาลบำรุงราษฎร์", chiefComplaint: "ตกจากที่สูง มีอาการปวดหลังและหายใจติดขัด", diagnosis: "S22.4 : Multiple fractures of ribs | กระดูกซี่โครงหักหลายซี่",
+        diagnosis1: "S22.4 : Multiple fractures of ribs | กระดูกซี่โครงหักหลายซี่", diagnosis2: "S27.0 : Traumatic pneumothorax | ภาวะลมในช่องอก", diagnosis3: "-",
+        note: "ยอดตามวันสูงกว่าวงเงิน Benefit จึงจำกัดยอดพิจารณาจ่าย"
+      }
+    ];
+    considerationCustomerRows.splice(2, 0, ...customerConsiderationCaseMocks);
+
     const considerationHospitalRows = [
       /* ===== Hospital Claim Mockup: ครอบคลุมหลายกรณี ===== */
       { date: "01/09/2569 08:15:10", claimCode: "CL6909000301", caseNo: "CC6909000301-01", hospital: "โรงพยาบาลพระรามเก้า", province: "กรุงเทพมหานคร", name: "นางสาวกมลชนก สุขสวัสดิ์", claimType: "IPD", treatmentType: "IPD", product: "PH", amount: "8,900.00", itemStatus: "รอพิจารณา", claimStatus: "Open", isContinuous: false, claimCause: "เจ็บป่วย", coverageType: "ค่ารักษา", admitDate: "31/08/2569", dischargeDate: "01/09/2569", admitTime: "13:20", dischargeTime: "11:00", ipdDays: 1, icuDays: 0, totalStayDays: 1, compensationDailyRate: 500, diagnosis: "A09 : Gastroenteritis | กระเพาะและลำไส้อักเสบ", chiefComplaint: "ถ่ายเหลว อาเจียน อ่อนเพลีย", an: "AN6908310301", hn: "HN69090301", vn: "VN6908310301", note: "IPD 1 วัน / ไม่มี ICU" },
@@ -15484,11 +15598,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const visibleRows = visibleEntries.map(entry => entry.row);
 
       if (currentConsiderationTab === "customer") {
-        head.innerHTML = `<tr><th class="px-4 py-3 text-left">วันที่โอนเงิน</th><th class="px-4 py-3 text-left">ClaimCode</th><th class="px-4 py-3 text-left">ชื่อสถานศึกษา</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">เลขบัตรประชาชน</th><th class="px-4 py-3 text-left">จำนวนเงิน</th><th class="px-4 py-3 text-center">สถานะรายการ</th><th class="px-4 py-3 text-center"></th></tr>`;
+        head.innerHTML = `<tr><th class="px-4 py-3 text-left">วันที่โอนเงิน</th><th class="px-4 py-3 text-left">ClaimCode</th><th class="px-4 py-3 text-left">กรณีทดสอบ</th><th class="px-4 py-3 text-left">ชื่อสถานศึกษา</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">เลขบัตรประชาชน</th><th class="px-4 py-3 text-left">จำนวนเงิน</th><th class="px-4 py-3 text-center">สถานะรายการ</th><th class="px-4 py-3 text-center"></th></tr>`;
         body.innerHTML = visibleEntries.map(({ row, realIndex }) => {
           return `<tr class="bg-white hover:bg-brand-50/40">
             <td class="px-4 py-4">${row.date}</td>
             <td class="px-4 py-4 font-semibold text-slate-700"><div class="flex flex-wrap items-center gap-2"><span>${row.claimCode}</span>${row.isContinuous ? '<span class="cc-continuous-list-badge"><span class="material-icons-round">sync_alt</span>เคลมต่อเนื่อง</span>' : ''}</div></td>
+            <td class="px-4 py-4">${row.scenarioLabel ? `<span class="inline-flex max-w-[280px] rounded-lg border border-brand-100 bg-brand-50 px-3 py-1.5 text-sm font-extrabold leading-snug text-brand-700">${row.scenarioLabel}</span>` : '<span class="text-slate-400">-</span>'}</td>
             <td class="px-4 py-4">${row.school}</td>
             <td class="px-4 py-4">${row.name}</td>
             <td class="px-4 py-4">${row.idCard}</td>
@@ -26941,12 +27056,16 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <tbody id="customerPrelimTableBody">${renderClaimlinePrelimRows(treatment, coverage, {autoCalculateEntitlement})}</tbody>
           </table>
         </div>
+        ${context?.source === 'customer' && typeof window.renderCustomerIpdMedicalCompensation === 'function'
+          ? window.renderCustomerIpdMedicalCompensation(window.currentConsiderCustomerRow || {})
+          : ''}
         <div class="cc-ref-summary-box">
           <div class="cc-ref-summary-title"><span class="material-icons-round">request_quote</span>สรุปยอดเงิน</div>
-          <div class="cc-ref-summary-grid">
+          <div class="cc-ref-summary-grid" data-ipd-summary="${context?.source === 'customer' && window.getCustomerIpdMedicalCompensationData?.(window.currentConsiderCustomerRow || {})?.target ? 'true' : 'false'}">
             <div class="cc-ref-money-card"><div class="cc-ref-money-label">ยอดเงินตามใบเสร็จรวม :</div><div><span id="customerSummaryReceiptTotal" class="cc-ref-money-value">0.00</span><span class="cc-ref-money-unit">บาท</span></div></div>
             <div class="cc-ref-money-card"><div class="cc-ref-money-label">ส่วนลดรวม :</div><div><span id="customerSummaryDiscountTotal" class="cc-ref-money-value">0.00</span><span class="cc-ref-money-unit">บาท</span></div></div>
             <div class="cc-ref-money-card"><div class="cc-ref-money-label">ยอดไม่คุ้มครองรวม :</div><div><span id="customerSummaryUncoveredTotal" class="cc-ref-money-value">0.00</span><span class="cc-ref-money-unit">บาท</span></div></div>
+            ${context?.source === 'customer' && window.getCustomerIpdMedicalCompensationData?.(window.currentConsiderCustomerRow || {})?.target ? '<div class="cc-ref-money-card"><div class="cc-ref-money-label">สิทธิ์เบิกรวม :</div><div><span id="customerSummaryEligibleTotal" class="cc-ref-money-value">0.00</span><span class="cc-ref-money-unit">บาท</span></div></div>' : ''}
             <div class="cc-ref-transfer-stack">
               <div class="cc-ref-transfer-card green"><span class="cc-ref-transfer-icon"><span class="material-icons-round">account_balance_wallet</span></span><span>ยอดเงินสุทธิ :</span><strong id="customerSummaryNet">0.00</strong><span>บาท</span></div>
               <div class="cc-ref-transfer-card blue"><span class="cc-ref-transfer-icon"><span class="material-icons-round">request_quote</span></span><span>จำนวนเงินโอนรวม :</span><strong>${context?.source === 'hospital' ? '0.00' : claimlineMoneyText(context?.transferAmount ?? window.currentConsiderCustomerRow?.amount ?? 0)}</strong><span>บาท</span></div>
@@ -27806,7 +27925,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       : getCustomerReviewSubOptions(selected);
     const prefix = kind === 'customer' ? 'cc' : (kind === 'full' ? 'hf' : 'hh');
     const claimNo = String(row?.claimNo || row?.claimCode || '').trim();
-    const autoContinuous = kind === 'customer' && claimNo === 'CL6905000076';
+    const autoContinuous = kind === 'customer' && (row?.isContinuous === true || claimNo === 'CL6905000076');
+    const previousCaseLabel = row?.previousCaseNo || 'CC6904000058-01';
+    const previousDateLabel = row?.previousServiceDate || '26/03/2569';
     const validation = window.customerClaimSelectionValidation || {};
 
     const customerClaimOptions = kind === 'customer' ? `
@@ -27818,7 +27939,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div id="${prefix}ContinuousClaimSelectedDisplayWrap" class="min-h-[44px] flex items-center">
             <button id="${prefix}ContinuousClaimSelectedDisplay" type="button" onclick="openCustomerContinuousClaimModal()" class="${autoContinuous ? 'inline-flex' : 'hidden'} max-w-full items-center gap-2 rounded-lg border border-brand-200 bg-white px-4 py-2 text-left text-base font-bold text-brand-700">
               <span class="material-icons-round !text-[18px]">description</span>
-              <span id="${prefix}ContinuousClaimSelectedText" class="truncate">${autoContinuous ? 'CC6904000058-01 | Case เดิมวันที่ 26/03/2569' : '-'}</span>
+              <span id="${prefix}ContinuousClaimSelectedText" class="truncate">${autoContinuous ? `${previousCaseLabel} | Case เดิมวันที่ ${previousDateLabel}` : '-'}</span>
             </button>
           </div>
         </div>
@@ -27949,6 +28070,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const currentCase = row.caseNo || 'CC6905000076-02';
     const previousDate = row.previousServiceDate || '15 พ.ค. 2569';
     const diagnosis = row.diagnosis || 'G43.0 ไมเกรนชนิดไม่มีออรา';
+    const remaining = row.remainingBalance || '7,420.00';
+    const cumulative = row.cumulativePaid || '12,580.00';
     return `<section class="cc-continuous-ref-card" data-cc-collapse="expanded">
       <header class="cc-continuous-ref-head">
         <div class="cc-continuous-ref-heading">
@@ -27979,7 +28102,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
         <div class="cc-continuous-ref-info-item balance">
           <span class="cc-continuous-ref-info-icon"><span class="material-icons-round">account_balance_wallet</span></span>
-          <div><span>วงเงินคงเหลือ</span><strong>7,420.00 บาท</strong><small>ยอดจ่ายสะสม 12,580.00 บาท</small></div>
+          <div><span>วงเงินคงเหลือ</span><strong>${remaining} บาท</strong><small>ยอดจ่ายสะสม ${cumulative} บาท</small></div>
         </div>
       </div>
 
@@ -29602,8 +29725,24 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const page = ensurePage('considerCustomerDetailPage');
     document.getElementById('claimMonitorPage')?.classList.add('hidden'); document.getElementById('detailPage')?.classList.add('hidden'); safeHideClaimPages();
     page.innerHTML = build('customer', row); page.classList.remove('hidden'); setHeader('บันทึกข้อมูลเคลม - เคลมลูกค้า','บันทึกข้อมูลเคลม - เคลมลูกค้า','customer'); update('cc',1); updateCustomerHospitalStayNights(); if(typeof window.refreshCustomerStaySection === 'function') window.refreshCustomerStaySection();
-    if(row.claimCode === 'CL6905000076'){
-      selectedCustomerContinuousCaseNo = 'CC6904000058-01';
+    if(row.isContinuous === true || row.claimCode === 'CL6905000076'){
+      const previousCaseNo = row.previousCaseNo || 'CC6904000058-01';
+      if(!customerContinuousClaimOptions.some(item => item.caseNo === previousCaseNo)){
+        customerContinuousClaimOptions.unshift({
+          claimNo: row.previousClaimNo || '-',
+          caseNo: previousCaseNo,
+          chiefComplaint: row.chiefComplaint || '-',
+          incidentDate: row.previousServiceDate || '-',
+          claimAmount: row.previousClaimAmount || row.amount || '0.00',
+          paidAmount: row.previousPaidAmount || row.cumulativePaid || '0.00',
+          admitDate: row.previousServiceDate || '-',
+          claimInfo: `${row.claimCause || '-'} / ${row.coverageType || '-'} / ${row.claimType || row.treatmentType || '-'}`,
+          diagnosis1: row.diagnosis1 || row.diagnosis || '-',
+          remainingAmount: row.remainingBalance || '0.00',
+          note: row.continuousNote || row.note || '-'
+        });
+      }
+      selectedCustomerContinuousCaseNo = previousCaseNo;
       const continuousCheckbox = document.getElementById('ccContinuousClaimCheckbox');
       if(continuousCheckbox) continuousCheckbox.checked = true;
       updateCustomerContinuousClaimSelectedDisplay();
@@ -31427,7 +31566,38 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return '<button type="button" data-customer-tab="'+key+'" onclick="setCustomerMainTab(\''+key+'\')" class="customer-review-tab '+(active?'active':'')+'"><span class="material-icons-round">'+icon+'</span>'+label+'</button>';
   }
 
+  const CUSTOMER_COVERAGE_BENEFITS = Object.freeze({
+    IPD_COMPENSATION: Object.freeze({
+      code:'IPD_COMPENSATION',
+      name:'ค่าชดเชยผู้ป่วยใน',
+      dailyRate:400,
+      maximumAmount:40000,
+      maximumDays:100,
+      unit:'ต่อครั้ง ต่อโรค'
+    })
+  });
+
+  function customerCoverageNumber(value){
+    if(value === undefined || value === null || String(value).trim() === '') return null;
+    const number = Number(String(value ?? '').replace(/,/g,'').trim());
+    return Number.isFinite(number) ? Math.max(0, number) : null;
+  }
+
+  window.getCustomerCoverageBenefit = function(code, row = window.currentConsiderCustomerRow || {}){
+    const base = CUSTOMER_COVERAGE_BENEFITS[code];
+    if(!base) return null;
+    if(code === 'IPD_COMPENSATION'){
+      const suppliedRate = [row.compensationDailyRate,row.compDailyRate,row.dailyCompensation,row.compensationRate]
+        .map(customerCoverageNumber)
+        .find(value => value !== null);
+      return {...base, dailyRate:suppliedRate ?? base.dailyRate, source:suppliedRate == null ? 'coverage-default' : 'claim-benefit'};
+    }
+    return {...base};
+  };
+
   function renderCoveragePane(){
+    const ipdCompensation = window.getCustomerCoverageBenefit('IPD_COMPENSATION', window.currentConsiderCustomerRow || {});
+    const formatCoverageAmount = value => Number(value || 0).toLocaleString('en-US',{maximumFractionDigits:2});
     const rows = [
       ['group','ความคุ้มครองกรณีเป็นผู้ป่วยใน (IPD)','','','',''],
       ['การดูแลโดยแพทย์ (ค่าแพทย์เยี่ยมไข้ ผู้ป่วยใน)','700/วัน','31,500','45 วัน','ต่อครั้ง'],
@@ -31441,7 +31611,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ['group','สิทธิพิเศษ ค่าชดเชย','','','',''],
       ['ค่าชดเชยผู้ป่วยใน ห้อง ICU (คืนละ)','5,000/คืน','150,000','30 วัน','ต่อครั้ง ต่อโรค'],
       ['ค่าชดเชยผู้ป่วยใน ห้องปกติ (คืนละ)','1,800/คืน','81,000','45 วัน','ต่อครั้ง'],
-      ['ค่าชดเชยผู้ป่วยใน','400/คืน','40,000','100 วัน','ต่อครั้ง ต่อโรค'],
+      [ipdCompensation.name,`${formatCoverageAmount(ipdCompensation.dailyRate)}/คืน`,formatCoverageAmount(ipdCompensation.maximumAmount),`${ipdCompensation.maximumDays} วัน`,ipdCompensation.unit,'IPD_COMPENSATION'],
       ['group','ความคุ้มครองการเสียชีวิต','','','',''],
       ['(อบ.2) กรณีเสียชีวิต สูญเสียอวัยวะ สายตา และทุพพลภาพ','200,000/ครั้ง','200,000','1','ต่อครั้ง ต่อโรค'],
       ['(อบ.2) การขับขี่ หรือโดยสารรถจักรยานยนต์','100,000/ครั้ง','100,000','1','ต่อครั้ง ต่อโรค'],
@@ -31455,7 +31625,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ];
     const body = rows.map(r => r[0] === 'group'
       ? '<tr class="coverage-group-row"><td colspan="5">| '+r[1]+'</td></tr>'
-      : '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>').join('');
+      : '<tr'+(r[5] ? ' data-customer-benefit-code="'+r[5]+'"' : '')+'><td>'+r[0]+'</td><td'+(r[5] ? ' data-customer-benefit-rate' : '')+'>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td></tr>').join('');
     return '<section id="customerTabCoverage" class="customer-tab-pane"><div class="customer-panel-modern"><div class="customer-panel-modern-title"><span class="material-icons-round">history</span>รายการความคุ้มครอง</div><div class="customer-panel-modern-body"><div class="coverage-table-wrap"><table class="coverage-table"><thead><tr><th>รายละเอียดความคุ้มครอง</th><th>ความคุ้มครอง</th><th>คุ้มครอง(สูงสุด)</th><th>จำนวนสูงสุด</th><th>หน่วย</th></tr></thead><tbody>'+body+'</tbody></table></div></div></div></section>';
   }
 
@@ -44157,9 +44327,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 (function(){
   const TARGET_CLAIM_NO = 'CLPA6907000201';
   const MAIN_CLAIM_DEFAULTS = {
-    recipient: 'ผู้ออกให้บริการ',
+    recipient: 'ผู้ให้บริการ (Walk Out)',
     serviceProvider: '06590 - ณัฏฐณิชา โตรักษา',
-    vehicleOwner: '006 : 00000 - คุณสำนักงาน - (-)',
+    vehicleOwner: '000 - คุณสำนักงาน',
     incidentDate: '2026-07-02',
     deathDate: '2026-07-02',
     receivedDate: '2026-07-02',
@@ -48155,17 +48325,23 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
   window.customerOcrMasterSelectionChanged=function(index,input){ const b=$('customerOcrMapBtn'+index); const value=String(input?.value||'').trim(); const valid=getCustomerMasterOptions().some(o=>o.label===value); if(b)b.disabled=!valid; };
   window.recalculateCustomerExpenseSummary=function(){
     const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr')).filter(r=>r.querySelectorAll('input').length>=4);
-    let receipt=0,discount=0,uncovered=0;
+    let receipt=0,discount=0,uncovered=0,eligibleTotal=0;
     rows.forEach(r=>{
       const receiptInput=r.querySelector('[data-claimline-field="receipt"]'), entitlementInput=r.querySelector('[data-claimline-field="entitlement"]'), discountInput=r.querySelector('[data-claimline-field="discount"]'), uncoveredInput=r.querySelector('[data-claimline-field="uncovered"]');
       if(!receiptInput || !discountInput || !uncoveredInput) return;
       const rowReceipt=moneyNumber(receiptInput?.value), rowDiscount=moneyNumber(discountInput?.value), rowUncovered=moneyNumber(uncoveredInput?.value), entitlement=Math.max(0,rowReceipt-rowDiscount-rowUncovered);
       if(entitlementInput) entitlementInput.value=moneyText(entitlement);
-      receipt+=rowReceipt; discount+=rowDiscount; uncovered+=rowUncovered;
+      receipt+=rowReceipt; discount+=rowDiscount; uncovered+=rowUncovered; eligibleTotal+=entitlement;
     });
-    const net=Math.max(0,receipt-discount-uncovered);
+    const inCustomerConsideration=Boolean(document.querySelector('#considerCustomerDetailPage #ccStepPane2'));
+    const compensation=inCustomerConsideration&&typeof window.getCustomerIpdMedicalCompensationData==='function'
+      ? window.getCustomerIpdMedicalCompensationData(window.currentConsiderCustomerRow||{})
+      : {target:false,valid:true,payableCompensation:0};
+    const payableCompensation=compensation.target&&compensation.valid?moneyNumber(compensation.payableCompensation):0;
+    const net=eligibleTotal+payableCompensation;
     const a=$('customerSummaryReceiptTotal'),b=$('customerSummaryDiscountTotal'),c=$('customerSummaryUncoveredTotal'),d=$('customerSummaryNet');
-    if(a)a.textContent=moneyText(receipt);if(b)b.textContent=moneyText(discount);if(c)c.textContent=moneyText(uncovered);if(d)d.textContent=moneyText(net);
+    const eligibleEl=$('customerSummaryEligibleTotal');
+    if(a)a.textContent=moneyText(receipt);if(b)b.textContent=moneyText(discount);if(c)c.textContent=moneyText(uncovered);if(eligibleEl)eligibleEl.textContent=moneyText(eligibleTotal);if(d)d.textContent=moneyText(net);
   };
   window.validateClaimlineNonCoverageReasons=function(options={}){
     const rows=Array.from(document.querySelectorAll('#customerPrelimTableBody tr'));
@@ -53745,8 +53921,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "350",
-  updatedAt: "28/09/2026 11:00:32"
+  version: "359",
+  updatedAt: "30/09/2026 12:49:25"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64229,12 +64405,15 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- แจ้งเคลม: เลือกประเภทเคลม และส่งเคลมโรงพยาบาลเข้าคิวพิจารณา (authoritative late patch) -->
 <script src="js/menu-claim-entry-category.js"></script>
+<script src="js/menu-claim-entry-recipients.js?v=1"></script>
 
 <!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
 <script src="js/menu-physical-therapy.js?v=314"></script>
 
+<script src="js/menu-customer-ipd-medical-compensation.js?v=338"></script>
+
 <!-- ตรวจสอบให้สิทธิ์เบิกเท่ากับยอดโอนก่อนผ่านขั้นพิจารณาเคลมลูกค้า -->
-<script src="js/menu-customer-transfer-eligibility-check.js?v=320"></script>
+<script src="js/menu-customer-transfer-eligibility-check.js?v=337"></script>
 
 <!-- Death & Disability: ผู้รับผลประโยชน์แต่ละรายเข้าคิวรอโอนเงินแบบ session-only -->
 <script src="js/mock-data/death-transfer-pending.mock.js?v=322"></script>
