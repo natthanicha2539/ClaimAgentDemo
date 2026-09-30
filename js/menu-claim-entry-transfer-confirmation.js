@@ -88,6 +88,10 @@
 
   function getClaimRefs() {
     const pa = isPA();
+    if (!pa && typeof window.buildCustomerConsiderationRecordFromClaimEntry === "function") {
+      const record = window.buildCustomerConsiderationRecordFromClaimEntry(currentState());
+      if (record?.claimCode) return [record.claimCode];
+    }
     if (pa && typeof window.getPAClaimTransferRefs === "function") {
       const refs = window.getPAClaimTransferRefs();
       if (Array.isArray(refs) && refs.length) return refs;
@@ -319,6 +323,13 @@
   window.finishClaimEntryTransferProcess = function () {
     injectStyle();
     const refs = window.__claimEntryTransferRefs || buildRefs();
+    if (!isPA() && !isHospitalClaim() && typeof window.syncClaimEntryToCustomerConsideration === "function") {
+      const record = window.syncClaimEntryToCustomerConsideration();
+      if (record) {
+        refs.claims = [record.claimCode];
+        refs.cases = [record.caseNo];
+      }
+    }
     showModal(renderSuccessModal(refs), "max-w-2xl");
   };
 
