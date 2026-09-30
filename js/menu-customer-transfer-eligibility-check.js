@@ -1,165 +1,191 @@
-/* Claim Entry recipient routing shared by PH and PA. */
-(function () {
-  "use strict";
+(function installCustomerTransferEligibilityCheck(){
+  'use strict';
 
-  const WALK_OUT = "ผู้ให้บริการ (Walk Out)";
-  const WALK_IN = "ผู้ให้บริการ (Walk in)";
-  const PIVOT = "Pivot";
-  const LOGIN_PROVIDER = "06590 - ณัฏฐณิชา โตรักษา";
-  const OFFICE = "000 - คุณสำนักงาน";
-  const RECIPIENTS = [WALK_OUT, WALK_IN, PIVOT];
-  function state() {
-    return window.claimState || null;
+  const ERROR_ID = 'customerTransferEligibilityError';
+  const parseAmount = value => {
+    const amount = Number(String(value ?? '').replace(/,/g, '').trim());
+    return Number.isFinite(amount) ? amount : 0;
+  };
+  const formatAmount = value => parseAmount(value).toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  function getEligibleAmount(fallback){
+    const value = document.querySelector('#considerCustomerDetailPage #ccStepPane2 #customerSummaryEligibleTotal')?.textContent;
+    if(value == null || !String(value).trim()) return parseAmount(fallback);
+    return parseAmount(value);
   }
 
-  function ensureStateDefaults() {
-    const current = state();
-    if (!current) return null;
-    if (!RECIPIENTS.includes(current.claimDocumentRecipient)) current.claimDocumentRecipient = WALK_OUT;
-    if (typeof current.claimServiceProvider !== "string" || !current.claimServiceProvider) current.claimServiceProvider = LOGIN_PROVIDER;
-    if (typeof current.claimVehicleOwner !== "string") current.claimVehicleOwner = "";
-    if (typeof current.claimWalkOutVehicleOwner !== "string") current.claimWalkOutVehicleOwner = current.claimVehicleOwner;
-    return current;
+  function removeError(){
+    document.getElementById(ERROR_ID)?.remove();
   }
 
-  function setDisabled(select, disabled) {
-    if (!select) return;
-    select.disabled = disabled;
-    select.setAttribute("aria-disabled", String(disabled));
-    select.classList.toggle("bg-slate-100", disabled);
-    select.classList.toggle("text-slate-500", disabled);
-    select.classList.toggle("cursor-not-allowed", disabled);
-  }
+  function showError(data, difference){
+    const page = document.getElementById('considerCustomerDetailPage');
+    const pane = page?.querySelector('#ccStepPane2');
+    const host = pane?.querySelector('.cc-ref-step2-shell') || pane;
+    if(!host) return;
 
-  function syncForm() {
-    const current = ensureStateDefaults();
-    if (!current) return;
-    const recipient = document.getElementById("claimDocumentRecipient");
-    const provider = document.getElementById("claimServiceProvider");
-    const owner = document.getElementById("claimVehicleOwner");
-    if (!recipient || !provider || !owner) return;
+    let alert = document.getElementById(ERROR_ID);
+    if(!alert){
+      alert = document.createElement('div');
+      alert.id = ERROR_ID;
+      alert.setAttribute('role', 'alert');
+      alert.setAttribute('aria-live', 'assertive');
+      alert.tabIndex = -1;
+    }
+    alert.className = data.isIpdMedical
+      ? 'customer-transfer-eligibility-alert customer-transfer-eligibility-alert--ipd'
+      : 'mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700';
 
-    recipient.value = current.claimDocumentRecipient;
-    provider.value = current.claimServiceProvider;
-    owner.value = current.claimVehicleOwner;
+    if(data.isIpdMedical){
+      const messageText = data.hasIpdHalf5
+        ? 'กรุณาตรวจสอบยอดเงินที่โอน จำนวนเงินโอนรวมต้องเท่ากับสิทธิ์เบิกรวม'
+        : 'กรุณาตรวจสอบยอดเงินที่โอน จำนวนเงินโอนรวมต้องเท่ากับสิทธิ์เบิกรวม รวมกับค่าชดเชยผู้ป่วยใน';
+      const existingMessage = alert.querySelector('.customer-transfer-eligibility-alert__message');
+      if(existingMessage?.textContent !== messageText){
+        const icon = document.createElement('span');
+        icon.className = 'material-icons-round customer-transfer-eligibility-alert__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = 'warning_amber';
 
-    const isPivot = current.claimDocumentRecipient === PIVOT;
-    const isWalkOut = current.claimDocumentRecipient === WALK_OUT;
-    setDisabled(provider, isPivot);
-    setDisabled(owner, !isWalkOut);
-    if (!isWalkOut || owner.value) setOwnerError(false);
-  }
+        const message = document.createElement('p');
+        message.className = 'customer-transfer-eligibility-alert__message';
+        message.textContent = messageText;
+        alert.replaceChildren(icon, message);
+      }
+    }else{
+    const title = document.createElement('div');
+    const breakdown = document.createElement('div');
+    breakdown.className = 'mt-1 font-medium';
+    title.textContent = 'สิทธิ์เบิกต้องเท่ากับยอดที่โอน กรุณาตรวจสอบข้อมูลก่อนดำเนินการต่อ';
+    breakdown.textContent = `สิทธิ์เบิก ${formatAmount(data.eligible)} บาท · ยอดที่โอน ${formatAmount(data.transfer)} บาท `+
+      `(ส่วนต่าง ${formatAmount(difference)} บาท)`;
+    alert.replaceChildren(title, breakdown);
+    }
 
-  function setOwnerError(visible) {
-    const owner = document.getElementById("claimVehicleOwner");
-    const error = document.getElementById("claimVehicleOwnerError");
-    if (error) error.classList.toggle("hidden", !visible);
-    if (owner) {
-      if (visible) owner.setAttribute("aria-invalid", "true");
-      else owner.removeAttribute("aria-invalid");
+    const summary = Array.from(pane?.querySelectorAll('.cc-ref-prelim-card .cc-ref-summary-box') || [])
+      .find(box => String(box.querySelector('.cc-ref-summary-title')?.textContent || '').replace(/\s+/g, ' ').includes('สรุปยอดเงิน'));
+    if(summary) summary.after(alert);
+    else if(alert.parentElement !== host) host.append(alert);
+
+    if(Number(window.currentCustomerStep || 1) !== 2 && typeof window.setCustomerStep === 'function'){
+      window.setCustomerStep(2);
+    }
+    if(data.focus !== false){
+      requestAnimationFrame(() => {
+        const visibleAlert = document.getElementById(ERROR_ID);
+        visibleAlert?.scrollIntoView({behavior: 'smooth', block: 'center'});
+        visibleAlert?.focus({preventScroll: true});
+      });
     }
   }
 
-  function validateRequiredOwner() {
-    const current = ensureStateDefaults();
-    if (!current || current.claimDocumentRecipient !== WALK_OUT || current.claimVehicleOwner) {
-      setOwnerError(false);
+  window.validateCustomerTransferEntitlementMatch = function(options = {}){
+    const summary = typeof window.getCustomerTransferSummaryData === 'function'
+      ? window.getCustomerTransferSummaryData()
+      : null;
+    if(!summary || !Number.isFinite(Number(summary.eligible)) || !Number.isFinite(Number(summary.transfer))) return true;
+
+    const compensation = typeof window.getCustomerIpdMedicalCompensationData === 'function'
+      ? window.getCustomerIpdMedicalCompensationData(window.currentConsiderCustomerRow || {})
+      : {target:false, payableCompensation:0, valid:true};
+    if(compensation.target && !compensation.valid){
+      removeError();
+      window.validateCustomerIpdMedicalCompensation?.(true);
+      return false;
+    }
+    const settlement = typeof window.getCustomerMedicalExpenseSettlementData === 'function'
+      ? window.getCustomerMedicalExpenseSettlementData()
+      : null;
+    const hasIpdHalf5 = compensation.target && settlement?.hasIpdHalf5 === true;
+    const medicalNet = compensation.target && settlement
+      ? settlement.eligibleTotal
+      : getEligibleAmount(summary.eligible);
+    const includedCompensation = compensation.target && !hasIpdHalf5
+      ? compensation.payableCompensation
+      : 0;
+    const data = {
+      ...summary,
+      medicalNet,
+      compensation:includedCompensation,
+      eligible:compensation.target && settlement ? settlement.net : medicalNet + includedCompensation,
+      isIpdMedical:compensation.target,
+      hasIpdHalf5,
+      focus:options.focus !== false
+    };
+
+    const eligibleCents = Math.round(parseAmount(data.eligible) * 100);
+    const transferCents = Math.round(parseAmount(data.transfer) * 100);
+    if(eligibleCents === transferCents){
+      removeError();
       return true;
     }
-    setOwnerError(true);
-    const owner = document.getElementById("claimVehicleOwner");
-    owner?.scrollIntoView({ behavior:"smooth", block:"center" });
-    owner?.focus();
+
+    showError(data, Math.abs(eligibleCents - transferCents) / 100);
     return false;
-  }
+  };
 
-  function resetRecipientState() {
-    const current = state();
-    if (!current) return;
-    current.claimDocumentRecipient = WALK_OUT;
-    current.claimServiceProvider = LOGIN_PROVIDER;
-    current.claimVehicleOwner = "";
-    current.claimWalkOutVehicleOwner = "";
-    setOwnerError(false);
-  }
-
-  function onRecipientChange(value) {
-    const current = ensureStateDefaults();
-    if (!current) return;
-    if (current.claimDocumentRecipient === WALK_OUT) {
-      current.claimWalkOutVehicleOwner = current.claimVehicleOwner || OFFICE;
-    }
-    current.claimDocumentRecipient = RECIPIENTS.includes(value) ? value : WALK_OUT;
-    current.claimServiceProvider = current.claimDocumentRecipient === PIVOT ? OFFICE : LOGIN_PROVIDER;
-    current.claimVehicleOwner = current.claimDocumentRecipient === WALK_OUT
-      ? current.claimWalkOutVehicleOwner
-      : OFFICE;
-    syncForm();
-  }
-
-  function attach() {
-    const recipient = document.getElementById("claimDocumentRecipient");
-    const provider = document.getElementById("claimServiceProvider");
-    const owner = document.getElementById("claimVehicleOwner");
-    if (!recipient || recipient.dataset.recipientRoutingBound === "1") return;
-    recipient.dataset.recipientRoutingBound = "1";
-
-    recipient.addEventListener("change", () => onRecipientChange(recipient.value));
-    provider.addEventListener("change", () => {
-      const current = ensureStateDefaults();
-      if (current && current.claimDocumentRecipient !== PIVOT) current.claimServiceProvider = provider.value;
-    });
-    owner.addEventListener("change", () => {
-      const current = ensureStateDefaults();
-      if (!current || current.claimDocumentRecipient !== WALK_OUT) return;
-      current.claimVehicleOwner = owner.value;
-      current.claimWalkOutVehicleOwner = owner.value;
-      setOwnerError(!owner.value);
-    });
-
-    ensureStateDefaults();
-    syncForm();
-  }
-
-  function wrap(name, callback) {
-    const original = window[name];
-    if (typeof original !== "function" || original.__claimRecipientRouting) return;
-    const wrapped = function () {
-      const result = original.apply(this, arguments);
-      callback();
-      requestAnimationFrame(syncForm);
-      setTimeout(syncForm, 0);
+  const previousSetCustomerStep = window.setCustomerStep;
+  if(typeof previousSetCustomerStep === 'function' && !previousSetCustomerStep.__transferEligibilityGuard){
+    const guardedSetCustomerStep = function(step){
+      if(Number(step) === 3 && Number(window.currentCustomerStep || 1) === 2 && !window.validateCustomerTransferEntitlementMatch()) return false;
+      if(Number(step) === 1) removeError();
+      const result = previousSetCustomerStep.apply(this, arguments);
+      if(Number(step) === 2 && Number(window.currentCustomerStep || 1) === 2){
+        window.setTimeout(() => window.validateCustomerTransferEntitlementMatch({focus:false}), 0);
+      }
       return result;
     };
-    wrapped.__claimRecipientRouting = true;
-    window[name] = wrapped;
-    try { window.eval(name + " = window[" + JSON.stringify(name) + "]"); } catch (_error) {}
+    guardedSetCustomerStep.__transferEligibilityGuard = true;
+    window.setCustomerStep = guardedSetCustomerStep;
   }
 
-  function wrapValidation() {
-    const name = "validateClaimEntryBeforeNext";
-    const original = window[name];
-    if (typeof original !== "function" || original.__claimRecipientOwnerValidation) return;
-    const wrapped = function () {
-      if (!validateRequiredOwner()) return;
-      return original.apply(this, arguments);
+  let pendingLiveValidation = 0;
+  function scheduleLiveValidation(){
+    window.clearTimeout(pendingLiveValidation);
+    pendingLiveValidation = window.setTimeout(() => {
+      if(Number(window.currentCustomerStep || 1) === 2){
+        window.validateCustomerTransferEntitlementMatch({focus:false});
+      }
+    }, 0);
+  }
+  document.addEventListener('input', event => {
+    if(event.target?.closest?.('#considerCustomerDetailPage #ccStepPane2')) scheduleLiveValidation();
+  }, true);
+  document.addEventListener('change', event => {
+    if(event.target?.closest?.('#considerCustomerDetailPage #ccStepPane2')) scheduleLiveValidation();
+  }, true);
+  document.addEventListener('click', event => {
+    if(event.target?.closest?.('#considerCustomerDetailPage #ccStepPane2 button')) scheduleLiveValidation();
+  }, true);
+
+  const previousOpenApprove = window.openCustomerApproveConfirmModal;
+  if(typeof previousOpenApprove === 'function'){
+    window.openCustomerApproveConfirmModal = function(){
+      if(!window.validateCustomerTransferEntitlementMatch()) return false;
+      return previousOpenApprove.apply(this, arguments);
     };
-    wrapped.__claimRecipientOwnerValidation = true;
-    window[name] = wrapped;
-    try { window.eval(name + " = window[" + JSON.stringify(name) + "]"); } catch (_error) {}
   }
 
-  function boot() {
-    attach();
-    wrap("resetClaimEntryState", resetRecipientState);
-    wrap("openClaimEntry", resetRecipientState);
-    wrap("openContinuousClaimEntry", resetRecipientState);
-    wrap("showClaimEntryPage", function () { ensureStateDefaults(); });
-    wrapValidation();
-    syncForm();
+  const previousConfirmApprove = window.confirmCustomerApprove;
+  if(typeof previousConfirmApprove === 'function'){
+    window.confirmCustomerApprove = function(){
+      if(!window.validateCustomerTransferEntitlementMatch()){
+        window.closeCustomerApproveConfirmModal?.();
+        return false;
+      }
+      return previousConfirmApprove.apply(this, arguments);
+    };
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
-  else boot();
-  window.claimEntryRecipientRouting = { syncForm, resetRecipientState };
+  document.addEventListener('click', event => {
+    const button = event.target?.closest?.('#considerCustomerDetailPage #ccStepPane3 button');
+    if(!button || !/อนุมัติ/.test(String(button.textContent || ''))) return;
+    if(window.validateCustomerTransferEntitlementMatch()) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+  }, true);
 })();
