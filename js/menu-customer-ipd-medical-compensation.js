@@ -35,21 +35,21 @@
     return product === 'PH' && coverage === 'ค่ารักษา' && treatment === 'IPD';
   }
 
-  window.renderCustomerIpdTransferBreakdown = function(row = window.currentConsiderCustomerRow || {}){
-    if(!isIpdMedicalClaim(row)) return '';
-    const values = Array.isArray(row.ipdBenefitAmounts)
-      ? row.ipdBenefitAmounts
-      : Object.entries(row.ipdBenefitAmounts || {}).map(([code, amount]) => ({code, amount}));
-    const byCode = new Map(values.map(item => [String(item?.code || ''), item?.amount]));
-    const rows = ipdTransferItems.filter(([code]) => {
+  window.getCustomerSubmittedIpdPrelimRows = function(row = window.currentConsiderCustomerRow || {}){
+    if(row?.source !== 'claim-entry' || !isIpdMedicalClaim(row) || !Array.isArray(row.ipdBenefitAmounts)) return null;
+    const byCode = new Map(row.ipdBenefitAmounts.map(item => [String(item?.code || ''), item?.amount]));
+    return ipdTransferItems.filter(([code]) => {
       const amount = Number(String(byCode.get(code) ?? '').replace(/,/g, '').trim());
       return Number.isFinite(amount) && amount > 0;
-    });
-    if(!rows.length) return '';
-    return `<section class="customer-ipd-transfer-breakdown mt-3 overflow-hidden rounded-lg border border-brand-100 bg-white" aria-labelledby="customerIpdTransferBreakdownTitle">
-      <div id="customerIpdTransferBreakdownTitle" class="cc-ref-title-strip"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>รายละเอียดจำนวนเงินโอนตามสิทธิ์ความคุ้มครอง</div>
-      <div class="customer-ipd-transfer-breakdown__list divide-y divide-slate-100" role="list">${rows.map(([code, label]) => `<div class="customer-ipd-transfer-breakdown__row flex items-center justify-between gap-3 px-3 py-2.5 text-sm" role="listitem" data-ipd-transfer-code="${code}"><span class="min-w-0"><span class="customer-ipd-transfer-breakdown__code mr-2 font-bold text-brand-700">${code}</span><span class="customer-ipd-transfer-breakdown__label text-slate-700">${label}</span></span><strong class="shrink-0 tabular-nums text-slate-900">${formatAmount(byCode.get(code))} บาท</strong></div>`).join('')}</div>
-    </section>`;
+    }).map(([code, label]) => ({
+      code,
+      item:`${code} ${label}`,
+      receipt:'',
+      discount:'',
+      uncovered:'',
+      claim:'',
+      submittedEntitlement:Number(String(byCode.get(code)).replace(/,/g, ''))
+    }));
   };
 
   function selection(row){
