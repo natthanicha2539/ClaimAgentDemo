@@ -26945,7 +26945,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   function renderClaimlinePrelimRows(treatment, coverage, options = {}){
     const autoCalculateEntitlement = options.autoCalculateEntitlement === true;
     if (coverage !== undefined && !isMedicalCoverage(coverage)) return '';
-    const rows = getPrelimItemsByTreatment(treatment);
+    const submittedRows = options.source === 'customer' && typeof window.getCustomerSubmittedIpdPrelimRows === 'function'
+      ? window.getCustomerSubmittedIpdPrelimRows(window.currentConsiderCustomerRow || {})
+      : null;
+    const rows = submittedRows === null ? getPrelimItemsByTreatment(treatment) : submittedRows;
     if (!rows.length) return `<tr><td colspan="8" class="px-3 py-4 text-center text-slate-400">ไม่พบรายการตามประเภทการรักษาที่เลือก</td></tr>`;
     return rows.map((r, index) => {
       const receipt = autoCalculateEntitlement
@@ -26965,7 +26968,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         : `<input value="${cEsc(r.note)}" class="ce-input" placeholder="หมายเหตุ">`;
       return `
       <tr class="border-b border-slate-200" data-claimline-code="${cEsc(r.code || '')}">
-        <td>${cEsc(r.item)}</td>
+        <td>${cEsc(r.item)}${r.submittedEntitlement != null ? `<div class="mt-1 text-xs font-semibold text-brand-700" data-submitted-entitlement="${cEsc(r.code)}">ยอดโอนตามสิทธิ์จากแจ้งเคลม ${claimlineMoneyText(r.submittedEntitlement)} บาท</div>` : ''}</td>
         <td>${receipt}</td>
         <td>${discount}</td>
         <td>${uncovered}</td>
@@ -27050,8 +27053,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     return `
       <section class="cc-ref-card cc-ref-prelim-card">
         <div class="cc-ref-card-title">รายการค่ารักษา(เบื้องต้น)</div>
-        ${context?.source === 'customer' && typeof window.renderCustomerIpdTransferBreakdown === 'function'
-          ? window.renderCustomerIpdTransferBreakdown(window.currentConsiderCustomerRow || {})
+        ${context?.source === 'customer' && window.getCustomerSubmittedIpdPrelimRows?.(window.currentConsiderCustomerRow || {})?.length
+          ? '<p class="mt-1 text-xs font-semibold text-slate-500">รายละเอียดจำนวนเงินโอนตามสิทธิ์ความคุ้มครอง เทียบกับรายการค่ารักษา</p>'
           : ''}
         <div class="cc-ref-table-wrap">
           <table class="cc-ref-prelim-table cc-ref-prelim-table-modern" data-auto-entitlement="${autoCalculateEntitlement ? 'true' : 'false'}">
@@ -27077,7 +27080,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <th>ลบ</th>
               </tr>
             </thead>
-            <tbody id="customerPrelimTableBody">${renderClaimlinePrelimRows(treatment, coverage, {autoCalculateEntitlement})}</tbody>
+            <tbody id="customerPrelimTableBody">${renderClaimlinePrelimRows(treatment, coverage, {autoCalculateEntitlement, source:context?.source})}</tbody>
           </table>
         </div>
         ${context?.source === 'customer' && typeof window.renderCustomerIpdMedicalCompensation === 'function'
