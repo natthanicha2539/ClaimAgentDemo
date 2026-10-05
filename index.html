@@ -11291,7 +11291,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                           &lt;input class=&quot;input&quot; id=&quot;discountInput&quot; type=&quot;number&quot; min=&quot;0&quot; placeholder=&quot;ส่วนลด&quot;&gt;
                           &lt;input class=&quot;input&quot; id=&quot;nonCoverInput&quot; type=&quot;number&quot; min=&quot;0&quot; placeholder=&quot;ยอดไม่คุ้มครอง&quot;&gt;
                         &lt;/div&gt;
-                        &lt;select class=&quot;select&quot; id=&quot;nonCoverReason&quot;&gt;&lt;option value=&quot;&quot;&gt;สาเหตุไม่คุ้มครอง&lt;/option&gt;&lt;option&gt;เป็นโรคยกเว้น&lt;/option&gt;&lt;option&gt;อยู่ในระยะเวลารอคอย&lt;/option&gt;&lt;option&gt;ตัวยาไม่คุ้มครอง&lt;/option&gt;&lt;option&gt;เป็นข้อยกเว้นของกรมธรรม์&lt;/option&gt;&lt;option&gt;เกินสิทธิ์ความคุ้มครอง&lt;/option&gt;&lt;option&gt;เวชภัณฑ์ไม่คุ้มครอง&lt;/option&gt;&lt;option&gt;ปฏิเสธโดยบริษัทรับประกัน&lt;/option&gt;&lt;/select&gt;
+                        &lt;select class=&quot;select&quot; id=&quot;nonCoverReason&quot;&gt;&lt;option value=&quot;&quot;&gt;สาเหตุไม่คุ้มครอง&lt;/option&gt;&lt;option&gt;ข้อยกเว้นเฉพาะบุคคล&lt;/option&gt;&lt;option&gt;รายการยาไม่เข้าเงื่อนไขความคุ้มครอง&lt;/option&gt;&lt;option&gt;เป็นข้อยกเว้นกรมธรรม์&lt;/option&gt;&lt;option&gt;เกินสิทธิ์ความคุ้มครอง&lt;/option&gt;&lt;option&gt;รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง&lt;/option&gt;&lt;option&gt;รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้&lt;/option&gt;&lt;option&gt;ไม่เข้าเงื่อนไขความคุ้มครอง&lt;/option&gt;&lt;/select&gt;
                         &lt;textarea class=&quot;input&quot; id=&quot;noteInput&quot; placeholder=&quot;หมายเหตุ&quot; style=&quot;padding-top:10px;resize:vertical&quot;&gt;&lt;/textarea&gt;
                         &lt;button class=&quot;btn btn-primary&quot; onclick=&quot;addSelectedBenefit()&quot;&gt;&lt;span class=&quot;material-symbols-outlined&quot;&gt;playlist_add&lt;/span&gt; เพิ่มลงในตาราง&lt;/button&gt;
                       &lt;/div&gt;
@@ -11738,7 +11738,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     renderExpenses();
   }
   function toggleExpenseTable(){document.getElementById(&#x27;expenseTableCollapse&#x27;)?.classList.toggle(&#x27;open&#x27;)}
-  const CALC_NON_COVERAGE_REASONS = [&#x27;เป็นโรคยกเว้น&#x27;,&#x27;อยู่ในระยะเวลารอคอย&#x27;,&#x27;ตัวยาไม่คุ้มครอง&#x27;,&#x27;เป็นข้อยกเว้นของกรมธรรม์&#x27;,&#x27;เกินสิทธิ์ความคุ้มครอง&#x27;,&#x27;เวชภัณฑ์ไม่คุ้มครอง&#x27;,&#x27;ปฏิเสธโดยบริษัทรับประกัน&#x27;];
+  const CALC_NON_COVERAGE_REASONS = [&#x27;ข้อยกเว้นเฉพาะบุคคล&#x27;,&#x27;รายการยาไม่เข้าเงื่อนไขความคุ้มครอง&#x27;,&#x27;เป็นข้อยกเว้นกรมธรรม์&#x27;,&#x27;เกินสิทธิ์ความคุ้มครอง&#x27;,&#x27;รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง&#x27;,&#x27;รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้&#x27;,&#x27;ไม่เข้าเงื่อนไขความคุ้มครอง&#x27;];
   function calcNonCoverageReasonOptions(selected=&#x27;&#x27;){
     return &#x27;&lt;option value=&quot;&quot;&gt;สาเหตุไม่คุ้มครอง&lt;/option&gt;&#x27; + CALC_NON_COVERAGE_REASONS.map(reason =&gt; `&lt;option${reason === selected ? &#x27; selected&#x27; : &#x27;&#x27;}&gt;${reason}&lt;/option&gt;`).join(&#x27;&#x27;);
   }
@@ -26840,13 +26840,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   function nonCoverageReasonOptions(selected = ''){
     const reasons = [
-      'เป็นโรคยกเว้น',
-      'อยู่ในระยะเวลารอคอย',
-      'ตัวยาไม่คุ้มครอง',
-      'เป็นข้อยกเว้นของกรมธรรม์',
+      'ข้อยกเว้นเฉพาะบุคคล',
+      'รายการยาไม่เข้าเงื่อนไขความคุ้มครอง',
+      'เป็นข้อยกเว้นกรมธรรม์',
       'เกินสิทธิ์ความคุ้มครอง',
-      'เวชภัณฑ์ไม่คุ้มครอง',
-      'ปฏิเสธโดยบริษัทรับประกัน'
+      'รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง',
+      'รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้',
+      'ไม่เข้าเงื่อนไขความคุ้มครอง'
     ];
     return `<option value="">สาเหตุไม่คุ้มครอง</option>${reasons.map(reason => `<option${reason === selected ? ' selected' : ''}>${reason}</option>`).join('')}`;
   }
