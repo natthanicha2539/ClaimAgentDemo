@@ -31,13 +31,13 @@
   ];
 
   const billingNonCoverageReasons = [
-    'เป็นโรคยกเว้น',
-    'อยู่ในระยะเวลารอคอย',
-    'ตัวยาไม่คุ้มครอง',
-    'เป็นข้อยกเว้นของกรมธรรม์',
+    'ข้อยกเว้นเฉพาะบุคคล',
+    'รายการยาไม่เข้าเงื่อนไขความคุ้มครอง',
+    'เป็นข้อยกเว้นกรมธรรม์',
     'เกินสิทธิ์ความคุ้มครอง',
-    'เวชภัณฑ์ไม่คุ้มครอง',
-    'ปฏิเสธโดยบริษัทรับประกัน'
+    'รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง',
+    'รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้',
+    'ไม่เข้าเงื่อนไขความคุ้มครอง'
   ];
 
   function formatBillingCaseNo(bill,rowId){
@@ -58,9 +58,9 @@
       let reason = uncovered > 0 && billingNonCoverageReasons.includes(row.reason) ? row.reason : '';
       if (uncovered > 0 && !reason) {
         const item = String(row.item || '');
-        if (/ยา/.test(item)) reason = 'ตัวยาไม่คุ้มครอง';
-        else if (/เวชภัณฑ์|อุปกรณ์/.test(item)) reason = 'เวชภัณฑ์ไม่คุ้มครอง';
-        else reason = 'เกินสิทธิ์ความคุ้มครอง';
+        if (/ยา/.test(item)) reason = 'เป็นข้อยกเว้นกรมธรรม์';
+        else if (/เวชภัณฑ์|อุปกรณ์/.test(item)) reason = 'รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้';
+        else reason = 'รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง';
       }
       return {...row, uncovered, reason};
     });
@@ -133,8 +133,8 @@
         { item:'1.5.1 ค่าแพทย์ตรวจรักษา', claim:800, discount:0, uncovered:0, reason:'', note:'ตรวจโดยแพทย์เฉพาะทาง' },
         { item:'1.9.1 ค่าบริการสถานพยาบาล', claim:900, discount:0, uncovered:0, reason:'', note:'ค่าบริการ OPD' },
         { item:'1.3.1 ค่าตรวจทางห้องปฏิบัติการ', claim:2500, discount:0, uncovered:0, reason:'', note:'CBC และ Allergy screening' },
-        { item:'1.1.1 ยาแผนปัจจุบัน - ยาอันตราย', claim:6200, discount:400, uncovered:600, reason:'ตัวยาไม่คุ้มครอง', note:'มียานอกบัญชีบางรายการ' },
-        { item:'1.4.1 ค่าตรวจวินิจฉัยทางรังสี / Imaging', claim:2000, discount:0, uncovered:400, reason:'เกินสิทธิ์ความคุ้มครอง', note:'ตรวจประกอบการวินิจฉัย' }
+        { item:'1.1.1 ยาแผนปัจจุบัน - ยาอันตราย', claim:6200, discount:400, uncovered:600, reason:'เป็นข้อยกเว้นกรมธรรม์', note:'มียานอกบัญชีบางรายการ' },
+        { item:'1.4.1 ค่าตรวจวินิจฉัยทางรังสี / Imaging', claim:2000, discount:0, uncovered:400, reason:'รายการเวชภัณฑ์ไม่เข้าเงื่อนไขความคุ้มครอง', note:'ตรวจประกอบการวินิจฉัย' }
       ],
       docs: [
         { code:'DOC-HB522-01', type:'แบบฟอร์ม A', file:'form_a_cl690700522.pdf', count:1, result:'ผ่าน', note:'ข้อมูลและลายเซ็นครบถ้วน' },
@@ -159,8 +159,8 @@
       expenses: [
         { item:'1.5.3 ค่าแพทย์ผ่าตัด', claim:12000, discount:0, uncovered:0, reason:'', note:'Excision procedure' },
         { item:'1.8.2 ค่าห้องผ่าตัด', claim:8000, discount:500, uncovered:0, reason:'', note:'ห้องผ่าตัด Day Case' },
-        { item:'1.1.1 ยาแผนปัจจุบัน - ยาอันตราย', claim:6500, discount:0, uncovered:300, reason:'ตัวยาไม่คุ้มครอง', note:'ยากลับบ้านบางรายการ' },
-        { item:'1.2.1 เวชภัณฑ์และอุปกรณ์ทางการแพทย์', claim:5200, discount:200, uncovered:700, reason:'เวชภัณฑ์ไม่คุ้มครอง', note:'อุปกรณ์ใช้ครั้งเดียว' },
+        { item:'1.1.1 ยาแผนปัจจุบัน - ยาอันตราย', claim:6500, discount:0, uncovered:300, reason:'เป็นข้อยกเว้นกรมธรรม์', note:'ยากลับบ้านบางรายการ' },
+        { item:'1.2.1 เวชภัณฑ์และอุปกรณ์ทางการแพทย์', claim:5200, discount:200, uncovered:700, reason:'รายการยาไม่สัมพันธ์กับการรักษาพยาบาลครั้งนี้', note:'อุปกรณ์ใช้ครั้งเดียว' },
         { item:'1.3.2 ค่าตรวจชิ้นเนื้อ', claim:3000, discount:0, uncovered:0, reason:'', note:'Pathology' },
         { item:'1.9.1 ค่าบริการสถานพยาบาล', claim:2000, discount:0, uncovered:0, reason:'', note:'ค่าบริการ Day Case' }
       ],
