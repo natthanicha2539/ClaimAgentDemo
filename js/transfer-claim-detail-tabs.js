@@ -1,6 +1,6 @@
 /* ============================================================
    แจ้งเคลม > ติดตามการโอนเงิน > รายละเอียดการแจ้งเคลม
-   Tab interaction and mock history panels (private module state).
+   Shared history presentation for transfer tracking and notification search.
    ============================================================ */
 (function () {
   'use strict';
@@ -38,6 +38,15 @@
   function getMockCaseNo(row) {
     const suffix = String(row.claimNo || '').replace(/\D/g, '').slice(-9);
     return `CC${suffix || '000000000'}`;
+  }
+
+  function hcgCounts(row) {
+    if (row.transferMode !== 'hospital') return null;
+    const claims = Array.isArray(row.claims) ? row.claims : [];
+    return {
+      claims: new Set(claims.map(item => item.claimNo)).size || 1,
+      cases: claims.length || 1
+    };
   }
 
   function getFundRequestNo(row) {
@@ -81,19 +90,20 @@
   function renderActivity(row) {
     const panel = document.getElementById('tdrPanelActivity');
     if (!panel) return;
+    const group = hcgCounts(row);
     const finalTitle = row.statusKey === 'success' ? 'ยืนยันผลการโอนสำเร็จ' : row.statusKey === 'fail' ? 'ธนาคารแจ้งผลโอนไม่สำเร็จ' : 'รอผลการโอนจากธนาคาร';
     const finalDescription = row.statusKey === 'success'
       ? `ระบบบันทึกผลการโอนให้ ${row.payee}`
       : row.statusKey === 'fail'
-        ? 'ระบบได้รับผลการโอนและเปิดให้แก้ไขข้อมูลบัญชี'
+        ? group ? 'ระบบได้รับผลการโอนเงินของกลุ่ม HCG ไม่สำเร็จ' : 'ระบบได้รับผลการโอนและเปิดให้แก้ไขข้อมูลบัญชี'
         : 'รายการยังอยู่ในกระบวนการติดตามผลการโอน';
     const finalDate = row.transferDate && row.transferDate !== '-' ? row.transferDate : 'กำลังดำเนินการ';
     panel.innerHTML = `
       <div class="tdr-history-shell">
         ${panelHeader('history', 'ACTIVITY LOG', 'ลำดับการทำรายการ', `ติดตามการดำเนินงานของ ${row.refNo} ตั้งแต่รับแจ้งจนถึงสถานะล่าสุด`)}
         <ol class="tdr-history-timeline">
-          ${timelineItem('post_add', 'สร้างรายการแจ้งเคลม', `รับข้อมูลเคลม ${row.claimNo} เข้าสู่ระบบ`, row.created, 'success')}
-          ${timelineItem('verified_user', 'ตรวจสอบข้อมูลผู้รับสินไหม', `ยืนยันผู้รับสินไหมและบัญชี ${row.bank} ••••${String(row.account || '').replace(/\D/g, '').slice(-4)}`, row.notifyDate || row.created, 'success')}
+          ${timelineItem('post_add', group ? 'สร้างกลุ่มรายการโอน HCG' : 'สร้างรายการแจ้งเคลม', group ? `รวม ${group.claims} Claim · ${group.cases} Case ภายใต้ ${row.refNo}` : `รับข้อมูลเคลม ${row.claimNo} เข้าสู่ระบบ`, row.created, 'success')}
+          ${timelineItem('verified_user', group ? 'ตรวจสอบข้อมูลสถานพยาบาล' : 'ตรวจสอบข้อมูลผู้รับสินไหม', group ? `ยืนยันข้อมูลสถานพยาบาลและบัญชีรับโอน ${row.bank} ••••${String(row.account || '').replace(/\D/g, '').slice(-4)}` : `ยืนยันผู้รับสินไหมและบัญชี ${row.bank} ••••${String(row.account || '').replace(/\D/g, '').slice(-4)}`, row.notifyDate || row.created, 'success')}
           ${timelineItem('send', 'ส่งคำสั่งโอนเงิน', `ส่งรายการยอด ${formatBaht(row.amount)} บาท ไปยังธนาคาร`, row.notifyDate || '-', 'success')}
           ${timelineItem(row.statusKey === 'fail' ? 'error' : row.statusKey === 'success' ? 'check_circle' : 'schedule', finalTitle, finalDescription, finalDate, statusTone(row))}
         </ol>
@@ -123,26 +133,61 @@
   function renderSettlement(row) {
     const panel = document.getElementById('tdrPanelSettlement');
     if (!panel) return;
+    const group = hcgCounts(row);
     const submittedAt = addDays(row.created, 1, '09:15:00');
-    const reimbursedAt = addDays(row.created, 5, '14:30:00');
+    const reimbursedAt = row.deductDate || row.settlementDate || addDays(row.created, 5, '14:30:00');
     panel.innerHTML = `
       <div class="tdr-history-shell">
-        ${panelHeader('savings', 'FUND SETTLEMENT', 'ประวัติการตัดจ่าย', 'รายการตั้งเบิกกองทุนและผลการจ่ายเงินคืนสำหรับเคสนี้', { text: 'จ่ายเงินคืนแล้ว', tone: 'success' })}
+        ${panelHeader('savings', 'FUND SETTLEMENT', 'ประวัติการตัดจ่าย', group ? `รายการตั้งเบิกกองทุนสำหรับ ${row.refNo}` : 'รายการตั้งเบิกกองทุนและผลการจ่ายเงินคืนสำหรับเคสนี้', { text: 'จ่ายเงินคืนแล้ว', tone: 'success' })}
         <div class="tdr-settlement-summary">
-          <div class="tdr-settlement-id">
-            <span class="material-icons-round" aria-hidden="true">verified</span>
-            <div><span>เลขที่ตั้งเบิกกองทุน</span><strong>${escapeHtml(getFundRequestNo(row))}</strong></div>
-          </div>
-          <div><span>Claim / Case</span><strong>${escapeHtml(row.claimNo)} / ${escapeHtml(getMockCaseNo(row))}</strong></div>
-          <div class="is-amount"><span>ยอดตัดจ่าย</span><strong>${formatBaht(row.amount)} บาท</strong></div>
+          <div class="is-amount"><span>ยอดโอนสุทธิ</span><strong>${formatBaht(row.netAmount ?? row.amount)} บาท</strong></div>
+          <div class="is-amount"><span>ยอดตัดจ่าย</span><strong>${formatBaht(row.settlementAmount ?? row.amount)} บาท</strong></div>
+          <div><span>วันที่ตัดจ่าย</span><strong>${escapeHtml(row.deductDate || row.settlementDate || reimbursedAt)}</strong></div>
         </div>
         <ol class="tdr-history-timeline is-compact">
           ${timelineItem('upload_file', 'ส่งตั้งเบิกกองทุน', `ส่งยอด ${formatBaht(row.amount)} บาท เข้าระบบกองทุน`, submittedAt, 'success')}
-          ${timelineItem('paid', 'กองทุนจ่ายเงินคืนเคสนี้เรียบร้อย', `รับเงินคืนครบตามยอดตั้งเบิก อ้างอิง ${getFundRequestNo(row)}`, reimbursedAt, 'success')}
+          ${timelineItem('paid', group ? 'กองทุนจ่ายเงินคืนกลุ่ม HCG เรียบร้อย' : 'กองทุนจ่ายเงินคืนเคสนี้เรียบร้อย', `รับเงินคืนครบตามยอดตั้งเบิก อ้างอิง ${getFundRequestNo(row)}`, reimbursedAt, 'success')}
         </ol>
         <div class="tdr-settlement-note"><span class="material-icons-round" aria-hidden="true">info</span><span>ข้อมูลในแท็บนี้เป็น Mock Data สำหรับแสดง Flow การตัดจ่ายใน Demo</span></div>
       </div>`;
   }
+
+  function renderRecordPanels(payload) {
+    const info = payload.info || [];
+    const reference = info.find(item => item.label === 'เลขที่ CPG')?.value || '-';
+    const status = info.find(item => item.label === 'สถานะการโอน');
+    const statusText = String(status?.value || '-').replace(/<[^>]*>/g, '');
+    const tone = statusText.includes('ไม่สำเร็จ') ? 'danger' : statusText.includes('สำเร็จ') ? 'success' : 'pending';
+    const history = payload.history || [];
+    const note = text => `<div class="tdr-settlement-note"><span class="material-icons-round" aria-hidden="true">info</span><span>${escapeHtml(text)}</span></div>`;
+    const timeline = (items, compact) => items.length
+      ? `<ol class="tdr-history-timeline ${compact ? 'is-compact' : ''}">${items.map(item => {
+        const title = String(item.title || '');
+        const itemTone = /ไม่สำเร็จ|รอแก้ไข/.test(title) ? 'danger' : /รอผล|ระหว่าง/.test(title) ? 'pending' : 'success';
+        const icon = itemTone === 'danger' ? 'error' : itemTone === 'pending' ? 'schedule' : 'check_circle';
+        return timelineItem(icon, item.title, item.desc, item.time, itemTone);
+      }).join('')}</ol>`
+      : note('ยังไม่มีประวัติการทำรายการสำหรับข้อมูลที่เลือก');
+    const overview = (items, className) => `<div class="${className}">${items.map(([label, value]) => `<div class="${/ยอด|จำนวนเงิน/.test(label) ? 'is-amount' : ''}"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>`;
+    const activityPanel = document.getElementById('crdTabHistory');
+    const transferPanel = document.getElementById('crdTabTransfer');
+    const settlementPanel = document.getElementById('crdTabDeduct');
+    if (activityPanel) activityPanel.innerHTML = `<div class="tdr-history-shell">${panelHeader('history', 'ACTIVITY LOG', 'ลำดับการทำรายการ', `ติดตามการดำเนินงานของ ${reference} ตั้งแต่รับแจ้งจนถึงสถานะล่าสุด`)}${timeline(history, false)}</div>`;
+    const transferEvents = history.filter(item => /โอน|ธนาคาร|แก้ไข/.test(`${item.title || ''} ${item.desc || ''}`));
+    if (transferPanel) transferPanel.innerHTML = `<div class="tdr-history-shell">${panelHeader('account_balance', 'TRANSFER HISTORY', 'ประวัติการโอนเงิน', 'แสดงบัญชีปลายทาง ยอดเงิน และผลการโอนล่าสุด', {text: statusText, tone})}${overview(payload.transfers || [], 'tdr-history-overview')}${timeline(transferEvents, true)}</div>`;
+    const deduction = payload.deduct || [];
+    const deductionValue = labels => deduction.find(([label]) => labels.includes(label))?.[1] ?? '-';
+    const deductionSummary = [
+      ['ยอดโอนสุทธิ', deductionValue(['ยอดโอนสุทธิ'])],
+      ['ยอดตัดจ่าย', deductionValue(['ยอดตัดจ่าย'])],
+      ['วันที่ตัดจ่าย', deductionValue(['วันที่ตัดจ่าย', 'วันที่และเวลาตัดจ่าย'])]
+    ];
+    if (settlementPanel) settlementPanel.innerHTML = `<div class="tdr-history-shell">${panelHeader('savings', 'FUND SETTLEMENT', 'ประวัติการตัดจ่าย', `สรุปยอดตัดจ่ายและยอดโอนสุทธิของ ${reference}`)}${overview(deductionSummary, 'tdr-settlement-summary')}${note('ข้อมูลตัวอย่างการตัดจ่ายจากรายการเคลมที่เลือก')}</div>`;
+  }
+
+  document.addEventListener('claimagent:record-detail-opened', event => {
+    if (event.detail?.payload) renderRecordPanels(event.detail.payload);
+  });
 
   function activateTab(key, shouldFocus) {
     if (!TAB_KEYS.includes(key)) return;
