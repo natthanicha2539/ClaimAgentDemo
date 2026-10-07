@@ -5500,7 +5500,7 @@
     'monitorPage','claimMonitorPage','claimSearchPage','considerPage','considerDeathPage',
     'billingClaimPage','transferTrackingPage','additionalTransferPage','refundPage',
     'approveRefundPage','editTransferPage','extendLimitPage','bankInquiryPage',
-    'correctWrongInsuredPage','editClaimNotificationPage'
+    'correctWrongInsuredPage','editClaimNotificationPage','editClaimNotificationDetailPage'
   ];
   function applyMonitorLayout(){
     ids.forEach(function(id){
@@ -11985,11 +11985,21 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 <option value="ทั้งหมด">ทั้งหมด</option>
               </select>
             </label>
+            <label class="tt-monitor-control tt-monitor-search-type">
+              <span class="tt-monitor-label">ค้นหาจาก</span>
+              <select id="ttSearchType" class="tt-monitor-input" aria-label="ค้นหาจาก">
+                <option value="cpg">เลขที่ CPG</option>
+                <option value="claim" selected>เลขที่ CL</option>
+                <option value="case">เลขที่ Case</option>
+                <option value="insured">ชื่อผู้เอาประกัน</option>
+                <option value="school">ชื่อสถานศึกษา</option>
+              </select>
+            </label>
             <label class="tt-monitor-control tt-monitor-keyword">
               <span class="tt-monitor-label">ค้นหาข้อมูล</span>
               <span class="tt-monitor-search-wrap">
                 <span class="material-icons-round">search</span>
-                <input id="ttKeyword" class="tt-monitor-input" placeholder="ค้นหาจากเลข CPG / CL / ชื่อผู้เอาประกัน / ชื่อสถานศึกษา" />
+                <input id="ttKeyword" class="tt-monitor-input" placeholder="ระบุเลขที่ CL" />
                 <button id="ttKeywordClear" type="button" class="tt-keyword-clear hidden" onclick="clearTransferTrackingKeyword()" aria-label="ล้างคำค้นหา" title="ล้างคำค้นหา"><span class="material-icons-round" aria-hidden="true">close</span></button>
               </span>
             </label>
@@ -12004,8 +12014,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div class="tt-status-filter-head"><span class="material-icons-round">filter_alt</span><span>สถานะการโอน</span></div>
           <div id="ttStatusFilters" class="tt-status-filter-list"></div>
         </section>
-
-        <section id="ttSummary" class="tt-premium-summary" aria-label="สรุปรายการโอนเงิน"></section>
 
         <section class="tt-results-surface">
           <header class="tt-results-head">
@@ -14366,16 +14374,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     let claimRecordSearchSource = "claimMenu";
     const claimRecordRows = {
       PH: [
-        {cpg:"CPG690700131",cl:"CL690700531",caseNo:"CC6907531",date:"14/07/2569 10:18:42",name:"นายกรภัทร วรวงศ์คุณากร",id:"2494029825403",passport:"",appId:"003067",product:"PH",plan:"662",coverageStart:"01/01/2559",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"8,450.00",status:"อยู่ระหว่างการโอนเงิน"},
-        {cpg:"CPG690700126",cl:"CL690700519",caseNo:"CC6907519",date:"13/07/2569 16:34:09",name:"นางโสรัตน์ จันทร์จุฬา",id:"8941196407026",passport:"",appId:"012345",product:"PH",plan:"661",coverageStart:"01/03/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"3,250.00",status:"โอนสำเร็จ"},
-        {cpg:"CPG690700118",cl:"CL690700497",caseNo:"CC6907497",date:"13/07/2569 11:26:53",name:"นายบวรพจน์ ขจรศักดิ์โกศล",id:"2714145414250",passport:"",appId:"009099",product:"PH",plan:"502Pro",coverageStart:"01/04/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"12,680.00",status:"รอพิจารณา"},
+        {cpg:"CPG690700131",cl:"CL690700531",caseNo:"CC6907531",date:"14/07/2569 10:18:42",name:"นายกรภัทร วรวงศ์คุณากร",id:"2494029825403",passport:"",appId:"003067",product:"PH",plan:"662",coverageStart:"01/01/2559",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"8,450.00",status:"อยู่ระหว่างการโอนเงิน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / IPD"},
+        {cpg:"CPG690700126",cl:"CL690700519",caseNo:"CC6907519",date:"13/07/2569 16:34:09",name:"นางโสรัตน์ จันทร์จุฬา",id:"8941196407026",passport:"",appId:"012345",product:"PH",plan:"661",coverageStart:"01/03/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"3,250.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 09:12:35",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
+        {cpg:"CPG690700118",cl:"CL690700497",caseNo:"CC6907497",date:"13/07/2569 11:26:53",name:"นายบวรพจน์ ขจรศักดิ์โกศล",id:"2714145414250",passport:"",appId:"009099",product:"PH",plan:"502Pro",coverageStart:"01/04/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"12,680.00",status:"รอโอน",transferDate:"-",claimInfo:"อุบัติเหตุ / ค่ารักษา / IPD"},
         {cpg:"CPG690700109",cl:"CL690700472",caseNo:"CC6907472",date:"12/07/2569 14:09:21",name:"นายจิโรจน์ สิริประภาชัย",id:"1721371846555",passport:"",appId:"001543",product:"PH",plan:"661",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"6,900.00",status:"โอนสำเร็จ"},
-        {cpg:"CPG690700103",cl:"CL690700458",caseNo:"CC6907458",date:"12/07/2569 09:42:37",name:"นายชานนท์ มาลัยแก้ว",id:"7544739303542",passport:"",appId:"002940",product:"PH",plan:"662",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"2,150.00",status:"อยู่ระหว่างการโอนเงิน"}
+        {cpg:"CPG690700103",cl:"CL690700458",caseNo:"CC6907458",date:"12/07/2569 09:42:37",name:"นายชานนท์ มาลัยแก้ว",id:"7544739303542",passport:"",appId:"002940",product:"PH",plan:"662",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"2,150.00",status:"อยู่ระหว่างการโอนเงิน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
+        {cpg:"CPG690700098",cl:"CL690700441",caseNo:"CC6907441",date:"11/07/2569 14:22:06",name:"นางสาวมาเรีย วิลเลียมส์",id:"",passport:"G69074418",appId:"002941",product:"PH",plan:"662",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"ภูเก็ต",amount:"5,780.00",status:"โอนไม่สำเร็จ",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"}
       ],
       PA: [
-        {cpg:"CPG690700145",cl:"CL690700556",caseNo:"CC6907556",date:"14/07/2569 13:05:18",name:"ด.ช.ธนกฤต พรรษาสกุล",school:"โรงเรียนพระตำหนักสวนกุหลาบ",studentCard:"STD-2569-010612",id:"2620481791249",passport:"",appId:"69102612",product:"PA",plan:"ชดเชย+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตพระนคร แขวงพระบรมมหาราชวัง",amount:"1,800.00",status:"รอพิจารณา"},
-        {cpg:"CPG690700139",cl:"CL690700543",caseNo:"CC6907543",date:"14/07/2569 09:17:46",name:"ด.ช.ปิติภูมิ แสนวงศ์",school:"โรงเรียนชิโนรสวิทยาลัย",studentCard:"STD-2569-010613",id:"3321349692974",passport:"",appId:"69102613",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"4,500.00",status:"โอนสำเร็จ"},
-        {cpg:"CPG690700134",cl:"CL690700527",caseNo:"CC6907527",date:"13/07/2569 15:28:04",name:"ด.ญ.กมลพร จันทร์สิงห์",school:"โรงเรียนสตรีวิทยา ๒",studentCard:"STD-2569-010614",id:"1351606116733",passport:"",appId:"69102614",product:"PA",plan:"เลือกสิทธิ์+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"2,750.00",status:"อยู่ระหว่างการโอนเงิน"}
+        {cpg:"CPG690700145",cl:"CL690700556",caseNo:"CC6907556",date:"14/07/2569 13:05:18",name:"ด.ช.ธนกฤต พรรษาสกุล",school:"โรงเรียนพระตำหนักสวนกุหลาบ",studentCard:"STD-2569-010612",id:"2620481791249",passport:"",appId:"69102612",product:"PA",plan:"ชดเชย+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตพระนคร แขวงพระบรมมหาราชวัง",amount:"1,800.00",status:"รอโอน",transferDate:"-"},
+        {cpg:"CPG690700139",cl:"CL690700543",caseNo:"CC6907543",date:"14/07/2569 09:17:46",name:"ด.ช.ปิติภูมิ แสนวงศ์",school:"โรงเรียนชิโนรสวิทยาลัย",studentCard:"STD-2569-010613",id:"3321349692974",passport:"",appId:"69102613",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"4,500.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 10:08:21"},
+        {cpg:"CPG690700134",cl:"CL690700527",caseNo:"CC6907527",date:"13/07/2569 15:28:04",name:"ด.ญ.กมลพร จันทร์สิงห์",school:"โรงเรียนสตรีวิทยา ๒",studentCard:"STD-2569-010614",id:"1351606116733",passport:"",appId:"69102614",product:"PA",plan:"เลือกสิทธิ์+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"2,750.00",status:"อยู่ระหว่างการโอนเงิน",transferDate:"-"},
+        {cpg:"CPG690700122",cl:"CL690700505",caseNo:"CC6907505",date:"13/07/2569 10:43:27",name:"ด.ญ.เอมิลี แซ่ลิ้ม",school:"โรงเรียนนานาชาติบางกอกพัฒนา",studentCard:"STD-2569-010615",id:"",passport:"G69075052",appId:"69102615",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางนา แขวงบางนาใต้",amount:"3,690.00",status:"โอนไม่สำเร็จ",transferDate:"-"}
       ]
     };
     let claimRecordProduct = "";
@@ -14458,8 +14468,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       document.getElementById('claimRecordResultSection')?.classList.add('hidden');
     }
     function claimRecordStatusBadge(status) {
-      const cls = status === 'โอนสำเร็จ' ? 'bg-green-100 text-green-700' : status === 'โอนไม่สำเร็จ' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-800';
-      return `<span class="inline-flex whitespace-nowrap rounded-full px-3 py-1 text-sm font-extrabold ${cls}">${status}</span>`;
+      const tone = status === 'โอนสำเร็จ' ? 'success' : status === 'โอนไม่สำเร็จ' ? 'fail' : status === 'รอโอน' ? 'pending' : 'processing';
+      const icon = {success:'check_circle', fail:'cancel', pending:'schedule', processing:'sync'}[tone];
+      return `<span class="crs-status crs-status--${tone}"><span class="material-icons-round" aria-hidden="true">${icon}</span>${status}</span>`;
     }
     function isClaimRecordInsuredSearchType(type) {
       return ['เลขบัตรประชาชน','เลข Passport/G-Code','AppID','ชื่อ-สกุลผู้เอาประกัน'].includes(type || '');
@@ -14582,7 +14593,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function claimRecordStatusPill(status) {
       if (status === 'โอนสำเร็จ') return `<span class="crd-pill success">โอนสำเร็จ</span>`;
       if (status === 'โอนไม่สำเร็จ') return `<span class="crd-pill fail">โอนไม่สำเร็จ</span>`;
-      return `<span class="crd-pill wait">อยู่ระหว่างการโอนเงิน</span>`;
+      return `<span class="crd-pill wait">${status === 'รอโอน' ? 'รอโอน' : 'อยู่ระหว่างการโอนเงิน'}</span>`;
     }
     function getClaimRecordPhDetailPayload(r) {
       const samplePayerName = 'นางสาวพิมพันชก ศรีสุข';
@@ -14596,34 +14607,34 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           {icon:'badge', label:'ผู้แจ้งเคลม', value:'06590 - ณัฏฐณิชา โตรักษา', accent:true},
           {icon:'location_on', label:'สาขา', value:'กรุงเทพมหานคร', accent:true},
           {icon:'sync', label:'สถานะการโอน', value:claimRecordStatusPill(r.status), html:true},
-          {icon:'calendar_month', label:'วันที่โอนเงิน', value:r.date, accent:true},
+          {icon:'calendar_month', label:'วันที่โอนเงิน', value:r.transferDate || (isSuccess ? r.date : '-'), accent:true},
           {icon:'payments', label:'จำนวนเงินโอนรวม', value:r.amount, accent:true}
         ],
         holder: [
-          ['AppID', '9909999'],
-          ['ชื่อผู้ถือกรมธรรม์', samplePayerName]
+          ['AppID', r.appId],
+          ['ชื่อผู้ถือกรมธรรม์', r.name]
         ],
         beneficiary: [
           ['ความสัมพันธ์ผู้รับสินไหม', 'ผู้เอาประกัน'],
-          ['บัญชีรับสินไหม', `${sampleBank} ${samplePayerName}`],
-          ['รายละเอียดการติดต่อ', `ผู้เอาประกัน ${samplePayerName} 091-2334455`]
+          ['บัญชีรับสินไหม', `${sampleBank} ${r.name}`],
+          ['รายละเอียดการติดต่อ', `ผู้เอาประกัน ${r.name} 091-2334455`]
         ],
         claimTable: [
           {
             cl:r.cl,
             caseNo:r.caseNo,
             name:r.name,
-            accidentDate:'09/07/2569',
-            admitDate:'04/07/2569',
-            dischargeDate:'09/07/2569',
-            claimInfo:'เจ็บป่วย / ค่ารักษา / IPD',
+            accidentDate:r.date.split(' ')[0],
+            admitDate:r.date.split(' ')[0],
+            dischargeDate:r.date.split(' ')[0],
+            claimInfo:r.claimInfo || 'เจ็บป่วย / ค่ารักษา / OPD',
             amount:r.amount
           }
         ],
         history: [
           {time:r.date, title:'สร้างรายการแจ้งเคลม', desc:`สร้างรายการ ${r.cl} โดย 06590 - ณัฏฐณิชา โตรักษา`},
           {time:r.date, title:'บันทึกข้อมูลการโอนเงิน', desc:`บันทึกยอดโอน ${r.amount} บาท`},
-          {time:r.date, title:isFail ? 'รายการรอแก้ไข' : (isSuccess ? 'โอนเงินสำเร็จ' : 'อยู่ระหว่างดำเนินการโอนเงิน'), desc:isFail ? 'ธนาคารตีกลับรายการ กรุณาตรวจสอบบัญชีผู้รับเงิน' : (isSuccess ? 'ธนาคารตอบกลับสำเร็จ' : 'ส่งรายการเข้ากระบวนการโอนเงินแล้ว')}
+          {time:r.transferDate && r.transferDate !== '-' ? r.transferDate : r.date, title:isFail ? 'รายการรอแก้ไข' : (isSuccess ? 'โอนเงินสำเร็จ' : r.status === 'รอโอน' ? 'รอโอนเงิน' : 'อยู่ระหว่างดำเนินการโอนเงิน'), desc:isFail ? 'ธนาคารตีกลับรายการ กรุณาตรวจสอบบัญชีผู้รับเงิน' : (isSuccess ? 'ธนาคารตอบกลับสำเร็จ' : r.status === 'รอโอน' ? 'รายการพร้อมเข้าสู่กระบวนการโอนเงิน' : 'ส่งรายการเข้ากระบวนการโอนเงินแล้ว')}
         ],
         transfers: [
           ['เลข CPG', r.cpg],
@@ -14659,7 +14670,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           {icon:'badge', label:'ผู้แจ้งเคลม', value:'06590 - ณัฏฐณิชา โตรักษา', accent:true},
           {icon:'location_on', label:'สาขา', value:'กรุงเทพมหานคร', accent:true},
           {icon:'sync', label:'สถานะการโอน', value:claimRecordStatusPill(status), html:true},
-          {icon:'calendar_month', label:'วันที่โอนเงิน', value:leadRow.date, accent:true},
+          {icon:'calendar_month', label:'วันที่โอนเงิน', value:leadRow.transferDate || (status === 'โอนสำเร็จ' ? leadRow.date : '-'), accent:true},
           {icon:'payments', label:'จำนวนเงินโอนรวม', value:formatMoney(totalAmount), accent:true}
         ],
         holder: [
@@ -37029,116 +37040,46 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
 </style>
 
-<section id="editClaimNotificationPage" class="page hidden">
-  <article class="ecn-card">
-    <div class="ecn-card-head"><span class="material-icons-round">edit_note</span>ค้นหารายการแจ้งเคลม</div>
-    <div class="ecn-card-body">
-      <div class="ecn-search-grid">
-        <div class="ecn-field"><label class="ecn-label" for="ecnClaimNo">เลขที่ CL <span class="req">*</span></label><input id="ecnClaimNo" class="ecn-input" placeholder="กรอกเลขที่ CL เช่น CL6904000042"></div>
-        <button id="ecnSearchBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button>
-      </div>
-      <div id="ecnSearchError" class="hidden mt-2 text-sm font-bold text-red-600">กรุณากรอกเลขที่ CL ก่อนค้นหา</div>
+<section id="editClaimNotificationPage" class="page hidden ecn-page" aria-labelledby="ecnMonitorHeading">
+  <div class="ecn-page-intro"><div><span class="ecn-eyebrow">จัดการข้อมูลแจ้งเคลม</span><h2 id="ecnMonitorHeading">ค้นหารายการแจ้งเคลม</h2><p>ค้นหาและเลือกรายการก่อนเปิดหน้าแก้ไขข้อมูล</p></div><span class="ecn-mock-tag">ข้อมูลตัวอย่าง</span></div>
+  <section class="ecn-surface ecn-search-surface" aria-label="ค้นหารายการแจ้งเคลม">
+    <div class="ecn-search-grid">
+      <label class="ecn-field"><span class="ecn-label">ค้นหาจาก</span><select id="ecnSearchType" class="ecn-select"><option value="claim" selected>เลขที่ CL</option><option value="case">เลขที่ Case</option><option value="ref">เลขที่ CPG / HCG</option><option value="insured">ชื่อผู้เอาประกัน</option><option value="place">สถานศึกษา / สถานพยาบาล</option></select></label>
+      <label class="ecn-field"><span class="ecn-label">ค้นหาข้อมูล</span><span class="ecn-keyword-wrap"><input id="ecnClaimNo" class="ecn-input" type="search" autocomplete="off" placeholder="ระบุเลขที่ CL"><button id="ecnClearBtn" type="button" class="ecn-clear hidden" aria-label="ล้างคำค้นหา"><span class="material-icons-round" aria-hidden="true">close</span></button></span></label>
+      <button id="ecnSearchBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button>
     </div>
-  </article>
-
-  <div id="ecnInitial" class="ecn-card ecn-empty mt-4"><span class="material-icons-round">manage_search</span><h3 class="mt-3 text-lg font-extrabold">กรอกเลขที่ CL เพื่อค้นหารายการ</h3><p class="mt-1">ระบบจะแสดงรายละเอียดการแจ้งเคลมและปุ่มแก้ไขข้อมูล</p></div>
-
-  <div id="ecnResult" class="ecn-result-v40 hidden">
-    <article class="ecn-info-card">
-      <div class="ecn-info-head"><span class="material-icons-round">inventory_2</span><span>ข้อมูลการแจ้งเคลม</span></div>
-      <div class="ecn-overview-grid">
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">description</span></span><div><div class="ecn-overview-label">เลขที่ CPG</div><div class="ecn-overview-value">CPG690700104</div></div></div>
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">badge</span></span><div><div class="ecn-overview-label">ผู้แจ้งเคลม</div><div class="ecn-overview-value">06590 - ณัฏฐณิชา โตรักษา</div></div></div>
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">location_on</span></span><div><div class="ecn-overview-label">สาขา</div><div class="ecn-overview-value">กรุงเทพมหานคร</div></div></div>
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">sync</span></span><div><div class="ecn-overview-label">สถานะการโอน</div><div class="ecn-overview-value"><span class="ecn-status-pill">อยู่ระหว่างการโอนเงิน</span></div></div></div>
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">calendar_month</span></span><div><div class="ecn-overview-label">วันที่โอนเงิน</div><div class="ecn-overview-value">10/07/2569 15:42:18</div></div></div>
-        <div class="ecn-overview-item"><span class="ecn-overview-icon"><span class="material-icons-round">account_balance_wallet</span></span><div><div class="ecn-overview-label">จำนวนเงินโอนรวม</div><div class="ecn-overview-value">8,450.00</div></div></div>
-      </div>
-    </article>
-
-    <article class="ecn-info-card">
-      <div class="ecn-info-head"><span class="material-icons-round">person</span><span>ข้อมูลผู้ถือกรมธรรม์</span></div>
-      <div class="ecn-simple-grid">
-        <div><div class="ecn-simple-label">AppID :</div><div class="ecn-simple-value">9909999</div></div>
-        <div><div class="ecn-simple-label">ชื่อผู้ถือกรมธรรม์ :</div><div class="ecn-simple-value">นางสาวพิมพ์นภา ศรีสุข</div></div>
-      </div>
-    </article>
-
-    <article class="ecn-info-card">
-      <div class="ecn-info-head"><span class="material-icons-round">account_balance_wallet</span><span>ข้อมูลผู้รับสินไหม</span></div>
-      <div class="ecn-recipient-grid">
-        <div><div class="ecn-simple-label">ความสัมพันธ์ผู้รับสินไหม :</div><div class="ecn-simple-value">ผู้เอาประกัน</div></div>
-        <div><div class="ecn-simple-label">บัญชีรับสินไหม :</div><div class="ecn-simple-value">กรุงไทย 1821000000 นางสาวพิมพ์นภา ศรีสุข</div></div>
-        <div><div class="ecn-simple-label">รายละเอียดการติดต่อ :</div><div class="ecn-simple-value">ผู้เอาประกัน นางสาวพิมพ์นภา ศรีสุข 091-2334455</div></div>
-      </div>
-    </article>
-
-    <article class="ecn-info-card">
-      <div class="ecn-tabs"><button type="button" class="ecn-tab active">ข้อมูลการเคลม</button><button type="button" class="ecn-tab">ประวัติการทำรายการ</button><button type="button" class="ecn-tab">ประวัติการโอนเงิน</button><button type="button" class="ecn-tab">ประวัติการตัดจ่าย</button></div>
-      <div class="ecn-claim-table-shell">
-        <table class="ecn-claim-table">
-          <thead><tr><th>เลขที่ CL</th><th>เลขที่ Case</th><th>ชื่อ-สกุลผู้เอาประกัน</th><th>วันที่เกิดเหตุ</th><th>วันที่เข้า รพ.</th><th>วันที่ออก รพ.</th><th>ข้อมูลเคลม</th><th class="text-right">จำนวนเงิน</th><th class="text-center">ดำเนินการ</th></tr></thead>
-          <tbody><tr>
-            <td><button id="ecnTableCL" type="button" class="ecn-claim-link">CL690700428</button></td>
-            <td>CC6907428</td><td>นางสาวพิมพ์นภา ศรีสุข</td><td>09/07/2569</td><td>04/07/2569</td><td>09/07/2569</td>
-            <td><div class="ecn-claim-data-main"><span id="ecnCauseCell">เจ็บป่วย</span> / <span id="ecnCoverageCell">ค่ารักษา</span> / <span id="ecnTreatmentCell">IPD</span></div><div class="ecn-claim-data-sub">ผู้ร้องขอ: <span id="ecnRequesterCell">08135 - นายณัฐภูมิ กองเพ็ง</span></div></td>
-            <td class="ecn-amount">8,450.00</td>
-            <td class="text-center"><button id="ecnEditBtn" type="button" class="ecn-action-v40" title="แก้ไขข้อมูลการเคลม"><span class="material-icons-round">edit</span></button></td>
-          </tr></tbody>
-        </table>
-      </div>
-    </article>
-  </div>
+    <p id="ecnSearchError" class="ecn-search-error hidden" role="alert">ไม่พบรายการตามคำค้น กรุณาตรวจสอบแล้วค้นหาอีกครั้ง</p>
+  </section>
+  <div id="ecnInitial" class="ecn-initial"><span class="material-icons-round" aria-hidden="true">manage_search</span><h3>ค้นหารายการที่ต้องการแก้ไข</h3><p>เลือกประเภทข้อมูล ระบุคำค้น แล้วกด “ค้นหา” เพื่อแสดงรายการให้เลือก</p></div>
+  <section id="ecnResult" class="ecn-surface ecn-monitor-results hidden" aria-label="รายการแจ้งเคลม">
+    <div class="ecn-results-heading"><div><h3>รายการแจ้งเคลม</h3><p id="ecnResultCount" aria-live="polite"></p></div></div>
+    <div class="ecn-monitor-table-wrap"><table class="ecn-monitor-table"><thead><tr><th>เลขที่ CL / Case</th><th>ผู้เอาประกัน</th><th>ข้อมูลเคลม</th><th>สถานศึกษา / สถานพยาบาล</th><th>จำนวนเงิน</th><th>สถานะ</th><th>ดำเนินการ</th></tr></thead><tbody id="ecnMonitorBody"></tbody></table></div>
+    <div class="ecn-monitor-footer"><span id="ecnMonitorRange"></span><div><button id="ecnPrevPage" type="button" aria-label="หน้าก่อนหน้า">‹</button><button id="ecnNextPage" type="button" aria-label="หน้าถัดไป">›</button></div></div>
+  </section>
 </section>
-
-<div id="ecnEditModal" class="ecn-modal hidden" role="dialog" aria-modal="true">
-  <div class="ecn-dialog">
-    <div class="ecn-dialog-head"><div class="ecn-dialog-title">แก้ไขการแจ้งเคลม</div><button id="ecnCloseModal" type="button" class="ecn-close"><span class="material-icons-round">close</span></button></div>
-    <div class="ecn-dialog-body">
-      <div class="ecn-claim-banner"><div class="ecn-claim-code">CPG690700104</div><div class="ecn-claim-meta"><div>เลขที่ CL : <b id="ecnModalCL">CL6904000042</b></div><div>ชื่อ-นามสกุลผู้เอาประกัน : <b>นางสาวพิมพ์นภา ศรีสุข</b></div></div></div>
-      <div class="ecn-form-grid">
-        <div class="ecn-field"><label class="ecn-label">เหตุของการเคลม <span class="req">*</span></label><select id="ecnCause" class="ecn-select"><option value="">กรุณาเลือก</option><option>เจ็บป่วย</option><option selected>อุบัติเหตุ</option></select></div>
-        <div class="ecn-field"><label class="ecn-label">ประเภทความคุ้มครอง <span class="req">*</span></label><select id="ecnCoverage" class="ecn-select"><option value="">กรุณาเลือก</option><option>ค่ารักษา</option><option>ค่าชดเชย</option><option selected>ทุพพลภาพ/สูญเสียอวัยวะ</option><option>เสียชีวิต</option></select></div>
-        <div class="ecn-field"><label class="ecn-label">ประเภทการรักษา <span class="req">*</span></label><select id="ecnTreatment" class="ecn-select"></select></div>
-        <div class="ecn-field"><label class="ecn-label">ผู้ร้องขอ <span class="req">*</span></label><select id="ecnRequester" class="ecn-select"><option value="">กรุณาเลือก</option><option selected>08135 - นายณัฐภูมิ กองเพ็ง</option><option>08142 - นางสาววราภรณ์ วัฒนะ</option><option>08201 - นายกิตติศักดิ์ แสงทอง</option></select></div>
-      </div>
-      <div id="ecnModalError" class="hidden mt-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-bold text-red-600">กรุณากรอกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน</div>
-      <div id="ecnSuccess" class="ecn-success">บันทึกการแก้ไขการแจ้งเคลมเรียบร้อยแล้ว</div>
-    </div>
-    <div class="ecn-dialog-actions"><button id="ecnCancelBtn" type="button" class="ecn-btn ecn-btn-danger">ยกเลิก</button><button id="ecnSaveBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round">save</span>บันทึก</button></div>
-  </div>
-</div>
-
-<script id="edit-claim-notification-script">
-(function(){
- const $=id=>document.getElementById(id);
- const treatmentMap={
-  'ค่ารักษา':['OPD','IPD','Day Case Surgery'],
-  'ค่าชดเชย':['OPD','IPD'],
-  'ทุพพลภาพ/สูญเสียอวัยวะ':['อุบัติเหตุทั่วไป','ขับขี่/โดยสารจักรยานยนต์'],
-  'เสียชีวิต':['อุบัติเหตุทั่วไป','ขับขี่/โดยสารจักรยานยนต์','ฆาตกรรม','โรคทั่วไป']
- };
- function mount(){const page=$('editClaimNotificationPage'),main=document.querySelector('main');if(page&&main&&page.parentElement!==main)main.appendChild(page)}
- function activateMenu(){const sm=$('claimDataManagementSubmenu'),arrow=$('claimDataManagementArrow');sm?.classList.remove('hidden');$('menuClaimDataManagement')?.setAttribute('aria-expanded','true');if(arrow)arrow.textContent='expand_less';document.querySelectorAll('#claimDataManagementSubmenu button').forEach(b=>{b.classList.remove('bg-white/15','font-bold','text-white');b.classList.add('font-semibold','text-white/75')});const active=$('submenuEditClaimNotification');active?.classList.add('bg-white/15','font-bold','text-white');active?.classList.remove('font-semibold','text-white/75')}
- function reset(){if($('ecnClaimNo'))$('ecnClaimNo').value='';$('ecnSearchError')?.classList.add('hidden');$('ecnResult')?.classList.add('hidden');$('ecnInitial')?.classList.remove('hidden')}
- function show(){mount();if(window.claimMoneyShowPage)window.claimMoneyShowPage('editClaimNotificationPage','แก้ไขการแจ้งเคลม','จัดการข้อมูลแจ้งเคลม / แก้ไขการแจ้งเคลม');else{document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$('editClaimNotificationPage')?.classList.remove('hidden')}activateMenu();reset()}
- function search(){const q=($('ecnClaimNo')?.value||'').trim();if(!q){$('ecnSearchError')?.classList.remove('hidden');$('ecnClaimNo')?.focus();return}$('ecnSearchError')?.classList.add('hidden');const cl=q.toUpperCase().startsWith('CL')?q.toUpperCase():'CL'+q;if($('ecnResultCL'))$('ecnResultCL').textContent=cl;if($('ecnTableCL'))$('ecnTableCL').textContent=cl;$('ecnModalCL').textContent=cl;$('ecnInitial')?.classList.add('hidden');$('ecnResult')?.classList.remove('hidden')}
- function refreshTreatment(preferred){const coverage=$('ecnCoverage').value;const list=treatmentMap[coverage]||[];$('ecnTreatment').innerHTML='<option value="">กรุณาเลือก</option>'+list.map(x=>`<option ${x===preferred?'selected':''}>${x}</option>`).join('')}
- function openModal(){refreshTreatment($('ecnTreatmentCell').textContent.trim());$('ecnCause').value=$('ecnCauseCell').textContent.trim();$('ecnCoverage').value=$('ecnCoverageCell').textContent.trim();refreshTreatment($('ecnTreatmentCell').textContent.trim());$('ecnRequester').value=$('ecnRequesterCell').textContent.trim();$('ecnModalError').classList.add('hidden');$('ecnSuccess').style.display='none';$('ecnEditModal').classList.remove('hidden')}
- function closeModal(){$('ecnEditModal').classList.add('hidden')}
- function save(){const cause=$('ecnCause').value,coverage=$('ecnCoverage').value,treatment=$('ecnTreatment').value,requester=$('ecnRequester').value;if(!cause||!coverage||!treatment||!requester){$('ecnModalError').classList.remove('hidden');return}$('ecnModalError').classList.add('hidden');$('ecnCauseCell').textContent=cause;$('ecnCoverageCell').textContent=coverage;$('ecnTreatmentCell').textContent=treatment;$('ecnRequesterCell').textContent=requester;$('ecnSuccess').style.display='block';setTimeout(closeModal,900)}
- function init(){mount();$('submenuEditClaimNotification')?.addEventListener('click',show);$('ecnSearchBtn')?.addEventListener('click',search);$('ecnClaimNo')?.addEventListener('input',()=>$('ecnSearchError')?.classList.add('hidden'));$('ecnClaimNo')?.addEventListener('keydown',e=>{if(e.key==='Enter')search()});$('ecnEditBtn')?.addEventListener('click',openModal);$('ecnCoverage')?.addEventListener('change',()=>refreshTreatment(''));$('ecnCloseModal')?.addEventListener('click',closeModal);$('ecnCancelBtn')?.addEventListener('click',closeModal);$('ecnSaveBtn')?.addEventListener('click',save);$('ecnEditModal')?.addEventListener('click',e=>{if(e.target===$('ecnEditModal'))closeModal()})}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-})();
-</script>
-
+<section id="editClaimNotificationDetailPage" class="page hidden ecn-page" aria-labelledby="ecnDetailHeading">
+  <div class="ecn-detail-top"><button id="ecnBackBtn" type="button" class="ecn-back"><span class="material-icons-round" aria-hidden="true">arrow_back</span>กลับหน้าค้นหารายการ</button><span class="ecn-mock-tag">ข้อมูลตัวอย่าง · แก้ไขในหน้านี้เท่านั้น</span></div>
+  <div class="ecn-page-intro"><div><span class="ecn-eyebrow">รายละเอียดการแจ้งเคลม</span><h2 id="ecnDetailHeading"></h2><p id="ecnDetailSubtitle"></p></div><span id="ecnDetailStatus" class="ecn-status"></span></div>
+  <section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">inventory_2</span><h3>ข้อมูลการแจ้งเคลม</h3></div><div id="ecnOverview" class="ecn-overview-grid"></div></section>
+  <div class="ecn-two-up"><section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">person</span><h3>ข้อมูลผู้ถือกรมธรรม์</h3></div><div id="ecnPolicy" class="ecn-data-grid"></div></section><section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span><h3>ข้อมูลผู้รับสินไหม</h3></div><div id="ecnPayee" class="ecn-data-grid"></div></section></div>
+  <section class="ecn-surface ecn-tab-surface"><div class="ecn-tabs" role="tablist" aria-label="รายละเอียดการแจ้งเคลม"><button id="ecnTabClaim" type="button" class="ecn-tab active" role="tab" aria-selected="true" aria-controls="ecnPanelClaim" data-ecn-tab="claim">ข้อมูลการเคลม</button><button id="ecnTabActivity" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelActivity" data-ecn-tab="activity" tabindex="-1">ประวัติการทำรายการ</button><button id="ecnTabTransfer" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelTransfer" data-ecn-tab="transfer" tabindex="-1">ประวัติการโอนเงิน</button><button id="ecnTabSettlement" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelSettlement" data-ecn-tab="settlement" tabindex="-1">ประวัติการตัดจ่าย</button></div>
+    <div id="ecnPanelClaim" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabClaim"><div class="ecn-claim-table-wrap"><table class="ecn-claim-table"><thead><tr><th>เลขที่ CL</th><th>เลขที่ Case</th><th>ชื่อผู้เอาประกัน</th><th>วันที่เกิดเหตุ</th><th>วันที่เข้า รพ.</th><th>วันที่ออก รพ.</th><th>ข้อมูลเคลม</th><th>จำนวนเงิน</th><th>ดำเนินการ</th></tr></thead><tbody id="ecnClaimBody"></tbody></table></div></div>
+    <div id="ecnPanelActivity" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabActivity" hidden></div><div id="ecnPanelTransfer" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabTransfer" hidden></div><div id="ecnPanelSettlement" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabSettlement" hidden></div>
+  </section>
+  <p id="ecnSaveNotice" class="ecn-save-notice hidden" tabindex="-1" role="status" aria-live="polite"></p>
+</section>
+<dialog id="ecnEditModal" class="ecn-edit-dialog" aria-labelledby="ecnModalHeading" aria-describedby="ecnModalDescription">
+  <div class="ecn-modal-head"><span class="ecn-modal-icon"><span class="material-icons-round" aria-hidden="true">edit_note</span></span><div><h2 id="ecnModalHeading">แก้ไขการแจ้งเคลม</h2><p id="ecnModalDescription">ตรวจสอบข้อมูลรายการและแก้ไขข้อมูลเคลม</p></div><button id="ecnCloseModal" type="button" class="ecn-modal-close" aria-label="ปิดหน้าต่างแก้ไข"><span class="material-icons-round" aria-hidden="true">close</span></button></div>
+  <div class="ecn-modal-body"><div id="ecnModalSummary" class="ecn-modal-summary"></div><section class="ecn-modal-card"><div class="ecn-modal-card-head"><span class="material-icons-round" aria-hidden="true">assignment</span><h3>ข้อมูลเคลม</h3></div><div class="ecn-modal-form-grid"><label class="ecn-field"><span class="ecn-label">เหตุของการเคลม <b>*</b></span><select id="ecnCause" class="ecn-select"><option value="">กรุณาเลือก</option><option>เจ็บป่วย</option><option>อุบัติเหตุ</option></select></label><label class="ecn-field"><span class="ecn-label">ประเภทความคุ้มครอง <b>*</b></span><select id="ecnCoverage" class="ecn-select"><option value="">กรุณาเลือก</option><option>ค่ารักษา</option><option>ค่าชดเชย</option><option>ทุพพลภาพ/สูญเสียอวัยวะ</option><option>เสียชีวิต</option></select></label><label class="ecn-field"><span class="ecn-label">ประเภทการรักษา <b>*</b></span><select id="ecnTreatment" class="ecn-select"></select></label><label class="ecn-field"><span class="ecn-label">ผู้ร้องขอ <b>*</b></span><select id="ecnRequester" class="ecn-select"><option value="">กรุณาเลือก</option><option>08135 - นายณัฐภูมิ กองเพ็ง</option><option>08142 - นางสาววราภรณ์ วัฒนะ</option><option>08201 - นายกิตติศักดิ์ แสงทอง</option></select></label></div></section><p id="ecnModalError" class="ecn-modal-error hidden" role="alert">กรุณาเลือกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน</p></div>
+  <div class="ecn-modal-actions"><button id="ecnCancelBtn" type="button" class="ecn-btn ecn-btn-outline">ยกเลิก</button><button id="ecnSaveBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round" aria-hidden="true">save</span>บันทึกการแก้ไข</button></div>
+</dialog>
 
 <script id="navigation-page-state-fix-v41">
 (function(){
   const extraPageIds = [
     'additionalTransferPage','additionalTransferDetailPage','refundPage','refundDetailPage',
     'approveRefundPage','editTransferPage','extendLimitPage','bankInquiryPage',
-    'transferSettingsPage','correctWrongInsuredPage','editClaimNotificationPage'
+    'transferSettingsPage','correctWrongInsuredPage','editClaimNotificationPage','editClaimNotificationDetailPage'
   ];
 
   // Register every dynamically added screen with the core navigation controller.
@@ -54006,8 +53947,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "367",
-  updatedAt: "07/10/2026 11:24:05"
+  version: "371",
+  updatedAt: "07/10/2026 15:54:12"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -63658,6 +63599,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <link rel="stylesheet" href="css/transfer-tracking-details.css?v=8">
 <link rel="stylesheet" href="css/eligibility-shared-benefits.css?v=1">
 <link rel="stylesheet" href="css/claim-record-product-selector.css?v=1">
+<link rel="stylesheet" href="css/menu-claim-record-search.css?v=371">
 
 <!-- แจ้งเคลม > ค้นหาการแจ้งเคลม > ดูรายละเอียด: accessible tabs and matching detail visual -->
 <script src="js/claim-record-detail-tabs.js?v=257"></script>
@@ -64328,7 +64270,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     if(productControl)productControl.hidden=hospital;
     const keyword=document.getElementById('ttKeyword');
     if(title)title.textContent=hospital?'รายการโอนเงินโรงพยาบาล':'รายการโอนเงินลูกค้า';
-    if(keyword)keyword.placeholder=hospital?'ค้นหาจากเลข HCG / CL / Case / ชื่อผู้เอาประกัน / สถานพยาบาล':'ค้นหาจากเลข CPG / CL / Case / ชื่อผู้เอาประกัน / ชื่อสถานศึกษา';
+    const searchType=document.getElementById('ttSearchType');
+    if(searchType){
+      const referenceOption=searchType.querySelector('[value="cpg"]');
+      const placeOption=searchType.querySelector('[value="school"]');
+      if(referenceOption)referenceOption.textContent='เลขที่ CPG';
+      if(placeOption)placeOption.textContent=hospital?'ชื่อสถานพยาบาล':'ชื่อสถานศึกษา';
+    }
+    if(keyword)keyword.placeholder=searchPlaceholder();
   }
 
   function syncActiveSource(){
@@ -64392,13 +64341,25 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const parts=time.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
     return day.getTime()+(parts?(Number(parts[1])*3600+Number(parts[2])*60+Number(parts[3]||0))*1000:0);
   }
-  function searchable(row){
-    const claims=(row.claims||[]).flatMap(item=>[item.claimNo,item.caseNo,item.insured,item.product]);
-    return [row.refNo,row.claimNo,row.insured,row.school,row.hospital,row.payee,row.bank,row.account,row.claimType,row.branch,row.failureReason,...claims].join(' ').toLowerCase();
+  function searchPlaceholder(){
+    const searchType=document.getElementById('ttSearchType');
+    return 'ระบุ'+(searchType?.selectedOptions?.[0]?.textContent||'เลขที่ CL');
+  }
+  function searchable(row,type){
+    const claims=claimRows(row);
+    const values={
+      cpg:[row.refNo],
+      claim:[row.claimNo,...claims.map(item=>item.claimNo)],
+      case:claims.map(item=>item.caseNo),
+      insured:[row.insured,...claims.map(item=>item.insured)],
+      school:transferTrackingState.mode==='hospital'?[row.hospital]:[row.school]
+    };
+    return (values[type]||values.claim).filter(Boolean).join(' ').toLowerCase();
   }
 
   window.applyTransferTrackingFilters=function(){
     const keyword=String(document.getElementById('ttKeyword')?.value||'').trim().toLowerCase();
+    const searchType=document.getElementById('ttSearchType')?.value||'claim';
     const type=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
     const from=readDate(document.getElementById('transferDateFrom')?.value);
     const to=readDate(document.getElementById('transferDateTo')?.value);
@@ -64407,7 +64368,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const pa=!!document.getElementById('ttProductPA')?.checked;
     const filteredBeforeProduct=sourceRows().filter(row=>{
       const date=readDate(valueByDateType(row,type));
-      return (!keyword||searchable(row).includes(keyword))
+      return (!keyword||searchable(row,searchType).includes(keyword))
         && (branch==='ทั้งหมด'||row.branch===branch)
         && transferTrackingState.selectedStatuses.has(rowStatusKey(row))
         && !!date&&(!from||date>=from)&&(!to||date<=to);
@@ -64424,27 +64385,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     if(resultTitle)resultTitle.textContent=hospital?'รายการโอนเงินโรงพยาบาล':'รายการโอนเงินลูกค้า';
     if(subtitle)subtitle.textContent=`พบ ${transferTrackingState.rows.length} รายการ`;
     window.renderTransferStatusFilters();
-    renderSummary();
     window.renderTransferTrackingTable();
     window.renderTransferTrackingCards();
     syncKeywordClear();
   };
-
-  function renderSummary(){
-    const host=document.getElementById('ttSummary');
-    if(!host)return;
-    const rows=transferTrackingState.rows;
-    const success=rows.filter(row=>rowStatusKey(row)==='success').length;
-    const follow=rows.filter(row=>rowStatusKey(row)!=='success').length;
-    const label=transferTrackingState.mode==='hospital'?'HCG':'CPG';
-    const items=[
-      {label:'รายการโอนทั้งหมด',value:String(rows.length),note:label,icon:'receipt_long',wash:'#edf7ff',iconBg:'#eaf5ff',iconColor:'#1976d2'},
-      {label:'ยอดเงินรวม',value:money(rows.reduce((sum,row)=>sum+Number(row.amount||0),0)),note:'บาท',icon:'account_balance_wallet',wash:'#f2efff',iconBg:'#efebff',iconColor:'#7557ef'},
-      {label:'โอนสำเร็จ',value:String(success),note:'รายการ',icon:'check_circle',wash:'#eaf8f0',iconBg:'#e5f7ec',iconColor:'#1d9251'},
-      {label:'ต้องติดตาม',value:String(follow),note:'รอโอน / กำลังโอน / ไม่สำเร็จ',icon:'pending_actions',wash:'#fff3e7',iconBg:'#fff0e2',iconColor:'#d46d1b'}
-    ];
-    host.innerHTML=items.map(item=>`<article class="tt-premium-summary-card" style="--summary-wash:${item.wash};--summary-icon-bg:${item.iconBg};--summary-icon:${item.iconColor}"><div class="tt-summary-copy"><span class="tt-summary-label">${item.label}</span><strong class="tt-summary-value">${item.value}</strong><span class="tt-summary-note">${item.note}</span></div><span class="tt-summary-symbol"><span class="material-icons-round" aria-hidden="true">${item.icon}</span></span></article>`).join('');
-  }
 
   function claimRows(row){return Array.isArray(row.claims)&&row.claims.length?row.claims:[{claimNo:row.claimNo,caseNo:transferTrackingState.mode==='hospital'?hospitalCase(row.claimNo,0):claimCase(row.claimNo,0),insured:row.insured,amount:row.amount,product:row.product}];}
   function claimCaseCounts(row){
@@ -64737,7 +64681,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       const uniqueClaims=[...new Set(claims.map(item=>item.claimNo))];
       const claimCell=uniqueClaims.length===1?`<span class="tt-claim-ref">${esc(uniqueClaims[0])}</span>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-label="ขยาย ${counts.claimCount} Claim">${counts.claimCount} Claim</button>`;
       const caseCell=claims.length===1?`<span class="tt-claim-ref">${esc(claims[0].caseNo)}</span>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-label="ขยาย ${counts.caseCount} Case">${counts.caseCount} Case</button>`;
-      return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><div class="tt-ref-group"><button type="button" class="tt-transfer-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>${hospital?'':deathDisabilityBadge(row)}</div></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div></td><td>${claimCell}</td><td>${caseCell}</td>${hospital?'':`<td><span class="tt-sub-badge">${esc(row.product)}</span></td>`}<td class="tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="${columnCount}">${buildExpanded(row)}</td></tr>`:''}`;
+      return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><div class="tt-ref-group">${!hospital&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-transfer-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-transfer-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${hospital?'':deathDisabilityBadge(row)}</div></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div></td><td>${claimCell}</td><td>${caseCell}</td>${hospital?'':`<td><span class="tt-sub-badge">${esc(row.product)}</span></td>`}<td class="tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="${columnCount}">${buildExpanded(row)}</td></tr>`:''}`;
     }).join('');
     syncPager();
     scheduleTransferTrackingTypography();
@@ -64752,7 +64696,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       const claims=claimRows(row);
       const counts=claimCaseCounts(row);
       const productLine=(transferTrackingState.mode==='hospital'?[row.claimType]:[row.product,row.claimType]).filter(Boolean).join(' • ');
-      return `<article class="tt-mobile-card"><div class="tt-card-head"><div class="tt-card-reference"><button type="button" class="tt-card-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>${transferTrackingState.mode==='hospital'?'':deathDisabilityBadge(row)}<div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${productLine?`<div class="tt-card-secondary">${esc(productLine)}</div>`:''}</div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${counts.claimCount} Claim · ${counts.caseCount} Case</span><button type="button" class="tt-card-detail-btn tt-action-icon" data-tooltip="ดูรายละเอียด" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span></button>${transferRecoveryButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div></article>`;
+      return `<article class="tt-mobile-card"><div class="tt-card-head"><div class="tt-card-reference">${transferTrackingState.mode==='customer'&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-card-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-card-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${transferTrackingState.mode==='hospital'?'':deathDisabilityBadge(row)}<div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${productLine?`<div class="tt-card-secondary">${esc(productLine)}</div>`:''}</div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${counts.claimCount} Claim · ${counts.caseCount} Case</span><button type="button" class="tt-card-detail-btn tt-action-icon" data-tooltip="ดูรายละเอียด" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span></button>${transferRecoveryButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div></article>`;
     }).join('');
     syncPager();
     scheduleTransferTrackingTypography();
@@ -64773,6 +64717,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const baseReset=window.resetTransferTrackingFilters;
   window.resetTransferTrackingFilters=function(){
     if(typeof baseReset==='function')baseReset();
+    const searchType=document.getElementById('ttSearchType');
+    if(searchType)searchType.value='claim';
+    const keyword=document.getElementById('ttKeyword');
+    if(keyword)keyword.placeholder=searchPlaceholder();
     transferTrackingState.selectedStatuses=defaultStatusSelection();
     window.applyTransferTrackingFilters();
   };
@@ -64792,6 +64740,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const detailInfo=(label,value,icon)=>`<div class="tdr-info-item"><span class="tdr-info-icon"><span class="material-icons-round" aria-hidden="true">${icon}</span></span><div><span>${label}</span><strong>${esc(value)}</strong></div></div>`;
   const detailPlain=(label,value)=>`<div class="tdr-plain-item"><span>${label}</span><strong>${esc(value)}</strong></div>`;
   const customerClaimActions=(item,index)=>`<div class="tdr-claim-row-actions" role="group" aria-label="ดำเนินการ ${esc(item.claimNo)} ${esc(item.caseNo)}">${[['ดูเอกสารแนบ','doc','description'],['โอนเพิ่ม','transfer','add_card'],['คืนเงิน','refund','currency_exchange'],['ยกเลิก','cancel','cancel']].map(([label,tone,icon])=>`<button type="button" class="${tone==='doc'?'tdr-doc-btn':'tdr-claim-row-action'} claim-detail-icon-action ${tone}" data-tooltip="${label}" aria-label="${label} ${esc(item.claimNo)} ${esc(item.caseNo)}" ${tone==='doc'?'':`data-tdr-row-action="${label}" data-tdr-row-index="${index}"`}><span class="material-symbols-outlined" aria-hidden="true">${icon}</span></button>`).join('')}</div>`;
+  const claimDataForDetail=(row,item)=>{
+    const claimType=item.claimType||row.claimType||'';
+    const typeIsCause=claimType==='อุบัติเหตุ'||claimType==='เจ็บป่วย';
+    const treatment=item.treatment||row.treatment||(typeIsCause?'-':claimType||'-');
+    const cause=item.cause||row.cause||(typeIsCause?claimType:item.product==='PA'||row.product==='PA'?'อุบัติเหตุ':'เจ็บป่วย');
+    const coverage=item.coverage||row.coverage||'ค่ารักษา';
+    return [cause,coverage,treatment].join(' / ');
+  };
   function applyDetailIconTones(row){
     const tones={description:'identity',badge:'identity',location_on:'place',local_hospital:'place',format_list_bulleted:'group',event:'date',calendar_month:'date',payments:'money'};
     document.querySelectorAll('#tdrClaimSummary .tdr-info-item').forEach(item=>{
@@ -64871,7 +64827,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
         +`<tr class="tdr-hcg-total-row"><td colspan="3">รวมยอดเคลมใน ${esc(row.refNo)}</td><td class="text-right">${money(claims.reduce((sum,item)=>sum+Number(item.amount||0),0))}</td><td></td></tr>`;
     }else{
       if(claimHead)claimHead.innerHTML=defaultDetailTableHead;
-      if(claimBody)claimBody.innerHTML=claimRows(row).map((item,claimIndex)=>`<tr><td><button type="button" class="tdr-link">${esc(item.claimNo)}</button></td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>-</td><td>${esc(row.claimType||'-')}</td><td class="text-right">${money(item.amount)}</td><td class="tdr-claim-actions-cell">${customerClaimActions(item,claimIndex)}</td></tr>`).join('');
+      if(claimBody)claimBody.innerHTML=claimRows(row).map((item,claimIndex)=>`<tr><td><button type="button" class="tdr-link">${esc(item.claimNo)}</button></td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>${esc(String(row.created||'').split(' ')[0]||'-')}</td><td>-</td><td>${esc(claimDataForDetail(row,item))}</td><td class="text-right">${money(item.amount)}</td><td class="tdr-claim-actions-cell">${customerClaimActions(item,claimIndex)}</td></tr>`).join('');
       if(isDeathDisabilityTransfer(row))document.querySelector('#tdrClaimSummary .tdr-info-item:first-child strong')?.insertAdjacentHTML('afterend',deathDisabilityBadge(row));
     }
     applyDetailIconTones(row);
@@ -64919,6 +64875,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     clear?.classList.toggle('hidden',!String(input?.value||'').length);
   }
   const keyword=document.getElementById('ttKeyword');
+  document.getElementById('ttSearchType')?.addEventListener('change',()=>{
+    if(keyword)keyword.placeholder=searchPlaceholder();
+    window.applyTransferTrackingFilters();
+  });
   keyword?.addEventListener('input',syncKeywordClear);
   window.clearTransferTrackingKeyword=function(){
     if(!keyword)return;
@@ -65107,5 +65067,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
 </style>
 
+<link rel="stylesheet" href="css/menu-transfer-tracking-search.css?v=369">
+<link rel="stylesheet" href="css/menu-edit-claim-notification.css?v=370">
+<script src="js/menu-edit-claim-notification.js?v=370"></script>
 </body>
 </html>
