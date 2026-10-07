@@ -30,6 +30,13 @@
     const tabList = document.querySelector('#claimRecordPhDetailPage .crd-tabs');
     if (!tabList || tabList.dataset.crdAccessibleBound === 'true') return;
     tabList.dataset.crdAccessibleBound = 'true';
+    document.getElementById('crdTabClaim')?.addEventListener('click', event => {
+      const button = event.target.closest('[data-crd-row-action]');
+      const message = document.getElementById('crdClaimActionMessage');
+      if (!button || !message) return;
+      message.textContent = `${button.dataset.crdRowAction} สำหรับ ${button.dataset.crdClaim} · ${button.dataset.crdCase} เป็นตัวอย่างปุ่มใน Mockup ยังไม่มีการทำรายการ`;
+      message.classList.remove('hidden');
+    });
     tabList.addEventListener('click', event => {
       const button = event.target.closest('.crd-tab[data-crd-tab]');
       if (button) syncState(button.dataset.crdTab);
