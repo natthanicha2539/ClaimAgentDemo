@@ -121,6 +121,20 @@
     };
   }
 
+  function validateClaimGrouping(refs) {
+    if (isPA()) return true;
+    if (refs.claims.length === 1 && refs.cases.length === 1) return true;
+    showModal(`
+      <div class="p-6 text-center">
+        <span class="material-icons-round text-4xl text-amber-600" aria-hidden="true">warning</span>
+        <h3 class="mt-2 text-xl font-extrabold text-slate-800">ไม่สามารถสร้างรายการโอน PH ได้</h3>
+        <p class="mt-2 text-slate-600">เคลม PH ทั่วไปต้องมี 1 Claim และ 1 Case ต่อ 1 CPG กรุณาตรวจสอบรายการก่อนทำต่อ</p>
+        <button type="button" onclick="closeModal()" class="mt-5 h-11 rounded-lg bg-brand-600 px-8 font-bold text-white">กลับไปตรวจสอบ</button>
+      </div>
+    `, "max-w-md");
+    return false;
+  }
+
   function injectStyle() {
     if (document.getElementById("claimEntryTransferConfirmStyle")) return;
     const style = document.createElement("style");
@@ -300,7 +314,9 @@
     injectStyle();
     const stepIndex = Number(index || 0);
     if (stepIndex === 0) {
-      window.__claimEntryTransferRefs = buildRefs();
+      const refs = buildRefs();
+      if (!validateClaimGrouping(refs)) return;
+      window.__claimEntryTransferRefs = refs;
       showModal(renderProcessModal(window.__claimEntryTransferRefs), "max-w-2xl");
     }
     if (stepIndex >= 3) {
@@ -323,6 +339,7 @@
   window.finishClaimEntryTransferProcess = function () {
     injectStyle();
     const refs = window.__claimEntryTransferRefs || buildRefs();
+    if (!validateClaimGrouping(refs)) return;
     if (!isPA() && !isHospitalClaim() && typeof window.syncClaimEntryToCustomerConsideration === "function") {
       const record = window.syncClaimEntryToCustomerConsideration();
       if (record) {
