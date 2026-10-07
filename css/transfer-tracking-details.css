@@ -169,6 +169,14 @@ body:has(#ttTransferInfoDialog[open]) { overflow: hidden; }
 .tt-recovery-action.payment { border-color: #b9dfce; background: #edf9f3; color: #18794e; }
 .tt-recovery-action.payment:hover { background: #ddf2e7; }
 #ttTransferInfoDialog .tt-transfer-info-result .tt-recovery-action.payment { margin-top: 12px; }
+#ttTransferInfoDialog .tt-payment-beneficiaries { display: grid; gap: 9px; }
+#ttTransferInfoDialog .tt-payment-beneficiary { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; border: 1px solid #dfe8f4; border-radius: 11px; background: #fff; }
+#ttTransferInfoDialog .tt-payment-beneficiary > div { min-width: 0; display: grid; gap: 3px; }
+#ttTransferInfoDialog .tt-payment-beneficiary strong { color: #60718a; font-size: 13px; }
+#ttTransferInfoDialog .tt-payment-beneficiary span { color: #253b58; font-weight: 800; }
+#ttTransferInfoDialog .tt-payment-beneficiary small { color: #6b7d94; overflow-wrap: anywhere; }
+#ttTransferInfoDialog .tt-payment-beneficiary > b { flex: none; color: #0878bb; white-space: nowrap; }
+@media (max-width: 600px) { #ttTransferInfoDialog .tt-payment-beneficiary { align-items: flex-start; flex-direction: column; gap: 8px; } }
 
 /* Equal icon actions in tracking table and cards; tooltip uses shared fixed portal. */
 #transferTrackingPage.tt-redesign button.tt-action-icon {
