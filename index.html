@@ -64464,31 +64464,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     return `<div class="tt-premium-detail tt-claim-list"><div class="tt-detail-banner"><span class="material-icons-round" aria-hidden="true">format_list_bulleted</span>รายการเคลม</div><div class="tt-claims-table-wrap"><table class="tt-claims-table"><caption class="sr-only">รายการ Claim และ Case ของ ${esc(row.refNo)}</caption>${columns}<thead><tr><th>เลขที่ Claim</th><th>เลขที่ Case</th><th>ผู้เอาประกัน</th><th class="text-right">จำนวนเงิน</th></tr></thead><tbody>${claims.map(item=>`<tr><td>${esc(item.claimNo)}</td><td>${esc(item.caseNo)}</td><td>${esc(item.insured)}</td><td class="text-right">${money(item.amount)}</td></tr>`).join('')}</tbody></table></div></div>`;
   }
 
-  function transferPaymentButton(row,index,compact=false){
-    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return '';
-    return `<button type="button" class="tt-recovery-action payment ${compact?'tt-action-icon':''}" data-tooltip="โอนเงิน" onclick="openTransferTrackingPayment(${index})" aria-haspopup="dialog" aria-label="โอนเงิน ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">payments</span>${compact?'':'โอนเงิน'}</button>`;
-  }
-  window.openTransferTrackingPayment=function(index){
-    const row=transferTrackingState.rows[index];
-    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return;
-    if(transferInfoDialog.open)transferInfoDialog.close();
-    window.showTransferPaymentModal(index);
-  };
-
-  function transferRecoveryKind(row){
-    if(!row||transferTrackingState.mode==='hospital'||row.transferMode==='hospital'||rowStatusKey(row)!=='fail')return '';
-    if(['account','system'].includes(row.failureCause))return row.failureCause;
-    if(/ระบบ|เชื่อมต่อ|หมดเวลา|timeout/i.test(row.failureReason||''))return 'system';
-    return /บัญชี|ผู้รับ|ชื่อบัญชี/i.test(row.failureReason||'')?'account':'';
-  }
-  function transferRecoveryButton(row,index,compact=false){
-    const kind=transferRecoveryKind(row);
-    if(!kind)return '';
-    const label=kind==='account'?'แก้ไขบัญชี':'โอนอีกครั้ง';
-    return `<button type="button" class="tt-recovery-action ${kind} ${compact?'tt-action-icon':''}" data-tooltip="${label}" onclick="openTransferRecovery(${index},this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="${label} ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${kind==='account'?'edit':'refresh'}</span>${compact?'':label}</button>`;
-  }
-
-  // Reuse the native modal behavior used by the HCG claim-detail dialog.
+  // Initialize the shared dialog before any startup render can wire its actions.
   const transferInfoDialog=document.createElement('dialog');
   transferInfoDialog.id='ttTransferInfoDialog';
   transferInfoDialog.setAttribute('aria-labelledby','ttTransferInfoTitle');
@@ -64503,6 +64479,58 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const transferInfoField=(label,value,icon,tone='')=>`<div class="tt-transfer-info-field ${tone}"><span class="tt-transfer-field-icon"><span class="material-icons-round" aria-hidden="true">${icon}</span></span><div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div></div>`;
   const transferPayeeCard=row=>`<dl class="tt-payee-card">${transferInfoField('ชื่อบัญชี',row.payee||row.recipient||row.hospital||row.insured||'-','person_outline')}${transferInfoField('ธนาคาร',row.bank||'-','account_balance')}${transferInfoField('เลขที่บัญชี',row.account||'-','credit_card','account')}</dl>`;
   const transferSummaryCards=(row,key,status,date)=>`<div class="tt-transfer-info-topline"><div class="tt-transfer-info-summary"><dl><dt>เลขที่การโอนเงิน</dt><dd>${esc(row.refNo)}</dd></dl><span class="tt-transfer-info-status ${key}"><span class="material-icons-round" aria-hidden="true">${status.icon}</span>${esc(status.label)}</span></div><dl class="tt-transfer-date-card">${transferInfoField('วันที่และเวลาโอนเงิน',date,'schedule','datetime')}</dl></div>`;
+
+  function transferPaymentButton(row,index,compact=false){
+    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return '';
+    return `<button type="button" class="tt-recovery-action payment ${compact?'tt-action-icon':''}" data-tooltip="โอนเงิน" onclick="openTransferTrackingPayment(${index})" aria-haspopup="dialog" aria-label="โอนเงิน ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">payments</span>${compact?'':'โอนเงิน'}</button>`;
+  }
+  window.openTransferTrackingPayment=function(index){
+    const row=transferTrackingState.rows[index];
+    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return;
+    if(!transferInfoDialog.open||transferInfoRow!==row)window.openTransferTrackingInfoModal(index,document.activeElement);
+    if(document.getElementById('ttTransferPaymentInline'))return;
+    const section=document.createElement('section');
+    section.id='ttTransferPaymentInline';section.className='tt-recovery-inline tt-transfer-payment-inline';
+    section.setAttribute('aria-labelledby','ttTransferPaymentTitle');
+    const beneficiaries=Array.isArray(row.beneficiaries)&&row.beneficiaries.length?row.beneficiaries:[{relation:row.payeeRelation||'ผู้รับเงิน',name:row.payee||row.insured,bank:`${row.bank||'-'} ${row.account||''}`,amount:row.amount}];
+    section.innerHTML=`<div class="tt-recovery-inline-head"><span class="tt-retry-title-icon"><span class="material-icons-round" aria-hidden="true">payments</span></span><div><h3 id="ttTransferPaymentTitle" tabindex="-1">ยืนยันโอนเงิน (Death &amp; Disability)</h3><p>ตรวจสอบข้อมูลผู้รับผลประโยชน์และจำนวนเงินก่อนยืนยัน</p></div></div><div class="tt-recovery-inline-body"><div class="tt-payment-beneficiaries">${beneficiaries.map(item=>`<article class="tt-payment-beneficiary"><div><strong>${esc(item.relation||'ผู้รับเงิน')}</strong><span>${esc(item.name||'-')}</span><small>${esc(item.bank||'-')}</small></div><b>${money(item.amount)} บาท</b></article>`).join('')}</div><div class="tt-retry-amount"><span><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>จำนวนเงินโอนรวม</span><strong>${money(row.amount)} <small>บาท</small></strong></div><p class="tt-retry-guidance"><span class="material-icons-round" aria-hidden="true">info</span>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนยืนยันการทำรายการ</p><p class="tt-recovery-mock">ข้อมูลตัวอย่าง: การยืนยันจะจำลองผลการโอนในรายการนี้</p></div>`;
+    document.getElementById('ttTransferInfoFields').appendChild(section);
+    transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-cancel-transfer-payment>กลับ</button><button type="button" class="tt-recovery-submit" data-confirm-transfer-payment><span class="material-icons-round" aria-hidden="true">send</span>ยืนยันโอนเงิน</button>';
+    section.scrollIntoView({block:'start',behavior:'auto'});
+    section.querySelector('#ttTransferPaymentTitle')?.focus({preventScroll:true});
+  };
+
+  transferInfoDialog.addEventListener('click',event=>{
+    if(event.target.closest('[data-cancel-transfer-payment]')){
+      document.getElementById('ttTransferPaymentInline')?.remove();
+      transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info><span class="material-icons-round" aria-hidden="true">close</span>ปิด</button>';
+      transferInfoDialog.querySelector('.tt-recovery-action.payment')?.focus();
+      return;
+    }
+    if(!event.target.closest('[data-confirm-transfer-payment]'))return;
+    const row=transferInfoRow;
+    if(!canStartCustomerTransfer(row))return;
+    row.status='โอนสำเร็จ';row.statusKey='success';row.statusFilter='success';row.canPay=false;
+    row.transferDate=new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
+    transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info><span class="material-icons-round" aria-hidden="true">arrow_back</span>กลับหน้าติดตามการโอนเงิน</button>';
+    document.getElementById('ttTransferInfoFields').innerHTML=`<div class="tt-retry-success" role="status" aria-live="polite"><span class="tt-retry-success-symbol"><span class="material-icons-round" aria-hidden="true">check_circle</span></span><h3 tabindex="-1" id="ttTransferPaymentSuccess">ทำรายการสำเร็จ</h3><p>ทำรายการโอนเงินเรียบร้อยแล้ว</p></div>${transferSummaryCards(row,'success',statusMeta.success,row.transferDate)}<section class="tt-transfer-info-section"><h3><span class="material-icons-round" aria-hidden="true">person_outline</span>ข้อมูลผู้รับเงิน</h3>${transferPayeeCard(row)}</section><div class="tt-retry-amount"><span>จำนวนเงินโอน</span><strong>${money(row.amount)} <small>บาท</small></strong></div>`;
+    window.applyTransferTrackingFilters();
+    document.getElementById('ttTransferPaymentSuccess')?.focus({preventScroll:true});
+  });
+
+  function transferRecoveryKind(row){
+    if(!row||transferTrackingState.mode==='hospital'||row.transferMode==='hospital'||rowStatusKey(row)!=='fail')return '';
+    if(['account','system'].includes(row.failureCause))return row.failureCause;
+    if(/ระบบ|เชื่อมต่อ|หมดเวลา|timeout/i.test(row.failureReason||''))return 'system';
+    return /บัญชี|ผู้รับ|ชื่อบัญชี/i.test(row.failureReason||'')?'account':'';
+  }
+  function transferRecoveryButton(row,index,compact=false){
+    const kind=transferRecoveryKind(row);
+    if(!kind)return '';
+    const label=kind==='account'?'แก้ไขบัญชี':'โอนอีกครั้ง';
+    return `<button type="button" class="tt-recovery-action ${kind} ${compact?'tt-action-icon':''}" data-tooltip="${label}" onclick="openTransferRecovery(${index},this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="${label} ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${kind==='account'?'edit':'refresh'}</span>${compact?'':label}</button>`;
+  }
+
   window.openTransferTrackingInfoByRef=function(refNo,trigger){
     const index=transferTrackingState.rows.findIndex(row=>String(row.refNo)===String(refNo));
     if(index>=0)window.openTransferTrackingInfoModal(index,trigger);
