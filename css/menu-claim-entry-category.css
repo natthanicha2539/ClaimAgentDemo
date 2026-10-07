@@ -1,0 +1,162 @@
+/* แจ้งเคลม > บันทึกข้อมูลเคลม: ประเภทเคลมลูกค้า/โรงพยาบาล */
+#claimEntryPage .claim-category-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#claimEntryPage .claim-category-card {
+  width: 205px;
+}
+
+#claimEntryPage .claim-category-card:has(input:focus-visible) {
+  outline: 3px solid rgba(7, 136, 214, .2);
+  outline-offset: 2px;
+}
+
+#claimEntryPage.pa-horizontal-compact .claim-category-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card {
+  width: 205px !important;
+  min-height: 40px !important;
+  padding: 6px 9px !important;
+}
+
+#claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card.active {
+  border-width: 2px !important;
+}
+
+#claimEntryPage .hospital-coverage-locked {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+#claimEntryPage .hospital-facility-field {
+  display: block;
+}
+
+#claimEntryPage .hospital-facility-help {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+  padding: 10px 12px;
+  color: #1e4f91;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+#claimEntryPage .hospital-facility-help-icon {
+  flex: none;
+  color: #1458d6;
+  font-size: 20px !important;
+  line-height: 1.2;
+}
+
+#claimEntryPage .hospital-facility-error {
+  min-height: 22px;
+  margin-top: 5px;
+  color: #b91c1c;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#claimEntryPage #claimHospitalSelect[aria-invalid="true"] {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, .12);
+}
+
+#paymentPage .hospital-confirm-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #dfe8f2;
+}
+
+#paymentPage .hospital-confirm-summary-item {
+  min-width: 0;
+  background: #fff;
+  padding: 16px;
+}
+
+#paymentPage .hospital-confirm-summary-item.is-wide {
+  grid-column: span 2;
+}
+
+#paymentPage .hospital-confirm-summary-item.is-full {
+  grid-column: 1 / -1;
+}
+
+#paymentPage .hospital-confirm-label {
+  color: #6d7d90;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+#paymentPage .hospital-confirm-value {
+  margin-top: 5px;
+  color: #10243e;
+  font-size: 19px;
+  font-weight: 850;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+#paymentPage .hospital-confirm-value.is-primary {
+  color: #1458d6;
+}
+
+#paymentPage .hospital-confirm-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #eff6ff;
+  padding: 13px 15px;
+  color: #1e4f91;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  #claimEntryPage .claim-category-options,
+  #paymentPage .hospital-confirm-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #claimEntryPage .claim-category-card {
+    width: 100%;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .claim-category-options {
+    grid-template-columns: 1fr;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card {
+    width: 100% !important;
+  }
+
+  #paymentPage .hospital-confirm-summary-item.is-wide {
+    grid-column: auto;
+  }
+
+  #paymentPage .hospital-confirm-summary-item.is-full {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #claimEntryPage .claim-category-card {
+    transition: none;
+  }
+}
