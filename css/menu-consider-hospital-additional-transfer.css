@@ -1,0 +1,1680 @@
+#considerHospitalAdditionalTransferPage .hat-page-shell,
+#considerHospitalAdditionalTransferDetailPage .hat-page-shell {
+  min-width: 0;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-header,
+#considerHospitalAdditionalTransferDetailPage .hat-page-header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-width: 0;
+  padding: 1rem 1.125rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.1);
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-icon,
+#considerHospitalAdditionalTransferDetailPage .hat-page-icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: #e9f6ff;
+  color: #075f99;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-heading,
+#considerHospitalAdditionalTransferDetailPage .hat-page-heading,
+#considerHospitalAdditionalTransferPage .hat-page-mount,
+#considerHospitalAdditionalTransferDetailPage .hat-page-mount {
+  min-width: 0;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-eyebrow,
+#considerHospitalAdditionalTransferDetailPage .hat-page-eyebrow {
+  margin: 0 0 0.125rem;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-title,
+#considerHospitalAdditionalTransferDetailPage .hat-page-title {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-description {
+  margin: 0.25rem 0 0;
+  color: #64748b;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-mount {
+  margin-top: 1rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-card {
+  overflow: hidden;
+  border: 1px solid #dbe7f3;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.125rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-card-header h3,
+#considerHospitalAdditionalTransferPage .hat-monitor-card-header p {
+  margin: 0;
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-card-header p {
+  margin-top: 0.25rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferPage .hat-result-count {
+  flex: 0 0 auto;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  background: #e9f6ff;
+  color: #075f99;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferPage .hat-filter-panel {
+  padding: 1rem 1.125rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fbff;
+}
+
+#considerHospitalAdditionalTransferPage .hat-filter-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 2fr) minmax(170px, 1fr) minmax(190px, 1fr) auto;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-field {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
+  color: #475569;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferPage .hat-control {
+  width: 100%;
+  min-width: 0;
+  height: 2.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #334155;
+  font: inherit;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferPage select.hat-control {
+  padding: 0 2rem 0 0.75rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-search-control {
+  position: relative;
+}
+
+#considerHospitalAdditionalTransferPage .hat-search-control > .material-icons-round {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  z-index: 1;
+  color: #64748b;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+#considerHospitalAdditionalTransferPage .hat-search-control input {
+  padding: 0 2.75rem 0 2.5rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-search-clear {
+  position: absolute;
+  top: 50%;
+  right: 0.375rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  place-items: center;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: #64748b;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#considerHospitalAdditionalTransferPage .hat-search-clear.hidden {
+  display: none;
+}
+
+#considerHospitalAdditionalTransferPage .hat-filter-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 2.5rem;
+  padding: 0 0.875rem;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#considerHospitalAdditionalTransferPage .hat-button.is-primary {
+  border: 1px solid #0077bd;
+  background: #0077bd;
+  color: #ffffff;
+}
+
+#considerHospitalAdditionalTransferPage .hat-button.is-reset {
+  border: 1px solid #fca5a5;
+  background: #ffffff;
+  color: #b91c1c;
+}
+
+#considerHospitalAdditionalTransferPage .hat-control:focus-visible,
+#considerHospitalAdditionalTransferPage .hat-button:focus-visible,
+#considerHospitalAdditionalTransferPage .hat-quick-filter:focus-visible,
+#considerHospitalAdditionalTransferPage .hat-page-button:focus-visible,
+#considerHospitalAdditionalTransferPage .hat-search-clear:focus-visible {
+  outline: 3px solid rgba(7, 136, 214, 0.28);
+  outline-offset: 2px;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.875rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter-label,
+#considerHospitalAdditionalTransferPage .hat-quick-filters,
+#considerHospitalAdditionalTransferPage .hat-quick-filter {
+  display: flex;
+  align-items: center;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter-label {
+  gap: 0.375rem;
+  color: #475569;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filters {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter {
+  --hat-filter-border: #d8e3ee;
+  --hat-filter-surface: #ffffff;
+  --hat-filter-text: #4e6784;
+  --hat-filter-active: #475569;
+  --hat-filter-badge: #f1f5f9;
+  gap: 0.5rem;
+  min-height: 2.125rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--hat-filter-border);
+  border-radius: 999px;
+  background: var(--hat-filter-surface);
+  color: var(--hat-filter-text);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-pending {
+  --hat-filter-border: #d9ccfb;
+  --hat-filter-surface: #f5f1ff;
+  --hat-filter-text: #6941c6;
+  --hat-filter-active: #6941c6;
+  --hat-filter-badge: #e9ddff;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-warning {
+  --hat-filter-border: #f4cf91;
+  --hat-filter-surface: #fff4e5;
+  --hat-filter-text: #b45309;
+  --hat-filter-active: #a74805;
+  --hat-filter-badge: #ffe7bd;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-danger {
+  --hat-filter-border: #f5b5c0;
+  --hat-filter-surface: #fff1f2;
+  --hat-filter-text: #be123c;
+  --hat-filter-active: #be123c;
+  --hat-filter-badge: #ffe0e5;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-success {
+  --hat-filter-border: #a9dfba;
+  --hat-filter-surface: #ecfdf3;
+  --hat-filter-text: #118a36;
+  --hat-filter-active: #14733a;
+  --hat-filter-badge: #d9f7e4;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter:hover:not(.is-active) {
+  border-color: var(--hat-filter-text);
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter b {
+  min-width: 1.375rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 999px;
+  background: var(--hat-filter-badge);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-active {
+  border-color: var(--hat-filter-active);
+  background: var(--hat-filter-active);
+  color: #ffffff;
+}
+
+#considerHospitalAdditionalTransferPage .hat-quick-filter.is-active b {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+#considerHospitalAdditionalTransferPage .hat-table-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.125rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferPage .hat-table-summary > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #334155;
+  font-weight: 800;
+}
+
+#considerHospitalAdditionalTransferPage .hat-table-shell {
+  margin: 0 1.125rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-table {
+  min-width: 980px;
+}
+
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(1) { min-width: 230px; }
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(2) { min-width: 210px; }
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(3) { min-width: 160px; }
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(4) { min-width: 130px; }
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(5) { min-width: 135px; }
+#considerHospitalAdditionalTransferPage .hat-monitor-table th:nth-child(6) { min-width: 135px; }
+
+#considerHospitalAdditionalTransferPage .hat-hospital-cell strong,
+#considerHospitalAdditionalTransferPage .hat-insured-cell strong,
+#considerHospitalAdditionalTransferPage .hat-claim-cell strong,
+#considerHospitalAdditionalTransferPage .hat-date-cell strong,
+#considerHospitalAdditionalTransferPage .hat-amount-cell strong {
+  display: block;
+  color: #17395e;
+  font-weight: 800;
+}
+
+#considerHospitalAdditionalTransferPage .hat-insured-cell span,
+#considerHospitalAdditionalTransferPage .hat-claim-cell span,
+#considerHospitalAdditionalTransferPage .hat-date-cell span,
+#considerHospitalAdditionalTransferPage .hat-amount-cell span {
+  display: block;
+  margin-top: 0.25rem;
+  color: #7087a0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferPage .hat-amount-cell,
+#considerHospitalAdditionalTransferPage .hat-align-right {
+  text-align: right;
+}
+
+#considerHospitalAdditionalTransferPage .hat-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferPage .hat-status-pill.is-pending { background: #f1edff; color: #6941c6; }
+#considerHospitalAdditionalTransferPage .hat-status-pill.is-warning { background: #fff4e5; color: #b45309; }
+#considerHospitalAdditionalTransferPage .hat-status-pill.is-danger { background: #fff1f2; color: #be123c; }
+#considerHospitalAdditionalTransferPage .hat-status-pill.is-success { background: #ecfdf3; color: #118a36; }
+
+#considerHospitalAdditionalTransferPage .hat-action-button {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  place-items: center;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+  background: #eff6ff;
+  color: #075f99;
+}
+
+#considerHospitalAdditionalTransferPage .hat-action-button:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+}
+
+#considerHospitalAdditionalTransferPage .hat-action-button:hover {
+  border-color: #60a5fa;
+  background: #dbeafe;
+}
+
+#considerHospitalAdditionalTransferPage .hat-action-button:focus-visible {
+  outline: 3px solid rgba(7, 136, 214, 0.28);
+  outline-offset: 2px;
+}
+
+#considerHospitalAdditionalTransferPage .hat-empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 0.375rem;
+  padding: 2.25rem 1rem;
+  color: #64748b;
+  text-align: center;
+}
+
+#considerHospitalAdditionalTransferPage .hat-empty-state .material-icons-round {
+  font-size: 2rem;
+  color: #94a3b8;
+}
+
+#considerHospitalAdditionalTransferPage .hat-pagination,
+#considerHospitalAdditionalTransferPage .hat-pagination-controls {
+  display: flex;
+  align-items: center;
+}
+
+#considerHospitalAdditionalTransferPage .hat-pagination {
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 1.125rem;
+  color: #64748b;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferPage .hat-pagination-controls {
+  gap: 0.375rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-size {
+  width: 4.25rem;
+  margin-right: 0.375rem;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-button {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  min-height: 2rem;
+  place-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #475569;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-button.is-active {
+  border-color: #075f99;
+  background: #075f99;
+  color: #ffffff;
+}
+
+#considerHospitalAdditionalTransferPage .hat-page-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 980px) {
+  #considerHospitalAdditionalTransferPage .hat-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #considerHospitalAdditionalTransferPage .hat-page-header,
+  #considerHospitalAdditionalTransferPage .hat-monitor-card-header,
+  #considerHospitalAdditionalTransferPage .hat-table-summary,
+  #considerHospitalAdditionalTransferPage .hat-pagination,
+  #considerHospitalAdditionalTransferPage .hat-quick-filter-wrap {
+    align-items: flex-start;
+  }
+
+  #considerHospitalAdditionalTransferPage .hat-monitor-card-header,
+  #considerHospitalAdditionalTransferPage .hat-table-summary,
+  #considerHospitalAdditionalTransferPage .hat-pagination,
+  #considerHospitalAdditionalTransferPage .hat-quick-filter-wrap {
+    flex-direction: column;
+  }
+
+  #considerHospitalAdditionalTransferPage .hat-filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #considerHospitalAdditionalTransferPage .hat-filter-actions,
+  #considerHospitalAdditionalTransferPage .hat-filter-actions .hat-button {
+    width: 100%;
+  }
+
+  #considerHospitalAdditionalTransferPage .hat-pagination-controls {
+    flex-wrap: wrap;
+  }
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-page-shell,
+#considerHospitalAdditionalTransferDetailPage .hat-page-mount {
+  overflow: visible;
+}
+
+#considerHospitalAdditionalTransferDetailPage {
+  height: calc(100dvh - 4.1rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-page-mount {
+  display: grid;
+  gap: 0.75rem;
+  color: #17395e;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-detail-hero {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 20;
+  overflow: hidden;
+  border: 1px solid #b9d9ee;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #f7fcff 0%, #eef8ff 52%, #ffffff 100%);
+  box-shadow: 0 12px 30px rgba(20, 73, 111, 0.14);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-detail-hero.is-unpinned {
+  position: relative;
+  top: auto;
+  z-index: 1;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.875rem;
+  border-bottom: 1px solid #d9ebf6;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(10px);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-back-button,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button,
+#considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button,
+#considerHospitalAdditionalTransferDetailPage .hat-view-document-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #b8d5e8;
+  border-radius: 0.625rem;
+  background: #ffffff;
+  color: #075f99;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button[aria-pressed="false"] {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  color: #526b83;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button {
+  width: fit-content !important;
+  min-width: 7.5rem;
+  max-width: 100%;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button .material-icons-round {
+  display: inline-block !important;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  font-size: 1.15rem !important;
+  line-height: 1.25rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-label {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-back-button:hover,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button:hover {
+  border-color: #60a5fa;
+  background: #eaf6fd;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button {
+  scroll-margin-top: 24rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button:disabled {
+  border-color: #d8e2ea;
+  background: #f8fafc;
+  color: #8494a5;
+  cursor: not-allowed;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button:not(:disabled):hover {
+  border-color: #60a5fa;
+  background: #eaf6fd;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-view-document-button:hover {
+  border-color: #60a5fa;
+  background: #eaf6fd;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-back-button:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-view-document-button:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form input:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form select:focus-visible,
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form textarea:focus-visible {
+  outline: 3px solid rgba(7, 136, 214, 0.28);
+  outline-offset: 2px;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(360px, 0.65fr);
+  gap: 1rem;
+  padding: 0.75rem 1rem 0.875rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-tags,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-statuses,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid {
+  display: flex;
+  align-items: stretch;
+  gap: 0.625rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-tags span {
+  padding: 0.2rem 0.625rem;
+  border-radius: 999px;
+  background: #dff3ff;
+  color: #075f99;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-main h2 {
+  margin: 0.3rem 0 0;
+  color: #113659;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-hospital {
+  margin-top: 0.45rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-hospital span,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid span,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-statuses > div > span,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts span {
+  display: block;
+  color: #6b8198;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-hospital strong {
+  display: block;
+  margin-top: 0.1rem;
+  color: #255478;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid {
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid > div {
+  min-width: 125px;
+  padding-right: 0.75rem;
+  border-right: 1px solid #d6e6f1;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid > div:last-child {
+  min-width: 190px;
+  border-right: 0;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-reference-grid strong {
+  display: block;
+  margin-top: 0.1rem;
+  color: #17395e;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-side {
+  display: grid;
+  gap: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-statuses > div,
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts > div {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-case-status,
+#considerHospitalAdditionalTransferDetailPage .hat-request-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-case-status { color: #075f99; }
+#considerHospitalAdditionalTransferDetailPage .hat-request-status.is-pending { color: #6941c6; }
+#considerHospitalAdditionalTransferDetailPage .hat-request-status.is-warning { color: #b45309; }
+#considerHospitalAdditionalTransferDetailPage .hat-request-status.is-danger { color: #be123c; }
+#considerHospitalAdditionalTransferDetailPage .hat-request-status.is-success { color: #118a36; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts > div {
+  padding: 0.5rem 0.625rem;
+  border: 1px solid #d7e6f0;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts > div.is-requested {
+  border-color: #fdba74;
+  background: #fff7ed;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts strong {
+  display: inline-block;
+  margin-top: 0.15rem;
+  color: #0f4f79;
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts .is-requested strong {
+  color: #c2410c;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-hero-amounts em {
+  margin-left: 0.25rem;
+  color: #71869b;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-detail-section {
+  scroll-margin-top: 24rem;
+  overflow: hidden;
+  border: 1px solid #d9e4ee;
+  border-radius: 0.875rem;
+  background: #ffffff;
+  box-shadow: 0 5px 16px rgba(33, 66, 95, 0.07);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0.875rem;
+  border-bottom: 1px solid #e3ebf2;
+  background: #f8fbfd;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-section-icon {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 0.625rem;
+  background: #e5f4fd;
+  color: #0077bd;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-section-title h3 {
+  margin: 0;
+  color: #17395e;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-section-title p {
+  margin: 0.15rem 0 0;
+  color: #74879a;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid,
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.875rem;
+  padding: 1rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid article,
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid article {
+  padding: 0.875rem 1rem;
+  border: 1px solid #dae5ee;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid article.is-success { border-color: #a7e6bd; background: #f0fdf4; }
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid article.is-focus { border-color: #93c5fd; background: #eff6ff; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid span,
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid span {
+  display: block;
+  color: #64788e;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid strong,
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid strong {
+  display: block;
+  margin-top: 0.2rem;
+  color: #17395e;
+  font-size: 1.15rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid small,
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid small {
+  display: block;
+  margin-top: 0.2rem;
+  color: #7b8da0;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+  padding: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid > div {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #e1e9f0;
+  border-radius: 0.625rem;
+  background: #fbfdff;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid > div.is-wide { grid-column: 1 / -1; }
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid > div.is-note { border-color: #fed7aa; background: #fffaf3; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid span {
+  display: block;
+  color: #71869a;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-request-grid strong {
+  display: block;
+  margin-top: 0.25rem;
+  color: #274968;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-list {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0 0.75rem 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #a7e6bd;
+  border-radius: 0.625rem;
+  background: #f0fdf4;
+  color: #27613d;
+  font-weight: 800;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-summary strong {
+  color: #118a36;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-item {
+  overflow: hidden;
+  border: 1px solid #dce6ee;
+  border-radius: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-item.is-new {
+  border-color: #fdba74;
+  box-shadow: inset 3px 0 0 #f59e0b;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.75rem;
+  background: #f8fafc;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-heading strong,
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-heading > div > span {
+  display: block;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-heading > div > span {
+  margin-top: 0.125rem;
+  color: #74879a;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-check-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-statuses {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-new-item-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #fdba74;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #c2410c;
+  font-size: 0.75rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-new-item-badge .material-icons-round {
+  font-size: 1rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-check-result.is-success { color: #118a36; }
+#considerHospitalAdditionalTransferDetailPage .hat-check-result.is-warning { color: #b45309; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values > div {
+  padding: 0.55rem 0.75rem;
+  border-right: 1px solid #e4ebf1;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values > div:last-child { border-right: 0; }
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values > div.is-current { background: #eff8ff; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values span,
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values strong {
+  display: block;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values span {
+  color: #718397;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values strong {
+  margin-top: 0.15rem;
+  color: #17395e;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values strong.is-empty {
+  color: #b45309;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-treatment-values small {
+  display: block;
+  margin-top: 0.1rem;
+  color: #9a6a22;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-support-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table-shell {
+  margin: 0.75rem;
+  border: 1px solid #dce5ed;
+  border-radius: 0.625rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table th,
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table td {
+  padding: 0.7rem 0.875rem;
+  border-bottom: 1px solid #e4ebf1;
+  text-align: left;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table th {
+  background: #075f99;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table tbody tr:last-child td { border-bottom: 0; }
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table .hat-align-center { text-align: center; }
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table td { color: #546b82; font-size: 0.875rem; }
+#considerHospitalAdditionalTransferDetailPage .hat-doc-table td strong { color: #17395e; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-width: 250px;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-file > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-view-document-button {
+  flex: 0 0 auto;
+  min-height: 2rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8125rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-doc-count {
+  display: inline-grid;
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  place-items: center;
+  border-radius: 999px;
+  background: #e8f3fa;
+  color: #075f99;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form {
+  display: grid;
+  gap: 0.875rem;
+  padding: 0.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form label > span,
+#considerHospitalAdditionalTransferDetailPage .hat-decision-choice > legend {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #405e79;
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-choice {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-select-bridge { display: none; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #cbd9e4;
+  border-radius: 0.625rem;
+  background: #ffffff;
+  color: #526b83;
+  font: inherit;
+  font-weight: 900;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: border-color 0.16s ease, background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button:hover {
+  border-color: #7ba8c5;
+  background: #f5faff;
+  color: #17395e;
+  box-shadow: 0 4px 12px rgba(33, 66, 95, 0.08);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button:active { transform: translateY(1px); }
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button:focus-visible {
+  outline: 3px solid rgba(7, 136, 214, 0.28);
+  outline-offset: 2px;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button.is-approve.is-active {
+  border-color: #55b97b;
+  background: #ecfdf3;
+  color: #14733a;
+  box-shadow: inset 0 0 0 1px rgba(20, 115, 58, 0.08);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button.is-reject.is-active {
+  border-color: #ef8d8d;
+  background: #fff1f1;
+  color: #b42318;
+  box-shadow: inset 0 0 0 1px rgba(180, 35, 24, 0.08);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-button.is-return.is-active {
+  border-color: #f1b85c;
+  background: #fff8e8;
+  color: #a45d08;
+  box-shadow: inset 0 0 0 1px rgba(164, 93, 8, 0.08);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: end;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form input,
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form textarea {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #cbd9e4;
+  border-radius: 0.625rem;
+  background: #ffffff;
+  color: #17395e;
+  font: inherit;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form textarea {
+  min-height: 6rem;
+  line-height: 1.55;
+  resize: none;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-form input[readonly] {
+  border-color: #d7e2ea;
+  background: #f3f7fa;
+  color: #405e79;
+  cursor: default;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-amount-input {
+  position: relative;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-amount-input input {
+  padding-right: 3rem;
+  text-align: right;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-amount-input > span {
+  position: absolute;
+  top: 50%;
+  right: 0.7rem;
+  margin: 0;
+  color: #73879a;
+  transform: translateY(-50%);
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-summary-section {
+  margin-bottom: 1.25rem;
+  border-color: #a8d2ea;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-summary-section .hat-section-header {
+  padding: 0.4rem 0.7rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-summary-section .hat-section-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-summary {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.65fr) minmax(22rem, 1.8fr) minmax(10rem, 0.8fr);
+  gap: 0.625rem;
+  padding: 0.625rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-decision {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #d7e5ef;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-label,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current > span,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric > span,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total > div > span,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid span {
+  display: block;
+  color: #647b91;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-decision-chip .material-icons-round { font-size: 1rem; }
+#considerHospitalAdditionalTransferDetailPage .hat-decision-chip.is-approve { border-color: #86d3a2; background: #ecfdf3; color: #14733a; }
+#considerHospitalAdditionalTransferDetailPage .hat-decision-chip.is-reject { border-color: #f2a3a3; background: #fff1f1; color: #b42318; }
+#considerHospitalAdditionalTransferDetailPage .hat-decision-chip.is-return { border-color: #f2c572; background: #fff8e8; color: #a45d08; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current { text-align: left; }
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current strong,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current em {
+  display: inline;
+  color: #075f99;
+  font-style: normal;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current strong {
+  margin-right: 0.25rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-current em { font-size: 0.8rem; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-calculation,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference {
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #d7e5ef;
+  border-radius: 0.75rem;
+  background: #f9fcfe;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-calculation h4,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference h4 {
+  margin: 0 0 0.45rem;
+  color: #17395e;
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-equation {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 1fr) 1.5rem minmax(5.5rem, 1fr) 1.5rem minmax(6rem, 1.15fr);
+  gap: 0.35rem;
+  align-items: stretch;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric {
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid #dce7ef;
+  border-radius: 0.625rem;
+  background: #ffffff;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric strong,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric em {
+  display: inline;
+  color: #17395e;
+  font-style: normal;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric strong {
+  margin-right: 0.2rem;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric em { font-size: 0.75rem; }
+#considerHospitalAdditionalTransferDetailPage .hat-summary-metric.is-additional { border-color: #b6d9ee; background: #f2f9fe; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-operator {
+  display: grid;
+  width: 1.5rem;
+  place-items: center;
+  color: #0077bd;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total {
+  display: block;
+  min-width: 0;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #86c9e9;
+  border-radius: 0.625rem;
+  background: #eaf6fd;
+  color: #075f99;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-equals {
+  display: grid;
+  width: 1.5rem;
+  place-items: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total strong,
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total em {
+  display: inline;
+  color: #006aa8;
+  font-style: normal;
+  font-weight: 900;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total strong {
+  margin-right: 0.25rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-total em { font-size: 0.8rem; }
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #dce7ef;
+  border-radius: 0.625rem;
+  background: #ffffff;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid > div.is-requested {
+  border-color: #f3c37a;
+  background: #fff9ec;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid strong {
+  display: block;
+  margin-top: 0;
+  color: #17395e;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+#considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid .is-requested strong {
+  color: #a45d08;
+}
+
+#considerHospitalOpdHalfPage > .hat-source-return-bar,
+#considerHospitalOpdFullPage > .hat-source-return-bar,
+#considerCustomerDetailPage > .hat-source-return-bar {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #9acbe7;
+  border-radius: 0.875rem;
+  background: rgba(239, 248, 255, 0.96);
+  color: #17395e;
+  box-shadow: 0 8px 22px rgba(20, 73, 111, 0.13);
+  backdrop-filter: blur(10px);
+}
+
+.hat-source-return-bar > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  font-weight: 800;
+}
+
+.hat-source-return-bar > span .material-icons-round { color: #0077bd; }
+
+.hat-source-return-bar button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.875rem;
+  border: 1px solid #0077bd;
+  border-radius: 0.625rem;
+  background: #0077bd;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.hat-source-return-bar button:hover { background: #075f99; }
+.hat-source-return-bar button:focus-visible { outline: 3px solid rgba(7, 136, 214, 0.3); outline-offset: 2px; }
+
+#claimModal .hat-document-preview { color: #17395e; }
+#claimModal .hat-document-preview > header,
+#claimModal .hat-document-preview > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+#claimModal .hat-document-preview > header { border-bottom: 1px solid #dce6ee; }
+#claimModal .hat-document-preview > header > div { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+#claimModal .hat-document-preview > header > div > .material-icons-round { display: grid; width: 2.75rem; height: 2.75rem; flex: 0 0 auto; place-items: center; border-radius: 0.75rem; background: #e5f4fd; color: #0077bd; }
+#claimModal .hat-document-preview h3,
+#claimModal .hat-document-preview p { margin: 0; }
+#claimModal .hat-document-preview h3 { font-size: 1.15rem; font-weight: 900; }
+#claimModal .hat-document-preview p { margin-top: 0.15rem; color: #6b8198; font-size: 0.875rem; font-weight: 700; }
+#claimModal .hat-document-preview > header button { display: grid; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; place-items: center; border: 0; border-radius: 999px; background: #fee2e2; color: #b91c1c; cursor: pointer; }
+#claimModal .hat-document-preview-body { display: grid; grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1.3fr); gap: 1rem; padding: 1.25rem; background: #f8fbfd; }
+#claimModal .hat-document-preview-sheet { display: grid; min-height: 230px; place-items: center; align-content: center; gap: 0.5rem; padding: 1rem; border: 1px dashed #9acbe7; border-radius: 0.875rem; background: #ffffff; text-align: center; }
+#claimModal .hat-document-preview-sheet .material-icons-round { color: #dc2626; font-size: 3rem; }
+#claimModal .hat-document-preview-sheet strong { overflow-wrap: anywhere; }
+#claimModal .hat-document-preview-sheet span:last-child { color: #7b8da0; font-size: 0.8rem; font-weight: 800; }
+#claimModal .hat-document-preview dl { display: grid; gap: 0.65rem; margin: 0; }
+#claimModal .hat-document-preview dl > div { padding: 0.75rem; border: 1px solid #dce6ee; border-radius: 0.625rem; background: #ffffff; }
+#claimModal .hat-document-preview dt { color: #71869a; font-size: 0.75rem; font-weight: 800; }
+#claimModal .hat-document-preview dd { margin: 0.2rem 0 0; font-weight: 800; overflow-wrap: anywhere; }
+#claimModal .hat-document-preview > footer { border-top: 1px solid #dce6ee; }
+#claimModal .hat-document-preview > footer > span { display: inline-flex; align-items: center; gap: 0.4rem; color: #64788e; font-size: 0.875rem; font-weight: 700; }
+#claimModal .hat-document-preview > footer > span .material-icons-round { color: #0077bd; }
+#claimModal .hat-document-preview > footer > button { min-height: 2.5rem; padding: 0.45rem 1.25rem; border: 0; border-radius: 0.625rem; background: #0077bd; color: #ffffff; font: inherit; font-weight: 900; cursor: pointer; }
+#claimModal .hat-document-preview button:focus-visible { outline: 3px solid rgba(7, 136, 214, 0.3); outline-offset: 2px; }
+
+@media (min-width: 641px) and (max-width: 900px) {
+  #considerHospitalAdditionalTransferDetailPage .hat-decision-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-decision {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-reference {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-calculation {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 980px) {
+  #considerHospitalAdditionalTransferDetailPage .hat-detail-section,
+  #considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button {
+    scroll-margin-top: 32rem;
+  }
+
+}
+
+@media (max-width: 640px) {
+  #considerHospitalAdditionalTransferDetailPage .hat-detail-hero {
+    position: relative;
+    top: auto;
+    z-index: 1;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-hero-pin-button {
+    display: none;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-detail-section,
+  #considerHospitalAdditionalTransferDetailPage .hat-previous-claim-button {
+    scroll-margin-top: 1rem;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-hero-grid,
+  #considerHospitalAdditionalTransferDetailPage .hat-snapshot-grid,
+  #considerHospitalAdditionalTransferDetailPage .hat-support-grid,
+  #considerHospitalAdditionalTransferDetailPage .hat-request-grid,
+  #considerHospitalAdditionalTransferDetailPage .hat-decision-form {
+    grid-template-columns: 1fr;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-decision-buttons,
+  #considerHospitalAdditionalTransferDetailPage .hat-decision-fields,
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-reference-grid > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-decision {
+    grid-column: auto;
+    grid-row: auto;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-calculation,
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-reference {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-current { text-align: left; }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-equation {
+    grid-template-columns: 1fr;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-operator {
+    width: 100%;
+    min-height: 1.5rem;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-summary-equals {
+    width: 100%;
+    min-height: 1.5rem;
+  }
+
+  #considerHospitalOpdHalfPage > .hat-source-return-bar,
+  #considerHospitalOpdFullPage > .hat-source-return-bar,
+  #considerCustomerDetailPage > .hat-source-return-bar {
+    position: relative;
+    top: auto;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hat-source-return-bar button { width: 100%; }
+
+  #claimModal .hat-document-preview-body { grid-template-columns: 1fr; }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-request-grid > div.is-wide,
+  #considerHospitalAdditionalTransferDetailPage .hat-decision-form label.is-wide {
+    grid-column: auto;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-section-header,
+  #considerHospitalAdditionalTransferDetailPage .hat-treatment-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-section-header .hat-previous-claim-button {
+    width: 100%;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-treatment-values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-treatment-values > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  #considerHospitalAdditionalTransferDetailPage .hat-treatment-values > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #e4ebf1;
+  }
+
+}
