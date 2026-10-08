@@ -8,8 +8,11 @@
   const selector = document.getElementById('tdrDocumentScenarioSelect');
   if (!page || !panel || !selectorWrap || !selector) return;
 
-  const demoMode = window.CLAIM_AGENT_DEMO_MODE === true ||
-    location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname);
+  const demoMode = window.CLAIM_AGENT_DEMO_MODE !== false && (
+    window.CLAIM_AGENT_DEMO_MODE === true ||
+    document.documentElement.dataset.claimAgentMode === 'demo' ||
+    location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname)
+  );
   let activeRow = null;
   let categories = [];
   let categoryIndex = 0;
