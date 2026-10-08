@@ -9095,8 +9095,7 @@ body > .min-h-screen > main,
           </button>
 
           <div id="claimDataManagementSubmenu" class="hidden space-y-1 rounded-xl bg-brand-900/25 p-1 lg:ml-3">
-            <button id="submenuCorrectWrongInsured" type="button" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white"><span class="material-icons-round !text-xl">person_search</span><span class="hidden lg:inline">แก้ไขเคลมผิดคน</span></button>
-            <button id="submenuEditClaimNotification" type="button" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white"><span class="material-icons-round !text-xl shrink-0">edit</span><span class="inline whitespace-nowrap">แก้ไขการแจ้งเคลม</span></button>
+            <button id="submenuCorrectWrongInsured" type="button" class="hidden flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white" hidden><span class="material-icons-round !text-xl">person_search</span><span class="hidden lg:inline">แก้ไขเคลมผิดคน</span></button>
           </div>
         </div>
 
@@ -12079,6 +12078,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <button id="tdrTabSettlement" type="button" class="tdr-tab" data-tdr-tab="settlement" role="tab" aria-selected="false" aria-controls="tdrPanelSettlement" tabindex="-1">ประวัติการตัดจ่าย</button>
           </div>
           <div id="tdrPanelClaim" class="tdr-tab-panel" data-tdr-panel="claim" role="tabpanel" aria-labelledby="tdrTabClaim">
+            <div id="tdrDocumentScenario" class="tdr-document-scenario" hidden>
+              <div class="tdr-document-scenario-copy"><span class="material-icons-round" aria-hidden="true">science</span><div><label for="tdrDocumentScenarioSelect">รูปแบบเอกสาร (Mock)</label><small>ตัวเลือกนี้แสดงเฉพาะ Demo/Test และไม่เปลี่ยนข้อมูลเคลม</small></div></div>
+              <select id="tdrDocumentScenarioSelect" aria-label="รูปแบบเอกสาร (Mock)">
+                <option value="auto">อัตโนมัติ (ตามข้อมูลเอกสาร)</option>
+                <option value="multiple">กรณีที่ 1: เอกสารหลายประเภท</option>
+                <option value="single">กรณีที่ 2: เอกสารประเภทเดียว</option>
+              </select>
+            </div>
             <div class="overflow-x-auto">
               <table class="tdr-claim-table">
                 <thead>
@@ -36905,55 +36912,36 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 </style>
 
 <section id="correctWrongInsuredPage" class="page hidden" aria-labelledby="cwiPageHeading">
-  <article class="cwi-card"><div class="cwi-body"><div class="cwi-search-grid"><div class="cwi-field"><label for="cwiClaimNo">เลขที่ CL <span class="cwi-req">*</span></label><input id="cwiClaimNo" class="cwi-input" value="" placeholder="กรุณากรอกเลขที่ CL" autocomplete="off"><div id="cwiClaimNoError" class="cwi-claim-error hidden">กรุณากรอกเลขที่ CL ก่อนค้นหา</div></div><button id="cwiClaimSearchBtn" type="button" class="cwi-btn cwi-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button></div></div></article>
-
-  <div id="cwiInitialPrompt" class="cwi-initial-prompt"><span class="material-icons-round">manage_search</span><h3>ค้นหารายการเคลมที่ต้องการแก้ไข</h3><p>กรอกเลขที่ CL แล้วกดปุ่ม “ค้นหา” เพื่อแสดงข้อมูลรายละเอียดเดิม</p></div>
-
-  <div id="cwiSearchResultArea" class="hidden">
-  <article class="cwi-card">
-    <header class="cwi-card-head"><div class="cwi-head-left"><span class="cwi-head-icon"><span class="material-icons-round">description</span></span><div><h2 id="cwiPageHeading" class="cwi-title">ข้อมูลรายละเอียดเดิม</h2><p class="cwi-subtitle">ข้อมูลเคลมปัจจุบันก่อนดำเนินการแก้ไขผู้เอาประกัน</p></div></div><span class="cwi-product"><span class="material-icons-round !text-base">monitor_heart</span>PH - ประกันสุขภาพ</span></header>
-    <div class="cwi-body"><div class="cwi-detail-grid">
-      <div class="cwi-detail-col"><div class="cwi-item"><div class="cwi-label">เลขที่ CL</div><div class="cwi-value">CL6905000001</div></div><div class="cwi-item"><div class="cwi-label">ประเภทผลิตภัณฑ์</div><div class="cwi-value dark">ประกันสุขภาพรายบุคคล (PH)</div></div><div class="cwi-item"><div class="cwi-label">เบอร์โทรผู้ติดต่อ</div><div class="cwi-value">065-9941000</div></div><div class="cwi-item"><div class="cwi-label">วันที่ออก รพ.</div><div class="cwi-value">08/12/2562</div></div><div class="cwi-item"><div class="cwi-label">สาขาผู้แจ้งเคลม</div><div class="cwi-value">00000 - สำนักงานใหญ่</div></div></div>
-      <div class="cwi-detail-col"><div class="cwi-item"><div class="cwi-label">ApplicationID</div><div class="cwi-value">9558004</div></div><div class="cwi-item"><div class="cwi-label">สถานะเคลม</div><div class="cwi-value success">ปกติ</div></div><div class="cwi-item"><div class="cwi-label">ประเภทการรักษา</div><div class="cwi-value">IPD ค่ารักษา (D)</div></div><div class="cwi-item"><div class="cwi-label">หมายเหตุ</div><div class="cwi-value dark">-</div></div></div>
-      <div class="cwi-detail-col"><div class="cwi-item"><div class="cwi-label">ชื่อ-สกุล ผู้เอาประกัน</div><div class="cwi-value">เด็กชาย ปวัตร วงษะมาตย์</div></div><div class="cwi-item"><div class="cwi-label">จำนวนเงินโอน</div><div class="cwi-value">2,100.00 บาท</div></div><div class="cwi-item"><div class="cwi-label">วันที่เกิดเหตุ</div><div class="cwi-value">05/12/2562</div></div><div class="cwi-item"><div class="cwi-label">ผู้รับเอกสาร</div><div class="cwi-value">ผู้ออกให้บริการ</div></div></div>
-      <div class="cwi-detail-col"><div class="cwi-item"><div class="cwi-label">เลขบัตรประชาชน</div><div class="cwi-value">1320300416917</div></div><div class="cwi-item"><div class="cwi-label">บัญชีรับสินไหม</div><div class="cwi-value">กรุงไทย 182-1-40080-0 วัฒนดม สำราญใจ</div></div><div class="cwi-item"><div class="cwi-label">วันที่เข้า รพ.</div><div class="cwi-value">05/12/2562</div></div><div class="cwi-item"><div class="cwi-label">ผู้ออกให้บริการ</div><div class="cwi-value">10389 - ชนกันต์ บุญกระพือ</div></div></div>
-    </div></div>
+  <article class="cwi-card cwi-search-card">
+    <header class="cwi-card-head"><div class="cwi-head-left"><span class="cwi-head-icon"><span class="material-icons-round" aria-hidden="true">person_search</span></span><div><h2 id="cwiPageHeading" class="cwi-title">แก้ไขเคลมผิดคน</h2><p class="cwi-subtitle">ค้นหาเคลมเดิมและตรวจสอบสิทธิ์ก่อนเปลี่ยนผู้เอาประกัน</p></div></div></header>
+    <div class="cwi-body"><div class="cwi-search-grid cwi-claim-search-grid">
+      <div class="cwi-field"><label for="cwiSearchType">ค้นหาจาก <span class="cwi-req">*</span></label><select id="cwiSearchType" class="cwi-select"><option value="CL">เลข CL</option><option value="CC">เลข CC</option></select></div>
+      <div class="cwi-field"><label for="cwiClaimNo">ระบุเลขที่ต้องการค้นหา <span class="cwi-req">*</span></label><input id="cwiClaimNo" class="cwi-input" type="text" inputmode="latin" autocomplete="off" placeholder="ระบุเลข CL" aria-describedby="cwiClaimNoError"></div>
+      <button id="cwiClaimSearchBtn" type="button" class="cwi-btn cwi-btn-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button>
+      <button id="cwiClearBtn" type="button" class="cwi-btn cwi-btn-secondary"><span class="material-icons-round" aria-hidden="true">restart_alt</span>ล้างค่า</button>
+    </div><p id="cwiClaimNoError" class="cwi-claim-error hidden" role="alert"></p>
+      <div id="cwiMockExamples" class="cwi-mock-examples hidden" aria-labelledby="cwiMockExamplesHeading">
+        <div class="cwi-mock-examples-heading"><span class="material-icons-round" aria-hidden="true">science</span><div><h3 id="cwiMockExamplesHeading">ตัวอย่างเลขเคลมสำหรับค้นหา</h3><p>เลือกเลขตัวอย่างเพื่อค้นหาและตรวจสอบเงื่อนไขของเคลม</p></div></div>
+        <div id="cwiMockExampleList" class="cwi-mock-example-list"></div>
+      </div>
+    </div>
   </article>
-
-  <article id="cwiTransferCard" class="cwi-card cwi-accordion"><button id="cwiTransferToggle" type="button" class="cwi-accordion-toggle"><span class="cwi-accordion-left"><span class="cwi-head-icon"><span class="material-icons-round">swap_horiz</span></span><span><span style="display:block">ข้อมูลโอนย้าย Transaction ไปที่เคลมใหม่</span><span class="cwi-subtitle" style="display:block;font-weight:500">รายการธุรกรรมที่จะถูกย้ายไปยังเลขเคลมใหม่หลังยืนยัน</span></span></span><span class="material-icons-round cwi-chevron">expand_more</span></button><div class="cwi-accordion-body"><div class="cwi-transfer-table-shell"><div class="soft-scroll" style="overflow-x:auto"><table class="cwi-transfer-table"><thead><tr><th>เลขที่ CPG</th><th>วันที่ทำรายการ</th><th>ประเภทรายการ</th><th>จำนวนเงิน (บาท)</th></tr></thead><tbody><tr><td><span class="cwi-transfer-link">CPG690600025</span></td><td>08/06/2569 14:53:51</td><td><span class="cwi-transfer-type"><span class="material-icons-round">account_balance_wallet</span>โอนเงินครั้งแรก</span></td><td><span class="cwi-transfer-amount">2,100.00</span></td></tr></tbody></table></div><div class="cwi-transfer-total"><span>ยอดรวม</span><strong>2,100.00</strong></div></div><div class="cwi-transfer-note"><span class="material-icons-round">info</span><span>ระบบจะสร้างเลขเคลมใหม่และโอนย้ายข้อมูลเคลม เอกสาร และ Payment Transaction หลังจากกดยืนยันรายการ</span></div></div></article>
-
-  <article class="cwi-card"><header class="cwi-card-head"><div class="cwi-head-left"><span class="cwi-head-icon"><span class="material-icons-round">person_search</span></span><div><h3 class="cwi-title">ค้นหาข้อมูลผู้เอาประกัน (ที่ถูกต้อง)</h3><p class="cwi-subtitle">เลือกผู้เอาประกันที่ถูกต้องเพื่อสร้างเลขเคลมใหม่และโอนย้ายข้อมูล</p></div></div></header><div class="cwi-body"><div class="cwi-correct-search"><div class="cwi-field"><label>ค้นหาจาก <span class="cwi-req">*</span></label><select id="cwiSearchBy" class="cwi-select"><option>ชื่อ-นามสกุล (ผู้เอาประกัน)</option><option>เลขบัตรประชาชน</option><option>ApplicationID</option></select></div><div class="cwi-field"><label>ระบุคำค้นหา <span class="cwi-req">*</span></label><input id="cwiKeyword" class="cwi-input" value="" placeholder="ระบุคำค้นหา"></div><button id="cwiOpenSearch" type="button" class="cwi-btn cwi-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button></div></div></article>
-
-  <article id="cwiSaveCard" class="cwi-card hidden"><header class="cwi-card-head"><div class="cwi-head-left"><span class="cwi-head-icon"><span class="material-icons-round">edit_note</span></span><div><h3 class="cwi-title">บันทึกข้อมูลเคลม</h3><p class="cwi-subtitle">ตรวจสอบข้อมูลผู้เอาประกันใหม่และระบุเหตุผลการแก้ไข</p></div></div></header><div class="cwi-body"><div id="cwiSelectedSummary" class="cwi-selected-grid"></div><div class="cwi-form-grid"><div class="cwi-field"><label>ผู้บันทึกเคลมผิด <span class="cwi-req">*</span></label><select id="cwiWrongRecorder" class="cwi-select"><option>10389 - นายชนกันต์ บุญกระพือ</option><option>06590 - ณัฏฐณิชา โตรักษา</option></select></div><div class="cwi-field"><label>สาเหตุการแก้ไข <span class="cwi-req">*</span></label><select id="cwiReason" class="cwi-select"><option value="">กรุณาเลือกสาเหตุการแก้ไข</option><option value="บันทึกผู้เอาประกันผิดคน">บันทึกผู้เอาประกันผิดคน</option><option value="บันทึกผิดกรมธรรม์">บันทึกผิดกรมธรรม์</option></select></div><div class="cwi-field"><label>หมายเหตุเพิ่มเติม</label><input id="cwiRemark" class="cwi-input" placeholder="ระบุหมายเหตุเพิ่มเติม (ถ้ามี)"></div></div><div class="cwi-sticky-actions"><button id="cwiSaveBtn" type="button" class="cwi-btn cwi-btn-success" disabled><span class="material-icons-round">save</span>บันทึกเคลม</button></div></div></article>
-  </div>
+  <div id="cwiInitialPrompt" class="cwi-initial-prompt"><span class="material-icons-round" aria-hidden="true">manage_search</span><h3>ค้นหารายการเคลมที่ต้องการแก้ไข</h3><p>ระบุเลข CL หรือ CC แล้วกด “ค้นหา” เพื่อเริ่มตรวจสอบข้อมูล</p></div>
+  <div id="cwiSearchResultArea" class="hidden"></div>
 </section>
 
 <div id="cwiSearchModal" class="cwi-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cwiSearchTitle">
   <div class="cwi-dialog cwi-search-dialog">
-    <div class="cwi-modal-head cwi-search-head">
-      <div class="cwi-modal-title-wrap">
-        <span class="cwi-head-icon"><span class="material-icons-round">person_search</span></span>
-        <div><div id="cwiSearchTitle" class="cwi-modal-title">ค้นหารายชื่อผู้เอาประกัน</div><div class="cwi-modal-subtitle">เลือกรายชื่อผู้เอาประกันที่ถูกต้องเพื่อใช้แทนรายการเดิม</div></div>
-      </div>
-      <button class="cwi-close" type="button" data-cwi-close="cwiSearchModal" aria-label="ปิด"><span class="material-icons-round">close</span></button>
-    </div>
-    <div class="cwi-search-toolbar">
-      <div class="cwi-search-box"><span class="material-icons-round">search</span><input id="cwiModalKeyword" type="text" placeholder="ค้นหาจาก AppID, ชื่อ-นามสกุล, เลขบัตรประชาชน หรือแผน"><button id="cwiModalClear" type="button" class="cwi-clear-search hidden" aria-label="ล้างคำค้น"><span class="material-icons-round">close</span></button></div>
-      <button id="cwiModalSearchBtn" type="button" class="cwi-btn cwi-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button>
-      <div class="cwi-result-count"><span class="material-icons-round">groups</span><span>พบ <b id="cwiResultCount">0</b> รายการ</span></div>
-    </div>
-    <div class="cwi-table-wrap cwi-search-table-wrap"><table class="cwi-table cwi-search-table"><thead><tr><th class="cwi-select-col">เลือก</th><th>AppID</th><th>ชื่อ-นามสกุล (ผู้เอาประกัน)</th><th>เลขบัตรประชาชน</th><th>แผน</th><th>วันที่เริ่มคุ้มครอง</th><th>วันที่ยกเลิก</th><th>สถานะ App</th></tr></thead><tbody id="cwiSearchBody"></tbody></table><div id="cwiSearchEmpty" class="cwi-search-empty"><span class="material-icons-round">manage_search</span><h4>กรอกคำค้นหาเพื่อค้นหารายชื่อ</h4><p>ระบุ AppID, ชื่อ-นามสกุล, เลขบัตรประชาชน หรือแผน แล้วกดปุ่ม “ค้นหา”</p></div></div>
-    <div class="cwi-modal-foot cwi-search-foot">
-      <div class="cwi-pager"><span>ข้อมูลต่อหน้า</span><select aria-label="ข้อมูลต่อหน้า"><option>10</option></select><span id="cwiRangeText">1-10 จาก 10</span><button class="cwi-page-btn" type="button" disabled aria-label="หน้าก่อนหน้า"><span class="material-icons-round">chevron_left</span></button><button class="cwi-page-btn" type="button" disabled aria-label="หน้าถัดไป"><span class="material-icons-round">chevron_right</span></button></div>
-      <div class="cwi-selected-hint"><span class="material-icons-round">info</span><span id="cwiSelectedHint">กรุณาเลือกรายชื่อ 1 รายการ</span></div>
-      <div class="cwi-modal-actions"><button type="button" class="cwi-btn cwi-btn-secondary" data-cwi-close="cwiSearchModal">ยกเลิก</button><button id="cwiChooseBtn" type="button" class="cwi-btn cwi-btn-primary" disabled><span class="material-icons-round">check</span>เลือกรายการ</button></div>
-    </div>
+    <div class="cwi-modal-head cwi-search-head"><div class="cwi-modal-title-wrap"><span class="cwi-head-icon"><span class="material-icons-round" aria-hidden="true">person_search</span></span><div><h2 id="cwiSearchTitle" class="cwi-modal-title">ค้นหารายชื่อผู้เอาประกัน</h2><p class="cwi-modal-subtitle">ระบบแสดงเฉพาะผลิตภัณฑ์เดียวกับเคลมเดิม</p></div></div><button class="cwi-close" type="button" data-cwi-close="cwiSearchModal" aria-label="ปิด"><span class="material-icons-round" aria-hidden="true">close</span></button></div>
+    <div class="cwi-search-toolbar"><div class="cwi-search-box"><span class="material-icons-round" aria-hidden="true">search</span><input id="cwiModalKeyword" type="text" placeholder="ระบุคำค้นหา" aria-label="คำค้นหาผู้เอาประกัน"><button id="cwiModalClear" type="button" class="cwi-clear-search hidden" aria-label="ล้างคำค้น"><span class="material-icons-round" aria-hidden="true">close</span></button></div><button id="cwiModalSearchBtn" type="button" class="cwi-btn cwi-btn-primary">ค้นหา</button><div class="cwi-result-count"><span class="material-icons-round" aria-hidden="true">groups</span><span>พบ <b id="cwiResultCount">0</b> รายการ</span></div></div>
+    <div class="cwi-table-wrap cwi-search-table-wrap"><table class="cwi-table cwi-search-table"><thead id="cwiSearchHead"></thead><tbody id="cwiSearchBody"></tbody></table><div id="cwiSearchEmpty" class="cwi-search-empty"><span class="material-icons-round" aria-hidden="true">manage_search</span><h4>กรอกคำค้นหาเพื่อค้นหารายชื่อ</h4><p>เลือกข้อมูลที่ต้องการค้นหาและระบุคำค้น</p></div></div>
+    <div class="cwi-modal-foot cwi-search-foot"><span id="cwiRangeText" class="cwi-pager">0 รายการ</span><span id="cwiSelectedHint" class="cwi-selected-hint">กรุณาเลือกรายชื่อ 1 รายการ</span><div class="cwi-modal-actions"><button type="button" class="cwi-btn cwi-btn-secondary" data-cwi-close="cwiSearchModal">ยกเลิก</button><button id="cwiChooseBtn" type="button" class="cwi-btn cwi-btn-primary" disabled>เลือกรายการ</button></div></div>
   </div>
 </div>
 
-<div id="cwiConfirmModal" class="cwi-modal hidden" role="dialog" aria-modal="true"><div class="cwi-dialog small"><button class="cwi-close" type="button" data-cwi-close="cwiConfirmModal" style="position:absolute;right:14px;top:14px;z-index:2"><span class="material-icons-round">close</span></button><div class="cwi-confirm-body"><div class="cwi-hero"><span class="material-icons-round">verified_user</span></div><h3>ยืนยันการทำรายการ</h3><p>ต้องการยืนยันการแก้ไขเคลมผิดคนใช่หรือไม่</p><div class="cwi-process"><div class="cwi-process-title">กระบวนการจัดการเคลม</div><div class="cwi-step"><span class="cwi-step-no">1</span><span>สร้างเลขที่เคลมใหม่</span></div><div class="cwi-step"><span class="cwi-step-no">2</span><span>เปลี่ยนผู้เอาประกันเป็นบุคคลที่ถูกต้อง</span></div><div class="cwi-step"><span class="cwi-step-no">3</span><span>โอนย้ายข้อมูล เอกสาร และ Payment Transaction ไปยังเคลมใหม่</span></div><div class="cwi-step"><span class="cwi-step-no">4</span><span>ยกเลิกเคลมเดิมและบันทึก Audit Log</span></div></div><div class="cwi-modal-actions" style="justify-content:center;margin-top:18px"><button type="button" class="cwi-btn cwi-btn-cancel" data-cwi-close="cwiConfirmModal">ยกเลิก</button><button id="cwiConfirmBtn" type="button" class="cwi-btn cwi-btn-success">ยืนยัน</button></div></div></div></div>
+<div id="cwiConfirmModal" class="cwi-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cwiConfirmTitle"><div class="cwi-dialog small"><div class="cwi-modal-head"><h2 id="cwiConfirmTitle" class="cwi-modal-title">ยืนยันการแก้ไขเคลมผิดคน</h2><button class="cwi-close" type="button" data-cwi-close="cwiConfirmModal" aria-label="ปิด"><span class="material-icons-round" aria-hidden="true">close</span></button></div><div class="cwi-confirm-body"><p id="cwiConfirmSummary"></p><p>ระบบจะตรวจสอบสถานะ การวางบิล ความคุ้มครอง และ Benefit อีกครั้งก่อนบันทึก</p><p id="cwiConfirmError" class="cwi-claim-error hidden" role="alert"></p><div class="cwi-modal-actions cwi-confirm-actions"><button type="button" class="cwi-btn cwi-btn-secondary" data-cwi-close="cwiConfirmModal">ยกเลิก</button><button id="cwiConfirmBtn" type="button" class="cwi-btn cwi-btn-success">ยืนยันการแก้ไข</button></div></div></div></div>
 
-<div id="cwiSuccessModal" class="cwi-modal hidden" role="dialog" aria-modal="true"><div class="cwi-dialog small"><button class="cwi-close" type="button" data-cwi-close="cwiSuccessModal" style="position:absolute;right:14px;top:14px;z-index:2"><span class="material-icons-round">close</span></button><div class="cwi-confirm-body"><div class="cwi-hero success"><span class="material-icons-round">check</span></div><h3>บันทึกสำเร็จ</h3><p>ระบบสร้างเลขเคลมใหม่และโอนย้ายข้อมูลเรียบร้อยแล้ว</p><div class="cwi-result-box"><span id="cwiNewClaimNo">CL6907000123</span><button id="cwiCopyClaim" type="button" class="cwi-copy" title="คัดลอก"><span class="material-icons-round">content_copy</span></button></div><div class="cwi-modal-actions" style="justify-content:center;margin-top:18px"><button type="button" class="cwi-btn cwi-btn-primary" data-cwi-close="cwiSuccessModal">ตกลง</button></div></div></div></div>
+<div id="cwiSuccessModal" class="cwi-modal hidden" role="dialog" aria-modal="true" aria-labelledby="cwiSuccessTitle"><div class="cwi-dialog small"><div class="cwi-modal-head"><h2 id="cwiSuccessTitle" class="cwi-modal-title">บันทึกสำเร็จ</h2><button class="cwi-close" type="button" data-cwi-close="cwiSuccessModal" aria-label="ปิด"><span class="material-icons-round" aria-hidden="true">close</span></button></div><div class="cwi-confirm-body"><div class="cwi-hero success"><span class="material-icons-round" aria-hidden="true">check</span></div><p id="cwiSuccessDescription"></p><div class="cwi-result-box"><span id="cwiNewClaimNo"></span><button id="cwiCopyClaim" type="button" class="cwi-copy" aria-label="คัดลอกเลข CL ใหม่"><span class="material-icons-round" aria-hidden="true">content_copy</span></button></div><div class="cwi-modal-actions cwi-confirm-actions"><button type="button" class="cwi-btn cwi-btn-primary" data-cwi-close="cwiSuccessModal">ตกลง</button></div></div></div></div>
 
 <style id="correct-wrong-insured-search-modal-v2">
 .cwi-search-dialog{width:min(1180px,calc(100vw - 48px));height:min(760px,calc(100vh - 48px));max-height:none;border-radius:18px}
@@ -36968,98 +36956,33 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 @media(max-width:680px){.cwi-search-dialog{width:100%;height:auto;min-height:calc(100vh - 16px);margin-top:0}.cwi-search-head,.cwi-search-toolbar,.cwi-search-foot{padding-left:14px;padding-right:14px}.cwi-modal-subtitle{display:none}.cwi-search-table-wrap{overflow:auto}.cwi-search-table tbody tr{padding-left:50px}.cwi-search-foot{flex-direction:column}.cwi-search-foot .cwi-pager{justify-content:flex-start;flex-wrap:wrap}.cwi-search-foot .cwi-modal-actions{width:100%;margin:0}.cwi-selected-hint{order:0}.cwi-result-count{width:max-content}}
 </style>
 
-<script id="correct-wrong-insured-script">
-(function(){
- const $=id=>document.getElementById(id); let selected=null;
- const rows=[
-  {app:'0000120',name:'นายกิตติพงษ์ ผ่องอักษร',id:'3571100418466',plan:'901-Gold',start:'01/09/2548',cancel:'01/10/2549',status:'ยกเลิก'},
-  {app:'0000160',name:'นางกิตติมา หอมรส',id:'3510200141236',plan:'901-Gold',start:'01/09/2548',cancel:'01/10/2550',status:'ยกเลิก'},
-  {app:'0000204',name:'นายกิตติชัย เขียวแก้ว',id:'3520300188030',plan:'902-Silver',start:'01/10/2548',cancel:'01/10/2558',status:'ยกเลิก'},
-  {app:'0000343',name:'นายกิติพันธ์ วชะศิริ',id:'1101500654857',plan:'902-Gold',start:'01/10/2548',cancel:'01/04/2560',status:'ยกเลิก'},
-  {app:'0000397',name:'นายจิรกิติ์ สุขนาบัว',id:'-',plan:'901-Silver',start:'01/10/2548',cancel:'01/07/2549',status:'ยกเลิก'},
-  {app:'0000407',name:'นายกิตติพงษ์ กลุ้มยิ้ม',id:'3660100026540',plan:'502-Gold',start:'01/10/2548',cancel:'01/02/2559',status:'ยกเลิก'},
-  {app:'0000607',name:'นางสาวกิตติยา เลาหศักดิ์ประสิทธิ์',id:'1600100079701',plan:'901-Silver',start:'01/11/2548',cancel:'01/12/2549',status:'ยกเลิก'},
-  {app:'0000706',name:'นายกิตตินันท์ แก้วพันธุ์',id:'3420900434253',plan:'901-Silver',start:'01/12/2548',cancel:'01/04/2552',status:'ยกเลิก'},
-  {app:'0000905',name:'ด.ต. กิตติคุณ กันทาสุวรรณ',id:'3101700942259',plan:'501-Silver',start:'01/01/2549',cancel:'-',status:'ปกติ'},
-  {app:'0001041',name:'นายกิตตินัยน์ สุวรรณวงศ์',id:'1659900163322',plan:'502-Silver',start:'01/02/2549',cancel:'-',status:'ปกติ'}
- ];
- function mount(){const page=$('correctWrongInsuredPage'),main=document.querySelector('main');if(page&&main&&page.parentElement!==main)main.appendChild(page)}
- function activateMenu(){const sm=$('claimDataManagementSubmenu'),arrow=$('claimDataManagementArrow');sm?.classList.remove('hidden');$('menuClaimDataManagement')?.setAttribute('aria-expanded','true');if(arrow)arrow.textContent='expand_less';document.querySelectorAll('#claimDataManagementSubmenu button').forEach(b=>{b.classList.remove('bg-white/15','font-bold','text-white');b.classList.add('font-semibold','text-white/75')});const active=$('submenuCorrectWrongInsured');active?.classList.add('bg-white/15','font-bold','text-white');active?.classList.remove('font-semibold','text-white/75')}
- function resetPageSearch(){selected=null;if($('cwiClaimNo'))$('cwiClaimNo').value='';$('cwiClaimNo')?.classList.remove('ring-2','ring-red-200');$('cwiClaimNoError')?.classList.add('hidden');$('cwiSearchResultArea')?.classList.add('hidden');$('cwiInitialPrompt')?.classList.remove('hidden');$('cwiSaveCard')?.classList.add('hidden');if($('cwiReason'))$('cwiReason').value='';if($('cwiRemark'))$('cwiRemark').value='';}
- function runClaimSearch(){const q=($('cwiClaimNo')?.value||'').trim();if(!q){$('cwiClaimNo')?.focus();$('cwiClaimNo')?.classList.add('ring-2','ring-red-200');$('cwiClaimNoError')?.classList.remove('hidden');$('cwiSearchResultArea')?.classList.add('hidden');$('cwiInitialPrompt')?.classList.remove('hidden');return}$('cwiClaimNo')?.classList.remove('ring-2','ring-red-200');$('cwiClaimNoError')?.classList.add('hidden');$('cwiInitialPrompt')?.classList.add('hidden');$('cwiSearchResultArea')?.classList.remove('hidden');$('cwiSaveCard')?.classList.add('hidden');}
- function show(){mount();if(window.claimMoneyShowPage)window.claimMoneyShowPage('correctWrongInsuredPage','แก้ไขเคลมผิดคน','จัดการข้อมูลแจ้งเคลม / แก้ไขเคลมผิดคน');else{document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));$('correctWrongInsuredPage')?.classList.remove('hidden')}activateMenu();resetPageSearch()}
- function close(id){$(id)?.classList.add('hidden')}
- function render(list){const body=$('cwiSearchBody'),empty=$('cwiSearchEmpty');body.innerHTML=list.map(r=>`<tr data-app="${r.app}" class="${selected?.app===r.app?'selected':''}"><td data-label="เลือก"><input type="radio" name="cwiInsured" aria-label="เลือก ${r.name}" ${selected?.app===r.app?'checked':''}></td><td data-label="AppID">${r.app}</td><td data-label="ชื่อ-นามสกุล">${r.name}</td><td data-label="เลขบัตรประชาชน">${r.id}</td><td data-label="แผน">${r.plan}</td><td data-label="วันที่เริ่มคุ้มครอง">${r.start}</td><td data-label="วันที่ยกเลิก">${r.cancel}</td><td data-label="สถานะ App"><span class="cwi-status ${r.status==='ปกติ'?'normal':'cancel'}">${r.status}</span></td></tr>`).join('');body.classList.toggle('hidden',!list.length);empty?.classList.toggle('hidden',!!list.length);if($('cwiResultCount'))$('cwiResultCount').textContent=list.length;if($('cwiRangeText'))$('cwiRangeText').textContent=list.length?`1-${list.length} จาก ${list.length}`:'0 รายการ';document.querySelectorAll('#cwiSearchBody tr').forEach(tr=>tr.addEventListener('click',()=>{selected=rows.find(r=>r.app===tr.dataset.app);render(list);$('cwiChooseBtn').disabled=false;if($('cwiSelectedHint'))$('cwiSelectedHint').textContent=`เลือกแล้ว: ${selected.name}`}))}
- function showSearchPrompt(){const body=$('cwiSearchBody'),empty=$('cwiSearchEmpty');body.innerHTML='';body.classList.add('hidden');if(empty){empty.classList.remove('hidden');empty.innerHTML='<span class="material-icons-round">manage_search</span><h4>กรอกคำค้นหาเพื่อค้นหารายชื่อ</h4><p>ระบุ AppID, ชื่อ-นามสกุล, เลขบัตรประชาชน หรือแผน แล้วกดปุ่ม “ค้นหา”</p>';}if($('cwiResultCount'))$('cwiResultCount').textContent='0';if($('cwiRangeText'))$('cwiRangeText').textContent='0 รายการ';$('cwiChooseBtn').disabled=true;if($('cwiSelectedHint'))$('cwiSelectedHint').textContent='กรุณาค้นหาและเลือกรายชื่อ 1 รายการ'}
- function filterSearch(){const q=($('cwiModalKeyword')?.value||'').trim().toLowerCase();$('cwiModalClear')?.classList.toggle('hidden',!q);if(!q){showSearchPrompt();$('cwiModalKeyword')?.classList.add('ring-2','ring-red-200');return} $('cwiModalKeyword')?.classList.remove('ring-2','ring-red-200');selected=null;const list=rows.filter(r=>Object.values(r).join(' ').toLowerCase().includes(q));render(list);if(!list.length){const empty=$('cwiSearchEmpty');if(empty){empty.innerHTML='<span class="material-icons-round">person_off</span><h4>ไม่พบรายชื่อผู้เอาประกัน</h4><p>กรุณาตรวจสอบคำค้นหาแล้วลองใหม่อีกครั้ง</p>';}}$('cwiChooseBtn').disabled=true;if($('cwiSelectedHint'))$('cwiSelectedHint').textContent='กรุณาเลือกรายชื่อ 1 รายการ'}
- function openSearch(){const source=($('cwiKeyword')?.value||'').trim();if(!source){$('cwiKeyword')?.focus();$('cwiKeyword')?.classList.add('ring-2','ring-red-200');return}$('cwiKeyword')?.classList.remove('ring-2','ring-red-200');if($('cwiModalKeyword'))$('cwiModalKeyword').value=source;$('cwiSearchModal').classList.remove('hidden');filterSearch();setTimeout(()=>$('cwiModalKeyword')?.focus(),50)}
- function choose(){if(!selected)return;$('cwiSearchModal').classList.add('hidden');$('cwiSelectedSummary').innerHTML=`<div><div class="cwi-item"><div class="cwi-label">ApplicationID</div><div class="cwi-value">${selected.app}</div></div><div class="cwi-item"><div class="cwi-label">วันที่เริ่มคุ้มครอง</div><div class="cwi-value">${selected.start}</div></div></div><div><div class="cwi-item"><div class="cwi-label">ชื่อ-สกุล ผู้เอาประกัน</div><div class="cwi-value">${selected.name}</div></div><div class="cwi-item"><div class="cwi-label">วันที่สิ้นสุดความคุ้มครอง</div><div class="cwi-value dark">${selected.cancel}</div></div></div><div><div class="cwi-item"><div class="cwi-label">เลขบัตรประชาชน</div><div class="cwi-value">${selected.id}</div></div><div class="cwi-item"><div class="cwi-label">สถานะ App</div><div class="cwi-value ${selected.status==='ปกติ'?'success':'dark'}">${selected.status}</div></div></div>`;$('cwiSaveCard').classList.remove('hidden');validate();$('cwiSaveCard').scrollIntoView({behavior:'smooth',block:'start'})}
- function validate(){$('cwiSaveBtn').disabled=!(selected&&$('cwiReason').value)}
- function init(){mount();$('submenuCorrectWrongInsured')?.addEventListener('click',show);$('cwiClaimSearchBtn')?.addEventListener('click',runClaimSearch);$('cwiClaimNo')?.addEventListener('input',e=>{if(e.target.value.trim()){e.target.classList.remove('ring-2','ring-red-200');$('cwiClaimNoError')?.classList.add('hidden')}});$('cwiClaimNo')?.addEventListener('keydown',e=>{if(e.key==='Enter')runClaimSearch()});$('cwiOpenSearch')?.addEventListener('click',openSearch);$('cwiKeyword')?.addEventListener('input',e=>{if(e.target.value.trim())e.target.classList.remove('ring-2','ring-red-200')});$('cwiKeyword')?.addEventListener('keydown',e=>{if(e.key==='Enter')openSearch()});$('cwiModalSearchBtn')?.addEventListener('click',filterSearch);$('cwiModalKeyword')?.addEventListener('input',()=>{$('cwiModalClear')?.classList.toggle('hidden',!$('cwiModalKeyword').value.trim());$('cwiModalKeyword')?.classList.remove('ring-2','ring-red-200')});$('cwiModalClear')?.addEventListener('click',()=>{$('cwiModalKeyword').value='';showSearchPrompt();$('cwiModalClear').classList.add('hidden');$('cwiModalKeyword').focus()});$('cwiModalKeyword')?.addEventListener('keydown',e=>{if(e.key==='Enter')filterSearch();if(e.key==='Escape'){e.target.value='';showSearchPrompt();$('cwiModalClear')?.classList.add('hidden')}});$('cwiChooseBtn')?.addEventListener('click',choose);$('cwiReason')?.addEventListener('change',validate);$('cwiSaveBtn')?.addEventListener('click',()=>{$('cwiConfirmModal').classList.remove('hidden')});$('cwiConfirmBtn')?.addEventListener('click',()=>{close('cwiConfirmModal');$('cwiSuccessModal').classList.remove('hidden')});$('cwiTransferToggle')?.addEventListener('click',()=>{$('cwiTransferCard').classList.toggle('open')});$('cwiCopyClaim')?.addEventListener('click',async()=>{const t=$('cwiNewClaimNo').textContent;try{await navigator.clipboard.writeText(t)}catch(e){}});document.querySelectorAll('[data-cwi-close]').forEach(b=>b.addEventListener('click',()=>close(b.dataset.cwiClose)));['cwiSearchModal','cwiConfirmModal','cwiSuccessModal'].forEach(id=>$(id)?.addEventListener('click',e=>{if(e.target===$(id))close(id)}));showSearchPrompt()}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
-})();
-</script>
+<link rel="stylesheet" href="css/menu-correct-wrong-insured.css?v=4">
+<script src="js/correct-wrong-insured-domain.js?v=1"></script>
+<script src="js/correct-wrong-insured-local-demo.js?v=2"></script>
+<script src="js/menu-correct-wrong-insured.js?v=4"></script>
 
 
 
-<style id="edit-claim-notification-style">
-#editClaimNotificationPage{--ecn-blue:#087fbd;--ecn-dark:#075985;--ecn-soft:#eef8ff;--ecn-border:#d8e5f0;--ecn-text:#334155;background:#f4f7fb!important;padding:20px 22px 90px!important;min-height:calc(100vh - 68px);box-sizing:border-box;width:100%;max-width:none}
-#editClaimNotificationPage *{box-sizing:border-box}.ecn-card{background:#fff;border:1px solid var(--ecn-border);border-radius:14px;box-shadow:0 4px 14px rgba(15,23,42,.07);overflow:hidden}.ecn-card-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-left:5px solid var(--ecn-blue);background:linear-gradient(90deg,#eaf6ff,#fff);font-size:20px;font-weight:900;color:var(--ecn-dark)}.ecn-card-body{padding:18px}.ecn-search-grid{display:grid;grid-template-columns:minmax(260px,520px) 150px;gap:12px;align-items:end}.ecn-field{position:relative}.ecn-label{display:block;margin-bottom:6px;color:#64748b;font-size:14px;font-weight:800}.ecn-label .req{color:#dc2626}.ecn-input,.ecn-select{width:100%;height:46px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;padding:0 14px;font-size:16px!important;font-weight:600;color:#334155;outline:none}.ecn-input:focus,.ecn-select:focus{border-color:var(--ecn-blue);box-shadow:0 0 0 4px rgba(8,127,189,.12)}.ecn-btn{height:46px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 18px;font-weight:900}.ecn-btn-primary{background:var(--ecn-blue);color:#fff}.ecn-btn-outline{border:1px solid var(--ecn-blue);color:var(--ecn-blue);background:#fff}.ecn-btn-danger{border:1px solid #ef4444;color:#b91c1c;background:#fff}.ecn-empty{min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#94a3b8;padding:30px}.ecn-empty .material-icons-round{font-size:52px!important;color:#b7c7d8}.ecn-result{margin-top:16px}.ecn-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:16px;background:#f8fbff;border-bottom:1px solid var(--ecn-border)}.ecn-summary-item{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:10px 12px}.ecn-summary-label{font-size:13px;font-weight:800;color:#64748b}.ecn-summary-value{margin-top:3px;font-size:16px;font-weight:900;color:#075985}.ecn-section{padding:16px}.ecn-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.ecn-section-title h3{font-size:18px!important;font-weight:900;color:#075985}.ecn-table-wrap{overflow-x:auto;border:1px solid #dbe3ec;border-radius:10px}.ecn-table{width:100%;min-width:980px;border-collapse:collapse}.ecn-table th{background:#087fbd;color:#fff;padding:11px 12px;text-align:left;font-size:14px!important;font-weight:900}.ecn-table td{padding:12px;border-bottom:1px solid #e5e7eb;font-size:14px!important;color:#334155;vertical-align:middle}.ecn-table tbody tr:hover td{background:#f8fbff}.ecn-action{width:36px;height:36px;border-radius:999px;display:inline-grid;place-items:center;background:#fff1b8;color:#9a6700;border:1px solid #f2d471}.ecn-action .material-icons-round{font-size:19px!important}.ecn-detail-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.ecn-detail-box{border:1px solid #dbeafe;border-radius:10px;background:#fff;padding:12px}.ecn-detail-box.wide{grid-column:span 2}.ecn-detail-label{font-size:13px;font-weight:800;color:#64748b}.ecn-detail-value{margin-top:4px;font-size:16px;font-weight:800;color:#334155}.ecn-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.55);padding:18px}.ecn-modal.hidden{display:none}.ecn-dialog{width:min(820px,96vw);max-height:92vh;overflow:auto;background:#fff;border-radius:14px;box-shadow:0 24px 70px rgba(15,23,42,.35)}.ecn-dialog-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e5e7eb}.ecn-dialog-title{font-size:22px;font-weight:900;color:#087fbd}.ecn-close{width:42px;height:42px;border-radius:999px;background:#b00000;color:#fff;display:grid;place-items:center}.ecn-dialog-body{padding:20px}.ecn-claim-banner{border:1px solid #dbeafe;border-radius:12px;background:#f5f9ff;padding:14px 16px;margin-bottom:18px}.ecn-claim-code{display:inline-flex;border-radius:8px;background:#e5e7eb;padding:6px 14px;color:#087fbd;font-size:20px;font-weight:900}.ecn-claim-meta{margin-top:8px;display:grid;gap:5px;color:#64748b}.ecn-claim-meta b{color:#1f2937}.ecn-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ecn-form-grid .full{grid-column:1/-1}.ecn-dialog-actions{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-top:1px solid #e5e7eb}.ecn-success{display:none;margin-top:12px;border:1px solid #bbf7d0;background:#f0fdf4;color:#15803d;border-radius:10px;padding:10px 12px;font-weight:800}
-@media(max-width:900px){.ecn-summary,.ecn-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){#editClaimNotificationPage{padding:12px 10px 70px!important}.ecn-search-grid,.ecn-form-grid,.ecn-summary,.ecn-detail-grid{grid-template-columns:1fr}.ecn-detail-box.wide,.ecn-form-grid .full{grid-column:auto}.ecn-dialog-actions{flex-direction:column-reverse}.ecn-dialog-actions .ecn-btn{width:100%}}
-/* V40 - Detail result layout matching Claim Detail screen */
-.ecn-result-v40{margin-top:16px;display:grid;gap:16px}
-.ecn-info-card{background:#fff;border:1px solid #d8e5f0;border-radius:12px;box-shadow:0 4px 14px rgba(15,23,42,.07);overflow:hidden}
-.ecn-info-head{display:flex;align-items:center;gap:9px;padding:14px 18px;border-bottom:1px dashed #dbe5ef;color:#087fbd;font-size:17px;font-weight:900}
-.ecn-info-head .material-icons-round{font-size:21px!important}
-.ecn-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:10px 18px 12px}
-.ecn-overview-item{display:flex;align-items:center;gap:14px;min-height:100px;padding:14px 18px;border-right:1px solid #e6edf5;border-bottom:1px solid #e6edf5}
-.ecn-overview-item:nth-child(3n){border-right:0}.ecn-overview-item:nth-child(n+4){border-bottom:0}
-.ecn-overview-icon{width:58px;height:58px;border-radius:14px;background:#edf5fc;color:#0868ad;display:grid;place-items:center;flex:none}
-.ecn-overview-icon .material-icons-round{font-size:28px!important}
-.ecn-overview-label,.ecn-simple-label{font-size:14px;font-weight:800;color:#6b7280}
-.ecn-overview-value,.ecn-simple-value{margin-top:8px;font-size:16px;font-weight:900;color:#0868ad}
-.ecn-status-pill{display:inline-flex;align-items:center;justify-content:center;min-height:30px;border-radius:999px;background:#fff0b8;color:#a87900;padding:4px 13px;font-size:14px;font-weight:900}
-.ecn-simple-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding:18px;gap:24px 70px}
-.ecn-recipient-grid{display:grid;grid-template-columns:.75fr 1fr 1.2fr;padding:18px;gap:24px 50px}
-.ecn-tabs{display:flex;align-items:end;gap:28px;min-height:42px;padding:0 12px;border-bottom:1px solid #dbe5ef;overflow-x:auto}
-.ecn-tab{height:42px;display:inline-flex;align-items:center;white-space:nowrap;border-bottom:3px solid transparent;color:#64748b;font-size:15px;font-weight:800;padding:0 2px}
-.ecn-tab.active{border-bottom-color:#087fbd;color:#087fbd}
-.ecn-claim-table-shell{padding:20px 18px 18px;overflow-x:auto}
-.ecn-claim-table{width:100%;min-width:1160px;border-collapse:collapse;border:1px solid #dbe5ef;box-shadow:0 2px 7px rgba(15,23,42,.08)}
-.ecn-claim-table th{background:#4387c8;color:#fff;padding:14px 16px;text-align:left;font-size:14px!important;font-weight:900;white-space:nowrap}
-.ecn-claim-table td{padding:14px 16px;border-bottom:1px solid #e6edf5;color:#4b5563;font-size:14px!important;vertical-align:middle;white-space:nowrap}
-.ecn-claim-table tbody tr:hover td{background:#f8fbff}
-.ecn-claim-link{border:0;background:transparent;color:#0870b8;text-decoration:underline;font-weight:900;padding:0;cursor:pointer}
-.ecn-claim-data-main{font-weight:800;color:#4b5563}.ecn-claim-data-sub{margin-top:4px;font-size:12px;color:#7b8797;font-weight:700}
-.ecn-amount{text-align:right;font-weight:900;color:#334155}
-.ecn-action-v40{width:40px;height:40px;border-radius:999px;display:inline-grid;place-items:center;background:#fff2bd;color:#9a6700;border:1px solid #efd46e;box-shadow:0 2px 6px rgba(154,103,0,.12)}
-.ecn-action-v40:hover{background:#ffe78c;transform:translateY(-1px)}
-.ecn-action-v40 .material-icons-round{font-size:20px!important}
-@media(max-width:1000px){.ecn-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ecn-overview-item:nth-child(3n){border-right:1px solid #e6edf5}.ecn-overview-item:nth-child(2n){border-right:0}.ecn-overview-item:nth-child(n+4){border-bottom:1px solid #e6edf5}.ecn-overview-item:nth-child(n+5){border-bottom:0}.ecn-recipient-grid{grid-template-columns:1fr 1fr}.ecn-recipient-grid>div:last-child{grid-column:1/-1}}
-@media(max-width:640px){.ecn-overview-grid,.ecn-simple-grid,.ecn-recipient-grid{grid-template-columns:1fr}.ecn-overview-item{border-right:0!important;border-bottom:1px solid #e6edf5!important}.ecn-overview-item:last-child{border-bottom:0!important}.ecn-recipient-grid>div:last-child{grid-column:auto}.ecn-tabs{gap:20px}.ecn-claim-table-shell{padding:14px 10px}}
 
-</style>
 
 <section id="editClaimNotificationPage" class="page hidden ecn-page" aria-labelledby="ecnMonitorHeading">
-  <div class="ecn-page-intro"><div><span class="ecn-eyebrow">จัดการข้อมูลแจ้งเคลม</span><h2 id="ecnMonitorHeading">ค้นหารายการแจ้งเคลม</h2><p>ค้นหาและเลือกรายการก่อนเปิดหน้าแก้ไขข้อมูล</p></div><span class="ecn-mock-tag">ข้อมูลตัวอย่าง</span></div>
   <section class="ecn-surface ecn-search-surface" aria-label="ค้นหารายการแจ้งเคลม">
-    <div class="ecn-search-grid">
+    <header class="ecn-section-head ecn-main-head"><span class="ecn-head-icon"><span class="material-icons-round" aria-hidden="true">edit_note</span></span><div><h2 id="ecnMonitorHeading">แก้ไขการแจ้งเคลม</h2><p>ค้นหาเคลมเดิม หรือเลือกรายการตัวอย่างเพื่อดูรายละเอียดก่อนแก้ไข</p></div><span class="ecn-mock-tag">ข้อมูลตัวอย่าง</span></header>
+    <div class="ecn-search-body"><div class="ecn-search-grid">
       <label class="ecn-field"><span class="ecn-label">ค้นหาจาก</span><select id="ecnSearchType" class="ecn-select"><option value="claim" selected>เลขที่ CL</option><option value="case">เลขที่ Case</option><option value="ref">เลขที่ CPG / HCG</option><option value="insured">ชื่อผู้เอาประกัน</option><option value="place">สถานศึกษา / สถานพยาบาล</option></select></label>
-      <label class="ecn-field"><span class="ecn-label">ค้นหาข้อมูล</span><span class="ecn-keyword-wrap"><input id="ecnClaimNo" class="ecn-input" type="search" autocomplete="off" placeholder="ระบุเลขที่ CL"><button id="ecnClearBtn" type="button" class="ecn-clear hidden" aria-label="ล้างคำค้นหา"><span class="material-icons-round" aria-hidden="true">close</span></button></span></label>
+      <div class="ecn-field"><label class="ecn-label" for="ecnClaimNo">ค้นหาข้อมูล</label><input id="ecnClaimNo" class="ecn-input" type="search" autocomplete="off" placeholder="ระบุเลขที่ CL"></div>
       <button id="ecnSearchBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button>
+      <button id="ecnClearBtn" type="button" class="ecn-btn ecn-btn-outline ecn-reset-btn"><span class="material-icons-round" aria-hidden="true">restart_alt</span>ล้างค่า</button>
     </div>
     <p id="ecnSearchError" class="ecn-search-error hidden" role="alert">ไม่พบรายการตามคำค้น กรุณาตรวจสอบแล้วค้นหาอีกครั้ง</p>
+    <section class="ecn-samples-surface" aria-labelledby="ecnSamplesHeading"><header class="ecn-section-head"><span class="ecn-head-icon"><span class="material-icons-round" aria-hidden="true">science</span></span><div><h3 id="ecnSamplesHeading">รายการตัวอย่างที่เลือกได้</h3><p>กดเลข CL เพื่อเปิดรายละเอียดรายการ</p></div></header><div id="ecnSampleList" class="ecn-sample-list"></div><p class="ecn-demo-note">*ข้อมูล Mockup แสดงเฉพาะใน Demo เท่านั้น</p></section>
+    </div>
   </section>
-  <div id="ecnInitial" class="ecn-initial"><span class="material-icons-round" aria-hidden="true">manage_search</span><h3>ค้นหารายการที่ต้องการแก้ไข</h3><p>เลือกประเภทข้อมูล ระบุคำค้น แล้วกด “ค้นหา” เพื่อแสดงรายการให้เลือก</p></div>
-  <section id="ecnResult" class="ecn-surface ecn-monitor-results hidden" aria-label="รายการแจ้งเคลม">
-    <div class="ecn-results-heading"><div><h3>รายการแจ้งเคลม</h3><p id="ecnResultCount" aria-live="polite"></p></div></div>
-    <div class="ecn-monitor-table-wrap"><table class="ecn-monitor-table"><thead><tr><th>เลขที่ CL / Case</th><th>ผู้เอาประกัน</th><th>ข้อมูลเคลม</th><th>สถานศึกษา / สถานพยาบาล</th><th>จำนวนเงิน</th><th>สถานะ</th><th>ดำเนินการ</th></tr></thead><tbody id="ecnMonitorBody"></tbody></table></div>
-    <div class="ecn-monitor-footer"><span id="ecnMonitorRange"></span><div><button id="ecnPrevPage" type="button" aria-label="หน้าก่อนหน้า">‹</button><button id="ecnNextPage" type="button" aria-label="หน้าถัดไป">›</button></div></div>
+  <section id="ecnMatchPicker" class="ecn-surface ecn-match-picker hidden" aria-label="เลือกรายการเคลมที่พบ">
+    <label class="ecn-field" for="ecnMatchSelect"><span id="ecnMatchCount" class="ecn-label" aria-live="polite"></span><select id="ecnMatchSelect" class="ecn-select"><option value="">เลือกเลข CL</option></select></label>
   </section>
-</section>
-<section id="editClaimNotificationDetailPage" class="page hidden ecn-page" aria-labelledby="ecnDetailHeading">
-  <div class="ecn-detail-top"><button id="ecnBackBtn" type="button" class="ecn-back"><span class="material-icons-round" aria-hidden="true">arrow_back</span>กลับหน้าค้นหารายการ</button><span class="ecn-mock-tag">ข้อมูลตัวอย่าง · แก้ไขในหน้านี้เท่านั้น</span></div>
-  <div class="ecn-page-intro"><div><span class="ecn-eyebrow">รายละเอียดการแจ้งเคลม</span><h2 id="ecnDetailHeading"></h2><p id="ecnDetailSubtitle"></p></div><span id="ecnDetailStatus" class="ecn-status"></span></div>
+  <section id="editClaimNotificationDetailPage" class="ecn-detail-section hidden" aria-labelledby="ecnDetailHeading">
+  <div class="ecn-page-intro ecn-detail-intro"><span class="ecn-head-icon"><span class="material-icons-round" aria-hidden="true">description</span></span><div><span class="ecn-eyebrow">รายละเอียดการแจ้งเคลม</span><h2 id="ecnDetailHeading"></h2><p id="ecnDetailSubtitle"></p></div><div class="ecn-detail-actions"><span id="ecnDetailStatus" class="ecn-status"></span></div></div>
   <section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">inventory_2</span><h3>ข้อมูลการแจ้งเคลม</h3></div><div id="ecnOverview" class="ecn-overview-grid"></div></section>
   <div class="ecn-two-up"><section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">person</span><h3>ข้อมูลผู้ถือกรมธรรม์</h3></div><div id="ecnPolicy" class="ecn-data-grid"></div></section><section class="ecn-surface"><div class="ecn-section-head"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span><h3>ข้อมูลผู้รับสินไหม</h3></div><div id="ecnPayee" class="ecn-data-grid"></div></section></div>
   <section class="ecn-surface ecn-tab-surface"><div class="ecn-tabs" role="tablist" aria-label="รายละเอียดการแจ้งเคลม"><button id="ecnTabClaim" type="button" class="ecn-tab active" role="tab" aria-selected="true" aria-controls="ecnPanelClaim" data-ecn-tab="claim">ข้อมูลการเคลม</button><button id="ecnTabActivity" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelActivity" data-ecn-tab="activity" tabindex="-1">ประวัติการทำรายการ</button><button id="ecnTabTransfer" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelTransfer" data-ecn-tab="transfer" tabindex="-1">ประวัติการโอนเงิน</button><button id="ecnTabSettlement" type="button" class="ecn-tab" role="tab" aria-selected="false" aria-controls="ecnPanelSettlement" data-ecn-tab="settlement" tabindex="-1">ประวัติการตัดจ่าย</button></div>
@@ -37067,10 +36990,23 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     <div id="ecnPanelActivity" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabActivity" hidden></div><div id="ecnPanelTransfer" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabTransfer" hidden></div><div id="ecnPanelSettlement" class="ecn-tab-panel" role="tabpanel" aria-labelledby="ecnTabSettlement" hidden></div>
   </section>
   <p id="ecnSaveNotice" class="ecn-save-notice hidden" tabindex="-1" role="status" aria-live="polite"></p>
+  </section>
 </section>
 <dialog id="ecnEditModal" class="ecn-edit-dialog" aria-labelledby="ecnModalHeading" aria-describedby="ecnModalDescription">
   <div class="ecn-modal-head"><span class="ecn-modal-icon"><span class="material-icons-round" aria-hidden="true">edit_note</span></span><div><h2 id="ecnModalHeading">แก้ไขการแจ้งเคลม</h2><p id="ecnModalDescription">ตรวจสอบข้อมูลรายการและแก้ไขข้อมูลเคลม</p></div><button id="ecnCloseModal" type="button" class="ecn-modal-close" aria-label="ปิดหน้าต่างแก้ไข"><span class="material-icons-round" aria-hidden="true">close</span></button></div>
-  <div class="ecn-modal-body"><div id="ecnModalSummary" class="ecn-modal-summary"></div><section class="ecn-modal-card"><div class="ecn-modal-card-head"><span class="material-icons-round" aria-hidden="true">assignment</span><h3>ข้อมูลเคลม</h3></div><div class="ecn-modal-form-grid"><label class="ecn-field"><span class="ecn-label">เหตุของการเคลม <b>*</b></span><select id="ecnCause" class="ecn-select"><option value="">กรุณาเลือก</option><option>เจ็บป่วย</option><option>อุบัติเหตุ</option></select></label><label class="ecn-field"><span class="ecn-label">ประเภทความคุ้มครอง <b>*</b></span><select id="ecnCoverage" class="ecn-select"><option value="">กรุณาเลือก</option><option>ค่ารักษา</option><option>ค่าชดเชย</option><option>ทุพพลภาพ/สูญเสียอวัยวะ</option><option>เสียชีวิต</option></select></label><label class="ecn-field"><span class="ecn-label">ประเภทการรักษา <b>*</b></span><select id="ecnTreatment" class="ecn-select"></select></label><label class="ecn-field"><span class="ecn-label">ผู้ร้องขอ <b>*</b></span><select id="ecnRequester" class="ecn-select"><option value="">กรุณาเลือก</option><option>08135 - นายณัฐภูมิ กองเพ็ง</option><option>08142 - นางสาววราภรณ์ วัฒนะ</option><option>08201 - นายกิตติศักดิ์ แสงทอง</option></select></label></div></section><p id="ecnModalError" class="ecn-modal-error hidden" role="alert">กรุณาเลือกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน</p></div>
+  <div class="ecn-modal-body">
+    <div id="ecnModalSummary" class="ecn-modal-summary"></div>
+    <section class="ecn-modal-card">
+      <div class="ecn-modal-card-head"><span class="material-icons-round" aria-hidden="true">assignment</span><h3>ข้อมูลเคลม</h3></div>
+      <div class="ecn-modal-form-grid">
+        <fieldset class="ecn-choice-field"><legend class="ecn-label">เหตุของการเคลม <b>*</b></legend><div id="ecnCause" class="ecn-choice-list"></div><p id="ecnCauseError" class="ecn-field-error hidden"></p></fieldset>
+        <fieldset class="ecn-choice-field"><legend class="ecn-label">ประเภทความคุ้มครอง <b>*</b> <span id="ecnCoverageProductHint" class="ecn-product-hint"></span></legend><div id="ecnCoverage" class="ecn-choice-list"></div><p id="ecnCoverageError" class="ecn-field-error hidden"></p></fieldset>
+        <fieldset class="ecn-choice-field ecn-treatment-field"><legend class="ecn-label">ประเภทการรักษา <b>*</b></legend><div id="ecnTreatment" class="ecn-choice-list"></div><p id="ecnTreatmentError" class="ecn-field-error hidden"></p></fieldset>
+        <label class="ecn-field ecn-requester-field"><span class="ecn-label">ผู้ร้องขอ <b>*</b></span><select id="ecnRequester" class="ecn-select"><option value="">กรุณาเลือก</option><option>08135 - นายณัฐภูมิ กองเพ็ง</option><option>08142 - นางสาววราภรณ์ วัฒนะ</option><option>08201 - นายกิตติศักดิ์ แสงทอง</option></select></label>
+      </div>
+    </section>
+    <p id="ecnModalError" class="ecn-modal-error hidden" role="alert">กรุณาเลือกข้อมูลที่มีเครื่องหมาย * ให้ครบถ้วน</p>
+  </div>
   <div class="ecn-modal-actions"><button id="ecnCancelBtn" type="button" class="ecn-btn ecn-btn-outline">ยกเลิก</button><button id="ecnSaveBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round" aria-hidden="true">save</span>บันทึกการแก้ไข</button></div>
 </dialog>
 
@@ -37152,8 +37088,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const input = document.getElementById('ecnClaimNo');
       if (input) input.value = '';
       document.getElementById('ecnSearchError')?.classList.add('hidden');
-      document.getElementById('ecnResult')?.classList.add('hidden');
-      document.getElementById('ecnInitial')?.classList.remove('hidden');
+      document.getElementById('ecnMatchPicker')?.classList.add('hidden');
+      document.getElementById('editClaimNotificationDetailPage')?.classList.add('hidden');
     }, true);
   });
 })();
@@ -46502,6 +46438,19 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     box-sizing:border-box!important;
     text-align:left!important;
   }
+  #claimDataManagementSubmenu > #submenuCorrectWrongInsured[hidden]{
+    display:none!important;
+  }
+  :is(#claimSubmenu,#claimDataManagementSubmenu) > button{
+    height:auto!important;
+    min-height:2.5rem!important;
+    padding-top:.5rem!important;
+    padding-bottom:.5rem!important;
+  }
+  :is(#claimSubmenu,#claimDataManagementSubmenu) > button > span:not(.material-icons-round){
+    line-height:1.25!important;
+    overflow-wrap:anywhere;
+  }
   :is(
     #dashboardSubmenu,
     #claimSubmenu,
@@ -53947,8 +53896,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "371",
-  updatedAt: "07/10/2026 15:54:12"
+  version: "386",
+  updatedAt: "08/10/2026 14:47:11"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -63592,10 +63541,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-consider-step3-wording.js"></script>
 
 <!-- แจ้งเคลม > ติดตามการโอนเงิน > รายละเอียด: functional history tabs -->
-<script src="js/transfer-claim-detail-tabs.js?v=259"></script>
+<script src="js/transfer-claim-detail-tabs.js?v=383"></script>
 
 <!-- แจ้งเคลม > ติดตามการโอนเงิน > รายละเอียด: scoped visual refresh -->
-<link rel="stylesheet" href="css/transfer-claim-detail-refresh.css?v=262">
+<link rel="stylesheet" href="css/transfer-claim-detail-refresh.css?v=383">
 <link rel="stylesheet" href="css/transfer-tracking-details.css?v=8">
 <link rel="stylesheet" href="css/eligibility-shared-benefits.css?v=1">
 <link rel="stylesheet" href="css/claim-record-product-selector.css?v=1">
@@ -64670,7 +64619,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const hospital=transferTrackingState.mode==='hospital';
     const dateType=document.getElementById('ttDateType')?.value||'วันที่สร้างรายการ';
     const dateTypeLabel=document.getElementById('ttDateType')?.selectedOptions?.[0]?.textContent||dateType;
-    head.innerHTML=`<tr><th aria-label="ขยายรายละเอียด"></th><th>เลขที่การโอนเงิน</th><th>${esc(dateTypeLabel)}</th><th class="tt-recipient-heading">${hospital?'สถานพยาบาล':'ผู้รับเงิน / กลุ่มการโอน'}</th><th>เลขที่ Claim</th><th>เลขที่ Case</th>${hospital?'':'<th>ผลิตภัณฑ์</th>'}<th class="tt-amount-heading">จำนวนเงิน</th><th>สถานะการโอน</th><th class="text-center">ดำเนินการ</th></tr>`;
+    head.innerHTML=`<tr><th aria-label="ขยายรายละเอียด"></th><th>เลขที่การโอนเงิน</th><th>${esc(dateTypeLabel)}</th><th class="tt-recipient-heading">${hospital?'สถานพยาบาล':'ชื่อบัญชีสินไหม'}</th><th>เลขที่ Claim</th><th>เลขที่ Case</th>${hospital?'':'<th>ผลิตภัณฑ์</th>'}<th class="tt-amount-heading">จำนวนเงิน</th><th>สถานะการโอน</th><th class="text-center">ดำเนินการ</th></tr>`;
     const columnCount=hospital?9:10;
     if(!transferTrackingState.rows.length){body.innerHTML=`<tr><td colspan="${columnCount}"><div class="tt-empty-state"><span class="tt-empty-icon"><span class="material-icons-round" aria-hidden="true">search_off</span></span><strong>ไม่พบรายการตามเงื่อนไขที่เลือก</strong><span>ลองปรับช่วงวันที่ ตัวกรอง หรือคำค้นหาแล้วค้นหาอีกครั้ง</span></div></td></tr>`;syncPager();return;}
     body.innerHTML=pageRows().map(({row,sourceIndex})=>{
@@ -64899,8 +64848,13 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 })();
 </script>
 
+<!-- แจ้งเคลม > รายละเอียดการแจ้งเคลม: document preview เฉพาะหน้านี้ -->
+<link rel="stylesheet" href="css/transfer-claim-document-preview.css?v=382">
+<script src="js/mock-data/transfer-claim-documents.mock.js?v=382"></script>
+<script src="js/transfer-claim-document-preview.js?v=382"></script>
+
 <!-- แจ้งเคลม: เลือกประเภทเคลม และส่งเคลมโรงพยาบาลเข้าคิวพิจารณา (authoritative late patch) -->
-<script src="js/menu-claim-entry-category.js"></script>
+<script src="js/menu-claim-entry-category.js?v=386"></script>
 <script src="js/menu-claim-entry-recipients.js?v=1"></script>
 
 <!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
@@ -65068,7 +65022,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 </style>
 
 <link rel="stylesheet" href="css/menu-transfer-tracking-search.css?v=369">
-<link rel="stylesheet" href="css/menu-edit-claim-notification.css?v=370">
-<script src="js/menu-edit-claim-notification.js?v=370"></script>
+<link rel="stylesheet" href="css/menu-edit-claim-notification.css?v=385">
+<script src="js/edit-claim-notification-rules.js?v=1"></script>
+<script src="js/menu-edit-claim-notification.js?v=380"></script>
 </body>
 </html>
