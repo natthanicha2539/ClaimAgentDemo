@@ -33625,6 +33625,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 <script id="hospital-status-review-correction-patch-script">
 (function(){
   const STATUS_REVIEW = 'รอตรวจสอบการแก้ไข';
+  const activeConsiderationTab = () => typeof currentConsiderationTab !== 'undefined' ? currentConsiderationTab : 'customer';
   const hospitalCorrectionDefaults = [
     {
       reason: 'โรงพยาบาลแก้ไขเอกสารตามที่แจ้งแล้ว รอตรวจสอบความถูกต้องอีกครั้ง',
@@ -33687,8 +33688,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   try { getConsiderItemStatusBadge = window.getConsiderItemStatusBadge; } catch(e) {}
 
   window.getConsiderVisibleRows = function(){
-    const sourceRows = currentConsiderationTab === 'customer' ? considerationCustomerRows : considerationHospitalRows;
-    const statusValue = considerItemStatusFilterValue || 'all';
+    const sourceRows = activeConsiderationTab() === 'customer'
+      ? (typeof considerationCustomerRows !== 'undefined' ? considerationCustomerRows : [])
+      : (typeof considerationHospitalRows !== 'undefined' ? considerationHospitalRows : []);
+    const statusValue = typeof considerItemStatusFilterValue !== 'undefined' ? considerItemStatusFilterValue || 'all' : 'all';
     return sourceRows
       .map((row, index) => ({ row, realIndex: index }))
       .filter(({ row }) => statusValue === 'all' || row.itemStatus === statusValue);
@@ -33721,7 +33724,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     if(typeof oldRender === 'function') oldRender();
     try{
       // If old render used old lexical getConsiderVisibleRows for hospital, re-render only hospital rows here to include filter/new status accurately.
-      if(currentConsiderationTab !== 'hospital') return;
+      if(activeConsiderationTab() !== 'hospital') return;
       const head = document.getElementById('considerTableHead');
       const body = document.getElementById('considerTableBody');
       const pager = document.getElementById('considerPaginationText');
@@ -33806,7 +33809,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const statusButtonWrap = document.getElementById('considerStatusButtonFilterWrap');
     if(statusButtonWrap) statusButtonWrap.style.display = 'flex';
     const waitingDocsFilter = statusButtonWrap?.querySelector('.consider-status-filter-btn[data-status="รอเอกสาร"]');
-    if(waitingDocsFilter) waitingDocsFilter.style.display = currentConsiderationTab === 'hospital' ? 'none' : '';
+    if(waitingDocsFilter) waitingDocsFilter.style.display = activeConsiderationTab() === 'hospital' ? 'none' : '';
     if(typeof window.renderConsiderationTable === 'function') window.renderConsiderationTable();
   });
   setTimeout(function(){
@@ -33970,6 +33973,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 <script id="hospital-inprogress-substatus-patch-script">
 (function(){
   const STATUS_IN_PROGRESS = 'อยู่ระหว่างดำเนินการ';
+  const activeConsiderationTab = () => typeof currentConsiderationTab !== 'undefined' ? currentConsiderationTab : 'customer';
   const STATUS_REVIEW = 'รอตรวจสอบการแก้ไข';
 
   function escapeHtml(value){
@@ -34018,8 +34022,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   try { getConsiderItemStatusBadge = window.getConsiderItemStatusBadge; } catch(e) {}
 
   window.getConsiderVisibleRows = function(){
-    const sourceRows = currentConsiderationTab === 'customer' ? considerationCustomerRows : considerationHospitalRows;
-    const statusValue = considerItemStatusFilterValue || 'all';
+    const sourceRows = activeConsiderationTab() === 'customer'
+      ? (typeof considerationCustomerRows !== 'undefined' ? considerationCustomerRows : [])
+      : (typeof considerationHospitalRows !== 'undefined' ? considerationHospitalRows : []);
+    const statusValue = typeof considerItemStatusFilterValue !== 'undefined' ? considerItemStatusFilterValue || 'all' : 'all';
     return sourceRows
       .map((row, index) => ({ row, realIndex: index }))
       .filter(({ row }) => statusValue === 'all' || row.itemStatus === statusValue);
@@ -34032,7 +34038,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     ensureInProgressFilterButton();
     if(typeof prevRender === 'function') prevRender();
     try{
-      if(currentConsiderationTab !== 'hospital') return;
+      if(activeConsiderationTab() !== 'hospital') return;
       const head = document.getElementById('considerTableHead');
       const body = document.getElementById('considerTableBody');
       const pager = document.getElementById('considerPaginationText');
@@ -53899,8 +53905,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "424",
-  updatedAt: "10/10/2026 13:30:20"
+  version: "425",
+  updatedAt: "10/10/2026 14:05:41"
 });
 
 (function renderClaimAgentBuildInfo(){
