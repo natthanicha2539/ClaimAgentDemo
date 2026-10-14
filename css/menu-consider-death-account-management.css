@@ -1,0 +1,371 @@
+#considerDeathDetailPage .dd-transfer-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dbe7f3;
+}
+
+#considerDeathDetailPage .dd-transfer-detail-head .dd-section-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#considerDeathDetailPage .dd-transfer-detail-actions {
+  display: flex;
+  flex: none;
+  gap: 10px;
+}
+
+#considerDeathDetailPage .dd-account-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d4ed8;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+#considerDeathDetailPage .dd-account-action:hover {
+  border-color: #60a5fa;
+  background: #eff6ff;
+}
+
+#considerDeathDetailPage .dd-account-action-delete {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+#considerDeathDetailPage .dd-account-action-delete:hover {
+  border-color: #f87171;
+  background: #fef2f2;
+}
+
+#considerDeathDetailPage .dd-account-action:focus-visible,
+#considerDeathDetailPage #ddThirdPartyCashBtn:focus-visible,
+.dd-account-confirm-delete:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, .28);
+  outline-offset: 2px;
+}
+
+#considerDeathDetailPage #ddThirdPartyCashBtn:disabled,
+#considerDeathDetailPage #ddThirdPartyCashBtn.is-account-saved {
+  border-color: #cbd5e1;
+  background: #e2e8f0;
+  color: #64748b;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: .8;
+  transform: none;
+}
+
+.death-change-account-modal .death-form-field textarea {
+  resize: none;
+}
+
+.death-change-account-modal .death-form-field [aria-invalid="true"] {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .12);
+}
+
+.death-change-account-modal .death-save-success.is-error {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+#claimModalBox.dd-account-modal-host {
+  width: min(760px, calc(100vw - 32px)) !important;
+  max-width: 760px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal {
+  max-height: calc(100dvh - 40px) !important;
+  border-radius: 20px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-head {
+  padding: 16px 20px 13px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title-wrap {
+  align-items: center;
+  gap: 12px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title-icon .material-icons-round {
+  font-size: 25px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title {
+  font-size: 25px;
+  line-height: 1.2;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-subtitle {
+  margin-top: 3px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-body {
+  padding: 14px 20px 18px !important;
+  scrollbar-gutter: stable;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-item {
+  gap: 10px;
+  padding: 11px 13px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-icon .material-icons-round {
+  font-size: 23px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-label {
+  font-size: 13px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-value {
+  margin-top: 3px;
+  font-size: 16px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-overview-value.amount {
+  font-size: 19px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-note {
+  margin: 10px 0 !important;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-row {
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 10px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-row-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-row-icon .material-icons-round {
+  font-size: 23px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-fields {
+  gap: 9px 10px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-field label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-field :is(input, select) {
+  height: 46px;
+  border-radius: 11px;
+  padding-inline: 13px;
+  font-size: 16px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-field textarea {
+  height: 70px !important;
+  min-height: 70px;
+  border-radius: 11px;
+  padding: 10px 13px;
+  font-size: 16px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-upload-box {
+  min-height: 76px !important;
+  gap: 3px;
+  border-radius: 13px;
+  padding: 10px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-upload-box .material-icons-round {
+  font-size: 30px !important;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-upload-box strong {
+  font-size: 15px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-upload-box span {
+  font-size: 13px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-actions {
+  margin-top: 12px !important;
+  gap: 12px;
+}
+
+#claimModalBox.dd-account-modal-host .death-change-account-modal :is(.death-btn-secondary, .death-btn-primary) {
+  height: 48px;
+  min-width: 190px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.dd-account-delete-confirm {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 32px);
+}
+
+.dd-account-delete-confirm .death-modal-title-icon {
+  background: #fef2f2;
+  color: #b91c1c;
+  box-shadow: inset 0 0 0 1px #fecaca;
+}
+
+.dd-account-delete-confirm .death-modal-body {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.dd-account-delete-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #fed7aa;
+  border-radius: 16px;
+  background: #fff7ed;
+  color: #9a3412;
+}
+
+.dd-account-delete-message > .material-icons-round {
+  flex: none;
+  font-size: 30px !important;
+}
+
+.dd-account-delete-message strong {
+  color: #7c2d12;
+  font-size: 18px;
+}
+
+.dd-account-delete-message p {
+  margin-top: 5px;
+  color: #9a3412;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.dd-account-confirm-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 220px;
+  height: 54px;
+  padding: 0 24px;
+  border: 1px solid #b91c1c;
+  border-radius: 14px;
+  background: #b91c1c;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background-color .15s ease, box-shadow .15s ease;
+}
+
+.dd-account-confirm-delete:hover {
+  background: #991b1b;
+  box-shadow: 0 12px 24px rgba(185, 28, 28, .2);
+}
+
+@media (max-width: 640px) {
+  #claimModalBox.dd-account-modal-host {
+    width: calc(100vw - 20px) !important;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal {
+    max-height: calc(100dvh - 20px) !important;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-head {
+    padding: 13px 14px 11px !important;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-body {
+    padding: 12px 14px 14px !important;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title {
+    font-size: 20px;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-modal-title-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal .death-form-row-icon {
+    display: none;
+  }
+
+  #claimModalBox.dd-account-modal-host .death-change-account-modal :is(.death-btn-secondary, .death-btn-primary) {
+    min-width: 0;
+  }
+
+  #considerDeathDetailPage .dd-transfer-detail-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #considerDeathDetailPage .dd-transfer-detail-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #considerDeathDetailPage .dd-account-action {
+    min-height: 46px;
+  }
+
+  .dd-account-confirm-delete {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #considerDeathDetailPage .dd-account-action,
+  .dd-account-confirm-delete {
+    transition: none;
+  }
+}
