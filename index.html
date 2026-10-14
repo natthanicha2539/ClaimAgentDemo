@@ -9783,7 +9783,7 @@ body > .min-h-screen > main,
             <span class="grid h-11 w-11 place-items-center rounded-xl bg-brand-600 text-white"><span class="material-icons-round">manage_search</span></span>
             <div><h3 id="claimSearchSectionTitle" class="text-2xl font-extrabold text-slate-800">ค้นหาการแจ้งเคลม</h3><p id="claimSearchSectionDesc" class="text-sm font-semibold text-slate-500">ค้นหาและตรวจสอบสถานะรายการแจ้งเคลม PH / PA</p></div>
           </header>
-          <form id="claimRecordSearchForm" class="p-5">
+          <form id="claimRecordSearchForm" class="p-5" novalidate>
             <div class="mb-5">
               <div id="claimRecordProductLabel" class="claim-record-product-label">เลือกผลิตภัณฑ์ <span class="text-danger">*</span></div>
               <div id="claimRecordProductButtons" role="group" aria-labelledby="claimRecordProductLabel">
@@ -14540,7 +14540,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const isPH = claimRecordProduct === 'PH';
       document.getElementById('claimRecordTableHead').innerHTML = `<tr><th class="px-4 py-3 text-left">เลข CPG</th><th class="px-4 py-3 text-left">เลข CL</th><th class="px-4 py-3 text-left">วันที่สร้างเคลม</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">${isPH?'เลขบัตรประชาชน':'ชื่อสถานศึกษา'}</th><th class="px-4 py-3 text-right">${isPH ? 'จำนวนเงินโอน' : 'จำนวนเงิน'}</th><th class="px-4 py-3 text-left">สถานะการโอนเงิน</th><th class="px-4 py-3 text-center">จัดการ</th></tr>`;
       const body = document.getElementById('claimRecordTableBody');
-      body.innerHTML = rows.length ? rows.map((r,i)=>`<tr class="hover:bg-brand-25"><td class="px-4 py-4 font-bold text-brand-700">${r.cpg}</td><td class="px-4 py-4"><button type="button" onclick="openClaimRecordDetail(${i})" class="font-extrabold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-900 hover:decoration-brand-700" title="ดูรายละเอียด ${r.cl}">${r.cl}</button></td><td class="px-4 py-4">${r.date}</td><td class="px-4 py-4 font-semibold">${r.name}</td><td class="px-4 py-4">${isPH?(r.id||r.passport||'-'):r.school}</td><td class="px-4 py-4 text-right font-extrabold text-brand-700">${r.amount}</td><td class="px-4 py-4">${claimRecordStatusBadge(r.status)}</td><td class="px-4 py-4 text-center"><button type="button" onclick="openClaimRecordDetail(${i})" class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm transition hover:bg-brand-600 hover:text-white" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>`).join('') : `<tr><td colspan="8" class="px-5 py-12 text-center font-bold text-slate-400">ไม่พบข้อมูลตามเงื่อนไขที่ค้นหา</td></tr>`;
+      body.innerHTML = rows.length ? rows.map((r,i)=>`<tr class="hover:bg-brand-25"><td class="px-4 py-4 font-bold text-brand-700">${r.cpg}</td><td class="px-4 py-4"><button type="button" onclick="openClaimRecordDetail(${i})" class="font-extrabold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-900 hover:decoration-brand-700" title="ดูรายละเอียด ${r.cl}">${r.cl}</button></td><td class="px-4 py-4">${r.date}</td><td class="px-4 py-4 font-semibold">${r.name}${r.claimType === 'Death Claim' ? '<span class="crd-death-list-badge">Death Claim · ตัวอย่าง</span>' : ''}</td><td class="px-4 py-4">${isPH?(r.id||r.passport||'-'):r.school}</td><td class="px-4 py-4 text-right font-extrabold text-brand-700">${r.amount}</td><td class="px-4 py-4">${claimRecordStatusBadge(r.status)}</td><td class="px-4 py-4 text-center"><button type="button" onclick="openClaimRecordDetail(${i})" class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm transition hover:bg-brand-600 hover:text-white" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>`).join('') : `<tr><td colspan="8" class="px-5 py-12 text-center font-bold text-slate-400">ไม่พบข้อมูลตามเงื่อนไขที่ค้นหา</td></tr>`;
       document.getElementById('claimRecordResultCaption').textContent = `ผลิตภัณฑ์ ${claimRecordProduct}`;
       document.getElementById('claimRecordResultCount').textContent = `พบ ${rows.length} รายการ`;
       document.getElementById('claimRecordResultSection').classList.remove('hidden');
@@ -14556,7 +14556,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         return;
       }
       const map = {'เลขที่ CL':'cl','เลขที่ Case':'caseNo','เลขที่ CPG':'cpg','เลขบัตรประชาชน':'id','เลข Passport/G-Code':'passport','AppID':'appId','เลขบัตรประกันนักเรียน':'studentCard','ชื่อ-สกุลผู้เอาประกัน':'name'};
-      const rows = claimRecordRows[claimRecordProduct].filter(r => !keyword || String(r[map[type]]||'').toLowerCase().includes(keyword));
+      const sourceRows = claimRecordSearchSource === 'claimMenu'
+        ? claimRecordRows[claimRecordProduct].concat((window.claimRecordDeathMockRows || []).filter(r => r.product === claimRecordProduct))
+        : claimRecordRows[claimRecordProduct];
+      const rows = sourceRows.filter(r => !keyword || String(r[map[type]]||'').toLowerCase().includes(keyword));
       renderClaimRecordResults(rows);
     }
     let currentClaimRecordDetail = null;
@@ -14751,6 +14754,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       switchClaimRecordDetailTab('claim');
     }
     function renderClaimRecordPhDetail(r) {
+      if (r.claimType === 'Death Claim' && window.claimRecordDeathMock?.renderDetail) {
+        window.claimRecordDeathMock.renderDetail(r);
+        return;
+      }
+      window.claimRecordDeathMock?.resetDetail();
       currentClaimRecordDetail = r;
       renderClaimRecordDetailPage(getClaimRecordPhDetailPayload(r));
     }
@@ -53905,8 +53913,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "435",
-  updatedAt: "12/10/2026 16:35:19"
+  version: "438",
+  updatedAt: "14/10/2026 13:56:32"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -63565,6 +63573,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <link rel="stylesheet" href="css/claim-record-detail-refresh.css?v=257">
 <link rel="stylesheet" href="css/claim-detail-icon-actions.css?v=1">
 <script src="js/claim-detail-action-tooltips.js?v=2"></script>
+<link rel="stylesheet" href="css/menu-claim-record-death-mock.css?v=438">
+<script src="js/menu-claim-record-death-mock.js?v=438"></script>
 
 <style id="v144-transfer-tracking-premium-reference">
   /* แจ้งเคลม > ติดตามการโอนเงิน — scoped visual system based on the supplied v21 reference. */
