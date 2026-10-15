@@ -9287,6 +9287,7 @@ body > .min-h-screen > main,
       </header>
 
       <section id="homeAnnouncementsPage" class="page hidden ca-home" aria-labelledby="caHomeTitle"></section>
+      <section id="homeAnnouncementHistoryPage" class="page hidden ca-home ca-history-page" aria-labelledby="caHistoryTitle"></section>
 
       <!-- Dev: Master -->
       <section id="devMasterPage" class="page hidden p-4 lg:p-6">
@@ -11944,7 +11945,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="tt-transfer-type-tabs" role="tablist" aria-label="ประเภทการโอนเงิน">
           <button id="ttCustomerModeBtn" type="button" class="tt-transfer-type-tab active" role="tab" aria-selected="true" onclick="setTransferTrackingType('customer')">
             <span class="material-icons-round" aria-hidden="true">person</span>
-            <span>เคลมลูกค้า (CPG)</span>
+            <span>เคลมลูกค้า (PMC)</span>
           </button>
           <button id="ttHospitalModeBtn" type="button" class="tt-transfer-type-tab" role="tab" aria-selected="false" onclick="setTransferTrackingType('hospital')">
             <span class="material-icons-round" aria-hidden="true">local_hospital</span>
@@ -11990,7 +11991,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <label class="tt-monitor-control tt-monitor-search-type">
               <span class="tt-monitor-label">ค้นหาจาก</span>
               <select id="ttSearchType" class="tt-monitor-input" aria-label="ค้นหาจาก">
-                <option value="cpg">เลขที่ CPG</option>
+                <option value="cpg">เลขที่ PMC</option>
                 <option value="claim" selected>เลขที่ CL</option>
                 <option value="case">เลขที่ Case</option>
                 <option value="insured">ชื่อผู้เอาประกัน</option>
@@ -12167,11 +12168,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="at-table-shell">
           <div class="overflow-x-auto">
             <table class="at-table">
-              <thead><tr><th>เลขที่ CPG</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>สาขาเมื่อเคลม</th><th>จำนวนเงิน</th><th>โอนเพิ่ม</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead>
+              <thead><tr><th>เลขที่ PMC</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>สาขาเมื่อเคลม</th><th>จำนวนเงิน</th><th>โอนเพิ่ม</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead>
               <tbody id="additionalTransferTableBody">
-                <tr data-status="wait"><td>CPG000XXX</td><td>11/10/2569 13:24:23</td><td>โรงเรียนบ้านท่ามะกา</td><td>กาญจนบุรี</td><td class="at-money">4,000.00</td><td class="at-money">600.00</td><td><span class="at-status wait">• รอดำเนินการ</span></td><td>-</td><td class="text-center"><button class="at-action view" data-at-view="0" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>
-                <tr data-status="wait"><td>CPG000XXX</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชนก สุวรรณโชค</td><td>สำนักงานใหญ่</td><td class="at-money">1,700.00</td><td class="at-money">300.00</td><td><span class="at-status wait">• รอดำเนินการ</span></td><td>-</td><td class="text-center"><button class="at-action view" data-at-view="1" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>
-                <tr data-status="fail"><td>CPG000XXX</td><td>10/10/2569 11:24:23</td><td>นายปรเมศ คำภาพันธ์</td><td>สำนักงานใหญ่</td><td class="at-money">1,000.00</td><td class="at-money">100.00</td><td><span class="at-status fail">• โอนเงินไม่สำเร็จ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="at-action view" data-at-view="2" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button><button class="at-action edit" type="button" title="แก้ไข"><span class="material-icons-round !text-lg">edit</span></button></td></tr>
+                <tr data-status="wait"><td>PMC000XXX</td><td>11/10/2569 13:24:23</td><td>โรงเรียนบ้านท่ามะกา</td><td>กาญจนบุรี</td><td class="at-money">4,000.00</td><td class="at-money">600.00</td><td><span class="at-status wait">• รอดำเนินการ</span></td><td>-</td><td class="text-center"><button class="at-action view" data-at-view="0" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>
+                <tr data-status="wait"><td>PMC000XXX</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชนก สุวรรณโชค</td><td>สำนักงานใหญ่</td><td class="at-money">1,700.00</td><td class="at-money">300.00</td><td><span class="at-status wait">• รอดำเนินการ</span></td><td>-</td><td class="text-center"><button class="at-action view" data-at-view="1" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>
+                <tr data-status="fail"><td>PMC000XXX</td><td>10/10/2569 11:24:23</td><td>นายปรเมศ คำภาพันธ์</td><td>สำนักงานใหญ่</td><td class="at-money">1,000.00</td><td class="at-money">100.00</td><td><span class="at-status fail">• โอนเงินไม่สำเร็จ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="at-action view" data-at-view="2" title="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button><button class="at-action edit" type="button" title="แก้ไข"><span class="material-icons-round !text-lg">edit</span></button></td></tr>
               </tbody>
             </table>
           </div>
@@ -12188,14 +12189,14 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
 
       <section id="additionalTransferDetailPage" class="atx-page page hidden">
-        <div class="atx-breadcrumb">เมนูโอนเพิ่ม &nbsp;&gt;&nbsp; <b id="atxBreadcrumbCpg">CPG000XXX</b></div>
+        <div class="atx-breadcrumb">เมนูโอนเพิ่ม &nbsp;&gt;&nbsp; <b id="atxBreadcrumbCpg">PMC000XXX</b></div>
         <div class="atx-tabs">
           <button class="atx-tab active" type="button">ข้อมูลรายละเอียด</button>
           <button class="atx-tab" type="button">ประวัติการทำรายการ</button>
           <button class="atx-tab" type="button">ประวัติการโอนเงิน</button>
         </div>
         <div class="atx-summary">
-          <div><div class="atx-kv"><b>เลขที่ CPG :</b><span id="atxCpgText">CPG000XXX</span></div><div class="atx-kv mt-3"><b>บัญชีส่วนกลาง :</b><span>1921000025 SMILE TPA CO LTD</span></div></div>
+          <div><div class="atx-kv"><b>เลขที่ PMC :</b><span id="atxCpgText">PMC000XXX</span></div><div class="atx-kv mt-3"><b>บัญชีส่วนกลาง :</b><span>1921000025 SMILE TPA CO LTD</span></div></div>
           <div><div class="atx-kv"><b>ชื่อผู้เอาประกัน :</b><span>โรงเรียนบ้านท่ามะกา</span></div><div class="atx-kv mt-3"><b>ผู้ทำรายการ :</b><span>00054 - สุรัตนา อินทะปัญญา</span></div></div>
           <div><div class="atx-kv"><b>จำนวนการเคลม :</b><span>2</span></div><div class="atx-kv mt-3"><b>จำนวนเงิน :</b><span>2,300.00</span></div></div>
         </div>
@@ -12238,7 +12239,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         <div class="atx-footer"><button id="atxBackBtn" type="button" class="atx-secondary">กลับ</button><button id="atxNotifyBtn" type="button" class="atx-success"><span class="material-icons-round">chat</span>แจ้งโอนเงิน</button></div>
       </section>
 
-      <div id="atxSearchModal" class="atx-modal hidden"><div class="atx-card"><div class="atx-head"><div class="atx-head-left"><span class="atx-head-icon"><span class="material-icons-round">person_search</span></span><div class="atx-title">ค้นหารายการ</div></div><button id="atxSearchClose" class="atx-close" type="button"><span class="material-icons-round">close</span></button></div><div class="atx-body"><div class="atx-search-row"><div class="atx-control"><label>เลขที่ CPG / CL <span class="text-red-500">*</span></label><input id="atxSearchInput" class="atx-input" placeholder="กรุณากรอกเลขที่ CPG / CL"></div><button id="atxSearchSave" class="atx-primary" type="button">บันทึก</button></div></div></div></div>
+      <div id="atxSearchModal" class="atx-modal hidden"><div class="atx-card"><div class="atx-head"><div class="atx-head-left"><span class="atx-head-icon"><span class="material-icons-round">person_search</span></span><div class="atx-title">ค้นหารายการ</div></div><button id="atxSearchClose" class="atx-close" type="button"><span class="material-icons-round">close</span></button></div><div class="atx-body"><div class="atx-search-row"><div class="atx-control"><label>เลขที่ PMC / CL <span class="text-red-500">*</span></label><input id="atxSearchInput" class="atx-input" placeholder="กรุณากรอกเลขที่ PMC / CL"></div><button id="atxSearchSave" class="atx-primary" type="button">บันทึก</button></div></div></div></div>
 
       <div id="atxConfirmModal" class="atx-modal hidden"><div class="atx-card atx-confirm-card"><div class="atx-big-icon"><span class="material-icons-round">question_mark</span></div><div class="atx-confirm-title">ยืนยันการทำรายการ</div><div class="atx-confirm-sub">ต้องการยืนยันการทำรายการใช่หรือไม่</div><div class="atx-confirm-actions"><button id="atxConfirmCancel" class="atx-danger" type="button">ยกเลิก</button><button id="atxConfirmOk" class="atx-success" type="button">ยืนยัน</button></div></div></div>
 
@@ -12251,25 +12252,25 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div><label class="rf-label">สถานะ<span class="req">*</span></label><select id="refundStatus" class="rf-select"><option value="all">ทั้งหมด</option><option value="wait">รอดำเนินการ</option><option value="reject">ปฏิเสธการคืนเงิน</option></select></div>
           <button id="refundCreateBtn" class="rf-primary" type="button"><span class="material-icons-round">currency_exchange</span>โอนคืน</button>
         </div></div>
-        <div class="rf-table-shell"><div class="overflow-x-auto"><table class="rf-table"><thead><tr><th>รหัสรายการ</th><th>เลขที่ CPG</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>จำนวนเงิน</th><th>โอนคืน</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead><tbody id="refundTableBody">
-          <tr data-status="wait"><td>RT681200011</td><td>CPG000XXX</td><td>11/10/2569 13:24:23</td><td>โรงเรียนบ้านนาเก</td><td class="rf-money">4,000.00</td><td class="rf-money">600.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
-          <tr data-status="wait"><td>RT690500010</td><td>CPG000XXX</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชนก สุวรรณโชค</td><td class="rf-money">1,700.00</td><td class="rf-money">300.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
-          <tr data-status="wait"><td>RT690500009</td><td>CPG000XXX</td><td>10/10/2569 11:24:23</td><td>นางสาว ปวิตรา แผนสุวรรณ์</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>เลขที่บัญชีปลายทางไม่ถูกต้อง</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
-          <tr data-status="wait"><td>RT690500008</td><td>CPG000XXX</td><td>10/10/2569 11:24:23</td><td>นายปรเมศ คำภาพันธ์</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
-          <tr data-status="reject"><td>RT690500007</td><td>CPG000XXX</td><td>10/10/2569 11:24:23</td><td>นายธนิก เงินลำยอง</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status reject">• ปฏิเสธการคืนเงิน</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="rf-action reject"><span class="material-icons-round">close</span></button></td></tr>
+        <div class="rf-table-shell"><div class="overflow-x-auto"><table class="rf-table"><thead><tr><th>รหัสรายการ</th><th>เลขที่ PMC</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>จำนวนเงิน</th><th>โอนคืน</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead><tbody id="refundTableBody">
+          <tr data-status="wait"><td>RT681200011</td><td>PMC000XXX</td><td>11/10/2569 13:24:23</td><td>โรงเรียนบ้านนาเก</td><td class="rf-money">4,000.00</td><td class="rf-money">600.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
+          <tr data-status="wait"><td>RT690500010</td><td>PMC000XXX</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชนก สุวรรณโชค</td><td class="rf-money">1,700.00</td><td class="rf-money">300.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
+          <tr data-status="wait"><td>RT690500009</td><td>PMC000XXX</td><td>10/10/2569 11:24:23</td><td>นางสาว ปวิตรา แผนสุวรรณ์</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>เลขที่บัญชีปลายทางไม่ถูกต้อง</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
+          <tr data-status="wait"><td>RT690500008</td><td>PMC000XXX</td><td>10/10/2569 11:24:23</td><td>นายปรเมศ คำภาพันธ์</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status wait">• รอดำเนินการ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="rf-action"><span class="material-icons-round">visibility</span></button></td></tr>
+          <tr data-status="reject"><td>RT690500007</td><td>PMC000XXX</td><td>10/10/2569 11:24:23</td><td>นายธนิก เงินลำยอง</td><td class="rf-money">1,000.00</td><td class="rf-money">100.00</td><td><span class="rf-status reject">• ปฏิเสธการคืนเงิน</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="rf-action reject"><span class="material-icons-round">close</span></button></td></tr>
         </tbody></table></div><div class="rf-pager"><span>ข้อมูลต่อหน้า</span><strong>10</strong><span>1–5 จาก 5</span><span class="material-icons-round">chevron_left</span><span class="material-icons-round">chevron_right</span></div></div>
       </section>
 
       <section id="refundDetailPage" class="rf-page page hidden">
         <div class="rf-breadcrumb">เมนูคืนเงิน &nbsp;&gt;&nbsp; <b id="refundBreadcrumb">CL6904000193</b></div>
         <div class="rf-tabs"><button class="rf-tab active">ข้อมูลรายละเอียด</button><button class="rf-tab">ประวัติการทำรายการ</button><button class="rf-tab">ประวัติการโอนเงิน</button></div>
-        <div class="rf-summary"><div><div class="rf-kv"><b>เลขที่ CPG :</b><span>CPG000XXX</span></div><div class="rf-kv mt-3"><b>บัญชีส่วนกลาง :</b><span>1921000025 SMILE TPA CO LTD</span></div></div><div><div class="rf-kv"><b>ชื่อผู้เอาประกัน :</b><span>นายกรภัทร วรวงศ์คุณากร</span></div><div class="rf-kv mt-3"><b>ผู้ทำรายการ :</b><span>00054 - สุรัตนา อินทะปัญญา</span></div></div><div><div class="rf-kv"><b>จำนวนการเคลม :</b><span>1</span></div><div class="rf-kv mt-3"><b>จำนวนเงิน :</b><span>600.00</span></div></div></div>
+        <div class="rf-summary"><div><div class="rf-kv"><b>เลขที่ PMC :</b><span>PMC000XXX</span></div><div class="rf-kv mt-3"><b>บัญชีส่วนกลาง :</b><span>1921000025 SMILE TPA CO LTD</span></div></div><div><div class="rf-kv"><b>ชื่อผู้เอาประกัน :</b><span>นายกรภัทร วรวงศ์คุณากร</span></div><div class="rf-kv mt-3"><b>ผู้ทำรายการ :</b><span>00054 - สุรัตนา อินทะปัญญา</span></div></div><div><div class="rf-kv"><b>จำนวนการเคลม :</b><span>1</span></div><div class="rf-kv mt-3"><b>จำนวนเงิน :</b><span>600.00</span></div></div></div>
         <section class="rf-section"><div class="rf-section-title">รายการ</div><div class="rf-section-body"><div class="rf-detail-table-wrap"><table class="rf-detail-table"><thead><tr><th>ลำดับ</th><th>ชื่อ-นามสกุล ผู้เอาประกัน</th><th>ผลิตภัณฑ์</th><th>เลขที่เคลม</th><th>จำนวนเงิน</th><th>โอนคืน</th></tr></thead><tbody><tr><td>1</td><td>นายกรภัทร วรวงศ์คุณากร</td><td>PH</td><td>CL6904000193</td><td class="rf-money">600.00</td><td><input id="refundAmount" class="rf-refund-input" inputmode="decimal" placeholder="0.00"></td></tr></tbody></table></div><div class="rf-total-row"><span>โอนคืนรวม :</span><span id="refundTotal">0.00</span></div></div></section>
         <section class="rf-section"><div class="rf-section-title">บันทึกรายการ</div><div class="rf-section-body"><div class="rf-record-grid"><div><div class="rf-panel-title"><span class="material-icons-round">account_balance_wallet</span>ข้อมูลบัญชีรับคืน</div><div class="rf-bank-card"><div class="rf-bank-line"><span>ประเภทการโอน</span><b>ลูกค้าโอนคืนส่วนกลาง</b></div><div class="rf-bank-line"><span>บัญชีส่วนกลาง</span><b>1921000025</b></div><div class="rf-bank-line"><span>ชื่อบัญชี</span><b>SMILE TPA CO LTD</b></div></div></div><div><div class="rf-panel-title"><span class="material-icons-round">edit_note</span>รายละเอียดการคืนเงิน</div><div class="rf-form-grid"><div class="rf-field full"><label class="rf-label">ประเภทการโอน<span class="req">*</span></label><select id="refundTransferType" class="rf-select"><option>ลูกค้าโอนคืนส่วนกลาง</option></select></div><div class="rf-field"><label class="rf-label">วันที่/เวลาโอนคืน Slip<span class="req">*</span></label><input id="refundDate" class="rf-input" type="datetime-local"></div><div class="rf-field"><label class="rf-label">สาเหตุที่โอนคืน<span class="req">*</span></label><select id="refundReason" class="rf-select"><option value="">เลือกสาเหตุ</option><option>จ่ายเงินเกินสิทธิ์</option><option>เลขที่บัญชีปลายทางไม่ถูกต้อง</option><option>ลูกค้าแจ้งเปลี่ยนสิทธิ์</option><option>ปัญหาบัญชีผู้ใช้</option></select></div><div class="rf-field full"><label class="rf-label">หมายเหตุ<span class="req">*</span></label><textarea id="refundNote" class="rf-textarea" placeholder="ระบุรายละเอียด"></textarea></div><div class="rf-field full"><label class="rf-label">Slip การโอนคืน<span class="req">*</span></label><input id="refundSlip" class="rf-input" type="file" accept="image/*,.pdf"></div></div></div></div></div></section>
         <div class="rf-footer"><button id="refundBackBtn" class="rf-secondary" type="button">กลับ</button><button id="refundNotifyBtn" class="rf-success" type="button"><span class="material-icons-round">chat</span>แจ้งคืนเงิน</button></div>
       </section>
 
-      <div id="refundSearchModal" class="rf-modal hidden"><div class="rf-card"><div class="rf-modal-head"><div class="rf-modal-title"><span class="rf-modal-icon"><span class="material-icons-round">person_search</span></span>ค้นหารายการ</div><button id="refundSearchClose" class="rf-close"><span class="material-icons-round">close</span></button></div><div class="rf-modal-body"><div class="rf-search-row"><div><label class="rf-label">เลขที่ CPG / CL<span class="req">*</span></label><input id="refundSearchInput" class="rf-input" placeholder="กรุณากรอกเลขที่ CPG / CL"></div><button id="refundSearchSave" class="rf-primary" type="button">โอนคืน</button></div></div></div></div>
+      <div id="refundSearchModal" class="rf-modal hidden"><div class="rf-card"><div class="rf-modal-head"><div class="rf-modal-title"><span class="rf-modal-icon"><span class="material-icons-round">person_search</span></span>ค้นหารายการ</div><button id="refundSearchClose" class="rf-close"><span class="material-icons-round">close</span></button></div><div class="rf-modal-body"><div class="rf-search-row"><div><label class="rf-label">เลขที่ PMC / CL<span class="req">*</span></label><input id="refundSearchInput" class="rf-input" placeholder="กรุณากรอกเลขที่ PMC / CL"></div><button id="refundSearchSave" class="rf-primary" type="button">โอนคืน</button></div></div></div></div>
       <div id="refundConfirmModal" class="rf-modal hidden"><div class="rf-card rf-confirm-card"><div class="rf-big-icon"><span class="material-icons-round">question_mark</span></div><div class="rf-confirm-title">ยืนยันการทำรายการ</div><div class="rf-confirm-sub">ต้องการยืนยันการทำรายการใช่หรือไม่</div><div class="rf-confirm-actions"><button id="refundConfirmCancel" class="rf-danger">ยกเลิก</button><button id="refundConfirmOk" class="rf-success">ยืนยัน</button></div></div></div>
       <div id="refundSuccessModal" class="rf-modal hidden"><div class="rf-card rf-confirm-card"><div class="rf-big-icon success"><span class="material-icons-round">check</span></div><div class="rf-confirm-title">บันทึกคืนเงินสำเร็จ</div><div class="rf-confirm-sub">ระบบบันทึกรายการคืนเงินเรียบร้อยแล้ว</div><div class="rf-confirm-actions"><button id="refundSuccessClose" class="rf-primary">ตกลง</button></div></div></div>
 
@@ -14374,8 +14375,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     const claimRecordSearchOptions = {
-      PH: ["เลขที่ CL", "เลขที่ Case", "เลขที่ CPG", "เลขบัตรประชาชน", "เลข Passport/G-Code", "AppID", "ชื่อ-สกุลผู้เอาประกัน"],
-      PA: ["เลขที่ CL", "เลขที่ Case", "เลขที่ CPG", "เลขบัตรประชาชน", "เลข Passport/G-Code", "เลขบัตรประกันนักเรียน", "ชื่อ-สกุลผู้เอาประกัน"]
+      PH: ["เลขที่ CL", "เลขที่ Case", "เลขที่ PMC", "เลขบัตรประชาชน", "เลข Passport/G-Code", "AppID", "ชื่อ-สกุลผู้เอาประกัน"],
+      PA: ["เลขที่ CL", "เลขที่ Case", "เลขที่ PMC", "เลขบัตรประชาชน", "เลข Passport/G-Code", "เลขบัตรประกันนักเรียน", "ชื่อ-สกุลผู้เอาประกัน"]
     };
     const claimSearchTopOptions = {
       PH: ["เลขที่ CL", "เลขที่ Case", "เลขบัตรประชาชน", "เลข Passport/G-Code", "AppID", "ชื่อ-สกุลผู้เอาประกัน"],
@@ -14384,18 +14385,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     let claimRecordSearchSource = "claimMenu";
     const claimRecordRows = {
       PH: [
-        {cpg:"CPG690700131",cl:"CL690700531",caseNo:"CC6907531",date:"14/07/2569 10:18:42",name:"นายกรภัทร วรวงศ์คุณากร",id:"2494029825403",passport:"",appId:"003067",product:"PH",plan:"662",coverageStart:"01/01/2559",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"8,450.00",status:"รอดำเนินการโอน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / IPD"},
-        {cpg:"CPG690700126",cl:"CL690700519",caseNo:"CC6907519",date:"13/07/2569 16:34:09",name:"นางโสรัตน์ จันทร์จุฬา",id:"8941196407026",passport:"",appId:"012345",product:"PH",plan:"661",coverageStart:"01/03/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"3,250.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 09:12:35",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
-        {cpg:"CPG690700118",cl:"CL690700497",caseNo:"CC6907497",date:"13/07/2569 11:26:53",name:"นายบวรพจน์ ขจรศักดิ์โกศล",id:"2714145414250",passport:"",appId:"009099",product:"PH",plan:"502Pro",coverageStart:"01/04/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"12,680.00",status:"รอโอน",transferDate:"-",claimInfo:"อุบัติเหตุ / ค่ารักษา / IPD"},
-        {cpg:"CPG690700109",cl:"CL690700472",caseNo:"CC6907472",date:"12/07/2569 14:09:21",name:"นายจิโรจน์ สิริประภาชัย",id:"1721371846555",passport:"",appId:"001543",product:"PH",plan:"661",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"6,900.00",status:"โอนสำเร็จ"},
-        {cpg:"CPG690700103",cl:"CL690700458",caseNo:"CC6907458",date:"12/07/2569 09:42:37",name:"นายชานนท์ มาลัยแก้ว",id:"7544739303542",passport:"",appId:"002940",product:"PH",plan:"662",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"2,150.00",status:"รอดำเนินการโอน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
-        {cpg:"CPG690700098",cl:"CL690700441",caseNo:"CC6907441",date:"11/07/2569 14:22:06",name:"นางสาวมาเรีย วิลเลียมส์",id:"",passport:"G69074418",appId:"002941",product:"PH",plan:"662",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"ภูเก็ต",amount:"5,780.00",status:"โอนไม่สำเร็จ",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"}
+        {cpg:"PMC690700131",cl:"CL690700531",caseNo:"CC6907531",date:"14/07/2569 10:18:42",name:"นายกรภัทร วรวงศ์คุณากร",id:"2494029825403",passport:"",appId:"003067",product:"PH",plan:"662",coverageStart:"01/01/2559",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"8,450.00",status:"รอดำเนินการโอน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / IPD"},
+        {cpg:"PMC690700126",cl:"CL690700519",caseNo:"CC6907519",date:"13/07/2569 16:34:09",name:"นางโสรัตน์ จันทร์จุฬา",id:"8941196407026",passport:"",appId:"012345",product:"PH",plan:"661",coverageStart:"01/03/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"3,250.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 09:12:35",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
+        {cpg:"PMC690700118",cl:"CL690700497",caseNo:"CC6907497",date:"13/07/2569 11:26:53",name:"นายบวรพจน์ ขจรศักดิ์โกศล",id:"2714145414250",passport:"",appId:"009099",product:"PH",plan:"502Pro",coverageStart:"01/04/2565",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"12,680.00",status:"รอโอน",transferDate:"-",claimInfo:"อุบัติเหตุ / ค่ารักษา / IPD"},
+        {cpg:"PMC690700109",cl:"CL690700472",caseNo:"CC6907472",date:"12/07/2569 14:09:21",name:"นายจิโรจน์ สิริประภาชัย",id:"1721371846555",passport:"",appId:"001543",product:"PH",plan:"661",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"6,900.00",status:"โอนสำเร็จ"},
+        {cpg:"PMC690700103",cl:"CL690700458",caseNo:"CC6907458",date:"12/07/2569 09:42:37",name:"นายชานนท์ มาลัยแก้ว",id:"7544739303542",passport:"",appId:"002940",product:"PH",plan:"662",coverageStart:"01/01/2566",coverageEnd:"-",province:"กรุงเทพมหานคร",amount:"2,150.00",status:"รอดำเนินการโอน",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"},
+        {cpg:"PMC690700098",cl:"CL690700441",caseNo:"CC6907441",date:"11/07/2569 14:22:06",name:"นางสาวมาเรีย วิลเลียมส์",id:"",passport:"G69074418",appId:"002941",product:"PH",plan:"662",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"ภูเก็ต",amount:"5,780.00",status:"โอนไม่สำเร็จ",transferDate:"-",claimInfo:"เจ็บป่วย / ค่ารักษา / OPD"}
       ],
       PA: [
-        {cpg:"CPG690700145",cl:"CL690700556",caseNo:"CC6907556",date:"14/07/2569 13:05:18",name:"ด.ช.ธนกฤต พรรษาสกุล",school:"โรงเรียนพระตำหนักสวนกุหลาบ",studentCard:"STD-2569-010612",id:"2620481791249",passport:"",appId:"69102612",product:"PA",plan:"ชดเชย+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตพระนคร แขวงพระบรมมหาราชวัง",amount:"1,800.00",status:"รอโอน",transferDate:"-"},
-        {cpg:"CPG690700139",cl:"CL690700543",caseNo:"CC6907543",date:"14/07/2569 09:17:46",name:"ด.ช.ปิติภูมิ แสนวงศ์",school:"โรงเรียนชิโนรสวิทยาลัย",studentCard:"STD-2569-010613",id:"3321349692974",passport:"",appId:"69102613",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"4,500.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 10:08:21"},
-        {cpg:"CPG690700134",cl:"CL690700527",caseNo:"CC6907527",date:"13/07/2569 15:28:04",name:"ด.ญ.กมลพร จันทร์สิงห์",school:"โรงเรียนสตรีวิทยา ๒",studentCard:"STD-2569-010614",id:"1351606116733",passport:"",appId:"69102614",product:"PA",plan:"เลือกสิทธิ์+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"2,750.00",status:"รอดำเนินการโอน",transferDate:"-"},
-        {cpg:"CPG690700122",cl:"CL690700505",caseNo:"CC6907505",date:"13/07/2569 10:43:27",name:"ด.ญ.เอมิลี แซ่ลิ้ม",school:"โรงเรียนนานาชาติบางกอกพัฒนา",studentCard:"STD-2569-010615",id:"",passport:"G69075052",appId:"69102615",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางนา แขวงบางนาใต้",amount:"3,690.00",status:"โอนไม่สำเร็จ",transferDate:"-"}
+        {cpg:"PMC690700145",cl:"CL690700556",caseNo:"CC6907556",date:"14/07/2569 13:05:18",name:"ด.ช.ธนกฤต พรรษาสกุล",school:"โรงเรียนพระตำหนักสวนกุหลาบ",studentCard:"STD-2569-010612",id:"2620481791249",passport:"",appId:"69102612",product:"PA",plan:"ชดเชย+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตพระนคร แขวงพระบรมมหาราชวัง",amount:"1,800.00",status:"รอโอน",transferDate:"-"},
+        {cpg:"PMC690700139",cl:"CL690700543",caseNo:"CC6907543",date:"14/07/2569 09:17:46",name:"ด.ช.ปิติภูมิ แสนวงศ์",school:"โรงเรียนชิโนรสวิทยาลัย",studentCard:"STD-2569-010613",id:"3321349692974",passport:"",appId:"69102613",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"4,500.00",status:"โอนสำเร็จ",transferDate:"14/07/2569 10:08:21"},
+        {cpg:"PMC690700134",cl:"CL690700527",caseNo:"CC6907527",date:"13/07/2569 15:28:04",name:"ด.ญ.กมลพร จันทร์สิงห์",school:"โรงเรียนสตรีวิทยา ๒",studentCard:"STD-2569-010614",id:"1351606116733",passport:"",appId:"69102614",product:"PA",plan:"เลือกสิทธิ์+สุขภาพ",coverageStart:"01/01/2569",coverageEnd:"01/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางกอกน้อย แขวงบ้านช่างหล่อ",amount:"2,750.00",status:"รอดำเนินการโอน",transferDate:"-"},
+        {cpg:"PMC690700122",cl:"CL690700505",caseNo:"CC6907505",date:"13/07/2569 10:43:27",name:"ด.ญ.เอมิลี แซ่ลิ้ม",school:"โรงเรียนนานาชาติบางกอกพัฒนา",studentCard:"STD-2569-010615",id:"",passport:"G69075052",appId:"69102615",product:"PA",plan:"รักษา",coverageStart:"01/01/2569",coverageEnd:"31/12/2569",province:"กรุงเทพมหานคร",address:"เขตบางนา แขวงบางนาใต้",amount:"3,690.00",status:"โอนไม่สำเร็จ",transferDate:"-"}
       ]
     };
     let claimRecordProduct = "";
@@ -14538,7 +14539,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       updateClaimRecordSelectedAction();
       claimRecordCurrentRows = rows;
       const isPH = claimRecordProduct === 'PH';
-      document.getElementById('claimRecordTableHead').innerHTML = `<tr><th class="px-4 py-3 text-left">เลข CPG</th><th class="px-4 py-3 text-left">เลข CL</th><th class="px-4 py-3 text-left">วันที่สร้างเคลม</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">${isPH?'เลขบัตรประชาชน':'ชื่อสถานศึกษา'}</th><th class="px-4 py-3 text-right">${isPH ? 'จำนวนเงินโอน' : 'จำนวนเงิน'}</th><th class="px-4 py-3 text-left">สถานะการโอนเงิน</th><th class="px-4 py-3 text-center">จัดการ</th></tr>`;
+      document.getElementById('claimRecordTableHead').innerHTML = `<tr><th class="px-4 py-3 text-left">เลข PMC</th><th class="px-4 py-3 text-left">เลข CL</th><th class="px-4 py-3 text-left">วันที่สร้างเคลม</th><th class="px-4 py-3 text-left">ชื่อ-สกุลผู้เอาประกัน</th><th class="px-4 py-3 text-left">${isPH?'เลขบัตรประชาชน':'ชื่อสถานศึกษา'}</th><th class="px-4 py-3 text-right">${isPH ? 'จำนวนเงินโอน' : 'จำนวนเงิน'}</th><th class="px-4 py-3 text-left">สถานะการโอนเงิน</th><th class="px-4 py-3 text-center">จัดการ</th></tr>`;
       const body = document.getElementById('claimRecordTableBody');
       body.innerHTML = rows.length ? rows.map((r,i)=>`<tr class="hover:bg-brand-25"><td class="px-4 py-4 font-bold text-brand-700">${r.cpg}</td><td class="px-4 py-4"><button type="button" onclick="openClaimRecordDetail(${i})" class="font-extrabold text-brand-700 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-900 hover:decoration-brand-700" title="ดูรายละเอียด ${r.cl}">${r.cl}</button></td><td class="px-4 py-4">${r.date}</td><td class="px-4 py-4 font-semibold">${r.name}${r.claimType === 'Death Claim' ? '<span class="crd-death-list-badge">Death Claim · ตัวอย่าง</span>' : ''}</td><td class="px-4 py-4">${isPH?(r.id||r.passport||'-'):r.school}</td><td class="px-4 py-4 text-right font-extrabold text-brand-700">${r.amount}</td><td class="px-4 py-4">${claimRecordStatusBadge(r.status)}</td><td class="px-4 py-4 text-center"><button type="button" onclick="openClaimRecordDetail(${i})" class="mx-auto grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700 shadow-sm transition hover:bg-brand-600 hover:text-white" title="ดูรายละเอียด" aria-label="ดูรายละเอียด"><span class="material-icons-round !text-lg">visibility</span></button></td></tr>`).join('') : `<tr><td colspan="8" class="px-5 py-12 text-center font-bold text-slate-400">ไม่พบข้อมูลตามเงื่อนไขที่ค้นหา</td></tr>`;
       document.getElementById('claimRecordResultCaption').textContent = `ผลิตภัณฑ์ ${claimRecordProduct}`;
@@ -14555,7 +14556,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         renderClaimRecordInsuredResults(rows);
         return;
       }
-      const map = {'เลขที่ CL':'cl','เลขที่ Case':'caseNo','เลขที่ CPG':'cpg','เลขบัตรประชาชน':'id','เลข Passport/G-Code':'passport','AppID':'appId','เลขบัตรประกันนักเรียน':'studentCard','ชื่อ-สกุลผู้เอาประกัน':'name'};
+      const map = {'เลขที่ CL':'cl','เลขที่ Case':'caseNo','เลขที่ PMC':'cpg','เลขบัตรประชาชน':'id','เลข Passport/G-Code':'passport','AppID':'appId','เลขบัตรประกันนักเรียน':'studentCard','ชื่อ-สกุลผู้เอาประกัน':'name'};
       const sourceRows = claimRecordSearchSource === 'claimMenu'
         ? claimRecordRows[claimRecordProduct].concat((window.claimRecordDeathMockRows || []).filter(r => r.product === claimRecordProduct))
         : claimRecordRows[claimRecordProduct];
@@ -14564,28 +14565,28 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
     let currentClaimRecordDetail = null;
     const claimRecordPaGroupConfig = {
-      CPG690700112: {
+      PMC690700112: {
         appId: '69012888',
         policyHolder: 'โรงเรียนสุขสวัสดิ์วิทยา',
         relation: 'ครูผู้ประสานงาน',
         bankAccount: 'กรุงไทย 1821000999 นายธาวิน ธรรมวงศ์',
         contactDetail: 'ครูผู้ประสานงาน นายธาวิน ธรรมวงศ์ 091-1112222'
       },
-      CPG690700061: {
+      PMC690700061: {
         appId: '69012661',
         policyHolder: 'โรงเรียนอนุบาลเมืองใหม่',
         relation: 'ครูผู้ประสานงาน',
         bankAccount: 'กรุงไทย 1821000661 นางสาวกมลลักษณ์ มีสุข',
         contactDetail: 'ครูผู้ประสานงาน นางสาวกมลลักษณ์ มีสุข 091-2223333'
       },
-      CPG690700047: {
+      PMC690700047: {
         appId: '69012047',
         policyHolder: 'โรงเรียนสตรีวิทยา 2',
         relation: 'ครูผู้ประสานงาน',
         bankAccount: 'กรุงไทย 1821000470 นายอนันต์ แสนดี',
         contactDetail: 'ครูผู้ประสานงาน นายอนันต์ แสนดี 091-4445555'
       },
-      CPG690700029: {
+      PMC690700029: {
         appId: '69012029',
         policyHolder: 'Bangkok International School',
         relation: 'ครูผู้ประสานงาน',
@@ -14616,7 +14617,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return {
         subtitle: 'แจ้งเคลม / ค้นหาการแจ้งเคลม / ดูรายละเอียดผลิตภัณฑ์ PH',
         info: [
-          {icon:'description', label:'เลขที่ CPG', value:r.cpg, accent:true},
+          {icon:'description', label:'เลขที่ PMC', value:r.cpg, accent:true},
           {icon:'badge', label:'ผู้แจ้งเคลม', value:'06590 - ณัฏฐณิชา โตรักษา', accent:true},
           {icon:'location_on', label:'สาขาเมื่อเคลม', value:'กรุงเทพมหานคร', accent:true},
           {icon:'sync', label:'สถานะการโอน', value:claimRecordStatusPill(r.status), html:true},
@@ -14650,7 +14651,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           {time:r.transferDate && r.transferDate !== '-' ? r.transferDate : r.date, title:isFail ? 'รายการรอแก้ไข' : (isSuccess ? 'โอนเงินสำเร็จ' : /รอโอน(?:เงิน)?/.test(r.status) ? 'รอโอนเงิน' : 'รอดำเนินการโอน'), desc:isFail ? 'ธนาคารตีกลับรายการ กรุณาตรวจสอบบัญชีผู้รับเงิน' : (isSuccess ? 'ธนาคารตอบกลับสำเร็จ' : /รอโอน(?:เงิน)?/.test(r.status) ? 'รายการพร้อมเข้าสู่กระบวนการโอนเงิน' : 'ส่งรายการเข้ากระบวนการโอนเงินแล้ว')}
         ],
         transfers: [
-          ['เลข CPG', r.cpg],
+          ['เลข PMC', r.cpg],
           ['เลข CL', r.cl],
           ['ยอดโอน', `${r.amount} บาท`],
           ['ช่องทางโอน', 'Batch Transfer'],
@@ -14679,7 +14680,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return {
         subtitle: 'แจ้งเคลม / ค้นหาการแจ้งเคลม / ดูรายละเอียดผลิตภัณฑ์ PA',
         info: [
-          {icon:'description', label:'เลขที่ CPG', value:leadRow.cpg, accent:true},
+          {icon:'description', label:'เลขที่ PMC', value:leadRow.cpg, accent:true},
           {icon:'badge', label:'ผู้แจ้งเคลม', value:'06590 - ณัฏฐณิชา โตรักษา', accent:true},
           {icon:'location_on', label:'สาขาเมื่อเคลม', value:'กรุงเทพมหานคร', accent:true},
           {icon:'sync', label:'สถานะการโอน', value:claimRecordStatusPill(status), html:true},
@@ -14714,7 +14715,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           desc: `บันทึกรายการเลขที่ ${row.caseNo} และเตรียมโอนเงิน ${(String(row.claimType||'').includes('OPD Half') && row.hospitalOpdAmount) ? row.hospitalOpdAmount : row.amount} บาท`
         })),
         transfers: [
-          ['เลข CPG', leadRow.cpg],
+          ['เลข PMC', leadRow.cpg],
           ['จำนวน CL', `${sortedRows.length} รายการ`],
           ['ยอดโอนรวม', `${formatMoney(totalAmount)} บาท`],
           ['ธนาคาร', 'Krungthai Bank'],
@@ -15295,7 +15296,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         }
       }
       document.getElementById('claimRecordDetailSub').textContent = `${r.cl} • ${claimRecordProduct}`;
-      const fields = claimRecordProduct === 'PH' ? [['เลข CPG',r.cpg],['เลข CL',r.cl],['เลขที่ Case',r.caseNo],['วันที่สร้างเคลม',r.date],['ชื่อ-สกุลผู้เอาประกัน',r.name],['เลขบัตรประชาชน / Passport',r.id||r.passport||'-'],['AppID',r.appId||'-'],['จำนวนเงินโอน',r.amount+' บาท'],['สถานะการโอนเงิน',r.status]] : [['เลข CPG',r.cpg],['เลข CL',r.cl],['เลขที่ Case',r.caseNo],['วันที่สร้างเคลม',r.date],['ชื่อ-สกุลผู้เอาประกัน',r.name],['ชื่อสถานศึกษา',r.school],['เลขบัตรประกันนักเรียน',r.studentCard],['จำนวนเงินโอน',r.amount+' บาท'],['สถานะการโอนเงิน',r.status]];
+      const fields = claimRecordProduct === 'PH' ? [['เลข PMC',r.cpg],['เลข CL',r.cl],['เลขที่ Case',r.caseNo],['วันที่สร้างเคลม',r.date],['ชื่อ-สกุลผู้เอาประกัน',r.name],['เลขบัตรประชาชน / Passport',r.id||r.passport||'-'],['AppID',r.appId||'-'],['จำนวนเงินโอน',r.amount+' บาท'],['สถานะการโอนเงิน',r.status]] : [['เลข PMC',r.cpg],['เลข CL',r.cl],['เลขที่ Case',r.caseNo],['วันที่สร้างเคลม',r.date],['ชื่อ-สกุลผู้เอาประกัน',r.name],['ชื่อสถานศึกษา',r.school],['เลขบัตรประกันนักเรียน',r.studentCard],['จำนวนเงินโอน',r.amount+' บาท'],['สถานะการโอนเงิน',r.status]];
       document.getElementById('claimRecordDetailBody').innerHTML = fields.map(([k,v])=>`<div class="rounded-xl border border-slate-200 bg-slate-50 p-3"><div class="text-xs font-bold text-slate-500">${k}</div><div class="mt-1 font-extrabold text-slate-800">${v}</div></div>`).join('');
       const modal=document.getElementById('claimRecordDetailModal'); modal.classList.remove('hidden'); modal.classList.add('flex');
     }
@@ -15315,10 +15316,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function renderTransferTrackingTable() {
       const rows = [
-        { date: "25/06/2026", claim: "CL6905000111", transfer: "CPG0001920", name: "ด.ญ. กัญญารัตน์ ใจดี", bank: "กรุงไทย", amount: "2,500.00", status: "รอโอนเงิน", style: "bg-yellow-100 text-warning" },
-        { date: "25/06/2026", claim: "CL6905000108", transfer: "CPG0001918", name: "นายสมชาย รักเรียน", bank: "กสิกรไทย", amount: "1,200.00", status: "ส่งธนาคารแล้ว", style: "bg-blue-100 text-brand-700" },
-        { date: "24/06/2026", claim: "CL6905000099", transfer: "CPG0001905", name: "น.ส. นลินี สุขใจ", bank: "ไทยพาณิชย์", amount: "8,000.00", status: "โอนสำเร็จ", style: "bg-green-100 text-success" },
-        { date: "24/06/2026", claim: "CL6905000091", transfer: "CPG0001898", name: "ด.ช. ภาคิน แสงทอง", bank: "กรุงเทพ", amount: "750.00", status: "โอนไม่สำเร็จ", style: "bg-red-100 text-danger" }
+        { date: "25/06/2026", claim: "CL6905000111", transfer: "PMC0001920", name: "ด.ญ. กัญญารัตน์ ใจดี", bank: "กรุงไทย", amount: "2,500.00", status: "รอโอนเงิน", style: "bg-yellow-100 text-warning" },
+        { date: "25/06/2026", claim: "CL6905000108", transfer: "PMC0001918", name: "นายสมชาย รักเรียน", bank: "กสิกรไทย", amount: "1,200.00", status: "ส่งธนาคารแล้ว", style: "bg-blue-100 text-brand-700" },
+        { date: "24/06/2026", claim: "CL6905000099", transfer: "PMC0001905", name: "น.ส. นลินี สุขใจ", bank: "ไทยพาณิชย์", amount: "8,000.00", status: "โอนสำเร็จ", style: "bg-green-100 text-success" },
+        { date: "24/06/2026", claim: "CL6905000091", transfer: "PMC0001898", name: "ด.ช. ภาคิน แสงทอง", bank: "กรุงเทพ", amount: "750.00", status: "โอนไม่สำเร็จ", style: "bg-red-100 text-danger" }
       ];
       const body = document.getElementById("transferTrackingTableBody");
       if (!body) return;
@@ -18134,7 +18135,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     function showAddContactModal() { showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-2xl font-extrabold"><span class="material-icons-round text-brand-700 align-middle">contacts</span> เพิ่มข้อมูลผู้ติดต่อ</h3><button onclick="closeModal()" class="text-red-700"><span class="material-icons-round">cancel</span></button></header><div class="space-y-3 p-5"><label class="block"><span class="font-bold text-slate-500">ประเภทผู้ติดต่อ<span class="text-danger">*</span></span><select class="mt-1 h-12 w-full rounded-lg border px-3 text-xl"><option>---โปรดระบุ---</option><option>ผู้เอาประกัน</option><option>ผู้ชำระเบี้ย</option></select></label><label class="block"><span class="font-bold text-slate-500">ชื่อผู้ติดต่อ<span class="text-danger">*</span></span><input class="mt-1 h-12 w-full rounded-lg border px-3 text-xl"></label><label class="block"><span class="font-bold text-slate-500">เบอร์โทรศัพท์ผู้ติดต่อ<span class="text-danger">*</span></span><input class="mt-1 h-12 w-full rounded-lg border px-3 text-xl" placeholder="- -"></label><p class="rounded bg-yellow-100 p-2 text-center font-bold text-warning">กรุณาตรวจสอบข้อมูลเบอร์โทร เนื่องจากใช้ในการส่ง SMS</p><div class="text-center"><button onclick="closeModal()" class="h-11 rounded-lg bg-green-700 px-10 text-xl font-bold text-white">บันทึก</button></div></div>`); }
 
     function showConfirmTransferModal() { showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-2xl font-extrabold"><span class="material-icons-round text-brand-700 align-middle">sms</span> ยืนยันแจ้งโอนเงิน</h3><button onclick="closeModal()" class="text-red-700"><span class="material-icons-round">cancel</span></button></header><div class="space-y-4 p-5 text-xl"><p>ชื่อลูกค้า : <b class="text-brand-700">${claimState.row.name}</b></p><p>เบอร์โทรติดต่อ : <b class="text-brand-700">081-2345678</b></p><p>รายละเอียดบัญชีรับสินไหม :</p><div class="flex items-center gap-4 rounded-lg bg-slate-100 p-4"><span class="grid h-16 w-16 place-items-center rounded-full bg-sky-100 text-brand-700"><span class="material-icons-round !text-5xl">account_balance</span></span><div><p>ธนาคาร : กรุงไทย</p><p>เลขที่บัญชี : 5281137123</p><p>ชื่อบัญชี : ${claimState.row.name}</p></div></div><div class="text-center"><p class="text-lg font-bold text-slate-500">จำนวนเงินโอน</p><p class="text-4xl font-extrabold text-brand-700">THB ${formatMoney(claimState.transferAmount)}</p></div><p class="rounded bg-yellow-100 p-2 text-center font-bold text-warning">กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนยืนยันการทำรายการ</p><div class="text-center"><button onclick="showSuccessModal('ทำรายการสำเร็จ','ระบบได้ทำรายการเรียบร้อย และระบบจะทำการโอนเงินหลังจากได้รับ SMS')" class="h-12 rounded-lg bg-green-700 px-10 font-bold text-white">ยืนยันแจ้งโอนเงิน</button></div></div>`); }
-    function showSuccessModal(title, desc) { showModal(`<div class="p-8 text-center"><div class="mx-auto grid h-24 w-24 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-7xl">check</span></div><h3 class="mt-4 text-2xl font-extrabold text-success">${title}</h3><p class="mt-2 text-xl text-slate-600">${desc}</p><div class="mx-auto mt-5 max-w-xs rounded-xl bg-white p-4 text-left shadow-soft ring-1 ring-slate-200"><p class="font-bold text-success"><span class="material-icons-round align-middle">description</span> เลขที่เคลม : CL6905000111</p><p class="font-bold text-brand-700"><span class="material-icons-round align-middle">receipt_long</span> เลขที่การโอนเงิน : CPG0001920</p></div><button onclick="closeModal();showClaimMonitor()" class="mt-6 h-11 rounded-lg bg-brand-600 px-10 text-xl font-bold text-white">ปิด</button></div>`); }
+    function showSuccessModal(title, desc) { showModal(`<div class="p-8 text-center"><div class="mx-auto grid h-24 w-24 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-7xl">check</span></div><h3 class="mt-4 text-2xl font-extrabold text-success">${title}</h3><p class="mt-2 text-xl text-slate-600">${desc}</p><div class="mx-auto mt-5 max-w-xs rounded-xl bg-white p-4 text-left shadow-soft ring-1 ring-slate-200"><p class="font-bold text-success"><span class="material-icons-round align-middle">description</span> เลขที่เคลม : CL6905000111</p><p class="font-bold text-brand-700"><span class="material-icons-round align-middle">receipt_long</span> เลขที่การโอนเงิน : PMC0001920</p></div><button onclick="closeModal();showClaimMonitor()" class="mt-6 h-11 rounded-lg bg-brand-600 px-10 text-xl font-bold text-white">ปิด</button></div>`); }
 
 
 
@@ -19337,7 +19338,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const claimRef = visibleClaim && visibleClaim !== '-' ? visibleClaim : (currentRow.claimCode || currentRow.claimNo || 'CL6905000111');
       const caseRef = visibleCase && visibleCase !== '-' ? visibleCase : (currentRow.caseNo || currentRow.caseCode || currentRow.claimCaseNo || 'CC6905000082');
       const secondLabel = isApproveSuccess ? 'เลขที่ Case' : 'เลขที่การโอนเงิน';
-      const secondValue = isApproveSuccess ? caseRef : 'CPG0001920';
+      const secondValue = isApproveSuccess ? caseRef : 'PMC0001920';
       const secondIcon = isApproveSuccess ? 'badge' : 'receipt_long';
       showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-xl font-extrabold">${title}</h3><button onclick="closeModal()" class="grid h-8 w-8 place-items-center rounded-full bg-red-700 text-white"><span class="material-icons-round !text-xl">close</span></button></header><div class="px-6 py-5 text-center"><div class="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-5xl">check</span></div><h3 class="mt-3 text-2xl font-extrabold text-success">${title}</h3><p class="mx-auto mt-1 max-w-md text-base text-slate-600">${desc}</p><div class="mx-auto mt-4 max-w-md rounded-lg bg-slate-50 p-3 text-left ring-1 ring-slate-200"><p class="border-b border-slate-200 pb-2 text-base font-bold text-success"><span class="material-icons-round !text-lg align-middle">description</span> เลขที่เคลม : <b>${claimRef}</b> <span class="material-icons-round !text-lg align-middle text-brand-600">content_copy</span></p><p class="pt-2 text-base font-bold text-brand-700"><span class="material-icons-round !text-lg align-middle">${secondIcon}</span> ${secondLabel} : <b>${secondValue}</b></p></div><button onclick="closeModal();showClaimMonitor()" class="mt-4 h-10 rounded-lg bg-brand-600 px-10 text-base font-bold text-white hover:bg-brand-700">ปิด</button></div>`, "max-w-lg");
     }
@@ -19347,7 +19348,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
 
     function copyPATransferGroupNo() {
-      const value = 'CPG000193';
+      const value = 'PMC000193';
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText(value).catch(() => {});
     }
 
@@ -19358,7 +19359,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function showPASuccessModal() {
       const refs = getPAClaimTransferRefs();
-      showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-xl font-extrabold text-slate-700">ทำรายการสำเร็จ</h3><button onclick="closeModalAndGoClaimMonitor()" class="grid h-8 w-8 place-items-center rounded-full bg-red-700 text-white"><span class="material-icons-round !text-xl">close</span></button></header><div class="px-5 py-5 text-center"><div class="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-5xl">check</span></div><h3 class="mt-3 text-2xl font-extrabold text-slate-700">ทำรายการสำเร็จ</h3><div class="mt-2 inline-flex items-center gap-2 text-lg font-extrabold text-brand-700">CPG000193 <button type="button" onclick="copyPATransferGroupNo()" class="text-brand-600"><span class="material-icons-round !text-lg">content_copy</span></button></div><div class="mx-auto mt-3 max-w-xs rounded-lg bg-slate-100 px-4 py-3 text-base text-slate-700">${refs.map((ref) => `<div class='leading-6'>${ref}</div>`).join('')}</div><button type="button" onclick="closeModalAndGoClaimMonitor()" class="mt-4 h-10 rounded-lg bg-brand-600 px-10 text-base font-bold text-white">ปิด</button></div>`, "max-w-sm");
+      showModal(`<header class="flex items-center justify-between border-b px-5 py-3"><h3 class="text-xl font-extrabold text-slate-700">ทำรายการสำเร็จ</h3><button onclick="closeModalAndGoClaimMonitor()" class="grid h-8 w-8 place-items-center rounded-full bg-red-700 text-white"><span class="material-icons-round !text-xl">close</span></button></header><div class="px-5 py-5 text-center"><div class="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green-600 text-white"><span class="material-icons-round !text-5xl">check</span></div><h3 class="mt-3 text-2xl font-extrabold text-slate-700">ทำรายการสำเร็จ</h3><div class="mt-2 inline-flex items-center gap-2 text-lg font-extrabold text-brand-700">PMC000193 <button type="button" onclick="copyPATransferGroupNo()" class="text-brand-600"><span class="material-icons-round !text-lg">content_copy</span></button></div><div class="mx-auto mt-3 max-w-xs rounded-lg bg-slate-100 px-4 py-3 text-base text-slate-700">${refs.map((ref) => `<div class='leading-6'>${ref}</div>`).join('')}</div><button type="button" onclick="closeModalAndGoClaimMonitor()" class="mt-4 h-10 rounded-lg bg-brand-600 px-10 text-base font-bold text-white">ปิด</button></div>`, "max-w-sm");
     }
 
     const paAddInsuredSearchResult = { appId: "69102612", idCard: "2620481791249", name: "ด.ช.ธนกฤต พรรษาสกุล", memberType: "นักเรียน", plan: "ชดเชย+สุขภาพ", start: "01/01/2569", end: "01/12/2569", school: "โรงเรียนพระตำหนักสวนกุหลาบ", studentCard: "ST6900012612", claimLabel: "OPD (ค่ารักษาพยาบาล)", amount: 1250.00, accidentDate: "12/06/2569" };
@@ -19541,10 +19542,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const transferTrackingData = {
       nonDeath: [
-        { transferNo:"CPG690800118", created:"25/08/2569 15:02:14", insured:"นางสาวกัญญาวีร์ ศรีสวัสดิ์", product:"PH", amount:850.00, status:"รอดำเนินการโอน", statusKey:"wait" },
-        { transferNo:"CPG690800117", created:"25/08/2569 14:41:03", insured:"นายภูริทัต ใจแสน", product:"PH", amount:1250.00, status:"โอนสำเร็จ", statusKey:"success" },
-        { transferNo:"CPG690800116", created:"25/08/2569 14:12:55", insured:"โรงเรียนบ้านขุนกลาง", product:"PA", amount:640.00, status:"โอนสำเร็จ", statusKey:"success" },
-        { transferNo:"CPG690800114", created:"25/08/2569 13:22:18", insured:"โรงเรียนวัดโคกสูง", product:"PA", amount:300.00, status:"โอนไม่สำเร็จ", statusKey:"fail", editable:true }
+        { transferNo:"PMC690800118", created:"25/08/2569 15:02:14", insured:"นางสาวกัญญาวีร์ ศรีสวัสดิ์", product:"PH", amount:850.00, status:"รอดำเนินการโอน", statusKey:"wait" },
+        { transferNo:"PMC690800117", created:"25/08/2569 14:41:03", insured:"นายภูริทัต ใจแสน", product:"PH", amount:1250.00, status:"โอนสำเร็จ", statusKey:"success" },
+        { transferNo:"PMC690800116", created:"25/08/2569 14:12:55", insured:"โรงเรียนบ้านขุนกลาง", product:"PA", amount:640.00, status:"โอนสำเร็จ", statusKey:"success" },
+        { transferNo:"PMC690800114", created:"25/08/2569 13:22:18", insured:"โรงเรียนวัดโคกสูง", product:"PA", amount:300.00, status:"โอนไม่สำเร็จ", statusKey:"fail", editable:true }
       ],
       death: [
         { claimNo:"CL690800121", created:"25/08/2569 11:58:02", insured:"นางภาวดี พัฒน์ธนโกศล", product:"PH", amount:10000.00, status:"รอแก้ไข", statusKey:"wait", editable:true, beneficiaries:[] },
@@ -19567,7 +19568,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     const transferTrackingRows = [
       {
-        refNo: "CPG690800118",
+        refNo: "PMC690800118",
         claimNo: "CL690800118",
         created: "25/08/2569 15:02:14",
         notifyDate: "25/08/2569 15:18:42",
@@ -19591,7 +19592,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800117",
+        refNo: "PMC690800117",
         claimNo: "CL690800117",
         created: "25/08/2569 14:41:03",
         notifyDate: "25/08/2569 14:55:19",
@@ -19615,7 +19616,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800116",
+        refNo: "PMC690800116",
         claimNo: "CLPA690800116",
         created: "25/08/2569 14:12:55",
         notifyDate: "25/08/2569 14:20:31",
@@ -19639,7 +19640,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800115",
+        refNo: "PMC690800115",
         claimNo: "CL690800115",
         created: "25/08/2569 13:58:27",
         notifyDate: "25/08/2569 14:10:05",
@@ -19663,7 +19664,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800114",
+        refNo: "PMC690800114",
         claimNo: "CLPA690800114",
         created: "25/08/2569 13:22:18",
         notifyDate: "25/08/2569 13:33:42",
@@ -19687,7 +19688,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800113",
+        refNo: "PMC690800113",
         claimNo: "CL690800067",
         created: "25/08/2569 11:46:12",
         notifyDate: "25/08/2569 12:08:45",
@@ -19713,7 +19714,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ]
       },
       {
-        refNo: "CPG690800112",
+        refNo: "PMC690800112",
         claimNo: "CL690800112",
         created: "24/08/2569 16:28:09",
         notifyDate: "24/08/2569 16:39:12",
@@ -19737,7 +19738,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800111",
+        refNo: "PMC690800111",
         claimNo: "CLPA690800111",
         created: "24/08/2569 15:50:24",
         notifyDate: "24/08/2569 16:02:01",
@@ -19761,7 +19762,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800110",
+        refNo: "PMC690800110",
         claimNo: "CL690800110",
         created: "24/08/2569 14:22:11",
         notifyDate: "24/08/2569 14:39:08",
@@ -19785,7 +19786,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800109",
+        refNo: "PMC690800109",
         claimNo: "CL690800109",
         created: "24/08/2569 11:12:43",
         notifyDate: "24/08/2569 11:26:18",
@@ -19809,7 +19810,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800108",
+        refNo: "PMC690800108",
         claimNo: "CLPA690800108",
         created: "23/08/2569 16:18:30",
         notifyDate: "23/08/2569 16:29:54",
@@ -19833,7 +19834,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800107",
+        refNo: "PMC690800107",
         claimNo: "CL690800107",
         created: "23/08/2569 14:40:18",
         notifyDate: "23/08/2569 14:55:32",
@@ -19857,7 +19858,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800106",
+        refNo: "PMC690800106",
         claimNo: "CL690800106",
         created: "23/08/2569 13:08:51",
         notifyDate: "23/08/2569 13:20:04",
@@ -19881,7 +19882,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         beneficiaries: []
       },
       {
-        refNo: "CPG690800105",
+        refNo: "PMC690800105",
         claimNo: "CLPA690800105",
         created: "22/08/2569 10:36:42",
         notifyDate: "22/08/2569 10:49:17",
@@ -20388,7 +20389,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       if (summary) {
         const statusClass = row.statusKey === 'success' ? 'success' : row.statusKey === 'fail' ? 'fail' : 'wait';
         summary.innerHTML = [
-          createTdrInfoItem('เลขที่ CPG', row.refNo, 'description'),
+          createTdrInfoItem('เลขที่ PMC', row.refNo, 'description'),
           createTdrInfoItem('ผู้แจ้งเคลม', mock.transferOfficer, 'badge'),
           createTdrInfoItem('สาขาเมื่อเคลม', row.branch || 'กรุงเทพมหานคร', 'location_on'),
           `<div class="tdr-info-item"><span class="tdr-info-icon"><span class="material-icons-round">sync</span></span><div><span>สถานะการโอน</span><strong><span class="tdr-status ${statusClass}">${mock.statusText}</span></strong></div></div>`,
@@ -35461,9 +35462,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   const modalContent=document.getElementById('additionalTransferModalContent');
   const rows=[...document.querySelectorAll('#additionalTransferTableBody tr')];
   const details=[
-    ['CPG000XXX','โรงเรียนบ้านท่ามะกา','กาญจนบุรี','4,000.00','600.00','รอดำเนินการ'],
-    ['CPG000XXX','นางสาวรัชชนก สุวรรณโชค','สำนักงานใหญ่','1,700.00','300.00','รอดำเนินการ'],
-    ['CPG000XXX','นายปรเมศ คำภาพันธ์','สำนักงานใหญ่','1,000.00','100.00','โอนเงินไม่สำเร็จ']
+    ['PMC000XXX','โรงเรียนบ้านท่ามะกา','กาญจนบุรี','4,000.00','600.00','รอดำเนินการ'],
+    ['PMC000XXX','นางสาวรัชชนก สุวรรณโชค','สำนักงานใหญ่','1,700.00','300.00','รอดำเนินการ'],
+    ['PMC000XXX','นายปรเมศ คำภาพันธ์','สำนักงานใหญ่','1,000.00','100.00','โอนเงินไม่สำเร็จ']
   ];
   function showPage(){
     window.claimMoneyShowPage?.('additionalTransferPage','โอนเพิ่ม','จัดการเงินเคลม / โอนเพิ่ม');
@@ -35472,7 +35473,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
   menuBtn?.addEventListener('click',showPage);
   status?.addEventListener('change',()=>{const v=status.value;rows.forEach(r=>r.style.display=(v==='all'||r.dataset.status===v)?'':'none')});
-  document.querySelectorAll('[data-at-view]').forEach(btn=>btn.addEventListener('click',()=>{const d=details[+btn.dataset.atView];const labels=['เลขที่ CPG','ชื่อผู้เอาประกัน','สาขาเมื่อเคลม','จำนวนเงินเดิม','ยอดโอนเพิ่ม','สถานะ'];modalContent.innerHTML=labels.map((l,i)=>`<div class="at-detail-item"><span>${l}</span><strong>${d[i]}</strong></div>`).join('');modal.classList.remove('hidden')}));
+  document.querySelectorAll('[data-at-view]').forEach(btn=>btn.addEventListener('click',()=>{const d=details[+btn.dataset.atView];const labels=['เลขที่ PMC','ชื่อผู้เอาประกัน','สาขาเมื่อเคลม','จำนวนเงินเดิม','ยอดโอนเพิ่ม','สถานะ'];modalContent.innerHTML=labels.map((l,i)=>`<div class="at-detail-item"><span>${l}</span><strong>${d[i]}</strong></div>`).join('');modal.classList.remove('hidden')}));
   document.getElementById('additionalTransferModalClose')?.addEventListener('click',()=>modal.classList.add('hidden'));
   modal?.addEventListener('click',e=>{if(e.target===modal)modal.classList.add('hidden')});
   document.getElementById('additionalTransferCreateBtn')?.addEventListener('click',()=>window.openAdditionalTransferSearch?.());
@@ -35495,7 +35496,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     const value=$('atxSearchInput').value.trim();
     if(!value){$('atxSearchInput').focus();$('atxSearchInput').style.borderColor='#ef4444';return;}
     $('atxSearchInput').style.removeProperty('border-color');
-    const code=value.toUpperCase().startsWith('CL')?'CPG000XXX':value.toUpperCase();
+    const code=value.toUpperCase().startsWith('CL')?'PMC000XXX':value.toUpperCase();
     $('atxCpgText').textContent=code;$('atxBreadcrumbCpg').textContent=code;
     searchModal.classList.add('hidden'); showOnly('additionalTransferDetailPage','โอนเพิ่ม','จัดการเงินเคลม / โอนเพิ่ม / '+code);
   });
@@ -35568,8 +35569,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <div class="ar-filter-title"><span class="material-icons-round">filter_alt</span><span>ตัวกรองการค้นหา</span></div>
     </div>
     <div class="ar-filter-row ar-filter-row-top">
-      <div class="ar-field ar-search-type"><label class="ar-label">ค้นหาจาก</label><select id="arSearchType" class="ar-select"><option>เลขที่ CL</option><option>เลขที่ CPG</option></select></div>
-      <div class="ar-field ar-keyword"><label class="ar-label">คำค้นหา</label><div class="ar-input-icon-wrap"><span class="material-icons-round">search</span><input id="arKeyword" class="ar-input" placeholder="ค้นหาเลขที่ CPG / CL"></div></div>
+      <div class="ar-field ar-search-type"><label class="ar-label">ค้นหาจาก</label><select id="arSearchType" class="ar-select"><option>เลขที่ CL</option><option>เลขที่ PMC</option></select></div>
+      <div class="ar-field ar-keyword"><label class="ar-label">คำค้นหา</label><div class="ar-input-icon-wrap"><span class="material-icons-round">search</span><input id="arKeyword" class="ar-input" placeholder="ค้นหาเลขที่ PMC / CL"></div></div>
     </div>
     <div class="ar-filter-row ar-filter-row-bottom">
       <div class="ar-field"><label class="ar-label">สาขาเมื่อเคลม</label><select class="ar-select"><option>ทั้งหมด</option><option>กรุงเทพมหานคร</option><option>สำนักงานใหญ่</option></select></div>
@@ -35578,18 +35579,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <div class="ar-filter-actions"><button id="arSearchBtn" class="ar-primary" type="button"><span class="material-icons-round">search</span>ค้นหา</button></div>
     </div>
   </div>
-  <div class="ar-table-shell"><div class="overflow-x-auto"><table class="ar-table"><thead><tr><th>รหัสรายการ</th><th>เลขที่ CPG</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>สาขาเมื่อเคลม</th><th>จำนวนเงิน</th><th>โอนคืน</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead><tbody id="arTableBody">
-    <tr data-status="wait" data-code="RT681200011"><td>RT681200011</td><td>CPG000XX5</td><td>22/05/2569 06:10:11</td><td>นายกรภัทร วรวงศ์คุณากร</td><td>กรุงเทพมหานคร</td><td>600.00</td><td>100.00</td><td><span class="ar-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="ar-action review" data-ar-review title="ตรวจสอบ"><span class="material-icons-round">fact_check</span></button></td></tr>
-    <tr data-status="success"><td>RT690500010</td><td>CPG000XX4</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชชนก สุวรรณโชค</td><td>กรุงเทพมหานคร</td><td>1,700.00</td><td>300.00</td><td><span class="ar-status success">• คืนเงินสำเร็จ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="ar-action" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></td></tr>
-    <tr data-status="cancel"><td>RT690500009</td><td>CPG000XX3</td><td>10/10/2569 11:24:23</td><td>นางสาว ปวีตรา แผนสุวรรณ์</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status cancel">• ยกเลิกการคืนเงิน</span></td><td>เลขที่บัญชีปลายทางไม่ถูกต้อง</td><td class="text-center">-</td></tr>
-    <tr data-status="success"><td>RT690500008</td><td>CPG000XX2</td><td>10/10/2569 11:24:23</td><td>นายปารเมศ คำภาพันธ์</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status success">• คืนเงินสำเร็จ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="ar-action"><span class="material-icons-round">visibility</span></button></td></tr>
-    <tr data-status="reject"><td>RT690500007</td><td>CPG000XX1</td><td>10/10/2569 11:24:23</td><td>นายธนิก เงินลำยอง</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status reject">• ปฏิเสธการคืนเงิน</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center">-</td></tr>
+  <div class="ar-table-shell"><div class="overflow-x-auto"><table class="ar-table"><thead><tr><th>รหัสรายการ</th><th>เลขที่ PMC</th><th>วันที่สร้างเคลม</th><th>ชื่อผู้เอาประกัน</th><th>สาขาเมื่อเคลม</th><th>จำนวนเงิน</th><th>โอนคืน</th><th>สถานะ</th><th>สาเหตุ</th><th class="text-center">ดำเนินการ</th></tr></thead><tbody id="arTableBody">
+    <tr data-status="wait" data-code="RT681200011"><td>RT681200011</td><td>PMC000XX5</td><td>22/05/2569 06:10:11</td><td>นายกรภัทร วรวงศ์คุณากร</td><td>กรุงเทพมหานคร</td><td>600.00</td><td>100.00</td><td><span class="ar-status wait">• รอดำเนินการ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="ar-action review" data-ar-review title="ตรวจสอบ"><span class="material-icons-round">fact_check</span></button></td></tr>
+    <tr data-status="success"><td>RT690500010</td><td>PMC000XX4</td><td>11/10/2569 12:24:23</td><td>นางสาวรัชชชนก สุวรรณโชค</td><td>กรุงเทพมหานคร</td><td>1,700.00</td><td>300.00</td><td><span class="ar-status success">• คืนเงินสำเร็จ</span></td><td>จ่ายเงินเกินสิทธิ์</td><td class="text-center"><button class="ar-action" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button></td></tr>
+    <tr data-status="cancel"><td>RT690500009</td><td>PMC000XX3</td><td>10/10/2569 11:24:23</td><td>นางสาว ปวีตรา แผนสุวรรณ์</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status cancel">• ยกเลิกการคืนเงิน</span></td><td>เลขที่บัญชีปลายทางไม่ถูกต้อง</td><td class="text-center">-</td></tr>
+    <tr data-status="success"><td>RT690500008</td><td>PMC000XX2</td><td>10/10/2569 11:24:23</td><td>นายปารเมศ คำภาพันธ์</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status success">• คืนเงินสำเร็จ</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center"><button class="ar-action"><span class="material-icons-round">visibility</span></button></td></tr>
+    <tr data-status="reject"><td>RT690500007</td><td>PMC000XX1</td><td>10/10/2569 11:24:23</td><td>นายธนิก เงินลำยอง</td><td>สำนักงานใหญ่</td><td>1,000.00</td><td>100.00</td><td><span class="ar-status reject">• ปฏิเสธการคืนเงิน</span></td><td>ปัญหาบัญชีผู้ใช้</td><td class="text-center">-</td></tr>
   </tbody></table></div><div class="ar-pager"><span>ข้อมูลต่อหน้า</span><b>10</b><span>1–5 จาก 5</span><span class="material-icons-round">chevron_left</span><span class="material-icons-round">chevron_right</span></div></div>
 </section>
 
 <div id="approveRefundReviewModal" class="ar-modal hidden"><div class="ar-card"><div class="ar-modal-head"><div class="ar-modal-title"><span class="ar-modal-icon"><span class="material-icons-round">currency_exchange</span></span>อนุมัติคืนเงิน</div><button id="arReviewClose" class="ar-close"><span class="material-icons-round">close</span></button></div><div class="ar-modal-body">
   <div class="ar-detail-head"><div class="ar-detail-title">ข้อมูลรายละเอียด</div><button id="arViewSlipBtn" class="ar-slip-btn"><span class="material-icons-round">receipt_long</span>คลิกดูภาพ Slip การโอนเงิน</button></div>
-  <div class="ar-summary"><div><div class="ar-kv"><span>รหัสรายการ :</span><b>RT681200011</b></div><div class="ar-kv"><span>ชื่อผู้เอาประกัน :</span><b>นายกรภัทร วรวงศ์คุณากร</b></div><div class="ar-kv"><span>แจ้งโอน :</span><b>600.00</b></div></div><div><div class="ar-kv"><span>เลขที่ CPG :</span><b>CPG000XX5</b></div><div class="ar-kv"><span>ผู้ทำรายการ :</span><b>00054 - สุวัฒนา อินทะปัญญา</b></div><div class="ar-kv"><span>โอนคืนรวม :</span><b>100.00</b></div></div><div><div class="ar-kv"><span>สาขาเมื่อเคลม :</span><b>กรุงเทพมหานคร</b></div><div class="ar-kv"><span>จำนวนเคลมคืนเงิน :</span><b>1</b></div><div class="ar-kv"><span>คงเหลือ :</span><b>500.00</b></div></div></div>
+  <div class="ar-summary"><div><div class="ar-kv"><span>รหัสรายการ :</span><b>RT681200011</b></div><div class="ar-kv"><span>ชื่อผู้เอาประกัน :</span><b>นายกรภัทร วรวงศ์คุณากร</b></div><div class="ar-kv"><span>แจ้งโอน :</span><b>600.00</b></div></div><div><div class="ar-kv"><span>เลขที่ PMC :</span><b>PMC000XX5</b></div><div class="ar-kv"><span>ผู้ทำรายการ :</span><b>00054 - สุวัฒนา อินทะปัญญา</b></div><div class="ar-kv"><span>โอนคืนรวม :</span><b>100.00</b></div></div><div><div class="ar-kv"><span>สาขาเมื่อเคลม :</span><b>กรุงเทพมหานคร</b></div><div class="ar-kv"><span>จำนวนเคลมคืนเงิน :</span><b>1</b></div><div class="ar-kv"><span>คงเหลือ :</span><b>500.00</b></div></div></div>
   <div class="ar-detail-table-wrap"><table class="ar-detail-table"><thead><tr><th>รหัสรายการ</th><th>เลขที่ CL</th><th>ชื่อ - สกุล ผู้เอาประกัน</th><th>แจ้งโอน</th><th>โอนคืน</th><th>คงเหลือ</th><th>วัน/เวลา ที่โอนเงินคืน</th></tr></thead><tbody><tr><td>RT681200011</td><td>CL6904000193</td><td>นายกรภัทร วรวงศ์คุณากร</td><td>600.00</td><td>100.00</td><td>500.00</td><td>22/05/2569 06:10:11</td></tr><tr class="ar-detail-total"><td colspan="3" class="text-right">รวม :</td><td>600.00</td><td>100.00</td><td>500.00</td><td></td></tr></tbody></table></div>
   <div class="ar-decision"><div><label class="ar-label">เลือกสาเหตุที่ปฏิเสธ<span class="req">*</span></label><select id="arRejectReason" class="ar-select"><option value="">เลือกสาเหตุที่ปฏิเสธ</option><option>แนบสลิปการโอนผิดหรือเอกสารไม่ถูกต้อง</option><option>กรอกวันที่ผิด</option><option>ใส่ยอดผิด</option><option>ใส่เวลาผิด</option></select></div><div><label class="ar-label">หมายเหตุ</label><input id="arRejectNote" class="ar-input" placeholder="กรอกหมายเหตุ"></div></div>
   <div class="ar-actions"><button id="arRejectBtn" class="ar-danger">ปฏิเสธ</button><button id="arApproveBtn" class="ar-success">อนุมัติ</button></div>
@@ -35822,11 +35823,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     <div class="et-section-head">
       <div>
         <div class="et-title"><span class="et-title-icon"><span class="material-icons-round">manage_search</span></span><span>ค้นหารายการโอนเงิน</span></div>
-        <div class="et-sub">ค้นหาด้วยเลขที่ CPG หรือเลขที่ CL เพื่อแก้ไขรายการโอนที่ไม่สำเร็จ</div>
+        <div class="et-sub">ค้นหาด้วยเลขที่ PMC หรือเลขที่ CL เพื่อแก้ไขรายการโอนที่ไม่สำเร็จ</div>
       </div>
     </div>
     <div class="et-search-grid">
-      <div><label class="et-label">เลขที่ CPG / CL <span class="req">*</span></label><input id="etSearchInput" class="et-input" placeholder="กรุณากรอกเลขที่ CPG / CL" value=""></div>
+      <div><label class="et-label">เลขที่ PMC / CL <span class="req">*</span></label><input id="etSearchInput" class="et-input" placeholder="กรุณากรอกเลขที่ PMC / CL" value=""></div>
       <button id="etSearchBtn" type="button" class="et-primary"><span class="material-icons-round">search</span>ค้นหา</button>
     </div>
   </div>
@@ -35840,13 +35841,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <table class="et-table">
         <thead><tr><th style="width:64px"></th><th>เลขที่ CL</th><th>วันที่สร้างเคลม</th><th>เลขที่บัญชี</th><th>ชื่อบัญชี</th><th>ธนาคาร</th><th style="text-align:right">จำนวนเงิน</th><th style="text-align:center">สถานะโอนเงิน</th><th style="text-align:center">ดำเนินการ</th></tr></thead>
         <tbody id="etTableBody">
-          <tr class="et-main-row" data-keywords="CL6904000195 CPG6904000195"><td><button type="button" class="et-chevron" data-et-expand="1" aria-label="ดูรายละเอียด"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000195</td><td>11/10/2569 13:24:23</td><td>1812000152</td><td>นางสาวณัฐกานต์ ภูเจดีย์</td><td>กรุงไทย</td><td style="text-align:right">4,000.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000195" title="โอนอีกครั้ง"><span class="material-icons-round">refresh</span></button></td></tr>
+          <tr class="et-main-row" data-keywords="CL6904000195 PMC6904000195"><td><button type="button" class="et-chevron" data-et-expand="1" aria-label="ดูรายละเอียด"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000195</td><td>11/10/2569 13:24:23</td><td>1812000152</td><td>นางสาวณัฐกานต์ ภูเจดีย์</td><td>กรุงไทย</td><td style="text-align:right">4,000.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000195" title="โอนอีกครั้ง"><span class="material-icons-round">refresh</span></button></td></tr>
           <tr class="et-detail-row" data-detail-for="1"><td colspan="9"><div class="et-detail-box"><div class="et-detail-head"><div class="et-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><span class="et-sub">รายการล่าสุด</span></div><div class="et-detail-table-wrap"><table class="et-detail-table"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT690400144</td><td>22/04/2569 11:14:58</td><td>KTB</td><td><b style="color:#d93025">Fail</b></td><td>-</td><td class="et-response">เลขที่บัญชีของคู่ค้าไม่ถูกต้อง หรือสถานะของบัญชีไม่ตรงกับเงื่อนไขที่ธนาคารอนุญาตให้ทำรายการ</td></tr></tbody></table></div></div></td></tr>
 
-          <tr class="et-main-row" data-keywords="CL6904000194 CPG6904000194"><td><button type="button" class="et-chevron" data-et-expand="2"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000194</td><td>11/10/2569 12:24:23</td><td>1812000325</td><td>นางสาวสุธิดา พ่วงกระแสร์</td><td>กรุงเทพ</td><td style="text-align:right">200.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000194"><span class="material-icons-round">refresh</span></button></td></tr>
+          <tr class="et-main-row" data-keywords="CL6904000194 PMC6904000194"><td><button type="button" class="et-chevron" data-et-expand="2"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000194</td><td>11/10/2569 12:24:23</td><td>1812000325</td><td>นางสาวสุธิดา พ่วงกระแสร์</td><td>กรุงเทพ</td><td style="text-align:right">200.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000194"><span class="material-icons-round">refresh</span></button></td></tr>
           <tr class="et-detail-row" data-detail-for="2"><td colspan="9"><div class="et-detail-box"><div class="et-detail-head"><div class="et-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><span class="et-sub">รายการล่าสุด</span></div><div class="et-detail-table-wrap"><table class="et-detail-table"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT690400143</td><td>22/04/2569 10:42:17</td><td>BBL</td><td><b style="color:#d93025">Fail</b></td><td>AC04</td><td class="et-response">บัญชีปลายทางปิดใช้งาน กรุณาตรวจสอบข้อมูลบัญชีอีกครั้ง</td></tr></tbody></table></div></div></td></tr>
 
-          <tr class="et-main-row" data-keywords="CL6904000193 CPG6904000193"><td><button type="button" class="et-chevron" data-et-expand="3"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000193</td><td>10/10/2569 11:24:23</td><td>1812000591</td><td>นายปารเมศ คำภาพันธ์</td><td>กรุงไทย</td><td style="text-align:right">1,000.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000193"><span class="material-icons-round">refresh</span></button></td></tr>
+          <tr class="et-main-row" data-keywords="CL6904000193 PMC6904000193"><td><button type="button" class="et-chevron" data-et-expand="3"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000193</td><td>10/10/2569 11:24:23</td><td>1812000591</td><td>นายปารเมศ คำภาพันธ์</td><td>กรุงไทย</td><td style="text-align:right">1,000.00</td><td style="text-align:center"><span class="et-status">• โอนไม่สำเร็จ</span></td><td style="text-align:center"><button type="button" class="et-retry" data-et-retry="CL6904000193"><span class="material-icons-round">refresh</span></button></td></tr>
           <tr class="et-detail-row" data-detail-for="3"><td colspan="9"><div class="et-detail-box"><div class="et-detail-head"><div class="et-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><span class="et-sub">รายการล่าสุด</span></div><div class="et-detail-table-wrap"><table class="et-detail-table"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT690400142</td><td>21/04/2569 16:08:02</td><td>KTB</td><td><b style="color:#d93025">Fail</b></td><td>AM04</td><td class="et-response">ยอดเงินหรือข้อมูลรายการไม่ถูกต้อง กรุณาตรวจสอบก่อนทำรายการใหม่</td></tr></tbody></table></div></div></td></tr>
         </tbody>
       </table>
@@ -35903,8 +35904,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   <div class="el-card el-search-card">
     <div class="el-head"><div><div class="el-title"><span class="el-title-icon"><span class="material-icons-round">manage_search</span></span><span>ค้นหารายการขยายวงเงิน</span></div><div class="el-sub">ค้นหารายการเคลมที่ต้องการเพิ่มวงเงินอนุมัติ</div></div></div>
     <div class="el-search-grid">
-      <div class="el-field"><label>ค้นหาจาก</label><select id="elSearchType" class="el-select"><option>เลขที่ CL</option><option>เลขที่ CPG</option><option>ชื่อผู้เอาประกัน</option></select></div>
-      <div class="el-field"><label>คำค้นหา</label><input id="elSearchInput" class="el-input" placeholder="กรอกเลขที่ CPG / CL หรือชื่อผู้เอาประกัน"></div>
+      <div class="el-field"><label>ค้นหาจาก</label><select id="elSearchType" class="el-select"><option>เลขที่ CL</option><option>เลขที่ PMC</option><option>ชื่อผู้เอาประกัน</option></select></div>
+      <div class="el-field"><label>คำค้นหา</label><input id="elSearchInput" class="el-input" placeholder="กรอกเลขที่ PMC / CL หรือชื่อผู้เอาประกัน"></div>
       <div class="el-field"><label>สถานะ <span class="req">*</span></label><select class="el-select"><option>ทั้งหมด</option><option>รอดำเนินการ</option><option>รอการตรวจสอบ</option><option>ขยายวงเงินสำเร็จ</option></select></div>
       <div class="el-field"><label>ช่วงวันที่ขอคืน</label><input class="el-input" value="31/05/2569"></div>
       <button id="elSearchBtn" type="button" class="el-btn el-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button>
@@ -35913,11 +35914,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
   <div class="el-card el-table-shell">
     <div class="el-toolbar"><div class="el-toolbar-title"><span class="material-icons-round">trending_up</span><span>รายการขยายวงเงิน</span></div><span id="elCount" class="el-count">ทั้งหมด 3 รายการ</span></div>
-    <div class="el-table-wrap"><table class="el-table"><thead><tr><th>เลขที่ CPG</th><th>เลขที่ CL</th><th>วันที่สร้างเคลม</th><th>สาขาเมื่อเคลม</th><th style="text-align:right">จำนวนเงิน</th><th>เลขที่บัญชี</th><th>ประเภทโอนคืน</th><th style="text-align:center">สถานะ</th><th>สาเหตุ</th><th style="text-align:center">ดำเนินการ</th></tr></thead>
+    <div class="el-table-wrap"><table class="el-table"><thead><tr><th>เลขที่ PMC</th><th>เลขที่ CL</th><th>วันที่สร้างเคลม</th><th>สาขาเมื่อเคลม</th><th style="text-align:right">จำนวนเงิน</th><th>เลขที่บัญชี</th><th>ประเภทโอนคืน</th><th style="text-align:center">สถานะ</th><th>สาเหตุ</th><th style="text-align:center">ดำเนินการ</th></tr></thead>
       <tbody id="elTableBody">
-        <tr data-keywords="CPG690600047 CL6904000962 แดนชัย"><td>CPG690600047</td><td><button class="tt-link" type="button">CL6904000962</button></td><td>22/05/2569 06:10:11</td><td>กรุงเทพมหานคร</td><td class="el-money">7,000.00</td><td>1821000011</td><td>โอนเงินเพิ่ม</td><td style="text-align:center"><span class="el-status wait">• รอดำเนินการ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000962" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
-        <tr data-keywords="CPG690600648 CL6904000784 สุภาวดี"><td>CPG690600648</td><td><button class="tt-link" type="button">CL6904000784</button></td><td>11/10/2569 12:24:23</td><td>กรุงเทพมหานคร</td><td class="el-money">1,700.00</td><td>1821000442</td><td>โอนเงินครั้งแรก</td><td style="text-align:center"><span class="el-status review">• รอการตรวจสอบ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000784" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
-        <tr data-keywords="CPG690600784 CL6904000318 ธนชัย"><td>CPG690600784</td><td><button class="tt-link" type="button">CL6904000318</button></td><td>10/10/2569 11:24:23</td><td>สำนักงานใหญ่</td><td class="el-money">1,000.00</td><td>1821000453</td><td>โอนเงินครั้งแรก</td><td style="text-align:center"><span class="el-status done">• ขยายวงเงินสำเร็จ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000318" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
+        <tr data-keywords="PMC690600047 CL6904000962 แดนชัย"><td>PMC690600047</td><td><button class="tt-link" type="button">CL6904000962</button></td><td>22/05/2569 06:10:11</td><td>กรุงเทพมหานคร</td><td class="el-money">7,000.00</td><td>1821000011</td><td>โอนเงินเพิ่ม</td><td style="text-align:center"><span class="el-status wait">• รอดำเนินการ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000962" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
+        <tr data-keywords="PMC690600648 CL6904000784 สุภาวดี"><td>PMC690600648</td><td><button class="tt-link" type="button">CL6904000784</button></td><td>11/10/2569 12:24:23</td><td>กรุงเทพมหานคร</td><td class="el-money">1,700.00</td><td>1821000442</td><td>โอนเงินครั้งแรก</td><td style="text-align:center"><span class="el-status review">• รอการตรวจสอบ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000784" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
+        <tr data-keywords="PMC690600784 CL6904000318 ธนชัย"><td>PMC690600784</td><td><button class="tt-link" type="button">CL6904000318</button></td><td>10/10/2569 11:24:23</td><td>สำนักงานใหญ่</td><td class="el-money">1,000.00</td><td>1821000453</td><td>โอนเงินครั้งแรก</td><td style="text-align:center"><span class="el-status done">• ขยายวงเงินสำเร็จ</span></td><td>-</td><td style="text-align:center"><button class="el-icon-btn view" title="ดูรายละเอียด"><span class="material-icons-round">visibility</span></button><button class="el-icon-btn extend" data-el-open="CL6904000318" title="ขยายวงเงิน"><span class="material-icons-round">trending_up</span></button></td></tr>
       </tbody></table></div>
     <div class="el-pager"><span>ข้อมูลต่อหน้า</span><b>10</b><span id="elPagerText">1-3 จาก 3</span><button type="button"><span class="material-icons-round">chevron_left</span></button><button type="button"><span class="material-icons-round">chevron_right</span></button></div>
   </div>
@@ -36872,7 +36873,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 <section id="bankInquiryPage" class="page hidden" aria-labelledby="bankInquiryHeading">
   <article class="bi-card bi-search">
     <div class="bi-search-row">
-      <div class="bi-field"><label for="biSearchInput">เลขที่ CPG / CL <span class="text-danger">*</span></label><input id="biSearchInput" class="bi-input" placeholder="กรุณากรอกเลขที่ CPG / CL"></div>
+      <div class="bi-field"><label for="biSearchInput">เลขที่ PMC / CL <span class="text-danger">*</span></label><input id="biSearchInput" class="bi-input" placeholder="กรุณากรอกเลขที่ PMC / CL"></div>
       <button id="biSearchBtn" type="button" class="bi-btn bi-btn-primary"><span class="material-icons-round">search</span>ค้นหา</button>
     </div>
   </article>
@@ -36882,13 +36883,13 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       <table class="bi-table">
         <thead><tr><th class="bi-toggle-cell"></th><th>เลขที่ CL</th><th>วันที่สร้างเคลม</th><th>เลขที่บัญชี</th><th>ชื่อบัญชี</th><th>ธนาคาร</th><th>จำนวนเงิน</th><th>สถานะโอนเงิน</th><th>ดำเนินการ</th></tr></thead>
         <tbody id="biTableBody">
-          <tr class="bi-parent-row" data-keywords="CL6904000195 CPG6904000195 1812000152 นางสาวณัฐกานต์ ภูเจดีย์ กรุงไทย">
+          <tr class="bi-parent-row" data-keywords="CL6904000195 PMC6904000195 1812000152 นางสาวณัฐกานต์ ภูเจดีย์ กรุงไทย">
             <td class="bi-toggle-cell"><button type="button" class="bi-toggle" aria-expanded="false"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000195</td><td>11/10/2569 13:24:23</td><td>1812000152</td><td>นางสาวณัฐกานต์ ภูเจดีย์</td><td>กรุงไทย</td><td class="text-right">4,000.00</td><td><span class="bi-status">โอนไม่สำเร็จ</span></td><td class="text-center"><button type="button" class="bi-action bi-inquiry-btn" title="สอบถามธนาคาร"><span class="material-icons-round">send</span></button></td>
           </tr>
           <tr class="bi-detail-row hidden"><td colspan="9"><div class="bi-detail"><div class="bi-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><div class="bi-inner-wrap"><table class="bi-inner"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT6904000144</td><td>22/04/2569 11:14:58</td><td>KTB</td><td class="bi-fail">Fail</td><td>w001</td><td>null</td></tr></tbody></table></div></div></td></tr>
-          <tr class="bi-parent-row" data-keywords="CL6904000194 CPG6904000194 1812000325 นางสุดธิดา พ่วงกระแสร์ กรุงเทพ"><td class="bi-toggle-cell"><button type="button" class="bi-toggle" aria-expanded="false"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000194</td><td>11/10/2569 12:24:23</td><td>1812000325</td><td>นางสุดธิดา พ่วงกระแสร์</td><td>กรุงเทพ</td><td class="text-right">200.00</td><td><span class="bi-status">โอนไม่สำเร็จ</span></td><td class="text-center"><button type="button" class="bi-action bi-inquiry-btn" title="สอบถามธนาคาร"><span class="material-icons-round">send</span></button></td></tr>
+          <tr class="bi-parent-row" data-keywords="CL6904000194 PMC6904000194 1812000325 นางสุดธิดา พ่วงกระแสร์ กรุงเทพ"><td class="bi-toggle-cell"><button type="button" class="bi-toggle" aria-expanded="false"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000194</td><td>11/10/2569 12:24:23</td><td>1812000325</td><td>นางสุดธิดา พ่วงกระแสร์</td><td>กรุงเทพ</td><td class="text-right">200.00</td><td><span class="bi-status">โอนไม่สำเร็จ</span></td><td class="text-center"><button type="button" class="bi-action bi-inquiry-btn" title="สอบถามธนาคาร"><span class="material-icons-round">send</span></button></td></tr>
           <tr class="bi-detail-row hidden"><td colspan="9"><div class="bi-detail"><div class="bi-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><div class="bi-inner-wrap"><table class="bi-inner"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT6904000143</td><td>22/04/2569 11:12:09</td><td>BBL</td><td class="bi-fail">Fail</td><td>EV034</td><td>Message transaction not found</td></tr></tbody></table></div></div></td></tr>
-          <tr class="bi-parent-row" data-keywords="CL6904000193 CPG6904000193 1812000591 นายปรเมศ คำภาพันธ์ กรุงไทย"><td class="bi-toggle-cell"><button type="button" class="bi-toggle" aria-expanded="false"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000193</td><td>10/10/2569 11:24:23</td><td>1812000591</td><td>นายปรเมศ คำภาพันธ์</td><td>กรุงไทย</td><td class="text-right">1,000.00</td><td><span class="bi-status">โอนไม่สำเร็จ</span></td><td class="text-center"><button type="button" class="bi-action bi-inquiry-btn" title="สอบถามธนาคาร"><span class="material-icons-round">send</span></button></td></tr>
+          <tr class="bi-parent-row" data-keywords="CL6904000193 PMC6904000193 1812000591 นายปรเมศ คำภาพันธ์ กรุงไทย"><td class="bi-toggle-cell"><button type="button" class="bi-toggle" aria-expanded="false"><span class="material-icons-round">chevron_right</span></button></td><td>CL6904000193</td><td>10/10/2569 11:24:23</td><td>1812000591</td><td>นายปรเมศ คำภาพันธ์</td><td>กรุงไทย</td><td class="text-right">1,000.00</td><td><span class="bi-status">โอนไม่สำเร็จ</span></td><td class="text-center"><button type="button" class="bi-action bi-inquiry-btn" title="สอบถามธนาคาร"><span class="material-icons-round">send</span></button></td></tr>
           <tr class="bi-detail-row hidden"><td colspan="9"><div class="bi-detail"><div class="bi-detail-title"><span class="material-icons-round">receipt_long</span>รายละเอียดการทำรายการ</div><div class="bi-inner-wrap"><table class="bi-inner"><thead><tr><th>ClaimPayTransactionCode</th><th>CreatedDate</th><th>BankService</th><th>Status</th><th>ResponseCode</th><th>ResponseMessage</th></tr></thead><tbody><tr><td>CT6904000142</td><td>21/04/2569 16:45:20</td><td>KTB</td><td class="bi-fail">Fail</td><td>w001</td><td>null</td></tr></tbody></table></div></div></td></tr>
         </tbody>
       </table>
@@ -36988,7 +36989,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   <section class="ecn-surface ecn-search-surface" aria-label="ค้นหารายการแจ้งเคลม">
     <header class="ecn-section-head ecn-main-head"><span class="ecn-head-icon"><span class="material-icons-round" aria-hidden="true">edit_note</span></span><div><h2 id="ecnMonitorHeading">แก้ไขการแจ้งเคลม</h2><p>ค้นหาเคลมเดิม หรือเลือกรายการตัวอย่างเพื่อดูรายละเอียดก่อนแก้ไข</p></div><span class="ecn-mock-tag">ข้อมูลตัวอย่าง</span></header>
     <div class="ecn-search-body"><div class="ecn-search-grid">
-      <label class="ecn-field"><span class="ecn-label">ค้นหาจาก</span><select id="ecnSearchType" class="ecn-select"><option value="claim" selected>เลขที่ CL</option><option value="case">เลขที่ Case</option><option value="ref">เลขที่ CPG / HCG</option><option value="insured">ชื่อผู้เอาประกัน</option><option value="place">สถานศึกษา / สถานพยาบาล</option></select></label>
+      <label class="ecn-field"><span class="ecn-label">ค้นหาจาก</span><select id="ecnSearchType" class="ecn-select"><option value="claim" selected>เลขที่ CL</option><option value="case">เลขที่ Case</option><option value="ref">เลขที่ PMC / HCG</option><option value="insured">ชื่อผู้เอาประกัน</option><option value="place">สถานศึกษา / สถานพยาบาล</option></select></label>
       <div class="ecn-field"><label class="ecn-label" for="ecnClaimNo">ค้นหาข้อมูล</label><input id="ecnClaimNo" class="ecn-input" type="search" autocomplete="off" placeholder="ระบุเลขที่ CL"></div>
       <button id="ecnSearchBtn" type="button" class="ecn-btn ecn-btn-primary"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button>
       <button id="ecnClearBtn" type="button" class="ecn-btn ecn-btn-outline ecn-reset-btn"><span class="material-icons-round" aria-hidden="true">restart_alt</span>ล้างค่า</button>
@@ -44773,7 +44774,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
 (function(){
   const processSteps = [
     {name:'บันทึกข้อมูลเคลม', detail:'จัดเก็บข้อมูลการแจ้งเคลมเข้าสู่ระบบ', icon:'save'},
-    {name:'สร้างรายการโอนเงิน', detail:'สร้างรายการรอแจ้งโอนเงิน CPG0001920', icon:'account_balance_wallet'}
+    {name:'สร้างรายการโอนเงิน', detail:'สร้างรายการรอแจ้งโอนเงิน PMC0001920', icon:'account_balance_wallet'}
   ];
 
   window.showSaveAndTransferProcessModal = function(){
@@ -44826,7 +44827,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
     setTimeout(()=>{
       const box=document.getElementById('claimModalBox');
       if(!box) return;
-      box.innerHTML=`<div class="stp-head"><div class="stp-title"><span class="stp-title-icon" style="background:#dcfce7;color:#15803d"><span class="material-icons-round">check_circle</span></span>ทำรายการสำเร็จ</div><button type="button" onclick="closeModal()" class="modal-close"><span class="material-icons-round">close</span></button></div><div class="stp-final-status"><div class="stp-final-icon"><span class="material-icons-round !text-5xl">check</span></div><h3>ทำรายการสำเร็จ</h3><p>ระบบบันทึกการแจ้งโอนเงินเรียบร้อยแล้ว</p><div class="mx-auto mt-4 max-w-sm rounded-xl bg-slate-50 p-4 text-left ring-1 ring-slate-200"><div class="font-extrabold text-brand-700">เลขที่เคลม : CL6905000111</div><div class="mt-2 font-extrabold text-brand-700">เลขที่รายการโอนเงิน : CPG0001920</div></div><button type="button" onclick="closeModal();showClaimMonitor()" class="mt-5 h-11 rounded-lg bg-brand-600 px-10 font-extrabold text-white">ปิด</button></div>`;
+      box.innerHTML=`<div class="stp-head"><div class="stp-title"><span class="stp-title-icon" style="background:#dcfce7;color:#15803d"><span class="material-icons-round">check_circle</span></span>ทำรายการสำเร็จ</div><button type="button" onclick="closeModal()" class="modal-close"><span class="material-icons-round">close</span></button></div><div class="stp-final-status"><div class="stp-final-icon"><span class="material-icons-round !text-5xl">check</span></div><h3>ทำรายการสำเร็จ</h3><p>ระบบบันทึกการแจ้งโอนเงินเรียบร้อยแล้ว</p><div class="mx-auto mt-4 max-w-sm rounded-xl bg-slate-50 p-4 text-left ring-1 ring-slate-200"><div class="font-extrabold text-brand-700">เลขที่เคลม : CL6905000111</div><div class="mt-2 font-extrabold text-brand-700">เลขที่รายการโอนเงิน : PMC0001920</div></div><button type="button" onclick="closeModal();showClaimMonitor()" class="mt-5 h-11 rounded-lg bg-brand-600 px-10 font-extrabold text-white">ปิด</button></div>`;
     },900);
   };
 })();
@@ -47700,7 +47701,7 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
                 '<div class="max-h-[220px] overflow-y-auto overscroll-contain">' + claimRows + '</div>' +
                 '<div class="flex items-center justify-between gap-3 border-t border-slate-200 bg-white px-3 py-3">' +
                   '<div class="flex items-center gap-2 text-brand-700"><span class="material-icons-round !text-xl">receipt_long</span><span class="text-sm font-bold">เลขที่การโอนเงิน</span></div>' +
-                  '<div class="flex items-center gap-1"><b class="text-base text-brand-700">CPG000193</b><button type="button" onclick="copyPATransferGroupNo()" class="grid h-8 w-8 place-items-center rounded-lg text-brand-600 hover:bg-blue-50"><span class="material-icons-round !text-xl">content_copy</span></button></div>' +
+                  '<div class="flex items-center gap-1"><b class="text-base text-brand-700">PMC000193</b><button type="button" onclick="copyPATransferGroupNo()" class="grid h-8 w-8 place-items-center rounded-lg text-brand-600 hover:bg-blue-50"><span class="material-icons-round !text-xl">content_copy</span></button></div>' +
                 '</div>' +
               '</div>' +
               '<p class="mt-2 text-xs font-semibold text-slate-400">แสดงสูงสุด 5 รายการต่อหน้าจอ เลื่อนเพื่อดูรายการเพิ่มเติม</p>' +
@@ -51075,20 +51076,20 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
 <script id="v142-transfer-monitor-final-authoritative">
 (function(){
   const finalRows = [
-    {refNo:'CPG690800142',claimNo:'CL690800142',created:'25/08/2569 13:02:14',notifyDate:'25/08/2569 13:08:42',transferDate:'-',insured:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:850,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'014-2-554981',payee:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',payeeRelation:'ผู้เอาประกัน',branch:'สำนักงานใหญ่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800141',claimNo:'CL690800141',created:'25/08/2569 12:41:03',notifyDate:'25/08/2569 12:48:19',transferDate:'25/08/2569 13:01:46',insured:'นายภูริทัต ใจแสน',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'182-0-449875',payee:'นายภูริทัต ใจแสน',payeeRelation:'ผู้เอาประกัน',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800140',claimNo:'CLPA690800140',created:'25/08/2569 12:12:55',notifyDate:'25/08/2569 12:20:31',transferDate:'25/08/2569 12:34:08',insured:'เด็กหญิงปวันรัตน์ ธรรมใจ',school:'โรงเรียนบ้านขุนกลาง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:640,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'152-0-336781',payee:'โรงเรียนบ้านขุนกลาง',payeeRelation:'สถานศึกษา',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800139',claimNo:'CLPA690800139',created:'25/08/2569 11:58:27',notifyDate:'25/08/2569 12:10:05',transferDate:'-',insured:'นายวิชาญ ศรีพงศ์สกุล',school:'',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:6400.50,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'408-2-118432',payee:'นายวิชาญ ศรีพงศ์สกุล',payeeRelation:'ผู้เอาประกัน',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800145',claimNo:'CLPA690801450',created:'25/08/2569 12:05:18',notifyDate:'25/08/2569 12:11:32',transferDate:'-',insured:'นักเรียน 2 คน',school:'โรงเรียนบ้านขุนกลาง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:2050.50,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงไทย',account:'118-0-452601',payee:'นางสาวกนก พันธรัญา',payeeRelation:'ครูผู้ประสานงาน',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
+    {refNo:'PMC690800142',claimNo:'CL690800142',created:'25/08/2569 13:02:14',notifyDate:'25/08/2569 13:08:42',transferDate:'-',insured:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:850,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'014-2-554981',payee:'นางสาวกัญญาวีร์ ศรีสวัสดิ์',payeeRelation:'ผู้เอาประกัน',branch:'สำนักงานใหญ่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800141',claimNo:'CL690800141',created:'25/08/2569 12:41:03',notifyDate:'25/08/2569 12:48:19',transferDate:'25/08/2569 13:01:46',insured:'นายภูริทัต ใจแสน',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'182-0-449875',payee:'นายภูริทัต ใจแสน',payeeRelation:'ผู้เอาประกัน',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800140',claimNo:'CLPA690800140',created:'25/08/2569 12:12:55',notifyDate:'25/08/2569 12:20:31',transferDate:'25/08/2569 12:34:08',insured:'เด็กหญิงปวันรัตน์ ธรรมใจ',school:'โรงเรียนบ้านขุนกลาง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:640,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'152-0-336781',payee:'โรงเรียนบ้านขุนกลาง',payeeRelation:'สถานศึกษา',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800139',claimNo:'CLPA690800139',created:'25/08/2569 11:58:27',notifyDate:'25/08/2569 12:10:05',transferDate:'-',insured:'นายวิชาญ ศรีพงศ์สกุล',school:'',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:6400.50,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'408-2-118432',payee:'นายวิชาญ ศรีพงศ์สกุล',payeeRelation:'ผู้เอาประกัน',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800145',claimNo:'CLPA690801450',created:'25/08/2569 12:05:18',notifyDate:'25/08/2569 12:11:32',transferDate:'-',insured:'นักเรียน 2 คน',school:'โรงเรียนบ้านขุนกลาง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:2050.50,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงไทย',account:'118-0-452601',payee:'นางสาวกนก พันธรัญา',payeeRelation:'ครูผู้ประสานงาน',branch:'เชียงใหม่',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
       {claimNo:'CLPA690801450',caseNo:'CCPA690801450-01',insured:'เด็กหญิงอรทัย ใจดี',amount:1100,product:'PA'},
       {claimNo:'CLPA690801451',caseNo:'CCPA690801451-01',insured:'เด็กชายชยพล แสงทอง',amount:950.50,product:'PA'}
     ]},
-    {refNo:'CPG690800146',claimNo:'CLPA690801460',created:'25/08/2569 12:18:43',notifyDate:'25/08/2569 12:24:10',transferDate:'-',insured:'นักเรียน 2 คน',school:'โรงเรียนวัดใหม่',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:2550,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'332-1-609184',payee:'โรงเรียนวัดใหม่',payeeRelation:'สถานศึกษา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
+    {refNo:'PMC690800146',claimNo:'CLPA690801460',created:'25/08/2569 12:18:43',notifyDate:'25/08/2569 12:24:10',transferDate:'-',insured:'นักเรียน 2 คน',school:'โรงเรียนวัดใหม่',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:2550,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'332-1-609184',payee:'โรงเรียนวัดใหม่',payeeRelation:'สถานศึกษา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
       {claimNo:'CLPA690801460',caseNo:'CCPA690801460-01',insured:'เด็กชายภูมิภัทร รุ่งเรือง',amount:700,product:'PA'},
       {claimNo:'CLPA690801460',caseNo:'CCPA690801460-02',insured:'เด็กชายภูมิภัทร รุ่งเรือง',amount:500,product:'PA'},
       {claimNo:'CLPA690801461',caseNo:'CCPA690801461-01',insured:'เด็กหญิงกมลชนก ศรีสุข',amount:1350,product:'PA'}
     ]},
-    {refNo:'CPG690800147',claimNo:'CLPA690801470',created:'25/08/2569 12:25:10',notifyDate:'25/08/2569 12:31:45',transferDate:'-',insured:'นักเรียน 4 คน',school:'โรงเรียนแสงวิทยา',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:5400,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงเทพ',account:'225-0-341982',payee:'นางสาวปาริชาติ รุ่งเรือง',payeeRelation:'ครูผู้ประสานงาน',branch:'นนทบุรี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
+    {refNo:'PMC690800147',claimNo:'CLPA690801470',created:'25/08/2569 12:25:10',notifyDate:'25/08/2569 12:31:45',transferDate:'-',insured:'นักเรียน 4 คน',school:'โรงเรียนแสงวิทยา',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:5400,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงเทพ',account:'225-0-341982',payee:'นางสาวปาริชาติ รุ่งเรือง',payeeRelation:'ครูผู้ประสานงาน',branch:'นนทบุรี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[],claims:[
       {claimNo:'CLPA690801470',caseNo:'CCPA690801470-01',insured:'เด็กหญิงพรนภา แก้วดี',amount:600,product:'PA'},
       {claimNo:'CLPA690801470',caseNo:'CCPA690801470-02',insured:'เด็กหญิงพรนภา แก้วดี',amount:400,product:'PA'},
       {claimNo:'CLPA690801471',caseNo:'CCPA690801471-01',insured:'เด็กชายธีรภัทร วัฒนา',amount:700,product:'PA'},
@@ -51098,18 +51099,18 @@ window.toggleHospitalInsuranceExcessStep2 = function(prefix){
       {claimNo:'CLPA690801473',caseNo:'CCPA690801473-01',insured:'เด็กชายปณิธาน ศรีพงศ์',amount:1000,product:'PA'},
       {claimNo:'CLPA690801473',caseNo:'CCPA690801473-02',insured:'เด็กชายปณิธาน ศรีพงศ์',amount:700,product:'PA'}
     ]},
-    {refNo:'CPG690800138',claimNo:'CLPA690800138',created:'25/08/2569 11:22:18',notifyDate:'25/08/2569 11:33:42',transferDate:'25/08/2569 11:49:51',insured:'เด็กชายภาคิน พรมดี',school:'โรงเรียนวัดโคกสูง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:300,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ออมสิน',account:'020-8-116522',payee:'โรงเรียนวัดโคกสูง',payeeRelation:'สถานศึกษา',branch:'นครราชสีมา',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800144',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:12:45',transferDate:'25/08/2569 11:25:30',insured:'นายธนเสฏฐ์ สันติวงศ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',failureCause:'system',failureReason:'ธนาคารขัดข้อง ไม่สามารถดำเนินการโอนเงินได้',bank:'กรุงเทพ',account:'1931112345',payee:'นายภูวนัย สันติวงศ์',payeeRelation:'บิดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'Death&Disability',beneficiaries:[{relation:'บิดา',name:'นายภูวนัย สันติวงศ์',bank:'กรุงเทพ 1931112345 ภูวนัย สันติวงศ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 2'}]},
-    {refNo:'CPG690800143',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:10:32',transferDate:'-',insured:'นายธนเสฏฐ์ สันติวงษ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'335-0-112490',payee:'นางสาวปวีณา สันติวงษ์',payeeRelation:'บุตร',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'Death&Disability',beneficiaries:[{relation:'บุตร',name:'นางสาวปวีณา สันติวงษ์',bank:'ไทยพาณิชย์ 335-0-112490 ปวีณา สันติวงษ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 3'}]},
-    {refNo:'CPG690800137',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:08:45',transferDate:'-',insured:'นายธนเสฏฐ์ สันติวงษ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'กรุงไทย',account:'1821000135',payee:'นางวรรณพร สันติวงษ์',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:true,transferKind:'Death&Disability',beneficiaries:[{relation:'มารดา',name:'นางวรรณพร สันติวงษ์',bank:'กรุงไทย 1821000135 วรรณพร สันติวงษ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 1'}]},
-    {refNo:'CPG690800136',claimNo:'CLPA690800136',created:'25/08/2569 10:05:44',notifyDate:'25/08/2569 10:14:09',transferDate:'25/08/2569 10:26:32',insured:'เด็กหญิงณิชารีย์ จันทร์เพ็ญ',school:'โรงเรียนราชวินิต',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1200,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'621-0-441205',payee:'นางสาวอรทัย จันทร์เพ็ญ',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800135',claimNo:'CL690800135',created:'25/08/2569 09:32:17',notifyDate:'25/08/2569 09:41:28',transferDate:'25/08/2569 09:55:41',insured:'นางสาวธัญชนก วัฒนชัย',school:'',product:'PH',claimType:'Day Case Surgery',amount:3250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงศรีอยุธยา',account:'453-1-778412',payee:'นางสาวธัญชนก วัฒนชัย',payeeRelation:'ผู้เอาประกัน',branch:'นนทบุรี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800134',claimNo:'CLPA690800134',created:'25/08/2569 09:06:53',notifyDate:'25/08/2569 09:18:11',transferDate:'-',insured:'เด็กชายปุณณวิช พงษ์พัฒนา',school:'โรงเรียนสตรีวิทยา ๒',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:750,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'028-3-995120',payee:'โรงเรียนสตรีวิทยา ๒',payeeRelation:'สถานศึกษา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800133',claimNo:'CL690800133',created:'25/08/2569 08:25:20',notifyDate:'25/08/2569 08:37:46',transferDate:'25/08/2569 08:49:13',insured:'นายกฤตภาส จันทร์เพ็ญ',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:760,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'198-4-550012',payee:'นายกฤตภาส จันทร์เพ็ญ',payeeRelation:'ผู้เอาประกัน',branch:'ปทุมธานี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800132',claimNo:'CL690800132',created:'24/08/2569 16:28:09',notifyDate:'24/08/2569 16:39:12',transferDate:'24/08/2569 16:55:37',insured:'นางมิติยร์ โชตวานิช',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1525.44,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กสิกรไทย',account:'045-2-889104',payee:'นางมิติยร์ โชตวานิช',payeeRelation:'ผู้เอาประกัน',branch:'รังสิต',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800131',claimNo:'CLPA690800131',created:'24/08/2569 15:50:24',notifyDate:'24/08/2569 16:02:01',transferDate:'24/08/2569 16:17:29',insured:'เด็กหญิงพิมพ์ชนก สุขเกษม',school:'โรงเรียนบ้านดอนแก้ว',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1000,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'985-0-119201',payee:'เด็กหญิงพิมพ์ชนก สุขเกษม',payeeRelation:'ผู้เอาประกัน',branch:'ลำพูน',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800130',claimNo:'CL690800130',created:'24/08/2569 14:22:11',notifyDate:'24/08/2569 14:39:08',transferDate:'-',insured:'นางสาวพรนภา จิตอารี',school:'',product:'PH',claimType:'Day Case Surgery',amount:2850,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงศรีอยุธยา',account:'453-1-662901',payee:'นางสาวพรนภา จิตอารี',payeeRelation:'ผู้เอาประกัน',branch:'พิษณุโลก',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
-    {refNo:'CPG690800129',claimNo:'CLPA690800129',created:'23/08/2569 16:18:30',notifyDate:'23/08/2569 16:29:54',transferDate:'23/08/2569 16:45:11',insured:'เด็กชายธนกฤต รัตนชัย',school:'โรงเรียนศรีพัฒนา',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:420,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ธ.ก.ส.',account:'021-2-884710',payee:'โรงเรียนศรีพัฒนา',payeeRelation:'สถานศึกษา',branch:'อุบลราชธานี',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]}
+    {refNo:'PMC690800138',claimNo:'CLPA690800138',created:'25/08/2569 11:22:18',notifyDate:'25/08/2569 11:33:42',transferDate:'25/08/2569 11:49:51',insured:'เด็กชายภาคิน พรมดี',school:'โรงเรียนวัดโคกสูง',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:300,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ออมสิน',account:'020-8-116522',payee:'โรงเรียนวัดโคกสูง',payeeRelation:'สถานศึกษา',branch:'นครราชสีมา',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800144',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:12:45',transferDate:'25/08/2569 11:25:30',insured:'นายธนเสฏฐ์ สันติวงศ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',failureCause:'system',failureReason:'ธนาคารขัดข้อง ไม่สามารถดำเนินการโอนเงินได้',bank:'กรุงเทพ',account:'1931112345',payee:'นายภูวนัย สันติวงศ์',payeeRelation:'บิดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'Death&Disability',beneficiaries:[{relation:'บิดา',name:'นายภูวนัย สันติวงศ์',bank:'กรุงเทพ 1931112345 ภูวนัย สันติวงศ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 2'}]},
+    {refNo:'PMC690800143',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:10:32',transferDate:'-',insured:'นายธนเสฏฐ์ สันติวงษ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'ไทยพาณิชย์',account:'335-0-112490',payee:'นางสาวปวีณา สันติวงษ์',payeeRelation:'บุตร',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'Death&Disability',beneficiaries:[{relation:'บุตร',name:'นางสาวปวีณา สันติวงษ์',bank:'ไทยพาณิชย์ 335-0-112490 ปวีณา สันติวงษ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 3'}]},
+    {refNo:'PMC690800137',claimNo:'CL690800067',created:'25/08/2569 10:46:12',notifyDate:'25/08/2569 11:08:45',transferDate:'-',insured:'นายธนเสฏฐ์ สันติวงษ์',school:'',product:'PH',claimType:'Death&Disability',amount:15000,status:'รอโอนเงิน',statusKey:'wait',statusFilter:'pending',bank:'กรุงไทย',account:'1821000135',payee:'นางวรรณพร สันติวงษ์',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:true,transferKind:'Death&Disability',beneficiaries:[{relation:'มารดา',name:'นางวรรณพร สันติวงษ์',bank:'กรุงไทย 1821000135 วรรณพร สันติวงษ์',amount:15000,note:'ผู้รับผลประโยชน์ลำดับที่ 1'}]},
+    {refNo:'PMC690800136',claimNo:'CLPA690800136',created:'25/08/2569 10:05:44',notifyDate:'25/08/2569 10:14:09',transferDate:'25/08/2569 10:26:32',insured:'เด็กหญิงณิชารีย์ จันทร์เพ็ญ',school:'โรงเรียนราชวินิต',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1200,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'621-0-441205',payee:'นางสาวอรทัย จันทร์เพ็ญ',payeeRelation:'มารดา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800135',claimNo:'CL690800135',created:'25/08/2569 09:32:17',notifyDate:'25/08/2569 09:41:28',transferDate:'25/08/2569 09:55:41',insured:'นางสาวธัญชนก วัฒนชัย',school:'',product:'PH',claimType:'Day Case Surgery',amount:3250,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงศรีอยุธยา',account:'453-1-778412',payee:'นางสาวธัญชนก วัฒนชัย',payeeRelation:'ผู้เอาประกัน',branch:'นนทบุรี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800134',claimNo:'CLPA690800134',created:'25/08/2569 09:06:53',notifyDate:'25/08/2569 09:18:11',transferDate:'-',insured:'เด็กชายปุณณวิช พงษ์พัฒนา',school:'โรงเรียนสตรีวิทยา ๒',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:750,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กสิกรไทย',account:'028-3-995120',payee:'โรงเรียนสตรีวิทยา ๒',payeeRelation:'สถานศึกษา',branch:'กรุงเทพมหานคร',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800133',claimNo:'CL690800133',created:'25/08/2569 08:25:20',notifyDate:'25/08/2569 08:37:46',transferDate:'25/08/2569 08:49:13',insured:'นายกฤตภาส จันทร์เพ็ญ',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:760,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงเทพ',account:'198-4-550012',payee:'นายกฤตภาส จันทร์เพ็ญ',payeeRelation:'ผู้เอาประกัน',branch:'ปทุมธานี',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800132',claimNo:'CL690800132',created:'24/08/2569 16:28:09',notifyDate:'24/08/2569 16:39:12',transferDate:'24/08/2569 16:55:37',insured:'นางมิติยร์ โชตวานิช',school:'',product:'PH',claimType:'ค่ารักษา OPD',amount:1525.44,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กสิกรไทย',account:'045-2-889104',payee:'นางมิติยร์ โชตวานิช',payeeRelation:'ผู้เอาประกัน',branch:'รังสิต',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800131',claimNo:'CLPA690800131',created:'24/08/2569 15:50:24',notifyDate:'24/08/2569 16:02:01',transferDate:'24/08/2569 16:17:29',insured:'เด็กหญิงพิมพ์ชนก สุขเกษม',school:'โรงเรียนบ้านดอนแก้ว',product:'PA',claimType:'ชดเชยอุบัติเหตุ',amount:1000,status:'โอนสำเร็จ',statusKey:'success',statusFilter:'success',bank:'กรุงไทย',account:'985-0-119201',payee:'เด็กหญิงพิมพ์ชนก สุขเกษม',payeeRelation:'ผู้เอาประกัน',branch:'ลำพูน',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800130',claimNo:'CL690800130',created:'24/08/2569 14:22:11',notifyDate:'24/08/2569 14:39:08',transferDate:'-',insured:'นางสาวพรนภา จิตอารี',school:'',product:'PH',claimType:'Day Case Surgery',amount:2850,status:'รอดำเนินการโอน',statusKey:'wait',statusFilter:'processing',bank:'กรุงศรีอยุธยา',account:'453-1-662901',payee:'นางสาวพรนภา จิตอารี',payeeRelation:'ผู้เอาประกัน',branch:'พิษณุโลก',canEdit:false,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]},
+    {refNo:'PMC690800129',claimNo:'CLPA690800129',created:'23/08/2569 16:18:30',notifyDate:'23/08/2569 16:29:54',transferDate:'23/08/2569 16:45:11',insured:'เด็กชายธนกฤต รัตนชัย',school:'โรงเรียนศรีพัฒนา',product:'PA',claimType:'ค่ารักษาอุบัติเหตุ',amount:420,status:'โอนไม่สำเร็จ',statusKey:'fail',statusFilter:'fail',bank:'ธ.ก.ส.',account:'021-2-884710',payee:'โรงเรียนศรีพัฒนา',payeeRelation:'สถานศึกษา',branch:'อุบลราชธานี',canEdit:true,canPay:false,transferKind:'ทั่วไป',beneficiaries:[]}
   ];
 
   if (typeof transferTrackingRows !== 'undefined') {
@@ -53915,8 +53916,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "446",
-  updatedAt: "14/10/2026 15:22:56"
+  version: "456",
+  updatedAt: "15/10/2026 14:55:03"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64154,8 +64155,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     copy.recipientCaption=copy.payeeRelation||'ผู้รับเงิน';
     copy.failureReason=copy.failureReason||(rowStatusKey(copy)==='fail'?(index%2?'บัญชีผู้รับไม่สามารถรับโอนได้':'เลขบัญชีไม่ถูกต้อง'):'');
     if(rowStatusKey(copy)==='fail'){
-      if(copy.refNo==='CPG690800129'){copy.failureCause='system';copy.failureReason='ระบบเชื่อมต่อธนาคารขัดข้อง กรุณาโอนอีกครั้ง';}
-      else if(copy.refNo==='CPG690800138'){copy.failureCause='account';copy.failureReason='บัญชีผู้รับเงินถูกปิด ไม่สามารถรับเงินโอนได้';}
+      if(copy.refNo==='PMC690800129'){copy.failureCause='system';copy.failureReason='ระบบเชื่อมต่อธนาคารขัดข้อง กรุณาโอนอีกครั้ง';}
+      else if(copy.refNo==='PMC690800138'){copy.failureCause='account';copy.failureReason='บัญชีผู้รับเงินถูกปิด ไม่สามารถรับเงินโอนได้';}
       else copy.failureCause=copy.failureCause||(/ระบบ|เชื่อมต่อ|หมดเวลา|timeout/i.test(copy.failureReason)?'system':'account');
       copy.canEdit=copy.failureCause==='account';
     }
@@ -64170,7 +64171,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   }
 
   const customerRows=transferTrackingRows.map(enrichCustomer);
-  const multiCaseCustomer=customerRows.find(row=>row.refNo==='CPG690800139');
+  const multiCaseCustomer=customerRows.find(row=>row.refNo==='PMC690800139');
   if(multiCaseCustomer){
     multiCaseCustomer.insured='นักเรียน 3 คน';
     multiCaseCustomer.payee='นางสาวกนก พันธรัญา';
@@ -64245,7 +64246,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     if(searchType){
       const referenceOption=searchType.querySelector('[value="cpg"]');
       const placeOption=searchType.querySelector('[value="school"]');
-      if(referenceOption)referenceOption.textContent='เลขที่ CPG';
+      if(referenceOption)referenceOption.textContent='เลขที่ PMC';
       if(placeOption)placeOption.textContent=hospital?'ชื่อสถานพยาบาล':'ชื่อสถานศึกษา';
     }
     if(keyword)keyword.placeholder=searchPlaceholder();
@@ -64757,7 +64758,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const claimTab=document.getElementById('tdrTabClaim');
     if(claimTab)claimTab.textContent=hospital?'รายการเคลมใน HCG':'ข้อมูลการเคลม';
     const firstLabel=document.querySelector('#tdrClaimSummary .tdr-info-item div>span');
-    if(firstLabel)firstLabel.textContent=transferTrackingState.mode==='hospital'?'เลขที่ HCG':'เลขที่ CPG';
+    if(firstLabel)firstLabel.textContent=transferTrackingState.mode==='hospital'?'เลขที่ HCG':'เลขที่ PMC';
     const detailStatus=document.querySelector('#tdrClaimSummary .tdr-status');
     if(detailStatus)detailStatus.textContent=displayStatus(row);
     const claimBody=document.getElementById('tdrClaimTableBody');
