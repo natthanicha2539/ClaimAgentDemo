@@ -31701,6 +31701,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
   }
 
   function renderTransactionPane(){
+    if (typeof window.renderCustomerClaimTransactionPrototype === 'function') return window.renderCustomerClaimTransactionPrototype();
     const drafts = (window.customerDraftHistory || []).map(d => ({
       icon:'save_as',
       color:'amber',
@@ -31744,6 +31745,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     holder.innerHTML = renderTransactionPane();
     const next = holder.firstElementChild;
     if(wasActive) next.classList.add('active');
+    next.hidden = !wasActive;
     current.replaceWith(next);
   };
 
@@ -53913,8 +53915,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "438",
-  updatedAt: "14/10/2026 13:56:32"
+  version: "446",
+  updatedAt: "14/10/2026 15:22:56"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -63569,12 +63571,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <link rel="stylesheet" href="css/menu-claim-record-search.css?v=371">
 
 <!-- แจ้งเคลม > ค้นหาการแจ้งเคลม > ดูรายละเอียด: accessible tabs and matching detail visual -->
-<script src="js/claim-record-detail-tabs.js?v=257"></script>
+<script src="js/claim-record-detail-tabs.js?v=443"></script>
 <link rel="stylesheet" href="css/claim-record-detail-refresh.css?v=257">
 <link rel="stylesheet" href="css/claim-detail-icon-actions.css?v=1">
 <script src="js/claim-detail-action-tooltips.js?v=2"></script>
-<link rel="stylesheet" href="css/menu-claim-record-death-mock.css?v=438">
-<script src="js/menu-claim-record-death-mock.js?v=438"></script>
+<link rel="stylesheet" href="css/menu-claim-record-death-mock.css?v=446">
+<script src="js/menu-claim-record-death-mock.js?v=446"></script>
 
 <style id="v144-transfer-tracking-premium-reference">
   /* แจ้งเคลม > ติดตามการโอนเงิน — scoped visual system based on the supplied v21 reference. */
@@ -65043,8 +65045,11 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <link rel="stylesheet" href="css/menu-transfer-tracking-search.css?v=369">
 <link rel="stylesheet" href="css/menu-edit-claim-notification.css?v=385">
+<link rel="stylesheet" href="css/menu-customer-claim-transactions.css?v=441">
 <script src="js/edit-claim-notification-rules.js?v=1"></script>
 <script src="js/menu-edit-claim-notification.js?v=380"></script>
+<script src="js/menu-customer-claim-transactions.js?v=441"></script>
+<script src="js/menu-consider-death-place.js?v=442"></script>
 <script src="js/data/home-announcements.js"></script>
 <script src="js/menu-home-announcements.js"></script>
 </body>
