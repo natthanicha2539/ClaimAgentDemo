@@ -1,0 +1,98 @@
+/* Day Case Surgery note on the PH eligibility benefit row. */
+#detailPage .eligibility-day-case-note-trigger {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  flex: none; min-height: 32px; padding: 3px 10px 3px 7px;
+  border: 1px solid #a9d0ec; border-radius: 999px;
+  background: #eff8ff; color: #176a9d;
+  box-shadow: inset 0 1px #fff, 0 1px 3px rgb(22 93 143 / 8%);
+  cursor: pointer; font-family: var(--ui-font), sans-serif;
+  font-size: 15px !important; font-weight: 700; line-height: 1;
+  transition: background .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+#detailPage .eligibility-day-case-note-trigger:hover,
+#detailPage .eligibility-day-case-note-trigger[aria-expanded="true"] {
+  transform: translateY(-1px); border-color: #4aace0; background: #dff3ff;
+  box-shadow: 0 4px 12px rgb(19 110 164 / 14%);
+}
+#detailPage .eligibility-day-case-note-trigger:focus-visible { outline: 3px solid #176a9d; outline-offset: 3px; }
+#detailPage .eligibility-day-case-note-trigger .material-icons-round { font-size: 18px !important; }
+
+.eligibility-day-case-note {
+  position: fixed; z-index: 10050; overflow: hidden;
+  max-height: min(600px, calc(100vh - 24px));
+  border: 1px solid #a9d6ee; border-radius: 18px;
+  background: #fff; color: #203e57;
+  box-shadow: 0 24px 65px rgb(7 43 78 / 25%), 0 4px 14px rgb(16 80 131 / 10%);
+  font-family: var(--ui-font), sans-serif;
+}
+.eligibility-day-case-note[hidden] { display: none; }
+.eligibility-day-case-note-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  min-height: 90px; padding: 18px 22px;
+  background: linear-gradient(115deg, #073c68 0%, #075e91 68%, #087bac 100%);
+  color: #fff;
+}
+.eligibility-day-case-note-heading { display: grid; gap: 5px; }
+.eligibility-day-case-note-kicker { color: #a9e8fb; font-size: 12px !important; font-weight: 800; letter-spacing: .11em; line-height: 1.2; }
+.eligibility-day-case-note-heading strong { display: block; font-size: 24px !important; font-weight: 800; line-height: 1.25; }
+.eligibility-day-case-note-head-icon {
+  display: grid !important; place-items: center; flex: none;
+  width: 46px; height: 46px; border: 1px solid rgb(255 255 255 / 23%);
+  border-radius: 13px; background: rgb(255 255 255 / 12%); font-size: 25px !important;
+}
+.eligibility-day-case-note-body {
+  overflow-y: auto; max-height: min(510px, calc(100vh - 114px));
+  padding: 20px 22px 23px; scrollbar-color: #abcde2 #f2f8fb;
+}
+.eligibility-day-case-note-body:focus-visible { outline: 3px solid #5ab6e2; outline-offset: -3px; }
+.eligibility-day-case-note-summary {
+  padding: 18px 20px;
+  border: 1px solid #cde8f3; border-radius: 14px;
+  background: linear-gradient(105deg, #f1faff, #fbfdff);
+}
+.eligibility-day-case-note-intro {
+  margin: 0;
+  color: #194a69; font-size: 18px !important; font-weight: 700; line-height: 1.42;
+}
+.eligibility-day-case-note-list-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 20px 0 10px; padding: 0 2px 10px;
+  border-bottom: 1px solid #cddfea; color: #1c5274;
+  font-size: 17px !important; font-weight: 800;
+}
+.eligibility-day-case-note-list-head span:last-child {
+  flex: none; padding: 3px 9px; border-radius: 999px;
+  background: #e9f5fc; color: #1b6b98; font-size: 14px !important; font-weight: 800;
+}
+.eligibility-day-case-note ol {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 12px;
+  margin: 0; padding: 0; list-style: none; counter-reset: day-case-procedure;
+}
+.eligibility-day-case-note li {
+  display: flex; align-items: flex-start; gap: 10px; min-width: 0;
+  padding: 8px 7px; border-radius: 8px;
+  color: #31516b; font-size: 16px !important; font-weight: 600; line-height: 1.4;
+  counter-increment: day-case-procedure;
+}
+.eligibility-day-case-note li:nth-child(4n + 1),
+.eligibility-day-case-note li:nth-child(4n + 2) { background: #f4f9fc; }
+.eligibility-day-case-note li::before {
+  content: counter(day-case-procedure, decimal-leading-zero);
+  flex: none; min-width: 25px; padding-top: 1px;
+  color: #1485b5; font-size: 14px !important; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+@media (max-width: 600px) {
+  .eligibility-day-case-note-head { min-height: 76px; padding: 14px 17px; }
+  .eligibility-day-case-note-heading strong { font-size: 21px !important; }
+  .eligibility-day-case-note-head-icon { width: 40px; height: 40px; }
+  .eligibility-day-case-note-body { max-height: min(510px, calc(100vh - 100px)); padding: 15px; }
+  .eligibility-day-case-note-summary { padding: 15px; }
+  .eligibility-day-case-note-intro { font-size: 16px !important; }
+  .eligibility-day-case-note ol { grid-template-columns: 1fr; }
+  .eligibility-day-case-note li:nth-child(4n + 1),
+  .eligibility-day-case-note li:nth-child(4n + 2) { background: transparent; }
+  .eligibility-day-case-note li:nth-child(odd) { background: #f4f9fc; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #detailPage .eligibility-day-case-note-trigger { transition: none; }
+}
