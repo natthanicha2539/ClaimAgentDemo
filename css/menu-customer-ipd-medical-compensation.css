@@ -1,0 +1,117 @@
+#ccStepPane2 .customer-ipd-medical-compensation {
+  display: grid;
+  gap: 0;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation > .cc-ref-title-strip {
+  margin: 0;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-body.cc-ref-summary-box {
+  margin-top: 0;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #f8fbff;
+  padding: 10px;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.cc-ref-money-card {
+  min-width: 0;
+  height: auto;
+  min-height: 76px;
+  border-color: #cbdff5;
+  border-radius: 5px;
+  padding: 12px 14px;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item .cc-ref-money-label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item strong {
+  color: #0063ad;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.benefit-limit {
+  border-color: #bfdbfe;
+  background: #fff;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.benefit-limit .cc-ref-money-label {
+  color: #64748b;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.benefit-limit strong {
+  color: #0063ad;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.payable {
+  border-color: #74b4f2;
+  background: #dff0ff;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-item.payable strong {
+  color: #006ed4;
+  font-size: 24px;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-note,
+#ccStepPane2 .customer-ipd-medical-compensation-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 9px 11px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-note {
+  border: 1px solid #7db3f2;
+  background: #eaf2ff;
+  color: #123c75;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-error {
+  border: 1px solid #fecaca;
+  background: #fff7f7;
+  color: #b91c1c;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-note .material-icons-round,
+#ccStepPane2 .customer-ipd-medical-compensation-error .material-icons-round {
+  flex: none;
+  font-size: 18px;
+}
+
+#ccStepPane2 .customer-ipd-medical-compensation-note .material-icons-round {
+  color: #1458d6;
+}
+
+@media (max-width: 960px) {
+  #ccStepPane2 .customer-ipd-medical-compensation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  #ccStepPane2 .customer-ipd-medical-compensation-grid {
+    grid-template-columns: 1fr;
+  }
+}
