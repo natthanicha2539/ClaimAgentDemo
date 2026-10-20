@@ -1,0 +1,719 @@
+/* แจ้งเคลม > บันทึกข้อมูลเคลม: ประเภทเคลมลูกค้า/โรงพยาบาล */
+.hospital-submit-modal-box {
+  width: min(780px, 94vw) !important;
+  max-width: 780px !important;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto !important;
+  border-radius: 18px !important;
+}
+
+.hospital-submit-dialog { color: #334155; }
+.hospital-submit-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e3edf5;
+  background: #fff;
+}
+.hospital-submit-head > div { flex: 1; min-width: 0; }
+.hospital-submit-head h3 { margin: 0; color: #174b69; font-size: 20px; font-weight: 900; line-height: 1.3; }
+.hospital-submit-head p { margin: 3px 0 0; color: #718396; font-size: 13px; font-weight: 650; }
+.hospital-submit-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #e4f3ff;
+  color: #0878bb;
+}
+.hospital-submit-icon.is-success { background: #dcfce7; color: #15803d; }
+.hospital-submit-icon .material-icons-round { font-size: 24px !important; }
+.hospital-submit-close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #b91c1c;
+  color: #fff;
+}
+.hospital-submit-close:hover { background: #991b1b; }
+.hospital-submit-body { padding: 18px 20px 20px; }
+.hospital-submit-details { display: grid; gap: 12px; margin: 0; }
+.hospital-submit-dialog.is-confirm .hospital-submit-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hospital-submit-details > div {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #dbe7f3;
+  border-radius: 12px;
+  background: #fbfdff;
+}
+.hospital-submit-details dt { color: #718396; font-size: 12px; font-weight: 800; }
+.hospital-submit-details dd { min-width: 0; margin: 4px 0 0; color: #164765; font-size: 17px; font-weight: 900; line-height: 1.35; overflow-wrap: anywhere; }
+.hospital-submit-treatment {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 15px;
+  border: 1px solid #cfe0ed;
+  border-radius: 14px;
+  background: #f8fbfd;
+}
+.hospital-submit-treatment-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: #dff2ff;
+  color: #0878bb;
+}
+.hospital-submit-treatment-icon .material-icons-round { font-size: 30px !important; }
+.hospital-submit-treatment dl { margin: 0; min-width: 0; }
+.hospital-submit-treatment dt { color: #64748b; font-size: 14px; font-weight: 700; }
+.hospital-submit-treatment dd { margin: 3px 0 0; color: #334155; font-size: 17px; font-weight: 900; overflow-wrap: anywhere; }
+.hospital-submit-treatment .hospital-submit-amount { text-align: right; }
+.hospital-submit-treatment .hospital-submit-amount dd { color: #0871b7; font-size: 28px; white-space: nowrap; }
+.hospital-submit-success-mark {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  margin: auto;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+}
+.hospital-submit-success-mark .material-icons-round { font-size: 48px; }
+.hospital-submit-success-body { padding: 28px 24px; text-align: center; }
+.hospital-submit-success-body h3 { margin: 14px 0 0; color: #15803d; font-size: 24px; font-weight: 900; }
+.hospital-submit-success-description {
+  margin: 6px auto 0;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 700;
+}
+.hospital-submit-dialog.is-success .hospital-submit-details {
+  gap: 0;
+  max-width: 520px;
+  margin: 15px auto 0;
+  overflow: hidden;
+  border: 1px solid #dbe5f0;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+.hospital-submit-dialog.is-success .hospital-submit-details > div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 10px;
+  padding: 11px 13px;
+  border: 0;
+  border-bottom: 1px solid #e5edf5;
+  border-radius: 0;
+  background: transparent;
+}
+.hospital-submit-dialog.is-success .hospital-submit-details > div:last-child { border-bottom: 0; }
+.hospital-submit-dialog.is-success .hospital-submit-details dt { font-size: 14px; color: #64748b; }
+.hospital-submit-dialog.is-success .hospital-submit-details dd { margin: 0; font-size: 15px; color: #075f99; }
+.hospital-submit-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #fff4d6;
+  color: #9a6400;
+}
+.hospital-submit-destination {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 10px 13px;
+  border: 1px solid #fde68a;
+  border-radius: 11px;
+  background: #fff8c9;
+  color: #6b5b20;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+.hospital-submit-destination .material-icons-round { flex: none; }
+.hospital-submit-error { margin: 12px 0 0; color: #b91c1c; font-weight: 750; }
+.hospital-submit-error[hidden] { display: none; }
+.hospital-submit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+.hospital-submit-dialog.is-success .hospital-submit-actions { justify-content: center; }
+.hospital-submit-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 9px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 900;
+}
+.hospital-submit-secondary { border: 1px solid #cbd5e1; background: #fff; color: #475569; }
+.hospital-submit-primary { border: 1px solid #13803a; background: #16843b; color: #fff; box-shadow: 0 7px 15px rgba(22,132,59,.18); }
+.hospital-submit-primary:hover { background: #137533; }
+.hospital-submit-dialog.is-success .hospital-submit-primary { border-color: #086aaa; background: #0878bb; box-shadow: none; }
+.hospital-submit-dialog.is-success .hospital-submit-primary:hover { background: #086aaa; }
+.hospital-submit-primary:disabled { opacity: .55; cursor: wait; }
+.hospital-submit-dialog button:focus-visible { outline: 3px solid #60a5fa; outline-offset: 2px; }
+@media (max-width: 680px) {
+  .hospital-submit-head, .hospital-submit-body { padding: 16px; }
+  .hospital-submit-dialog.is-confirm .hospital-submit-details { grid-template-columns: 1fr; }
+  .hospital-submit-treatment { grid-template-columns: 1fr; }
+  .hospital-submit-treatment .hospital-submit-amount { text-align: left; }
+  .hospital-submit-treatment .hospital-submit-amount dd { font-size: 24px; white-space: normal; }
+  .hospital-submit-actions { flex-direction: column-reverse; }
+  .hospital-submit-actions button { width: 100%; }
+  .hospital-submit-dialog.is-success .hospital-submit-details > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+#claimEntryPage .claim-category-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#claimEntryPage .claim-category-card {
+  width: 205px;
+}
+
+#claimEntryPage .claim-category-card:has(input:focus-visible) {
+  outline: 3px solid rgba(7, 136, 214, .2);
+  outline-offset: 2px;
+}
+
+#claimEntryPage.pa-horizontal-compact .claim-category-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card {
+  width: 205px !important;
+  min-height: 40px !important;
+  padding: 6px 9px !important;
+}
+
+#claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card.active {
+  border-width: 2px !important;
+}
+
+#claimEntryPage .hospital-coverage-locked {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+#claimEntryPage .hospital-facility-field {
+  display: block;
+}
+
+#claimEntryPage .hospital-facility-help {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+  padding: 10px 12px;
+  color: #1e4f91;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+#claimEntryPage .hospital-facility-help-icon {
+  flex: none;
+  color: #1458d6;
+  font-size: 20px !important;
+  line-height: 1.2;
+}
+
+#claimEntryPage .hospital-facility-error {
+  min-height: 22px;
+  margin-top: 5px;
+  color: #b91c1c;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+#claimEntryPage #claimHospitalSelect[aria-invalid="true"] {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, .12);
+}
+
+#paymentPage .hospital-confirm-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: #dfe8f2;
+}
+
+#paymentPage .hospital-confirm-summary-item {
+  min-width: 0;
+  background: #fff;
+  padding: 16px;
+}
+
+#paymentPage .hospital-confirm-summary-item.is-wide {
+  grid-column: span 2;
+}
+
+#paymentPage .hospital-confirm-summary-item.is-full {
+  grid-column: 1 / -1;
+}
+
+#paymentPage .hospital-confirm-label {
+  color: #6d7d90;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+#paymentPage .hospital-confirm-value {
+  margin-top: 5px;
+  color: #10243e;
+  font-size: 19px;
+  font-weight: 850;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+#paymentPage .hospital-confirm-value.is-primary {
+  color: #1458d6;
+}
+
+#paymentPage .hospital-confirm-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  background: #eff6ff;
+  padding: 13px 15px;
+  color: #1e4f91;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+/* แจ้งเคลม รพ. Step 3: ลำดับและสัดส่วนเดียวกับบันทึกข้อมูลเคลมโรงพยาบาล */
+#paymentPage.hospital-entry-step3-mode { --hospital-step3-blue: #075f99; --hospital-step3-table-blue: #0077bd; --hospital-step3-scan-blue: #0788d6; --hospital-step3-soft-blue: #eef6fd; --hospital-step3-border: #dbe5ef; --hospital-step3-ink: #1e293b; background: #f8fafc !important; }
+#paymentPage .hospital-step3-page { display: grid; gap: 12px; color: #334155; font-size: 14px; line-height: 1.45; }
+#paymentPage .hospital-step3-shell { overflow: hidden; border: 1px solid var(--hospital-step3-border); border-radius: 14px; background: #fff; box-shadow: 0 2px 10px rgba(15,23,42,.035); }
+#paymentPage .hospital-step3-title { min-height: 46px; margin: 0; border-left: 4px solid var(--hospital-step3-scan-blue); background: var(--hospital-step3-soft-blue); padding: 10px 15px; color: #334155; font-size: 18px; font-weight: 700; }
+#paymentPage .hospital-step3-body { display: grid; gap: 12px; padding: 14px; }
+#paymentPage .hospital-step3-card { min-width: 0; border: 1px solid var(--hospital-step3-border); border-radius: 12px; background: #fff; padding: 14px; }
+#paymentPage .hospital-step3-card h4 { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; color: var(--hospital-step3-ink); font-size: 16px; font-weight: 700; }
+#paymentPage.hospital-entry-step3-mode .hospital-step3-card .hospital-step3-card-title { color: var(--hospital-step3-ink); font-size: 18px; }
+#paymentPage .hospital-step3-card h4 .material-icons-round { color: var(--hospital-step3-ink); font-size: 24px; }
+#paymentPage .hospital-step3-identity { display: flex; flex-wrap: wrap; gap: 8px 20px; border-bottom: 1px solid #e5edf5; padding-bottom: 12px; color: #64748b; font-size: 13px; }
+#paymentPage .hospital-step3-identity strong { margin-left: 3px; color: var(--hospital-step3-blue); font-size: 15px; }
+#paymentPage .hospital-step3-details { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; margin: 0; }
+#paymentPage .hospital-step3-detail { min-width: 0; }
+#paymentPage .hospital-step3-detail.is-wide { grid-column: span 5; }
+#paymentPage.hospital-entry-step3-mode .hospital-step3-detail dt { color: #64748b; font-size: 15px; font-weight: 500; }
+#paymentPage.hospital-entry-step3-mode .hospital-step3-detail dd { margin: 4px 0 0; color: var(--hospital-step3-ink); font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+#paymentPage .hospital-step3-table-wrap { overflow-x: auto; }
+#paymentPage .hospital-step3-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.4; }
+#paymentPage .hospital-step3-table thead { background: var(--hospital-step3-table-blue); color: #fff; }
+#paymentPage .hospital-step3-table th,
+#paymentPage .hospital-step3-table td { border-bottom: 1px solid #e2e8f0; padding: 9px 10px; text-align: left; }
+#paymentPage .hospital-step3-table thead th { font-size: 13px; font-weight: 600; white-space: nowrap; }
+#paymentPage .hospital-step3-table tbody th { color: #334155; font-weight: 400; }
+#paymentPage .hospital-step3-table tbody tr:last-child th,
+#paymentPage .hospital-step3-table tbody tr:last-child td { border-bottom: 0; }
+#paymentPage .hospital-step3-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-step3-expenses { min-width: 680px; }
+#paymentPage .hospital-step3-expenses td:not(:first-child),
+#paymentPage .hospital-step3-expenses thead th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-step3-empty td { color: #94a3b8; text-align: center !important; }
+#paymentPage .hospital-step3-total { background: var(--hospital-step3-table-blue); color: #fff; font-weight: 600; }
+#paymentPage .hospital-step3-total th { color: #fff !important; text-align: right; }
+#paymentPage .hospital-step3-documents { min-width: 840px; table-layout: fixed; }
+#paymentPage .hospital-step3-documents thead { background: var(--hospital-step3-scan-blue); }
+#paymentPage .hospital-step3-documents th,
+#paymentPage .hospital-step3-documents td { text-align: center; }
+#paymentPage .hospital-step3-documents thead th:nth-child(1) { width: 20%; }
+#paymentPage .hospital-step3-documents thead th:nth-child(2) { width: 30%; }
+#paymentPage .hospital-step3-documents thead th:nth-child(3) { width: 20%; }
+#paymentPage .hospital-step3-documents thead th:nth-child(4),
+#paymentPage .hospital-step3-documents thead th:nth-child(5) { width: 15%; }
+#paymentPage .hospital-step3-documents thead th:nth-child(3),
+#paymentPage .hospital-step3-documents thead th:nth-child(4),
+#paymentPage .hospital-step3-center { text-align: center !important; }
+#paymentPage .hospital-step3-scan-button { min-width: 170px; min-height: 38px; border-radius: 12px; background: var(--hospital-step3-table-blue); padding: 8px 18px; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; }
+#paymentPage .hospital-step3-scan-button:hover { background: var(--hospital-step3-blue); }
+#paymentPage .hospital-step3-view-button { display: grid; place-items: center; width: 48px; height: 48px; margin: auto; border-radius: 50%; background: #d4edff; color: var(--hospital-step3-blue); cursor: pointer; }
+#paymentPage .hospital-step3-view-button:hover,
+#paymentPage .hospital-step3-view-button[aria-expanded="true"] { background: #bfe4ff; }
+#paymentPage .hospital-step3-document-details td { background: #f8fbff; color: #526277; text-align: left; }
+#paymentPage .hospital-step3-document-details ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+#paymentPage .hospital-step3-document-details li { display: flex; align-items: center; gap: 8px; overflow-wrap: anywhere; }
+#paymentPage .hospital-step3-document-details li > span:nth-child(2) { min-width: 0; flex: 1; }
+#paymentPage .hospital-step3-document-details[hidden] { display: none; }
+#paymentPage .hospital-step3-scan-button:focus-visible,
+#paymentPage .hospital-step3-view-button:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+#paymentPage .hospital-step3-bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+#paymentPage .hospital-step3-compensation { min-width: 0; overflow: hidden; border: 1px solid #d7e3ef; border-radius: 16px; background: #fff; }
+#paymentPage .hospital-step3-compensation-head { border-bottom: 1px solid #e7eef6; padding: 16px 18px 13px; }
+#paymentPage .hospital-step3-compensation h4 { margin: 0; color: #0876bd; font-size: 20px; font-weight: 800; }
+#paymentPage .hospital-step3-compensation-head p { margin: 4px 0 0; color: #718096; font-size: 13px; }
+#paymentPage .hospital-step3-compensation-body { display: grid; gap: 12px; padding: 15px 18px 18px; }
+#paymentPage .hospital-step3-compensation-body > .hospital-step3-summary-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 42px; border-bottom: 1px dashed #dbe5ef; padding: 9px 0; }
+#paymentPage .hospital-step3-compensation-body > .hospital-step3-summary-line span { color: #526277; font-size: 15px; font-weight: 600; }
+#paymentPage .hospital-step3-compensation-body > .hospital-step3-summary-line strong { color: #24364b; font-size: 17px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+#paymentPage .hospital-step3-compensation-choice { display: flex; align-items: flex-start; gap: 10px; border: 1px solid #b9daf3; border-radius: 10px; background: #eef7ff; padding: 11px 12px; color: #334155; }
+#paymentPage .hospital-step3-compensation-choice input { flex: none; width: 17px; height: 17px; margin-top: 1px; accent-color: #0788d6; }
+#paymentPage .hospital-step3-compensation-choice strong { display: block; font-size: 15px; font-weight: 700; }
+#paymentPage .hospital-step3-compensation-choice small { display: block; margin-top: 3px; color: #718096; font-size: 12px; }
+#paymentPage .hospital-step3-compensation-body > .hospital-step3-compensation-total { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; border: 1px solid #b9e2c9; border-radius: 10px; background: #f0fbf4; padding: 11px 12px; color: #168a4a; font-size: 15px; font-weight: 700; }
+#paymentPage .hospital-step3-compensation-total strong { font-variant-numeric: tabular-nums; white-space: nowrap; }
+#paymentPage .hospital-step3-account { border: 1px solid #dbe5ef; border-radius: 10px; background: #fff; padding: 13px; }
+#paymentPage .hospital-step3-account strong { color: #0788d6; font-size: 14px; }
+#paymentPage .hospital-step3-account p { margin: 6px 0 0; color: #718096; font-size: 12px; }
+#paymentPage .hospital-step3-hospital-summary h4 { margin-bottom: 8px; color: var(--hospital-step3-blue); }
+#paymentPage .hospital-step3-empty-note { margin: 0; border: 1px solid #e5edf5; border-radius: 8px; background: #f8fafc; padding: 14px; color: #64748b; }
+#paymentPage .hospital-step3-hospital-summary > div { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 30px; border-bottom: 1px solid #e5edf5; padding: 4px 0; font-size: 14px; }
+#paymentPage .hospital-step3-hospital-summary > div strong { font-size: 16px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-step3-hospital-summary > .hospital-step3-hospital-bill { margin-top: 12px; border: 1px solid #bfdbfe; border-radius: 10px; background: #eff6ff; padding: 9px 11px; color: var(--hospital-step3-blue); font-weight: 700; }
+#paymentPage .hospital-step3-hospital-summary > .hospital-step3-customer-excess { margin-top: 10px; border: 1px solid #fecaca; border-radius: 10px; background: #fef2f2; padding: 9px 11px; color: #dc2626; font-weight: 700; }
+#paymentPage.hospital-entry-step3-mode #paymentBackBtn,
+#paymentPage.hospital-entry-step3-mode #primaryActionBtn { height: 38px; padding: 0 15px; border-radius: 9px; font-size: 13px; font-weight: 600; }
+
+#paymentPage.hospital-entry-payment-mode {
+  background: #f4f7fb;
+}
+
+#paymentPage.hospital-entry-payment-mode > section {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+#paymentPage.hospital-entry-payment-mode > section > header { display: none; }
+#paymentPage.hospital-entry-payment-mode #paymentContent { padding: 0 !important; }
+#paymentPage.hospital-entry-payment-mode .hospital-entry-stepper { gap: 4px; border-radius: 8px; background: #edf2f6; padding: 4px; }
+#paymentPage.hospital-entry-payment-mode .hospital-entry-step { justify-content: center; min-height: 44px; border: 1px solid transparent; border-radius: 6px; background: transparent; padding: 7px 10px; font-size: 14px; }
+#paymentPage.hospital-entry-payment-mode .hospital-entry-step.is-current { border-color: #bfdbfe; background: #fff; box-shadow: 0 1px 4px rgba(15,23,42,.08); }
+#paymentPage.hospital-entry-payment-mode .hospital-entry-step-dot { flex-basis: 22px; width: 22px; height: 22px; font-size: 12px; }
+#paymentPage.hospital-entry-step3-mode .hospital-entry-stepper { gap: 12px; background: transparent; padding: 0; }
+#paymentPage.hospital-entry-step3-mode .hospital-entry-step { justify-content: flex-start; min-height: 54px; border-color: #e2e8f0; border-radius: 12px; background: #f8fafc; padding: 11px 16px; color: #94a3b8; font-size: 16px; }
+#paymentPage.hospital-entry-step3-mode .hospital-entry-step.is-current { border-color: #e2e8f0; background: #fff; color: var(--hospital-step3-blue); }
+#paymentPage.hospital-entry-step3-mode .hospital-entry-step-dot { flex-basis: 32px; width: 32px; height: 32px; background: #e2e8f0; color: #64748b; font-size: 14px; }
+#paymentPage.hospital-entry-step3-mode .hospital-entry-step.is-current .hospital-entry-step-dot { background: var(--hospital-step3-blue); color: #fff; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-title { color: var(--hospital-step3-blue); }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-title > .material-icons-round { background: #e0f2fe; color: var(--hospital-step3-blue); }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item { border-color: #dbeafe; background: #f8fbff; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item > span { color: #475569; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item > strong { color: var(--hospital-step3-blue); }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item.icu { border-color: #fed7aa; background: #fffaf5; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item.icu > strong { color: #c2410c; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item.total { border-color: #cbd5e1; background: #f8fafc; }
+#paymentPage.hospital-entry-step3-mode .claim-step3-stay-item.total > strong { color: #334155; }
+
+#paymentPage .hospital-entry-review-page { display: grid; gap: 14px; }
+#paymentPage .hospital-entry-review-panel {
+  overflow: hidden;
+  border: 1px solid #dfe8f2;
+  border-radius: 12px;
+  background: #fff;
+}
+#paymentPage .hospital-entry-review-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-left: 4px solid #1458d6;
+  border-bottom: 1px solid #dfe8f2;
+  background: #eaf2ff;
+  padding: 11px 16px;
+  color: #10243e;
+  font-size: 19px;
+  font-weight: 800;
+}
+#paymentPage .hospital-entry-review-head .material-icons-round { color: #1458d6; font-size: 22px; }
+#paymentPage .hospital-entry-expense-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 310px);
+  gap: 16px;
+  padding: 16px;
+}
+#paymentPage .hospital-entry-expense-table-wrap { overflow-x: auto; }
+#paymentPage .hospital-entry-expense-table { width: 100%; border-collapse: collapse; }
+#paymentPage .hospital-entry-expense-table thead { background: #eaf2ff; }
+#paymentPage .hospital-entry-expense-table th,
+#paymentPage .hospital-entry-expense-table td { border: 1px solid #dbe5ef; padding: 11px 14px; text-align: left; }
+#paymentPage .hospital-entry-expense-table thead th { color: #334155; font-size: 14px; font-weight: 800; }
+#paymentPage .hospital-entry-expense-table tbody th { color: #475569; font-size: 15px; font-weight: 700; }
+#paymentPage .hospital-entry-expense-table td { width: 270px; }
+#paymentPage .hospital-entry-expense-input { display: flex; align-items: center; gap: 8px; }
+#paymentPage .hospital-entry-expense-input input {
+  width: 100%; min-width: 0; height: 42px; border: 1px solid #cbd8e5;
+  border-radius: 8px; background: #fff; padding: 8px 11px;
+  color: #10243e; font-size: 17px; font-weight: 700; text-align: right;
+}
+#paymentPage .hospital-entry-expense-input input:focus-visible { outline: 3px solid #bfdbfe; border-color: #1458d6; }
+#paymentPage .hospital-entry-expense-input input[aria-invalid="true"] { border-color: #dc2626; outline: 3px solid #fee2e2; }
+#paymentPage .hospital-entry-expense-input > span { flex: none; color: #475569; font-size: 14px; }
+#paymentPage #hospitalEntryExpenseError { display: block; margin-top: 5px; color: #b91c1c; font-size: 13px; font-weight: 700; }
+#paymentPage .hospital-entry-amount-summary { align-self: start; border: 1px solid #bfdbfe; border-radius: 10px; background: #f8fbff; padding: 16px; }
+#paymentPage .hospital-entry-amount-summary h4 { display: flex; align-items: center; gap: 8px; color: #075f99; font-size: 18px; font-weight: 800; }
+#paymentPage .hospital-entry-amount-summary h4 .material-icons-round { font-size: 21px; }
+#paymentPage .hospital-entry-amount-row { display: grid; gap: 6px; margin-top: 16px; border-top: 1px solid #dbeafe; padding-top: 13px; }
+#paymentPage .hospital-entry-amount-row span { color: #64748b; font-size: 14px; font-weight: 700; }
+#paymentPage .hospital-entry-amount-row strong { color: #075f99; font-size: 25px; font-weight: 800; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-entry-review-body { padding: 16px; }
+#paymentPage .hospital-entry-review-body + .hospital-entry-review-body { border-top: 1px solid #e5edf5; }
+#paymentPage .hospital-entry-review-subhead { display: flex; align-items: center; gap: 7px; margin-bottom: 11px; color: #075f99; font-size: 17px; font-weight: 800; }
+#paymentPage .hospital-entry-review-subhead .material-icons-round { font-size: 20px; }
+#paymentPage .hospital-entry-review-body .hospital-confirm-summary-grid { border: 1px solid #dfe8f2; }
+#paymentPage .hospital-entry-review-line { display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid #dfe8f2; border-radius: 8px; padding: 12px 14px; color: #475569; font-size: 15px; }
+#paymentPage .hospital-entry-review-line strong { color: #10243e; font-size: 17px; text-align: right; overflow-wrap: anywhere; }
+#paymentPage .hospital-entry-review-line.is-total { border-color: #bfdbfe; background: #eff6ff; font-weight: 800; }
+#paymentPage .hospital-entry-review-line.is-total strong { color: #075f99; font-size: 22px; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-entry-review-line + .hospital-entry-review-line { margin-top: 8px; }
+#paymentPage .hospital-expense-readonly { min-width: 650px; margin-bottom: 12px; }
+#paymentPage .hospital-expense-readonly thead { background: #eaf2ff; }
+#paymentPage .hospital-expense-readonly th,
+#paymentPage .hospital-expense-readonly td { border: 1px solid #dbe5ef; padding: 9px 11px; color: #334155; font-size: 14px; }
+#paymentPage .hospital-expense-readonly td { width: auto; }
+#paymentPage .hospital-expense-readonly td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-entry-review-totals { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; color: #64748b; font-size: 13px; font-weight: 700; }
+#paymentPage .hospital-entry-review-totals strong { color: #16823c; }
+
+#paymentPage .hospital-expense-page { gap: 18px; }
+#paymentPage .hospital-expense-page .hospital-entry-review-panel { border-radius: 4px; padding: 18px; }
+#paymentPage .hospital-expense-page .hospital-entry-review-head { border-bottom: 0; padding: 10px 14px; font-size: 16px; }
+#paymentPage .hospital-expense-upload-body { padding-top: 12px; }
+#paymentPage .hospital-expense-upload-label { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; color: #075f99; }
+#paymentPage .hospital-expense-upload-label > .material-icons-round { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #eaf2ff; font-size: 20px; }
+#paymentPage .hospital-expense-upload-label div { display: grid; gap: 2px; }
+#paymentPage .hospital-expense-upload-label strong { font-size: 16px; }
+#paymentPage .hospital-expense-upload-label small { color: #64748b; font-size: 12px; }
+#paymentPage .hospital-expense-dropzone { display: flex; min-height: 148px; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px dashed #bfdbfe; border-radius: 8px; background: #f8fbff; padding: 18px; text-align: center; cursor: pointer; }
+#paymentPage .hospital-expense-dropzone.is-dragging { border-color: #1458d6; background: #eaf2ff; }
+#paymentPage .hospital-expense-dropzone > .material-icons-round { color: #1458d6; font-size: 32px; }
+#paymentPage .hospital-expense-dropzone strong { color: #334155; font-size: 14px; }
+#paymentPage .hospital-expense-dropzone button,
+#paymentPage .hospital-expense-additional button { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 36px; border-radius: 6px; background: #0878bf; padding: 6px 13px; color: #fff; font-size: 14px; font-weight: 800; }
+#paymentPage .hospital-expense-dropzone button:hover,
+#paymentPage .hospital-expense-additional button:hover { background: #075f99; }
+#paymentPage .hospital-expense-upload-hint { margin-top: 8px; color: #64748b; font-size: 12px; }
+#paymentPage .hospital-expense-files { display: grid; gap: 6px; margin-top: 10px; padding: 0; list-style: none; }
+#paymentPage .hospital-expense-files:empty { display: none; }
+#paymentPage .hospital-expense-files li { display: flex; align-items: center; gap: 7px; min-width: 0; border: 1px solid #dbe5ef; border-radius: 7px; padding: 7px 10px; color: #334155; font-size: 13px; }
+#paymentPage .hospital-expense-files li > span:nth-child(2) { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+#paymentPage .hospital-expense-files li .material-icons-round { color: #1458d6; font-size: 18px; }
+#paymentPage .hospital-expense-files li button { color: #b91c1c; font-weight: 800; }
+#paymentPage .hospital-expense-section-body { display: grid; gap: 16px; padding: 18px 14px 2px; }
+#paymentPage .hospital-expense-card { overflow: hidden; border: 1px solid #dbe5ef; border-radius: 6px; background: #fff; box-shadow: 0 2px 6px rgba(15,23,42,.05); }
+#paymentPage .hospital-expense-card-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 12px; color: #075f99; font-size: 14px; font-weight: 800; }
+#paymentPage .hospital-expense-card-title span { color: #64748b; font-size: 12px; }
+#paymentPage .hospital-expense-table-wrap { overflow-x: auto; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table { min-width: 1100px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table thead { background: #eaf2ff; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th,
+#paymentPage .hospital-expense-page .hospital-entry-expense-table td { border: 1px solid #dbe5ef; padding: 7px 6px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table thead th { color: #075f99; font-size: 12px; white-space: nowrap; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(1) { min-width: 190px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(2),
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(3),
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(4) { min-width: 125px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(5) { min-width: 170px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(6) { min-width: 120px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(7) { min-width: 150px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th:nth-child(8) { width: 42px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table td { width: auto; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table input,
+#paymentPage .hospital-expense-page .hospital-entry-expense-table select { width: 100%; height: 34px; border: 1px solid #cbd8e5; border-radius: 5px; background: #fff; padding: 5px 8px; color: #334155; font-size: 13px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table input[type="number"] { text-align: right; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table input:focus-visible,
+#paymentPage .hospital-expense-page .hospital-entry-expense-table select:focus-visible { outline: 3px solid #bfdbfe; border-color: #1458d6; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table [aria-invalid="true"] { border-color: #dc2626; }
+#paymentPage .hospital-expense-entitlement { color: #075f99; font-size: 14px; font-weight: 800; text-align: right !important; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-expense-remove { display: grid; place-items: center; width: 30px; height: 30px; margin: auto; border-radius: 50%; background: #fff1f2; color: #dc2626; }
+#paymentPage .hospital-expense-summary { overflow: hidden; border: 1px solid #dbe5ef; border-radius: 6px; background: #fff; padding: 12px; }
+#paymentPage .hospital-expense-summary h4 { display: flex; align-items: center; gap: 7px; margin: -12px -12px 12px; background: #eaf2ff; padding: 9px 12px; color: #075f99; font-size: 14px; font-weight: 800; }
+#paymentPage .hospital-expense-summary h4 .material-icons-round { font-size: 18px; }
+#paymentPage .hospital-expense-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 9px; }
+#paymentPage .hospital-expense-summary-grid > div { display: grid; gap: 6px; min-height: 78px; border: 1px solid #dbe5ef; border-radius: 6px; background: #f8fafc; padding: 10px 12px; }
+#paymentPage .hospital-expense-summary-grid > div > span { color: #64748b; font-size: 12px; font-weight: 700; }
+#paymentPage .hospital-expense-summary-grid strong { color: #075f99; font-size: 18px; font-weight: 800; font-variant-numeric: tabular-nums; }
+#paymentPage .hospital-expense-summary-grid strong small { color: #64748b; font-size: 11px; }
+#paymentPage .hospital-expense-summary-grid .is-eligible { border-color: #b9e2c9; background: #f0fbf4; }
+#paymentPage .hospital-expense-summary-grid .is-eligible strong { color: #16823c; }
+#paymentPage .hospital-expense-reconcile { display: flex; align-items: center; gap: 7px; margin-top: 10px; border-radius: 6px; background: #eef8f1; padding: 9px 11px; color: #38754b; font-size: 12px; font-weight: 700; }
+#paymentPage .hospital-expense-reconcile .material-icons-round { font-size: 18px; }
+#paymentPage .hospital-expense-insurance { display: flex; align-items: center; gap: 9px; margin-top: 11px; border: 1px solid #dbe5ef; border-radius: 6px; background: #f8fafc; padding: 13px; color: #075f99; font-size: 14px; font-weight: 800; }
+#paymentPage .hospital-expense-insurance input { width: 17px; height: 17px; accent-color: #1458d6; }
+#paymentPage .hospital-expense-additional { display: grid; gap: 12px; min-height: 88px; border: 1px solid #dbe5ef; border-radius: 6px; padding: 12px; }
+#paymentPage .hospital-expense-additional-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+#paymentPage .hospital-expense-additional-head > div { display: grid; gap: 6px; }
+#paymentPage .hospital-expense-additional strong { color: #075f99; font-size: 14px; }
+#paymentPage .hospital-expense-additional small { color: #64748b; font-size: 12px; }
+#paymentPage .hospital-expense-additional button .material-icons-round { font-size: 18px; }
+#paymentPage .hospital-expense-error { color: #b91c1c; font-size: 13px; font-weight: 700; }
+
+/* แจ้งเคลม รพ. Step 2: ใช้ลำดับการ์ดและภาษาภาพเดียวกับเคลมลูกค้า Step 2 */
+#paymentPage .hospital-expense-section-body { gap: 14px; padding: 14px 0 0; }
+#paymentPage .hospital-expense-page .hospital-expense-card,
+#paymentPage .hospital-expense-page .hospital-expense-additional {
+  border: 1px solid #d8dee8;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, .12);
+}
+#paymentPage .hospital-expense-page .hospital-expense-card { padding: 12px; }
+#paymentPage .hospital-expense-page .hospital-expense-card-title { padding: 0 0 10px; font-size: 16px; }
+#paymentPage .hospital-expense-page .hospital-expense-card-title strong,
+#paymentPage .hospital-expense-page .hospital-expense-additional strong { color: #005ea8; font-size: 16px; font-weight: 900; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table { min-width: 1050px; border: 1px solid #cbd7e6; font-size: 12px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table thead { background: #f1f6fd; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table th,
+#paymentPage .hospital-expense-page .hospital-entry-expense-table td { border-color: #d8e2ef; padding: 6px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table thead th { color: #334155; font-size: 12px; text-align: center; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table tbody td:first-child { min-width: 220px; }
+#paymentPage .hospital-expense-page .hospital-entry-expense-table input,
+#paymentPage .hospital-expense-page .hospital-entry-expense-table select { height: 32px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+#paymentPage .hospital-expense-page .hospital-expense-summary { margin-top: 12px; border-color: #cfe0f4; border-radius: 4px; background: #f8fbff; padding: 10px; }
+#paymentPage .hospital-expense-page .hospital-expense-summary h4 { margin: 0 0 10px; background: transparent; padding: 0; color: #005ea8; }
+#paymentPage .hospital-expense-page .hospital-expense-summary h4 .material-icons-round { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 5px; background: #0c63a7; color: #fff; font-size: 17px; }
+#paymentPage .hospital-expense-page .hospital-expense-summary-grid { gap: 12px; }
+#paymentPage .hospital-expense-page .hospital-expense-summary-grid > div { min-height: 76px; border-color: #cbdff5; border-radius: 5px; background: #fff; padding: 12px 16px; }
+#paymentPage .hospital-expense-page .hospital-expense-summary-grid strong { color: #005ea8; font-size: 22px; font-weight: 900; }
+#paymentPage .hospital-expense-page .hospital-expense-summary-grid .is-eligible { border-color: #a9e0cd; background: #e9faf4; }
+#paymentPage .hospital-expense-page .hospital-expense-summary-grid .is-eligible strong { color: #00966a; }
+#paymentPage .hospital-expense-page .hospital-expense-insurance { margin-top: 12px; border-color: #bfdbfe; background: #f8fbff; }
+#paymentPage .hospital-expense-page .hospital-expense-additional { padding: 14px 12px 20px; }
+#paymentPage .hospital-expense-page .hospital-expense-additional-head { align-items: center; }
+#paymentPage .hospital-expense-page .hospital-expense-additional-head > div { gap: 3px; }
+#paymentPage .hospital-expense-page .hospital-expense-additional small { color: #8b95a3; font-size: 11px; font-weight: 700; }
+#paymentPage .hospital-expense-page .hospital-expense-additional button[data-expense-add] { min-height: 34px; border: 1px solid #0067ad; border-radius: 4px; background: #fff; color: #0067ad; font-size: 13px; }
+#paymentPage .hospital-expense-page .hospital-expense-additional button[data-expense-add]:hover { background: #eef7ff; }
+#paymentPage .hospital-expense-page [data-expense-additional-table]:not(:empty) { margin-top: 12px; }
+
+#paymentPage .hospital-expense-picker[hidden],
+#paymentPage .hospital-expense-picker [hidden] { display: none !important; }
+#paymentPage .hospital-expense-picker { margin-top: 14px; }
+#paymentPage .hospital-expense-picker-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(290px, 1fr); gap: 16px; align-items: start; }
+#paymentPage .hospital-expense-tree,
+#paymentPage .hospital-expense-picker-form { min-width: 0; border: 1px solid #d6e2f2; border-radius: 4px; background: #f8fbff; }
+#paymentPage .hospital-expense-tree { padding: 14px; }
+#paymentPage .hospital-expense-search { display: flex; align-items: center; height: 42px; border: 1px solid #cbdff5; border-radius: 6px; background: #fff; color: #0878bf; }
+#paymentPage .hospital-expense-search input { width: 100%; height: 100%; min-width: 0; border: 0; outline: none; background: transparent; padding: 0 12px; color: #334155; font-size: 14px; }
+#paymentPage .hospital-expense-search input:focus-visible { box-shadow: inset 0 0 0 2px #1458d6; }
+#paymentPage .hospital-expense-search .material-icons-round { flex: none; padding-right: 10px; font-size: 20px; }
+#paymentPage .hospital-expense-tree-list { display: grid; gap: 0; max-height: 500px; margin-top: 12px; overflow-y: auto; border: 1px solid #dbe5ef; background: #fff; }
+#paymentPage .hospital-expense-no-results { margin: 10px 0 0; color: #64748b; font-size: 13px; text-align: center; }
+#paymentPage .hospital-expense-main + .hospital-expense-main { border-top: 1px solid #e5edf5; }
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-tree-toggle { display: flex; justify-content: space-between; align-items: center; width: 100%; min-height: 45px; border: 0; border-radius: 0; background: #fff; padding: 8px 12px; color: #075f99; font-size: 14px; font-weight: 800; text-align: left; }
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-tree-toggle:hover,
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-item:hover { background: #eef6ff; }
+#paymentPage .hospital-expense-tree-label { display: flex; align-items: center; gap: 10px; min-width: 0; }
+#paymentPage .hospital-expense-tree-icon { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 7px; background: #e7f2ff; color: #075f99; font-size: 18px !important; }
+#paymentPage .hospital-expense-main-body { border-top: 1px solid #e5edf5; padding-left: 12px; }
+#paymentPage .hospital-expense-sub + .hospital-expense-sub { border-top: 1px solid #e5edf5; }
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-sub-toggle { background: #f9fbff; font-size: 13px; }
+#paymentPage .hospital-expense-sub-body { border-top: 1px solid #e5edf5; }
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-item { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 8px; width: 100%; min-height: 36px; border: 0; border-bottom: 1px solid #eef3f9; border-radius: 0; background: #fff; padding: 7px 12px; color: #1d4f91; font-size: 12px; font-weight: 700; text-align: left; }
+#paymentPage .hospital-expense-page .hospital-expense-picker .hospital-expense-item.is-selected { background: #dff0ff; }
+#paymentPage .hospital-expense-item b { color: #2457bd; }
+#paymentPage .hospital-expense-picker-form { display: grid; gap: 10px; padding: 16px; }
+#paymentPage .hospital-expense-picker-form > strong { margin-bottom: 2px; color: #64748b; font-size: 13px; }
+#paymentPage .hospital-expense-picker-form input,
+#paymentPage .hospital-expense-picker-form select,
+#paymentPage .hospital-expense-picker-form textarea { width: 100%; min-width: 0; min-height: 40px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; padding: 8px 10px; color: #334155; font-size: 14px; }
+#paymentPage .hospital-expense-picker-form textarea { min-height: 64px; resize: vertical; }
+#paymentPage .hospital-expense-picker-form input:disabled,
+#paymentPage .hospital-expense-picker-form select:disabled,
+#paymentPage .hospital-expense-picker-form textarea:disabled { background: #f2f4f7; color: #94a3b8; }
+#paymentPage .hospital-expense-picker-form input[readonly] { color: #075f99; font-weight: 700; }
+#paymentPage .hospital-expense-picker-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+#paymentPage .hospital-expense-page .hospital-expense-picker-form button[data-expense-confirm-add] { width: 100%; min-height: 40px; border-radius: 5px; background: #0878bf; color: #fff; }
+#paymentPage .hospital-expense-page .hospital-expense-picker-form button[data-expense-confirm-add]:disabled { background: #d9dce1; color: #9da3ab; cursor: not-allowed; }
+#paymentPage .hospital-expense-page .hospital-expense-picker-form button[data-expense-confirm-add]:not(:disabled):hover { background: #075f99; }
+
+@media (max-width: 900px) {
+  #paymentPage .hospital-expense-picker-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  #paymentPage .hospital-expense-picker-pair { grid-template-columns: 1fr; }
+  #paymentPage .hospital-expense-tree,
+  #paymentPage .hospital-expense-picker-form { padding: 10px; }
+}
+
+@media (max-width: 1000px) {
+  #paymentPage .hospital-expense-summary-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  #paymentPage .hospital-step3-details { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #paymentPage .hospital-step3-detail.is-wide { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  #paymentPage .hospital-expense-page .hospital-entry-review-panel { padding: 10px; }
+  #paymentPage .hospital-expense-summary-grid { grid-template-columns: 1fr; }
+  #paymentPage .hospital-expense-additional-head { flex-direction: column; }
+  #paymentPage .hospital-expense-additional button { width: 100%; }
+}
+
+@media (max-width: 900px) {
+  #paymentPage .hospital-entry-expense-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  #paymentPage .hospital-step3-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #paymentPage .hospital-step3-detail.is-wide { grid-column: span 2; }
+  #paymentPage .hospital-step3-bottom { grid-template-columns: 1fr; }
+  #claimEntryPage .claim-category-options,
+  #paymentPage .hospital-confirm-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #claimEntryPage .claim-category-card {
+    width: 100%;
+  }
+
+  #claimEntryPage.pa-horizontal-compact .claim-category-options {
+    grid-template-columns: 1fr;
+  }
+
+  #claimEntryPage.pa-horizontal-compact #claimCategorySection .claim-category-card {
+    width: 100% !important;
+  }
+
+  #paymentPage .hospital-confirm-summary-item.is-wide {
+    grid-column: auto;
+  }
+
+  #paymentPage .hospital-confirm-summary-item.is-full {
+    grid-column: auto;
+  }
+
+  #paymentPage .hospital-entry-expense-layout,
+  #paymentPage .hospital-entry-review-body { padding: 12px; }
+  #paymentPage .hospital-entry-review-line { align-items: flex-start; flex-direction: column; gap: 4px; }
+  #paymentPage .hospital-entry-review-line strong { text-align: left; }
+}
+
+@media (max-width: 480px) {
+  #paymentPage .hospital-step3-details { grid-template-columns: 1fr; }
+  #paymentPage .hospital-step3-detail.is-wide { grid-column: auto; }
+  #paymentPage .hospital-step3-identity { display: grid; }
+  #paymentPage .hospital-step3-hospital-summary > div { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #claimEntryPage .claim-category-card {
+    transition: none;
+  }
+}
