@@ -60,7 +60,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
   <link rel="stylesheet" href="css/menu-hospital-claim-traffic-accident.css?v=515" />
-  <link rel="stylesheet" href="css/menu-claim-entry-category.css?v=519" />
+  <link rel="stylesheet" href="css/menu-claim-entry-category.css?v=526" />
+  <link rel="stylesheet" href="css/menu-consider-step3-extra-fields.css?v=526" />
   <link rel="stylesheet" href="css/menu-physical-therapy.css?v=314" />
   <link rel="stylesheet" href="css/menu-customer-ipd-medical-compensation.css?v=339" />
   <link rel="stylesheet" href="css/menu-customer-transfer-eligibility-check.css?v=2" />
@@ -9047,7 +9048,11 @@ body > .min-h-screen > main,
           <div id="claimSubmenu" class="hidden space-y-1 rounded-xl bg-brand-900/25 p-1 lg:ml-3">
             <button id="submenuNewClaim" class="flex h-10 w-full items-center gap-3 rounded-lg bg-white/15 px-3 text-left text-lg font-bold text-white transition hover:bg-white/20">
               <span class="material-icons-round !text-xl">post_add</span>
-              <span class="hidden lg:inline">แจ้งเคลม</span>
+              <span class="hidden lg:inline">แจ้งเคลมลูกค้า</span>
+            </button>
+            <button id="submenuHospitalClaim" type="button" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
+              <span class="material-icons-round !text-xl">local_hospital</span>
+              <span class="hidden lg:inline">แจ้งเคลม รพ.</span>
             </button>
             <button id="submenuTransferTracking" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
               <span class="material-icons-round !text-xl">account_balance_wallet</span>
@@ -10734,7 +10739,7 @@ body > .min-h-screen > main,
               </div>
             </section>
             <section id="documentInlineBox" class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card"><header id="documentInlineHeader" class="border-l-4 border-brand-500 bg-brand-50 px-5 py-3"><h3 class="flex items-center gap-2 text-2xl font-extrabold"><span class="material-icons-round text-brand-700">upload_file</span>แนบเอกสาร</h3></header><div id="documentInlineContent" class="p-5"></div></section>
-            <div class="flex justify-between"><button type="button" onclick="showClaimMonitor()" class="h-12 rounded-lg border border-brand-600 bg-white px-10 text-xl font-bold text-brand-700">กลับ</button><button id="claimEntryNextBtn" type="button" onclick="validateClaimEntryBeforeNext()" class="h-12 rounded-lg bg-brand-600 px-10 text-xl font-bold text-white">ถัดไป</button></div>
+            <div class="flex justify-between"><button type="button" onclick="showClaimMonitor(false)" class="h-12 rounded-lg border border-brand-600 bg-white px-10 text-xl font-bold text-brand-700">กลับ</button><button id="claimEntryNextBtn" type="button" onclick="validateClaimEntryBeforeNext()" class="h-12 rounded-lg bg-brand-600 px-10 text-xl font-bold text-white">ถัดไป</button></div>
           </div>
         </div>
       </section>
@@ -13607,6 +13612,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     let claimMonitorFilteredRows = claimMonitorRows;
     const CLAIM_MONITOR_PAGE_SIZE = 5;
     let claimMonitorPage = 1;
+    let claimMonitorEntryMode = "customer";
 
     const considerationCustomerRows = [
       {
@@ -13968,9 +13974,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const activeSub = "flex h-10 w-full items-center gap-3 rounded-lg bg-white/15 px-3 text-left text-lg font-bold text-white transition hover:bg-white/20";
       const inactiveSub = "flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white";
       const newClaim = document.getElementById("submenuNewClaim");
+      const hospitalClaim = document.getElementById("submenuHospitalClaim");
       const searchClaim = document.getElementById("submenuSearchClaim");
       const transferTracking = document.getElementById("submenuTransferTracking");
       if (newClaim) newClaim.className = submenu === "newClaim" ? activeSub : inactiveSub;
+      if (hospitalClaim) hospitalClaim.className = submenu === "hospitalClaim" ? activeSub : inactiveSub;
       if (searchClaim) searchClaim.className = submenu === "searchClaim" ? activeSub : inactiveSub;
       if (transferTracking) transferTracking.className = submenu === "transferTracking" ? activeSub : inactiveSub;
     }
@@ -14380,8 +14388,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     }
     window.returnToClaimEntryFromCalc = returnToClaimEntryFromCalc;
 
-    function showClaimMonitor(reset = true) {
-      showClaimPage("claimMonitorPage", "ค้นหาผู้เอาประกัน", "บันทึกเคลม/ค้นหาผู้เอาประกัน", 0);
+    function showClaimMonitor(reset = true, entryMode = claimMonitorEntryMode) {
+      claimMonitorEntryMode = entryMode === "hospital" ? "hospital" : "customer";
+      document.getElementById("claimMonitorPage").dataset.entryMode = claimMonitorEntryMode;
+      showClaimPage("claimMonitorPage", "ค้นหาผู้เอาประกัน", claimMonitorEntryMode === "hospital" ? "แจ้งเคลม / แจ้งเคลม รพ." : "บันทึกเคลม/ค้นหาผู้เอาประกัน", 0);
       if (reset) {
         claimMonitorPage = 1;
         claimMonitorHasSearched = false;
@@ -14396,7 +14406,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       }
       renderClaimMonitor();
       updateClaimMonitorVisibility();
-      setClaimSubmenuActive("newClaim");
+      setClaimSubmenuActive(claimMonitorEntryMode === "hospital" ? "hospitalClaim" : "newClaim");
+    }
+
+    function showHospitalClaimMonitor(reset = true) {
+      showClaimMonitor(reset, "hospital");
     }
 
     const claimRecordSearchOptions = {
@@ -16336,15 +16350,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
                 </colgroup>
                 <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2.5 text-left whitespace-nowrap">เลขที่ Case</th><th class="px-3 py-2.5 text-left">อาการสำคัญ(ChiefComplain)</th><th class="px-3 py-2.5 text-left whitespace-nowrap">วันที่เกิดเหตุ</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดเงินตามใบเสร็จรวม</th><th class="px-3 py-2.5 text-right whitespace-nowrap">ยอดจ่ายรวม</th><th class="px-3 py-2.5 text-right"></th></tr></thead>
                 <tbody class="divide-y divide-slate-100">
-                  ${continuousCaseRows.length ? continuousCaseRows.map(({ caseItem }) => `<tr><td class="px-3 py-2.5 font-bold text-brand-700 whitespace-nowrap">${caseItem.caseNo}</td><td class="px-3 py-2.5 break-words">${caseItem.chiefComplaint || '-'}</td><td class="px-3 py-2.5 whitespace-nowrap">${caseItem.serviceDate || '-'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.claimAmount || '0.00'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.paidAmount || '0.00'}</td><td class="px-3 py-2.5 text-right"><button type="button" onclick="openContinuousClaimEntry(${index}, '${caseItem.caseNo}')" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded bg-brand-800 px-3 py-1.5 font-bold text-white"><span class="material-icons-round !text-base align-middle">add_box</span> แจ้งเคลมต่อเนื่อง</button></td></tr>`).join("") : `<tr><td colspan="6" class="px-5 py-8 text-center text-xl font-bold text-slate-400">ไม่พบประวัติ Case</td></tr>`}
+                  ${continuousCaseRows.length ? continuousCaseRows.map(({ caseItem }) => `<tr><td class="px-3 py-2.5 font-bold text-brand-700 whitespace-nowrap">${caseItem.caseNo}</td><td class="px-3 py-2.5 break-words">${caseItem.chiefComplaint || '-'}</td><td class="px-3 py-2.5 whitespace-nowrap">${caseItem.serviceDate || '-'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.claimAmount || '0.00'}</td><td class="px-3 py-2.5 text-right whitespace-nowrap">${caseItem.paidAmount || '0.00'}</td><td class="px-3 py-2.5 text-right"><button type="button" onclick="${claimMonitorEntryMode === 'hospital' ? 'openHospitalContinuousClaimEntry' : 'openContinuousClaimEntry'}(${index}, '${caseItem.caseNo}')" class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded bg-brand-800 px-3 py-1.5 font-bold text-white"><span class="material-icons-round !text-base align-middle">add_box</span> แจ้งเคลมต่อเนื่อง</button></td></tr>`).join("") : `<tr><td colspan="6" class="px-5 py-8 text-center text-xl font-bold text-slate-400">ไม่พบประวัติ Case</td></tr>`}
                 </tbody>
               </table>
             </div>
           </div>
           <div class="mt-4 flex flex-col justify-end gap-3 sm:flex-row">
             <button onclick="openEligibilityFromClaim(${index})" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-brand-600 bg-white px-8 text-xl font-bold text-brand-700 hover:bg-brand-50"><span class="material-icons-round">policy</span>ตรวจสอบสิทธิ์</button>
-            <button type="button" onclick="openClaimEntry(${index})" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-green-700 px-8 text-xl font-bold text-white hover:bg-green-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-200"><span class="material-icons-round" aria-hidden="true">add_circle</span>แจ้งเคลม</button>
-            <button type="button" onclick="openHospitalClaimEntry(${index})" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand-600 px-8 text-xl font-bold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"><span class="material-icons-round" aria-hidden="true">local_hospital</span>แจ้งเคลม รพ.</button>
+            ${claimMonitorEntryMode === 'hospital' ? '' : `<button type="button" onclick="openClaimEntry(${index})" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-green-700 px-8 text-xl font-bold text-white hover:bg-green-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-200"><span class="material-icons-round" aria-hidden="true">add_circle</span>แจ้งเคลม</button>`}
+            ${claimMonitorEntryMode === 'hospital' ? `<button type="button" onclick="openHospitalClaimEntry(${index})" class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand-600 px-8 text-xl font-bold text-white hover:bg-brand-700 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"><span class="material-icons-round" aria-hidden="true">local_hospital</span>แจ้งเคลม รพ.</button>` : ''}
           </div>
         </section>`;
     }
@@ -16442,6 +16456,68 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       showClaimEntryPage();
     }
 
+    function openHospitalContinuousClaimEntry(index = 0, caseNo = "") {
+      if (!caseNo) return;
+      const sourceRow = getClaimMonitorRowByIndex(index);
+      const historyItem = (sourceRow?.claimHistory || []).find(item =>
+        (item.cases || []).some(caseItem => caseItem.caseNo === caseNo)
+        || item.caseNo === caseNo
+      );
+      if (!historyItem?.claimNo) return;
+      const selectedCase = (historyItem.cases || []).find(caseItem => caseItem.caseNo === caseNo)
+        || (historyItem.caseNo === caseNo ? historyItem : null);
+      if (!selectedCase) return;
+      const previousCases = Array.isArray(historyItem.cases) && historyItem.cases.length
+        ? historyItem.cases : [selectedCase];
+      const previousTreatment = selectedCase.treatmentType || historyItem.treatmentType || historyItem.claimType || "";
+      const treatment = previousTreatment === "OPD Half" || previousTreatment === "OPD Full" ? "OPD" : previousTreatment;
+      const supportedTreatments = sourceRow.product === "PA" ? ["OPD", "IPD"] : ["OPD", "IPD", "Day Case Surgery"];
+
+      resetClaimEntryState();
+      clearClaimEntryFormInputs();
+      selectedClaimMonitorIndex = index;
+      claimState.row = sourceRow;
+      claimState.claimCategory = "hospital";
+      claimState.hospitalEntryMenu = "hospital";
+      claimState.isContinuous = true;
+      claimState.continuousCaseNo = caseNo;
+      claimState.claimDates = {};
+      claimState.hospitalEntry = {};
+      claimState.hospitalName = "";
+      const mainIncidentCause = historyItem.incidentCause || selectedCase.incidentCause || (sourceRow.product === "PA" ? "อุบัติเหตุ" : "");
+      const mainCoverageType = historyItem.coverageType || selectedCase.coverageType || "ค่ารักษา";
+      claimState.incidentCause = mainIncidentCause;
+      claimState.coverageType = mainCoverageType;
+      claimState.subType = supportedTreatments.includes(treatment) ? treatment : "";
+      claimState.claimType = claimState.subType;
+      claimState.transferAmount = "";
+      claimState.continuousClaim = {
+        claimNo: historyItem.claimNo,
+        caseNo,
+        mainIncidentCause,
+        mainCoverageType,
+        mainTreatment: claimState.subType,
+        diagnosisCode: selectedCase.diagnosisCode || historyItem.diagnosisCode || "",
+        diagnosisName: selectedCase.diagnosis || historyItem.diagnosis || "",
+        symptom: selectedCase.chiefComplaint || historyItem.chiefComplaint || "",
+        incidentDate: selectedCase.serviceDate || historyItem.incidentDate || "",
+        claimAmount: selectedCase.claimAmount ?? historyItem.claimAmount ?? null,
+        paidAmount: selectedCase.paidAmount ?? historyItem.paidAmount ?? null,
+        remainingAmount: selectedCase.remainingBalance ?? historyItem.remainingBalance ?? null,
+        lines: previousCases.map((caseItem, caseIndex) => ({
+          no: caseIndex + 1,
+          claimCode: caseItem.caseNo || "-",
+          type: caseItem.treatmentType || historyItem.treatmentType || "-",
+          symptom: caseItem.chiefComplaint || historyItem.chiefComplaint || "-",
+          serviceDate: caseItem.serviceDate || historyItem.incidentDate || "-",
+          status: caseItem.status || "-",
+          amount: caseItem.claimAmount ?? null,
+          paid: caseItem.paidAmount ?? null
+        }))
+      };
+      showClaimEntryPage();
+    }
+
     function showClaimEntryPage() {
       showClaimPage("claimEntryPage", `แจ้งเคลม - ${claimState.row.product}`, `แจ้งเคลม - ${claimState.row.product}`);
       renderClaimEntry();
@@ -16456,6 +16532,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         return;
       }
       const item = claimState.continuousClaim;
+      const amount = value => value === null || value === undefined || value === "" || value === "-"
+        ? "-" : formatMoney(parseMoney(value));
+      const diagnosis = [item.diagnosisCode, item.diagnosisName].filter(Boolean).join(" : ") || item.coverageType || "-";
       box.className = "overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card";
       box.innerHTML = `
         <header class="border-l-4 border-brand-500 bg-brand-50 px-5 py-3">
@@ -16466,15 +16545,15 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
             <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
               <div class="grid gap-3 md:grid-cols-2 xl:grid-cols-4 text-lg">
                 <div><p class="font-bold text-slate-500">เลขที่ Case :</p><p class="font-extrabold text-brand-700">${item.caseNo}</p></div>
-                <div class="md:col-span-2"><p class="font-bold text-slate-500">Diagnosis :</p><p class="font-extrabold text-brand-700">${item.diagnosisCode || "-"} : ${item.diagnosisName || item.coverageType || "-"} <span class="text-slate-500">[${item.symptom || "-"}]</span></p></div>
+                <div class="md:col-span-2"><p class="font-bold text-slate-500">Diagnosis :</p><p class="font-extrabold text-brand-700">${diagnosis} <span class="text-slate-500">[${item.symptom || "-"}]</span></p></div>
                 <div><p class="font-bold text-slate-500">วันที่เกิดเหตุ :</p><p class="font-extrabold text-brand-700">${item.incidentDate}</p></div>
-                <div><p class="font-bold text-slate-500">ยอดเงินตามใบเสร็จรวม :</p><p class="font-extrabold text-brand-700">${formatMoney(item.claimAmount)}</p></div>
-                <div><p class="font-bold text-slate-500">ยอดจ่ายรวม :</p><p class="font-extrabold text-brand-700">${formatMoney(item.claimAmount)}</p></div>
+                <div><p class="font-bold text-slate-500">ยอดเงินตามใบเสร็จรวม :</p><p class="font-extrabold text-brand-700">${amount(item.claimAmount)}</p></div>
+                <div><p class="font-bold text-slate-500">ยอดจ่ายรวม :</p><p class="font-extrabold text-brand-700">${amount(item.paidAmount ?? item.claimAmount)}</p></div>
               </div>
             </div>
             <div class="rounded-xl border-2 border-dashed border-brand-200 bg-green-50 p-4 text-right">
               <p class="text-base font-bold text-slate-500">${isPAContinuousDeathClaim() ? "ยอดจ่ายเคลมเดิม" : "วงเงินคงเหลือ"}</p>
-              <p class="mt-1 text-2xl font-extrabold text-success">${formatMoney(isPAContinuousDeathClaim() ? item.claimAmount : item.remainingAmount)}</p>
+              <p class="mt-1 text-2xl font-extrabold text-success">${amount(isPAContinuousDeathClaim() ? item.claimAmount : item.remainingAmount)}</p>
               <p class="mt-1 text-base font-semibold text-slate-500">${isPAContinuousDeathClaim() ? "Default จากข้อมูลเคลมเดิม" : "คงเหลือหลังหักเคลมเดิม"}</p>
             </div>
           </div>
@@ -16483,7 +16562,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <table class="min-w-[760px] w-full border-collapse text-base lg:text-lg">
                 <thead class="bg-brand-800 text-white"><tr><th class="px-3 py-2 text-center">ลำดับ</th><th class="px-3 py-2 text-left">เลขที่ Case</th><th class="px-3 py-2 text-left">ประเภทการรักษา</th><th class="px-3 py-2 text-left">อาการสำคัญ</th><th class="px-3 py-2 text-left">วันที่เข้ารักษา</th><th class="px-3 py-2 text-center">สถานะ</th><th class="px-3 py-2 text-right">ยอดเบิก</th><th class="px-3 py-2 text-right">ยอดจ่าย</th></tr></thead>
                 <tbody class="divide-y divide-slate-100 bg-white">
-                  ${item.lines.map(line => `<tr><td class="px-3 py-2 text-center">${line.no}</td><td class="px-3 py-2 font-semibold text-brand-700">${line.claimCode}</td><td class="px-3 py-2">${line.type}</td><td class="px-3 py-2">${line.symptom}</td><td class="px-3 py-2">${line.serviceDate}</td><td class="px-3 py-2 text-center"><span class="inline-flex rounded-full bg-green-100 px-2.5 py-1 text-sm font-bold text-success">${line.status}</span></td><td class="px-3 py-2 text-right">${formatMoney(line.amount)}</td><td class="px-3 py-2 text-right">${formatMoney(line.paid)}</td></tr>`).join("")}
+                  ${item.lines.map(line => `<tr><td class="px-3 py-2 text-center">${line.no}</td><td class="px-3 py-2 font-semibold text-brand-700">${line.claimCode}</td><td class="px-3 py-2">${line.type}</td><td class="px-3 py-2">${line.symptom}</td><td class="px-3 py-2">${line.serviceDate}</td><td class="px-3 py-2 text-center"><span class="inline-flex rounded-full bg-green-100 px-2.5 py-1 text-sm font-bold text-success">${line.status}</span></td><td class="px-3 py-2 text-right">${amount(line.amount)}</td><td class="px-3 py-2 text-right">${amount(line.paid)}</td></tr>`).join("")}
                 </tbody>
               </table>
             </div>
@@ -21428,10 +21507,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         toggleClaimSubmenu();
       } else {
         setClaimSubmenuExpanded(true);
-        showClaimMonitor();
+        showClaimMonitor(true, "customer");
       }
     });
-    document.getElementById("submenuNewClaim")?.addEventListener("click", () => { setClaimSubmenuExpanded(true); showClaimMonitor(); });
+    document.getElementById("submenuNewClaim")?.addEventListener("click", () => { setClaimSubmenuExpanded(true); showClaimMonitor(true, "customer"); });
+    document.getElementById("submenuHospitalClaim")?.addEventListener("click", () => { setClaimSubmenuExpanded(true); showHospitalClaimMonitor(); });
     document.getElementById("submenuSearchClaim")?.addEventListener("click", () => { setClaimSubmenuExpanded(true); showClaimRecordSearchPage(); });
     document.getElementById("menuClaimWork")?.addEventListener("click", () => {
       setClaimSubmenuExpanded(false);
@@ -21448,7 +21528,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
     document.getElementById("submenuClaimWorkRecord")?.addEventListener("click", () => {
       setClaimWorkSubmenuExpanded(true);
       setClaimWorkSubmenuActive("record");
-      showClaimMonitor();
+      showClaimMonitor(true, "customer");
       setMenuActive("claimWork");
       setClaimSubmenuExpanded(false);
     });
@@ -21736,9 +21816,9 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       } else if (!document.getElementById("considerPage").classList.contains("hidden")) {
         showConsiderationPage(currentConsiderationTab);
       } else if (!document.getElementById("claimCalcPage")?.classList.contains("hidden")) {
-        showClaimMonitor();
+        showClaimMonitor(false);
       } else {
-        showClaimMonitor();
+        showClaimMonitor(false);
       }
     });
 
@@ -21790,11 +21870,12 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       ensureDefaultClaimDates();
       const id = claimDateInputId(key);
       const value = claimState.claimDates?.[key] || todayISODate();
+      const hospitalMax = claimState.claimCategory === "hospital" ? ` max="${todayISODate()}"` : "";
       return `<label class="block be-date-wrap">
         <span class="text-lg font-bold text-slate-500">${label}<span class="text-danger">*</span></span>
         <input id="${id}" type="text" inputmode="numeric" value="${isoToBE(value)}" required placeholder="วว/ดด/พ.ศ." oninput="updateClaimDateFromBE('${key}', this.value)" onblur="formatClaimDateBE('${key}')" class="be-date-display mt-1 h-12 w-full rounded-lg border border-slate-300 px-3 text-xl focus:border-brand-500 focus:ring-4 focus:ring-brand-100">
         <button type="button" class="be-date-button" onclick="openClaimNativeDate('${key}')"><span class="material-icons-round !text-xl">calendar_month</span></button>
-        <input id="${id}Native" type="date" value="${value}" onchange="updateClaimDateFromNative('${key}', this.value)" class="be-date-native" aria-hidden="true" tabindex="-1">
+        <input id="${id}Native" type="date" value="${value}"${hospitalMax} onchange="updateClaimDateFromNative('${key}', this.value)" class="be-date-native" aria-hidden="true" tabindex="-1">
         <span id="${id}Error" class="mt-1 hidden text-base font-extrabold text-danger"></span>
       </label>`;
     }
@@ -21863,6 +21944,26 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       firstInvalid = validateRequiredClaimDate("received", "วันที่รับแจ้ง", firstInvalid);
       firstInvalid = validateRequiredClaimDate("docComplete", "วันที่เอกสารครบ", firstInvalid);
 
+      if (claimState.claimCategory === "hospital") {
+        [
+          ["received", "วันที่แจ้ง"], ["docComplete", "วันที่เอกสารครบ"],
+          ["incident", "วันที่เกิดเหตุ"], ["admit", "วันที่เข้า รพ."],
+          ["discharge", "วันที่ออก รพ."]
+        ].forEach(([key, label]) => {
+          const id = claimDateInputId(key);
+          const input = document.getElementById(id);
+          if (!input) return;
+          const iso = beToISO(input.value);
+          if (!iso) {
+            setClaimDateError(id, `กรุณาระบุ${label}ให้ถูกต้อง`);
+            firstInvalid ||= input;
+          } else if (iso > today) {
+            setClaimDateError(id, `${label}ต้องไม่เป็นวันอนาคต`);
+            firstInvalid ||= input;
+          }
+        });
+      }
+
       const incidentInput = document.getElementById("claimIncidentDate");
       const admitInput = document.getElementById("claimAdmitDate");
       const dischargeInput = document.getElementById("claimDischargeDate");
@@ -21871,11 +21972,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       const discharge = getClaimDateISO("discharge");
 
       if (incident && incident > today) {
-        setClaimDateError("claimIncidentDate", "รบกวนตรวจสอบวันที่เกิดเหตุ");
+        setClaimDateError("claimIncidentDate", claimState.claimCategory === "hospital" ? "วันที่เกิดเหตุต้องไม่เป็นวันอนาคต" : "รบกวนตรวจสอบวันที่เกิดเหตุ");
         firstInvalid ||= incidentInput;
       }
       if (admit && admit > today) {
-        setClaimDateError("claimAdmitDate", "รบกวนตรวจสอบวันที่เข้า รพ.");
+        setClaimDateError("claimAdmitDate", claimState.claimCategory === "hospital" ? "วันที่เข้า รพ. ต้องไม่เป็นวันอนาคต" : "รบกวนตรวจสอบวันที่เข้า รพ.");
         firstInvalid ||= admitInput;
       }
       if (incident && admit && admit < incident) {
@@ -35097,7 +35198,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
 
 <!-- วางบิลเคลม > เคลมโรงพยาบาล > ตรวจสอบรายการวางบิล: แยกไปที่ js/menu-billing-hospital-review.js -->
-<script src="js/menu-billing-hospital-review.js?v=505"></script>
+<script src="js/menu-billing-hospital-review.js?v=529"></script>
 
 <style id="billing-review-emergency-layout-fix">
   /* Emergency no-white-screen / no-overflow patch */
@@ -53993,8 +54094,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "519",
-  updatedAt: "20/10/2026 00:01:14"
+  version: "529",
+  updatedAt: "20/10/2026 12:57:04"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -64955,13 +65056,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/transfer-claim-document-preview.js?v=387"></script>
 
 <!-- แจ้งเคลม: เลือกประเภทเคลม และส่งเคลมโรงพยาบาลเข้าคิวพิจารณา (authoritative late patch) -->
-<script src="js/menu-claim-entry-category.js?v=519"></script>
+<script src="js/menu-claim-entry-category.js?v=529"></script>
 <script src="js/menu-claim-entry-recipients.js?v=465"></script>
 <script src="js/menu-claim-entry-hospital-form.js?v=516"></script>
 <script src="js/menu-eligibility-day-case-note.js?v=484"></script>
 
 <!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
 <script src="js/menu-physical-therapy.js?v=314"></script>
+<script src="js/menu-consider-step3-extra-fields.js?v=524"></script>
 
 <script src="js/menu-customer-ipd-medical-compensation.js?v=338"></script>
 
@@ -65136,5 +65238,6 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-hospital-status-mocks.js?v=505"></script>
 <link rel="stylesheet" href="css/menu-hospital-status-mocks.css?v=506" />
 <link rel="stylesheet" href="css/menu-claim-entry-hospital-form.css?v=516" />
+<script src="js/menu-billing-hospital-separate-transfer.js?v=527"></script>
 </body>
 </html>
