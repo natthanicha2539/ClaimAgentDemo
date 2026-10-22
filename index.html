@@ -14963,6 +14963,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       return Number(value || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     }
     function renderClaimSearchCoverageTab(row, historyRows) {
+      document.getElementById('csdCoverageContent').dataset.product = row.product || '';
       const rows = row.product === 'PA'
         ? [
             ['group','ความคุ้มครองกรณีอุบัติเหตุ','','','',''],
@@ -54094,8 +54095,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "530",
-  updatedAt: "20/10/2026 13:23:42"
+  version: "536",
+  updatedAt: "22/10/2026 09:53:37"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -65060,10 +65061,13 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-claim-entry-recipients.js?v=465"></script>
 <script src="js/menu-claim-entry-hospital-form.js?v=516"></script>
 <script src="js/menu-eligibility-day-case-note.js?v=484"></script>
+<script src="js/menu-claim-entry-day-case-note.js?v=535"></script>
+<link rel="stylesheet" href="css/menu-ph-coverage-ipd-note.css?v=536">
+<script src="js/menu-ph-coverage-ipd-note.js?v=536"></script>
 
 <!-- ข้อมูลกายภาพบำบัด: Customer editable; Hospital/Billing preselected and disabled -->
 <script src="js/menu-physical-therapy.js?v=314"></script>
-<script src="js/menu-consider-step3-extra-fields.js?v=530"></script>
+<script src="js/menu-consider-step3-extra-fields.js?v=531"></script>
 
 <script src="js/menu-customer-ipd-medical-compensation.js?v=338"></script>
 
@@ -65233,7 +65237,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-edit-claim-notification.js?v=380"></script>
 <script src="js/menu-customer-claim-transactions.js?v=512"></script>
 <script src="js/menu-consider-death-place.js?v=442"></script>
-<script src="js/data/home-announcements.js?v=530"></script>
+<script src="js/data/home-announcements.js?v=531"></script>
 <script src="js/menu-home-announcements.js?v=468"></script>
 <script src="js/menu-hospital-status-mocks.js?v=505"></script>
 <link rel="stylesheet" href="css/menu-hospital-status-mocks.css?v=506" />
