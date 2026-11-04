@@ -1,0 +1,231 @@
+#considerDeathPage .ddce-icon-action{width:36px!important;height:36px!important;display:inline-grid!important;place-items:center!important;border-radius:999px!important;position:relative;border:0!important;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s}
+#considerDeathPage .ddce-list-edit{background:#fef3c7!important;color:#854d0e!important}
+#considerDeathPage .ddce-icon-action .material-icons-round{font-size:19px!important}
+#considerDeathPage .ddce-icon-action:hover{transform:translateY(-1px);box-shadow:0 3px 9px #164b8826}
+#considerDeathPage .ddce-icon-action::after{content:attr(data-tooltip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);border-radius:7px;background:#15263e;color:#fff;padding:5px 9px;font-size:12px;font-weight:800;white-space:nowrap;opacity:0;pointer-events:none;z-index:40;transition:opacity .12s}
+#considerDeathPage .ddce-icon-action:hover::after,#considerDeathPage .ddce-icon-action:focus-visible::after{opacity:1}
+#considerDeathPage .tt-status.review{background:#ede9fe!important;color:#6d28d9!important}
+#considerDeathPage .ddce-list-edit:hover{background:#fde68a!important}
+#considerDeathPage .tt-action.view.ddce-icon-action:hover{background:#cbe9ff!important}
+#considerDeathPage .ddce-list-edit:focus-visible{outline:3px solid #d97706;outline-offset:2px}
+#ddClaimEditForm button:focus-visible,#ddClaimEditForm :is(input,select,textarea):focus-visible{outline:3px solid #3685ee;outline-offset:2px}
+#considerDeathDetailPage.ddce-view-only #ddDecisionSection{display:none!important}
+#considerDeathDetailPage.ddce-active #ddTabClaim > :not(#ddClaimEditForm){display:none!important}
+#considerDeathDetailPage .ddce-card{padding:0!important;overflow:hidden;border:1px solid #d8e5f4!important;border-radius:16px!important;background:#fff!important;box-shadow:0 5px 18px #1d477212}
+#ddClaimEditForm .ddce-header{display:flex;align-items:center;gap:13px;padding:18px 24px;background:#eef6ff;border-bottom:1px solid #d8e5f4;color:#1760bd}
+#ddClaimEditForm .ddce-header>.material-icons-round{font-size:28px}
+#ddClaimEditForm h2{font-size:20px;font-weight:850;margin:0}
+#ddClaimEditForm .ddce-header p{font-size:13px;color:#526b88;margin:2px 0 0}
+#ddClaimEditForm .ddce-group{padding:18px 24px;border-bottom:1px solid #e4edf6}
+#ddClaimEditForm h3{font-size:16px;font-weight:800;color:#145689;margin:0 0 15px;padding-bottom:8px;border-bottom:1px solid #e7edf5}
+#ddClaimEditForm .ddce-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#ddClaimEditForm label{display:flex;flex-direction:column;gap:7px;min-width:0;font-size:14px;font-weight:750;color:#425a75}
+#ddClaimEditForm label.ddce-wide{grid-column:1/-1}
+#ddClaimEditForm [hidden]{display:none!important}
+#ddClaimEditForm .ddce-beneficiary-card{padding:15px 16px;margin-top:12px;border:1px solid #d7e4f2;border-radius:12px;background:#f8fbff}
+#ddClaimEditForm .ddce-beneficiary-card h4{margin:0 0 13px;color:#145689;font-size:15px;font-weight:800}
+#ddClaimEditForm .ddce-cash-choice{display:inline-flex;flex-direction:row;align-items:center;gap:9px;margin-bottom:13px;cursor:pointer}
+#ddClaimEditForm .ddce-cash-choice input{width:18px;min-height:18px;height:18px;margin:0;padding:0;accent-color:#1760bd}
+#ddClaimEditForm .ddce-cash-fields{padding:15px 16px;border:1px solid #d7e4f2;border-radius:12px;background:#f8fbff}
+#ddClaimEditForm .ddce-help{margin:9px 0 0;color:#64748b;font-size:13px}
+#ddClaimEditForm .ddce-option-group{padding:10px 18px 14px;background:#fff}
+#ddClaimEditForm .ddce-choice-stack{display:grid;gap:8px}
+#ddClaimEditForm .ddce-choice-section{padding:8px 10px;border:1px solid #cfe1f4;border-radius:10px;background:#f8fbff}
+#ddClaimEditForm .ddce-choice-section[data-ddce-condition]{background:#f3faff}
+#ddClaimEditForm .ddce-choice-title{display:flex;align-items:center;gap:8px;margin-bottom:6px;color:#314b6b;font-size:15px;line-height:1.1}
+#ddClaimEditForm .ddce-choice-title strong{font-weight:800}
+#ddClaimEditForm .ddce-choice-number{display:grid;place-items:center;flex:none;width:22px;height:22px;border-radius:50%;background:#087fc4;color:#fff;font-size:11px;font-weight:800}
+#ddClaimEditForm .ddce-choice-options{display:grid;gap:8px}
+#ddClaimEditForm .ddce-choice-options-cause{grid-template-columns:repeat(2,minmax(0,205px));justify-content:start}
+#ddClaimEditForm .ddce-choice-options-coverage{grid-template-columns:repeat(4,minmax(0,205px));justify-content:start}
+#ddClaimEditForm .ddce-choice{display:flex;align-items:center;justify-content:flex-start;gap:9px;width:100%;min-width:0;min-height:40px;padding:6px 9px;border:1px solid #cfe1f4;border-radius:8px;background:#fff;color:#345170;font:inherit;cursor:pointer;text-align:left;box-shadow:0 1px 4px #164b8810;transition:border-color .15s,background .15s,box-shadow .15s}
+#ddClaimEditForm .ddce-choice.active{border:2px solid #087fc4;background:#eef8ff;color:#075eaa;box-shadow:0 2px 5px #164b8810}
+#ddClaimEditForm .ddce-choice:hover{border-color:#087fc4;background:#f5faff}
+#ddClaimEditForm .ddce-choice-icon{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:6px;background:#e6f5ff;color:#0872b6;font-size:15px}
+#ddClaimEditForm .ddce-choice-copy{display:flex;align-items:center;min-width:0}
+#ddClaimEditForm .ddce-choice-copy strong{font-size:14px;line-height:1.05;font-weight:800}
+#ddClaimEditForm .ddce-choice-options-deathReason,#ddClaimEditForm .ddce-choice-options-disabilityReason{display:flex;flex-wrap:wrap;gap:12px}
+#ddClaimEditForm :is(.ddce-choice-options-deathReason,.ddce-choice-options-disabilityReason) .ddce-choice{width:auto;min-height:38px;padding:6px 10px;border-radius:8px}
+#ddClaimEditForm :is(.ddce-choice-options-deathReason,.ddce-choice-options-disabilityReason) .ddce-choice-copy strong{font-size:15px;line-height:1.1}
+#ddClaimEditForm .ddce-place-field{grid-column:1/-1;display:flex;flex-direction:column;gap:9px}
+#ddClaimEditForm .ddce-place-other{width:min(100%,380px)}
+#ddClaimEditForm .ddce-organ-section{margin:14px 18px;padding:14px 13px!important;border:1px solid #dbeafe!important;border-radius:12px;background:#fff}
+#ddClaimEditForm .ddce-organ-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+#ddClaimEditForm .ddce-organ-head h3{margin:0 0 3px;padding:0;border:0;color:#0872b6;font-size:18px!important;line-height:1.3!important;font-weight:800!important}
+#ddClaimEditForm .ddce-organ-head h3 span{color:#64748b;font-size:14px!important;line-height:1.3!important}
+#ddClaimEditForm .ddce-organ-head p{margin:0;color:#64748b;font-size:13px!important;line-height:1.4!important;font-weight:650}
+#ddClaimEditForm .ddce-organ-count{display:inline-flex;align-items:center;gap:7px;flex:none;padding:7px 13px;border-radius:999px;background:#e8f4ff;color:#075eaa;font-size:13px!important;line-height:1.4!important;font-weight:800}
+#ddClaimEditForm .ddce-organ-count .material-icons-round{font-size:17px}
+#ddClaimEditForm .ddce-organ-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+#ddClaimEditForm .ddce-organ-choice{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:0;min-height:102px;padding:9px 8px;border:1px solid #d7e4f2;border-radius:8px;background:#fff;color:#263c57;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+#ddClaimEditForm .ddce-organ-choice:hover{border-color:#79b7e4;background:#f7fbff}
+#ddClaimEditForm .ddce-organ-choice.selected{min-height:142px;border-color:#087fc4;background:#edf7ff;color:#075eaa}
+#ddClaimEditForm .ddce-organ-choice-icons{display:flex;align-items:center;justify-content:center;gap:5px;min-height:34px}
+#ddClaimEditForm .ddce-organ-choice-icons>b{color:#0872b6;font-size:17px}
+#ddClaimEditForm .ddce-organ-choice-icon{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:#e7f3ff;color:#0872b6}
+#ddClaimEditForm .ddce-organ-choice-icon :is(.material-icons-round,.material-symbols-outlined){font-size:22px;line-height:1}
+#ddClaimEditForm .ddce-organ-choice strong{font-size:16px!important;line-height:1.1!important}
+#ddClaimEditForm .ddce-organ-choice small{font-size:12px!important;line-height:1.2!important;color:#73839a}
+#ddClaimEditForm .ddce-organ-selected{margin-top:5px;padding:4px 10px;border-radius:999px;background:#087fc4;color:#fff;font-size:11px!important;line-height:1.3!important;font-weight:800}
+#ddClaimEditForm .ddce-organ-summary{margin-top:17px}
+#ddClaimEditForm .ddce-organ-summary h4{display:flex;align-items:center;gap:8px;margin:0 0 9px;color:#536274;font-size:17px!important;line-height:1.3!important;font-weight:800!important}
+#ddClaimEditForm .ddce-organ-summary h4 .material-icons-round{color:#087fc4;font-size:21px}
+#ddClaimEditForm .ddce-organ-summary-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border:1px solid #d7e4f2;border-radius:8px;background:#fff}
+#ddClaimEditForm .ddce-organ-summary-row+.ddce-organ-summary-row{margin-top:8px}
+#ddClaimEditForm .ddce-organ-summary-icon{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:#e7f3ff;color:#0872b6}
+#ddClaimEditForm .ddce-organ-summary-icon :is(.material-icons-round,.material-symbols-outlined){font-size:22px}
+#ddClaimEditForm .ddce-organ-summary-text{display:flex;flex:1;flex-direction:column;min-width:0;gap:2px}
+#ddClaimEditForm .ddce-organ-summary-text strong{font-size:16px!important;line-height:1.25!important}
+#ddClaimEditForm .ddce-organ-summary-text small{color:#64748b;font-size:13px!important;line-height:1.25!important}
+#ddClaimEditForm .ddce-organ-summary-actions{display:flex;gap:7px;flex:none}
+#ddClaimEditForm .ddce-organ-summary-actions button{border:1px solid #8fc4ee;border-radius:6px;background:#fff;color:#075eaa;padding:5px 12px;cursor:pointer}
+#ddClaimEditForm .ddce-organ-summary-actions [data-ddce-organ-remove]{border-color:#f4b4aa;color:#c2410c}
+#ddClaimEditForm .ddce-organ-summary>p{padding:13px;border:1px dashed #cbd5e1;border-radius:10px;color:#94a3b8;text-align:center}
+#ddClaimEditForm .ddce-organ-total{margin-top:13px;padding:16px 14px;border-radius:8px;background:#eef2f7;color:#075eaa;text-align:center;font-size:16px!important;line-height:1.4!important;font-weight:800}
+#ddClaimEditForm .ddce-organ-total strong{margin-left:8px;font-size:18px!important;line-height:1.4!important}
+#ddClaimEditForm .ddce-organ-modal{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:16px;background:#0f172a99}
+#ddClaimEditForm .ddce-organ-dialog{width:min(100%,760px);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;border-radius:16px;background:#fff;box-shadow:0 24px 60px #0f172a55}
+#ddClaimEditForm .ddce-organ-dialog.is-finger{width:min(100%,1100px)}
+#ddClaimEditForm .ddce-organ-dialog-head,#ddClaimEditForm .ddce-organ-dialog-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:#f8fbff}
+#ddClaimEditForm .ddce-organ-dialog-head{border-bottom:1px solid #e4edf6}
+#ddClaimEditForm .ddce-organ-dialog-head h3{margin:0;padding:0;border:0;font-size:18px;line-height:1.3}
+#ddClaimEditForm .ddce-organ-dialog-head button{width:34px;height:34px;border:0;border-radius:50%;background:#fee2e2;color:#b91c1c;font-size:23px;cursor:pointer}
+#ddClaimEditForm .ddce-organ-dialog-body{overflow:auto;padding:20px}
+#ddClaimEditForm .ddce-organ-dialog-body .ddce-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}
+#ddClaimEditForm .ddce-organ-dialog-body .ddce-grid>label:nth-child(3){grid-column:1/-1}
+#ddClaimEditForm .ddce-organ-dialog-body .ddce-organ-side-row{margin-bottom:16px}
+#ddClaimEditForm .ddce-organ-dialog-body label>span{display:block}
+#ddClaimEditForm .ddce-organ-dialog-body .ddce-required{margin-left:2px}
+#ddClaimEditForm .ddce-organ-fingers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}
+#ddClaimEditForm .ddce-organ-fingers fieldset{min-width:0;padding:12px;border:1px solid #d7e4f2;border-radius:10px}
+#ddClaimEditForm .ddce-organ-fingers legend{padding:0 6px;color:#145689;font-weight:800}
+#ddClaimEditForm .ddce-organ-finger{display:grid;grid-template-columns:minmax(0,1fr) 90px 125px;gap:10px;align-items:end;padding:8px 0;border-bottom:1px solid #eef2f7}
+#ddClaimEditForm .ddce-organ-finger:last-child{border-bottom:0}
+#ddClaimEditForm .ddce-organ-finger label{font-size:13px}
+#ddClaimEditForm .ddce-organ-finger label:first-child{flex-direction:row;align-items:center;white-space:nowrap}
+#ddClaimEditForm .ddce-organ-finger input:not([type="checkbox"]){min-height:38px;padding:6px 8px}
+#ddClaimEditForm .ddce-organ-finger input[type="checkbox"]{width:18px;height:18px;min-height:18px;padding:0;accent-color:#087fc4}
+#ddClaimEditForm [data-ddce-organ-error]{color:#b42318;font-weight:800}
+#ddClaimEditForm .ddce-organ-dialog-actions{justify-content:flex-end;border-top:1px solid #e4edf6}
+#ddClaimEditForm .ddce-organ-dialog-actions button{padding:8px 14px;border:1px solid #087fc4;border-radius:8px;background:#fff;color:#075eaa;font-weight:800;cursor:pointer}
+#ddClaimEditForm .ddce-organ-dialog-actions [data-ddce-organ-save]{background:#1760bd;color:#fff}
+#ddClaimEditForm .ddce-organ-dialog-actions [data-ddce-organ-delete]{margin-right:auto;border-color:#ef4444;color:#b91c1c}
+#ddClaimEditForm .ddce-place-field>strong{color:#425a75;font-size:14px}
+#ddClaimEditForm .ddce-place-choices{display:flex;flex-wrap:wrap;gap:10px}
+#ddClaimEditForm .ddce-place-choice{min-height:40px;padding:8px 14px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;color:#475569;font:inherit;font-size:14px;font-weight:750;cursor:pointer}
+#ddClaimEditForm .ddce-place-choice.active{border-color:#0788d6;background:#eef8ff;color:#075f99}
+#ddClaimEditForm .ddce-add-diagnosis{margin-top:13px}
+#ddClaimEditForm .ddce-beneficiary-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px dashed #d7e5f4;padding-bottom:12px}
+#ddClaimEditForm .ddce-beneficiary-head h3{margin:0;padding:0;border:0}
+#ddClaimEditForm .ddce-outline-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:7px 12px;border:1px solid #087fc4;border-radius:9px;background:#fff;color:#075eaa;font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+#ddClaimEditForm .ddce-outline-button .material-icons-round{font-size:18px}
+#ddClaimEditForm .ddce-outline-button:hover,#ddClaimEditForm .ddce-outline-button[aria-pressed="true"]{background:#edf7ff}
+#ddClaimEditForm .ddce-beneficiary-card{background:#f8fbff;margin-top:12px}
+#ddClaimEditForm .ddce-beneficiary-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+#ddClaimEditForm .ddce-beneficiary-card-head>div{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+#ddClaimEditForm .ddce-beneficiary-card h4{margin:0}
+#ddClaimEditForm .ddce-source-chip{padding:4px 9px;border-radius:999px;background:#d6f4de;color:#15803d;font-size:11px;font-weight:800}
+#ddClaimEditForm .ddce-beneficiary-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 22px}
+#ddClaimEditForm .ddce-beneficiary-summary>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+#ddClaimEditForm .ddce-beneficiary-summary span{color:#647b98;font-size:12px;font-weight:700}
+#ddClaimEditForm .ddce-beneficiary-summary strong{color:#075eaa;font-size:14px;font-weight:750;overflow-wrap:anywhere}
+#ddClaimEditForm .ddce-beneficiary-editor{padding-top:4px}
+#ddClaimEditForm .ddce-beneficiary-total{margin-top:10px;padding:10px 14px;border-radius:9px;background:#e7f4ff;color:#075eaa;text-align:center;font-size:14px;font-weight:800}
+#claimModalBox .ddce-beneficiary-dialog{max-height:calc(100dvh - 32px);overflow-y:auto;border-radius:16px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-head{padding:15px 18px 13px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-title-wrap{gap:9px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-title-icon{width:40px;height:40px;border-radius:10px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-title-icon .material-icons-round{font-size:21px!important}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-title{font-size:17px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-subtitle{font-size:12px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-close{width:34px;height:34px;border-radius:9px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-body{padding:15px 18px 18px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview{grid-template-columns:repeat(3,minmax(0,1fr));border-radius:10px;box-shadow:none}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-item{gap:9px;min-width:0;padding:10px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-item:not(:last-child){border-right:1px solid #d8e6f5;border-bottom:0}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-icon{width:34px;height:34px;border-radius:8px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-icon .material-icons-round{font-size:18px!important}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-label{font-size:11px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-value{font-size:12px;margin-top:3px}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-pill{min-height:22px;padding:0 6px;font-size:10px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-grid{gap:11px;margin-top:14px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-row{grid-template-columns:38px minmax(0,1fr);gap:10px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-row-icon{width:36px;height:36px;border-radius:9px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-row-icon .material-icons-round{font-size:19px!important}
+#claimModalBox .ddce-beneficiary-dialog .death-form-fields{gap:8px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-3{grid-column:span 3}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-4{grid-column:span 4}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-5{grid-column:span 5}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-6{grid-column:span 6}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field label{margin-bottom:5px;font-size:12px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-field input,#claimModalBox .ddce-beneficiary-dialog .death-form-field select{height:43px;padding:0 11px;border-radius:7px;font-size:13px}
+#claimModalBox .ddce-beneficiary-dialog .death-form-help{font-size:11px;margin-top:5px}
+#claimModalBox .ddce-beneficiary-dialog .ddce-modal-error{margin:12px 0 0;color:#b42318;font-size:12px;font-weight:800}
+#claimModalBox .ddce-beneficiary-dialog .death-modal-actions{gap:9px;margin-top:16px}
+#claimModalBox .ddce-beneficiary-dialog .death-btn-secondary,#claimModalBox .ddce-beneficiary-dialog .death-btn-primary{height:40px;min-width:134px;border-radius:8px;font-size:13px}
+@media(max-width:620px){#claimModalBox .ddce-beneficiary-dialog .death-modal-overview{grid-template-columns:1fr}#claimModalBox .ddce-beneficiary-dialog .death-modal-overview-item:not(:last-child){border-right:0;border-bottom:1px solid #d8e6f5}#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-3,#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-4,#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-5,#claimModalBox .ddce-beneficiary-dialog .death-form-field.col-6{grid-column:span 12}#claimModalBox .ddce-beneficiary-dialog .death-modal-actions{flex-direction:column}#claimModalBox .ddce-beneficiary-dialog .death-btn-secondary,#claimModalBox .ddce-beneficiary-dialog .death-btn-primary{width:100%}}
+#ddClaimEditForm .ddce-cash-panel{margin-top:14px;padding:14px 16px;border:1px solid #d7e4f2;border-radius:10px;background:#f8fbff}
+#ddClaimEditForm .ddce-cash-panel h4{margin:0 0 12px;color:#145689;font-size:15px}
+#ddClaimEditForm .ddce-cash-fields{padding:0;border:0;background:transparent}
+#ddClaimEditForm .ddce-place{grid-column:1/-1;min-width:0;margin:0;padding:0;border:0}
+#ddClaimEditForm .ddce-place legend{margin-bottom:11px;font-size:14px;font-weight:750;color:#425a75}
+#ddClaimEditForm .ddce-place-options{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:15px}
+#ddClaimEditForm .ddce-place-options label{display:inline-flex;flex-direction:row;align-items:center;gap:7px;min-height:30px;cursor:pointer}
+#ddClaimEditForm .ddce-place-options input[type="radio"]{width:16px;min-height:16px;height:16px;margin:0;padding:0;accent-color:#1760bd;cursor:pointer}
+#ddClaimEditForm .ddce-place-detail{display:flex;width:100%}
+#ddClaimEditForm .ddce-place-detail[hidden]{display:none!important}
+#ddClaimEditForm .ddce-required{display:inline-block;margin-left:4px;color:#dc2626;font-size:16px;font-weight:900;line-height:1}
+#ddClaimEditForm :is(input,select,textarea){box-sizing:border-box;width:100%;min-height:42px;padding:9px 11px;border:1px solid #bbcadb;border-radius:9px;background:#fff;color:#172e49;font:inherit;font-weight:500}
+#ddClaimEditForm input[readonly]{background:#f1f5f9;color:#64748b;cursor:default}
+#ddClaimEditForm textarea{resize:vertical}
+#ddClaimEditForm .ddce-document-table-wrap{overflow-x:auto;border:1px solid #d7e4f2;border-radius:10px}
+#ddClaimEditForm .ddce-document-table{width:100%;min-width:650px;border-collapse:collapse;font-size:14px}
+#ddClaimEditForm .ddce-document-table th{padding:11px 12px;background:#176eb2;color:#fff;text-align:center;white-space:nowrap}
+#ddClaimEditForm .ddce-document-table td{padding:11px 12px;border-top:1px solid #e5edf6;text-align:center;color:#243c58}
+#ddClaimEditForm .ddce-document-table td:nth-child(2){text-align:left;font-weight:750}
+#ddClaimEditForm .ddce-document-table .ddce-doc-empty{text-align:center;color:#64748b}
+#ddClaimEditForm .ddce-document-table .ddce-doc-detail td{text-align:left;background:#f5f9ff;color:#425a75;line-height:1.6}
+#ddClaimEditForm .ddce-scan{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:8px;background:#176eb2;color:#fff;font-weight:800;padding:7px 11px;cursor:pointer}
+#ddClaimEditForm .ddce-scan .material-icons-round{font-size:17px}
+#ddClaimEditForm .ddce-doc-view{width:34px;height:34px;display:inline-grid;place-items:center;border:0;border-radius:999px;background:#e3f3ff;color:#1760a2;cursor:pointer}
+#ddClaimEditForm [data-ddce-error]{font-size:13px;font-weight:700;color:#b42318;margin:8px 0 0}
+#ddClaimEditForm .ddce-actions{display:flex;justify-content:flex-end;gap:10px;padding:18px 24px;background:#f8fbff}
+#ddClaimEditForm .ddce-actions button{border:1px solid #1760bd;border-radius:9px;padding:10px 17px;background:#fff;color:#1760bd;font-weight:800;cursor:pointer}
+#ddClaimEditForm .ddce-actions button[data-ddce-save]{background:#1760bd;color:#fff}
+@media(max-width:900px){#ddClaimEditForm .ddce-choice-options-coverage{grid-template-columns:repeat(2,minmax(0,205px))}}
+@media(max-width:900px){#ddClaimEditForm .ddce-organ-grid{grid-template-columns:repeat(3,minmax(0,1fr))}#ddClaimEditForm .ddce-organ-fingers{grid-template-columns:1fr}}
+@media(max-width:850px){#ddClaimEditForm .ddce-grid,#ddClaimEditForm .ddce-beneficiary-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#ddClaimEditForm .ddce-grid,#ddClaimEditForm .ddce-beneficiary-summary,#ddClaimEditForm .ddce-choice-options-cause,#ddClaimEditForm .ddce-choice-options-coverage{grid-template-columns:1fr}#ddClaimEditForm .ddce-header,#ddClaimEditForm .ddce-group,#ddClaimEditForm .ddce-actions{padding:15px}#ddClaimEditForm .ddce-actions{flex-direction:column}#ddClaimEditForm .ddce-actions button{width:100%}#ddClaimEditForm .ddce-beneficiary-head,#ddClaimEditForm .ddce-beneficiary-card-head{align-items:stretch;flex-direction:column}#ddClaimEditForm .ddce-choice-stack{gap:8px}#ddClaimEditForm .ddce-choice-section{padding:8px 10px}#ddClaimEditForm .ddce-choice{min-height:40px}#ddClaimEditForm .ddce-choice-copy strong{font-size:14px}}
+@media(max-width:600px){#ddClaimEditForm .ddce-organ-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#ddClaimEditForm .ddce-organ-finger{grid-template-columns:minmax(0,1fr) 70px 95px}#ddClaimEditForm .ddce-organ-dialog-body .ddce-grid{grid-template-columns:1fr}#ddClaimEditForm .ddce-organ-dialog-actions{flex-wrap:wrap}}
+/* Match the organ-loss detail dialog used by แจ้งเคลม. */
+#ddClaimEditForm .ddce-organ-dialog{width:min(100%,960px);max-height:94vh;border-radius:18px}
+#ddClaimEditForm .ddce-organ-dialog.is-finger{width:min(100%,1200px)}
+#ddClaimEditForm .ddce-organ-dialog-head{justify-content:flex-start;padding:20px 24px;background:#fff}
+#ddClaimEditForm .ddce-organ-header-icon{display:grid;place-items:center;flex:none;width:46px;height:46px;border:1px solid #b8d7f0;border-radius:12px;background:#e7f3ff;color:#075f99}
+#ddClaimEditForm .ddce-organ-header-icon :is(.material-icons-round,.material-symbols-outlined){font-size:28px}
+#ddClaimEditForm .ddce-organ-dialog-head h3{color:#075f99;font-size:20px;font-weight:900}
+#ddClaimEditForm .ddce-organ-dialog-head p{margin:4px 0 0;color:#8a94a6;font-size:14px;font-weight:700}
+#ddClaimEditForm .ddce-organ-dialog-head [data-ddce-organ-close]{margin-left:auto;width:42px;height:42px;background:#b80000;color:#fff}
+#ddClaimEditForm .ddce-organ-dialog-body{padding:18px 20px}
+#ddClaimEditForm .ddce-organ-detail-card{padding:16px;border:1px solid #d9e7f5;border-radius:12px;background:#fff;box-shadow:0 2px 8px #0f172a0a}
+#ddClaimEditForm .ddce-organ-detail-title{display:flex;align-items:center;gap:9px;padding-bottom:10px;margin-bottom:16px;border-bottom:1px dashed #d9e7f5;color:#075f99;font-size:18px;font-weight:900}
+#ddClaimEditForm .ddce-organ-detail-title .ddce-organ-header-icon{width:42px;height:42px}
+#ddClaimEditForm .ddce-organ-top-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:end;gap:16px;margin-bottom:16px}
+#ddClaimEditForm .ddce-organ-side-field>span{display:block;margin-bottom:8px;color:#7f8b9c;font-size:14px;font-weight:800}
+#ddClaimEditForm .ddce-organ-side-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden;border:1px solid #cfd8e3;border-radius:7px}
+#ddClaimEditForm .ddce-organ-side-buttons button{min-height:42px;border:0;border-right:1px solid #cfd8e3;background:#fff;color:#4b5563;font-size:15px;font-weight:850;cursor:pointer}
+#ddClaimEditForm .ddce-organ-side-buttons button:last-child{border-right:0}
+#ddClaimEditForm .ddce-organ-side-buttons button[aria-pressed="true"]{background:#2457bd;color:#fff}
+#ddClaimEditForm .ddce-organ-combo-sides{display:grid;gap:10px}
+#ddClaimEditForm .ddce-organ-combo-side strong{display:block;margin-bottom:5px;color:#075f99}
+#ddClaimEditForm .ddce-organ-detail-card .ddce-organ-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0}
+#ddClaimEditForm .ddce-organ-detail-card label{color:#7f8b9c;font-size:13px}
+#ddClaimEditForm .ddce-organ-detail-card input,#ddClaimEditForm .ddce-organ-detail-card select,#ddClaimEditForm .ddce-organ-detail-card textarea{min-height:44px;border:1px solid #d2d8e2;border-radius:7px;background:#fff;color:#334155;font-size:16px}
+#ddClaimEditForm .ddce-organ-detail-card textarea{min-height:65px;resize:none}
+#ddClaimEditForm .ddce-organ-rule{display:flex;flex-direction:column;gap:6px;margin:4px 0 18px;padding:15px 16px;border:1px solid #bfdbfe;border-radius:14px;background:#eef8ff;color:#075f99;font-size:14px;font-weight:800}
+#ddClaimEditForm .ddce-organ-rule span{color:#0b65b1}
+#ddClaimEditForm .ddce-organ-modal-total{margin-top:18px;padding:14px;border-radius:8px;background:#eef2f7;color:#075f99;text-align:right;font-size:17px;font-weight:800}
+#ddClaimEditForm .ddce-organ-modal-total strong{margin:0 14px}
+#ddClaimEditForm .ddce-organ-detail-card .ddce-organ-dialog-actions{padding:14px 0 0;margin-top:14px;border-top:0;background:#fff}
+#ddClaimEditForm .ddce-organ-finger-total{margin:12px 0 18px}
+@media(max-width:600px){#ddClaimEditForm .ddce-organ-dialog-head{padding:14px}#ddClaimEditForm .ddce-organ-dialog-head h3{font-size:17px}#ddClaimEditForm .ddce-organ-dialog-body{padding:10px}#ddClaimEditForm .ddce-organ-top-row,#ddClaimEditForm .ddce-organ-detail-card .ddce-organ-grid{grid-template-columns:1fr}#ddClaimEditForm .ddce-organ-modal-total{text-align:center}}

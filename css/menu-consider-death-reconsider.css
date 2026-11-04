@@ -1,0 +1,41 @@
+#considerDeathDetailPage .cct-pane .customer-panel-modern-body { padding: 18px 24px 26px; }
+#considerDeathDetailPage .cct-pane .cct-mark.base { background: #e9f2ff; color: #245fb1; }
+#ddReconsiderDialog .cct-dialog-meta { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0; margin: 8px 0 0; padding: 0; border: 1px solid #dce7f3; border-radius: 10px; background: #fff; overflow: hidden; }
+#ddReconsiderDialog .cct-meta-item { display: block; min-width: 0; padding: 9px 13px; color: #10243e; overflow-wrap: anywhere; }
+#ddReconsiderDialog .cct-meta-item:nth-child(odd) { border-right: 1px solid #e6edf5; }
+#ddReconsiderDialog .cct-meta-item:nth-child(-n+2) { border-bottom: 1px solid #e6edf5; }
+#ddReconsiderDialog .cct-meta-item dt { margin: 0 0 2px; color: #647b96; font-size: 12px; line-height: 1.3; font-weight: 700; }
+#ddReconsiderDialog .cct-meta-item dd { margin: 0; color: #173d69; font-size: 15px; line-height: 1.35; font-weight: 800; }
+#ddReconsiderDialog .ddr-detail-summary { margin: 0; color: #36506d; font-size: 16px; line-height: 1.5; }
+#considerDeathDetailPage .cct-pane button:focus-visible,#ddReconsiderDialog button:focus-visible { outline: 3px solid #2f7df3; outline-offset: 3px; }
+@media (max-width: 700px) { #considerDeathDetailPage .cct-pane .customer-panel-modern-body { padding: 14px; } }
+@media (max-width: 540px) { #ddReconsiderDialog .cct-dialog-meta { grid-template-columns: 1fr; } #ddReconsiderDialog .cct-meta-item { border-right: 0 !important; border-bottom: 1px solid #e6edf5; } #ddReconsiderDialog .cct-meta-item:last-child { border-bottom: 0; } }
+.cct-amount-warning { margin-top: 14px; border: 1px solid #f5c46b; border-radius: 12px; background: #fffbf2; color: #7c3b08; overflow: hidden; }
+.cct-warning-head { display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; background: #fff4d9; }
+.cct-warning-head > .material-icons-round { flex: none; margin-top: 1px; color: #b45309; font-size: 21px; }
+.cct-warning-head > div { display: grid; gap: 3px; min-width: 0; }
+.cct-warning-head strong { font-size: 14px; line-height: 1.45; }
+.cct-warning-head span:not(.material-icons-round) { color: #85521d; font-size: 12px; line-height: 1.4; }
+.cct-amount-list { display: grid; gap: 0; max-height: min(32vh, 270px); overflow-y: auto; }
+.cct-amount-item { display: grid; gap: 9px; padding: 12px 16px; border-top: 1px solid #f4dfb7; }
+.cct-amount-name { color: #613a19; font-size: 13px; font-weight: 750; line-height: 1.45; overflow-wrap: anywhere; }
+.cct-amount-values { display: grid; grid-template-columns: minmax(0,1fr) 20px minmax(0,1fr); align-items: end; gap: 8px; }
+.cct-amount-values > span:not(.cct-amount-arrow) { display: grid; gap: 2px; min-width: 0; }
+.cct-amount-values small { color: #805b39; font-size: 11px; font-weight: 650; }
+.cct-amount-values strong { color: #673d1b; font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cct-amount-values > span:last-child strong { color: #a34808; }
+.cct-amount-values em { font-size: 11px; font-style: normal; font-weight: 600; }
+.cct-amount-arrow { align-self: end; margin-bottom: 1px; color: #a16207; font-size: 18px; }
+.cct-compensation-editor { border: 1px solid #bfdbfe; border-radius: 10px; background: #eff6ff; padding: 14px; margin: 12px 0; }
+.cct-compensation-editor > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.cct-compensation-editor label { display: grid; gap: 5px; color: #334155; font-weight: 700; }
+.cct-compensation-editor input { min-height: 40px; border: 1px solid #cbd5e1; border-radius: 7px; background: #fff; padding: 7px 10px; }
+@media (max-width: 680px) { .ddr-grid, .cct-compensation-editor > div { grid-template-columns: 1fr; } }
+@media (max-width: 380px) { .cct-amount-values strong { font-size: 13px; } .cct-amount-values { gap: 4px; } }
+#considerDeathDetailPage.ddr-decision-locked #ddDecisionSection { display: none !important; }
+#considerDeathDetailPage.ddr-reconsidering .claim-status-detail-card { display: none !important; }
+#considerDeathDetailPage .ddr-paid-transfer-warning { display: flex; align-items: flex-start; gap: 11px; margin: 0 0 16px; padding: 14px 16px; border: 1px solid #f5c46b; border-radius: 12px; background: #fffbf2; color: #713f12; }
+#considerDeathDetailPage .ddr-paid-transfer-warning > .material-icons-round { flex: none; color: #b45309; font-size: 22px; }
+#considerDeathDetailPage .ddr-paid-transfer-warning strong { display: block; font-size: 15px; line-height: 1.4; }
+#considerDeathDetailPage .ddr-paid-transfer-warning p { margin: 5px 0 0; font-size: 14px; line-height: 1.55; }
+#considerDeathDetailPage .ddr-paid-transfer-warning small { display: block; margin-top: 6px; color: #865218; font-size: 12px; overflow-wrap: anywhere; }

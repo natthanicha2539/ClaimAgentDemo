@@ -1,0 +1,183 @@
+/* แจ้งเคลม > ค้นหาการแจ้งเคลม: scoped to the legacy notification search. */
+#claimSearchPage:not(.claim-work-search-active) {
+  --crs-blue: #1458d6;
+  --crs-ink: #10243e;
+  --crs-line: #dfe8f2;
+  --crs-soft: #eaf2ff;
+  color: var(--crs-ink);
+}
+#claimSearchPage:not(.claim-work-search-active) > section {
+  border-color: var(--crs-line) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 9px 28px rgba(18, 52, 94, .06) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) > section:first-of-type > header {
+  gap: 14px;
+  padding: 20px 24px;
+  border-color: var(--crs-line) !important;
+  background: linear-gradient(105deg, #edf4ff, #f8fbff 58%, #fff) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) > section:first-of-type > header > span:first-child {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: var(--crs-blue) !important;
+  box-shadow: 0 5px 12px rgba(20, 88, 214, .16);
+}
+#claimSearchPage:not(.claim-work-search-active) #claimSearchSectionTitle {
+  color: var(--crs-ink) !important;
+  font-size: 25px !important;
+  line-height: 1.2;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimSearchSectionDesc {
+  margin-top: 3px;
+  color: #6d7d90 !important;
+  font-size: 15px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm {
+  padding: 22px 24px 24px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm > div:first-child {
+  margin-bottom: 19px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-label {
+  color: #425a71;
+  font-size: 16px !important;
+  font-weight: 700;
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn {
+  min-height: 76px;
+  border-color: var(--crs-line) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] {
+  border-color: var(--crs-blue) !important;
+  background: var(--crs-soft) !important;
+  box-shadow: 0 0 0 1px var(--crs-blue) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-icon {
+  background: #d9e9ff;
+  color: var(--crs-blue);
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-copy strong,
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-check {
+  color: var(--crs-blue);
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm > .grid {
+  gap: 12px 16px;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm label > span:first-child {
+  color: #425a71 !important;
+  font-size: 15px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchType,
+#claimSearchPage:not(.claim-work-search-active) #claimRecordKeyword {
+  height: 46px;
+  border-color: #cfdde9 !important;
+  border-radius: 10px;
+  color: var(--crs-ink);
+  font-size: 16px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchType:focus,
+#claimSearchPage:not(.claim-work-search-active) #claimRecordKeyword:focus {
+  border-color: var(--crs-blue) !important;
+  box-shadow: 0 0 0 3px rgba(20, 88, 214, .12);
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm button[type="submit"] {
+  height: 46px;
+  border-radius: 10px;
+  background: var(--crs-blue) !important;
+  font-size: 16px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm button[type="submit"]:hover {
+  background: #0f48b3 !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultSection > header {
+  padding: 18px 24px;
+  border-color: var(--crs-line) !important;
+  background: #fbfdff;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultSection > header h3 {
+  color: var(--crs-ink) !important;
+  font-size: 20px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultCaption {
+  color: #6d7d90 !important;
+  font-size: 14px !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultCount {
+  background: var(--crs-soft) !important;
+  color: var(--crs-blue) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultSection table {
+  min-width: 1120px;
+  color: var(--crs-ink);
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableHead {
+  background: #edf4ff !important;
+  color: #315573 !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableHead th {
+  padding: 13px 15px !important;
+  border-bottom: 1px solid var(--crs-line);
+  font-size: 14px !important;
+  font-weight: 700;
+  white-space: nowrap;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td {
+  padding: 14px 15px !important;
+  font-size: 15px !important;
+  vertical-align: middle;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody tr:hover {
+  background: #f7faff !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td:first-child,
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td:nth-child(6) {
+  color: var(--crs-blue) !important;
+  font-variant-numeric: tabular-nums;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td:nth-child(2) button {
+  color: var(--crs-blue) !important;
+  text-decoration-thickness: 1px;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td:last-child button {
+  border-radius: 11px;
+  background: var(--crs-soft) !important;
+  color: var(--crs-blue) !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody td:last-child button:hover {
+  background: var(--crs-blue) !important;
+  color: white !important;
+}
+#claimSearchPage:not(.claim-work-search-active) #claimRecordTableBody button:focus-visible {
+  outline: 3px solid #8eb6ff;
+  outline-offset: 2px;
+}
+#claimSearchPage .crs-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 14px !important;
+  font-weight: 700;
+  white-space: nowrap;
+}
+#claimSearchPage .crs-status .material-icons-round {
+  font-size: 16px !important;
+}
+#claimSearchPage .crs-status--success { color: #13815a; background: #eaf8f0; border-color: #bde7d1; }
+#claimSearchPage .crs-status--pending { color: #a86a12; background: #fff7e7; border-color: #f1dcaa; }
+#claimSearchPage .crs-status--processing { color: #1458d6; background: #eaf2ff; border-color: #c5d9ff; }
+#claimSearchPage .crs-status--fail { color: #c33843; background: #fff0f1; border-color: #f0c5ca; }
+#claimSearchPage:not(.claim-work-search-active) #claimRecordResultSection > div:last-child {
+  border-color: var(--crs-line) !important;
+  background: #fbfdff;
+}
+@media (max-width: 700px) {
+  #claimSearchPage:not(.claim-work-search-active) > section:first-of-type > header,
+  #claimSearchPage:not(.claim-work-search-active) #claimRecordSearchForm,
+  #claimSearchPage:not(.claim-work-search-active) #claimRecordResultSection > header { padding-left: 16px !important; padding-right: 16px !important; }
+  #claimSearchPage:not(.claim-work-search-active) #claimSearchSectionTitle { font-size: 22px !important; }
+}

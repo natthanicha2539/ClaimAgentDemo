@@ -1,0 +1,370 @@
+/* บันทึกเคลม > แจ้งเคลม รพ. ใช้เฉพาะฟอร์มที่เริ่มจากผู้เอาประกันที่เลือก */
+#claimEntryPage.hospital-entry-mode #claimServiceFields,
+#claimEntryPage.hospital-entry-mode #claimBenefitAmountPair,
+#claimEntryPage.hospital-entry-mode #calcBtn,
+#claimEntryPage.hospital-entry-mode #transferAmountWrap,
+#claimEntryPage.hospital-entry-mode #symptomWrap,
+#claimEntryPage.hospital-entry-mode #organLossPanel {
+  display: none !important;
+}
+#claimEntryPage.hospital-entry-mode #dateFields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+#claimEntryPage.hospital-entry-mode #hospitalEntryStayFields {
+  display: block;
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+#claimEntryPage.hospital-entry-mode #hospitalEntryStayFields .claim-ipd-stay-summary-grid {
+  margin-top: 0;
+}
+#claimEntryPage.hospital-entry-mode #hospitalEntryStayFields .hospital-entry-stay-field {
+  display: block;
+  min-width: 0;
+}
+#claimEntryPage.hospital-entry-mode #hospitalEntryStayFields .claim-ipd-stay-input[aria-invalid="true"] {
+  border-color: #dc2626;
+  background: #fff7f7;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, .1);
+}
+#claimEntryPage.hospital-entry-mode #hospitalEntryStayFields .hospital-entry-error:not(:empty) {
+  display: block;
+  margin-top: 6px;
+}
+#claimEntryPage.hospital-entry-mode #hospitalFields,
+#claimEntryPage.hospital-entry-mode #diagnosisFields {
+  display: block;
+}
+#claimEntryPage .hospital-entry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+#claimEntryPage .hospital-entry-wide { grid-column: 1 / -1; }
+#claimEntryPage .hospital-entry-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 700;
+}
+#claimEntryPage .hospital-entry-field legend {
+  margin-bottom: 7px;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 700;
+}
+#claimEntryPage .hospital-entry-control {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #fff;
+  padding: 9px 12px;
+  color: #10243e;
+  font-size: 17px;
+  font-weight: 600;
+  outline: none;
+}
+#claimEntryPage textarea.hospital-entry-control { min-height: 84px; resize: vertical; }
+#claimEntryPage .hospital-entry-control:focus-visible {
+  border-color: #1458d6;
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+#claimEntryPage .hospital-entry-control[aria-invalid="true"] { border-color: #dc2626; }
+#claimEntryPage .hospital-entry-error { color: #b91c1c; font-size: 14px; font-weight: 700; }
+#claimEntryPage .hospital-entry-error:empty { display: none; }
+#claimEntryPage .hospital-entry-sections { display: grid; gap: 20px; }
+#claimEntryPage .hospital-entry-section {
+  overflow: hidden;
+  border: 1px solid #dfe8f2;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(16, 36, 62, .05);
+}
+#claimEntryPage .hospital-entry-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid #1458d6;
+  background: #eaf2ff;
+  padding: 12px 18px;
+  color: #10243e;
+}
+#claimEntryPage .hospital-entry-section-head .material-icons-round { color: #1458d6; }
+#claimEntryPage .hospital-entry-section-head h3 { font-size: 22px; font-weight: 800; }
+#claimEntryPage .hospital-entry-section-body { padding: 20px; }
+#claimEntryPage .hospital-entry-section-body > .hospital-entry-field { margin-top: 14px; }
+#claimEntryPage .hospital-entry-section-body.hospital-entry-grid > .hospital-entry-field { margin-top: 0; }
+#claimEntryPage .hospital-entry-check,
+#claimEntryPage .hospital-entry-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  color: #334155;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+#claimEntryPage .hospital-entry-check input,
+#claimEntryPage .hospital-entry-choice input { width: 18px; height: 18px; accent-color: #1458d6; }
+#claimEntryPage .hospital-entry-choices { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+#claimEntryPage #hospitalEntryTrafficDetails { margin-top: 0; }
+#claimEntryPage .hospital-entry-section [hidden],
+#claimEntryPage .hospital-entry-grid [hidden] { display: none !important; }
+@media (max-width: 900px) {
+  #claimEntryPage.hospital-entry-mode #dateFields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  #claimEntryPage.hospital-entry-mode #dateFields,
+  #claimEntryPage .hospital-entry-grid { grid-template-columns: 1fr; }
+  #claimEntryPage .hospital-entry-section-head h3 { font-size: 19px; }
+  #claimEntryPage .hospital-entry-section-body { padding: 16px; }
+}
+
+/* Visual parity with พิจารณาเคลม > เคลมโรงพยาบาล > บันทึกข้อมูลเคลม. */
+#claimEntryPage.hospital-entry-mode {
+  background: #f4f7fb;
+  padding: 12px 16px 28px !important;
+}
+#claimEntryPage.hospital-entry-mode > .space-y-5,
+#claimEntryPage.hospital-entry-mode > .space-y-5 > .space-y-5,
+#claimEntryPage.hospital-entry-mode .hospital-entry-sections {
+  gap: 12px !important;
+}
+#claimEntryPage.hospital-entry-mode :is(#claimHospitalSelect, .hospital-entry-control:is(select)) {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235f718a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  padding-right: 38px !important;
+}
+#claimEntryPage.hospital-entry-mode #claimEntryMainFields {
+  gap: 12px !important;
+  padding: 16px !important;
+}
+#claimEntryPage.hospital-entry-mode #claimEntryMainFields > .claim-option-stack {
+  gap: 10px !important;
+}
+#claimEntryPage.hospital-entry-mode #claimEntryMainFields .claim-option-section {
+  border: 1px solid #d7e3ef !important;
+  border-radius: 10px !important;
+  background: #f7fbff !important;
+  padding: 12px 14px !important;
+}
+#claimEntryPage.hospital-entry-mode .claim-option-title {
+  margin-bottom: 8px !important;
+}
+#claimEntryPage.hospital-entry-mode .claim-option-title .step-dot {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 12px !important;
+}
+#claimEntryPage.hospital-entry-mode .claim-option-title .step-title,
+#claimEntryPage.hospital-entry-mode #claimSubTitle {
+  font-size: 15px !important;
+  font-weight: 750 !important;
+  color: #075f99 !important;
+}
+#claimEntryPage.hospital-entry-mode #dateFields {
+  column-gap: 14px;
+  row-gap: 12px;
+  align-items: start;
+}
+#claimEntryPage.hospital-entry-mode #dateFields label > span:first-child,
+#claimEntryPage.hospital-entry-mode #hospitalFields label > span:first-child,
+#claimEntryPage.hospital-entry-mode .hospital-entry-field > span:first-child,
+#claimEntryPage.hospital-entry-mode .hospital-entry-field legend {
+  color: #607487 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  font-weight: 650 !important;
+}
+#claimEntryPage.hospital-entry-mode #dateFields :is(input,select),
+#claimEntryPage.hospital-entry-mode #hospitalFields #claimHospitalSelect,
+#claimEntryPage.hospital-entry-mode .hospital-entry-control {
+  min-height: 40px !important;
+  height: 40px !important;
+  border-color: #cbd8e5 !important;
+  border-radius: 7px !important;
+  background: #f7faff !important;
+  padding: 7px 11px !important;
+  color: #334155 !important;
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  font-weight: 550 !important;
+}
+#claimEntryPage.hospital-entry-mode #dateFields .be-date-button {
+  top: 26px;
+}
+#claimEntryPage.hospital-entry-mode #dateFields .be-date-native {
+  top: 26px;
+}
+#claimEntryPage.hospital-entry-mode textarea.hospital-entry-control {
+  min-height: 70px !important;
+  height: auto !important;
+  background: #fff !important;
+}
+#claimEntryPage.hospital-entry-mode #hospitalFields {
+  border: 1px solid #d7e3ef;
+  border-radius: 9px;
+  background: #f8fbff;
+  padding: 11px 13px;
+}
+#claimEntryPage.hospital-entry-mode #diagnosisFields .hospital-entry-grid {
+  gap: 11px;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-section,
+#claimEntryPage.hospital-entry-mode #documentInlineBox {
+  border: 1px solid #d7e3ef !important;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(15, 65, 102, .05) !important;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-section-head,
+#claimEntryPage.hospital-entry-mode #documentInlineHeader {
+  border-left: 4px solid #1458d6 !important;
+  background: #eaf4fd !important;
+  padding: 10px 14px !important;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-section-head h3,
+#claimEntryPage.hospital-entry-mode #documentInlineHeader h3 {
+  color: #075f99 !important;
+  font-size: 16px !important;
+  font-weight: 750 !important;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-section-body {
+  padding: 14px 16px !important;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-grid { gap: 12px; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-check,
+#claimEntryPage.hospital-entry-mode .hospital-entry-choice {
+  min-height: 32px;
+  font-size: 14px;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-section [hidden],
+#claimEntryPage.hospital-entry-mode .hospital-entry-grid [hidden] {
+  display: none !important;
+}
+@media (max-width: 560px) {
+  #claimEntryPage.hospital-entry-mode { padding: 8px 10px 20px !important; }
+  #claimEntryPage.hospital-entry-mode #dateFields { grid-template-columns: 1fr; }
+  #claimEntryPage.hospital-entry-mode #claimEntryMainFields { padding: 12px !important; }
+}
+
+#claimEntryPage.hospital-entry-mode .hospital-entry-required,
+#claimEntryPage.hospital-entry-mode .text-danger { color: #dc2626 !important; margin-left: 2px; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-control[aria-invalid="true"],
+#claimEntryPage.hospital-entry-mode #dateFields :is(input,select).border-red-500,
+#claimEntryPage.hospital-entry-mode #hospitalFields #claimHospitalSelect[aria-invalid="true"] {
+  border-color: #dc2626 !important;
+  background: #fff7f7 !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, .1);
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-field.is-invalid {
+  border-color: #dc2626 !important;
+  background: #fff7f7;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-traffic-section .hospital-traffic-filter.is-invalid .hospital-traffic-filter-options,
+#claimEntryPage.hospital-entry-mode .hospital-entry-traffic-section .hospital-traffic-group.is-invalid .hospital-traffic-options {
+  border-radius: 7px;
+  outline: 2px solid rgba(220, 38, 38, .35);
+  outline-offset: 4px;
+}
+#claimEntryPage.hospital-entry-mode fieldset.hospital-entry-field {
+  border: 1px solid #cbd8e5;
+  border-radius: 7px;
+  padding: 8px 11px 10px;
+}
+#claimEntryPage.hospital-entry-mode .hospital-entry-error { font-size: 12px; }
+#claimEntryPage.hospital-entry-mode #claimStepper,
+#paymentPage:has(#payStepper:not(.hidden)) #payStepper { margin-bottom: 12px; }
+.hospital-entry-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.hospital-entry-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 54px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 11px 16px;
+  color: #94a3b8;
+  font-size: 16px;
+  font-weight: 700;
+}
+.hospital-entry-step.is-current {
+  border-color: #93c5fd;
+  background: #fff;
+  color: #075f99;
+  box-shadow: 0 2px 7px rgba(15, 65, 102, .07);
+}
+.hospital-entry-step-dot {
+  display: grid;
+  flex: 0 0 32px;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 800;
+}
+.hospital-entry-step.is-current .hospital-entry-step-dot { background: #1458d6; color: #fff; }
+.hospital-entry-document { display:flex; align-items:center; gap:14px; padding:14px; border:1px solid #d7e3ef; border-radius:10px; background:#f8fbff; }
+.hospital-entry-document > .material-icons-round { display:grid; place-items:center; width:42px; height:42px; border-radius:9px; background:#eaf2ff; color:#1458d6; }
+.hospital-entry-document > div { display:grid; gap:3px; flex:1; min-width:0; }
+.hospital-entry-document strong { color:#10243e; font-size:16px; }
+.hospital-entry-document div span { color:#64748b; font-size:13px; }
+.hospital-entry-document button { min-height:38px; border-radius:7px; background:#1458d6; padding:6px 16px; color:#fff; font-weight:700; }
+.hospital-entry-document button:hover { background:#0b469f; }
+.hospital-entry-file-list { display:grid; gap:7px; margin-top:10px; padding:0; list-style:none; }
+.hospital-entry-file-list li { display:flex; align-items:center; gap:8px; min-width:0; border:1px solid #d7e3ef; border-radius:8px; background:#fff; padding:8px 11px; color:#334155; font-size:13px; }
+.hospital-entry-file-list li > span:nth-child(2) { flex:1; min-width:0; overflow-wrap:anywhere; }
+.hospital-entry-file-list .material-icons-round { color:#1458d6; font-size:18px !important; }
+.hospital-entry-file-list button { min-height:30px; border:1px solid #fecaca; border-radius:6px; background:#fff; padding:3px 10px; color:#b91c1c; font-weight:700; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table-wrap { overflow-x: auto; border: 1px solid #dbe5ef; border-radius: 10px; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table { width: 100%; min-width: 620px; border-collapse: collapse; table-layout: fixed; color: #334155; font-size: 13px; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table thead { background: #0077bd; color: #fff; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table th,
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table td { border-bottom: 1px solid #e2e8f0; padding: 10px 8px; text-align: center; vertical-align: middle; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table th:first-child { width: 40%; text-align: left; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table th:nth-child(2) { width: 25%; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table th:nth-child(3) { width: 15%; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table th:nth-child(4) { width: 20%; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-table tbody th { font-weight: 600; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-scan { display: inline-flex; align-items: center; justify-content: center; gap: 5px; border: 0; background: #0077bd; color: #fff; font-weight: 700; cursor: pointer; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-scan:hover { background: #075f99; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-count { display: inline-flex; align-items: center; justify-content: center; min-width: 46px; min-height: 32px; border: 1px solid #e2e8f0; border-radius: 7px; background: #fff; font-weight: 700; }
+#claimEntryPage.hospital-entry-mode #documentInlineContent .hospital-entry-doc-view { display: inline-grid; place-items: center; width: 52px !important; min-height: 36px !important; height: 36px !important; border: 1px solid #0788d6; border-radius: 8px !important; background: #fff; padding: 0 !important; color: #0788d6; cursor: pointer; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-view:hover,
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-view[aria-expanded="true"] { background: #eef6fd !important; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-details[hidden] { display: none; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-details td { background: #f8fbff; text-align: left; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-details .hospital-entry-file-list { margin: 0; }
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-scan:focus-visible,
+#claimEntryPage.hospital-entry-mode .hospital-entry-doc-view:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+.hospital-entry-expense { max-width:620px; border:1px solid #d7e3ef; border-radius:12px; background:#f8fbff; padding:20px; }
+.hospital-entry-expense label { display:grid; gap:9px; color:#607487; font-size:14px; font-weight:700; }
+.hospital-entry-expense .hospital-entry-required { color:#dc2626; margin-left:2px; }
+.hospital-entry-expense-input { display:flex; align-items:center; gap:10px; }
+.hospital-entry-expense-input input { width:100%; min-height:44px; border:1px solid #cbd8e5; border-radius:7px; background:#fff; padding:8px 12px; color:#10243e; font-size:18px; font-weight:700; }
+.hospital-entry-expense-input input[aria-invalid="true"] { border-color:#dc2626; box-shadow:0 0 0 2px rgba(220,38,38,.1); }
+.hospital-entry-expense-input > span { color:#475569; font-size:14px; }
+#hospitalEntryExpenseError { display:block; margin-top:7px; color:#b91c1c; font-size:13px; font-weight:700; }
+@media (max-width: 560px) {
+  .hospital-entry-stepper { grid-template-columns:1fr; gap:7px; }
+  .hospital-entry-step { gap: 7px; padding: 9px; font-size: 12px; }
+  .hospital-entry-step-dot { flex-basis: 26px; width: 26px; height: 26px; font-size: 12px; }
+  .hospital-entry-document { flex-wrap:wrap; }
+  .hospital-entry-document button { width:100%; }
+}
