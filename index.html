@@ -9012,7 +9012,8 @@ body > .min-h-screen > main,
 <!-- Hospital consideration hides the รอเอกสาร filter option without rewriting existing record statuses. -->
 <link rel="stylesheet" href="css/claim-status-detail-card.css?v=334">
 <link rel="stylesheet" href="css/menu-consider-death-account-management.css?v=331">
-<link rel="stylesheet" href="css/menu-consider-death-status.css?v=331">
+<link rel="stylesheet" href="css/menu-consider-death-status.css?v=577">
+<link rel="stylesheet" href="css/menu-consider-death-beneficiary-compact.css?v=568">
 <!-- VERIFIED: Hospital Step1=Document Check, Step3=Scan Documents; isolated renderers -->
 </head>
 
@@ -28519,6 +28520,7 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         ${select('การวินิจฉัย1(Diagnosis1)*',detail.diagnosis1 || row?.diagnosis1 || '---โปรดระบุ---','md:col-span-2 xl:col-span-4')}
         ${select('การวินิจฉัย2(Diagnosis2)',detail.diagnosis2 || row?.diagnosis2 || '---เลือก---','md:col-span-2 xl:col-span-4')}
         ${select('การวินิจฉัย3(Diagnosis3)',detail.diagnosis3 || row?.diagnosis3 || '---เลือก---','md:col-span-2 xl:col-span-4')}
+        ${!isCustomer ? `${select('การวินิจฉัย4(Diagnosis4)',detail.diagnosis4 || row?.diagnosis4 || '---เลือก---','md:col-span-2 xl:col-span-4')}${select('การวินิจฉัย5(Diagnosis5)',detail.diagnosis5 || row?.diagnosis5 || '---เลือก---','md:col-span-2 xl:col-span-4')}${select('การวินิจฉัย6(Diagnosis6)',detail.diagnosis6 || row?.diagnosis6 || '---เลือก---','md:col-span-2 xl:col-span-4')}` : ''}
         ${input('รายละเอียดการเจ็บป่วย/การบาดเจ็บ',detail.medicalNote || row?.note || '','text','md:col-span-2 xl:col-span-4')}
         ${input('หมายเหตุ(ถ้ามี)',detail.optionalNote || row?.optionalNote || '','text','md:col-span-2 xl:col-span-4')}
       </div>
@@ -28530,10 +28532,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       </div>
       <div data-collapsible-body class="grid gap-2.5 md:grid-cols-2">
         ${input('HN*',detail.hn || row?.hn || 'HN2601')}
-        <label class="md:col-span-2"><div class="mb-1 text-[11px] font-medium text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="claim-standard-field min-h-[64px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13px] font-normal text-slate-700"></textarea></label>
+        <label class="md:col-span-2"><div class="mb-1 text-[11px] font-medium text-slate-500">รายละเอียดเพิ่มเติม</div><textarea class="claim-standard-field min-h-[64px] w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-[13px] font-normal text-slate-700">${detail.additionalDetail || row?.additionalDetail || ''}</textarea></label>
       </div>
     </div>` : ''}${doctor}`;
   }
+  window.renderHospitalTreatmentDetail = (row, kind) => detailForm(true, row, kind);
   function input(label,value,type='text',cls=''){ return `<label class="${cls}"><div class="mb-1 text-[11px] font-medium text-slate-500">${label}</div><input type="${type}" value="${value}" class="claim-standard-field h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-normal text-slate-700"></label>`; }
   function select(label,value,cls=''){
     const optionMap = {
@@ -28541,7 +28544,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       'อาการสำคัญ(ChiefComplaint)*': ['0024:ไข้ + ปวดท้อง','0150 : สุนัขกัด','ปวดท้องเฉียบพลัน','บาดเจ็บจากอุบัติเหตุ','ติดตามอาการต่อเนื่อง','---โปรดระบุ---'],
       'การวินิจฉัย1(Diagnosis1)*': ['A050 : Food-borne staphylococcal intoxication | อาหารเป็นพิษจากเชื้อสแตฟิโลคอคคัส','W540 : Bitten or struck by dog: at home | ถูกสุนัขกัดหรือทำร้าย ที่บ้าน','A01:Typhoid and paratyphoid fevers | ไข้รากสาดน้อย(ไทฟอยด์)และไข้รากสาดเทียม(พาราไทฟอยด์)','---โปรดระบุ---'],
       'การวินิจฉัย2(Diagnosis2)': ['---เลือก---','A09:Other gastroenteritis and colitis of infectious and unspecified origin | ลำไส้อักเสบจากการติดเชื้อ','S61:Open wound of wrist and hand | แผลเปิดบริเวณข้อมือและมือ','-'],
-      'การวินิจฉัย3(Diagnosis3)': ['---เลือก---','R10:Abdominal and pelvic pain | ปวดท้องและอุ้งเชิงกราน','Z09:Follow-up examination after treatment | ตรวจติดตามหลังการรักษา','-']
+      'การวินิจฉัย3(Diagnosis3)': ['---เลือก---','R10:Abdominal and pelvic pain | ปวดท้องและอุ้งเชิงกราน','Z09:Follow-up examination after treatment | ตรวจติดตามหลังการรักษา','-'],
+      'การวินิจฉัย4(Diagnosis4)': ['---เลือก---','A09:Other gastroenteritis and colitis of infectious and unspecified origin | ลำไส้อักเสบจากการติดเชื้อ','S61:Open wound of wrist and hand | แผลเปิดบริเวณข้อมือและมือ','-'],
+      'การวินิจฉัย5(Diagnosis5)': ['---เลือก---','R10:Abdominal and pelvic pain | ปวดท้องและอุ้งเชิงกราน','Z09:Follow-up examination after treatment | ตรวจติดตามหลังการรักษา','-'],
+      'การวินิจฉัย6(Diagnosis6)': ['---เลือก---','A09:Other gastroenteritis and colitis of infectious and unspecified origin | ลำไส้อักเสบจากการติดเชื้อ','R10:Abdominal and pelvic pain | ปวดท้องและอุ้งเชิงกราน','-']
     };
     const options = optionMap[label] ? [...optionMap[label]] : [value];
     if (!options.includes(value)) options.unshift(value);
@@ -41948,7 +41954,18 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         {key:'main',kicker:'ความคุ้มครองหลัก',title:'เสียชีวิตเนื่องจากอุบัติเหตุทั่วไป / ขับขี่หรือโดยสารรถจักรยานยนต์',limit:'วงเงินสูงสุด 120,000 บาท',note:'ยอดที่กรอกในหน้าแจ้งเคลม',amount:120000}
       ]
     };
-    return map[claimCode]||map.default;
+    if(map[claimCode]) return map[claimCode];
+    var mock=typeof considerDeathDetailMockups!=='undefined' ? considerDeathDetailMockups[claimCode] : null;
+    if(mock?.expenseHtml){
+      var source=document.createElement('div');
+      source.innerHTML=mock.expenseHtml;
+      var rows=Array.from(source.querySelectorAll('tbody tr'));
+      if(rows.length) return rows.map(function(row,index){
+        var cells=row.querySelectorAll('td');
+        return {key:'mock-'+index,kicker:index?'ความคุ้มครองเพิ่มเติม':'ความคุ้มครองหลัก',title:[cells[0]?.textContent.trim(),cells[1]?.textContent.trim()].filter(Boolean).join(' · '),limit:'วงเงินตามข้อมูลเคลม',note:'ยอดที่กรอกในหน้าแจ้งเคลม',amount:Number(String(cells[2]?.textContent||'0').replace(/,/g,''))||0};
+      });
+    }
+    return map.default;
   }
   window.renderDeathExpenseLikeEntry=function(claimCode){
     var items=expenseConfig(claimCode);
@@ -42194,7 +42211,6 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
               <div class="death-form-row-icon"><span class="material-icons-round">paid</span></div>
               <div class="death-form-fields">
                 <div class="death-form-field col-6"><label>จำนวนเงิน <span class="req">*</span></label><input id="deathBeneficiaryAmount" value="${esc(formatMoneySafe(data.amount))}"></div>
-                <div class="death-form-field col-6"><label>ตัวอย่างจำนวนเงินโอน</label><div class="death-money-box">${esc(getDDPayTotalDisplay())}<small>บาท</small></div></div>
               </div>
             </div>
           </div>
@@ -54095,8 +54111,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "536",
-  updatedAt: "22/10/2026 09:53:37"
+  version: "614",
+  updatedAt: "04/11/2026 14:34:57"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -58529,6 +58545,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   function apply(){
     const page = document.querySelector(PAGE);
     if(!page) return;
+    if(page.classList.contains('hcr-active')) return;
     const pane = page.querySelector(PANE);
     if(!pane) return;
 
@@ -59473,29 +59490,29 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   function setCountCell(cell, count){
     if(!cell) return;
     const countText = String(count);
-    cell.setAttribute('data-doc-count', countText);
+    if(cell.getAttribute('data-doc-count') !== countText) cell.setAttribute('data-doc-count', countText);
 
     const badge = cell.querySelector('.opd-half-doc-count');
     if(badge){
-      badge.textContent = countText;
+      if(badge.textContent !== countText) badge.textContent = countText;
       badge.classList.toggle('has-doc', Number(count) > 0);
       return;
     }
 
     const embedded = cell.querySelector('[data-doc-count]');
     if(embedded && embedded !== cell){
-      embedded.textContent = countText;
-      embedded.setAttribute('data-doc-count', countText);
+      if(embedded.textContent !== countText) embedded.textContent = countText;
+      if(embedded.getAttribute('data-doc-count') !== countText) embedded.setAttribute('data-doc-count', countText);
       return;
     }
 
     const simple = cell.querySelector('span,div,strong');
     if(simple && normalize(simple.textContent).match(/^\d+$/)){
-      simple.textContent = countText;
+      if(simple.textContent !== countText) simple.textContent = countText;
       return;
     }
 
-    cell.textContent = countText;
+    if(cell.textContent !== countText) cell.textContent = countText;
   }
 
   function applyOneTable(table){
@@ -60207,7 +60224,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       row.treatmentType='Day Case Surgery';
     }
     document.querySelectorAll('#considerPage td,#considerPage span,#considerPage div,#considerHospitalOpdHalfPage *').forEach(el=>{
-      if(el.children.length===0 && /^Day\s*Case(?:\s*Surgery)?$/i.test(String(el.textContent||'').trim())){
+      if(el.children.length===0 && /^Day\s*Case$/i.test(String(el.textContent||'').trim())){
         el.textContent='Day Case Surgery';
       }
     });
@@ -63696,7 +63713,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-hospital-claim-step1-decision-doc-reset.js"></script>
 
 <!-- พิจารณาเคลม > เคลมโรงพยาบาล > Step 1: ข้อมูลอุบัติเหตุจากการจราจร -->
-<script src="js/menu-hospital-claim-traffic-accident.js"></script>
+<script src="js/menu-hospital-claim-traffic-accident.js?v=601"></script>
 
 <!-- งานเคลม > ค้นหาเคลม > รายละเอียดเคลมลูกค้า (read-only) -->
 <script src="js/claim-lifecycle-status.js"></script>
@@ -64312,6 +64329,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const isDeathDisabilityTransfer=row=>[row.claimType,row.transferKind].some(value=>String(value||'').replace(/\s/g,'').toLowerCase()==='death&disability');
   const canStartCustomerTransfer=row=>!!row&&row.transferMode!=='hospital'&&rowStatusKey(row)==='pending'&&isDeathDisabilityTransfer(row);
   const displayLabelForKey=(row,key)=>{
+    if(row?.statusKey==='cancel')return 'ยกเลิก';
     if(row?.transferMode!=='hospital'){
       if(key==='pending')return 'รอโอน';
       if(key==='processing')return 'รอดำเนินการโอน';
@@ -64615,7 +64633,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   });
 
   function transferRecoveryKind(row){
-    if(!row||transferTrackingState.mode==='hospital'||row.transferMode==='hospital'||rowStatusKey(row)!=='fail')return '';
+    if(!row||row.statusKey==='cancel'||transferTrackingState.mode==='hospital'||row.transferMode==='hospital'||rowStatusKey(row)!=='fail')return '';
     if(['account','system'].includes(row.failureCause))return row.failureCause;
     if(/ระบบ|เชื่อมต่อ|หมดเวลา|timeout/i.test(row.failureReason||''))return 'system';
     return /บัญชี|ผู้รับ|ชื่อบัญชี/i.test(row.failureReason||'')?'account':'';
@@ -64643,10 +64661,11 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info><span class="material-icons-round" aria-hidden="true">close</span>ปิด</button>';
     const key=rowStatusKey(row);
     const status=Object.assign({},statusMeta[key]||statusMeta.pending,{label:displayStatus(row)});
-    const failure=key==='fail';
+    const canceled=row.statusKey==='cancel';
+    const failure=key==='fail'&&!canceled;
     const transferDate=row.transferDate&&row.transferDate!=='-'?row.transferDate:'ยังไม่มีข้อมูลการโอนเงิน';
-    const resultTitle={success:'โอนเงินสำเร็จ',pending:displayStatus(row),processing:displayStatus(row),fail:'ไม่สามารถโอนเงินได้'}[key]||displayStatus(row);
-    const resultDescription=failure?(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร'):key==='success'?'ธนาคารยืนยันการโอนเงินสำเร็จ':key==='processing'?'ส่งคำขอโอนแล้ว รอผลการโอนจากธนาคาร':'รายการรอเริ่มโอนเงิน';
+    const resultTitle=canceled?'ยกเลิก':({success:'โอนเงินสำเร็จ',pending:displayStatus(row),processing:displayStatus(row),fail:'ไม่สามารถโอนเงินได้'}[key]||displayStatus(row));
+    const resultDescription=canceled?'ยกเลิกรายการที่ยังรอโอนเงิน หลังบันทึกผลพิจารณาใหม่':failure?(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร'):key==='success'?'ธนาคารยืนยันการโอนเงินสำเร็จ':key==='processing'?'ส่งคำขอโอนแล้ว รอผลการโอนจากธนาคาร':'รายการรอเริ่มโอนเงิน';
     document.getElementById('ttTransferInfoFields').innerHTML=`
       ${transferSummaryCards(row,key,status,transferDate)}
       <section class="tt-transfer-info-section" aria-labelledby="ttTransferPayeeHeading"><h3 id="ttTransferPayeeHeading"><span class="material-icons-round" aria-hidden="true">person_outline</span>ข้อมูลผู้รับเงิน</h3>${transferPayeeCard(row)}</section>
@@ -65076,12 +65095,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- Death & Disability: ผู้รับผลประโยชน์แต่ละรายเข้าคิวรอโอนเงินแบบ session-only -->
 <script src="js/mock-data/death-transfer-pending.mock.js?v=322"></script>
-<script src="js/menu-death-transfer-handoff.js?v=322"></script>
+<script src="js/menu-death-transfer-handoff.js?v=564"></script>
 <link rel="stylesheet" href="css/menu-transfer-view-toggle.css?v=322">
 
 <!-- Shared historical status detail card for customer/hospital/Death claim entry -->
-<script src="js/mock-data/death-consideration-status.mock.js?v=329"></script>
-<script src="js/claim-status-detail-card.js?v=335"></script>
+<script src="js/mock-data/death-consideration-status.mock.js?v=584"></script>
+<script src="js/claim-status-detail-card.js?v=577"></script>
 
 <!-- Death & Disability: จัดการบัญชีปลายทางแบบสร้าง/แก้ไข/ลบ -->
 <script src="js/menu-consider-death-account-management.js?v=331"></script>
@@ -65232,15 +65251,25 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <link rel="stylesheet" href="css/menu-transfer-tracking-search.css?v=369">
 <link rel="stylesheet" href="css/menu-edit-claim-notification.css?v=385">
-<link rel="stylesheet" href="css/menu-customer-claim-transactions.css?v=512">
+<link rel="stylesheet" href="css/menu-customer-claim-transactions.css?v=609">
+<link rel="stylesheet" href="css/menu-consider-death-reconsider.css?v=569">
+<link rel="stylesheet" href="css/menu-consider-death-claim-edit.css?v=590">
 <script src="js/edit-claim-notification-rules.js?v=1"></script>
 <script src="js/menu-edit-claim-notification.js?v=380"></script>
-<script src="js/menu-customer-claim-transactions.js?v=512"></script>
-<script src="js/menu-consider-death-place.js?v=442"></script>
-<script src="js/data/home-announcements.js?v=531"></script>
+<script src="js/menu-customer-claim-transactions.js?v=609"></script>
+<script src="js/menu-consider-death-reconsider.js?v=577"></script>
+<script src="js/menu-consider-death-claim-edit.js?v=591"></script>
+<script src="js/menu-consider-death-place.js?v=570"></script>
+<script src="js/data/home-announcements.js?v=614"></script>
 <script src="js/menu-home-announcements.js?v=468"></script>
 <script src="js/menu-hospital-status-mocks.js?v=505"></script>
 <link rel="stylesheet" href="css/menu-hospital-status-mocks.css?v=506" />
+<link rel="stylesheet" href="css/menu-consider-hospital-claim-edit.css?v=611" />
+<script src="js/menu-consider-hospital-claim-edit.js?v=614"></script>
+<link rel="stylesheet" href="css/menu-consider-hospital-reconsider.css?v=610" />
+<script src="js/menu-consider-hospital-reconsider.js?v=610"></script>
+<link rel="stylesheet" href="css/menu-consider-hospital-history-design.css?v=606" />
+<script src="js/menu-consider-hospital-history-design.js?v=612"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-hospital-form.css?v=516" />
 <script src="js/menu-billing-hospital-separate-transfer.js?v=527"></script>
 </body>
