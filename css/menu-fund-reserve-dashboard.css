@@ -1,0 +1,742 @@
+/* จัดการเงินกองทุน > Dashboard สำรองเงิน */
+#fundReserveDashboardPage {
+  --frd-navy: #0b3761;
+  --frd-blue: #0a67b2;
+  --frd-bright-blue: #1689e8;
+  --frd-sky: #e9f5ff;
+  --frd-canvas: #eff7fc;
+  --frd-line: #d9e6ef;
+  --frd-muted: #6f8598;
+  --frd-success: #08794f;
+  --frd-warning: #c9480a;
+  --frd-danger: #b42318;
+  width: 100%;
+  max-width: none;
+  padding: 22px 24px 36px;
+  background:
+    radial-gradient(circle at 92% 2%, rgba(74, 169, 224, .12), transparent 24rem),
+    var(--frd-canvas);
+  color: var(--frd-navy);
+  scrollbar-color: #91aec4 #e6f0f6;
+  scrollbar-width: thin;
+}
+
+#fundReserveDashboardPage *,
+#fundReserveDashboardPage *::before,
+#fundReserveDashboardPage *::after {
+  box-sizing: border-box;
+  scrollbar-color: #91aec4 #e6f0f6;
+  scrollbar-width: thin;
+}
+
+#fundReserveDashboardPage *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#fundReserveDashboardPage *::-webkit-scrollbar-track {
+  background: #e6f0f6;
+}
+
+#fundReserveDashboardPage *::-webkit-scrollbar-thumb {
+  border: 2px solid #e6f0f6;
+  border-radius: 999px;
+  background: #91aec4;
+}
+
+#fundReserveDashboardPage *::-webkit-scrollbar-thumb:hover {
+  background: #6789a4;
+}
+
+.frd-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.frd-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 5px;
+  color: #1679bd;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.frd-eyebrow .material-icons-round {
+  font-size: 19px;
+}
+
+.frd-heading h2 {
+  margin: 0;
+  color: #0b3154;
+  font-size: clamp(25px, 2.2vw, 33px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -.2px;
+}
+
+.frd-heading > div > p:last-child {
+  margin: 7px 0 0;
+  color: var(--frd-muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.frd-refresh-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex: none;
+}
+
+.frd-refresh-group > span {
+  color: #5f758a;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.frd-refresh-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 132px;
+  height: 42px;
+  border: 1px solid var(--frd-bright-blue);
+  border-radius: 11px;
+  background: #fff;
+  color: #0870c4;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.frd-refresh-button:hover {
+  background: #f2f9ff;
+  box-shadow: 0 6px 16px rgba(14, 103, 177, .13);
+  transform: translateY(-1px);
+}
+
+.frd-refresh-button:active {
+  transform: translateY(0);
+}
+
+.frd-refresh-button:focus-visible,
+.frd-chart-scroll:focus-visible,
+.frd-table-wrap:focus-visible {
+  outline: 3px solid rgba(20, 112, 207, .32);
+  outline-offset: 3px;
+}
+
+.frd-refresh-button:disabled {
+  cursor: wait;
+  opacity: .72;
+  transform: none;
+}
+
+.frd-refresh-button.is-loading .material-icons-round {
+  animation: frd-spin .8s linear infinite;
+}
+
+.frd-summary-grid {
+  display: grid;
+  grid-template-columns: 1.02fr 1fr 1fr;
+  gap: 14px;
+}
+
+.frd-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-width: 0;
+  min-height: 142px;
+  border: 1px solid var(--frd-line);
+  border-radius: 16px;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 9px 24px rgba(15, 66, 109, .07);
+}
+
+.frd-summary-card > div {
+  min-width: 0;
+}
+
+.frd-summary-card > div > span:first-child {
+  display: block;
+  margin-bottom: 6px;
+  color: #73879a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.frd-summary-card strong {
+  display: block;
+  color: #0a3157;
+  font-size: clamp(24px, 2vw, 31px);
+  font-weight: 900;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.frd-summary-card small {
+  display: block;
+  margin-top: 7px;
+  color: #647b90;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.frd-summary-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+}
+
+.frd-summary-icon .material-icons-round {
+  font-size: 27px;
+}
+
+.frd-summary-icon.is-sky {
+  background: var(--frd-sky);
+  color: #137bce;
+}
+
+.frd-balance-card {
+  border-color: #08518d;
+  background: linear-gradient(132deg, #0873c3 0%, #07569a 54%, #073f78 100%);
+  color: #fff;
+  box-shadow: 0 13px 28px rgba(7, 75, 132, .2);
+}
+
+.frd-balance-card > div > span:first-child,
+.frd-balance-card strong,
+.frd-balance-card small {
+  color: #fff;
+}
+
+.frd-balance-card small {
+  color: #d8ecfb;
+}
+
+.frd-chip {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+.frd-chip.is-positive {
+  background: #dff5e9;
+  color: var(--frd-success);
+}
+
+.frd-chip.is-warning {
+  background: #fff0df;
+  color: var(--frd-warning);
+}
+
+.frd-analysis-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.45fr) minmax(280px, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.frd-panel {
+  min-width: 0;
+  border: 1px solid var(--frd-line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 9px 24px rgba(15, 66, 109, .06);
+}
+
+.frd-forecast-panel,
+.frd-reserve-panel {
+  padding: 18px 20px;
+}
+
+.frd-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.frd-panel-heading h3 {
+  margin: 0;
+  color: #0b3154;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.frd-panel-heading p {
+  margin: 4px 0 0;
+  color: #71869a;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.frd-data-badge {
+  flex: none;
+  border-radius: 999px;
+  background: #edf6fc;
+  padding: 6px 10px;
+  color: #54758e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.frd-chart-scroll {
+  overflow-x: auto;
+  margin-top: 14px;
+  border-radius: 12px;
+  scrollbar-gutter: stable;
+}
+
+.frd-chart,
+.frd-coverage-strip {
+  min-width: 650px;
+}
+
+.frd-chart {
+  position: relative;
+  height: 250px;
+  border-bottom: 1px solid #c8d9e5;
+  background: #fff;
+}
+
+.frd-chart-gridlines {
+  position: absolute;
+  inset: 14px 0 0;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 53px, #e8eef3 54px, #e8eef3 55px);
+  pointer-events: none;
+}
+
+.frd-chart-bars {
+  position: absolute;
+  inset: 8px 8px 0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(64px, 1fr));
+  align-items: end;
+  gap: 18px;
+}
+
+.frd-chart-column {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 29px;
+  align-items: end;
+  height: 100%;
+}
+
+.frd-bar-area {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+}
+
+.frd-bar {
+  position: relative;
+  width: min(54px, 72%);
+  height: var(--bar-height);
+  min-height: 20px;
+  border-radius: 5px 5px 0 0;
+  background: var(--bar-color);
+  box-shadow: 0 6px 13px rgba(17, 105, 170, .12);
+}
+
+.frd-bar-value {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 7px);
+  color: #07549a;
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.frd-chart-label {
+  align-self: end;
+  padding-top: 8px;
+  color: #5e7488;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.frd-coverage-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(64px, 1fr));
+  margin-top: 14px;
+  border-radius: 11px;
+  background: #f1f6fa;
+  padding: 9px 8px;
+}
+
+.frd-coverage-item {
+  min-width: 0;
+  border-left: 1px solid #dce7ee;
+  padding: 1px 8px;
+  text-align: center;
+}
+
+.frd-coverage-item:first-child {
+  border-left: 0;
+}
+
+.frd-coverage-item span,
+.frd-coverage-item strong,
+.frd-coverage-item small {
+  display: block;
+}
+
+.frd-coverage-item span {
+  color: #526a7d;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.frd-coverage-item strong {
+  margin-top: 1px;
+  color: var(--frd-success);
+  font-size: 14px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.frd-coverage-item small {
+  margin-top: 1px;
+  color: #526a7d;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.frd-coverage-item.is-caution strong {
+  color: var(--frd-warning);
+}
+
+.frd-coverage-item.is-danger strong {
+  color: var(--frd-danger);
+}
+
+.frd-warning-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  border: 1px solid #f5a06f;
+  border-radius: 11px;
+  background: #fff9f5;
+  padding: 13px;
+  color: var(--frd-warning);
+}
+
+.frd-warning-box > .material-icons-round {
+  flex: none;
+  font-size: 22px;
+}
+
+.frd-warning-box strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.frd-warning-box p {
+  margin: 3px 0 0;
+  color: #b24a16;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.frd-reserve-label {
+  margin: 18px 0 3px;
+  color: #586f83;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.frd-reserve-amount {
+  display: block;
+  color: #cf3f00;
+  font-size: clamp(27px, 2.2vw, 34px);
+  font-weight: 900;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.frd-reserve-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 18px;
+  border-top: 1px solid #e5edf3;
+  padding-top: 14px;
+  color: #6d8294;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.frd-reserve-note .material-icons-round {
+  color: #3b8bc2;
+  font-size: 18px;
+}
+
+.frd-table-panel {
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+.frd-table-heading {
+  align-items: center;
+  padding: 17px 20px 14px;
+}
+
+.frd-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+}
+
+.frd-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.frd-table th,
+.frd-table td {
+  border-top: 1px solid #e1eaf0;
+  padding: 12px 16px;
+  color: #435c71;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.frd-table thead th {
+  background: #eaf3f8;
+  color: #35536c;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.frd-table tbody tr:hover td {
+  background: #f5faff;
+}
+
+.frd-table th:nth-child(2),
+.frd-table th:nth-child(3),
+.frd-table td:nth-child(2),
+.frd-table td:nth-child(3) {
+  text-align: center;
+}
+
+.frd-table th:nth-child(4),
+.frd-table td:nth-child(4) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.frd-table td:nth-child(4) {
+  color: #153f62;
+  font-weight: 800;
+}
+
+.frd-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.frd-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.frd-status.is-positive {
+  background: #dff5e9;
+  color: var(--frd-success);
+}
+
+.frd-status.is-caution {
+  background: #fff0df;
+  color: var(--frd-warning);
+}
+
+.frd-status.is-danger {
+  background: #ffe8e6;
+  color: var(--frd-danger);
+}
+
+.frd-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes frd-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1180px) {
+  .frd-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frd-balance-card {
+    grid-column: 1 / -1;
+  }
+
+  .frd-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* The legacy shell keeps a fixed 68px navigation rail while later rules reset
+     page positioning. Keep this dashboard's readable content clear of the rail. */
+  #fundReserveDashboardPage {
+    width: calc(100% - 56px) !important;
+    margin-left: 56px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #fundReserveDashboardPage {
+    padding: 16px 12px 28px;
+  }
+
+  .frd-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .frd-refresh-group {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .frd-refresh-group > span {
+    white-space: normal;
+  }
+
+  .frd-refresh-button {
+    width: 100%;
+  }
+
+  .frd-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .frd-balance-card {
+    grid-column: auto;
+  }
+
+  .frd-summary-card {
+    min-height: 128px;
+    padding: 17px;
+  }
+
+  .frd-summary-card strong {
+    font-size: 24px;
+  }
+
+  .frd-forecast-panel,
+  .frd-reserve-panel {
+    padding: 16px;
+  }
+
+  .frd-table-heading {
+    align-items: flex-start;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  .frd-summary-card {
+    align-items: flex-start;
+  }
+
+  .frd-summary-icon {
+    flex-basis: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .frd-summary-card strong {
+    font-size: 21px;
+    white-space: normal;
+  }
+
+  .frd-panel-heading,
+  .frd-table-heading {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frd-refresh-button {
+    transition-duration: .01ms;
+  }
+
+  .frd-refresh-button:hover {
+    transform: none;
+  }
+
+  .frd-refresh-button.is-loading .material-icons-round {
+    animation-duration: 1.8s;
+  }
+}
+
+@media (forced-colors: active) {
+  #fundReserveDashboardPage,
+  #fundReserveDashboardPage * {
+    scrollbar-color: auto;
+  }
+
+  .frd-summary-card,
+  .frd-panel,
+  .frd-warning-box,
+  .frd-refresh-button {
+    border-color: CanvasText;
+  }
+}

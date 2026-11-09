@@ -1,0 +1,110 @@
+/* Scoped document controls for แจ้งเคลม > รายละเอียดการแจ้งเคลม. */
+#transferClaimDetailPage .tdr-document-scenario[hidden],
+.tdr-document-dialog [hidden] { display: none !important; }
+#transferClaimDetailPage .tdr-document-scenario {
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  margin:14px 0 18px; padding:14px 16px; border:1px solid #dfe8f2; border-radius:12px;
+  background:#f6f8fc; color:#10243e;
+}
+#transferClaimDetailPage .tdr-document-scenario-copy { display:flex; align-items:center; gap:11px; min-width:0; }
+#transferClaimDetailPage .tdr-document-scenario-copy > .material-icons-round {
+  display:grid; place-items:center; flex:0 0 40px; width:40px; height:40px;
+  border-radius:11px; background:#eaf2ff; color:#1458d6; font-size:22px;
+}
+#transferClaimDetailPage .tdr-document-scenario label { display:block; font-size:14px; font-weight:800; line-height:1.4; }
+#transferClaimDetailPage .tdr-document-scenario small { display:block; color:#6d7d90; font-size:12px; line-height:1.45; }
+#transferClaimDetailPage .tdr-document-scenario select {
+  box-sizing:border-box; min-height:42px; min-width:280px; max-width:100%; padding:8px 12px;
+  border:1px solid #b9cbe0; border-radius:9px; background:#fff; color:#10243e;
+  font:inherit; font-size:14px; font-weight:650;
+}
+#transferClaimDetailPage .tdr-document-scenario select:focus-visible,
+.tdr-document-dialog button:focus-visible { outline:3px solid #87b0ff; outline-offset:2px; }
+
+.tdr-document-dialog {
+  box-sizing:border-box; width:min(100% - 32px, 560px); max-width:none; max-height:90vh;
+  margin:auto; padding:0; border:1px solid #dfe8f2; border-radius:16px;
+  background:#fff; color:#10243e; box-shadow:0 22px 70px #10243e38;
+  font-family:inherit; overflow:hidden;
+}
+.tdr-document-dialog::backdrop { background:rgba(16,36,62,.62); }
+.tdr-document-preview { width:min(100% - 32px, 1160px); height:min(90vh, 860px); }
+.tdr-document-dialog-head {
+  display:flex; align-items:center; gap:13px; min-height:76px; padding:15px 20px;
+  box-sizing:border-box; border-bottom:1px solid #dfe8f2; background:#f6f8fc;
+}
+.tdr-document-head-icon {
+  display:grid; place-items:center; flex:0 0 42px; width:42px; height:42px;
+  border-radius:12px; background:#eaf2ff; color:#1458d6; font-size:23px;
+}
+.tdr-document-title-wrap { min-width:0; }
+.tdr-document-eyebrow { display:block; color:#6d7d90; font-size:11px; font-weight:750; letter-spacing:.03em; }
+.tdr-document-dialog h4 { margin:2px 0 0; color:#10243e; font-size:19px; line-height:1.3; font-weight:800; }
+.tdr-document-preview-count { display:block; margin-top:2px; color:#6d7d90; font-size:12px; }
+.tdr-document-icon-btn, .tdr-document-text-btn {
+  box-sizing:border-box; display:inline-flex; align-items:center; justify-content:center; gap:5px;
+  min-width:38px; min-height:38px; padding:6px 10px; border:1px solid transparent;
+  border-radius:9px; background:transparent; color:#31516f; font:inherit; font-size:13px; font-weight:750;
+  cursor:pointer; transition:background .15s, color .15s, border-color .15s;
+}
+.tdr-document-icon-btn .material-icons-round, .tdr-document-text-btn .material-icons-round { font-size:20px; }
+.tdr-document-dialog-head > .tdr-document-icon-btn { margin-left:auto; }
+.tdr-document-icon-btn:hover, .tdr-document-text-btn:hover { background:#eaf2ff; color:#1458d6; }
+.tdr-document-dialog button:disabled { opacity:.4; cursor:not-allowed; }
+.tdr-document-dialog button:disabled:hover { background:transparent; color:#31516f; }
+.tdr-document-chooser-body { overflow:auto; max-height:calc(90vh - 76px); padding:12px; }
+.tdr-document-list { display:grid; gap:6px; }
+.tdr-document-category {
+  display:flex; align-items:center; gap:13px; width:100%; min-height:64px; padding:10px 12px;
+  border:1px solid transparent; border-radius:11px; background:#fff; color:#10243e;
+  text-align:left; font:inherit; cursor:pointer;
+}
+.tdr-document-category:hover, .tdr-document-category:focus-visible { border-color:#c5d9ff; background:#eaf2ff; }
+.tdr-document-category-icon {
+  display:grid; place-items:center; flex:0 0 40px; width:40px; height:40px;
+  border-radius:10px; background:#eaf2ff; color:#1458d6; font-size:22px;
+}
+.tdr-document-category-name { flex:1; min-width:0; font-size:15px; font-weight:750; overflow-wrap:anywhere; }
+.tdr-document-chip { flex:none; padding:4px 9px; border-radius:999px; background:#eaf2ff; color:#1458d6; font-size:12px; font-weight:800; }
+.tdr-document-chevron { color:#6d7d90; font-size:21px; }
+.tdr-document-empty { display:grid; justify-items:center; gap:7px; padding:38px 18px; text-align:center; }
+.tdr-document-empty > .material-icons-round { color:#8da7c5; font-size:46px; }
+.tdr-document-empty strong { font-size:16px; }
+.tdr-document-empty p { margin:0; color:#6d7d90; font-size:13px; }
+.tdr-document-toolbar {
+  display:flex; align-items:center; gap:3px; min-height:54px; padding:7px 15px;
+  box-sizing:border-box; border-bottom:1px solid #dfe8f2; background:#fff;
+}
+.tdr-document-toolbar-spacer { flex:1; }
+.tdr-document-zoom-label { min-width:42px; color:#31516f; text-align:center; font-size:12px; font-weight:750; }
+.tdr-document-save-btn { border-color:#c5d9ff; color:#1458d6; }
+.tdr-document-preview-layout { display:grid; grid-template-columns:172px minmax(0,1fr); height:calc(100% - 130px); min-height:0; }
+.tdr-document-thumbnails { display:flex; flex-direction:column; gap:8px; min-width:0; padding:11px; overflow:auto; border-right:1px solid #dfe8f2; background:#f6f8fc; }
+.tdr-document-thumb { display:block; width:100%; padding:8px; border:1px solid #dfe8f2; border-radius:10px; background:#fff; color:#10243e; text-align:left; font:inherit; cursor:pointer; }
+.tdr-document-thumb.active { border:2px solid #1458d6; background:#eaf2ff; }
+.tdr-document-thumb-art { display:grid; place-items:center; width:100%; height:82px; overflow:hidden; border-radius:6px; background:#eef3f8; }
+.tdr-document-thumb-art img { max-width:100%; max-height:100%; object-fit:contain; }
+.tdr-document-thumb-art .material-icons-round { color:#1458d6; font-size:31px; }
+.tdr-document-thumb-label { display:block; margin-top:5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; font-weight:700; }
+.tdr-document-stage-wrap { display:flex; flex-direction:column; min-width:0; min-height:0; background:#eef2f7; }
+.tdr-document-stage { display:grid; place-items:center; flex:1; min-height:0; overflow:auto; padding:16px; }
+.tdr-document-file { display:block; width:min(100%, 760px); height:100%; min-height:0; object-fit:contain; border:0; background:#fff; box-shadow:0 5px 24px #10243e1c; transform-origin:center center; }
+iframe.tdr-document-file { min-height:100%; }
+.tdr-document-pager { display:flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:4px 10px; border-top:1px solid #dfe8f2; background:#fff; }
+.tdr-document-pager > span { min-width:55px; color:#31516f; text-align:center; font-size:13px; font-weight:750; }
+@media (max-width:700px) {
+  #transferClaimDetailPage .tdr-document-scenario { align-items:stretch; }
+  #transferClaimDetailPage .tdr-document-scenario select { width:100%; min-width:0; }
+  .tdr-document-dialog { width:calc(100% - 16px); max-height:calc(100dvh - 16px); border-radius:13px; }
+  .tdr-document-preview { height:calc(100dvh - 16px); }
+  .tdr-document-dialog-head { min-height:66px; padding:10px 12px; gap:9px; }
+  .tdr-document-dialog h4 { font-size:16px; }
+  .tdr-document-toolbar { flex-wrap:wrap; min-height:54px; padding:5px 7px; }
+  .tdr-document-toolbar .tdr-document-text-btn { font-size:12px; }
+  .tdr-document-preview-layout { display:flex; flex-direction:column; height:calc(100% - 120px); }
+  .tdr-document-thumbnails { flex-direction:row; flex:0 0 auto; max-height:110px; padding:7px; overflow-x:auto; overflow-y:hidden; border-right:0; border-bottom:1px solid #dfe8f2; }
+  .tdr-document-thumb { flex:0 0 95px; width:95px; }
+  .tdr-document-thumb-art { height:54px; }
+  .tdr-document-stage { padding:9px; }
+  .tdr-document-pager { min-height:42px; }
+}

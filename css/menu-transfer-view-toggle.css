@@ -1,0 +1,31 @@
+/* Transfer Tracking: keep both existing view actions readable at every width. */
+#transferTrackingPage.tt-redesign .tt-view-toggle-redesign {
+  width: 296px !important;
+  min-width: 0;
+  height: 46px !important;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+
+#transferTrackingPage.tt-redesign .tt-view-toggle-redesign button {
+  min-width: 0 !important;
+  width: 100%;
+  padding: 0 10px !important;
+  gap: 7px;
+  white-space: nowrap;
+  line-height: 1.2 !important;
+  font-size: 14px !important;
+  text-align: center;
+}
+
+#transferTrackingPage.tt-redesign .tt-view-toggle-redesign .material-icons-round {
+  flex: none;
+  font-size: 18px !important;
+}
+
+@media (max-width: 700px) {
+  #transferTrackingPage.tt-redesign .tt-view-toggle-redesign {
+    width: 100% !important;
+  }
+}
