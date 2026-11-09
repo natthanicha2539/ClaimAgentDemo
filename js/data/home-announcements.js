@@ -1,6 +1,21 @@
 /* Permanent Project announcements. A release process may change publicationStatus after approval. */
 window.CLAIM_AGENT_PROJECT_ANNOUNCEMENTS = Object.freeze([
   Object.freeze({
+    id: 'project-20261109-death-edit-fixed-cause-coverage-624',
+    title: 'กำหนดเงื่อนไขเหตุและประเภทความคุ้มครองในหน้าแก้ไข Death & Disability',
+    system: 'พิจารณาเคลม > Death & Disability > แก้ไขข้อมูลเคลม',
+    type: 'อัปเดตระบบ',
+    details: 'แสดง เหตุของการเคลม และ ประเภทความคุ้มครอง ตาม CL/Case เดิมโดยปิดการเปลี่ยนค่า; กรณี เจ็บป่วย แสดง เสียชีวิต และ สาเหตุการเสียชีวิต = โรคทั่วไป โดยปิดการเปลี่ยนค่า; กรณี อุบัติเหตุ ที่เป็นเคลมเสียชีวิตยังแก้ สาเหตุการเสียชีวิต ได้ และปรับข้อมูลตัวอย่างสถานะ รอแก้ไข ให้สอดคล้องกับเงื่อนไขเจ็บป่วย',
+    impact: 'ผู้ใช้เดโมเห็นค่าเหตุและประเภทความคุ้มครองที่ใช้กับรายการโดยไม่เปลี่ยนประเภทผิดเงื่อนไข และแก้สาเหตุการเสียชีวิตได้เฉพาะกรณีอุบัติเหตุ',
+    startAt: '2026-11-09T10:41',
+    endAt: '',
+    workStatus: 'กำลังดำเนินการ',
+    publicationStatus: 'ฉบับร่าง',
+    pinned: false,
+    image: '',
+    createdAt: '2026-11-09T10:41:49+07:00'
+  }),
+  Object.freeze({
     id: 'project-20261109-death-edit-coverage-display-623',
     title: 'แก้การแสดงรายละเอียดความคุ้มครองในหน้าแก้ไข Death & Disability',
     system: 'พิจารณาเคลม > Death & Disability > แก้ไขข้อมูลเคลม',
