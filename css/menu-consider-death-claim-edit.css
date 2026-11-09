@@ -59,6 +59,9 @@
 #ddClaimEditForm .ddce-choice{display:flex;align-items:center;justify-content:flex-start;gap:9px;width:100%;min-width:0;min-height:40px;padding:6px 9px;border:1px solid #cfe1f4;border-radius:8px;background:#fff;color:#345170;font:inherit;cursor:pointer;text-align:left;box-shadow:0 1px 4px #164b8810;transition:border-color .15s,background .15s,box-shadow .15s}
 #ddClaimEditForm .ddce-choice.active{border:2px solid #087fc4;background:#eef8ff;color:#075eaa;box-shadow:0 2px 5px #164b8810}
 #ddClaimEditForm .ddce-choice:hover{border-color:#087fc4;background:#f5faff}
+#ddClaimEditForm .ddce-choice:disabled{cursor:default;opacity:.72;box-shadow:none}
+#ddClaimEditForm .ddce-choice:disabled:hover{background:#fff;border-color:#cfe1f4}
+#ddClaimEditForm .ddce-choice.active:disabled,#ddClaimEditForm .ddce-choice.active:disabled:hover{opacity:1;background:#eef8ff;border-color:#087fc4}
 #ddClaimEditForm .ddce-choice-icon{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:6px;background:#e6f5ff;color:#0872b6;font-size:15px}
 #ddClaimEditForm .ddce-choice-copy{display:flex;align-items:center;min-width:0}
 #ddClaimEditForm .ddce-choice-copy strong{font-size:14px;line-height:1.05;font-weight:800}
