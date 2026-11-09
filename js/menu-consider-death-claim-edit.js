@@ -201,6 +201,30 @@
   }
   const money = value => (Number(String(value || '').replace(/,/g, '').replace(/[^\d.]/g, '')) || 0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
   const amount = value => Number(String(value || '').replace(/,/g, '').replace(/[^\d.]/g, '')) || 0;
+  const normalizeBenefit = value => String(value || '').replace(/\s+/g,'').replace(/[()（）]/g,'').replace(/กรณี/g,'');
+  function coverageBenefits(values) {
+    const product = rowFor(claimCode())?.product || 'PH';
+    const reason = values.coverage === 'เสียชีวิต' ? values.deathReason : values.disabilityReason;
+    if (typeof CASETYPE_BENEFIT_ROWS === 'undefined' || typeof benefits === 'undefined' || !reason) return [];
+    return CASETYPE_BENEFIT_ROWS.filter(item => item.product === product && item.incident === values.cause && item.coverage === values.coverage && item.subType === reason).map(item => {
+      const match = (benefits[product] || []).find(benefit => normalizeBenefit(benefit[1]) === normalizeBenefit(item.detail));
+      const limit = match ? amount(match[4] || match[3]) : 0;
+      return {name:item.detail,rate:match?.[2] || '',limit,icon:match?.[0] || 'verified_user'};
+    });
+  }
+  function renderCoverageBenefits(form) {
+    const target = form.querySelector('[data-ddce-coverage-benefits]');
+    if (!target) return;
+    const values = {
+      cause:form.querySelector('[data-ddce-field="cause"]')?.value || '',
+      coverage:form.querySelector('[data-ddce-field="coverage"]')?.value || '',
+      deathReason:form.querySelector('[data-ddce-field="deathReason"]')?.value || '',
+      disabilityReason:form.querySelector('[data-ddce-field="disabilityReason"]')?.value || ''
+    };
+    const rows = coverageBenefits(values);
+    const total = rows.reduce((sum,item) => sum + item.limit,0);
+    target.innerHTML = `<div class="benefit-summary-shell compact-benefit-summary"><div class="benefit-summary-head"><h4 class="benefit-summary-title"><span class="material-icons-round text-brand-700" aria-hidden="true">verified_user</span>รายละเอียดความคุ้มครอง</h4><span class="benefit-summary-plan">แผน : ${esc(page()?.querySelector('#ddPlanPill')?.textContent.replace(/^แผน\s*:\s*/,'').trim() || '662')}</span></div>${rows.length ? `<div class="benefit-summary-grid">${rows.map(item => `<article class="benefit-item-card excel-style"><div class="benefit-item-row"><span class="benefit-item-icon"><span class="material-icons-round" aria-hidden="true">${esc(item.icon)}</span></span><div class="benefit-item-content"><h5 class="benefit-item-title">${esc(item.name)}</h5><div class="benefit-detail-line"><span class="rate">${esc(item.rate)}</span><span class="divider">|</span><span class="total">คุ้มครองสูงสุด ${money(item.limit)} บาท</span></div></div></div></article>`).join('')}</div><p class="ddce-coverage-total">ความคุ้มครองรวม <strong>${money(total)} บาท</strong></p>` : '<div class="benefit-summary-empty">กรุณาเลือกเหตุของการเคลม ประเภทความคุ้มครอง และสาเหตุให้ครบถ้วน</div>'}</div>`;
+  }
   function beneficiaryValue(box,label) {
     const item = Array.from(box.querySelectorAll('.dd-detail-grid > div')).find(node => node.querySelector('.dd-field-label')?.textContent.includes(label));
     return item?.querySelector('.dd-field-value')?.textContent.trim() || '';
@@ -413,10 +437,11 @@
     if (other) other.hidden = type !== 'เสียชีวิต' || place !== 'อื่นๆ';
     const otherInput = form.querySelector('[data-ddce-field="deathOtherPlace"]');
     if (otherInput) otherInput.required = type === 'เสียชีวิต' && place === 'อื่นๆ';
+    renderCoverageBenefits(form);
   }
   const choiceSets = {
     cause:[['เจ็บป่วย','healing','การเจ็บป่วยหรือโรคทั่วไป'],['อุบัติเหตุ','directions_run','เหตุการณ์อุบัติเหตุ']],
-    coverage:[['ค่ารักษา','medical_services','OPD / IPD / Daycase Surgery'],['ค่าชดเชย','payments','ประเภทการรักษาตามเหตุของการเคลม','ค่าชดเชย(ใหญ่)'],['ทุพพลภาพ/สูญเสียอวัยวะ','accessible','สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ'],['เสียชีวิต','local_florist','สาเหตุการเสียชีวิต']],
+    coverage:[['ทุพพลภาพ/สูญเสียอวัยวะ','accessible','สาเหตุการทุพพลภาพ/สูญเสียอวัยวะ'],['เสียชีวิต','local_florist','สาเหตุการเสียชีวิต']],
     deathReason:[['อุบัติเหตุทั่วไป',''],['ขับขี่/โดยสารจักรยานยนต์',''],['ฆาตกรรม',''],['โรคทั่วไป','']],
     disabilityReason:[['อุบัติเหตุทั่วไป',''],['ขับขี่/โดยสารจักรยานยนต์',''],['ฆาตกรรม','']]
   };
@@ -490,6 +515,7 @@
       <div class="ddce-group"><h3>ข้อมูลเหตุการณ์และการรักษา</h3><div class="ddce-grid">${fields().filter(field => !basics.has(field[0]) && field[2] !== 'service').map(field => control(field,values[field[0]] || '')).join('')}</div><button type="button" class="ddce-outline-button ddce-add-diagnosis" data-ddce-add-diagnosis${values.diagnosis2 && values.diagnosis3 ? ' hidden' : ''}>+ เพิ่มการวินิจฉัย</button></div>
       <div class="ddce-group ddce-organ-section" data-ddce-organ-section data-ddce-condition="ทุพพลภาพ/สูญเสียอวัยวะ"></div>
       <div class="ddce-group"><h3>สแกนเอกสาร</h3><div class="ddce-document-table-wrap"><table class="ddce-document-table"><thead><tr><th>รหัสเอกสาร</th><th>ประเภทเอกสาร</th><th>สแกนเอกสาร</th><th>จำนวนเอกสาร</th><th>รายละเอียด</th></tr></thead><tbody data-ddce-doc-body>${documentRows(activeDraft.documents)}</tbody></table></div><input type="file" data-ddce-files multiple hidden></div>
+      <div class="ddce-group ddce-coverage-group" data-ddce-coverage-benefits></div>
       <div class="ddce-group" data-ddce-transfer-section><h3>จำนวนเงินที่ต้องการโอน</h3><div class="ddce-grid"><label><span>จำนวนเงินที่ต้องการโอน</span><input data-ddce-transfer inputmode="decimal" value="${money(activeDraft.financial.transfer)}"></label></div><p class="ddce-help">ยอดรวมต้องเท่ากับจำนวนเงินของผู้รับผลประโยชน์ทุกราย</p></div>
       <div class="ddce-group ddce-beneficiary-group"><div class="ddce-beneficiary-head"><h3>ผู้รับผลประโยชน์</h3><button type="button" class="ddce-outline-button" data-ddce-cash-toggle aria-haspopup="dialog" aria-pressed="${Boolean(activeDraft.financial.cash)}"><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>เงินสดมอบหน้างาน</button></div>${activeDraft.financial.beneficiaries.map(beneficiaryForm).join('')}<div class="ddce-beneficiary-total">จำนวนเงินโอนรวม : <strong data-ddce-beneficiary-total>${money(activeDraft.financial.transfer)}</strong> บาท</div><div class="ddce-cash-panel" data-ddce-cash-panel hidden><h4>เงินสดมอบหน้างาน</h4>${cashForm(activeDraft.financial.cash)}</div></div>
       <p class="ddce-form-error" data-ddce-error role="alert" hidden></p><div class="ddce-actions"><button type="button" data-ddce-cancel>ยกเลิก</button><button type="button" data-ddce-save>บันทึกการแก้ไข</button></div><div class="ddce-organ-modal" data-ddce-organ-modal hidden></div>`;
@@ -529,6 +555,7 @@
           syncCoverageFields(section);
           if (section.querySelector('[data-ddce-field="coverage"]')?.value === 'ทุพพลภาพ/สูญเสียอวัยวะ') renderOrganSection(section);
         }
+        if (id === 'deathReason' || id === 'disabilityReason') renderCoverageBenefits(section);
         return;
       }
       const place = event.target.closest('[data-ddce-place]');
@@ -665,6 +692,14 @@
     const cash = cashEnabled ? Object.fromEntries(cashKeys.map(id => [id,form.querySelector(`[data-ddce-cash-field="${id}"]`)?.value.trim() || ''])) : null;
     const afterFinancial = {transfer:after.coverage === 'ทุพพลภาพ/สูญเสียอวัยวะ' ? activeDraft.organItems.reduce((sum,item) => sum + amount(item.amount),0) : amount(form.querySelector('[data-ddce-transfer]')?.value),beneficiaries,cash};
     const financialChanged = JSON.stringify(beforeFinancial) !== JSON.stringify(afterFinancial);
+    const benefitRows = coverageBenefits(after);
+    const coverageLimit = benefitRows.reduce((sum,item) => sum + item.limit,0);
+    if (!coverageLimit) {
+      error.hidden=false; error.textContent='ไม่พบวงเงินความคุ้มครองสำหรับข้อมูลเคลมที่เลือก'; form.querySelector('[data-ddce-coverage-benefits]')?.scrollIntoView({block:'center'}); return;
+    }
+    if (Math.round(afterFinancial.transfer*100) > Math.round(coverageLimit*100)) {
+      error.hidden=false; error.textContent=`จำนวนเงินที่ต้องการโอนต้องไม่เกินความคุ้มครอง ${money(coverageLimit)} บาท`; form.querySelector('[data-ddce-transfer]')?.focus(); return;
+    }
     if (financialChanged && (!afterFinancial.transfer || beneficiaries.some(item => !item.name || !item.bank || !item.accountNo || item.amount <= 0))) {
       error.hidden=false; error.textContent='กรุณาตรวจสอบจำนวนเงินที่ต้องการโอนและข้อมูลผู้รับผลประโยชน์'; return;
     }

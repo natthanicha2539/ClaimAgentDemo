@@ -138,6 +138,7 @@
       optionalField('ผู้รับเอกสาร', config.recipient) +
       optionalField('ผู้ให้บริการ', config.provider) +
       optionalField('เจ้าของรถ', config.owner) +
+      optionalField('สาเหตุการเสียชีวิต', config.coverage === 'เสียชีวิต' ? config.deathReason : '') +
       '<div><div class="dd-field-label">สาเหตุการเสียชีวิต/ทุพพลภาพ :</div><div class="dd-field-value">' + config.incident + '</div></div>' +
       '<div><div class="dd-field-label">วันที่เกิดเหตุ :</div><div class="dd-field-value">' + config.incidentDate + '</div></div>' +
       optionalField('วันที่เสียชีวิต', config.deathDate) +
@@ -207,7 +208,7 @@
   registerDetail("CLPA6906000121", {
     updateDate: "27/10/2569 09:14:22", branch: "กรุงเทพมหานคร", caseCode: "CCPA6906000121",
     name: "นายตัวอย่าง ใจดี", idCard: "-", appId: "DEMO-PA-0121", phone: "-", plan: "ชดเชย+สุขภาพ",
-    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", incident: "อุบัติเหตุทางถนน", incidentDate: "20/10/2569", deathDate: "21/10/2569", incidentPlace: "ถนนในเขตบางเขน กรุงเทพมหานคร", deathPlace: "สถานพยาบาล", deathHospital: "โรงพยาบาลภูมิพลอดุลยเดช",
+    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", deathReason: "อุบัติเหตุทั่วไป", incident: "อุบัติเหตุทางถนน", incidentDate: "20/10/2569", deathDate: "21/10/2569", incidentPlace: "ถนนในเขตบางเขน กรุงเทพมหานคร", deathPlace: "สถานพยาบาล", deathHospital: "โรงพยาบาลภูมิพลอดุลยเดช",
     receivedDate: "23/10/2569", completeDate: "26/10/2569", recipient: "ผู้ให้บริการ (Walk in)", provider: "ผู้ให้บริการ (Walk in)", owner: "000 - คุณสำนักงาน",
     hospital: "โรงพยาบาลภูมิพลอดุลยเดช", symptom: "บาดเจ็บศีรษะรุนแรงหลังอุบัติเหตุทางถนน",
     diagnosis: "S06.9 : การบาดเจ็บภายในกะโหลกศีรษะ", diagnosis2: "S27.3 : การบาดเจ็บของปอด", injuryDetail: "นำส่งโรงพยาบาลหลังเกิดเหตุและเสียชีวิตระหว่างรักษา",
@@ -218,7 +219,7 @@
   registerDetail("CL6906000122", {
     updateDate: "27/10/2569 09:28:05", branch: "ขอนแก่น", caseCode: "CC6906000122",
     name: "นางสาวตัวอย่าง แสงทอง", idCard: "-", appId: "DEMO-PH-0122", phone: "-", plan: "662",
-    cause: "เจ็บป่วย", coverage: "เสียชีวิต", incident: "ภาวะแทรกซ้อนจากโรคหัวใจ", incidentDate: "14/10/2569", deathDate: "18/10/2569", incidentPlace: "บ้านพัก อำเภอเมืองขอนแก่น", deathPlace: "ที่บ้าน",
+    cause: "เจ็บป่วย", coverage: "เสียชีวิต", deathReason: "โรคทั่วไป", incident: "ภาวะแทรกซ้อนจากโรคหัวใจ", incidentDate: "14/10/2569", deathDate: "18/10/2569", incidentPlace: "บ้านพัก อำเภอเมืองขอนแก่น", deathPlace: "ที่บ้าน",
     receivedDate: "21/10/2569", completeDate: "25/10/2569", recipient: "ผู้ให้บริการ (Walk Out)", provider: "ผู้ให้บริการ (Walk in)", owner: "000 - คุณสำนักงาน",
     hospital: "โรงพยาบาลขอนแก่น", symptom: "เจ็บแน่นหน้าอกและหายใจลำบาก",
     diagnosis: "I21.9 : กล้ามเนื้อหัวใจตายเฉียบพลัน", diagnosis2: "I50.9 : ภาวะหัวใจล้มเหลว", injuryDetail: "เข้ารับการรักษาฉุกเฉินก่อนเสียชีวิต",
@@ -251,7 +252,7 @@
   registerDetail("CL6906000125", {
     updateDate: "28/10/2569 08:42:11", branch: "นนทบุรี", caseCode: "CC6906000125",
     name: "นายตัวอย่าง นที", idCard: "-", appId: "DEMO-PH-0125", phone: "-", plan: "662",
-    cause: "เจ็บป่วย", coverage: "เสียชีวิต", incident: "ภาวะแทรกซ้อนจากโรคปอด", incidentDate: "20/10/2569", deathDate: "23/10/2569", deathPlace: "ที่บ้าน",
+    cause: "เจ็บป่วย", coverage: "เสียชีวิต", deathReason: "โรคทั่วไป", incident: "ภาวะแทรกซ้อนจากโรคปอด", incidentDate: "20/10/2569", deathDate: "23/10/2569", deathPlace: "ที่บ้าน",
     receivedDate: "25/10/2569", completeDate: "27/10/2569", recipient: "ผู้ให้บริการ (Walk in)", provider: "ผู้ให้บริการ (Walk in)", owner: "000 - คุณสำนักงาน",
     hospital: "โรงพยาบาลพระนั่งเกล้า", symptom: "หายใจลำบากและอ่อนเพลียต่อเนื่อง",
     diagnosis: "J44.9 : โรคปอดอุดกั้นเรื้อรัง", diagnosis2: "J18.9 : ปอดอักเสบ", injuryDetail: "ติดตามการรักษาที่โรงพยาบาลก่อนเสียชีวิตที่บ้าน",
@@ -262,7 +263,7 @@
   registerDetail("CLPA6906000126", {
     updateDate: "28/10/2569 09:06:34", branch: "ภูเก็ต", caseCode: "CCPA6906000126",
     name: "นางสาวตัวอย่าง ปาริชาติ", idCard: "-", appId: "DEMO-PA-0126", phone: "-", plan: "ชดเชย+สุขภาพ",
-    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", incident: "อุบัติเหตุทางน้ำ", incidentDate: "22/10/2569", deathDate: "22/10/2569", deathPlace: "อื่นๆ", deathPlaceOther: "บริเวณชายหาด จังหวัดภูเก็ต",
+    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", deathReason: "อุบัติเหตุทั่วไป", incident: "อุบัติเหตุทางน้ำ", incidentDate: "22/10/2569", deathDate: "22/10/2569", deathPlace: "อื่นๆ", deathPlaceOther: "บริเวณชายหาด จังหวัดภูเก็ต",
     receivedDate: "25/10/2569", completeDate: "27/10/2569", recipient: "ผู้ให้บริการ (Walk Out)", provider: "ผู้ให้บริการ (Walk in)", owner: "000 - คุณสำนักงาน",
     hospital: "โรงพยาบาลวชิระภูเก็ต", symptom: "หมดสติหลังประสบอุบัติเหตุทางน้ำ",
     diagnosis: "T75.1 : ภาวะจมน้ำ", injuryDetail: "ได้รับการช่วยเหลือ ณ จุดเกิดเหตุและนำส่งโรงพยาบาล",
@@ -295,7 +296,7 @@
   registerDetail("CLPA6906000112", {
     updateDate: "17/06/2569 14:42:24", branch: "สุพรรณบุรี", caseCode: "CCPA6906000112",
     name: "เด็กชายธนภัทร สถานนท์", idCard: "1729900836412", appId: "PA001112", phone: "081-735-4092", plan: "ชดเชย+สุขภาพ",
-    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", incident: "อุบัติเหตุรถจักรยานยนต์", incidentDate: "09/06/2569", receivedDate: "12/06/2569", completeDate: "16/06/2569",
+    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", deathReason: "ขับขี่/โดยสารจักรยานยนต์", incident: "อุบัติเหตุรถจักรยานยนต์", incidentDate: "09/06/2569", receivedDate: "12/06/2569", completeDate: "16/06/2569",
     hospital: "โรงพยาบาลเจ้าพระยายมราช", symptom: "ได้รับบาดเจ็บรุนแรงจากอุบัติเหตุจราจรและเสียชีวิต",
     diagnosis: "S06.9 : Intracranial injury, unspecified | การบาดเจ็บภายในกะโหลกศีรษะ", note: "พิจารณาร่วมกับรายงานพนักงานสอบสวนและผลตรวจแอลกอฮอล์",
     item: "ผลประโยชน์กรณีเสียชีวิต", itemDetail: "อุบัติเหตุรถจักรยานยนต์", claimAmount: "100,000.00", uncovered: "100,000.00", uncoveredReason: "เข้าข้อยกเว้นกรมธรรม์", expenseNote: "ปฏิเสธการจ่ายสินไหม", sumAssured: "100,000.00", payAmount: "0.00"
@@ -313,7 +314,7 @@
   registerDetail("CLPA6906000069", {
     updateDate: "25/08/2569 11:08:16", branch: "นครราชสีมา", caseCode: "CCPA6906000069",
     name: "เด็กหญิงณิชารีย์ วัฒนสุข", idCard: "1309901765204", appId: "PA001069", phone: "093-847-2501", plan: "เลือกสิทธิ์+สุขภาพ",
-    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", incident: "อุบัติเหตุทางน้ำ", incidentDate: "18/08/2569", receivedDate: "20/08/2569", completeDate: "-",
+    cause: "อุบัติเหตุ", coverage: "เสียชีวิต", deathReason: "อุบัติเหตุทั่วไป", incident: "อุบัติเหตุทางน้ำ", incidentDate: "18/08/2569", receivedDate: "20/08/2569", completeDate: "-",
     hospital: "โรงพยาบาลมหาราชนครราชสีมา", symptom: "หมดสติจากอุบัติเหตุทางน้ำและเสียชีวิตภายหลังนำส่งโรงพยาบาล",
     diagnosis: "T75.1 : Unspecified effects of drowning and nonfatal submersion | ภาวะจมน้ำ", note: "ผู้แจ้งเคลมขอยกเลิกเพื่อรวบรวมรายงานการชันสูตรและเอกสารราชการ",
     item: "ผลประโยชน์กรณีเสียชีวิต", itemDetail: "อุบัติเหตุทางน้ำ", claimAmount: "100,000.00", uncovered: "-", uncoveredReason: "-", expenseNote: "ยกเลิกก่อนพิจารณา", sumAssured: "100,000.00", payAmount: "0.00"
