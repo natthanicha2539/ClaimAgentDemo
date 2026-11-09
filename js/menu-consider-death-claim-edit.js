@@ -458,7 +458,8 @@
     return choices;
   }
   function choiceButtons(id,choices,value) {
-    return choices.map(([text,icon,,display]) => `<button type="button" class="ddce-choice${text === value ? ' active' : ''}" data-ddce-choice="${id}" data-ddce-value="${esc(text)}" aria-pressed="${text === value}">${icon ? `<span class="ddce-choice-icon material-icons-round" aria-hidden="true">${icon}</span>` : ''}<span class="ddce-choice-copy"><strong>${esc(display || text)}</strong></span></button>`).join('');
+    const locked = id === 'cause' || id === 'coverage' || (id === 'deathReason' && activeDraft?.values.cause === 'เจ็บป่วย');
+    return choices.map(([text,icon,,display]) => `<button type="button" class="ddce-choice${text === value ? ' active' : ''}" data-ddce-choice="${id}" data-ddce-value="${esc(text)}" aria-pressed="${text === value}"${locked ? ' disabled' : ''}>${icon ? `<span class="ddce-choice-icon material-icons-round" aria-hidden="true">${icon}</span>` : ''}<span class="ddce-choice-copy"><strong>${esc(display || text)}</strong></span></button>`).join('');
   }
   function refreshChoice(form,id,cause) {
     const select = form.querySelector(`[data-ddce-field="${id}"]`);
@@ -544,6 +545,7 @@
       if (event.target.closest('[data-ddce-organ-save]')) { saveOrganModal(section); return; }
       const choice = event.target.closest('[data-ddce-choice]');
       if (choice) {
+        if (choice.disabled) return;
         const id = choice.dataset.ddceChoice;
         section.querySelector(`[data-ddce-field="${id}"]`).value = choice.dataset.ddceValue;
         section.querySelectorAll(`[data-ddce-choice="${id}"]`).forEach(button => {
@@ -646,6 +648,9 @@
       error.textContent=`กรุณาเลือก${missing === 'cause' ? 'เหตุของการเคลม' : 'ประเภทความคุ้มครอง'}`;
       form.querySelector(`[data-ddce-choice="${missing}"]`)?.focus();
       return;
+    }
+    if (after.cause !== before.cause || after.coverage !== before.coverage || (after.cause === 'เจ็บป่วย' && (after.coverage !== 'เสียชีวิต' || after.deathReason !== 'โรคทั่วไป'))) {
+      error.hidden=false; error.textContent='เหตุของการเคลม ประเภทความคุ้มครอง หรือสาเหตุการเสียชีวิตไม่ตรงกับเงื่อนไขของรายการ'; return;
     }
     for (const [id,label] of [['recipient','ผู้รับเอกสาร'],['provider','ผู้ให้บริการ'],['owner','เจ้าของรถ']]) {
       if (after[id]) continue;
