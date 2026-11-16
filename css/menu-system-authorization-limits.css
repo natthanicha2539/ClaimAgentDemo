@@ -1,0 +1,128 @@
+#authorizationLimitsPage{--al-blue:#0788d6;--al-text:#17324d;--al-muted:#6d8296;--al-line:#dce8f1;background:#f5f8fc;color:var(--al-text);min-height:calc(100vh - 80px);padding:30px;font-family:"TH Sarabun New","TH SarabunPSK",Sarabun,sans-serif!important;font-size:19px}
+#authorizationLimitsPage *{box-sizing:border-box}#authorizationLimitsPage :is(button,input,select){font-family:inherit!important}#authorizationLimitsPage .al-shell{max-width:1540px;margin:auto}#authorizationLimitsPage .al-header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px}#authorizationLimitsPage h2{font-size:34px;line-height:1.2;font-weight:800;margin:3px 0}#authorizationLimitsPage h3{font-size:25px;font-weight:800;margin:0}#authorizationLimitsPage p{margin:0}#authorizationLimitsPage .al-header p:last-child,#authorizationLimitsPage .al-panel-heading p{color:var(--al-muted)}#authorizationLimitsPage .al-eyebrow{font-weight:800;color:var(--al-blue)}#authorizationLimitsPage .al-mock{white-space:nowrap;border:1px solid #b9d9ec;background:#e9f6ff;color:#126a9a;border-radius:999px;padding:5px 15px;font-weight:700}#authorizationLimitsPage .al-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}#authorizationLimitsPage .al-summary-card,#authorizationLimitsPage .al-panel{background:#fff;border:1px solid #e1eaf2;border-radius:17px;box-shadow:0 7px 24px rgba(20,61,92,.065)}#authorizationLimitsPage .al-summary-card{padding:17px 19px;min-height:126px}#authorizationLimitsPage .al-summary-card span,#authorizationLimitsPage .al-summary-card small{display:block;color:var(--al-muted)}#authorizationLimitsPage .al-summary-card span{font-weight:700}#authorizationLimitsPage .al-summary-card strong{display:block;color:var(--al-blue);font-size:34px;line-height:1.2}#authorizationLimitsPage .al-summary-card small{font-size:15px}#authorizationLimitsPage .al-tabs{display:flex;gap:8px;overflow-x:auto;margin:0 0 15px;padding-bottom:2px}#authorizationLimitsPage .al-tabs button{white-space:nowrap;border:1px solid var(--al-line);border-radius:11px;background:#fff;color:#536e84;padding:8px 16px;cursor:pointer;font-weight:700}#authorizationLimitsPage .al-tabs button.is-active{background:var(--al-blue);border-color:var(--al-blue);color:#fff}#authorizationLimitsPage .al-panel{overflow:hidden}#authorizationLimitsPage .al-panel.hidden{display:none!important}#authorizationLimitsPage .al-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 22px;border-bottom:1px solid var(--al-line)}#authorizationLimitsPage .al-heading-actions{display:flex;gap:9px;flex-wrap:wrap}#authorizationLimitsPage .al-btn{border:1px solid transparent;border-radius:9px;padding:8px 15px;min-height:42px;font-weight:800;cursor:pointer;white-space:nowrap}#authorizationLimitsPage .al-primary{background:var(--al-blue);color:#fff}#authorizationLimitsPage .al-primary:hover{background:#056eae}#authorizationLimitsPage .al-outline{background:#fff;border-color:#bad3e3;color:#315d7b}#authorizationLimitsPage .al-danger{background:#dc4257;color:#fff}#authorizationLimitsPage .al-filters{display:flex;gap:12px;align-items:end;padding:17px 22px;background:#fbfdff;border-bottom:1px solid var(--al-line)}#authorizationLimitsPage label{display:grid;gap:5px;font-weight:700}#authorizationLimitsPage .al-filters label:first-child{min-width:260px;flex:1}#authorizationLimitsPage input:not([type=checkbox]),#authorizationLimitsPage select{height:42px;padding:4px 11px;border:1px solid #bfd1df;border-radius:9px;background:#fff;color:var(--al-text);font-size:18px;outline:none}#authorizationLimitsPage input:focus,#authorizationLimitsPage select:focus{border-color:var(--al-blue);box-shadow:0 0 0 3px #0788d622}#authorizationLimitsPage .al-table-wrap{overflow-x:auto}#authorizationLimitsPage table{width:100%;border-collapse:collapse;min-width:850px}#authorizationLimitsPage th{background:#eef6fb;color:#3e627e;font-weight:800;text-align:left;padding:12px 14px;white-space:nowrap}#authorizationLimitsPage td{padding:11px 14px;border-top:1px solid #edf2f6;vertical-align:middle}#authorizationLimitsPage td small{display:block;color:var(--al-muted)}#authorizationLimitsPage tbody tr:hover{background:#f9fcff}#authorizationLimitsPage .al-level-pill{display:inline-block;background:#e2f3ff;color:#0875b9;border-radius:7px;padding:2px 10px;font-weight:800}#authorizationLimitsPage .al-status{display:inline-block;border-radius:999px;background:#e5f7ee;color:#148554;padding:2px 9px;font-weight:700;white-space:nowrap}#authorizationLimitsPage .al-status.is-off{background:#f0f2f5;color:#6f7f8b}#authorizationLimitsPage .al-row-actions{white-space:nowrap}#authorizationLimitsPage .al-row-actions button{border:0;background:transparent;color:var(--al-blue);font-weight:800;cursor:pointer;margin-right:8px}#authorizationLimitsPage .al-row-actions button[data-delete]{color:#c24454}#authorizationLimitsPage .al-empty{text-align:center;padding:55px;color:var(--al-muted)}#authorizationLimitsPage .al-table-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;color:var(--al-muted)}#authorizationLimitsPage .al-pagination{display:flex;align-items:center;gap:10px}#authorizationLimitsPage .al-pagination button{border:1px solid #c5d8e6;border-radius:8px;padding:4px 10px;background:white;color:#276386;cursor:pointer}#authorizationLimitsPage .al-pagination button:disabled{opacity:.4;cursor:default}#authorizationLimitsPage .al-level-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px;padding:20px}#authorizationLimitsPage .al-level-card{border:1px solid var(--al-line);border-radius:13px;padding:16px;display:grid;gap:13px;background:#fbfdff}#authorizationLimitsPage .al-level-card-top{display:flex;justify-content:space-between;align-items:center}#authorizationLimitsPage .al-level-card-top strong{font-size:27px;color:var(--al-blue)}#authorizationLimitsPage .al-check{display:flex;align-items:center;gap:8px}#authorizationLimitsPage .al-check input{width:18px;height:18px;accent-color:var(--al-blue)}#authorizationLimitsPage .al-test-form{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end;padding:22px}#authorizationLimitsPage .al-test-result{margin:0 22px 22px;border:1px solid var(--al-line);border-radius:12px;padding:15px;background:#f3f8fc}#authorizationLimitsPage .al-test-result.is-success{background:#e7f8ef;border-color:#a6dfbf;color:#0b7947}#authorizationLimitsPage .al-test-result.is-warning{background:#fff6e6;border-color:#f1d8a2;color:#915e0e}#authorizationLimitsPage .al-test-result.is-error{background:#fff0f1;border-color:#efc2c7;color:#aa3446}#authorizationLimitsPage .al-toast{position:fixed;top:20px;right:20px;z-index:1100;max-width:400px;padding:11px 17px;border-radius:10px;box-shadow:0 10px 35px #17324d33;background:#e6f8ee;color:#0c7749;font-weight:800}#authorizationLimitsPage .al-toast.error{background:#fff0f1;color:#aa3446}#authorizationLimitsPage .al-toast.warning{background:#fff5e3;color:#95610f}#authorizationLimitsPage .al-toast[hidden]{display:none}
+.al-dialog-backdrop{position:fixed;inset:0;z-index:1100;display:grid;place-items:center;background:#102d49a8;padding:15px;font-family:"TH Sarabun New","TH SarabunPSK",Sarabun,sans-serif;font-size:19px}.al-dialog{width:min(540px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:17px;box-shadow:0 24px 80px #061d3680}.al-dialog header{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid #dce8f1}.al-dialog h3{font-size:26px;font-weight:800;margin:0}.al-dialog header button{border:0;background:transparent;font-size:30px;color:#5e768a;cursor:pointer}.al-dialog-body{display:grid;gap:13px;padding:20px 22px}.al-dialog-body label{display:grid;gap:5px;font-weight:700}.al-dialog-body select{width:100%;height:43px;border:1px solid #bfd1df;border-radius:9px;background:#fff;padding:5px 10px;font:inherit}.al-dialog-note{margin:0;color:#647d91}.al-dialog-limit{border-radius:9px;background:#eaf7ff;padding:10px;color:#0c76b5;font-weight:800}.al-form-error{margin:0;color:#b93648;font-weight:800}.al-dialog footer{display:flex;justify-content:flex-end;gap:9px;padding:16px 22px;border-top:1px solid #dce8f1}.al-confirm{padding:22px}.al-confirm p{margin:8px 0 22px;color:#566f82}.al-confirm footer{padding:0;border:0}.al-dialog .al-btn{border:1px solid transparent;border-radius:9px;padding:8px 17px;font:800 19px "TH Sarabun New",Sarabun,sans-serif;cursor:pointer}.al-dialog .al-outline{border-color:#bad3e3;background:#fff;color:#315d7b}.al-dialog .al-primary{background:#0788d6;color:#fff}.al-dialog .al-danger{background:#dc4257;color:#fff}
+@media(max-width:1100px){#authorizationLimitsPage .al-summary{grid-template-columns:repeat(2,1fr)}#authorizationLimitsPage .al-level-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){#authorizationLimitsPage{padding:16px 12px;font-size:18px}#authorizationLimitsPage .al-header,#authorizationLimitsPage .al-panel-heading{align-items:flex-start;flex-direction:column}#authorizationLimitsPage .al-header h2{font-size:29px}#authorizationLimitsPage .al-summary{gap:9px}#authorizationLimitsPage .al-summary-card{padding:12px;min-height:118px}#authorizationLimitsPage .al-summary-card strong{font-size:27px}#authorizationLimitsPage .al-filters{display:grid;padding:14px}#authorizationLimitsPage .al-filters label:first-child{min-width:0}#authorizationLimitsPage .al-level-grid{grid-template-columns:1fr;padding:14px}#authorizationLimitsPage .al-test-form{grid-template-columns:1fr;padding:15px}#authorizationLimitsPage .al-test-result{margin:0 15px 15px}#authorizationLimitsPage .al-table-footer{flex-direction:column;align-items:flex-start}#authorizationLimitsPage .al-heading-actions{width:100%}#authorizationLimitsPage .al-heading-actions button{flex:1}}
+
+/* Dynamic Level management and compact progressive disclosure. */
+#authorizationLimitsPage .al-header{padding:22px 26px;border:1px solid #d3e9f7;border-radius:16px;background:linear-gradient(112deg,#e8f5fe,#f7fbfe 65%,#fff);box-shadow:0 7px 22px #1c628610}
+#authorizationLimitsPage .al-summary-card{border-top:3px solid #0788d6}
+#authorizationLimitsPage .al-level-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}
+#authorizationLimitsPage .al-level-card{display:flex;flex-direction:column;gap:8px;min-height:228px;padding:16px;border-radius:14px;background:#fff;box-shadow:0 5px 17px #123b5910}
+#authorizationLimitsPage .al-level-card-top{display:flex;justify-content:space-between;align-items:center}
+#authorizationLimitsPage .al-level-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#e8f5fd;color:#0788d6;font-family:'Material Icons Round'!important;font-size:20px}
+#authorizationLimitsPage .al-level-card strong{display:block;font-size:24px;line-height:1.1;color:#17324d}
+#authorizationLimitsPage .al-level-card small{display:block;color:#71879a;font-size:16px}
+#authorizationLimitsPage .al-level-amount{font-size:22px;font-weight:800;color:#086ea9;line-height:1.1}
+#authorizationLimitsPage .al-level-usage{font-size:16px;color:#6b8194}
+#authorizationLimitsPage .al-level-actions{display:flex;gap:7px;margin-top:auto;border-top:1px solid #e8eff5;padding-top:11px}
+#authorizationLimitsPage .al-level-actions button{flex:1;border:1px solid #bdd7e8;border-radius:8px;background:#fff;color:#0879bd;padding:4px 8px;font-size:17px;font-weight:800;cursor:pointer}
+#authorizationLimitsPage .al-level-actions button[data-level-delete]{color:#af5361;border-color:#eed0d4}
+#authorizationLimitsPage .al-highlight{background:#e5f7ed!important;animation:al-highlight-fade 3s ease-out}
+@keyframes al-highlight-fade{from{box-shadow:inset 0 0 0 2px #4cb887}to{box-shadow:none}}
+#authorizationLimitsPage .al-disclosure{border-top:1px solid #e0eaf2}
+#authorizationLimitsPage .al-disclosure summary{cursor:pointer;padding:15px 22px;color:#176c9d;font-weight:800}
+#authorizationLimitsPage .al-history{padding:0 20px 20px}
+#authorizationLimitsPage .al-history-row{display:grid;grid-template-columns:70px minmax(0,1fr) auto;align-items:start;gap:12px;padding:11px;border-bottom:1px solid #e8eff5}
+#authorizationLimitsPage .al-history-row>strong{border-radius:7px;padding:1px 7px;text-align:center}
+#authorizationLimitsPage .al-history-row .is-pass{background:#e4f8ec;color:#0b7848}
+#authorizationLimitsPage .al-history-row .is-fail{background:#fff0e7;color:#a85f16}
+#authorizationLimitsPage .al-history-row small{display:block;color:#728697;font-size:15px}
+#authorizationLimitsPage .al-history-empty{padding:20px;color:#728697}
+.al-dialog-body input:not([type=checkbox]){width:100%;height:43px;border:1px solid #bfd1df;border-radius:9px;background:#fff;padding:5px 10px;font:inherit}
+.al-dialog-body input[readonly]{background:#f2f6f9;color:#597083}
+.al-dialog-body .al-check{display:flex;align-items:center;gap:9px}
+.al-dialog-body .al-check input{width:18px;height:18px;accent-color:#0788d6}
+@media(max-width:700px){#authorizationLimitsPage .al-header{padding:17px}#authorizationLimitsPage .al-history-row{grid-template-columns:60px 1fr}#authorizationLimitsPage .al-history-row>span{grid-column:2}}
+
+/* Authorize Level list uses the same table language as the Mapping list. */
+#authorizationLimitsPage .al-level-table{min-width:850px}
+#authorizationLimitsPage .al-level-table th:nth-child(5),
+#authorizationLimitsPage .al-level-table th:nth-child(6),
+#authorizationLimitsPage .al-level-table td:nth-child(5),
+#authorizationLimitsPage .al-level-table td:nth-child(6){text-align:center}
+#authorizationLimitsPage .al-level-table .al-level-name{font-weight:800;color:#17324d}
+#authorizationLimitsPage .al-level-table .al-level-limit{font-weight:800;color:#0875b9;white-space:nowrap}
+#authorizationLimitsPage .al-level-table .al-row-actions{min-width:122px}
+#authorizationLimitsPage .al-level-table tbody tr:last-child td{border-bottom:1px solid #edf2f6}
+
+#authorizationLimitsPage .al-mapping-filters{display:grid;grid-template-columns:minmax(210px,1.3fr) repeat(3,minmax(145px,1fr)) auto;gap:11px;align-items:end}
+#authorizationLimitsPage .al-mapping-filters label:first-child{min-width:0}
+#authorizationLimitsPage .al-mapping-filters select{min-width:0;width:100%}
+@media(max-width:1100px){#authorizationLimitsPage .al-mapping-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){#authorizationLimitsPage .al-mapping-filters{grid-template-columns:1fr}#authorizationLimitsPage .al-mapping-filters .al-btn{width:100%}}
+
+/* Compact action buttons and calmer table controls. */
+#authorizationLimitsPage .al-tabs{gap:4px;border-bottom:1px solid #d9e6f0;padding-bottom:0}
+#authorizationLimitsPage .al-tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#61798e;padding:9px 16px 11px;box-shadow:none}
+#authorizationLimitsPage .al-tabs button.is-active{border-bottom-color:#0788d6;background:transparent;color:#066da9}
+#authorizationLimitsPage .al-tabs button:hover:not(.is-active){color:#0788d6;background:#edf7fd}
+#authorizationLimitsPage .al-panel{box-shadow:0 8px 28px rgba(25,69,99,.055)}
+#authorizationLimitsPage .al-panel-heading{padding:18px 22px}
+#authorizationLimitsPage .al-filters{background:#fbfdff}
+#authorizationLimitsPage .al-filters label{color:#45647c;font-size:17px}
+#authorizationLimitsPage .al-filters :is(input,select){background:#fff;border-color:#cedce7;border-radius:10px}
+#authorizationLimitsPage .al-table-wrap th{background:#f3f8fc;border-bottom:1px solid #dce8f1;color:#46667f;font-size:17px}
+#authorizationLimitsPage .al-table-wrap td{height:56px;color:#25455f;font-size:18px;border-top-color:#e9f0f5}
+#authorizationLimitsPage .al-table-wrap tbody tr:hover{background:#f6fbfe}
+#authorizationLimitsPage .al-level-pill{background:#e6f4fc;color:#0876b4}
+#authorizationLimitsPage .al-action-group{display:flex;justify-content:center;align-items:center;gap:7px}
+#authorizationLimitsPage .al-row-actions .al-icon-button{width:40px;height:40px;min-width:40px;display:inline-grid;place-items:center;margin:0;padding:0;border:1px solid;border-radius:10px;cursor:pointer;transition:background-color .15s,border-color .15s,box-shadow .15s,transform .15s}
+#authorizationLimitsPage .al-row-actions .al-icon-button .material-icons-round{font-family:'Material Icons Round'!important;font-size:19px!important;font-weight:400;line-height:1}
+#authorizationLimitsPage .al-row-actions .al-icon-button.al-edit{background:#fff8e8;border-color:#f1d59d;color:#a96a00}
+#authorizationLimitsPage .al-row-actions .al-icon-button.al-edit:hover{background:#ffefc9;border-color:#e6bd6a;transform:translateY(-1px)}
+#authorizationLimitsPage .al-row-actions .al-icon-button.al-delete{background:#fff0f1;border-color:#efc4ca;color:#ba3b4a}
+#authorizationLimitsPage .al-row-actions .al-icon-button.al-delete:hover{background:#ffe0e4;border-color:#e8aab3;transform:translateY(-1px)}
+#authorizationLimitsPage .al-row-actions .al-icon-button:focus-visible{outline:3px solid #0788d64d;outline-offset:2px}
+#authorizationLimitsPage .al-level-table .al-row-actions{min-width:104px}
+@media(prefers-reduced-motion:reduce){#authorizationLimitsPage .al-row-actions .al-icon-button{transition:none}}
+
+#authorizationLimitsPage .al-status.is-unset{background:#fff7e8;color:#9a6a20}
+
+/* Match the ClaimAgent customer-review tab card used on consideration pages. */
+#authorizationLimitsPage .al-tabcard{margin:0 0 14px;border:1px solid #d7e3f0;border-radius:12px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.06);overflow:hidden}
+#authorizationLimitsPage .al-tabcard .al-tabs{display:flex;align-items:center;flex-wrap:nowrap;gap:8px;margin:0;padding:10px 14px 0;border-bottom:1px solid #e6edf5;background:linear-gradient(180deg,#fff 0%,#f8fbff 100%);overflow-x:auto;white-space:nowrap}
+#authorizationLimitsPage .al-tabcard .al-tabs button{position:relative;display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;gap:9px;min-width:max-content;min-height:50px;padding:8px 17px;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:#6b7280;font-size:22px!important;font-weight:700!important;line-height:1.2!important;cursor:pointer;transition:color .16s,background-color .16s}
+#authorizationLimitsPage .al-tabcard .al-tabs button .material-icons-round{font-family:'Material Icons Round'!important;font-size:22px!important;font-weight:400;opacity:.86}
+#authorizationLimitsPage .al-tabcard .al-tabs button:hover:not(.is-active){border-radius:9px 9px 0 0;background:#f0f8ff;color:#075f99}
+#authorizationLimitsPage .al-tabcard .al-tabs button.is-active{border-bottom-color:#0075bd;border-radius:9px 9px 0 0;background:#fff;color:#0075bd}
+#authorizationLimitsPage .al-tabcard .al-tabs button:focus-visible{outline:3px solid rgba(20,88,214,.22);outline-offset:-3px}
+@media(max-width:700px){#authorizationLimitsPage .al-tabcard .al-tabs{padding:8px 10px 0;gap:4px}#authorizationLimitsPage .al-tabcard .al-tabs button{font-size:20px!important;min-height:48px;padding:8px 12px}#authorizationLimitsPage .al-tabcard .al-tabs button .material-icons-round{font-size:20px!important}}
+
+/* Use the available content width on desktop; retain the compact mobile gutters. */
+@media(min-width:701px){
+  #authorizationLimitsPage{padding:20px 18px}
+  #authorizationLimitsPage .al-shell{width:100%;max-width:none;margin:0}
+}
+
+/* Authorize Level editor: compact hierarchy and controls. */
+.al-dialog:has(#alLevelForm){width:min(690px,calc(100vw - 32px));max-height:min(90vh,820px);overflow:hidden;border:1px solid #d9e6f0;border-radius:20px;box-shadow:0 28px 80px rgba(12,39,67,.26)}
+#alLevelForm{display:flex;flex-direction:column;max-height:min(90vh,820px);font-family:var(--ui-font)}
+#alLevelForm .al-editor-header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 28px 20px;border-bottom:1px solid #e5edf4;background:#fff}
+#alLevelForm .al-editor-heading{display:flex;align-items:center;gap:14px;min-width:0}
+#alLevelForm .al-editor-icon{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:14px;background:#e7f4fd;color:#0788d6;font-size:27px!important}
+#alLevelForm .al-editor-heading h3{margin:0;color:#17324d;font-size:27px!important;font-weight:700!important;line-height:1.2!important}
+#alLevelForm .al-editor-heading p{margin:4px 0 0;color:#6b8092;font-size:17px!important;font-weight:400!important;line-height:1.35!important}
+#alLevelForm .al-editor-close{display:grid;place-items:center;flex:none;width:38px;height:38px;padding:0;border:0;border-radius:10px;background:#f1f5f9;color:#60758a;cursor:pointer}
+#alLevelForm .al-editor-close:hover{background:#e6eef5;color:#1e4d73}
+#alLevelForm .al-editor-close .material-icons-round{font-size:22px!important}
+#alLevelForm .al-dialog-body{overflow-y:auto;display:block;padding:24px 28px 20px}
+#alLevelForm .al-editor-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:18px 16px}
+#alLevelForm .al-editor-limit{grid-column:1/-1}
+#alLevelForm .al-editor-grid label{display:grid;align-content:start;gap:8px;min-width:0;color:#29445a;font-size:18px!important;font-weight:600!important;line-height:1.3!important}
+#alLevelForm .al-editor-grid input{height:48px;padding:0 14px;border:1px solid #bfd3e3;border-radius:10px;background:#fff;color:#17324d;font-family:var(--ui-font)!important;font-size:20px!important;font-weight:400!important;line-height:1.2!important}
+#alLevelForm .al-editor-grid input:focus-visible{border-color:#0788d6;outline:3px solid #d7efff;outline-offset:1px}
+#alLevelForm .al-editor-grid input:read-only,#alLevelForm .al-editor-grid input:disabled{background:#f3f7fa;color:#61788b}
+#alLevelForm .al-editor-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+#alLevelForm .al-editor-option{display:flex;align-items:flex-start;gap:11px;min-width:0;min-height:76px;padding:15px;border:1px solid #dce8f1;border-radius:12px;background:#f9fcfe;cursor:pointer}
+#alLevelForm .al-editor-option:has(input:checked){border-color:#a9d6f1;background:#f0f9ff}
+#alLevelForm .al-editor-option input{flex:none;width:20px;height:20px;margin:2px 0 0;accent-color:#0788d6}
+#alLevelForm .al-editor-option span{display:grid;gap:3px;min-width:0}
+#alLevelForm .al-editor-option strong{color:#24455f;font-size:18px!important;font-weight:600!important;line-height:1.25!important}
+#alLevelForm .al-editor-option small{color:#6b8092;font-size:15px!important;font-weight:400!important;line-height:1.3!important}
+#alLevelForm .al-form-error{min-height:0;margin:12px 0 0;color:#b93648;font-size:17px!important;font-weight:600!important}
+#alLevelForm .al-form-error:empty{display:none}
+#alLevelForm footer{flex:none;display:flex;justify-content:flex-end;gap:10px;padding:17px 28px;border-top:1px solid #e5edf4;background:#fff}
+#alLevelForm footer .al-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:112px;min-height:44px;padding:8px 18px;border-radius:10px;font-family:var(--ui-font)!important;font-size:19px!important;font-weight:700!important;line-height:1.2!important}
+#alLevelForm footer .al-primary{box-shadow:0 5px 12px rgba(7,136,214,.17)}
+#alLevelForm footer .material-icons-round{font-size:19px!important}
+@media(max-width:600px){.al-dialog:has(#alLevelForm){width:calc(100vw - 24px);max-height:calc(100vh - 24px)}#alLevelForm{max-height:calc(100vh - 24px)}#alLevelForm .al-editor-header{padding:18px 18px 16px}#alLevelForm .al-editor-heading h3{font-size:24px!important}#alLevelForm .al-editor-heading p{font-size:15px!important}#alLevelForm .al-dialog-body{padding:18px}#alLevelForm .al-editor-grid{grid-template-columns:1fr;gap:14px}#alLevelForm .al-editor-options{grid-template-columns:1fr;gap:9px;margin-top:18px}#alLevelForm .al-editor-option{min-height:0;padding:11px 13px}#alLevelForm footer{padding:14px 18px}#alLevelForm footer .al-btn{flex:1;min-width:0}}
