@@ -12039,6 +12039,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </section>
 
         <section class="tt-results-surface">
+          <div id="ttDemoLevelBar" class="tt-demo-level-bar" aria-label="ตัวเลือก Level สำหรับ Demo">
+            <div class="tt-demo-level-copy"><span class="material-icons-round" aria-hidden="true">admin_panel_settings</span><div><strong>Level ของพนักงาน</strong><small>เลือกสิทธิ์เพื่อแสดงปุ่มโอนเงินในรายการที่วงเงินเพียงพอ</small></div><span class="tt-demo-label">แสดงเฉพาะ Demo</span></div>
+            <label class="tt-demo-level-picker" for="ttDemoLevel"><span class="sr-only">Level ของพนักงาน</span><select id="ttDemoLevel" aria-label="Level ของพนักงานสำหรับ Demo"><option value="">เลือก Level</option></select><span id="ttDemoLevelNotice" role="status" aria-live="polite">เลือก Level เพื่อดูปุ่มโอนเงิน</span></label>
+          </div>
           <header class="tt-results-head">
             <div>
               <h2 id="ttResultTitle">รายการโอนเงินลูกค้า</h2>
@@ -12679,12 +12683,11 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
       </section>
       <section id="authorizationLimitsPage" class="page hidden al-page" aria-labelledby="alTitle">
         <div class="al-shell">
-          <header class="al-header"><div><p class="al-eyebrow">ตั้งค่าระบบ / จัดการวงเงิน</p><h2 id="alTitle">จัดการวงเงินอนุมัติ</h2><p>กำหนด Authorize Level ตามสาขา ตำแหน่ง และแผนก พร้อมทดลองตรวจสอบวงเงิน</p></div></header>
+          <header class="al-header"><div><p class="al-eyebrow">ตั้งค่าระบบ / จัดการวงเงิน</p><h2 id="alTitle">จัดการวงเงินอนุมัติ</h2><p>กำหนด Authorize Level ตามสาขา ตำแหน่ง และแผนก</p></div></header>
           <div id="alToast" class="al-toast" role="status" aria-live="polite" hidden></div>
-          <section class="al-tabcard" aria-label="เมนูจัดการวงเงิน"><div class="al-tabs" role="tablist" aria-label="หน้าจอจัดการวงเงิน"><button id="alTabLevels" type="button" role="tab" aria-selected="true" aria-controls="alLevelsPanel" tabindex="0" data-al-tab="levels" class="is-active"><span class="material-icons-round" aria-hidden="true">admin_panel_settings</span>จัดการ Authorize Level</button><button id="alTabConditions" type="button" role="tab" aria-selected="false" aria-controls="alConditionsPanel" tabindex="-1" data-al-tab="conditions"><span class="material-icons-round" aria-hidden="true">account_tree</span>กำหนด Level ตามสาขาและตำแหน่ง</button><button id="alTabTest" type="button" role="tab" aria-selected="false" aria-controls="alTestPanel" tabindex="-1" data-al-tab="test"><span class="material-icons-round" aria-hidden="true">fact_check</span>ทดสอบสิทธิ์อนุมัติ</button></div></section>
+          <section class="al-tabcard" aria-label="เมนูจัดการวงเงิน"><div class="al-tabs" role="tablist" aria-label="หน้าจอจัดการวงเงิน"><button id="alTabLevels" type="button" role="tab" aria-selected="true" aria-controls="alLevelsPanel" tabindex="0" data-al-tab="levels" class="is-active"><span class="material-icons-round" aria-hidden="true">admin_panel_settings</span>จัดการ Authorize Level</button><button id="alTabConditions" type="button" role="tab" aria-selected="false" aria-controls="alConditionsPanel" tabindex="-1" data-al-tab="conditions"><span class="material-icons-round" aria-hidden="true">account_tree</span>กำหนด Level ตามสาขาและตำแหน่ง</button></div></section>
           <div id="alConditionsPanel" class="al-panel hidden" role="tabpanel" aria-labelledby="alTabConditions"><div class="al-panel-heading"><div><h3>เงื่อนไข Authorize Level</h3><p>สาขา ตำแหน่ง และแผนกครบตาม Master Data พร้อมเงื่อนไข Level ตัวอย่าง</p></div><div class="al-heading-actions"><button id="alReset" class="al-btn al-outline" type="button">รีเซ็ตข้อมูลตัวอย่าง</button><button id="alAdd" class="al-btn al-primary" type="button">+ เพิ่มเงื่อนไข</button></div></div><div class="al-filters al-mapping-filters"><label>ค้นหาสาขาหรือตำแหน่ง<input id="alSearch" type="search" placeholder="พิมพ์ชื่อสาขาหรือตำแหน่ง"></label><label>สาขา<select id="alBranchFilter"><option value="">ทุกสาขา</option></select></label><label>ตำแหน่ง<select id="alPositionFilter"><option value="">ทุกตำแหน่ง</option></select></label><label>แผนก<select id="alDepartmentFilter"><option value="">ทุกแผนก</option></select></label><button id="alClearFilters" class="al-btn al-outline" type="button">ล้างตัวกรอง</button></div><div class="al-table-wrap"><table><thead><tr><th>สาขา</th><th>ตำแหน่ง</th><th>แผนก</th><th>Authorize Level</th><th>วงเงินอนุมัติ</th><th>สถานะ</th><th>จัดการ</th></tr></thead><tbody id="alConditionRows"></tbody></table></div><div class="al-table-footer"><span id="alResultCount"></span><div id="alPagination" class="al-pagination"></div></div></div>
-          <div id="alLevelsPanel" class="al-panel" role="tabpanel" aria-labelledby="alTabLevels"><div class="al-panel-heading"><div><h3>รายการ Authorize Level</h3><p>จัดการชื่อ ลำดับ วงเงิน และสถานะของ Level ตัวอย่าง</p></div><button id="alAddLevel" class="al-btn al-primary" type="button">+ เพิ่ม Level</button></div><div class="al-table-wrap"><table class="al-level-table"><thead><tr><th>รหัส Level</th><th>ชื่อ Level</th><th>ลำดับ</th><th>วงเงินอนุมัติสูงสุดต่อรายการ</th><th>สถานะ</th><th>จำนวนเงื่อนไข</th><th>จำนวนพนักงาน</th><th>จัดการ</th></tr></thead><tbody id="alLevelRows"></tbody></table></div></div>
-          <div id="alTestPanel" class="al-panel hidden" role="tabpanel" aria-labelledby="alTabTest"><div class="al-panel-heading"><div><h3>ทดสอบสิทธิ์อนุมัติ</h3><p>จำลองการตรวจพนักงานที่ใช้งานอยู่กับวงเงินต่อรายการ</p></div></div><form id="alTestForm" class="al-test-form"><label>พนักงาน<select id="alTestEmployee" required></select></label><label>จำนวนเงินที่ขออนุมัติ (บาท)<input id="alTestAmount" type="number" min="0.01" step="0.01" required placeholder="เช่น 12000"></label><button class="al-btn al-primary" type="submit">ทดสอบสิทธิ์</button></form><div id="alTestResult" class="al-test-result" aria-live="polite">เลือกพนักงานและกรอกวงเงินเพื่อทดสอบ</div><details class="al-disclosure"><summary>พนักงาน Mock Data และแหล่งที่มาของสิทธิ์</summary><div class="al-filters"><label>ค้นหาพนักงาน<input id="alEmployeeSearch" type="search" placeholder="รหัส ชื่อ สาขา หรือตำแหน่ง"></label></div><div class="al-table-wrap"><table><thead><tr><th>รหัสพนักงาน</th><th>ชื่อ-นามสกุล</th><th>สาขา</th><th>ตำแหน่ง / แผนก</th><th>Authorize Level</th><th>วงเงินอนุมัติ</th><th>แหล่งที่มาของสิทธิ์</th><th>สถานะพนักงาน</th></tr></thead><tbody id="alEmployeeRows"></tbody></table></div><div class="al-table-footer"><span id="alEmployeeCount"></span><div id="alEmployeePagination" class="al-pagination"></div></div></details><details class="al-disclosure"><summary>ประวัติผลทดสอบสิทธิ์ (Mock Data)</summary><div id="alTestHistory" class="al-history"></div></details></div>
+          <div id="alLevelsPanel" class="al-panel" role="tabpanel" aria-labelledby="alTabLevels"><div class="al-panel-heading"><div><h3>รายการ Authorize Level</h3><p>จัดการชื่อ วงเงิน และสถานะของ Level</p></div><button id="alAddLevel" class="al-btn al-primary" type="button">+ เพิ่ม Level</button></div><div class="al-table-wrap"><table class="al-level-table"><thead><tr><th>รหัส Level</th><th>ชื่อ Level</th><th>วงเงินอนุมัติสูงสุดต่อรายการ</th><th>สถานะ</th><th>จำนวนเงื่อนไข</th><th>จำนวนพนักงาน</th><th>จัดการ</th></tr></thead><tbody id="alLevelRows"></tbody></table></div></div>
         </div>
       </section>
     </main>
@@ -54134,8 +54137,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "637",
-  updatedAt: "16/11/2026 10:15:30"
+  version: "650",
+  updatedAt: "16/11/2026 15:57:49"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -57741,6 +57744,12 @@ window.CLAIM_AGENT_BUILD = Object.freeze({
 
   function setTypo(el, cfg){
     if(!el || !cfg) return;
+    if(el.closest('#authorizationLimitsPage .al-tabcard, .al-level-editor')){
+      el.style.removeProperty('font-size');
+      el.style.removeProperty('font-weight');
+      el.style.removeProperty('line-height');
+      return;
+    }
     if(el.closest('.physical-therapy-section, #considerDeathDetailPage, .death-change-account-modal')) return;
     if(el.classList && (el.classList.contains('material-icons-round') || el.classList.contains('material-symbols-outlined'))) return;
     el.style.setProperty('font-size', cfg.size, 'important');
@@ -63785,7 +63794,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 
 <!-- แจ้งเคลม > ติดตามการโอนเงิน > รายละเอียด: scoped visual refresh -->
 <link rel="stylesheet" href="css/transfer-claim-detail-refresh.css?v=383">
-<link rel="stylesheet" href="css/transfer-tracking-details.css?v=8">
+<link rel="stylesheet" href="css/transfer-tracking-details.css?v=641">
 <link rel="stylesheet" href="css/eligibility-shared-benefits.css?v=1">
 <link rel="stylesheet" href="css/menu-eligibility-day-case-note.css?v=484">
 <link rel="stylesheet" href="css/claim-record-product-selector.css?v=1">
@@ -64330,6 +64339,42 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   #transferClaimDetailPage .tt-transfer-kind-badge{margin-left:8px;vertical-align:middle}
 </style>
 
+<style id="transfer-tracking-demo-level-and-table">
+  #transferTrackingPage .tt-demo-level-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 28px;border-bottom:1px solid #dbe6f0;background:#f7fbff}
+  #transferTrackingPage .tt-demo-level-bar[hidden]{display:none!important}
+  #transferTrackingPage .tt-demo-level-copy{display:flex;align-items:center;gap:12px;color:#16476c}
+  #transferTrackingPage .tt-demo-level-copy>.material-icons-round{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#e4f2fc;color:#0788d6;font-size:23px}
+  #transferTrackingPage .tt-demo-level-copy div{display:grid;gap:2px}
+  #transferTrackingPage .tt-demo-level-copy strong{font-size:18px;font-weight:800;line-height:1.3}
+  #transferTrackingPage .tt-demo-level-copy small{font-size:14px;color:#61788d;line-height:1.35}
+  #transferTrackingPage .tt-demo-label{padding:4px 10px;border-radius:999px;background:#e5f3ff;color:#086faf;font-size:13px;font-weight:700;white-space:nowrap}
+  #transferTrackingPage .tt-demo-level-picker select{min-width:245px;height:46px;padding:0 40px 0 14px;border:1px solid #b7d6ec;border-radius:10px;background:#fff;color:#173d5b;font:700 16px/1.3 var(--ui-font);cursor:pointer}
+  #transferTrackingPage .tt-demo-level-picker{display:grid;gap:4px}
+  #transferTrackingPage #ttDemoLevelNotice{font-size:13px;color:#64788b;line-height:1.25}
+  #transferTrackingPage #ttDemoLevelNotice[data-tone="warning"]{color:#a66300}
+  #transferTrackingPage .tt-demo-level-picker select:focus-visible{outline:3px solid #9bd5fb;outline-offset:2px}
+  #transferTrackingPage .tt-results-head{min-height:96px;padding:20px 28px;background:#fff}
+  #transferTrackingPage .tt-results-head h2{color:#202b37;font-size:23px}
+  #transferTrackingPage .tt-results-head p{font-size:15px}
+  #transferTrackingPage.tt-redesign .tt-table thead th{height:62px;padding:15px 16px!important;background:#087bc0!important;font-size:18px!important;font-weight:500!important;line-height:1.35!important}
+  #transferTrackingPage.tt-redesign .tt-table tbody tr.tt-main-row>td{height:106px;padding:18px 16px!important;border-bottom:1px solid #dbe6f0!important;color:#34485b!important;font-size:18px!important;font-weight:400!important}
+  #transferTrackingPage .tt-table th:last-child,#transferTrackingPage .tt-table td:last-child{width:128px!important;min-width:128px!important;max-width:128px!important}
+  #transferTrackingPage .tt-table .tt-transfer-ref{color:#2d465e!important;text-decoration:none!important}
+  #transferTrackingPage .tt-table .tt-claim-ref{color:#40576c!important;letter-spacing:.01em}
+  #transferTrackingPage .tt-table .tt-recipient-name{color:#344b60!important}
+  #transferTrackingPage .tt-table .tt-money{color:#243c52!important;font-variant-numeric:tabular-nums}
+  #transferTrackingPage .tt-table .tt-main-row>td:nth-child(3){color:#4e6478!important;font-variant-numeric:tabular-nums}
+  #transferTrackingPage .tt-table .tt-transfer-kind-badge{padding:5px 9px;line-height:1.25}
+  #transferTrackingPage .tt-table .tt-sub-badge{border-radius:7px!important;background:#edf1f5!important;color:#596d81!important}
+  #transferTrackingPage .tt-table .tt-status.pending{border:0!important;background:#fff1c5!important;color:#9b6600!important}
+  #transferTrackingPage.tt-redesign #ttTableShell .tt-table tbody tr.tt-main-row :is(td,.tt-transfer-ref,.tt-transfer-kind-badge,.tt-recipient-name,.tt-claim-ref,.tt-claim-count,.tt-sub-badge,.tt-money,.tt-status,.tt-secondary-ref){font-family:var(--ui-font)!important;font-size:18px!important;font-weight:400!important;line-height:25px!important}
+  #transferTrackingPage .tt-table .tt-row-icon-btn.detail{background:#e4f3ff!important;border-color:#b8dcf5!important;color:#0874bd!important}
+  #transferTrackingPage .tt-table .tt-recovery-action.payment.tt-action-icon{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;border:1px solid #b9e7c9!important;border-radius:999px!important;background:#e4f8ec!important;color:#168345!important}
+  #transferTrackingPage .tt-table .tt-recovery-action.authorization.tt-action-icon{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;border-radius:999px!important}
+  #transferTrackingPage .tt-pager{min-height:76px!important;padding:15px 24px!important}
+  @media(max-width:760px){#transferTrackingPage .tt-demo-level-bar{align-items:stretch;flex-direction:column;padding:16px}#transferTrackingPage .tt-demo-level-copy{flex-wrap:wrap}#transferTrackingPage .tt-demo-level-copy small{flex-basis:100%}#transferTrackingPage .tt-demo-level-picker select{width:100%;min-width:0}#transferTrackingPage .tt-results-head{padding:17px!important}}
+</style>
+
 <script id="v144-transfer-tracking-premium-behavior">
 (function(){
   'use strict';
@@ -64350,7 +64395,28 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const hospitalCase=(claimNo,index)=>`CC${String(claimNo||'').replace(/\D/g,'').slice(-8)}-${String(index+1).padStart(2,'0')}`;
   const rowStatusKey=row=>row.statusFilter||(row.statusKey==='success'?'success':row.statusKey==='fail'?'fail':/รอดำเนินการโอน|ระหว่างการโอน/.test(String(row.status||''))?'processing':'pending');
   const isDeathDisabilityTransfer=row=>[row.claimType,row.transferKind].some(value=>String(value||'').replace(/\s/g,'').toLowerCase()==='death&disability');
-  const canStartCustomerTransfer=row=>!!row&&row.transferMode!=='hospital'&&rowStatusKey(row)==='pending'&&isDeathDisabilityTransfer(row);
+  const canStartCustomerTransfer=row=>!!row&&row.transferMode!=='hospital'&&rowStatusKey(row)==='pending'&&isDeathDisabilityTransfer(row)&&demoLevelCheck(row).allowed;
+  let selectedDemoLevel='';
+  const authorizedRows=()=>window.CLAIM_AGENT_TRANSFER?.trackingRows?.()||[];
+  const authorizedCheck=(row)=>window.CLAIM_AGENT_TRANSFER?.evaluateTracking?.(row.authorizationTransferId,selectedDemoLevel)||{allowed:false,reason:'ไม่สามารถตรวจสิทธิ์ได้'};
+  function demoLevelCheck(row){
+    const result=window.CLAIM_AGENT_AUTH?.resolveLevel?.(selectedDemoLevel,Number(row?.amount))||{allowed:false,reason:'ไม่สามารถอ่านข้อมูล Authorize Level'};
+    const chosen=window.CLAIM_AGENT_AUTH?.levels?.()?.find(item=>item.id===selectedDemoLevel);
+    if(result.allowed&&chosen&&chosen.employeeCount<1)return {allowed:false,reason:'Level นี้ยังไม่มีพนักงานที่ได้รับสิทธิ์'};
+    return result;
+  }
+  function renderDemoLevelSelector(){
+    const bar=document.getElementById('ttDemoLevelBar'),select=document.getElementById('ttDemoLevel'),notice=document.getElementById('ttDemoLevelNotice');
+    if(!bar||!select)return;
+    bar.hidden=transferTrackingState.mode==='hospital';
+    const levels=window.CLAIM_AGENT_AUTH?.levels?.()||[];
+    select.innerHTML='<option value="">เลือก Level</option>'+levels.map(item=>`<option value="${esc(item.id)}">${esc(item.id)} · ${item.limit===null?'ไม่จำกัดวงเงิน':money(item.limit)+' บาท'}${item.active?'':' · ไม่ใช้งาน'}</option>`).join('');
+    if(!levels.some(item=>item.id===selectedDemoLevel))selectedDemoLevel='';
+    select.value=selectedDemoLevel;
+    const selected=levels.find(item=>item.id===selectedDemoLevel);
+    if(notice){notice.textContent=!selected?'เลือก Level เพื่อดูปุ่มโอนเงิน':!selected.active?`${selected.id} ไม่ใช้งาน จึงไม่แสดงปุ่มโอนเงิน`:selected.employeeCount<1?`${selected.id} ยังไม่มีพนักงานที่ได้รับสิทธิ์`:`${selected.id} · ${selected.limit===null?'ไม่จำกัดวงเงิน':'วงเงินสูงสุด '+money(selected.limit)+' บาทต่อรายการ'}`;notice.dataset.tone=selected&&(!selected.active||selected.employeeCount<1)?'warning':'neutral';}
+  }
+  document.getElementById('ttDemoLevel')?.addEventListener('change',event=>{selectedDemoLevel=event.target.value;renderDemoLevelSelector();window.renderTransferTrackingTable();window.renderTransferTrackingCards();});
   const displayLabelForKey=(row,key)=>{
     if(row?.statusKey==='cancel')return 'ยกเลิก';
     if(row?.transferMode!=='hospital'){
@@ -64366,6 +64432,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     return statusMeta[key]?.label||key;
   };
   const deathDisabilityBadge=row=>isDeathDisabilityTransfer(row)?'<span class="tt-transfer-kind-badge" aria-label="ประเภทเคลม Death & Disability">Death &amp; Disability</span>':'';
+  const authorizationBadge=row=>row.authorizationTransferId?'<span class="tt-transfer-kind-badge" aria-label="รายการตัวอย่างตาม Authorize Level">Authorize Level · ข้อมูลตัวอย่าง</span>':'';
   const rowStatusClass=row=>rowStatusKey(row);
   const rowStatusIcon=row=>statusMeta[rowStatusKey(row)]?.icon||'info';
 
@@ -64421,7 +64488,20 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   transferTrackingState.selectedStatuses=defaultStatusSelection();
   transferTrackingState.pageSize=10;
   transferTrackingState.page=1;
-  const sourceRows=()=>transferTrackingState.mode==='hospital'?hospitalRows:[...(window.deathTransferPendingRows||[]),...customerRows].filter(row=>rowStatusKey(row)!=='pending'||isDeathDisabilityTransfer(row));
+  const sourceRows=()=>transferTrackingState.mode==='hospital'?hospitalRows:[...(window.deathTransferPendingRows||[]),...authorizedRows(),...customerRows].filter(row=>rowStatusKey(row)!=='pending'||isDeathDisabilityTransfer(row)||!!row.authorizationTransferId);
+  let transferDateTouched=false;
+  document.addEventListener('focusin',event=>{
+    const target=event.target;
+    if(['transferDateFrom','transferDateTo'].includes(target?.id)||target?.classList?.contains('global-be-date-display')&&target.parentElement?.querySelector('#transferDateFrom,#transferDateTo'))transferDateTouched=true;
+  });
+  function extendDefaultTransferDate(){
+    const input=document.getElementById('transferDateTo');
+    if(!input||transferTrackingState.mode==='hospital'||transferDateTouched)return;
+    const latest=authorizedRows().map(row=>row.createdIso).filter(Boolean).map(value=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Bangkok',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(value))).sort().at(-1);
+    if(!latest||latest<=input.value)return;
+    input.value=latest;
+    input.dispatchEvent(new Event('input',{bubbles:true}));
+  }
   const totalPages=()=>Math.max(1,Math.ceil(transferTrackingState.rows.length/transferTrackingState.pageSize));
   const pageRows=()=>{
     transferTrackingState.page=Math.min(Math.max(1,transferTrackingState.page),totalPages());
@@ -64471,6 +64551,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       if(placeOption)placeOption.textContent=hospital?'ชื่อสถานพยาบาล':'ชื่อสถานศึกษา';
     }
     if(keyword)keyword.placeholder=searchPlaceholder();
+    renderDemoLevelSelector();
   }
 
   function syncActiveSource(){
@@ -64616,21 +64697,52 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const transferInfoField=(label,value,icon,tone='')=>`<div class="tt-transfer-info-field ${tone}"><span class="tt-transfer-field-icon"><span class="material-icons-round" aria-hidden="true">${icon}</span></span><div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div></div>`;
   const transferPayeeCard=row=>`<dl class="tt-payee-card">${transferInfoField('ชื่อบัญชี',row.payee||row.recipient||row.hospital||row.insured||'-','person_outline')}${transferInfoField('ธนาคาร',row.bank||'-','account_balance')}${transferInfoField('เลขที่บัญชี',row.account||'-','credit_card','account')}</dl>`;
   const transferSummaryCards=(row,key,status,date)=>`<div class="tt-transfer-info-topline"><div class="tt-transfer-info-summary"><dl><dt>เลขที่การโอนเงิน</dt><dd>${esc(row.refNo)}</dd></dl><span class="tt-transfer-info-status ${key}"><span class="material-icons-round" aria-hidden="true">${status.icon}</span>${esc(status.label)}</span></div><dl class="tt-transfer-date-card">${transferInfoField('วันที่และเวลาโอนเงิน',date,'schedule','datetime')}</dl></div>`;
+  function transferDetailButton(row,index,compact=false){
+    const label=row.authorizationTransferId?'ดูข้อมูลโอนเงิน':'ดูรายละเอียด';
+    const action=row.authorizationTransferId?`openTransferTrackingInfoModal(${index},this)`:`openTransferTrackingDetail(${index})`;
+    return `<button type="button" class="${compact?'tt-card-detail-btn':'tt-row-icon-btn detail'} tt-action-icon" data-tooltip="${label}" onclick="${action}" aria-label="${label} ${esc(row.refNo)}" title="${label}"><span class="material-icons-round" aria-hidden="true">visibility</span></button>`;
+  }
 
   function transferPaymentButton(row,index,compact=false){
-    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return '';
+    if(transferTrackingState.mode==='hospital')return '';
+    if(row.authorizationTransferId){if(rowStatusKey(row)!=='pending'||!authorizedCheck(row).allowed)return '';}
+    else if(!canStartCustomerTransfer(row))return '';
     return `<button type="button" class="tt-recovery-action payment ${compact?'tt-action-icon':''}" data-tooltip="โอนเงิน" onclick="openTransferTrackingPayment(${index})" aria-haspopup="dialog" aria-label="โอนเงิน ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">payments</span>${compact?'':'โอนเงิน'}</button>`;
   }
+  function authorizationEscalationButton(row,index,compact=false){
+    if(transferTrackingState.mode==='hospital'||!row.authorizationTransferId||rowStatusKey(row)!=='pending'||!authorizedCheck(row).dailyExceeded)return '';
+    return `<button type="button" class="tt-recovery-action authorization ${compact?'tt-action-icon':''}" data-tooltip="ส่งรออนุมัติวงเงิน" onclick="openTransferTrackingAuthorization(${index})" aria-haspopup="dialog" aria-label="ส่งรออนุมัติวงเงิน ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">approval</span>${compact?'':'ส่งรออนุมัติวงเงิน'}</button>`;
+  }
+  function updateAuthorizationPanel(){
+    const row=transferInfoRow;
+    if(!row?.authorizationTransferId)return;
+    const check=authorizedCheck(row);
+    const notice=document.getElementById('ttAuthorizationNotice');
+    if(notice){notice.textContent=selectedDemoLevel?check.reason:'เลือก Level ของพนักงานเหนือรายการโอนเงินลูกค้า';notice.dataset.tone=check.allowed?'success':check.dailyExceeded?'warning':'error';}
+    transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info>กลับ</button>'+(check.allowed?'<button type="button" class="tt-recovery-submit" data-confirm-authorized-transfer><span class="material-icons-round" aria-hidden="true">payments</span>ยืนยันโอนเงิน</button>':check.dailyExceeded?'<button type="button" class="tt-recovery-submit" data-confirm-authorized-transfer><span class="material-icons-round" aria-hidden="true">approval</span>ส่งรออนุมัติวงเงิน</button>':'');
+    window.renderTransferTrackingTable();window.renderTransferTrackingCards();
+  }
+  window.openTransferTrackingAuthorization=function(index){
+    const row=transferTrackingState.rows[index];
+    if(transferTrackingState.mode==='hospital'||!row?.authorizationTransferId||rowStatusKey(row)!=='pending')return;
+    if(!transferInfoDialog.open||transferInfoRow!==row)window.openTransferTrackingInfoModal(index,document.activeElement);
+    if(document.getElementById('ttAuthorizationInline'))return;
+    const panel=document.createElement('section');panel.id='ttAuthorizationInline';panel.className='tt-recovery-inline tt-authorization-inline';
+    panel.innerHTML=`<div class="tt-recovery-inline-head"><span class="tt-retry-title-icon"><span class="material-icons-round" aria-hidden="true">payments</span></span><div><h3 id="ttAuthorizationTitle" tabindex="-1">ยืนยันโอนเงิน</h3><p>ตรวจสอบข้อมูลและวงเงินก่อนยืนยันรายการ</p></div></div><div class="tt-recovery-inline-body"><div class="tt-authorization-facts"><span>Level ที่แจ้งเคลม <b>${esc(row.initiatorLevelId||'-')}</b></span><span>Level ที่เลือกสำหรับ Demo <b>${esc(selectedDemoLevel||'-')}</b></span><span>จำนวนเงิน <b>${money(row.amount)} บาท</b></span></div><p id="ttAuthorizationNotice" class="tt-authorization-notice" role="status" aria-live="polite"></p><p class="tt-recovery-mock">ข้อมูลตัวอย่าง: ระบบจะตรวจวงเงินและยอดโอนสะสมล่าสุดอีกครั้งก่อนยืนยัน</p></div>`;
+    document.getElementById('ttTransferInfoFields').appendChild(panel);
+    updateAuthorizationPanel();panel.scrollIntoView({block:'start',behavior:'auto'});panel.querySelector('#ttAuthorizationTitle').focus({preventScroll:true});
+  };
   window.openTransferTrackingPayment=function(index){
     const row=transferTrackingState.rows[index];
-    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row))return;
+    if(row?.authorizationTransferId){if(authorizedCheck(row).allowed)window.openTransferTrackingAuthorization(index);return;}
+    if(transferTrackingState.mode==='hospital'||!canStartCustomerTransfer(row)){window.renderTransferTrackingTable();window.renderTransferTrackingCards();return;}
     if(!transferInfoDialog.open||transferInfoRow!==row)window.openTransferTrackingInfoModal(index,document.activeElement);
     if(document.getElementById('ttTransferPaymentInline'))return;
     const section=document.createElement('section');
     section.id='ttTransferPaymentInline';section.className='tt-recovery-inline tt-transfer-payment-inline';
     section.setAttribute('aria-labelledby','ttTransferPaymentTitle');
     const beneficiaries=Array.isArray(row.beneficiaries)&&row.beneficiaries.length?row.beneficiaries:[{relation:row.payeeRelation||'ผู้รับเงิน',name:row.payee||row.insured,bank:`${row.bank||'-'} ${row.account||''}`,amount:row.amount}];
-    section.innerHTML=`<div class="tt-recovery-inline-head"><span class="tt-retry-title-icon"><span class="material-icons-round" aria-hidden="true">payments</span></span><div><h3 id="ttTransferPaymentTitle" tabindex="-1">ยืนยันโอนเงิน (Death &amp; Disability)</h3><p>ตรวจสอบข้อมูลผู้รับผลประโยชน์และจำนวนเงินก่อนยืนยัน</p></div></div><div class="tt-recovery-inline-body"><div class="tt-payment-beneficiaries">${beneficiaries.map(item=>`<article class="tt-payment-beneficiary"><div><strong>${esc(item.relation||'ผู้รับเงิน')}</strong><span>${esc(item.name||'-')}</span><small>${esc(item.bank||'-')}</small></div><b>${money(item.amount)} บาท</b></article>`).join('')}</div><div class="tt-retry-amount"><span><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>จำนวนเงินโอนรวม</span><strong>${money(row.amount)} <small>บาท</small></strong></div><p class="tt-retry-guidance"><span class="material-icons-round" aria-hidden="true">info</span>กรุณาตรวจสอบข้อมูลให้ถูกต้องก่อนยืนยันการทำรายการ</p><p class="tt-recovery-mock">ข้อมูลตัวอย่าง: การยืนยันจะจำลองผลการโอนในรายการนี้</p></div>`;
+    section.innerHTML=`<div class="tt-recovery-inline-head"><span class="tt-retry-title-icon"><span class="material-icons-round" aria-hidden="true">payments</span></span><div><h3 id="ttTransferPaymentTitle" tabindex="-1">ยืนยันโอนเงิน (Death &amp; Disability)</h3><p>ตรวจสอบข้อมูลผู้รับผลประโยชน์และจำนวนเงินก่อนยืนยัน</p></div></div><div class="tt-recovery-inline-body"><div class="tt-payment-beneficiaries">${beneficiaries.map(item=>`<article class="tt-payment-beneficiary"><div><strong>${esc(item.relation||'ผู้รับเงิน')}</strong><span>${esc(item.name||'-')}</span><small>${esc(item.bank||'-')}</small></div><b>${money(item.amount)} บาท</b></article>`).join('')}</div><div class="tt-retry-amount"><span><span class="material-icons-round" aria-hidden="true">account_balance_wallet</span>จำนวนเงินโอนรวม</span><strong>${money(row.amount)} <small>บาท</small></strong></div><p id="ttDeathLevelNotice" class="tt-retry-guidance" role="status" aria-live="polite"><span class="material-icons-round" aria-hidden="true">verified_user</span>วงเงินของ ${esc(selectedDemoLevel)} เพียงพอสำหรับรายการนี้ (Demo)</p><p class="tt-recovery-mock">ข้อมูลตัวอย่าง: การยืนยันจะจำลองผลการโอนในรายการนี้</p></div>`;
     document.getElementById('ttTransferInfoFields').appendChild(section);
     transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-cancel-transfer-payment>กลับ</button><button type="button" class="tt-recovery-submit" data-confirm-transfer-payment><span class="material-icons-round" aria-hidden="true">send</span>ยืนยันโอนเงิน</button>';
     section.scrollIntoView({block:'start',behavior:'auto'});
@@ -64646,13 +64758,46 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     }
     if(!event.target.closest('[data-confirm-transfer-payment]'))return;
     const row=transferInfoRow;
-    if(!canStartCustomerTransfer(row))return;
+    if(!canStartCustomerTransfer(row)){
+      const notice=document.getElementById('ttDeathLevelNotice');
+      if(notice)notice.textContent=demoLevelCheck(row).reason||'Level ที่เลือกไม่สามารถโอนรายการนี้ได้';
+      event.target.closest('[data-confirm-transfer-payment]').remove();
+      window.renderTransferTrackingTable();window.renderTransferTrackingCards();
+      return;
+    }
     row.status='โอนสำเร็จ';row.statusKey='success';row.statusFilter='success';row.canPay=false;
     row.transferDate=new Intl.DateTimeFormat('th-TH',{timeZone:'Asia/Bangkok',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date());
     transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info><span class="material-icons-round" aria-hidden="true">arrow_back</span>กลับหน้าติดตามการโอนเงิน</button>';
     document.getElementById('ttTransferInfoFields').innerHTML=`<div class="tt-retry-success" role="status" aria-live="polite"><span class="tt-retry-success-symbol"><span class="material-icons-round" aria-hidden="true">check_circle</span></span><h3 tabindex="-1" id="ttTransferPaymentSuccess">ทำรายการสำเร็จ</h3><p>ทำรายการโอนเงินเรียบร้อยแล้ว</p></div>${transferSummaryCards(row,'success',statusMeta.success,row.transferDate)}<section class="tt-transfer-info-section"><h3><span class="material-icons-round" aria-hidden="true">person_outline</span>ข้อมูลผู้รับเงิน</h3>${transferPayeeCard(row)}</section><div class="tt-retry-amount"><span>จำนวนเงินโอน</span><strong>${money(row.amount)} <small>บาท</small></strong></div>`;
     window.applyTransferTrackingFilters();
     document.getElementById('ttTransferPaymentSuccess')?.focus({preventScroll:true});
+  });
+
+  transferInfoDialog.addEventListener('click',event=>{
+    const button=event.target.closest('[data-confirm-authorized-transfer]');
+    if(!button||!transferInfoRow?.authorizationTransferId)return;
+    button.disabled=true;
+    const row=transferInfoRow;
+    const levelId=selectedDemoLevel;
+    const result=window.CLAIM_AGENT_TRANSFER?.payFromTracking?.(row.authorizationTransferId,levelId)||{ok:false,reason:'ไม่สามารถตรวจสิทธิ์ได้'};
+    if(!result.ok){
+      button.disabled=false;
+      updateAuthorizationPanel();
+      const notice=document.getElementById('ttAuthorizationNotice');
+      if(notice){notice.textContent=result.reason;notice.dataset.tone='error';}
+      return;
+    }
+    if(result.status==='success')transferTrackingState.selectedStatuses.add('success');
+    extendDefaultTransferDate();window.applyTransferTrackingFilters();
+    const updated=authorizedRows().find(item=>item.authorizationTransferId===row.authorizationTransferId)||row;
+    transferInfoRow=updated;
+    const success=result.status==='success';
+    const title=success?'โอนเงินสำเร็จ':'ส่งรออนุมัติวงเงินแล้ว';
+    document.getElementById('ttTransferInfoTitle').textContent=title;
+    document.getElementById('ttTransferInfoDescription').textContent=success?'บันทึกผลการโอนเงินตัวอย่างแล้ว':'รายการย้ายไป Monitor ขยายวงเงิน';
+    document.getElementById('ttTransferInfoFields').innerHTML=`<div class="tt-retry-success" role="status" aria-live="polite"><span class="tt-retry-success-symbol"><span class="material-icons-round" aria-hidden="true">${success?'check_circle':'schedule'}</span></span><h3 tabindex="-1" id="ttAuthorizationResultTitle">${title}</h3><p>${success?'ระบบจำลองการโอนเงินเรียบร้อยแล้ว':'ยอดสะสมรายวันเกิน 30,000 บาท รายการรออนุมัติโดย L5'}</p></div>${transferSummaryCards(updated,success?'success':'processing',success?statusMeta.success:statusMeta.processing,success?updated.transferDate:'ยังไม่มีข้อมูลการโอนเงิน')}<section class="tt-transfer-info-section"><h3><span class="material-icons-round" aria-hidden="true">person_outline</span>ข้อมูลผู้รับเงิน</h3>${transferPayeeCard(updated)}</section><div class="tt-retry-amount"><span>จำนวนเงิน</span><strong>${money(updated.amount)} <small>บาท</small></strong></div><p class="tt-recovery-mock">ข้อมูลตัวอย่าง: ไม่มีการโอนเงินจริง</p>`;
+    transferInfoDialog.querySelector('.tt-transfer-info-foot').innerHTML='<button type="button" data-close-transfer-info class="tt-recovery-submit"><span class="material-icons-round" aria-hidden="true">arrow_back</span>กลับหน้าติดตามการโอนเงิน</button>';
+    document.getElementById('ttAuthorizationResultTitle')?.focus({preventScroll:true});
   });
 
   function transferRecoveryKind(row){
@@ -64688,11 +64833,11 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const failure=key==='fail'&&!canceled;
     const transferDate=row.transferDate&&row.transferDate!=='-'?row.transferDate:'ยังไม่มีข้อมูลการโอนเงิน';
     const resultTitle=canceled?'ยกเลิก':({success:'โอนเงินสำเร็จ',pending:displayStatus(row),processing:displayStatus(row),fail:'ไม่สามารถโอนเงินได้'}[key]||displayStatus(row));
-    const resultDescription=canceled?'ยกเลิกรายการที่ยังรอโอนเงิน หลังบันทึกผลพิจารณาใหม่':failure?(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร'):key==='success'?'ธนาคารยืนยันการโอนเงินสำเร็จ':key==='processing'?'ส่งคำขอโอนแล้ว รอผลการโอนจากธนาคาร':'รายการรอเริ่มโอนเงิน';
+    const resultDescription=canceled?'ยกเลิกรายการที่ยังรอโอนเงิน หลังบันทึกผลพิจารณาใหม่':failure?(row.failureReason||'ไม่พบรายละเอียดสาเหตุจากธนาคาร'):row.authorizationTransferId?(key==='success'?'ระบบจำลองการโอนเงินสำเร็จ (ข้อมูลตัวอย่าง)':`รายการรอโอนเนื่องจากยอดเบิกเกินวงเงิน ${row.initiatorLevelId||'Level ที่แจ้งเคลม'}`):key==='success'?'ธนาคารยืนยันการโอนเงินสำเร็จ':key==='processing'?'ส่งคำขอโอนแล้ว รอผลการโอนจากธนาคาร':'รายการรอเริ่มโอนเงิน';
     document.getElementById('ttTransferInfoFields').innerHTML=`
       ${transferSummaryCards(row,key,status,transferDate)}
       <section class="tt-transfer-info-section" aria-labelledby="ttTransferPayeeHeading"><h3 id="ttTransferPayeeHeading"><span class="material-icons-round" aria-hidden="true">person_outline</span>ข้อมูลผู้รับเงิน</h3>${transferPayeeCard(row)}</section>
-      <section class="tt-transfer-info-section" aria-labelledby="ttTransferResultHeading"><h3 id="ttTransferResultHeading"><span class="material-icons-round" aria-hidden="true">info_outline</span>ผลการทำรายการ</h3><div class="tt-transfer-info-result ${key}"><span class="tt-transfer-result-icon"><span class="material-icons-round" aria-hidden="true">${status.icon}</span></span><div><h4>${esc(resultTitle)}</h4><p>${esc(resultDescription)}</p>${failure?`<p class="tt-transfer-result-help">${transferRecoveryKind(row)==='system'?'สามารถโอนอีกครั้งโดยใช้บัญชีรับเงินเดิม':'กรุณาตรวจสอบข้อมูลบัญชีผู้รับเงินก่อนดำเนินการโอนใหม่'}</p>${transferRecoveryButton(row,index)}`:''}${transferPaymentButton(row,index)}</div></div></section>`;
+      <section class="tt-transfer-info-section" aria-labelledby="ttTransferResultHeading"><h3 id="ttTransferResultHeading"><span class="material-icons-round" aria-hidden="true">info_outline</span>ผลการทำรายการ</h3><div class="tt-transfer-info-result ${key}"><span class="tt-transfer-result-icon"><span class="material-icons-round" aria-hidden="true">${status.icon}</span></span><div><h4>${esc(resultTitle)}</h4><p>${esc(resultDescription)}</p>${failure?`<p class="tt-transfer-result-help">${transferRecoveryKind(row)==='system'?'สามารถโอนอีกครั้งโดยใช้บัญชีรับเงินเดิม':'กรุณาตรวจสอบข้อมูลบัญชีผู้รับเงินก่อนดำเนินการโอนใหม่'}</p>${transferRecoveryButton(row,index)}`:''}${authorizationEscalationButton(row,index)}${transferPaymentButton(row,index)}</div></div></section>`;
     if(!transferInfoDialog.open)transferInfoDialog.showModal();
   };
   transferInfoDialog.addEventListener('click',event=>{
@@ -64795,14 +64940,14 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       ['.tt-summary-value','26px','800','29px'],
       ['.tt-summary-note,.tt-status-filter-btn .tt-filter-count','14px','500','20px'],
       ['.tt-results-head h2','20px','800','28px'],
-      ['.tt-main-row td','16px','400','24px'],
-      ['.tt-table thead th','16px','700','23px'],
-      ['.tt-transfer-ref','16px','700','23px'],
-      ['.tt-recipient-name','18px','650','25px'],
-      ['.tt-money','17px','800','24px'],
+      ['.tt-main-row td','18px','400','25px'],
+      ['.tt-table thead th','18px','500','25px'],
+      ['.tt-transfer-ref','18px','400','25px'],
+      ['.tt-recipient-name','18px','400','25px'],
+      ['.tt-money','18px','400','25px'],
       ['.tt-claim-stack strong','15px','700','22px'],
       ['.tt-claim-stack span,.tt-recipient-sub,.tt-secondary-ref','14px','500','20px'],
-      ['.tt-status','15px','700','20px'],
+      ['.tt-status','16px','500','22px'],
       ['.tt-detail-banner','16px','700','23px'],
       ['.tt-detail-topline h3','18px','700','26px'],
       ['.tt-detail-meta strong','16px','600','23px'],
@@ -64822,6 +64967,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       element.style.setProperty('font-weight',weight,'important');
       element.style.setProperty('line-height',lineHeight,'important');
     }));
+    page.querySelectorAll('#ttTableShell .tt-main-row :is(td,.tt-transfer-ref,.tt-transfer-kind-badge,.tt-recipient-name,.tt-claim-ref,.tt-claim-count,.tt-sub-badge,.tt-money,.tt-status,.tt-secondary-ref)').forEach(element=>{
+      element.style.setProperty('font-family','var(--ui-font)','important');
+      element.style.setProperty('font-size','18px','important');
+      element.style.setProperty('font-weight','400','important');
+      element.style.setProperty('line-height','25px','important');
+    });
     page.querySelectorAll('.tt-claims-table td:first-child,.tt-claims-table td:last-child').forEach(element=>element.style.setProperty('font-weight','700','important'));
   }
   function scheduleTransferTrackingTypography(){
@@ -64871,11 +65022,11 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       const open=transferTrackingState.openRows.has(row.refNo);
       const claims=claimRows(row);
       const counts=claimCaseCounts(row);
-      const actions=`<div class="tt-row-actions"><button type="button" class="tt-row-icon-btn detail tt-action-icon" data-tooltip="ดูรายละเอียด" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}" title="ดูรายละเอียด"><span class="material-icons-round" aria-hidden="true">visibility</span></button>${transferRecoveryButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div>`;
+      const actions=`<div class="tt-row-actions">${transferDetailButton(row,sourceIndex)}${transferRecoveryButton(row,sourceIndex,true)}${authorizationEscalationButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div>`;
       const uniqueClaims=[...new Set(claims.map(item=>item.claimNo))];
       const claimCell=uniqueClaims.length===1?`<span class="tt-claim-ref">${esc(uniqueClaims[0])}</span>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-label="ขยาย ${counts.claimCount} Claim">${counts.claimCount} Claim</button>`;
       const caseCell=claims.length===1?`<span class="tt-claim-ref">${esc(claims[0].caseNo)}</span>`:`<button type="button" class="tt-claim-count" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-label="ขยาย ${counts.caseCount} Case">${counts.caseCount} Case</button>`;
-      return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><div class="tt-ref-group">${!hospital&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-transfer-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-transfer-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${hospital?'':deathDisabilityBadge(row)}</div></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div></td><td>${claimCell}</td><td>${caseCell}</td>${hospital?'':`<td><span class="tt-sub-badge">${esc(row.product)}</span></td>`}<td class="tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="${columnCount}">${buildExpanded(row)}</td></tr>`:''}`;
+      return `<tr class="tt-main-row"><td class="text-center"><button type="button" class="tt-expand" onclick="toggleTransferTrackingRow('${esc(row.refNo)}')" aria-expanded="${open}" aria-label="${open?'ย่อ':'ขยาย'}รายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">${open?'expand_more':'keyboard_arrow_down'}</span></button></td><td><div class="tt-ref-group">${!hospital&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-transfer-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-transfer-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${hospital?'':deathDisabilityBadge(row)+authorizationBadge(row)}</div></td><td>${esc(valueByDateType(row,dateType)||'-')}</td><td><div class="tt-recipient-name">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div></td><td>${claimCell}</td><td>${caseCell}</td>${hospital?'':`<td><span class="tt-sub-badge">${esc(row.product)}</span></td>`}<td class="tt-money">${money(row.amount)}</td><td><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></td><td class="text-center">${actions}</td></tr>${open?`<tr class="tt-detail-row"><td colspan="${columnCount}">${buildExpanded(row)}</td></tr>`:''}`;
     }).join('');
     syncPager();
     scheduleTransferTrackingTypography();
@@ -64890,7 +65041,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
       const claims=claimRows(row);
       const counts=claimCaseCounts(row);
       const productLine=(transferTrackingState.mode==='hospital'?[row.claimType]:[row.product,row.claimType]).filter(Boolean).join(' • ');
-      return `<article class="tt-mobile-card"><div class="tt-card-head"><div class="tt-card-reference">${transferTrackingState.mode==='customer'&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-card-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-card-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${transferTrackingState.mode==='hospital'?'':deathDisabilityBadge(row)}<div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${productLine?`<div class="tt-card-secondary">${esc(productLine)}</div>`:''}</div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${counts.claimCount} Claim · ${counts.caseCount} Case</span><button type="button" class="tt-card-detail-btn tt-action-icon" data-tooltip="ดูรายละเอียด" onclick="openTransferTrackingDetail(${sourceIndex})" aria-label="ดูรายละเอียด ${esc(row.refNo)}"><span class="material-icons-round" aria-hidden="true">visibility</span></button>${transferRecoveryButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div></article>`;
+      return `<article class="tt-mobile-card"><div class="tt-card-head"><div class="tt-card-reference">${transferTrackingState.mode==='customer'&&['pending','fail'].includes(rowStatusKey(row))?`<span class="tt-card-ref tt-transfer-ref-static">${esc(row.refNo)}</span>`:`<button type="button" class="tt-card-ref" onclick="openTransferTrackingInfoByRef('${esc(row.refNo)}',this)" aria-haspopup="dialog" aria-controls="ttTransferInfoDialog" aria-label="ดูรายละเอียดการโอนเงิน ${esc(row.refNo)}">${esc(row.refNo)}</button>`}${transferTrackingState.mode==='hospital'?'':deathDisabilityBadge(row)+authorizationBadge(row)}<div class="tt-secondary-ref">${esc(valueByDateType(row,dateType)||'-')}</div></div><span class="tt-status ${rowStatusClass(row)}"><span class="material-icons-round" aria-hidden="true">${rowStatusIcon(row)}</span>${esc(displayStatus(row))}</span></div><div class="tt-card-main"><div><span class="tt-card-label">${transferTrackingState.mode==='hospital'?'สถานพยาบาล':'ผู้รับเงิน'}</span><div class="tt-card-value">${esc(row.recipient||row.payee||row.hospital||row.insured)}</div>${productLine?`<div class="tt-card-secondary">${esc(productLine)}</div>`:''}</div><div class="tt-card-money-block"><span class="tt-card-label">จำนวนเงิน</span><div class="tt-card-money">${money(row.amount)}</div><div class="tt-card-secondary">บาท</div></div></div><div class="tt-card-actions"><span class="tt-card-count">${counts.claimCount} Claim · ${counts.caseCount} Case</span>${transferDetailButton(row,sourceIndex,true)}${transferRecoveryButton(row,sourceIndex,true)}${authorizationEscalationButton(row,sourceIndex,true)}${transferPaymentButton(row,sourceIndex,true)}</div></article>`;
     }).join('');
     syncPager();
     scheduleTransferTrackingTypography();
@@ -64911,11 +65062,13 @@ button[data-hospital-decision-save-v281="true"]:disabled{
   const baseReset=window.resetTransferTrackingFilters;
   window.resetTransferTrackingFilters=function(){
     if(typeof baseReset==='function')baseReset();
+    transferDateTouched=false;
     const searchType=document.getElementById('ttSearchType');
     if(searchType)searchType.value='claim';
     const keyword=document.getElementById('ttKeyword');
     if(keyword)keyword.placeholder=searchPlaceholder();
     transferTrackingState.selectedStatuses=defaultStatusSelection();
+    extendDefaultTransferDate();
     window.applyTransferTrackingFilters();
   };
 
@@ -64924,8 +65077,12 @@ button[data-hospital-decision-save-v281="true"]:disabled{
     const claimDialog=document.getElementById('tdrHcgClaimDialog');
     if(claimDialog?.open)claimDialog.close();
     if(typeof baseShow==='function')baseShow();
-    syncActiveSource();syncModeUi();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();window.setTransferTrackingView(transferTrackingState.view||'table');
+    syncActiveSource();syncModeUi();extendDefaultTransferDate();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();window.setTransferTrackingView(transferTrackingState.view||'table');
   };
+  window.addEventListener('claimagent:authorized-transfer-changed',()=>{
+    if(transferTrackingState.mode!=='customer')return;
+    extendDefaultTransferDate();syncActiveSource();window.renderTransferBranchOptions();window.applyTransferTrackingFilters();
+  });
 
   const baseOpenDetail=window.openTransferTrackingDetail;
   let activeDetailRow=null;
@@ -65283,7 +65440,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-consider-death-reconsider.js?v=617"></script>
 <script src="js/menu-consider-death-claim-edit.js?v=624"></script>
 <script src="js/menu-consider-death-place.js?v=570"></script>
-<script src="js/data/home-announcements.js?v=637"></script>
+<script src="js/data/home-announcements.js?v=650"></script>
 <script src="js/menu-home-announcements.js?v=468"></script>
 <script src="js/menu-hospital-status-mocks.js?v=505"></script>
 <link rel="stylesheet" href="css/menu-hospital-status-mocks.css?v=506" />
@@ -65295,10 +65452,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-consider-hospital-history-design.js?v=612"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-hospital-form.css?v=516" />
 <script src="js/menu-billing-hospital-separate-transfer.js?v=527"></script>
-<link rel="stylesheet" href="css/menu-system-authorization-limits.css?v=631" />
+<link rel="stylesheet" href="css/menu-system-authorization-limits.css?v=650" />
 <script src="js/data/authorization-master.js?v=631"></script>
-<script src="js/menu-system-authorization-limits.js?v=634"></script>
+<script src="js/menu-system-authorization-limits.js?v=650"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-authorized-transfer.css?v=635" />
-<script src="js/menu-claim-entry-authorized-transfer.js?v=637"></script>
+<script src="js/menu-claim-entry-authorized-transfer.js?v=641"></script>
 </body>
 </html>
