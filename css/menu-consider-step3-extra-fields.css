@@ -1,0 +1,33 @@
+:is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+:is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(-n+3) { grid-column: span 3; }
+:is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(n+4):nth-child(-n+11) { grid-column: span 3; }
+:is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(4):nth-child(-n+11) { grid-column: 1 / span 3; }
+:is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(n+12) { grid-column: 1 / -1; }
+@media (max-width: 1000px) {
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(-n+11) { grid-column: auto; }
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] > :nth-child(4):nth-child(-n+11) { grid-column: auto; }
+}
+@media (max-width: 520px) {
+  :is(#ccStepPane3,#hfStepPane3,#hhStepPane3) [data-step3-core-grid="true"] { grid-template-columns: 1fr; }
+}
+#billingHospitalReviewPage .billing-step3-core-rows { display: grid; gap: 24px; }
+#billingHospitalReviewPage .billing-step3-core-row { display: grid; gap: 24px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#billingHospitalReviewPage .billing-step3-core-row:first-child { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+#billingHospitalReviewPage .billing-step3-core-row > div { min-width: 0; overflow-wrap: anywhere; }
+#billingHospitalReviewPage .billing-step3-extra { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+#billingHospitalReviewPage .billing-step3-extra h3 { margin: 0 0 12px; color: #075f99; font-size: 18px; font-weight: 800; }
+#billingHospitalReviewPage .billing-step3-extra-grid { display: grid; gap: 24px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1000px) {
+  #billingHospitalReviewPage .billing-step3-core-row,
+  #billingHospitalReviewPage .billing-step3-core-row:first-child,
+  #billingHospitalReviewPage .billing-step3-extra-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px) {
+  #billingHospitalReviewPage .billing-step3-core-row,
+  #billingHospitalReviewPage .billing-step3-core-row:first-child,
+  #billingHospitalReviewPage .billing-step3-extra-grid { grid-template-columns: 1fr; }
+}
