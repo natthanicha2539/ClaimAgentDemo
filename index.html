@@ -9203,6 +9203,19 @@ body > .min-h-screen > main,
         </div>
 
         <!-- Dev menu section -->
+        <div class="space-y-1">
+          <button id="menuSystemSettings" type="button" aria-expanded="false" aria-controls="systemSettingsSubmenu" class="flex h-12 w-full items-center justify-between rounded-xl px-3 text-left text-xl font-semibold text-white/85 transition hover:bg-white/10">
+            <span class="flex items-center gap-3"><span class="material-icons-round">settings</span><span class="hidden lg:inline">ตั้งค่าระบบ</span></span>
+            <span id="systemSettingsArrow" class="material-icons-round hidden lg:inline">expand_more</span>
+          </button>
+          <div id="systemSettingsSubmenu" class="hidden space-y-1 rounded-xl bg-brand-900/25 p-1 lg:ml-3">
+            <button id="submenuAuthorizationLimits" type="button" aria-label="จัดการวงเงิน" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
+              <span class="material-icons-round !text-xl">admin_panel_settings</span><span class="hidden lg:inline">จัดการวงเงิน</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dev menu section -->
         <div id="devMenuSection" class="dev-menu-section">
           <div class="dev-menu-divider" aria-hidden="true"></div>
           <div class="dev-menu-heading">สำหรับ Dev</div>
@@ -12663,6 +12676,16 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           </table></div>
         </article>
         <p id="aadUpdatedAt" class="aad-updated">อัปเดตล่าสุด: วันนี้</p>
+      </section>
+      <section id="authorizationLimitsPage" class="page hidden al-page" aria-labelledby="alTitle">
+        <div class="al-shell">
+          <header class="al-header"><div><p class="al-eyebrow">ตั้งค่าระบบ / จัดการวงเงิน</p><h2 id="alTitle">จัดการวงเงินอนุมัติ</h2><p>กำหนด Authorize Level ตามสาขา ตำแหน่ง และแผนก พร้อมทดลองตรวจสอบวงเงิน</p></div></header>
+          <div id="alToast" class="al-toast" role="status" aria-live="polite" hidden></div>
+          <section class="al-tabcard" aria-label="เมนูจัดการวงเงิน"><div class="al-tabs" role="tablist" aria-label="หน้าจอจัดการวงเงิน"><button id="alTabLevels" type="button" role="tab" aria-selected="true" aria-controls="alLevelsPanel" tabindex="0" data-al-tab="levels" class="is-active"><span class="material-icons-round" aria-hidden="true">admin_panel_settings</span>จัดการ Authorize Level</button><button id="alTabConditions" type="button" role="tab" aria-selected="false" aria-controls="alConditionsPanel" tabindex="-1" data-al-tab="conditions"><span class="material-icons-round" aria-hidden="true">account_tree</span>กำหนด Level ตามสาขาและตำแหน่ง</button><button id="alTabTest" type="button" role="tab" aria-selected="false" aria-controls="alTestPanel" tabindex="-1" data-al-tab="test"><span class="material-icons-round" aria-hidden="true">fact_check</span>ทดสอบสิทธิ์อนุมัติ</button></div></section>
+          <div id="alConditionsPanel" class="al-panel hidden" role="tabpanel" aria-labelledby="alTabConditions"><div class="al-panel-heading"><div><h3>เงื่อนไข Authorize Level</h3><p>สาขา ตำแหน่ง และแผนกครบตาม Master Data พร้อมเงื่อนไข Level ตัวอย่าง</p></div><div class="al-heading-actions"><button id="alReset" class="al-btn al-outline" type="button">รีเซ็ตข้อมูลตัวอย่าง</button><button id="alAdd" class="al-btn al-primary" type="button">+ เพิ่มเงื่อนไข</button></div></div><div class="al-filters al-mapping-filters"><label>ค้นหาสาขาหรือตำแหน่ง<input id="alSearch" type="search" placeholder="พิมพ์ชื่อสาขาหรือตำแหน่ง"></label><label>สาขา<select id="alBranchFilter"><option value="">ทุกสาขา</option></select></label><label>ตำแหน่ง<select id="alPositionFilter"><option value="">ทุกตำแหน่ง</option></select></label><label>แผนก<select id="alDepartmentFilter"><option value="">ทุกแผนก</option></select></label><button id="alClearFilters" class="al-btn al-outline" type="button">ล้างตัวกรอง</button></div><div class="al-table-wrap"><table><thead><tr><th>สาขา</th><th>ตำแหน่ง</th><th>แผนก</th><th>Authorize Level</th><th>วงเงินอนุมัติ</th><th>สถานะ</th><th>จัดการ</th></tr></thead><tbody id="alConditionRows"></tbody></table></div><div class="al-table-footer"><span id="alResultCount"></span><div id="alPagination" class="al-pagination"></div></div></div>
+          <div id="alLevelsPanel" class="al-panel" role="tabpanel" aria-labelledby="alTabLevels"><div class="al-panel-heading"><div><h3>รายการ Authorize Level</h3><p>จัดการชื่อ ลำดับ วงเงิน และสถานะของ Level ตัวอย่าง</p></div><button id="alAddLevel" class="al-btn al-primary" type="button">+ เพิ่ม Level</button></div><div class="al-table-wrap"><table class="al-level-table"><thead><tr><th>รหัส Level</th><th>ชื่อ Level</th><th>ลำดับ</th><th>วงเงินอนุมัติสูงสุดต่อรายการ</th><th>สถานะ</th><th>จำนวนเงื่อนไข</th><th>จำนวนพนักงาน</th><th>จัดการ</th></tr></thead><tbody id="alLevelRows"></tbody></table></div></div>
+          <div id="alTestPanel" class="al-panel hidden" role="tabpanel" aria-labelledby="alTabTest"><div class="al-panel-heading"><div><h3>ทดสอบสิทธิ์อนุมัติ</h3><p>จำลองการตรวจพนักงานที่ใช้งานอยู่กับวงเงินต่อรายการ</p></div></div><form id="alTestForm" class="al-test-form"><label>พนักงาน<select id="alTestEmployee" required></select></label><label>จำนวนเงินที่ขออนุมัติ (บาท)<input id="alTestAmount" type="number" min="0.01" step="0.01" required placeholder="เช่น 12000"></label><button class="al-btn al-primary" type="submit">ทดสอบสิทธิ์</button></form><div id="alTestResult" class="al-test-result" aria-live="polite">เลือกพนักงานและกรอกวงเงินเพื่อทดสอบ</div><details class="al-disclosure"><summary>พนักงาน Mock Data และแหล่งที่มาของสิทธิ์</summary><div class="al-filters"><label>ค้นหาพนักงาน<input id="alEmployeeSearch" type="search" placeholder="รหัส ชื่อ สาขา หรือตำแหน่ง"></label></div><div class="al-table-wrap"><table><thead><tr><th>รหัสพนักงาน</th><th>ชื่อ-นามสกุล</th><th>สาขา</th><th>ตำแหน่ง / แผนก</th><th>Authorize Level</th><th>วงเงินอนุมัติ</th><th>แหล่งที่มาของสิทธิ์</th><th>สถานะพนักงาน</th></tr></thead><tbody id="alEmployeeRows"></tbody></table></div><div class="al-table-footer"><span id="alEmployeeCount"></span><div id="alEmployeePagination" class="al-pagination"></div></div></details><details class="al-disclosure"><summary>ประวัติผลทดสอบสิทธิ์ (Mock Data)</summary><div id="alTestHistory" class="al-history"></div></details></div>
+        </div>
       </section>
     </main>
   </div>
@@ -54111,8 +54134,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "624",
-  updatedAt: "09/11/2026 10:43:23"
+  version: "637",
+  updatedAt: "16/11/2026 10:15:30"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -63707,7 +63730,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 </style>
 
 <!-- แจ้งเคลมทั่วไป: ยืนยันบัญชีโอนเงินก่อนสร้าง CL/CC/โอนเงิน -->
-<script src="js/menu-claim-entry-transfer-confirmation.js"></script>
+<script src="js/menu-claim-entry-transfer-confirmation.js?v=635"></script>
 
 <!-- เคลมโรงพยาบาล: ปรับผลพิจารณาและล้างผลตรวจเมื่อเอกสารเปลี่ยน -->
 <script src="js/menu-hospital-claim-step1-decision-doc-reset.js"></script>
@@ -65260,7 +65283,7 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-consider-death-reconsider.js?v=617"></script>
 <script src="js/menu-consider-death-claim-edit.js?v=624"></script>
 <script src="js/menu-consider-death-place.js?v=570"></script>
-<script src="js/data/home-announcements.js?v=624"></script>
+<script src="js/data/home-announcements.js?v=637"></script>
 <script src="js/menu-home-announcements.js?v=468"></script>
 <script src="js/menu-hospital-status-mocks.js?v=505"></script>
 <link rel="stylesheet" href="css/menu-hospital-status-mocks.css?v=506" />
@@ -65272,5 +65295,10 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <script src="js/menu-consider-hospital-history-design.js?v=612"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-hospital-form.css?v=516" />
 <script src="js/menu-billing-hospital-separate-transfer.js?v=527"></script>
+<link rel="stylesheet" href="css/menu-system-authorization-limits.css?v=631" />
+<script src="js/data/authorization-master.js?v=631"></script>
+<script src="js/menu-system-authorization-limits.js?v=634"></script>
+<link rel="stylesheet" href="css/menu-claim-entry-authorized-transfer.css?v=635" />
+<script src="js/menu-claim-entry-authorized-transfer.js?v=637"></script>
 </body>
 </html>
