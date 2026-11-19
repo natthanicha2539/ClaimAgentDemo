@@ -71,6 +71,7 @@
   <link rel="stylesheet" href="css/menu-fund-hospital-payments.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-notice.css" />
   <link rel="stylesheet" href="css/menu-home-announcements.css" />
+  <link rel="stylesheet" href="css/menu-system-payment-documents.css?v=691" />
 
   <script>
     tailwind.config = {
@@ -9212,6 +9213,9 @@ body > .min-h-screen > main,
             <button id="submenuAuthorizationLimits" type="button" aria-label="จัดการวงเงิน" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
               <span class="material-icons-round !text-xl">admin_panel_settings</span><span class="hidden lg:inline">จัดการวงเงิน</span>
             </button>
+            <button id="submenuPaymentDocuments" type="button" aria-label="จัดการเอกสารโอนเงิน" class="flex h-10 w-full items-center gap-3 rounded-lg px-3 text-left text-lg font-semibold text-white/75 transition hover:bg-white/10 hover:text-white">
+              <span class="material-icons-round !text-xl">description</span><span class="hidden lg:inline">จัดการเอกสารโอนเงิน</span>
+            </button>
           </div>
         </div>
 
@@ -12689,6 +12693,19 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
           <div id="alConditionsPanel" class="al-panel hidden" role="tabpanel" aria-labelledby="alTabConditions"><div class="al-panel-heading"><div><h3>เงื่อนไข Authorize Level</h3><p>สาขา ตำแหน่ง และแผนกครบตาม Master Data พร้อมเงื่อนไข Level ตัวอย่าง</p></div><div class="al-heading-actions"><button id="alReset" class="al-btn al-outline" type="button">รีเซ็ตข้อมูลตัวอย่าง</button><button id="alAdd" class="al-btn al-primary" type="button">+ เพิ่มเงื่อนไข</button></div></div><div class="al-filters al-mapping-filters"><label>ค้นหาสาขาหรือตำแหน่ง<input id="alSearch" type="search" placeholder="พิมพ์ชื่อสาขาหรือตำแหน่ง"></label><label>สาขา<select id="alBranchFilter"><option value="">ทุกสาขา</option></select></label><label>ตำแหน่ง<select id="alPositionFilter"><option value="">ทุกตำแหน่ง</option></select></label><label>แผนก<select id="alDepartmentFilter"><option value="">ทุกแผนก</option></select></label><button id="alClearFilters" class="al-btn al-outline" type="button">ล้างตัวกรอง</button></div><div class="al-table-wrap"><table><thead><tr><th>สาขา</th><th>ตำแหน่ง</th><th>แผนก</th><th>Authorize Level</th><th>วงเงินอนุมัติ</th><th>สถานะ</th><th>จัดการ</th></tr></thead><tbody id="alConditionRows"></tbody></table></div><div class="al-table-footer"><span id="alResultCount"></span><div id="alPagination" class="al-pagination"></div></div></div>
           <div id="alLevelsPanel" class="al-panel" role="tabpanel" aria-labelledby="alTabLevels"><div class="al-panel-heading"><div><h3>รายการ Authorize Level</h3><p>จัดการชื่อ วงเงิน และสถานะของ Level</p></div><button id="alAddLevel" class="al-btn al-primary" type="button">+ เพิ่ม Level</button></div><div class="al-table-wrap"><table class="al-level-table"><thead><tr><th>รหัส Level</th><th>ชื่อ Level</th><th>วงเงินอนุมัติสูงสุดต่อรายการ</th><th>สถานะ</th><th>จำนวนเงื่อนไข</th><th>จำนวนพนักงาน</th><th>จัดการ</th></tr></thead><tbody id="alLevelRows"></tbody></table></div></div>
         </div>
+      </section>
+      <section id="paymentDocumentsPage" class="page hidden pdoc-page" aria-label="จัดการเอกสารโอนเงิน">
+        <section class="pdoc-card pdoc-upload-card" aria-labelledby="pdocUploadTitle">
+          <div class="pdoc-result-head"><div class="pdoc-heading"><span class="material-icons-round pdoc-step-icon" aria-hidden="true">cloud_upload</span><div><h3 id="pdocUploadTitle">รายการที่ต้องอัปโหลดเข้า DocStorage</h3></div></div><div class="pdoc-heading-actions"><button id="pdocOpenGenerate" type="button" class="pdoc-btn pdoc-primary"><span class="material-icons-round" aria-hidden="true">add_circle</span>Generate PDF</button></div></div>
+          <form id="pdocDateForm" class="pdoc-date-form" novalidate><label for="pdocFromDate">จากวันที่โอนเงิน<input id="pdocFromDate" type="date"></label><label for="pdocToDate">ถึงวันที่<input id="pdocToDate" type="date"></label><button type="submit" class="pdoc-btn pdoc-primary pdoc-search-btn"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button></form>
+          <p id="pdocDateError" class="pdoc-error" role="alert" hidden></p>
+          <aside class="pdoc-auto-note" aria-label="หมายเหตุเวลาการแนบเอกสาร"><span class="material-icons-round pdoc-auto-icon" aria-hidden="true">schedule</span><span class="pdoc-auto-copy"><strong>หมายเหตุ</strong><span>ระบบจะทำการกวาดแนบเอกสาร Auto ในทุกๆ วัน เวลา</span></span><span class="pdoc-auto-time">19:00 น.</span></aside>
+          <p id="pdocUploadFeedback" class="pdoc-upload-feedback" role="status" aria-live="polite" tabindex="-1" hidden></p>
+          <div class="pdoc-table-meta"><div id="pdocUploadCount" class="pdoc-table-count" role="status" aria-live="polite" aria-atomic="true"><span class="material-icons-round pdoc-count-icon" aria-hidden="true">pending_actions</span><span class="pdoc-count-marker" aria-hidden="true"></span><span class="pdoc-count-copy"><span class="pdoc-count-label">รออัปโหลด</span><span class="pdoc-count-value"><strong id="pdocUploadCountValue">0</strong> <span>ไฟล์</span></span></span></div><button id="pdocUploadAll" type="button" class="pdoc-btn pdoc-bulk-btn" disabled><span class="material-icons-round" aria-hidden="true">cloud_upload</span>อัปโหลดทั้งหมด</button></div>
+          <div id="pdocUploadEmpty" class="pdoc-empty-state"><span class="material-icons-round" aria-hidden="true">cloud_done</span><strong>ไม่มีรายการรออัปโหลด</strong></div>
+          <div id="pdocUploadTable" class="pdoc-table-scroll pdoc-upload-scroll" hidden><table aria-labelledby="pdocUploadTitle"><thead><tr><th>ลำดับ</th><th>เลขที่ CC</th><th>เลขที่เคลม</th><th>เลข PMT</th><th>เลขเอกสาร</th><th>สถานะอัปโหลด</th><th>ดำเนินการ</th></tr></thead><tbody id="pdocUploadRows"></tbody></table></div>
+          <div class="pdoc-table-footer"><div class="pdoc-page-controls"><label for="pdocPageSelect">หน้า <select id="pdocPageSelect" aria-label="เลือกหน้า"></select></label><label for="pdocPageSize">ข้อมูลต่อหน้า <select id="pdocPageSize" aria-label="จำนวนรายการต่อหน้า"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select></label><span id="pdocPageRange" class="pdoc-page-range" aria-live="polite">0-0 จาก 0</span><button id="pdocPrevPage" type="button" class="pdoc-page-nav" aria-label="หน้าก่อนหน้า" disabled><span class="material-icons-round" aria-hidden="true">chevron_left</span></button><button id="pdocNextPage" type="button" class="pdoc-page-nav" aria-label="หน้าถัดไป" disabled><span class="material-icons-round" aria-hidden="true">chevron_right</span></button></div></div>
+        </section>
       </section>
     </main>
   </div>
@@ -20972,8 +20989,8 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
 
     function getBillingFilteredRows() {
       const rows = currentFundBillingClaimType === "hospital"
-        ? hospitalBillingRows.filter(row => row.status === "รอตั้งเบิก")
-        : billingClaimData.customer.filter(row => row.status === "รอวางบิล");
+        ? hospitalBillingRows.filter(r => r.status === "รอตั้งเบิก")
+        : billingClaimData.customer.filter(r => r.status === "รอวางบิล");
       const q = (document.getElementById("billingSearchInput")?.value || "").trim().toLowerCase();
       const branch = document.getElementById("billingBranchFilter")?.value || "all";
       const officer = document.getElementById("billingOfficerFilter")?.value || "all";
@@ -21104,8 +21121,10 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         closeBillingCustomerConfirmModal();
         return;
       }
-      selectedRows.forEach(row => { row.status = "วางบิลแล้ว"; });
-      const total = selectedRows.reduce((sum, r) => sum + Number(r.amount || 0), 0);
+      const total = selectedRows.reduce((sum, row) => sum + Number(row.amount || 0), 0);
+      selectedRows.forEach(row => {
+        row.status = "วางบิลแล้ว";
+      });
       const count = selectedRows.length;
       const claimTypeLabel = isHospital ? "เคลมโรงพยาบาล" : "เคลมลูกค้า";
       billingSelectedIds.clear();
@@ -54137,8 +54156,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "650",
-  updatedAt: "16/11/2026 15:57:49"
+  version: "691",
+  updatedAt: "19/11/2026 15:21:54"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -65455,6 +65474,8 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <link rel="stylesheet" href="css/menu-system-authorization-limits.css?v=650" />
 <script src="js/data/authorization-master.js?v=631"></script>
 <script src="js/menu-system-authorization-limits.js?v=650"></script>
+<script src="js/mock-data/payment-document.mock.js?v=681"></script>
+<script src="js/menu-system-payment-documents.js?v=691"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-authorized-transfer.css?v=635" />
 <script src="js/menu-claim-entry-authorized-transfer.js?v=641"></script>
 </body>
