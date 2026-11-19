@@ -1,0 +1,29 @@
+/* Claim notification search: reuse the blue selection-card visual language. */
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-label { margin: 0 0 10px; color: #425a71; font-size: 18px !important; font-weight: 600; }
+#claimSearchPage:not(.claim-work-search-active) #claimRecordProductButtons { display: grid; grid-template-columns: repeat(2, minmax(0, 270px)); gap: 12px; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn {
+  display: flex; align-items: center; gap: 12px; min-width: 0; min-height: 82px;
+  padding: 14px 16px; border: 1px solid #cfdde9 !important; border-radius: 12px;
+  background: #fff !important; color: #425a71 !important; text-align: left;
+  font-family: var(--ui-font); cursor: pointer; transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-icon { display: grid; place-items: center; flex: 0 0 44px; height: 44px; border-radius: 11px; background: #f0f5fa; color: #63819a; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-icon .material-icons-round { font-size: 25px !important; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-copy { display: grid; gap: 2px; flex: 1; min-width: 0; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-copy strong { font-size: 21px !important; line-height: 1.2; font-weight: 700; color: #28445e; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-copy > span { color: #667f94; font-size: 16px !important; line-height: 1.35; font-weight: 400; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-check { flex: 0 0 21px; visibility: hidden; color: #0788d6; font-size: 21px !important; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn:hover { border-color: #8bc4e7 !important; background: #f8fcff !important; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] { border-color: #0788d6 !important; background: #eef8ff !important; box-shadow: 0 0 0 1px #0788d6, 0 3px 10px rgb(7 136 214 / 8%); }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-icon { background: #dceffc; color: #0878bb; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-copy strong { color: #0878bb; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn[aria-pressed="true"] .claim-record-product-check { visibility: visible; }
+#claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn:focus-visible { outline: 3px solid #a9d6ef; outline-offset: 3px; }
+#claimSearchPage:not(.claim-work-search-active) #claimRecordProductError { font-size: 16px !important; }
+@media (max-width: 560px) {
+  #claimSearchPage:not(.claim-work-search-active) #claimRecordProductButtons { grid-template-columns: 1fr; }
+  #claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn { min-height: 76px; padding: 12px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #claimSearchPage:not(.claim-work-search-active) .claim-record-product-btn { transition: none; }
+}
