@@ -1,0 +1,169 @@
+/* ตั้งค่าระบบ > จัดการเอกสารโอนเงิน: compact Monitor table pattern. */
+.pdoc-page {
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
+  padding: 14px 18px 28px;
+  background: #f3f5f8;
+  color: #203349;
+  font-family: var(--ui-font, "TH Sarabun New", "Sarabun", sans-serif);
+}
+.pdoc-page *, .pdoc-dialog-backdrop * { box-sizing: border-box; }
+.pdoc-page [hidden] { display: none !important; }
+.pdoc-tabs { display: flex; gap: 4px; margin: 0 0 12px; border-bottom: 1px solid #ccdbe7; }
+.pdoc-tab { min-height: 42px; padding: 8px 18px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #536c83; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; }
+.pdoc-tab:hover { color: #0c78bb; background: #eaf3fa; }
+.pdoc-tab.is-active { border-bottom-color: #0c78bb; color: #0b6098; }
+.pdoc-tab:focus-visible { outline: 3px solid #87b9ef; outline-offset: -3px; }
+.pdoc-import-form { padding: 0 0 10px; }
+.pdoc-import-form label { color: #4d6175; font-size: 14px; font-weight: 700; }
+.pdoc-import-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 7px; }
+.pdoc-import-controls input { width: min(420px, 100%); max-width: 100%; padding: 7px 10px; border: 1px solid #c8d5e0; border-radius: 4px; background: #fff; font: inherit; }
+.pdoc-import-note { margin: 0 0 16px; color: #5d7389; font-size: 13px; }
+.pdoc-import-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; min-height: 65px; margin: 12px 0; padding-top: 10px; border-top: 1px solid #e2e9f0; }
+.pdoc-import-toolbar > span { color: #536c83; font-size: 14px; }
+.pdoc-import-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.pdoc-import-actions .pdoc-bulk-btn { margin-left: 0; }
+.pdoc-import-card .pdoc-row-actions { gap: 6px; }
+.pdoc-import-card .pdoc-row-actions .pdoc-btn { min-width: 72px; }
+.pdoc-card { padding: 18px 20px 16px; border: 1px solid #d9e1e8; border-radius: 5px; background: #fff; box-shadow: 0 2px 8px rgba(18, 49, 81, .06); }
+.pdoc-card + .pdoc-card { margin-top: 16px; }
+.pdoc-btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 36px; padding: 6px 13px; border: 1px solid transparent; border-radius: 4px; font-size: 14px; font-weight: 700; line-height: 1.1; white-space: nowrap; cursor: pointer; transition: background .15s, border-color .15s; }
+.pdoc-btn .material-icons-round { font-size: 17px; }
+.pdoc-btn:disabled { cursor: not-allowed; opacity: .45; }
+.pdoc-btn:focus-visible, .pdoc-dialog button:focus-visible, .pdoc-upload-feedback:focus-visible { outline: 3px solid #87b9ef; outline-offset: 2px; }
+.pdoc-primary { background: #0c78bb; color: #fff; box-shadow: 0 2px 4px rgba(12, 96, 156, .17); }
+.pdoc-primary:hover:not(:disabled) { background: #075f99; }
+.pdoc-outline { background: #fff; color: #17679e; border-color: #a9c5da; }
+.pdoc-outline:hover:not(:disabled) { background: #ecf6fd; }
+.pdoc-error { margin: 9px 0 0; color: #b42318; font-size: 14px; }
+.pdoc-result-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 14px; }
+.pdoc-heading { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.pdoc-step-icon { display: grid !important; place-items: center; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 9px; background: #e8f3fb; color: #0c78bb; font-size: 24px !important; }
+.pdoc-heading-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-left: auto; }
+.pdoc-table-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; margin: 0 0 8px; }
+.pdoc-bulk-btn { min-width: 142px; margin-left: auto; background: #087454; color: #fff; box-shadow: 0 2px 4px rgba(7, 102, 74, .18); }
+.pdoc-bulk-btn:hover:not(:disabled) { background: #075f46; }
+.pdoc-table-count { display: inline-flex; align-items: center; gap: 11px; min-height: 48px; color: #4c6278; white-space: nowrap; }
+.pdoc-table-count .pdoc-count-icon { color: #d99819; font-size: 24px !important; }
+.pdoc-count-marker { align-self: stretch; width: 3px; border-radius: 3px; background: #dfa13e; }
+.pdoc-count-copy { display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+.pdoc-count-label { color: #697d8e; font-size: 15px !important; font-weight: 700; line-height: 1.1; }
+.pdoc-count-value { display: inline-flex; align-items: baseline; gap: 6px; color: #4c6278; font-size: 16px !important; font-weight: 700; line-height: 1.1; }
+.pdoc-count-value strong { color: #154c77; font-size: 31px !important; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.pdoc-result-head h3 { margin: 0; color: #294d70; font-size: 17px; font-weight: 800; }
+.pdoc-result-head p { margin: 2px 0 0; color: #60758a; font-size: 13px; }
+.pdoc-empty-state { display: flex; min-height: 148px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 22px; border: 1px dashed #cadde9; border-radius: 7px; background: #f8fbfe; color: #6a7e90; text-align: center; font-size: 14px; }
+.pdoc-empty-state > .material-icons-round { margin-bottom: 3px; color: #79aacd; font-size: 29px !important; }
+.pdoc-empty-state strong { color: #365b78; font-size: 16px; font-weight: 800; }
+.pdoc-upload-card .pdoc-empty-state { min-height: 82px; flex-direction: row; gap: 9px; border-style: solid; }
+.pdoc-upload-card .pdoc-empty-state > .material-icons-round { margin: 0; font-size: 23px !important; }
+.pdoc-page .pdoc-date-form { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; margin: 0 0 14px; padding: 0 0 16px; border: 0; border-bottom: 1px solid #e2e9f0; border-radius: 0; background: transparent; }
+.pdoc-page .pdoc-date-form label { display: grid; flex: 0 0 190px; gap: 5px; color: #4d6175; font-size: 14px !important; font-weight: 700; }
+.pdoc-page .pdoc-date-form input { width: 190px !important; min-width: 0 !important; height: 38px !important; padding: 5px 9px; border: 1px solid #c8d5e0; border-radius: 4px; background: #fff; color: #203349; font: inherit; font-size: 14px !important; }
+.pdoc-page .pdoc-date-form .pdoc-btn { min-height: 38px; }
+.pdoc-date-form input:focus-visible { outline: 3px solid #87b9ef; outline-offset: 1px; }
+.pdoc-auto-note { display: flex; align-items: center; gap: 12px; margin: 0 0 13px; padding: 11px 13px; border: 1px solid #cfe3f2; border-left: 3px solid #0e7bbd; border-radius: 5px; background: #f2f8fd; color: #4d657b; font-size: 13px; line-height: 1.4; }
+.pdoc-auto-note .pdoc-auto-icon { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border-radius: 50%; background: #dceefa; color: #17679e; font-size: 18px; }
+.pdoc-auto-copy { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.pdoc-auto-copy strong { color: #205b87; font-weight: 800; }
+.pdoc-auto-time { padding: 4px 9px; border-radius: 999px; background: #dceefa; color: #145d92; font-weight: 800; white-space: nowrap; }
+.pdoc-upload-feedback { margin: 0 0 9px; padding: 7px 10px; border: 1px solid #bfe5cf; border-radius: 4px; background: #ecf9f1; color: #087743; font-size: 14px; }
+.pdoc-upload-feedback.failed { border-color: #f2c9c1; background: #fff1ee; color: #b42318; }
+.pdoc-table-scroll { width: 100%; max-width: 100%; overflow-x: auto; border: 1px solid #dce4eb; border-radius: 3px 3px 0 0; box-shadow: 0 2px 6px rgba(26, 56, 85, .07); }
+.pdoc-table-scroll table { width: 100%; min-width: 1130px; border-collapse: collapse; table-layout: auto; text-align: left; font-size: 15px; }
+.pdoc-card:not(.pdoc-upload-card) .pdoc-table-scroll table { min-width: 1000px; }
+.pdoc-upload-scroll table { min-width: 940px; }
+.pdoc-table-scroll th { padding: 9px 9px; background: #0e7bbd; color: #fff; font-weight: 700; white-space: nowrap; }
+.pdoc-table-scroll td { padding: 7px 9px; border-bottom: 1px solid #dce3e8; color: #23384d; vertical-align: middle; white-space: nowrap; }
+.pdoc-table-scroll tr:last-child td { border-bottom: 0; }
+.pdoc-table-scroll tbody tr:hover { background: #f2f8fc; }
+.pdoc-table-scroll th:first-child, .pdoc-table-scroll td:first-child { text-align: center; width: 55px; }
+.pdoc-table-scroll th:last-child, .pdoc-table-scroll td:last-child { text-align: center; }
+.pdoc-empty { padding: 28px !important; color: #6d7d90 !important; text-align: center !important; }
+.pdoc-ref { color: #185f9a !important; font-weight: 700; }
+.pdoc-status { display: inline-block; min-width: 82px; padding: 3px 8px; border-radius: 999px; background: #fff1d9; color: #b36a00; font-size: 13px; font-weight: 700; text-align: center; }
+.pdoc-status.success { background: #e2f4e9; color: #087743; }
+.pdoc-status.ready { background: #e7f1fb; color: #1458d6; }
+.pdoc-status.failed { background: #ffebe7; color: #b42318; }
+.pdoc-status.uploading { background: #e7f1fb; color: #1458d6; }
+.pdoc-failure { display: block; max-width: 160px; margin-top: 3px; color: #b42318; font-size: 12px; white-space: normal; }
+.pdoc-row-actions { display: flex; align-items: center; justify-content: center; min-width: 116px; }
+.pdoc-card:not(.pdoc-upload-card) .pdoc-row-actions { min-width: 110px; }
+.pdoc-row-actions .pdoc-btn { min-width: 108px; min-height: 32px; padding: 5px 10px; font-size: 12px; }
+.pdoc-row-actions .material-icons-round { font-size: 15px; }
+.pdoc-upload-btn { background: #176fa8; color: #fff; box-shadow: 0 2px 4px rgba(12, 96, 156, .16); }
+.pdoc-upload-btn:hover:not(:disabled) { background: #0e598b; }
+.pdoc-retry-btn { background: #b97516; color: #fff; box-shadow: 0 2px 4px rgba(135, 83, 12, .16); }
+.pdoc-retry-btn:hover:not(:disabled) { background: #965d0c; }
+.pdoc-table-footer { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; min-height: 58px; padding: 10px 12px; border: 1px solid #dce4eb; border-top: 0; border-radius: 0 0 4px 4px; background: #fff; box-shadow: 0 2px 6px rgba(26, 56, 85, .07); }
+.pdoc-page-controls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 15px; min-width: 0; margin-left: auto; color: #4a5e72; font-size: 14px; }
+.pdoc-page-controls label { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.pdoc-page-controls select { min-width: 54px; height: 33px; padding: 4px 7px; border: 1px solid #cedbe6; border-radius: 4px; background: #fff; color: #253e54; font: inherit; font-size: 14px; cursor: pointer; }
+.pdoc-page-controls select:focus-visible, .pdoc-page-nav:focus-visible { outline: 3px solid #87b9ef; outline-offset: 2px; }
+.pdoc-page-range { min-width: 88px; text-align: center; white-space: nowrap; }
+.pdoc-page-nav { display: grid; place-items: center; width: 31px; height: 31px; padding: 0; border: 0; border-radius: 4px; background: transparent; color: #496981; cursor: pointer; }
+.pdoc-page-nav:hover:not(:disabled) { background: #eaf3f9; }
+.pdoc-page-nav:disabled { color: #aebcc8; cursor: not-allowed; }
+.pdoc-page-nav .material-icons-round { font-size: 21px; }
+.pdoc-pagination { display: flex; align-items: center; justify-content: flex-end; gap: 17px; min-height: 43px; padding: 5px 12px; border: 1px solid #dce4eb; border-top: 0; background: #fff; color: #4a5e72; font-size: 14px; box-shadow: 0 2px 6px rgba(26, 56, 85, .07); }
+.pdoc-pagination div { display: flex; align-items: center; gap: 7px; }
+.pdoc-pagination .pdoc-btn { min-width: 27px; min-height: 27px; padding: 0 5px; border-color: transparent; color: #5f7486; font-size: 21px; }
+.pdoc-dialog-backdrop { position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(10, 26, 48, .7); }
+.pdoc-progress-dialog { width: min(420px, 100%); padding: 27px 29px 25px; border: 1px solid #d9e8f3; border-radius: 12px; background: #fff; box-shadow: 0 20px 55px rgba(8, 35, 66, .3); text-align: center; }
+.pdoc-progress-dialog:focus { outline: none; }
+.pdoc-progress-dialog [hidden] { display: none !important; }
+.pdoc-progress-mark { display: grid !important; place-items: center; width: 50px; height: 50px; margin: 0 auto 11px; border-radius: 50%; background: #e7f3fb; color: #0c78bb; font-size: 29px !important; }
+.pdoc-progress-dialog h3 { margin: 0; color: #244c6e; font-size: 20px; font-weight: 800; }
+.pdoc-progress-dialog p { margin: 6px 0 0; color: #61758a; font-size: 14px; line-height: 1.4; }
+.pdoc-progress-track { height: 9px; margin: 22px 0 0; overflow: hidden; border-radius: 999px; background: #e7eef5; }
+.pdoc-progress-fill { display: block; width: 10%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #38a5df, #0876b8); transition: width .65s ease; }
+.pdoc-progress-dialog .pdoc-progress-note { margin-top: 12px; font-size: 13px; }
+.pdoc-progress-close { min-width: 96px; margin-top: 18px; }
+.pdoc-progress-backdrop.is-success .pdoc-progress-mark { background: #e4f7ed; color: #0c8b55; }
+.pdoc-progress-backdrop.is-success .pdoc-progress-fill { background: #17a76a; }
+.pdoc-progress-backdrop.is-failed .pdoc-progress-mark { background: #fff0ec; color: #c7392b; }
+.pdoc-progress-backdrop.is-failed .pdoc-progress-fill { background: #d7564b; }
+.pdoc-generate-dialog { width: min(460px, 100%); border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 18px 48px rgba(0,0,0,.28); }
+.pdoc-generate-dialog header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #dfe8f2; }
+.pdoc-generate-dialog h3 { margin: 0; color: #175a91; font-size: 21px; font-weight: 800; }
+.pdoc-generate-dialog header button { border: 0; background: transparent; color: #60758a; font-size: 27px; cursor: pointer; }
+.pdoc-generate-dialog form { padding: 18px; }
+.pdoc-generate-dialog label { display: block; margin-bottom: 5px; color: #34506c; font-size: 15px; font-weight: 700; }
+.pdoc-generate-dialog input { width: 100%; height: 42px; padding: 7px 11px; border: 1px solid #bdccdb; border-radius: 5px; background: #fff; color: #203349; font-size: 17px; }
+.pdoc-generate-dialog input:focus-visible { outline: 3px solid #87b9ef; outline-offset: 1px; }
+.pdoc-generate-dialog footer { display: flex; justify-content: flex-end; gap: 9px; margin-top: 18px; }
+.pdoc-dialog { display: flex; flex-direction: column; width: min(1100px, 100%); max-height: calc(100vh - 32px); overflow: hidden; border-radius: 12px; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.28); }
+.pdoc-dialog-head, .pdoc-dialog-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 13px 18px; border-bottom: 1px solid #dfe8f2; }
+.pdoc-dialog-head h3 { margin: 0; font-size: 21px; color: #10243e; }
+.pdoc-dialog-head p { margin: 2px 0 0; color: #6d7d90; }
+.pdoc-dialog-head button { border: 0; background: transparent; color: #52657a; font-size: 28px; cursor: pointer; }
+.pdoc-dialog iframe { display: block; width: 100%; height: min(65vh, 750px); border: 0; background: #edf2f7; }
+.pdoc-dialog-foot { justify-content: flex-end; flex-wrap: wrap; border-top: 1px solid #dfe8f2; border-bottom: 0; }
+.pdoc-dialog-message { margin-right: auto; font-size: 14px; color: #52657a; }
+.pdoc-dialog-message.failed { color: #b42318; }
+.pdoc-dialog-message.success { color: #0a7a44; }
+@media (max-width: 780px) {
+  .pdoc-import-actions { width: 100%; margin-left: 0; }
+  .pdoc-import-actions .pdoc-btn { flex: 1; }
+  .pdoc-page { padding: 12px; }
+  .pdoc-card { padding: 13px; }
+  .pdoc-result-head { align-items: flex-start; flex-direction: column; }
+  .pdoc-heading-actions { width: 100%; margin-left: 0; }
+  .pdoc-heading-actions .pdoc-primary { width: 100%; }
+  .pdoc-page .pdoc-date-form label { flex: 1 1 160px; }
+  .pdoc-page .pdoc-date-form input { width: 100% !important; }
+  .pdoc-auto-note { align-items: flex-start; }
+  .pdoc-generate-head { align-items: flex-start; flex-direction: column; }
+  .pdoc-heading { align-items: flex-start; }
+  .pdoc-generate-head .pdoc-btn { min-width: 0; }
+  .pdoc-row-actions { min-width: 116px; }
+  .pdoc-table-meta { flex-wrap: wrap; }
+  .pdoc-table-footer { align-items: stretch; }
+  .pdoc-page-controls { width: 100%; gap: 9px 12px; }
+  .pdoc-bulk-btn { width: 100%; margin-left: 0; }
+  .pdoc-pagination { justify-content: space-between; }
+  .pdoc-dialog-foot .pdoc-btn { flex: 1; }
+  .pdoc-dialog-message { width: 100%; }
+  .pdoc-dialog iframe { height: 58vh; }
+}

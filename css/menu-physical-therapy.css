@@ -1,0 +1,201 @@
+/* One physical-therapy form pattern; Hospital Consideration and Billing show preselected disabled values. */
+:is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-section{
+  border:1px solid #dbe4ee;
+  border-radius:12px;
+  background:#fff;
+  padding:16px;
+}
+
+.physical-therapy-heading{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.physical-therapy-heading-icon{
+  display:grid;
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  place-items:center;
+  border-radius:10px;
+  background:#eff6ff;
+  color:#0878c9;
+}
+
+.physical-therapy-heading-icon .material-icons-round{
+  font-size:22px;
+}
+
+.physical-therapy-title{
+  color:#075985;
+  font-size:16px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.physical-therapy-subtitle{
+  margin-top:2px;
+  color:#64748b;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.5;
+}
+
+.physical-therapy-checkbox-label{
+  display:flex;
+  min-height:44px;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  color:#334155;
+  cursor:pointer;
+  font-size:19px;
+  font-weight:700;
+  line-height:1.35;
+}
+
+:is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-checkbox-label>span{
+  font-size:19px!important;
+  font-weight:700!important;
+  line-height:1.35!important;
+}
+
+.physical-therapy-section[data-physical-therapy="hospital"] .physical-therapy-checkbox-label,
+.physical-therapy-section[data-physical-therapy="billing"] .physical-therapy-checkbox-label{
+  cursor:default;
+}
+
+:is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-checkbox{
+  appearance:auto!important;
+  -webkit-appearance:checkbox!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  width:24px!important;
+  min-width:24px!important;
+  max-width:24px!important;
+  height:24px!important;
+  min-height:24px!important;
+  max-height:24px!important;
+  flex:0 0 24px!important;
+  align-self:center!important;
+  margin:0!important;
+  padding:0!important;
+  accent-color:#0878c9;
+}
+
+.physical-therapy-checkbox:disabled{
+  opacity:1;
+  cursor:not-allowed;
+}
+
+.physical-therapy-editor{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:8px;
+  margin-top:12px;
+  padding-top:14px;
+  border-top:1px solid #e2e8f0;
+}
+
+.physical-therapy-editor[hidden],
+.physical-therapy-helper[hidden],
+.physical-therapy-error[hidden]{
+  display:none!important;
+}
+
+.physical-therapy-label{
+  display:block;
+  margin-bottom:6px;
+  color:#475569;
+  font-size:14px;
+  font-weight:600;
+}
+
+:is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-label{
+  font-size:14px!important;
+}
+
+.physical-therapy-required{
+  color:#dc2626;
+}
+
+.physical-therapy-select{
+  width:100%;
+  min-height:42px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  background:#fff;
+  padding:0 38px 0 12px;
+  color:#334155;
+  font:500 14px/1.4 var(--ui-font,"TH Sarabun New","Sarabun",sans-serif);
+  outline:none;
+}
+
+:is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-select{
+  font-size:14px!important;
+  font-weight:500!important;
+  line-height:1.4!important;
+}
+
+.physical-therapy-select option{
+  font-size:14px!important;
+}
+
+.physical-therapy-select:disabled{
+  background:#f8fafc;
+  color:#334155;
+  opacity:1;
+  cursor:not-allowed;
+  -webkit-text-fill-color:#334155;
+}
+
+:is(#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) :is(#hhStepPane1,#hfStepPane1) .physical-therapy-select:disabled{
+  background:#f8fafc!important;
+  color:#334155!important;
+  border-color:#cbd5e1!important;
+}
+
+.physical-therapy-select:focus{
+  border-color:#0b85d4;
+  box-shadow:0 0 0 3px rgba(14,165,233,.14);
+}
+
+.physical-therapy-select[aria-invalid="true"]{
+  border-color:#dc2626;
+  box-shadow:0 0 0 3px rgba(220,38,38,.1);
+}
+
+.physical-therapy-error{
+  color:#dc2626;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.45;
+}
+
+.physical-therapy-helper{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin-top:2px;
+  border-radius:8px;
+  background:#f0f9ff;
+  padding:10px 12px;
+  color:#475569;
+  font-size:12px;
+  font-weight:500;
+  line-height:1.55;
+}
+
+.physical-therapy-helper .material-icons-round{
+  margin-top:1px;
+  color:#0284c7;
+  font-size:17px;
+}
+
+@media (max-width:700px){
+  :is(#considerCustomerDetailPage,#considerHospitalOpdHalfPage,#considerHospitalOpdFullPage,#billingHospitalReviewPage) .physical-therapy-section{
+    padding:14px;
+  }
+
+}

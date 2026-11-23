@@ -1,0 +1,225 @@
+/* Keep the returned-case hint beside the current status without expanding the row. */
+:is(#considerPage, #billingClaimPage) .hospital-returned-status-cell {
+  min-width: 154px;
+  white-space: nowrap;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-status-cell > span:first-child {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+  vertical-align: middle;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-info {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: #fff3dc;
+  color: #9b5d13;
+  vertical-align: middle;
+  cursor: help;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-info .material-icons-round {
+  font-size: 15px !important;
+  line-height: 1;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-info:focus-visible {
+  outline: 2px solid #0876bd;
+  outline-offset: 2px;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-info::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 20;
+  right: -6px;
+  bottom: calc(100% + 8px);
+  width: max-content;
+  max-width: 240px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  background: #243b53;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: normal;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, .18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+:is(#considerPage, #billingClaimPage) .hospital-returned-info:hover::after,
+:is(#considerPage, #billingClaimPage) .hospital-returned-info:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-panel {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: 0;
+  border: 1px solid #f0c7cf;
+  border-left: 4px solid #cf405d;
+  border-radius: 12px;
+  background: #fff5f6;
+  box-shadow: 0 5px 18px rgba(128, 34, 57, .06);
+  color: #25364a;
+  padding: 17px 20px;
+}
+
+.hospital-returned-header,
+.hospital-returned-prior,
+.hospital-returned-latest {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.hospital-returned-header {
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+
+.hospital-returned-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-rejected-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #eaa8b7;
+  border-radius: 999px;
+  background: #ffe0e7;
+  color: #ac1737;
+  padding: 5px 12px;
+  font-size: 16px !important;
+  font-weight: 800;
+  line-height: 1.35 !important;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 20px !important;
+  font-weight: 800;
+  line-height: 1.35 !important;
+}
+
+.hospital-returned-header h2 .material-icons-round {
+  color: #b82d4c;
+  font-size: 22px !important;
+}
+
+.hospital-returned-prior {
+  border-radius: 999px;
+  background: #ffe8ed;
+  padding: 6px 11px;
+}
+
+.hospital-returned-prior > span,
+.hospital-returned-fields > div > span:first-child,
+.hospital-returned-latest > span:first-child {
+  color: #617386;
+}
+
+.hospital-returned-fields {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: 14px 22px;
+  margin-top: 15px;
+  border-top: 1px solid #f2d7dd;
+  padding-top: 14px;
+}
+
+.hospital-returned-fields > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-prior,
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-fields > div > span:first-child,
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-latest > span:first-child {
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-fields > div > :last-child,
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-latest strong,
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-latest > span:last-child {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+.hospital-returned-latest {
+  margin-top: 15px;
+  border-radius: 8px;
+  background: #ffebef;
+  padding: 10px 12px;
+}
+
+.hospital-returned-latest > span:last-child {
+  margin-left: auto;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-panel.is-cancelled {
+  border-color: #f0d0a5;
+  border-left-color: #d5892d;
+  background: #fffaf1;
+  box-shadow: 0 5px 18px rgba(135, 86, 25, .06);
+}
+
+.hospital-returned-panel.is-cancelled .hospital-returned-header h2 .material-icons-round {
+  color: #b86e18;
+}
+
+:is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-panel.is-cancelled .hospital-returned-rejected-badge {
+  border-color: #eaa8b7;
+  background: #ffe0e7;
+  color: #ac1737;
+}
+
+.hospital-returned-panel.is-cancelled .hospital-returned-prior,
+.hospital-returned-panel.is-cancelled .hospital-returned-latest {
+  background: #fff1dd;
+}
+
+.hospital-returned-panel.is-cancelled .hospital-returned-fields {
+  border-top-color: #f2dec2;
+}
+
+@media (max-width: 640px) {
+  :is(#considerHospitalOpdFullPage, #considerHospitalOpdHalfPage, #billingHospitalReviewPage) .hospital-returned-panel {
+    padding: 15px;
+  }
+
+  .hospital-returned-prior {
+    border-radius: 8px;
+  }
+
+  .hospital-returned-fields {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .hospital-returned-latest > span:last-child {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+}
