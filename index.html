@@ -71,7 +71,7 @@
   <link rel="stylesheet" href="css/menu-fund-hospital-payments.css" />
   <link rel="stylesheet" href="css/menu-consider-hospital-notice.css" />
   <link rel="stylesheet" href="css/menu-home-announcements.css" />
-  <link rel="stylesheet" href="css/menu-system-payment-documents.css?v=691" />
+  <link rel="stylesheet" href="css/menu-system-payment-documents.css?v=699" />
 
   <script>
     tailwind.config = {
@@ -12695,16 +12695,26 @@ h1,h2,h3,h4,h5,h6,.card-title,.section-title{font-weight:700!important}
         </div>
       </section>
       <section id="paymentDocumentsPage" class="page hidden pdoc-page" aria-label="จัดการเอกสารโอนเงิน">
-        <section class="pdoc-card pdoc-upload-card" aria-labelledby="pdocUploadTitle">
-          <div class="pdoc-result-head"><div class="pdoc-heading"><span class="material-icons-round pdoc-step-icon" aria-hidden="true">cloud_upload</span><div><h3 id="pdocUploadTitle">รายการที่ต้องอัปโหลดเข้า DocStorage</h3></div></div><div class="pdoc-heading-actions"><button id="pdocOpenGenerate" type="button" class="pdoc-btn pdoc-primary"><span class="material-icons-round" aria-hidden="true">add_circle</span>Generate PDF</button></div></div>
+        <div class="pdoc-tabs" role="tablist" aria-label="จัดการเอกสารโอนเงิน"><button id="pdocQueueTab" type="button" role="tab" aria-selected="true" aria-controls="pdocQueuePanel" class="pdoc-tab is-active">รายการรออัปโหลด</button><button id="pdocImportTab" type="button" role="tab" aria-selected="false" aria-controls="pdocImportPanel" class="pdoc-tab" tabindex="-1">นำเข้ารายการ</button></div>
+        <section id="pdocQueuePanel" role="tabpanel" aria-labelledby="pdocQueueTab" class="pdoc-card pdoc-upload-card">
+          <div class="pdoc-result-head"><div class="pdoc-heading"><span class="material-icons-round pdoc-step-icon" aria-hidden="true">cloud_upload</span><div><h3 id="pdocUploadTitle">รายการที่ต้องอัปโหลดเข้า DocStorage</h3></div></div></div>
           <form id="pdocDateForm" class="pdoc-date-form" novalidate><label for="pdocFromDate">จากวันที่โอนเงิน<input id="pdocFromDate" type="date"></label><label for="pdocToDate">ถึงวันที่<input id="pdocToDate" type="date"></label><button type="submit" class="pdoc-btn pdoc-primary pdoc-search-btn"><span class="material-icons-round" aria-hidden="true">search</span>ค้นหา</button></form>
           <p id="pdocDateError" class="pdoc-error" role="alert" hidden></p>
           <aside class="pdoc-auto-note" aria-label="หมายเหตุเวลาการแนบเอกสาร"><span class="material-icons-round pdoc-auto-icon" aria-hidden="true">schedule</span><span class="pdoc-auto-copy"><strong>หมายเหตุ</strong><span>ระบบจะทำการกวาดแนบเอกสาร Auto ในทุกๆ วัน เวลา</span></span><span class="pdoc-auto-time">19:00 น.</span></aside>
           <p id="pdocUploadFeedback" class="pdoc-upload-feedback" role="status" aria-live="polite" tabindex="-1" hidden></p>
-          <div class="pdoc-table-meta"><div id="pdocUploadCount" class="pdoc-table-count" role="status" aria-live="polite" aria-atomic="true"><span class="material-icons-round pdoc-count-icon" aria-hidden="true">pending_actions</span><span class="pdoc-count-marker" aria-hidden="true"></span><span class="pdoc-count-copy"><span class="pdoc-count-label">รออัปโหลด</span><span class="pdoc-count-value"><strong id="pdocUploadCountValue">0</strong> <span>ไฟล์</span></span></span></div><button id="pdocUploadAll" type="button" class="pdoc-btn pdoc-bulk-btn" disabled><span class="material-icons-round" aria-hidden="true">cloud_upload</span>อัปโหลดทั้งหมด</button></div>
+          <div class="pdoc-table-meta"><div id="pdocUploadCount" class="pdoc-table-count" role="status" aria-live="polite" aria-atomic="true"><span class="material-icons-round pdoc-count-icon" aria-hidden="true">pending_actions</span><span class="pdoc-count-marker" aria-hidden="true"></span><span class="pdoc-count-copy"><span class="pdoc-count-label">รออัปโหลด</span><span class="pdoc-count-value"><strong id="pdocUploadCountValue">0</strong> <span>ไฟล์</span></span></span></div></div>
           <div id="pdocUploadEmpty" class="pdoc-empty-state"><span class="material-icons-round" aria-hidden="true">cloud_done</span><strong>ไม่มีรายการรออัปโหลด</strong></div>
           <div id="pdocUploadTable" class="pdoc-table-scroll pdoc-upload-scroll" hidden><table aria-labelledby="pdocUploadTitle"><thead><tr><th>ลำดับ</th><th>เลขที่ CC</th><th>เลขที่เคลม</th><th>เลข PMT</th><th>เลขเอกสาร</th><th>สถานะอัปโหลด</th><th>ดำเนินการ</th></tr></thead><tbody id="pdocUploadRows"></tbody></table></div>
           <div class="pdoc-table-footer"><div class="pdoc-page-controls"><label for="pdocPageSelect">หน้า <select id="pdocPageSelect" aria-label="เลือกหน้า"></select></label><label for="pdocPageSize">ข้อมูลต่อหน้า <select id="pdocPageSize" aria-label="จำนวนรายการต่อหน้า"><option value="10">10</option><option value="20">20</option><option value="50">50</option></select></label><span id="pdocPageRange" class="pdoc-page-range" aria-live="polite">0-0 จาก 0</span><button id="pdocPrevPage" type="button" class="pdoc-page-nav" aria-label="หน้าก่อนหน้า" disabled><span class="material-icons-round" aria-hidden="true">chevron_left</span></button><button id="pdocNextPage" type="button" class="pdoc-page-nav" aria-label="หน้าถัดไป" disabled><span class="material-icons-round" aria-hidden="true">chevron_right</span></button></div></div>
+        </section>
+        <section id="pdocImportPanel" role="tabpanel" aria-labelledby="pdocImportTab" class="pdoc-card pdoc-import-card" hidden>
+          <div class="pdoc-result-head"><div class="pdoc-heading"><span class="material-icons-round pdoc-step-icon" aria-hidden="true">upload_file</span><div><h3 id="pdocImportTitle">นำเข้ารายการ</h3></div></div></div>
+          <form id="pdocImportForm" class="pdoc-import-form"><label for="pdocImportFile">เลือกไฟล์ Excel (.xlsx)</label><div class="pdoc-import-controls"><input id="pdocImportFile" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required><button id="pdocImportSubmit" type="submit" class="pdoc-btn pdoc-primary"><span class="material-icons-round" aria-hidden="true">upload_file</span>นำเข้าไฟล์</button></div></form>
+          <p class="pdoc-import-note">หมายเหตุ: ไฟล์ต้องตรงตาม Template; เคลมจากระบบเก่าใช้เฉพาะ CL</p>
+          <p id="pdocImportFeedback" class="pdoc-upload-feedback" role="status" aria-live="polite" hidden></p>
+          <div class="pdoc-import-toolbar"><span id="pdocBatchSummary" aria-live="polite"></span><div class="pdoc-import-actions"><button id="pdocUploadAll" type="button" class="pdoc-btn pdoc-bulk-btn" disabled><span class="material-icons-round" aria-hidden="true">cloud_upload</span>อัปโหลดทั้งหมด</button></div></div>
+          <div id="pdocImportEmpty" class="pdoc-empty-state"><span class="material-icons-round" aria-hidden="true">description</span><strong>ยังไม่มีรายการนำเข้า</strong></div>
+          <div id="pdocImportTable" class="pdoc-table-scroll" hidden><table aria-labelledby="pdocImportTitle"><thead><tr><th>ลำดับ</th><th>เลขที่ CC</th><th>เลขที่เคลม (CL)</th><th>เลข PMT</th><th>เลขเอกสาร</th><th>สถานะ</th><th>ดำเนินการ</th></tr></thead><tbody id="pdocImportRows"></tbody></table></div>
         </section>
       </section>
     </main>
@@ -54156,8 +54166,8 @@ label > b:only-child,
  * The Version card renders only from these constants.
  */
 window.CLAIM_AGENT_BUILD = Object.freeze({
-  version: "691",
-  updatedAt: "19/11/2026 15:21:54"
+  version: "701",
+  updatedAt: "23/11/2026 10:04:45"
 });
 
 (function renderClaimAgentBuildInfo(){
@@ -65474,8 +65484,9 @@ button[data-hospital-decision-save-v281="true"]:disabled{
 <link rel="stylesheet" href="css/menu-system-authorization-limits.css?v=650" />
 <script src="js/data/authorization-master.js?v=631"></script>
 <script src="js/menu-system-authorization-limits.js?v=650"></script>
-<script src="js/mock-data/payment-document.mock.js?v=681"></script>
-<script src="js/menu-system-payment-documents.js?v=691"></script>
+<script src="js/mock-data/payment-document.mock.js?v=699"></script>
+<script src="js/payment-document-xlsx.js?v=699"></script>
+<script src="js/menu-system-payment-documents.js?v=701"></script>
 <link rel="stylesheet" href="css/menu-claim-entry-authorized-transfer.css?v=635" />
 <script src="js/menu-claim-entry-authorized-transfer.js?v=641"></script>
 </body>
